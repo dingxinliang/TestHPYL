@@ -1,0 +1,37 @@
+﻿@using Himall.Core;
+@model Himall.Web.Areas.SellerAdmin.Models.WdgjApiModel
+
+<script src="~/Areas/SellerAdmin/Scripts/WdgjApiIndex.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<div class="container">
+    <ul class="nav nav-tabs-custom clearfix">
+        <li class="active"><a>网店管家管理</a></li>
+    </ul>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label"><b>*</b>接入码(uCode)：</label>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(m => m.uCode, new { @class = "form-control input-sm", maxlength = 20 })
+            </div>
+            <div class="col-sm-3">
+                @Html.ValidationMessageFor(m => m.uCode, "", new { @class = "help-default cor-red" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label"><b>*</b>效验码(Sign)：</label>
+            <div class="col-sm-3">
+                @Html.TextBoxFor(m => m.uSign, new { @class = "form-control input-sm", maxlength = 50 })
+            </div>
+            <div class="col-sm-3">
+                @Html.ValidationMessageFor(m => m.uSign, "", new { @class = "help-default cor-red" })
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-primary" id="submit">保 存</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "门店标签设置";
+}
+
+<script src="~/Scripts/jquery.hiMallDatagrid.js"></script>
+<script src="~/Scripts/jquery.himallLinkage.nocreate.js"></script>
+<script src="~/Areas/Admin/Scripts/ShopBranchTags.js"></script>
+<div class="container">
+    <ul class="nav nav-tabs-custom clearfix">
+        <li class="shopbranchmanagement"><a href="@Url.Action("Management")">门店列表</a></li>
+        <li class="active"><a>门店标签设置</a></li>
+    </ul>
+
+    <div id="shopToolBar">
+        <div class="search-box">
+            <div class="form-group" style="float:right;">
+                <input type="button" class="btn btn-primary btn-sm" id="btnAddTags" value="添加标签">
+            </div>
+        </div>
+    </div>
+
+    <table class="table" id="list"></table>
+</div>
+
+
+<div class="dialog-form" id="addTagsform" style="display:none">
+    <div class="form-group" id="UserNameDiv">
+        <label class="label-inline fl" for="">标签名称：</label>
+        <input class="form-control input-sm" type="text" id="txtTitle" name="Title" maxlength="10">
+        <input type="hidden" id="txtTagId" name="tagId">
+    </div>
+</div>

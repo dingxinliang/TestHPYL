@@ -1,0 +1,289 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="format-detection" content="telephone=no, address=no">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<title>商品详情</title>
+	<script>
+		(function() {
+			var baseFontSize = 100;
+			var baseWidth = 320;
+			var clientWidth = document.documentElement.clientWidth || window.innerWidth;
+			var innerWidth = Math.max(Math.min(clientWidth, 480), 320);
+
+			var rem = 100;
+
+			if (innerWidth > 362 && innerWidth <= 375) {
+				rem = Math.floor(innerWidth / baseWidth * baseFontSize);
+				//rem = Math.floor(innerWidth / baseWidth * baseFontSize * 0.9);
+			}
+
+			if (innerWidth > 375) {
+				rem = Math.floor(innerWidth / baseWidth * baseFontSize);
+				//rem = Math.floor(innerWidth / baseWidth * baseFontSize * 0.84);
+			}
+
+			window.__baseREM = rem;
+			document.querySelector('html').style.fontSize = rem + 'px';
+		}());
+	</script>
+	<link rel="stylesheet" href="/Content/bootstrap.min.css">
+	<link rel="stylesheet" href="/Areas/Mobile/Templates/Default/Content/custom.css">
+	
+	<script src="/Scripts/jquery-1.7.1.min.js"></script>
+	<script src="/Scripts/CommonJS.js"></script>
+	<script src="/Areas/Mobile/Templates/Default/Scripts/custom.js"></script>
+	<script src="/Areas/Mobile/Templates/Default/Scripts/buylib.js"></script>
+	<script src="/Scripts/imitateRequire.js"></script>
+	<script>
+		imitateRequireJS.addJsFile([{
+			group: 'common',
+			fileNames: [
+				{ nickName: 'jquery.artDialog', fileName: 'jquery.artDialog.js' },
+				{ nickName: 'artDialog', fileName: 'artDialog.iframeTools.js', depends: ['jquery.artDialog'] },
+			]
+		}]);
+	</script>
+</head>
+<body>
+	<!--_Base start-->
+	<script>
+		var areaName = 'm-Wap';
+		var MAppType = '';
+	</script>
+	
+<input type="hidden" id="gid" value="739" />
+<input type="hidden" id="categoryId" value="16" />
+<input type="hidden" id="has" value="1" />
+<div id="J_shop_att"></div>
+<div class="container container-z">
+    <div class="detail-hd">
+        <div id="slides">
+                    <img data-src="/Storage/Shop/1/Products/739/1_500.png" />
+        </div>
+    </div>
+    <a class="dis-info-a bt_share" id="dis-brokerage-box" style="display:none;">赚<span id="dis-brokerage">00.00</span>元</a>
+    <div class="detail-bd">
+        <div class="goods-info">
+            <div id="preheat"></div>
+            <div class="item">
+                <div class="goods-price" id="jd-price">
+                    <span id="jd-saleprice"></span>
+                    <s>￥5599.00</s>
+                </div>
+                <h4>联想（Lenovo）Y50p-70 15.6英寸游戏笔记本电脑（I5-4210H 1T GTX960M升级版 ）</h4>
+                <h5></h5>
+            </div>
+            <div class="item promotion-wrap" id="divCoupon">
+                <div class="promotion">
+                    <ul class="promotion-list" id="showPromotion">
+                    	<li class="promotion-coupon spec-arrow" style="display:none;" onclick="showPortfolio()"><a href="javascript:;">
+                            <span id="activespan"><i class="coupon-tip">促销优惠</i></span></a>
+                        </li>
+                    </ul>
+                </div>
+              
+                    <div id="productColloCation"></div>
+                    <div class="goods-address" id="showDeportAddress">
+                    </div>
+                    
+<ul class="ensary j_ensary">
+            <li class="flex-center"><i>消费者保障</i></li> </ul>
+<input data-val="true" data-val-number="字段 Int64 必须是一个数字。" id="shopId" name="shopId" type="hidden" value="1" />
+<input data-val="true" data-val-number="字段 Int64 必须是一个数字。" id="productId" name="productId" type="hidden" value="739" />
+</div>
+        </div>
+         <div class="item detail-comment j_storesInfo product-store-title"  style="display:none">
+             <div class="goods-comment">
+                         <h1><b class="j_storeName"></b><span class="j_distanceUnit"></span><i class="ic-arrow"></i></h1> 
+                         <p class="j_storeAddress"></p>
+                         <a class="j_storelist btn btn-default"></a>
+             </div>
+        </div>
+        
+        <div class="item detail-comment">
+            <div class="detail-comment-hd">
+                商品评价
+                <span class="detail-comment-num">0</span>
+            </div>
+            <div id="productCommentShow">
+            </div>
+            <div class="detail-comment-ft">
+                <a class="btn btn-default" href="../ProductComment?pId=739&commentType=0">查看全部评价</a>
+            </div>
+        </div>
+
+        
+<div class="item shop-wrap">
+    <div class="shop-hd">
+        <div class="shop-logo"><img src="/Storage/Shop/1/VShop/201702141734365302700.png"></div>
+        <h4 class="j_shopName">官方自营店</h4>
+        <div class="shop-hd-info">
+            <span>宝贝数<strong>23</strong></span>
+            <span>关注人数<strong>2</strong></span>
+        </div>
+    </div>
+    <ul class="shop-bd clearfix">
+        <li>商品：<strong>5.00</strong></li>
+        <li>发货：<strong>5.00</strong></li>
+        <li>服务：<strong>5.00</strong></li>
+    </ul>
+    <div class="shop-ft clearfix">
+        <span><a class="btn btn-default" id="bt_govshop" href="/m-Wap/vshop/detail/10" vshopid="10">进入店铺</a></span>
+        <span><a class="btn btn-default " id="addShopFavorite" shopid="1">关注</a></span>
+    </div>
+</div>
+<input type="hidden" id="shopId" name="shopId" value="1" />
+<script src="/Areas/Mobile/Templates/Default/Scripts/ShowShopScore.js"></script>
+
+
+        <div id="productColloCation">
+        </div>        
+        
+        
+    <div class="item details-link">
+        <a href="javascript:void(0)" id="showmoreprodesc"><span>查看更多详情</span></a>
+    </div>
+    <div class="goods-img clearfix" id="prodesccon"></div>
+    <div id="autoLoad" class="loading"></div>
+<input id="gid_desc" name="gid_desc" type="hidden" value="739" />
+<script src="/Areas/Mobile/Templates/Default/Scripts/ProductShowProductDescription.js"></script>
+<script src="/Scripts/jquery.scrollLoading.min.js"></script>
+<script src="/Areas/Mobile/Templates/Default/Scripts/loading.js"></script>
+
+        <div class="right" style="display:none;background:#fff">
+            <div class="relation-title text-center"><span>猜你喜欢</span></div>
+            <div id="relationProducts" class="clearfix">
+                <template>
+                    <a class="relation-pro clearfix" href="/m-wap/Product/detail/{{id}}">
+                        <div class="relation-pro-img">
+                            <img src="{{imagePath}}" />
+                        </div>
+                        <p class="relation-pro-price"><i>￥</i>{{minSalePrice}}</p>
+                        <p class="relation-pro-name">{{productName}}</p>
+                    </a>
+                </template>
+            </div>
+        </div>
+    </div>
+</div>
+<section id="s-actionBar-container">
+    <div id="s-actionbar" class="action-bar">
+        <div class="cell tocart icon-cart-c">
+            购物车
+            <a href="/m-Wap/Cart/Cart?returnUrl=%2fm-wap%2fProduct%2fDetails%2f739%3fnojumpfg%2520%3d%25201"></a>
+            <span class="plus-one">1</span>
+        </div>
+    </div>
+</section>
+<input type="hidden" id="proDesc" value="&lt;ul class=&quot;clearfix list-paddingleft-2&quot; style=&quot;width: 608.938px; white-space: normal;&quot;&gt;&lt;ul class=&quot; list-paddingleft-2&quot; style=&quot;list-style-type: square;&quot;&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;核心数&lt;/strong&gt;：双核心&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;CPU类型&lt;/strong&gt;：Intel i5&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;CPU型号&lt;/strong&gt;：i5-4210H&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;CPU主频&lt;/strong&gt;：2.9&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;em class=&quot;icon i-cpu&quot;&gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;CPU&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;em class=&quot;ng-iconfont p-down-arrow&quot;&gt;&lt;/em&gt;&lt;li&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;ul class=&quot; list-paddingleft-2&quot; style=&quot;list-style-type: square;&quot;&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;硬盘容量&lt;/strong&gt;：1TB&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;硬盘类型&lt;/strong&gt;：机械硬盘&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;硬盘转速&lt;/strong&gt;：5400转/分&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;em class=&quot;icon i-pc-dish&quot;&gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;硬盘&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;em class=&quot;ng-iconfont p-down-arrow&quot;&gt;&lt;/em&gt;&lt;li&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;ul class=&quot; list-paddingleft-2&quot; style=&quot;list-style-type: square;&quot;&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;内存容量&lt;/strong&gt;：4GB&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;内存类型&lt;/strong&gt;：DDR3&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;最大支持内存&lt;/strong&gt;：16GB&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;em class=&quot;icon i-pc-memory&quot;&gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;内存&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;em class=&quot;ng-iconfont p-down-arrow&quot;&gt;&lt;/em&gt;&lt;li&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;ul class=&quot; list-paddingleft-2&quot; style=&quot;list-style-type: square;&quot;&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;显卡类型&lt;/strong&gt;：独立显卡&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;显存容量&lt;/strong&gt;：2GB&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;em class=&quot;icon i-pc-graphic&quot;&gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;显卡&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;em class=&quot;ng-iconfont p-down-arrow&quot;&gt;&lt;/em&gt;&lt;li&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;ul class=&quot; list-paddingleft-2&quot; style=&quot;list-style-type: square;&quot;&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;屏幕尺寸&lt;/strong&gt;：15.6英寸&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;屏幕比例&lt;/strong&gt;：16:9&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;屏幕分辨率&lt;/strong&gt;：1920&#215;1080&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;触摸功能&lt;/strong&gt;：不支持&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;em class=&quot;icon i-pc-screen&quot;&gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;显示屏&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;em class=&quot;ng-iconfont p-down-arrow&quot;&gt;&lt;/em&gt;&lt;li&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;ul class=&quot; list-paddingleft-2&quot; style=&quot;list-style-type: square;&quot;&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;颜色&lt;/strong&gt;：黑色&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;厚度&lt;/strong&gt;：23.9mm&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;机身尺寸&lt;/strong&gt;：387 * 263.4 * 23.9&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;重量&lt;/strong&gt;：2.6KG&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;em class=&quot;icon i-pc-appearance&quot;&gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;外观&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;em class=&quot;ng-iconfont p-down-arrow&quot;&gt;&lt;/em&gt;&lt;li&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;ul class=&quot; list-paddingleft-2&quot; style=&quot;list-style-type: square;&quot;&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;电池类型&lt;/strong&gt;：4芯锂电池&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;续航时间&lt;/strong&gt;：适使用情况而定&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;电源适配器&lt;/strong&gt;：100-240V自适应交流电源适配器&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;em class=&quot;icon i-pc-battery&quot;&gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;电池&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;em class=&quot;ng-iconfont p-down-arrow&quot;&gt;&lt;/em&gt;&lt;li&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/li&gt;&lt;ul class=&quot; list-paddingleft-2&quot; style=&quot;list-style-type: square;&quot;&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;操作系统&lt;/strong&gt;：Windows8.1&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;蓝牙功能&lt;/strong&gt;：蓝牙4.0&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;局域网&lt;/strong&gt;：10/100/1000Mbps&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;无线局域网&lt;/strong&gt;：802.11b/g/n&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;em class=&quot;icon i-others&quot;&gt;&lt;/em&gt;&lt;/p&gt;&lt;p&gt;其他&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/ul&gt;&lt;table style=&quot;width: 625px;&quot; width=&quot;625&quot; cellspacing=&quot;1&quot; cellpadding=&quot;1&quot;&gt;&lt;tbody&gt;&lt;tr class=&quot;firstRow&quot;&gt;&lt;td&gt;&amp;nbsp;&lt;img alt=&quot;&quot; src=&quot;/Storage/Shop/1/Products/739/remark/5c2ad565822d47cc8b419cfbbd4331ac.jpg&quot; class=&quot;err-product&quot;/&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table style=&quot;width: 625px;&quot; width=&quot;625&quot; cellspacing=&quot;1&quot; cellpadding=&quot;1&quot;&gt;&lt;tbody&gt;&lt;tr class=&quot;firstRow&quot;&gt;&lt;td&gt;&lt;p&gt;&lt;img alt=&quot;&quot; src=&quot;/Storage/Shop/1/Products/739/remark/57ce3edf9d0543768c5df577ab6d0bf2.jpg&quot; class=&quot;err-product&quot;/&gt;&lt;img alt=&quot;&quot; src=&quot;/Storage/Shop/1/Products/739/remark/397a93426a2f4de58e142abce3a605eb.jpg&quot; class=&quot;err-product&quot;/&gt;&lt;img alt=&quot;&quot; src=&quot;/Storage/Shop/1/Products/739/remark/b7ba26f1d840470dabbc4400cc0db371.jpg&quot; class=&quot;err-product&quot;/&gt;&lt;img alt=&quot;&quot; src=&quot;/Storage/Shop/1/Products/739/remark/e509d89df0df4745915320e27000f67c.jpg&quot; class=&quot;err-product&quot;/&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;" />
+<input type="hidden" id="shopId" value="1" />
+<input type="hidden" id="couponUrl" value="/m-wap/coupon/ShopCouponList" />
+<input type="hidden" id="skuUrl" value="/m-wap/Product/GetSKUInfo" />
+    <script>
+        var winxinShareArgs = {
+            share: {
+                title: '联想（Lenovo）Y50p-70 15.6英寸游戏笔记本电脑（I5-4210H 1T GTX960M升级版 ）',
+                desc: '联想（Lenovo）Y50p-70 15.6英寸游戏笔记本电脑（I5-4210H 1T GTX960M升级版 ）',
+                link: location.href,
+                imgUrl: 'http://localhost:60362//Storage/Shop/1/Products/739/1_150.png',
+                success: null,
+                cancel: null,
+                fail: null,
+                complete: null,
+                trigger: null
+            }
+        };
+    </script>
+    <!--_WeiXinShare start-->
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/Areas/Mobile/Templates/Default/Scripts/WeiXinShare.js"></script>
+    <!--_WeiXinShare end-->
+<script src="https://map.qq.com/api/js?v=2.exp&libraries=convertor"></script>
+<script src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+<script src="/Areas/Mobile/Templates/Default/Scripts/ProductDetail.js"></script>
+<script src="/Areas/Mobile/Templates/Default/Scripts/ProductDistributionBrokerage.js"></script>
+<script src="/Scripts/jquery.cookie.js"></script>
+<script src="/Scripts/jquery.slides.min.js"></script>
+<a class="WX-backtop"></a>
+<div id="ShopCoupon"></div>
+<div id="portfolioCoupon">
+	<div class="modul-popup">
+	    <div class="modul-popup-container sale-popup-container">
+	        <div class="sale-popup-header"></div>
+	        <div class="sale-popup-body">
+	            <div class="modul-scroll">
+	                <table class="sale-table" width="100%">
+	                        <tbody id="activeList">
+	                    	</tbody>
+	                </table>
+                </div>
+	        </div>
+	        <div class="sale-popup-footer">
+	            <a href="javascript:" class="modul-popup-close sale-popup-close"></a>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+
+
+<!--_Aside start-->
+<div id="_Aside_CustomServices">
+</div>
+<script src="/Areas/Mobile/Templates/Default/Scripts/_Aside.js"></script>
+
+    <div class="wx_aside">
+            <!-- 更多 -->
+            <a href="javascript:;" class="btn_more"></a>
+                <div class="wx_aside_item">
+                </div>
+    </div>
+<!--_Aside end-->
+
+	<script src="/Scripts/jquery.nicescroll.min.js"></script>
+	<script src="/Areas/Mobile/Templates/Default/Scripts/_Base.js"></script>
+	<link rel="stylesheet" href="/Areas/Mobile/Templates/Default/Content/artdialog.css">
+	<script src="/Scripts/jquery.artDialog.js"></script>
+	<script src="/Scripts/artDialog.iframeTools.js"></script>
+	<script src="/Scripts/jquery.cookie.js"></script>
+	<script src="/Scripts/jquery.scrollLoading.min.js"></script>
+
+		
+
+		<script>
+		(function () {
+			var data= null;
+			if (data) {
+				var callback;
+				if (data.goBack == true)
+					callback = function () { history.go(-1); };
+				var fun;
+				if (data.type == -1)
+					fun='errorTips';
+				else if(data.type==0)
+					fun='alert';
+				else if (data.type == 1)
+					fun='alertTips';
+				else if (data.type == 2)
+					fun='succeedTips';
+				if(fun)
+					$.dialog[fun](data.message,callback,data.time);
+			}
+		})();
+</script>
+	<!--_Base end-->
+
+<!-- Visual Studio Browser Link -->
+<script type="application/json" id="__browserLink_initializationData">
+    {"appName":"Unknown","requestId":"86c1c798eb7d45349996d9cb5583c399"}
+</script>
+<script type="text/javascript" src="http://localhost:2126/f2d9130ab8294762b73ef75dd5254f8d/browserLink" async="async"></script>
+<!-- End Browser Link -->
+
+</body>
+</html>

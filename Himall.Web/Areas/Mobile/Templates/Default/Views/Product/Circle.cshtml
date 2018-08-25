@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "商圈介绍";
+}
+<input type="hidden" value="@ViewBag.ProductId" id="hidProductId" />
+<div id="divShow"></div>
+<div id="divPage">
+    <a href="javascript:;" style="display:none;">上一篇</a>
+    <a href="javascript:;" data-nextpage="true" style="display:none;padding-left:100px;">下一篇</a>
+</div>
+<div id="divErr" style=" display:none;">
+    还未创建商圈
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        refresh();
+        $("#divPage").find("a").on("click", function () {
+            var circleId = $(this).attr("data-circleid");
+            var nextPage = $(this).attr("data-nextpage");
+            refresh(circleId, nextPage);
+        });
+        function refresh(circleId, nextPage) {
+            $("#divShow").html("");
+            $("#divPage").find("a").hide();
+            $.ajax({
+                type: 'post',
+                url: '../../Product/GetCirclePage',
+                data: { productId: $("#hidProductId").val(), circleId: circleId, nextPage: nextPage },
+                dataType: 'json',
+                cache: true,// 开启ajax缓存
+                success: function (data) {
+                    if (data.ErrorMsg) {
+                        $("#divErr").show();
+                        return;
+                    }
+                    $("#divPage").find("a").attr("data-circleid", data.CircleId);
+                    if (data.IsPrev) {
+                        $("#divPage").find("a:first").show();
+                    }
+                    if (data.IsNext) {
+                        $("#divPage").find("a:last").show();
+                    }
+                    $("#divShow").html(data.MobileDescription);
+                }
+            });
+        }
+    });
+</script>

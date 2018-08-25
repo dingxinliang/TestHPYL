@@ -1,0 +1,112 @@
+﻿@{
+ViewBag.ShowAside = 2;//显示返回顶部按钮 
+}
+@{Layout = "/Areas/Mobile/Templates/Default/Views/Shared/_Base.cshtml";}
+<div class="container">
+@{Html.RenderPartial("~/Areas/Mobile/Templates/Default/Views/Shared/_SearchBox.cshtml");}
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="~/Areas/Mobile/Templates/Default/Scripts/WeiXinShare.js"></script>
+<link rel="stylesheet" href="/Content/PublicMob/css/style.css" />
+<link rel="stylesheet" href="/Areas/Admin/templates/common/style/css.css" rev="stylesheet" type="text/css">
+<link rel="stylesheet" href="/Areas/Admin/templates/common/style/mycss.css" rev="stylesheet" type="text/css">
+<link rel="stylesheet" href="/Areas/Admin/templates/common/style/main.css" rev="stylesheet" type="text/css">
+<link rel="stylesheet" href="/Areas/Admin/templates/common/style/head.css">
+
+            <div class="members_con" style="margin:0 auto">
+                
+                <section class="members_flash j-swipe" id="mySwipe">
+                    <ul class="clearfix">
+                        
+                        
+                        <li>
+                            <a href="#" title="">
+                                
+                                
+                                <img src="http://192.168.0.134:8026//Storage/template/0/20171206/6364815047879418851923267.jpg" width="100%" />
+                                
+                                
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" title="">
+                                
+                                
+                                <img src="http://192.168.0.134:8026//Storage/template/0/20171206/6364815047893482737880991.jpg" width="100%" />
+                                
+                                
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" title="">
+                                
+                                
+                                <img src="http://192.168.0.134:8026//Storage/template/0/20171206/6364815047904419527380224.jpg" width="100%" />
+                                
+                                
+                            </a>
+                        </li>
+                        
+                        
+                    </ul>
+                    <section class="members_flash_time">
+                        
+                        
+                        <span class="cur" ></span>
+                        
+                        <span  ></span>
+                        
+                        <span  ></span>
+                        
+                        
+                    </section>
+                </section>
+                
+            </div>
+        
+            <div class="members_con">
+                <section class="members_nav1">
+                    <ul class="pic-nav">
+                        
+                        
+                        
+                        <li class="lisw4">
+                            <span><a class="goodsimg" href="/m-wap/shopbranch/storelist"><div class="son"><img src="http://192.168.0.134:8026//Storage/template/0/20171206/6364815050123118083536065.png"></div></a></span>
+                            <a class="members_nav1_name" href="/m-wap/shopbranch/storelist">周边门店</a>
+                        </li>
+                        
+                        
+                        
+                        <li class="lisw4">
+                            <span><a class="goodsimg" href="/m-Wap/topic/detail/63"><div class="son"><img src="http://192.168.0.134:8026//Storage/template/0/20171206/6364815050127807168521973.png"></div></a></span>
+                            <a class="members_nav1_name" href="/m-Wap/topic/detail/63">百货</a>
+                        </li>
+                        
+                        
+                        
+                        <li class="lisw4">
+                            <span><a class="goodsimg" href="/m-Wap/FightGroup"><div class="son"><img src="http://192.168.0.134:8026//Storage/template/0/20171206/6364815050130930381278636.png"></div></a></span>
+                            <a class="members_nav1_name" href="/m-Wap/FightGroup">拼团列表</a>
+                        </li>
+                        
+                        
+                        
+                        <li class="lisw4">
+                            <span><a class="goodsimg" href="/m-Wap/LimitTimeBuy/Home"><div class="son"><img src="http://192.168.0.134:8026//Storage/template/0/20171206/6364815050135619006264544.png"></div></a></span>
+                            <a class="members_nav1_name" href="/m-Wap/LimitTimeBuy/Home">限时购列表</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                </section>
+            </div>
+        @{Html.RenderAction("GoodsListAction", "TemplateVisualizationProcess",new { Layout="1", ShowName="1", IDs="737,736,735,734", ShowIco="True", ShowPrice="True", DataUrl="/api/Hi_Ajax_GoodsList", ID="goods_11f5c5d983ef4452afed3a186f4285a9"});}@{Html.RenderPartial("~/Areas/Mobile/Templates/Default/Views/Shared/_4ButtonsFoot.cshtml");}
+</div>
+<a class="WX-backtop"></a>
+<script src="~/Areas/Mobile/Templates/Default/Scripts/mui.min.js"></script>
+<script src="~/Areas/Mobile/Templates/Default/Scripts/AppAuto.js"></script>
+<script src="~/Areas/Mobile/Templates/Default/Scripts/home.js"></script>
+ <script src="~/Scripts/swipe-template.js"></script>
+<script src="~/Areas/Mobile/Templates/Default/Scripts/IndexShare.js"></script>

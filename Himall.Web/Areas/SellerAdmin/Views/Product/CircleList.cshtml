@@ -1,0 +1,64 @@
+﻿@{
+    
+}
+@{
+    ViewBag.Title = "商圈列表";
+}
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $(document).on('click', '.good-del', function () {
+                var obj = $(this);
+                var id = obj.attr("data-circleid");
+                if (!id) {
+                    return;
+                }
+                $.dialog.confirm('您确定要删除吗？', function () {
+                    var loading = showLoading();
+                    $.post('/SellerAdmin/Product/DeleteCircle', { id: id }, function (result) {
+                        loading.close();
+                        if (result.success) {
+                            obj.parents("tr").remove();
+                            $.dialog.tips('删除成功');
+                            return;
+                        }
+                        $.dialog.alert('删除失败!' + result.msg);
+                    });
+                });
+            });
+        });
+    </script>
+}
+<div class="container">
+    <div class="tabel-operate">
+        <a class="btn btn-default btn-ssm" id="btnAdd" href="/SellerAdmin/Product/CircleEdit/@ViewBag.ProductId">添加</a>
+    </div>
+    <table id="list" class="table">
+        <thead>
+            <tr>
+                <th style="text-align:center;">编号</th>
+                <th style="text-align:center;">新增时间</th>
+                <th style="text-align:center;">修改时间</th>
+                <th style="text-align:center;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in (List<Himall.Model.ProductCircleInfo>)ViewBag.List)
+            {
+                <tr>
+                    <td style="text-align:center;">@item.CircleId</td>
+                    <td style="text-align:center;">@item.CreateTime</td>
+                    <td style="text-align:center;">@item.UpdateTime</td>
+                    <td style="text-align:center;">
+                        <a class="good-check" href="/SellerAdmin/Product/CircleEdit/@ViewBag.ProductId?circleId=@item.CircleId">编辑</a>
+                        <a class="good-del" href="javascript:;" data-circleid="@item.CircleId">删除</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    
+
+</div>

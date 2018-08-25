@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "发票管理";
+}
+
+<link href="~/Content/jquery.onoff.css.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.onoff.min.js"></script>
+<script src="~/Areas/SellerAdmin/Scripts/ShopInvoiceSetting.js"></script>
+<div class="container">
+    <ul class="nav nav-tabs-custom clearfix">
+        <li class="active"><a>发票管理</a></li>
+    </ul>
+    <h5 class="tips-top"><span class="help-default"><i></i> 说明：开启时，用户提交订单时出现填写发票入口；若关闭，则前台隐藏发票填写入口</span></h5>
+    <form class="form-inline custom-inline">
+        <div class="form-group">
+            <label for="" class="label-inline w75" style="float:left; margin-left:100px;">提供发票：</label>
+            <div style="display:block;float:left;">
+                <input type="checkbox" class="pluginCheck" @(ViewBag.ProvideInvoice ? "checked" : "")>
+            </div>
+        </div>
+    </form>
+</div>
