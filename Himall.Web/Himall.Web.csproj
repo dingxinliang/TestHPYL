@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Himall.Web</RootNamespace>
     <AssemblyName>Himall.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -89,6 +90,9 @@
       <HintPath>..\packages\FluentValidation.MVC4.5.1.0.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.5.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
     <Reference Include="Himall.Strategy.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Strategies\Redis\Himall.Strategy.Redis.dll</HintPath>
@@ -113,9 +117,9 @@
       <HintPath>..\packages\LumenWorks.Framework.IO.3.8.0\lib\net20\LumenWorks.Framework.IO.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=8.0.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.9.9\Assemblies\v4.5\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -159,10 +163,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -174,10 +183,6 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -191,7 +196,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
@@ -230,6 +234,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -237,6 +242,12 @@
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="XL.Util">
+      <HintPath>..\..\..\..\..\HPYL\TTT\TTT\bin\XL.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="XL.Util.Extension">
+      <HintPath>..\..\..\..\..\HPYL\TTT\TTT\bin\XL.Util.Extension.dll</HintPath>
     </Reference>
     <Reference Include="zxing, Version=1.0.4727.18517, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ZXing.2.1.1\lib\net20\zxing.dll</HintPath>
@@ -251,11 +262,20 @@
     <Compile Include="App_Code\GalleryHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Areas\Admin\Models\Follow\FollowModel.cs" />
     <Compile Include="Areas\Mobile\Controllers\BranchOrderController.cs" />
     <Compile Include="Areas\Mobile\Controllers\BranchProductController.cs" />
     <Compile Include="Areas\Mobile\Controllers\CouponRecord.cs" />
+    <Compile Include="Areas\SellerAdmin\Controllers\DXL\TemPlateController.cs" />
     <Compile Include="Wdgj_Api\WdgjApiHandler.ashx.cs">
       <DependentUpon>WdgjApiHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\InitCacheHelper.cs" />
     <Content Include="App_Code\HtmlHelperEx.cs" />
@@ -736,6 +756,7 @@
     <Compile Include="Models\WeiXinShareArgsModel.cs" />
     <Compile Include="ObjectEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="alipay.html" />
@@ -1381,6 +1402,10 @@
     <Content Include="Areas\Mobile\Templates\Default\Views\_ViewStart.cshtml" />
     <Content Include="Areas\SellerAdmin\Content\product.css" />
     <Content Include="Areas\SellerAdmin\Scripts\arttemplate.js" />
+    <Content Include="Areas\SellerAdmin\Scripts\DXL\doctorAdd.js" />
+    <Content Include="Areas\SellerAdmin\Scripts\DXL\doctorManagement.js" />
+    <Content Include="Areas\SellerAdmin\Scripts\DXL\followContent.js" />
+    <Content Include="Areas\SellerAdmin\Scripts\DXL\followManagement.js" />
     <Content Include="Areas\SellerAdmin\Scripts\FullDiscountActive.js" />
     <Content Include="Areas\SellerAdmin\Scripts\FullDiscountIndex.js" />
     <Content Include="Areas\SellerAdmin\Scripts\ShopBranchAdd.js" />
@@ -3705,6 +3730,11 @@
     <Content Include="Plugins\Payment\Himall.Plugin.Payment.WeiXinPay_App\plugin.config" />
     <Content Include="Plugins\Payment\Himall.Plugin.Payment.WeiXinPay_SmallProg\data.config" />
     <Content Include="Plugins\Payment\Himall.Plugin.Payment.WeiXinPay_SmallProg\plugin.config" />
+    <Content Include="Areas\SellerAdmin\Views\TemPlate\follow.cshtml" />
+    <Content Include="Areas\SellerAdmin\Views\DoctorFollow\Index.cshtml" />
+    <Content Include="Areas\SellerAdmin\Views\TemPlate\doctorfollow.cshtml" />
+    <Content Include="Areas\SellerAdmin\Views\TemPlate\followcontent.cshtml" />
+    <Content Include="Areas\SellerAdmin\Views\TemPlate\Save.cshtml" />
     <None Include="Properties\PublishProfiles\Deploy.pubxml" />
     <Content Include="Areas\Admin\Views\PageSettings\AddHomeFloorDetail7.cshtml" />
     <Content Include="Areas\Admin\Views\PageSettings\AddHomeFloorDetail8.cshtml" />

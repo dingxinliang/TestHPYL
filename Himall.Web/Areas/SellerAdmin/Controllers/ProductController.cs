@@ -1211,6 +1211,8 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     };
                 }).ToList<ProductModel>()
             };
+
+          
             return base.Json(data);
         }
 

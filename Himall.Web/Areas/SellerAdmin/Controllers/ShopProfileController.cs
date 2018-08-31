@@ -12,6 +12,7 @@ using Senparc.Weixin.MP.CommonAPIs;
 using Himall.Core;
 using System.Threading.Tasks;
 using Himall.Application;
+using Himall.Service;
 
 namespace Himall.Web.Areas.SellerAdmin.Controllers
 {
@@ -19,7 +20,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
     public class ShopProfileController : BaseMemberController
     {
         ICategoryService _iCategoryService;
-
+        RegionService _RegionService;
 
         private ISiteSettingService _iSiteSettingService;
         public ShopProfileController(IManagerService iManagerService,
@@ -120,6 +121,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 return Json(new { success = false, msg = "该营业执照号已存在！" });
             }
 
+            
             //公司信息
             Himall.DTO.Shop shopInfo = ShopApplication.GetShop(CurrentSellerManager.ShopId);
             shopInfo.Id = CurrentSellerManager.ShopId;
@@ -150,6 +152,10 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             shopInfo.CompanyFoundingDate = shopProfileStep1.CompanyFoundingDate;
 
             ShopApplication.UpdateShop(shopInfo);
+
+            //更新店铺信息
+            string idlist = new RegionService().GetRegionPath((long)shopProfileStep1.CityRegionId);
+            string sql = "updateXXXX where shopid="+ CurrentSellerManager.ShopId + "";
 
             //管理员信息
             long uid = ShopApplication.GetShopManagers(CurrentSellerManager.ShopId);

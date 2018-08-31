@@ -1,4 +1,4 @@
-﻿// 为模型“E:\大型系统源码\HIimall系列\Himall2.8\Himall2.8SRC\Himall.Entity\Entities.edmx”启用了 T4 代码生成。
+﻿// 为模型“F:\HPYL_Web\himall2.8\DX0491-himall2.8\himall_v2.8\Himall.Entity\Entities.edmx”启用了 T4 代码生成。
 // 要启用旧代码生成功能，请将“代码生成策略”设计器属性的值
 // 更改为“旧的 ObjectContext”。当在设计器中打开该模型时，此属性会出现在
 // “属性”窗口中。

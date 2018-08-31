@@ -2,6 +2,7 @@
 
 
 var AuditOnOff = 0;
+ 
 var _saleStatus = '1';
 var _auditStatus = [2];
 //$(function () {
@@ -131,6 +132,7 @@ $(function () {
 });
 
 function deleteProduct(ids) {
+
     $.dialog.confirm('您确定要删除这些科目吗？', function () {
         var loading = showLoading();
         $.post('Delete', { ids: ids.join(',').toString() }, function (result) {

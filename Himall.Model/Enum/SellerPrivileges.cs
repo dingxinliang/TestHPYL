@@ -32,6 +32,20 @@ namespace Himall.Model
         //CommentManage = 2007,
         //[Privilege("科目", "商品数据导入", 2008, "ProductImport/ImportManage", "ProductImport")]
         //ProductImportManage = 2008,
+
+        /*模板*/
+        [Privilege("模板", "随访计划模板", 38001, "TemPlate/follow", "TemPlate", "follow")]
+        TemPlate = 38001,
+        [Privilege("模板", "医嘱文章模板", 38002, "TemPlate/doctorfollow", "TemPlate", "doctorfollow")]
+         Doctorfollow = 38002,
+
+        /*随访*/
+        [Privilege("随访", "已随访", 39001, "Flow/Followdown", "order")]
+         Followdown = 39001,
+        [Privilege("随访", "未随访", 39002, "Flow/FollowWait", "order")]
+        FollowWait = 39002,
+        [Privilege("随访", "已取消", 39003, "Flow/FollowCancel", "order")]
+        FollowCancel = 39003,
         /*交易*/
         [Privilege("交易", "预约单管理", 3001, "order/management", "order")]
         OrderManage = 3001,
