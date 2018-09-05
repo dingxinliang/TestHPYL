@@ -26,7 +26,7 @@ namespace Himall.Application
 			return _shopCategoryService.GetShopCategory(shopId).ToList().Map<List<ShopCategory>>();
 		}
         /// <summary>
-        /// 根据父级Id获取商品分类
+        /// 根据父级Id获取诊疗项目分类
         /// </summary>
         /// <param name="id"></param>
         /// <param name="shopId"></param>

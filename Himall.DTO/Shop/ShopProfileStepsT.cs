@@ -10,7 +10,7 @@ namespace Himall.DTO
     #region ShopProfileStepT1
 
     /// <summary>
-    /// 商家入驻第一步不需要验证实体
+    /// 诊所入驻第一步不需要验证实体
     /// </summary>
     public class ShopProfileStepT1
     {
@@ -189,7 +189,7 @@ namespace Himall.DTO
         public string BusinessLicenseCert1T { get; set; }
 
         /// <summary>
-        /// 商品证书，验证
+        /// 诊疗项目证书，验证
         /// </summary>
         [StringLength(100, ErrorMessage = "最大长度不能超过100")]
         public string ProductCert1T { get; set; }

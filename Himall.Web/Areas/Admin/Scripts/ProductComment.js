@@ -40,7 +40,7 @@ function query() {
         [[
             { field: "Id", hidden: true },
             {
-                field: "ProductName", title: '评价商品', align: "left", width: 250,
+                field: "ProductName", title: '评价诊疗项目', align: "left", width: 250,
                 formatter: function (value, row, index) {
                     var spc = " ";
                     //if (row.Color != null && row.Color.length > 0) { spc += "颜色：" + row.Color; }
@@ -64,7 +64,7 @@ function query() {
                    return html;
                }
            },
-            { field: "CommentMark", title: '商品评分', align: "center", width: 100 },
+            { field: "CommentMark", title: '诊疗项目评分', align: "center", width: 100 },
            //{ field: "UserName", title: '评价人' },
             { field: "Date", title: '初评日期', width: 100, },
              { field: "AppendDateStr", title: '追评日期', align: "center", width: 100 },

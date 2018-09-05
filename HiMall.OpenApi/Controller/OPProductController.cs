@@ -15,7 +15,7 @@ using Himall.OpenApi.Model.Parameter;
 namespace Himall.OpenApi
 {
     /// <summary>
-    /// 商品控制器
+    /// 诊疗项目控制器
     /// <note>不能命名重复</note>
     /// </summary>
     [RoutePrefix("OpenApi")]
@@ -28,7 +28,7 @@ namespace Himall.OpenApi
         }
 
         /// <summary>
-        /// 获取指定商品的详情信息
+        /// 获取指定诊疗项目的详情信息
         /// </summary>
         public object GetProduct([FromUri]GetProductParameterModel para)
         {
@@ -49,7 +49,7 @@ namespace Himall.OpenApi
         }
 
         /// <summary>
-        /// 获取当前商家的商品列表
+        /// 获取当前诊所的诊疗项目列表
         /// </summary>
         /// <param name="start_modified"></param>
         /// <param name="end_modified"></param>
@@ -85,7 +85,7 @@ namespace Himall.OpenApi
         }
 
         /// <summary>
-        /// 商品/SKU库存修改(提供按照全量或增量形式修改宝贝/SKU库存
+        /// 诊疗项目/SKU库存修改(提供按照全量或增量形式修改宝贝/SKU库存
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -108,7 +108,7 @@ namespace Himall.OpenApi
         }
 
         /// <summary>
-        /// 修改商品销售状态 (上架， 下架， 入库)
+        /// 修改诊疗项目销售状态 (上架， 下架， 入库)
         /// </summary>
         [HttpPost]
         public object UpdateProductApproveStatus(UpdateProductApproveStatusParameterModel para)

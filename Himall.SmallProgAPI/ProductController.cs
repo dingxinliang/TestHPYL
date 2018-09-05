@@ -28,7 +28,7 @@ namespace Himall.SmallProgAPI
     public class ProductController : BaseApiController
     {
         /// <summary>
-        /// 搜索商品
+        /// 搜索诊疗项目
         /// </summary>
         /// <returns></returns>
         public object GetProducts(
@@ -42,7 +42,7 @@ namespace Himall.SmallProgAPI
             int pageIndex = 1, /*页码*/
             int pageSize = 10,/*每页显示数据量*/
             long vshopId = 0,
-            long sid = 0/*商家ID*/
+            long sid = 0/*诊所ID*/
             )
         {
             //CheckUserLogin();
@@ -130,7 +130,7 @@ namespace Himall.SmallProgAPI
                 SelfShopId = shopInfo.Id;
                 currentUserId = CurrentUser.Id;
             }
-            //填充商品和购物车数据
+            //填充诊疗项目和购物车数据
             var ids = result.Data.Select(d => d.ProductId).ToArray();            
             List<Product> products= ProductManagerApplication.GetProductsByIds(ids);
             List<SKU> skus = ProductManagerApplication.GetSKU(ids);
@@ -178,7 +178,7 @@ namespace Himall.SmallProgAPI
                     HasSKU = hasSku,// d.Field<bool>("HasSKU"),//是否有规格
                     SkuId = skuId,// d.Field<string>("SkuId"),//规格ID
                     ActiveId = activeId,//活动Id
-                    ActiveType = activetype//活动类型（1代表限购，2代表团购，3代表商品预售，4代表限购预售，5代表团购预售）
+                    ActiveType = activetype//活动类型（1代表限购，2代表团购，3代表诊疗项目预售，4代表限购预售，5代表团购预售）
                 };
                 productList.Add(pro);
             }
@@ -191,7 +191,7 @@ namespace Himall.SmallProgAPI
             return json;
         }
         /// <summary>
-        /// 获取商品详情
+        /// 获取诊疗项目详情
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -217,7 +217,7 @@ namespace Himall.SmallProgAPI
             var cashDepositModel = ServiceProvider.Instance<ICashDepositsService>.Create.GetCashDepositsObligation(product.Id);//提供服务（消费者保障、七天无理由、及时发货）
             model.CashDepositsServer = cashDepositModel;
             var com = product.Himall_ProductComments.Where(item => !item.IsHidden.HasValue || item.IsHidden.Value == false);
-            #region 商品SKU
+            #region 诊疗项目SKU
 
 
             var limitBuy = ServiceProvider.Instance<ILimitTimeBuyService>.Create.GetLimitTimeMarketItemByProductId(ProductID);
@@ -473,7 +473,7 @@ namespace Himall.SmallProgAPI
 
 
             #endregion
-            #region 商品
+            #region 诊疗项目
             var consultations = ServiceProvider.Instance<IConsultationService>.Create.GetConsultations(ProductID);
             double total = product.Himall_ProductComments.Count();
             double niceTotal = product.Himall_ProductComments.Count(item => item.ReviewMark >= 4);
@@ -533,7 +533,7 @@ namespace Himall.SmallProgAPI
 
             #endregion
             LogProduct(ProductID);
-            //统计商品浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、店铺浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
 
             //图片集合
@@ -608,7 +608,7 @@ namespace Himall.SmallProgAPI
             return json;
         }
         /// <summary>
-        /// 获取商品的规格信息
+        /// 获取诊疗项目的规格信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -818,7 +818,7 @@ namespace Himall.SmallProgAPI
         }
 
         /// <summary>
-        /// 商品评价数接口
+        /// 诊疗项目评价数接口
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -842,7 +842,7 @@ namespace Himall.SmallProgAPI
             return json;
         }
         /// <summary>
-        /// 商品评价列表
+        /// 诊疗项目评价列表
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -967,7 +967,7 @@ namespace Himall.SmallProgAPI
             return json;
         }
         /// <summary>
-        /// 添加商品评论（评价送积分）
+        /// 添加诊疗项目评论（评价送积分）
         /// </summary>
         public object GetAddProductReview(string openId, string DataJson)
         {
@@ -991,7 +991,7 @@ namespace Himall.SmallProgAPI
                         ordercom.OrderId = item.OrderId;
                         if (!orderIds.Contains(item.OrderId))
                         {
-                            AddOrderComment(ordercom);//添加订单评价（订单评价只一次）
+                            AddOrderComment(ordercom);//添加预约单评价（预约单评价只一次）
                             orderIds += item.OrderId + ",";
                         }
 
@@ -1005,7 +1005,7 @@ namespace Himall.SmallProgAPI
                             model.UserId = CurrentUser.Id;
                             model.UserName = CurrentUser.UserName;
                             model.Email = CurrentUser.Email;
-                            model.SubOrderId = OrderInfo.Id;//订单明细Id
+                            model.SubOrderId = OrderInfo.Id;//预约单明细Id
                             model.ReviewMark = item.Score;
                             model.ProductId = item.ProductId;
                             model.Images = new List<ProductCommentImage>();
@@ -1046,7 +1046,7 @@ namespace Himall.SmallProgAPI
             return json;
         }
         /// <summary>
-        /// 增加订单评论
+        /// 增加预约单评论
         /// </summary>
         /// <param name="comment"></param>
         void AddOrderComment(OrderCommentModel comment)
@@ -1158,7 +1158,7 @@ namespace Himall.SmallProgAPI
         }
 
         /// <summary>
-        /// 将商品关联版式组合商品描述
+        /// 将诊疗项目关联版式组合诊疗项目描述
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
@@ -1166,10 +1166,10 @@ namespace Himall.SmallProgAPI
         {
             if (productDescription == null)
             {
-                throw new Himall.Core.HimallException("错误的商品信息");
+                throw new Himall.Core.HimallException("错误的诊疗项目信息");
             }
             string descriptionPrefix = "", descriptiondSuffix = "";//顶部底部版式
-            string description = productDescription.ShowMobileDescription.Replace("src=\"/Storage/", "src=\"" + Core.HimallIO.GetRomoteImagePath("/Storage/"));//商品描述
+            string description = productDescription.ShowMobileDescription.Replace("src=\"/Storage/", "src=\"" + Core.HimallIO.GetRomoteImagePath("/Storage/"));//诊疗项目描述
 
             var iprodestempser = ServiceHelper.Create<IProductDescriptionTemplateService>();
             if (productDescription.DescriptionPrefixId != 0)

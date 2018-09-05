@@ -29,7 +29,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="showtype">0 所有 1 订单退款 2 仅退款(包含订单退款) 3 退货 4 仅退款</param>
+        /// <param name="showtype">0 所有 1 预约单退款 2 仅退款(包含预约单退款) 3 退货 4 仅退款</param>
         /// <returns></returns>
         public ActionResult Management(int showtype = 0)
         {
@@ -38,7 +38,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             bool isOpenStore = SiteSettingApplication.GetSiteSettings() != null && SiteSettingApplication.GetSiteSettings().IsOpenStore;
             if (isOpenStore)
             {
-                #region 商家下所有门店
+                #region 诊所下所有门店
                 var data = ShopBranchApplication.GetShopBranchsAll(new ShopBranchQuery()
                 {
                     ShopId = CurrentSellerManager.ShopId
@@ -62,7 +62,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         /// <param name="ProductName"></param>
         /// <param name="page"></param>
         /// <param name="rows"></param>
-        /// <param name="showtype">0 所有 1 订单退款 2 仅退款(包含订单退款) 3 退货 4 仅退款</param>
+        /// <param name="showtype">0 所有 1 预约单退款 2 仅退款(包含预约单退款) 3 退货 4 仅退款</param>
         /// <returns></returns>
 		[HttpPost]
         public JsonResult List(DateTime? startDate, DateTime? endDate, long? orderId, int? auditStatus, long? shopBranchId, string userName, string ProductName, int page, int rows, int showtype = 0)
@@ -127,7 +127,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     Quantity = orderItem.Quantity,
                     SalePrice = item.EnabledRefundAmount.ToString("F2"),
                     ProductName = ((item.RefundMode == OrderRefundInfo.OrderRefundMode.OrderRefund)
-                                    ? "订单所有商品"
+                                    ? "预约单所有诊疗项目"
                                     : (orderItem.ProductName + spec)),
                     Reason = string.IsNullOrEmpty(item.Reason) ? string.Empty : HTMLEncode(item.Reason.Replace("'", "‘").Replace("\"", "”")),
                     ReasonDetail = string.IsNullOrEmpty(item.ReasonDetail) ? string.Empty : item.ReasonDetail.Replace("'", "‘").Replace("\"", "”"),

@@ -126,7 +126,7 @@ function bind() {
         columns:
              [[
             { field: "CouponName", title: "优惠券名称" },
-            { field: "ShopName", title: "商家" },
+            { field: "ShopName", title: "诊所" },
             { field: "Price", title: "面额" },
             { field: "inventory", title: "剩余数量" },
             { field: "OrderAmount", title: "使用条件" },

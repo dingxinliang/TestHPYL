@@ -56,10 +56,10 @@
 		<div class="search shop-head-search">
 			<div class="search-form cl">
 				<ul>
-					<li>商品</li>
+					<li>诊疗项目</li>
 					<li>店铺</li>
 				</ul>
-				<label>商品</label>
+				<label>诊疗项目</label>
 				<input type="text" id="searchBox" class="text" name="" value="" placeholder="@ViewBag.Keyword" />
 				<input type="button" id="searchBtn" class="button" value="" />
 			</div>
@@ -146,8 +146,8 @@
 
 <script>
 	/* 计算规则：
-      高 （商家得分-同行业平均分）/（同行业商家最高得分-同行业平均分）
-      低 （同行业平均分-商家得分）/（同行业平均分-同行业商家最高低分）
+      高 （诊所得分-同行业平均分）/（同行业诊所最高得分-同行业平均分）
+      低 （同行业平均分-诊所得分）/（同行业平均分-同行业诊所最高低分）
        */
 	$( function ()
 	{
@@ -295,7 +295,7 @@
 			</li>
 			<li data-tag="at-goods" arrow id="right_goods">
 				<i class="at-goods"><s></s></i>
-				<span>关注商品</span>
+				<span>关注诊疗项目</span>
 			</li>
 			<li data-tag="history" arrow id="right_history">
 				<i class="history"><s></s></i>
@@ -399,7 +399,7 @@
 		<div class="side-atgoods-c">
 			<div class="side-hd">
 				<a class="side-close" title="关闭">>></a>
-				<a href="/UserCenter?url=/productConcern&tar=productConcern" target="_blank">关注商品</a>
+				<a href="/UserCenter?url=/productConcern&tar=productConcern" target="_blank">关注诊疗项目</a>
 			</div>
 			<div class="side-bd">
                 <ul class="side-goods-list cl" id="memberConcern">
@@ -537,7 +537,7 @@
 			if (str != "")
 				location.href = '/order/submit?' + 'cartItemIds=' + str;
 			else
-				$.dialog.errorTips("没有可结算的商品！");
+				$.dialog.errorTips("没有可结算的诊疗项目！");
 		});
 
 	});
@@ -656,7 +656,7 @@
 			else
 				$(this).removeAttr('checked');
 
-			//判断店铺下的所有商品是否全选中
+			//判断店铺下的所有诊疗项目是否全选中
 			var allProductChecked = true;
 			$(this).parent().siblings('.cart-list-goods').each(function () {
 				if (!$(this).find('input').prop('checked'))

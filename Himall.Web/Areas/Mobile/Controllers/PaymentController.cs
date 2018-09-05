@@ -71,13 +71,13 @@ namespace Himall.Web.Areas.Mobile.Controllers
             Log.Debug("Pay ids:" + ids);
             #endif
             var orderIdArr = ids.Split(',').Select(item => long.Parse(item));
-            //获取待支付的所有订单
+            //获取待支付的所有预约单
             var orders = _iOrderService.GetOrders(orderIdArr).Where(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitPay && item.UserId == CurrentUser.Id).ToList();
 
-            if (orders == null || orders.Count == 0) //订单状态不正确
+            if (orders == null || orders.Count == 0) //预约单状态不正确
             {
-                Log.Error("payment/pay 未找到可支付的订单");
-                return Json(new { success = false, msg = "未找到可支付的订单" }); ;
+                Log.Error("payment/pay 未找到可支付的预约单");
+                return Json(new { success = false, msg = "未找到可支付的预约单" }); ;
             }
 
             decimal total = orders.Sum(a => a.OrderTotalAmount);
@@ -93,14 +93,14 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 {
                     if (!_iFightGroupService.OrderCanPay(item.Id))
                     {
-                        Log.Error("payment/pay 有拼团订单为不可付款状态");
-                        return Json(new { success = false, msg = "有拼团订单为不可付款状态" }); 
-                        //throw new HimallException("有拼团订单为不可付款状态");
+                        Log.Error("payment/pay 有拼团预约单为不可付款状态");
+                        return Json(new { success = false, msg = "有拼团预约单为不可付款状态" }); 
+                        //throw new HimallException("有拼团预约单为不可付款状态");
                     }
                 }
             }
 
-            //获取所有订单中的商品名称
+            //获取所有预约单中的诊疗项目名称
             var productInfos = GetProductNameDescriptionFromOrders(orders);
             string webRoot = Request.Url.Scheme + "://" + Request.Url.Authority;
             string urlPre = webRoot + "/m-" + PlatformType + "/Payment/";
@@ -137,7 +137,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 PayId = 0,
                 OrderId = item.Id
             });
-            //保存支付订单
+            //保存支付预约单
             long payid = _iOrderService.SaveOrderPayInfo(orderPayModel, PlatformType);
             #endregion
             #if DEBUG
@@ -198,14 +198,14 @@ namespace Himall.Web.Areas.Mobile.Controllers
             string webRoot = Request.Url.Scheme + "://" + HttpContext.Request.Url.Host + (HttpContext.Request.Url.Port == 80 ? "" : (":" + HttpContext.Request.Url.Port.ToString()));
             string urlPre = webRoot + "/m-" + PlatformType + "/Payment/";
 
-            //获取待支付的所有订单
+            //获取待支付的所有预约单
             var orderService = _iOrderService;
             IEnumerable<OrderInfo> orders = orderService.GetOrders(orderIds.Split(',').Select(t => long.Parse(t))).ToList();
             IEnumerable<OrderInfo> waitPayOrders = orders.Where(p => p.OrderStatus == OrderInfo.OrderOperateStatus.WaitPay);
             var totalAmount = waitPayOrders.Sum(t => t.OrderTotalAmount);
 
             /* 移到 Payment/pay实现 lly
-            //获取所有订单中的商品名称
+            //获取所有预约单中的诊疗项目名称
             string productInfos = GetProductNameDescriptionFromOrders(orders);
             string openId = Core.Helper.WebHelper.GetCookie(CookieKeysCollection.HIMALL_USER_OpenID);
             if (!string.IsNullOrWhiteSpace(openId))
@@ -227,7 +227,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 OrderId = p.Id
             });
 
-            //保存支付订单
+            //保存支付预约单
             var payid = orderService.SaveOrderPayInfo(orderPayModel, PlatformType);
             var ids = payid.ToString();
              * */
@@ -300,7 +300,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                     IVirtualOrderService virtualOrderService = ServiceHelper.Create<IVirtualOrderService>();
                     //更新付款状态
                     virtualOrderService.UpdateMoneyFlagByPayNum(orderid.ToString());
-                    //更新商家账户的待结算金额和余额
+                    //更新诊所账户的待结算金额和余额
                     virtualOrderService.UpdateShopAccountByPayNum(orderid.ToString());
                     //更新平台账户的待结算金额和余额
                     virtualOrderService.UpdatePlatAccountByPayNum(orderid.ToString());
@@ -374,7 +374,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             List<string> productNames = new List<string>();
             foreach (var order in orders)
                 productNames.AddRange(order.OrderItemInfo.Select(t => t.ProductName));
-            var productInfos = productNames.Count() > 1 ? (productNames.ElementAt(0) + " 等" + productNames.Count() + "种商品") : productNames.ElementAt(0);
+            var productInfos = productNames.Count() > 1 ? (productNames.ElementAt(0) + " 等" + productNames.Count() + "种诊疗项目") : productNames.ElementAt(0);
             return productInfos;
         }
         /// <summary>

@@ -54,7 +54,7 @@ function submit() {
                     location.href = "/sellerAdmin";
                 }
                 else {
-                    location.href = '/'; //跳转至买家中心
+                    location.href = '/'; //跳转至患者中心
                 }
             }
             else {

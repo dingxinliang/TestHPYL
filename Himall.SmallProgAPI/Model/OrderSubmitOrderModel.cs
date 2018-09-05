@@ -20,7 +20,7 @@ namespace Himall.SmallProgAPI.Model
         public string invoiceContext { get; set; }
         public string formId { get; set; }
         /// <summary>
-        /// 订单备注
+        /// 预约单备注
         /// </summary>
         public string orderRemarks { get; set; }
         /// <summary>
@@ -29,7 +29,7 @@ namespace Himall.SmallProgAPI.Model
         public string  jsonOrderShops { get; set; }
     }
     /// <summary>
-    /// 小程序订单提交Model
+    /// 小程序预约单提交Model
     /// </summary>
     public class SmallProgSubmitOrderModel
     {

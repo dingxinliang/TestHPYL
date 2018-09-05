@@ -76,7 +76,7 @@ namespace Himall.Service.Job
         {
             Entity.Entities entity = new Entity.Entities();
 
-            //时间段内已支付订单
+            //时间段内已支付预约单
             var payOrders = from o in entity.OrderInfo
                         join i in entity.OrderItemInfo on o.Id equals i.OrderId
                         where o.PayDate.HasValue && o.PayDate.Value >= statisticStartDate && o.PayDate.Value < statisticEndDate
@@ -105,7 +105,7 @@ namespace Himall.Service.Job
                 {
                     productVisit = new ProductVistiInfo();
                     productVisitRange.Add(productVisit);
-                    //销售量、销售金额在订单逻辑里有实时处理，如果没有记录则进行统计
+                    //销售量、销售金额在预约单逻辑里有实时处理，如果没有记录则进行统计
                     productVisit.SaleCounts = g.Sum(e => e.OrderProductQuantity);
                     productVisit.SaleAmounts = g.Sum(e => e.TotalAmount);
                 }

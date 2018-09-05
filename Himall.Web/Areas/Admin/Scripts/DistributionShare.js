@@ -4,11 +4,11 @@ $(function () {
 });
 function Post() {
     if ($("#ProShareTitle").val().length > 150) {
-        $.dialog.tips('商品分享标题过长');
+        $.dialog.tips('诊疗项目分享标题过长');
         return;
     }
     if ($("#ShopShareTitle").val().length > 150) {
-        $.dialog.tips('商品分享标题过长');
+        $.dialog.tips('诊疗项目分享标题过长');
         return;
     }
     if ($("#DisShareTitle").val().length > 150) {
@@ -20,11 +20,11 @@ function Post() {
         return;
     }
     if ($("#ProShareDesc").val().length > 1000) {
-        $.dialog.tips('商品分享标题过长');
+        $.dialog.tips('诊疗项目分享标题过长');
         return;
     }
     if ($("#ShopShareDesc").val().length > 1000) {
-        $.dialog.tips('商品分享标题过长');
+        $.dialog.tips('诊疗项目分享标题过长');
         return;
     }
     if ($("#DisShareDesc").val().length > 1000) {

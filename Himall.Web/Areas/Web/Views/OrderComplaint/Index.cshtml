@@ -19,8 +19,8 @@
             </colgroup>
             <thead>
                 <tr class="tr">
-                    <th>订单编号</th>
-                    <th>订单商品</th>
+                    <th>预约单编号</th>
+                    <th>预约单诊疗项目</th>
                     <th>下单时间</th>
                     <th>操作</th>
                 </tr>
@@ -36,7 +36,7 @@
                         <td>
                             <span class="col-blue">
                                 @m.Id @if (m.UserId != ViewBag.UserId)
-                                {<label>(子订单)</label>}
+                                {<label>(子预约单)</label>}
                             </span>
                         </td>
                         <td>
@@ -61,13 +61,13 @@
                         {
                             if (m.OrderComplaintInfo.Count() > 0 && string.IsNullOrWhiteSpace(m.OrderComplaintInfo.ElementAt(0).SellerReply))
                             {
-                                <td><a class="btn-5" href="javascript:void(0)">等待商家处理</a></td>
+                                <td><a class="btn-5" href="javascript:void(0)">等待诊所处理</a></td>
                             }
                             else if (m.OrderComplaintInfo.Count() > 0 && !string.IsNullOrWhiteSpace(m.OrderComplaintInfo.ElementAt(0).SellerReply))
                             {
                                 <td>
                                     <a class="btn-5" href="javascript:void(0)">
-                                        商家处理结果：@m.OrderComplaintInfo.ElementAt(0).SellerReply
+                                        诊所处理结果：@m.OrderComplaintInfo.ElementAt(0).SellerReply
                                     </a>
                                 </td>
                             }

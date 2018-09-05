@@ -20,12 +20,12 @@ namespace Himall.Web.Areas.Web.Models
         /// </summary>
         public ConcernShopInfo FavoriteShopInfo { set; get; }
         /// <summary>
-        /// 热销商品
+        /// 热销诊疗项目
         /// </summary>
         public List<HotProductInfo> HotSaleProducts { get; set; }
 
         /// <summary>
-        /// 新上架的商品
+        /// 新上架的诊疗项目
         /// </summary>
         public List<HotProductInfo> NewSaleProducts { get; set; }
 

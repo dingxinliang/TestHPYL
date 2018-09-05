@@ -22,7 +22,7 @@ namespace Himall.Service
             var mainId = info.Himall_CollocationPoruducts.Where(a => a.IsMain = true).Select(a => a.ProductId).FirstOrDefault();
             if (Context.CollocationPoruductInfo.Any(a => a.IsMain && a.ProductId == mainId && a.Himall_Collocation.EndTime > date))
             {
-                throw new HimallException("此主商品已存在组合购，请勿重复添加！");
+                throw new HimallException("此主诊疗项目已存在组合购，请勿重复添加！");
             }
             Context.CollocationInfo.Add(info);
             Context.SaveChanges();

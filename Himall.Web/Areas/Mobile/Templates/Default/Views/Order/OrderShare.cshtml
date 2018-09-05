@@ -1,7 +1,7 @@
 ﻿@model List<Himall.DTO.OrderDetailView>
 @{
     var idsStr = ViewBag.OrderIds;
-    ViewBag.Title = "订单分享";
+    ViewBag.Title = "预约单分享";
 }
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="format-detection" content="telephone=no, address=no">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>订单分享</title>
+    <title>预约单分享</title>
     <script type="text/javascript" src="~/Areas/Mobile/Templates/Default/Scripts/swiper.min.js"></script>
     <script type="text/javascript">
 
@@ -78,11 +78,11 @@
                             }
                             @if (ViewBag.Source != null && ViewBag.Source == "pay")
                             {
-                                <div class="jindian"><a href="@Url.Action("PaymentToOrders", "Member", new { @ids =idsStr  })">返回订单列表</a></div>
+                                <div class="jindian"><a href="@Url.Action("PaymentToOrders", "Member", new { @ids =idsStr  })">返回预约单列表</a></div>
                             }
                             else
                             {
-                                <div class="jindian"><a href="@Url.Action("Orders", "Member", new { @ids =idsStr  })">返回订单列表</a></div>
+                                <div class="jindian"><a href="@Url.Action("Orders", "Member", new { @ids =idsStr  })">返回预约单列表</a></div>
                             }
                         </div>
                     }
@@ -131,11 +131,11 @@
         @if (ViewBag.Source != null && ViewBag.Source == "pay")
         {
 
-            <a class="returnOrderList" href="@Url.Action("PaymentToOrders", "Member", new { @ids =idsStr  })">返回订单列表</a>
+            <a class="returnOrderList" href="@Url.Action("PaymentToOrders", "Member", new { @ids =idsStr  })">返回预约单列表</a>
         }
         else
         {
-            <a class="returnOrderList" href="@Url.Action("Orders", "Member", new { @ids =idsStr  })">返回订单列表</a>
+            <a class="returnOrderList" href="@Url.Action("Orders", "Member", new { @ids =idsStr  })">返回预约单列表</a>
         }
     </div>
 

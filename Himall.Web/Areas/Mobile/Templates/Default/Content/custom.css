@@ -132,7 +132,7 @@ header{ height:.445rem; padding:.08rem .17rem;}
 .fixed-box{}
 .fixed{ background-color:#fff; box-shadow: 0 1px 2px rgba(0,0,0,.1); position:fixed; top:0; left:0; z-index:777; padding:5px 0}
 
-/* 商品详情页 */
+/* 诊疗项目详情页 */
 .detail-bd .item { padding: .1rem; margin-top: .1rem; background-color: #fff;border-bottom: 1px solid #e0e0e0;  }
 .detail-bd .item-navigate-right,
 .detail-bd .item-navigate-arrow { position: relative; display: block; padding: inherit; margin: -.1rem; overflow: hidden; font-size: .13rem; line-height: .22rem; color: #2a2a2e; }
@@ -591,7 +591,7 @@ width: .5rem; height: .14rem; font-style: normal; font-weight: bold; }
 .Acc-Manag input{height:35px;width:100%;padding-left:10px;margin-bottom: 25px;border-radius: 5px;border:0;border:1px solid #919191;}
 .Acc-Manag .btn{ background: #f3b40b;color: #fff;font-size: 16px;height: 35px;letter-spacing: 5px;line-height: 10px;position: relative;text-align: center;border:none;}
 
-/*我的订单---------- */
+/*我的预约单---------- */
 .myorder-L .my_menu{height:43px;padding:0;border:none;margin-bottom: 11px;}
 .myorder-L .my_menu a{color: #6c6b6e;}
 .myorder-L .my_menu li{line-height:43px;margin-top:0 !important;}
@@ -875,7 +875,7 @@ footer .ft-fav{ width: 40%;}
 .countime s{ color:#e73641; font-size:14px;}
 
 
-/*商家红包页面*/
+/*诊所红包页面*/
 .container{max-width: 640px;margin: auto;height:auto;    padding-bottom: 50px;}
 .gift-L{color:#fff;}
 .gift-L a{color:#fff;}
@@ -1019,7 +1019,7 @@ footer .ft-fav{ width: 40%;}
 .steponeee .btn { margin-top: .03rem; margin-bottom: .18rem; font-size: .13rem; background-color: #ff4f38; border-color: #ff4f38; border-radius: .04rem; }
 .steponeee .close { position: absolute; top: .1rem; right: .1rem; width: .12rem; height: .12rem; opacity: 1; background: url(/Areas/Mobile/Templates/Default/Images/assets-icon.png) no-repeat -.39rem -.02rem/.5rem auto; }
 
-/*订单列表页弹框1*/
+/*预约单列表页弹框1*/
 .orderL{top:10%;left:10%;box-shadow: none;padding:10% 0;display: none;width:80%;}
 .orderL .close{display:inline-block;position:absolute;top:-15px;right:-15px;width:40px;height:40px;border-radius:20px;dispaly:block;font-size: 20px;text-align: center;background-color:#fff;opacity: 1;line-height:40px;color:#595f63;}
 .orderL h3{font-size:20px;width:100%;text-align:center;color:#595f63;}
@@ -1030,12 +1030,12 @@ footer .ft-fav{ width: 40%;}
 .orderL p img{width:50%;height:50%;}
 .orderL .btn{display:inline-block;width:63%;height:43px;border-radius:8px;background-color:#ff5538;color:#fff;font-szie:24px;line-height:30px;}
 
-/*订单列表页弹框2*/
+/*预约单列表页弹框2*/
 #paymentsChooser02 .pname{text-align:right;color:#595f63;line-height:30px;padding-right:10%;}
 #paymentsChooser02 .pname a{padding-left:10px;color:#595f63;}
 #paymentsChooser02 .pname a:visited,.orderL-02 .pname a:active{color:#f95034;}
 
-/*订单详情页红包*/
+/*预约单详情页红包*/
 .dialog-HB {width: 70px;height: 70px;position:fixed;right: 3%;display: none;bottom:50%;z-index: 99;}
 .dialog-HB img{width:80%;}
 
@@ -1056,7 +1056,7 @@ footer .ft-fav{ width: 40%;}
 .expend-reg .code img{width:100px;height:100px;}
 .expend-reg .rules .p{margin-top:50px;}
 
-/* 商品详情Bottom */
+/* 诊疗项目详情Bottom */
 #s-actionBar-container { position: fixed; bottom: 0; left: 0; z-index: 1; width: 100%; background-color: #fefefe; }
 #s-actionBar-container .action-bar .cell { position: relative; float: left; height: .42rem; text-align: center; }
 #s-actionBar-container .action-bar .addfav,
@@ -1222,7 +1222,7 @@ footer .ft-fav{ width: 40%;}
 .bill-Cart .bill-check.active{border:1px solid #09c555;background-color:#09c555;background-image: url("../images/bill.png");background-position: 1px 3px;background-repeat: no-repeat;background-size: 10px;}
 
 
-/*订单详情页*/
+/*预约单详情页*/
 .order-detail{font-size:12px;color:#6b6c6e;}
 .order-detail h6{color:#494e52;}
 .order-detail .status{width:100%;height:40px;background: #ff4c3e;color: #fff;/*background-image:url("../Images/wuliu_bg.png");background-repeat: no-repeat;background-size:100%;*/line-height:43px;padding-left:11px;}
@@ -1378,7 +1378,7 @@ footer .ft-fav{ width: 40%;}
 .shop-Man .QCover .QC-W{width:60%;height:50%;position:absolute;left:20%;top:20%;}
 .shop-Man .QCover .QC-W h5{font-size:18px;color:#fff;line-height:35px;}
 .shop-Man .QCover .QC-W span{font-size:20px;text-align: center;font-weight: 700;color:#fff;width:100%;padding-top:20px;}
-/*分销商品详情页底部按钮*/
+/*分销诊疗项目详情页底部按钮*/
 .S-bottom{position: fixed;bottom: 0;height:61px;width: 100%;background-color:#212f43;z-index: 9999;padding:0 20%}
 .S-bottom span{height:35px;width:81px;display: inline-block;line-height:35px;text-align: center;}
 .S-bottom span.code{background-image:url("../images/store-btn_06.png");background-repeat: no-repeat;background-size: cover;color:#494e52;font-size:14px;border-radius: 3px;position: relative;top:14px;}
@@ -1469,7 +1469,7 @@ footer .ft-fav{ width: 40%;}
 .yun-market .hot-pro .detail-bottom span:first-child{border-right:1px solid #c4c4c5;color:#2a2a2e;padding-right:.11rem;}
 
 
-/*分销热销商品页面*/
+/*分销热销诊疗项目页面*/
 .dis-hotPro .hot-tab{height:.41rem;width:100%;background-color:#f8f8f8;}
 .dis-hotPro .hot-tab span{width:50%;float:left;height:.4rem;text-align:right;}
 .dis-hotPro .hot-tab span:first-child{padding-right:.25rem;}
@@ -1509,7 +1509,7 @@ footer .ft-fav{ width: 40%;}
 .shop-datafx li.shop-frame ul{margin-top:.16rem;}
 .shop-datafx li.shop-frame ul li img{width:.58rem;height:.58rem}
 .shop-datafx li.shop-frame ul li p{height:.40rem;width:.6rem;overflow:hidden;line-height:.40rem;font-size:.11rem;color:#494e52;text-align:center;padding-bottom:.08rem}
-/*商品搜索页样式-*/
+/*诊疗项目搜索页样式-*/
 .yun-Market .searchPro-result{width:100%;height:auto;border-top:1px solid #e0e2e7; }
 .yun-Market .searchPro-result li{float:left;font-size:13px;color:#232527;width:50%;background-color:#f8f8f8;position: relative;margin-bottom: 2px;}
 .searchPro-result li:nth-of-type(2n){float:right;}
@@ -1532,7 +1532,7 @@ footer .ft-fav{ width: 40%;}
 .searchPro-result li .animate-info p:last-child span:last-child{background-color: #ff3a33;}
 .searchPro-result li .animate-info p:last-child span:last-child.disabled{background-color: #8F9295;}
 
-/*商品搜索页样式二*/
+/*诊疗项目搜索页样式二*/
 .ProResult-toggle01{}
 .ProResult-toggle01 li{margin-bottom:11px;border-bottom: 1px solid #e0e2e7;border-top: 1px solid #e0e2e7;}
 .ProResult-toggle01 .toggle01-wrap{width:100%;background-color:#f8f8f8;margin-bottom: 2px;}
@@ -1550,7 +1550,7 @@ footer .ft-fav{ width: 40%;}
 
 
 
-/*商家分销聚合页*/
+/*诊所分销聚合页*/
 .sell-combine{background-color:#fff;}
 .combine-top{width:100%;height:160px;border-bottom: 1px solid #e0e2e7;position: relative;color:#fff;}
 .combine-top img{width:100%;height:100%;}
@@ -1574,7 +1574,7 @@ footer .ft-fav{ width: 40%;}
 .sell-combine .sellPro-list li .right-proD span{font-size:18px;color:#fd4849;margin-top:15px;}
 .sell-combine .sellPro-list li .right-proD span em{font-size:11px;margin-right:5px;}
 
-/*商家分销聚合详情页*/
+/*诊所分销聚合详情页*/
 .combine-detail {background: #fff;}
 .combine-detail .sell-nav{border:none;}
 .combine-detail-list li{margin-bottom:11px;border-bottom: 1px solid #e0e2e7;border-top: 1px solid #e0e2e7;}
@@ -1633,12 +1633,12 @@ footer .ft-fav{ width: 40%;}
 #sellerapply .select-addr ::-moz-placeholder{ color:#424242; }
 
 
-/* 商品详情页滚动 */
+/* 诊疗项目详情页滚动 */
 .container-z { position: relative; z-index: 1; padding-bottom: .42rem; background-color: #eaeaea; }
 .detail-hd { position: fixed; top: 0; z-index: -1; width: 100%; max-width: 640px; }
 .detail-bd { position: relative; z-index: 1; background-color: #eaeaea; }
 
-/* 2016-03-11 商品详情页属性弹窗 */
+/* 2016-03-11 诊疗项目详情页属性弹窗 */
 .modul-popup .spec { position: relative; padding-top: 11px; color: rgb(38, 39, 45); }
 .modul-popup .spec label,
 .modul-popup .buy-num label { position: absolute; top: 11px; left:0; width: 80px; line-height: 32px; }
@@ -1685,7 +1685,7 @@ footer .ft-fav{ width: 40%;}
 
 
 
-/* 2016-03-10 商品详情页优惠券弹窗 */
+/* 2016-03-10 诊疗项目详情页优惠券弹窗 */
 .coupon-popup-container { top: 40%; }
 .coupon-popup-header { position: absolute; width: 100%; top: 0; left: 0; padding: 15px 0; font-size: 16px; font-weight: bold; color: rgb(38, 39, 45); text-align: center; }
 .coupon-popup-body { position: absolute; top: 52px; right: 0; bottom: 57px; left: 0; width: 100%; }
@@ -1699,7 +1699,7 @@ footer .ft-fav{ width: 40%;}
 .coupon-popup-footer { position: absolute; bottom: 0; left: 0; width: 100%; padding: 11px 0 22px; text-align: center; }
 .coupon-popup-close { display: inline-block; width: 24px; height: 24px; background: rgba(73, 78, 82, .8) url(../Images/coupon-close.png) no-repeat center; background-size: cover; border-radius: 100%; }
 
-/* 商品详情页组合购弹窗 */
+/* 诊疗项目详情页组合购弹窗 */
 .sale-popup-container{ max-height: 370px;top: initial;}
 .sale-popup-header{ position: absolute; width: 100%; top: 0; left: 0; text-align: center;}
 .sale-popup-body{ max-height: 300px; width: 100%; overflow-y: auto;}
@@ -2071,7 +2071,7 @@ footer .ft-fav{ width: 40%;}
 .pbuy-cover-body dd.selected { border-color: #fb1437; }
 .pbuy-cover-foot .ok { width: 100%; height: .42rem; font-size: .18rem; color: #fff; background-color: #fb1437; border-color: #fb1437; border-radius: 0; }
 
-/* 商品详情页组合购模块 */
+/* 诊疗项目详情页组合购模块 */
 .detail-pbuy-hd { position: relative; height: .42rem; padding: 0 .1rem; margin: -.1rem; overflow: hidden; font-size: .13rem; line-height: .42rem; color: #2a2a2a; border-bottom: 1px solid #eaeaea; }
 .detail-pbuy-hd:after { width: .22rem; height: .22rem; top: 50%; right: .05rem; background: url(../Images/pbuy-arrow.png) no-repeat center/.2rem auto; }
 .detail-pbuy-hd span { float: right; margin-right: .22rem; font-size: .12rem; color: #fb1437; }
@@ -2214,7 +2214,7 @@ footer .ft-fav{ width: 40%;}
 .pickup-goods .pickuo-code .pickup-img canvas{width:300px;margin:0 auto;display:block}
 .pickup-goods .pickuo-code span{font-size:11px;color:#9b9c9e;line-height:28px;width:100%;text-align:center;}
 
-/*商品推荐*/
+/*诊疗项目推荐*/
 .relation-title {padding: .1rem;margin-top: .05rem;background-color: #fff;}
 .relation-title span {position: relative;padding: 0 .06rem;font-size: .12rem;line-height: .22rem;color: #6b6c6e;}
 .relation-title span:before,
@@ -2388,7 +2388,7 @@ li{ list-style:none;}
 .back_index{ margin:58px auto 0px auto; width:95%; height:40px; line-height:40px; color:#fff; text-align:center; background:#fb1438; border-radius:7px; border:1px #c4c4c4 solid;  }
 .back_index a{ color:#fff; font-size:18px;}
 
-/*选择商家类型*/
+/*选择诊所类型*/
 .shop_container{position:absolute;left:0;width:100%;height:2.37rem;top:0;bottom:0;margin:auto;}
 .bussiness{ background:#e6455d; border-radius:5px;margin:0 0.1rem;}
 .person{ margin:0.17rem 0.1rem 0 0.1rem;overflow:hidden; background:#2c98c7; border-radius:5px;}
@@ -2550,7 +2550,7 @@ header.Gheader.mui-bar {height: 0.38rem;padding: 0;background: #fff;border-botto
 .orderShareDian.swiper-pagination .swiper-pagination-bullet-active{ background: rgba(234, 10, 44, 0.56); border: none;}
 .orderShareDian.swiper-pagination .swiper-pagination-bullet-active{ background: rgba(234, 10, 44, 0.56); border: none;}
 
-/*门店商品详情页*/
+/*门店诊疗项目详情页*/
 .store-prodetail sub{ bottom: 0;}
 .store-prodetail .goods-info h4{ font-size: 18px; color: #212121; margin-bottom: 8px;}
 .store-prodetail .goods-info h5{ color: #424242; margin: 0 0 8px 0;margin-top: 5px; }

@@ -1,10 +1,10 @@
 ﻿var isShowComment = false;
-//商品评价
+//诊疗项目评价
 function GetProductComment() {
     if (!isShowComment) {
         var idList = [],// id存放列表
             uuid = 1,// 用来统计请求次数
-            pid = $('#gid').val(),// 商品id
+            pid = $('#gid').val(),// 诊疗项目id
             getData = function (pageno, commenttype) {
                 $.ajax({
                     type: 'get',
@@ -57,7 +57,7 @@ function GetProductComment() {
                     str += '</div>';
                     str += '<div class="preview-img"><img src="" /></div>'
                     if (e.ReplyContent != "" && e.ReplyContent != "暂无回复" && e.ReplyContent != null) {
-                        str += '<div class="shop-reply">商家回复：' + e.ReplyContent + '</div>';//e.ReplyDate
+                        str += '<div class="shop-reply">诊所回复：' + e.ReplyContent + '</div>';//e.ReplyDate
                     }
                     str += '</dd><div class="comment-sku">';
                     if (e.Color != '')
@@ -79,7 +79,7 @@ function GetProductComment() {
                         str += '</div>';
                         str += '<div class="preview-img"><img src="" /></div>'
                         if (e.ReplyDate != null && e.ReplyAppendContent != null && e.ReplyAppendContent != "" && e.ReplyAppendContent != "暂无回复") {
-                            str += '<div class="shop-reply">商家回复：' + e.ReplyAppendContent + '</div>';//e.ReplyDate
+                            str += '<div class="shop-reply">诊所回复：' + e.ReplyAppendContent + '</div>';//e.ReplyDate
                         }
 
                         str += '</dd></dl>';

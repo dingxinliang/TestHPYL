@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "订单提交";
+    ViewBag.Title = "预约单提交";
     var model = (Himall.DTO.MobileOrderDetailConfirmModel)ViewBag.ConfirmModel;
     var products = model.products;
     //var products = (IEnumerable<Himall.DTO.MobileShopCartItemModel>)ViewBag.ConfirmModel.products;
@@ -357,7 +357,7 @@
     var isResetUseCapital=false;
     var choseShopBranch = {};
     $(function () {
-        //<!--商品滑动-->
+        //<!--诊疗项目滑动-->
         $(".pro-list .pro-img").each(function () {
             $(this).width($('li', this).length * 72);
         });
@@ -415,7 +415,7 @@
 
         var cacheValue=window.getFromLocalStorate(tagCacheKey);
 
-        //如果标记值为空，表示是从商品等其它页面过来的
+        //如果标记值为空，表示是从诊疗项目等其它页面过来的
         if(cacheValue){
             cacheValue = window.getFromLocalStorate(saCacheKey);
             if ($.notNullOrEmpty(cacheValue)) {
@@ -697,7 +697,7 @@
                 $('#1[shopid=1] input[name=$".DeliveryType"].selftake').attr('disabled','');
             }
             $('.payment-way').css('right', '-100%');
-            document.title = "订单提交";
+            document.title = "预约单提交";
         });
 
         //发票弹框动画
@@ -746,7 +746,7 @@
             cache: false,
             success: function (result) {
                 if (result == true)
-                    window.history.go(-1);//提交的订单不能退回
+                    window.history.go(-1);//提交的预约单不能退回
             }
         });
         initLeaveMsgAndBill();

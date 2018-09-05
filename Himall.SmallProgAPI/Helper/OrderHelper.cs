@@ -24,7 +24,7 @@ namespace Himall.SmallProgAPI.Helper
 
             if (shopBonus.Count() > 0 && userCoupons.Count() > 0)
             {
-                IBaseCoupon sb = shopBonus.FirstOrDefault();      //商家红包
+                IBaseCoupon sb = shopBonus.FirstOrDefault();      //诊所红包
                 IBaseCoupon uc = userCoupons.FirstOrDefault();  //优惠卷
                 if (sb.BasePrice > uc.BasePrice)
                 {
@@ -86,7 +86,7 @@ namespace Himall.SmallProgAPI.Helper
         }
 
         /// <summary>
-        /// 订单提交页面，需要展示的数据
+        /// 预约单提交页面，需要展示的数据
         /// </summary>
         public static List<CartItemModel> GenerateCartItem(IEnumerable<string> skuIds, IEnumerable<int> counts)
         {
@@ -128,7 +128,7 @@ namespace Himall.SmallProgAPI.Helper
         }
 
         /// <summary>
-        /// 订单提交页面，需要展示的数据
+        /// 预约单提交页面，需要展示的数据
         /// </summary>
         public static List<CartItemModel> GenerateCartItem(IEnumerable<ShoppingCartItem> cartItems)
         {

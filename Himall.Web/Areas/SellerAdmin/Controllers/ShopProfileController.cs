@@ -105,7 +105,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
         #region 信息保存
         /// <summary>
-        /// 商家入驻第一步信息保存
+        /// 诊所入驻第一步信息保存
         /// </summary>
         /// <param name="shopProfileStep1"></param>
         /// <returns></returns>
@@ -295,7 +295,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         /// <summary>
-        /// 商家入驻第二部
+        /// 诊所入驻第二部
         /// </summary>
         /// <param name="shopProfileStep2"></param>
         /// <returns></returns>
@@ -375,7 +375,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         /// <summary>
-        /// 商家信息
+        /// 诊所信息
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -492,7 +492,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         /// <summary>
-        /// 个人入驻商家信息
+        /// 个人入驻诊所信息
         /// </summary>
         /// <returns></returns>
         public ActionResult Steps1()

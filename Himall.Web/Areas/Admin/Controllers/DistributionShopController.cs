@@ -174,16 +174,16 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
         #endregion
 
-        #region 推荐分销商品设置
+        #region 推荐分销诊疗项目设置
 
         /// <summary>
-        /// 获取所有分销商品信息
+        /// 获取所有分销诊疗项目信息
         /// </summary>
         /// <param name="categoryId">3级分类ID</param>
         /// <param name="brandName"></param>
         /// <param name="productCode"></param>
         /// <param name="auditStatus"></param>
-        /// <param name="ids">只查询指定商品ID</param>
+        /// <param name="ids">只查询指定诊疗项目ID</param>
         /// <param name="page">分页页码</param>
         /// <param name="rows">每页行数</param>
         /// <param name="keyWords">搜索关键词</param>
@@ -237,9 +237,9 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 设置首页商品
+        /// 设置首页诊疗项目
         /// </summary>
-        /// <param name="productIds">商品ID，用','号隔开</param>
+        /// <param name="productIds">诊疗项目ID，用','号隔开</param>
         /// <param name="platformType">平台类型</param>
         /// <returns></returns>
         [HttpPost]
@@ -251,7 +251,7 @@ namespace Himall.Web.Areas.Admin.Controllers
 
 
         /// <summary>
-        /// 查询已绑定的分销首页商品信息
+        /// 查询已绑定的分销首页诊疗项目信息
         /// </summary>
         /// <param name="page">分页页码</param>
         /// <param name="rows">每页行数</param>
@@ -278,9 +278,9 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 修改首页商品排序
+        /// 修改首页诊疗项目排序
         /// </summary>
-        /// <param name="Id">商品ID</param>
+        /// <param name="Id">诊疗项目ID</param>
         /// <param name="sequence">排序ID</param>
         /// <returns></returns>
         public JsonResult UpdateSequence(long Id, short sequence)

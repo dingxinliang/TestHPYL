@@ -31,7 +31,7 @@ function loadProducts(page) { //后台图片已处理
             $('.search-list').append(html);
         }
         else {
-            $('#autoLoad').html('没有更多商品了').removeClass('hide');
+            $('#autoLoad').html('没有更多诊疗项目了').removeClass('hide');
         }
     });
 }

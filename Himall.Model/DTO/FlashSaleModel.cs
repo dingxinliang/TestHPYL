@@ -29,12 +29,12 @@ namespace Himall.Model
         public string ShopName { get; set; }
 
         /// <summary>
-        /// 商品ID
+        /// 诊疗项目ID
         /// </summary>
         public long ProductId { get; set; }
 
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         /// </summary>
         public string ProductName { get; set; }
 
@@ -74,7 +74,7 @@ namespace Himall.Model
         public int SaleCount { get; set; }
         
         /// <summary>
-        /// 限时购商品SKU
+        /// 限时购诊疗项目SKU
         /// </summary>
         public List<FlashSaleDetailModel> Details { get; set; }
 
@@ -84,7 +84,7 @@ namespace Himall.Model
         public string CategoryName { get; set; }
 
         /// <summary>
-        /// 商品图片
+        /// 诊疗项目图片
         /// </summary>
         public string ProductImg { get; set; }
 

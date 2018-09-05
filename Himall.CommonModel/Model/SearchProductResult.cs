@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace Himall.CommonModel
 {
     /// <summary>
-    /// 商品数据
+    /// 诊疗项目数据
     /// </summary>
     public class ProductView
     {
         /// <summary>
-        /// 商品标识
+        /// 诊疗项目标识
         /// </summary>
         public long ProductId { get; set; }
         /// <summary>
@@ -28,7 +28,7 @@ namespace Himall.CommonModel
         /// </summary>
         public decimal SalePrice { get; set; }
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         /// </summary>
         public string ProductName { get; set; }
         /// <summary>
@@ -59,7 +59,7 @@ namespace Himall.CommonModel
     }
 
     /// <summary>
-    /// 商品信息集合
+    /// 诊疗项目信息集合
     /// </summary>
     public class SearchProductResult
     {
@@ -81,7 +81,7 @@ namespace Himall.CommonModel
     }
 
     /// <summary>
-    /// 商品属性信息
+    /// 诊疗项目属性信息
     /// </summary>
     public class AttributeView
     {

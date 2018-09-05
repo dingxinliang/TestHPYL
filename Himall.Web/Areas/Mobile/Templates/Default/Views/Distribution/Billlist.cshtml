@@ -9,13 +9,13 @@
 <div class="container billList">
     <div class="wrapper">
         <div class="header">
-            <p class="all active" data-state=""><span>全部订单</span></p>
-            <p class="folding" data-state="0" style="display:none">未结算订单</p>
-            <p class="folding"  data-state="1" style="display:none">已结算订单</p>
+            <p class="all active" data-state=""><span>全部预约单</span></p>
+            <p class="folding" data-state="0" style="display:none">未结算预约单</p>
+            <p class="folding"  data-state="1" style="display:none">已结算预约单</p>
         </div>
         <section>
             <ul id="databox">
-                <li class="thead"><div>订单编号</div><div>商品</div><div>佣金</div></li>
+                <li class="thead"><div>预约单编号</div><div>诊疗项目</div><div>佣金</div></li>
             </ul>
             <div id="autoLoad" class="loading"></div>
         </section>
@@ -34,7 +34,7 @@
     <li class="order-detail">
         <h5><%=item.ProductName%></h5>
         <p><span>实付金额</span><span>￥<%=item.OrderItemPrice%></span></p>
-        <p><span>订单状态</span><span><%=item.ShowOrderState%></span></p>
+        <p><span>预约单状态</span><span><%=item.ShowOrderState%></span></p>
         <p><span>下单时间</span><span><%=time_string(item.OrderTime)%></span></p>
         <p><span>是否结算</span><span><%if(item.IsSettled){%>是<%}else{%>否<%}%></span></p>
         <p><span>预计到账时间</span><span><%=time_string(item.LastRightsTime,"yyyy-MM-dd")%></span></p>

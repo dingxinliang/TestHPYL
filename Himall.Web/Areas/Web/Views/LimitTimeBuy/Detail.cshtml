@@ -190,7 +190,7 @@
                             <div class="promition-content">
                                 @if (Model.Shop.FreeFreight > 0)
                                 {
-                                    <span><i></i>单笔订单蛮@(Model.Shop.FreeFreight)元免运费</span><br>
+                                    <span><i></i>单笔预约单蛮@(Model.Shop.FreeFreight)元免运费</span><br>
                                 }
                                 @if (Model.GrantPrice > 0)
                                 {
@@ -260,16 +260,16 @@
             <div class="float-nav-wrap">
                 <div class="mt">
                     <ul class="tab">
-                        <li class="curr goods-li"><a href="javascript:;" class="toggle-link">商品介绍<b></b></a></li>
-                        <li class="comment-li"><a href="javascript:;" class="toggle-link">商品评价<span class="hl_blue"> (@Model.CommentCount) </span><b></b></a></li>
-                        <li class="consult-li"><a href="javascript:;" class="toggle-link">商品咨询<span class="hl_blue"> (@Model.Consultations) </span><b></b></a></li>
+                        <li class="curr goods-li"><a href="javascript:;" class="toggle-link">诊疗项目介绍<b></b></a></li>
+                        <li class="comment-li"><a href="javascript:;" class="toggle-link">诊疗项目评价<span class="hl_blue"> (@Model.CommentCount) </span><b></b></a></li>
+                        <li class="consult-li"><a href="javascript:;" class="toggle-link">诊疗项目咨询<span class="hl_blue"> (@Model.Consultations) </span><b></b></a></li>
                     </ul>
                 </div>
             </div>
             <div class="mc" id="product-detail-1">
                 <ul class="detail-list">
-                    <li title="">商品名称：@Model.Product.ProductName</li>
-                    <li>商品货号：@Model.Product.ProductCode</li>
+                    <li title="">诊疗项目名称：@Model.Product.ProductName</li>
+                    <li>诊疗项目货号：@Model.Product.ProductCode</li>
                     @if (!string.IsNullOrWhiteSpace(Model.Product.BrandName))
                     {
                         <li>品牌：@Model.Product.BrandName</li>
@@ -290,7 +290,7 @@
         <!--product-detail end-->
         <div id="comment" class="m m1">
             <div class="mt">
-                <h2>商品评价</h2>
+                <h2>诊疗项目评价</h2>
             </div>
             <div class="mc">
                 <div id="i-comment">
@@ -340,7 +340,7 @@
         <div id="consult" class="m m2">
             <div class="mt">
                 <ul class="tab">
-                    <li class="curr"><a href="javascript:;">商品咨询</a></li>
+                    <li class="curr"><a href="javascript:;">诊疗项目咨询</a></li>
                 </ul>
                 <div class="consult-pub"> <a href="@Url.Action("Index", "ProductConsultation", new { id=Model.Product.Id})" class="css3-btn" target="_blank">发表咨询</a> </div>
             </div>

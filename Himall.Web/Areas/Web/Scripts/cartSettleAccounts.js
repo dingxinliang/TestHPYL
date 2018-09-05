@@ -80,7 +80,7 @@ function loadCartInfo() {
                   <div class="p-name"><a href="/product/detail/' + product.id + '" target="_blank">' + product.name + '<br/>' + skuStr + '</a><br>' + (product.productstatus != 1 || product.productauditstatus == 4 ? "[已停售]" : "") + '</div>'
                     if (product.productcode) {
                         if (product.productcode.length > 0) {
-                            str += '<div class="p-code">商品货号：' + product.productcode + '</div>'
+                            str += '<div class="p-code">诊疗项目货号：' + product.productcode + '</div>'
                         }
                     }
                     str += '</div>\
@@ -125,7 +125,7 @@ function bindToSettlement() {
         if (str != "")
             location.href = '/order/submit?' + 'cartItemIds=' + str;
         else
-            $.dialog.errorTips("没有可结算的商品！");
+            $.dialog.errorTips("没有可结算的诊疗项目！");
     }
     else {
         $.fn.login({}, function () {
@@ -205,7 +205,7 @@ function bindSelectAll() {
             $(this).parents('.item').removeClass('item_selected')
         }
 
-        //判断店铺下的所有商品是否全选中
+        //判断店铺下的所有诊疗项目是否全选中
         var allProductChecked = true;
         $('input[name="checkItem"]').each(function (i, e) {
             if ($(e).val() == v) {
@@ -245,7 +245,7 @@ function bindSelectAll() {
 }
 
 function removeFromCart(skuId) {
-    $.dialog.confirm('确定要从购物车移除该商品吗?', function () {
+    $.dialog.confirm('确定要从购物车移除该诊疗项目吗?', function () {
         var loading = showLoading();
         $.post('/cart/RemoveFromCart', { skuId: skuId }, function (result) {
             loading.close();
@@ -328,11 +328,11 @@ function bindBatchRemove() {
             skuIds.push($(checkBox).attr('sku'));
         });
         if (skuIds.length < 1) {
-            $.dialog.errorTips("请选择要删除的商品！");
+            $.dialog.errorTips("请选择要删除的诊疗项目！");
             return;
         }
 
-        $.dialog.confirm('确定要从购物车移除选中的商品吗?', function () {
+        $.dialog.confirm('确定要从购物车移除选中的诊疗项目吗?', function () {
             var loading = showLoading();
             $.post('/cart/BatchRemoveFromCart', { skuIds: skuIds.toString() }, function (result) {
                 loading.close();

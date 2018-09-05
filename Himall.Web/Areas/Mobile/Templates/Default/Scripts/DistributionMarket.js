@@ -12,7 +12,7 @@ var isLoading = false;
 var loading;
 var databox;
 var gddatas;           // 数据变量  不定义的话underscore会识别不到。
-var allgddatas=[];        //数据变量，所有商品
+var allgddatas=[];        //数据变量，所有诊疗项目
 
 $(document).ready(function() {
     $("#bt_classshow").click(function(event) {
@@ -143,6 +143,6 @@ $('.bt_agent').on('click', function() {
             }
         });
     } else {
-        alert("您已代理此商品！");
+        alert("您已代理此诊疗项目！");
     }
 });

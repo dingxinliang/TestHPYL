@@ -73,7 +73,7 @@ namespace Himall.IServices
         /// <returns></returns>
         bool HasLoginIntegralRecord(long userId);
         /// <summary>
-        /// 根据订单号获取晒单积分记录
+        /// 根据预约单号获取晒单积分记录
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>

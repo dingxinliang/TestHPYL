@@ -32,7 +32,7 @@ namespace Himall.DTO
 		public List<AdminPrivilege> AdminPrivileges { set; get; }
 
 		/// <summary>
-		/// 商家管理员权限列表
+		/// 诊所管理员权限列表
 		/// </summary>
 		public List<SellerPrivilege> SellerPrivileges { set; get; }
 

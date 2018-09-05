@@ -73,7 +73,7 @@ namespace Himall.CommonModel
         /// </summary>
         public int PageSize { get; set; }
         /// <summary>
-        /// 店铺商品分类
+        /// 店铺诊疗项目分类
         /// </summary>
         public long ShopCategoryId { get; set; }
        

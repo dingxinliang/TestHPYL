@@ -19,7 +19,7 @@ $(function () {
                     lock: true,
                     width: 400,
                     id: 'Agree',
-                    content: '<p class="ftx03">商家回复：' + replyContent + '</p><br>是否满意商家的回复？',
+                    content: '<p class="ftx03">诊所回复：' + replyContent + '</p><br>是否满意诊所的回复？',
                     padding: '20px',
                     cancelVal: '取消',
                     ok: function () {
@@ -34,7 +34,7 @@ $(function () {
                     lock: true,
                     width: 400,
                     id: 'goodCheck',
-                    content: '<p class="ftx03">商家回复：' + replyContent + '</p><br>是否不满意商家的回复并且进行投诉？',
+                    content: '<p class="ftx03">诊所回复：' + replyContent + '</p><br>是否不满意诊所的回复并且进行投诉？',
                     padding: '20px',
                     cancelVal: '取消',
                     ok: function () {

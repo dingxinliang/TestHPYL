@@ -34,7 +34,7 @@ $(function () {
                 { field: "Id", title: 'Id', hidden: true, width: 150 },
                 { field: "ProductId", title: 'ProductId', hidden: true, width: 100 },
                 {
-                    field: "ProductName", title: "商品名称", align: "center", width: 180,
+                    field: "ProductName", title: "诊疗项目名称", align: "center", width: 180,
                     formatter: function (value, row, index) {
                         var html = '<span class="overflow-ellipsis" style="width:180px"><a title="' + value + '" href="/product/detail/' + row.ProductId + '" target="_blank">' + value + '</a></span>';
                         return html;
@@ -94,7 +94,7 @@ $(function () {
 
 function Delete(id)
 {
-    $.dialog.confirm('删除后该活动相关商品将不享受优惠，是否确认删除？', function () {
+    $.dialog.confirm('删除后该活动相关诊疗项目将不享受优惠，是否确认删除？', function () {
         var loading = showLoading();
         ajaxRequest({
             type: 'POST',

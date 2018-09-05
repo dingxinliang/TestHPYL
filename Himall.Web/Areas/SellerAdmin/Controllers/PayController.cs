@@ -21,14 +21,14 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         /// <summary>
         /// 平台充值同步回调
         /// </summary>
-        /// <param name="id">充值订单号</param>
+        /// <param name="id">充值预约单号</param>
         /// <param name="balance">充值金额</param>
         /// <returns></returns>
         [ValidateInput(false)]
         public ActionResult CapitalChargeReturn(string id)
         {
             id = DecodePaymentId(id);
-            Log.Info("商家充值同步回调key：" + id);
+            Log.Info("诊所充值同步回调key：" + id);
             string error = string.Empty;
 
             try
@@ -40,7 +40,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 if (!result)
                 {
                     long orderIds = payInfo.OrderIds.FirstOrDefault();
-                    Log.Info("商家充值同步回调订单号：" + orderIds);
+                    Log.Info("诊所充值同步回调预约单号：" + orderIds);
                     BillingApplication.ShopRecharge(orderIds, payInfo.TradNo, id);
 
                     //写入支付状态缓存
@@ -50,7 +50,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             catch (Exception ex)
             {
-                Log.Error("商家充值同步回调错误：" + ex.Message);
+                Log.Error("诊所充值同步回调错误：" + ex.Message);
                 error = ex.Message;
             }
             ViewBag.Error = error;
@@ -61,14 +61,14 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         /// <summary>
         /// 平台充值同步异步
         /// </summary>
-        /// <param name="id">充值订单号</param>
+        /// <param name="id">充值预约单号</param>
         /// <param name="balance">充值金额</param>
         /// <returns></returns>
         [ValidateInput(false)]
         public ContentResult CapitalChargeNotify(string id)
         {
             id = DecodePaymentId(id);
-            Log.Info("商家充值异步回调key：" + id);
+            Log.Info("诊所充值异步回调key：" + id);
             string str = string.Empty;
 
             try
@@ -80,7 +80,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 if (!result)
                 {
                     long orderIds = payInfo.OrderIds.FirstOrDefault();
-                    Log.Info("商家充值异步回调订单号：" + orderIds);
+                    Log.Info("诊所充值异步回调预约单号：" + orderIds);
                     BillingApplication.ShopRecharge(orderIds, payInfo.TradNo, id);
 
                     str = payment.Biz.ConfirmPayResult();
@@ -91,13 +91,13 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             catch (Exception ex)
             {
-                Log.Error("商家充值异步回调错误：" + ex.Message);
+                Log.Error("诊所充值异步回调错误：" + ex.Message);
             }
             return Content(str);
         }
 
         /// <summary>
-        /// 订单解密处理方法
+        /// 预约单解密处理方法
         /// </summary>
         /// <param name="paymentId"></param>
         /// <returns></returns>

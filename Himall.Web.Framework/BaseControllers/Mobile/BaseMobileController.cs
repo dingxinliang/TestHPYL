@@ -101,7 +101,7 @@ namespace Himall.Web.Framework
             ViewBag.AreaName = string.Format("m-{0}", PlatformType.ToString());
             ViewBag.Logo = CurrentSiteSetting.Logo;
             ViewBag.SiteName = CurrentSiteSetting.SiteName;
-            //区分平台还是商家
+            //区分平台还是诊所
             var MAppType = WebHelper.GetCookie(CookieKeysCollection.MobileAppType);
             var MVshopId = WebHelper.GetCookie(CookieKeysCollection.HIMALL_VSHOPID);
             if (MAppType == string.Empty)

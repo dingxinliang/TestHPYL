@@ -21,7 +21,7 @@ $(function () {
     var bid = $("#bid").val();
 
     GetBranchCartProducts(bid);
-    //打开商品列表
+    //打开诊疗项目列表
     $(sbottom).find(".s-cart").click(function () {
         //if ($(this).hasClass("disabled")) return;
         if (modulpopup.hasClass("is-visible"))
@@ -59,7 +59,7 @@ $(function () {
             if (!$(this).hasClass("disabled")) {
                 var itemId = "";
                 if ($(modulpopup).find(".settle-popup-body .active").length == 0) {
-                    $.dialog.errorTips("请选择结算商品！");
+                    $.dialog.errorTips("请选择结算诊疗项目！");
                     return false
                 }
                 $(modulpopup).find(".settle-popup-body .active").each(function () {
@@ -96,7 +96,7 @@ function LoadBottomHtml(data) {
 
         $(sbottom).find("button").addClass("disabled");
     }
-    //商品总数量
+    //诊疗项目总数量
     if (totalCount > 0) {
         $(sbottom).find(".s-cart").removeClass("disabled");
         $(sbottom).find(".s-cart i").show();
@@ -137,7 +137,7 @@ function LoadBottomHtml(data) {
     var hasPorduct2 = false;
     $.each(products, function () {
         var sHtml = "";
-        //普通商品
+        //普通诊疗项目
         if (this.status == 0) {
             sHtml = "<li class=\"clearfix\">" +
                        " <i class=\"check-custom active\" bId=\"" + this.bId + "\" itemid=\"" + this.cartItemId + "\" skuId=\"" + this.skuId + "\"></i>" +
@@ -150,7 +150,7 @@ function LoadBottomHtml(data) {
                                " <span class=\"store-add\"></span>" +
                             "</div></div></li>";
             $(modulpopup).find("#product1").append(sHtml);
-        } else { //失效商品
+        } else { //失效诊疗项目
             hasPorduct2 = true;
             sHtml = "<li class=\"clearfix\">" +
                             "<span class=\"p-name\">" + this.name + " " + this.skuDetails + "</span>" +
@@ -222,9 +222,9 @@ function LoadBottomHtml(data) {
             })
         });
     })
-    //清空失效商品
+    //清空失效诊疗项目
     $(modulpopup).find(".settle-popup-body .c-dele").click(function () {
-        $.dialog.confirm("您确定清空失效商品吗?", function () {
+        $.dialog.confirm("您确定清空失效诊疗项目吗?", function () {
             var bid = $("#bid").val();
             if (!bid || bid <= 0) return;
             $.post('/' + areaName + '/cart/ClearBranchCartInvalidProducts', {
@@ -252,7 +252,7 @@ function SetBottomData() {
         totalCount += num;
     })
 
-    //商品总数量
+    //诊疗项目总数量
     if (totalCount > 0) {
         $(sbottom).find(".s-cart i").show();
         $(sbottom).find(".s-cart i").html(totalCount);

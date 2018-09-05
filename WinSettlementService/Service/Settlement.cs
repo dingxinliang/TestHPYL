@@ -52,7 +52,7 @@ namespace WinSettlementService
                 Log.Debug("AccountJob:endDate" + endDate + "DateTime:" + DateTime.Now.Date + "result:" + (endDate < DateTime.Now.Date));
                 while (endDate < DateTime.Now)
                 {
-                    //结算日期内的待结算订单 不计算开始时间，防止漏单
+                    //结算日期内的待结算预约单 不计算开始时间，防止漏单
                     var pendingSetllementData = entity.PendingSettlementOrdersInfo.Where(c => c.OrderFinshTime < endDate).OrderByDescending(c => c.OrderFinshTime).ToList();
                     Log.Debug("Count:" + pendingSetllementData.Count());
                     var accountInfo = new AccountInfo();

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using Himall.CommonModel;
 
@@ -6,7 +7,14 @@ namespace Himall.Model
 {
     public partial class OrderInfo
     {
-
+        public class NewOrdermodel
+        {
+            public string doctorName { get; set; }
+            public int RemindType { get; set; }
+            public DateTime ReceiveDate { get; set; }
+            public string ReceiveStartTime { get; set; }
+            public string ReceiveEndTime { get; set; }
+        }
         public enum OrderTypes
         {
             /// </summary>
@@ -45,7 +53,7 @@ namespace Himall.Model
 
 
         /// <summary>
-        /// 订单状态
+        /// 预约单状态
         /// </summary>
         public enum OrderOperateStatus
         {
@@ -58,13 +66,13 @@ namespace Himall.Model
             /// <summary>
             /// 待发货 2
             /// </summary>
-            [Description("待消费")]
+            [Description("待就诊")]
             WaitDelivery = 2,
 
             /// <summary>
-            /// 待收货 3
+            /// 待结算 3
             /// </summary>
-            [Description("待收货")]
+            [Description("待结算")]
             WaitReceiving = 3,
 
             /// <summary>
@@ -93,7 +101,7 @@ namespace Himall.Model
         }
 
         /// <summary>
-        /// 订单活动
+        /// 预约单活动
         /// </summary>
         public enum ActiveTypes
         {
@@ -106,7 +114,7 @@ namespace Himall.Model
         }
 
         /// <summary>
-        /// 订单商品总数
+        /// 预约单诊疗项目总数
         /// </summary>
         [NotMapped]
         public long OrderProductQuantity
@@ -124,7 +132,7 @@ namespace Himall.Model
 
 
         /// <summary>
-        /// 订单退货总数
+        /// 预约单退货总数
         /// </summary>
         [NotMapped]
         public long OrderReturnQuantity
@@ -141,26 +149,26 @@ namespace Himall.Model
         }
 
         /// <summary>
-        /// 订单实付金额
-        /// 公式： 商品应付+运费+税 - 优惠券金额 - 积分抵扣金额-满额减金额
+        /// 预约单实付金额
+        /// 公式： 诊疗项目应付+运费+税 - 优惠券金额 - 积分抵扣金额-满额减金额
         /// </summary>
         [NotMapped]
         public decimal OrderTotalAmount { get { return this.ProductTotalAmount + this.Freight + this.Tax - this.IntegralDiscount - this.DiscountAmount-this.FullDiscount; } }
 
         /// <summary>
-        /// 订单金额 （商品应付+运费+税 -优惠券金额-满额减金额） 不包含积分抵扣部分
+        /// 预约单金额 （诊疗项目应付+运费+税 -优惠券金额-满额减金额） 不包含积分抵扣部分
         /// </summary>
         [NotMapped]
 
         public decimal OrderAmount { get { return this.ProductTotalAmount + this.Freight + this.Tax - this.DiscountAmount-this.FullDiscount; } }
 
         /// <summary>
-        /// 商品实付（商品应付-优惠券的价格-满额减的价格）
+        /// 诊疗项目实付（诊疗项目应付-优惠券的价格-满额减的价格）
         /// </summary>
         public decimal ProductTotal { get { return this.ProductTotalAmount - this.DiscountAmount-this.FullDiscount; } }
 
         /// <summary>
-        /// 订单可退金额
+        /// 预约单可退金额
         /// </summary>
         [NotMapped]
         public decimal OrderEnabledRefundAmount
@@ -172,7 +180,7 @@ namespace Himall.Model
                 {
                     case OrderOperateStatus.Finish:
                     case OrderOperateStatus.WaitReceiving:
-                        result = this.ProductTotalAmount-this.FullDiscount- this.DiscountAmount - this.RefundTotalAmount;   //商品总价 - 优惠券 - 已退金额
+                        result = this.ProductTotalAmount-this.FullDiscount- this.DiscountAmount - this.RefundTotalAmount;   //诊疗项目总价 - 优惠券 - 已退金额
                         break;
                     case OrderOperateStatus.WaitDelivery:
                         result = this.ProductTotalAmount + this.Freight - this.DiscountAmount-this.FullDiscount;            //待发货退还运费
@@ -186,13 +194,13 @@ namespace Himall.Model
         }
 
         /// <summary>
-        /// 订单实际分佣
+        /// 预约单实际分佣
         /// </summary>
         [NotMapped]
         public decimal CommisAmount { get { return this.CommisTotalAmount - this.RefundCommisAmount; } }
 
         /// <summary>
-        /// 商家结算金额
+        /// 诊所结算金额
         /// </summary>
         [NotMapped]
         public decimal ShopAccountAmount { get { return this.OrderTotalAmount - this.RefundTotalAmount - this.CommisAmount; } }
@@ -207,7 +215,7 @@ namespace Himall.Model
         /// </summary>
         public bool? IsRefundTimeOut { get; set; }
         /// <summary>
-        /// 拼团订单的状态
+        /// 拼团预约单的状态
         /// </summary>
         [NotMapped]
         public FightGroupOrderJoinStatus? FightGroupOrderJoinStatus { get; set; }
@@ -252,7 +260,7 @@ namespace Himall.Model
         }
 
         /// <summary>
-        /// 提交订单时选择的收货地址ID
+        /// 提交预约单时选择的收货地址ID
         /// </summary>
         [NotMapped]
         public long ReceiveAddressId { get; set; }

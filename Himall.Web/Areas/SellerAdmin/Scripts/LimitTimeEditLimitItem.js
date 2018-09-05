@@ -40,7 +40,7 @@ a.add(
         target: 'ProductName',
         empty: true,
         ruleType: 'required',// v.js规则验证
-        error: '请您选择商品'
+        error: '请您选择诊疗项目'
     }, {
         target: 'Price',
         empty: true,

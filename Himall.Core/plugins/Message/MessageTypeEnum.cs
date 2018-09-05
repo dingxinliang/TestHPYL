@@ -10,24 +10,24 @@ namespace Himall.Core.Plugins.Message
     public enum MessageTypeEnum
     {
         /// <summary>
-        /// 订单创建时
+        /// 预约单创建时
         /// </summary>
-        [Description("订单创建时")]
+        [Description("预约单创建时")]
         OrderCreated = 1,
         /// <summary>
-        /// 订单付款时
+        /// 预约单付款时
         /// </summary>
-        [Description("订单付款时")]
+        [Description("预约单付款时")]
         OrderPay,
         /// <summary>
-        /// 订单发货时
+        /// 预约单发货时
         /// </summary>
-        [Description("订单发货")]
+        [Description("预约单发货")]
         OrderShipping,
         /// <summary>
-        /// 订单退款
+        /// 预约单退款
         /// </summary>
-        [Description("订单退款")]
+        [Description("预约单退款")]
         OrderRefund,
         /// <summary>
         /// 售后发货
@@ -50,9 +50,9 @@ namespace Himall.Core.Plugins.Message
         //[Description("开店成功")] //2.4去除状态
         //ShopSuccess,
         /// <summary>
-        /// 店铺有新订单
+        /// 店铺有新预约单
         /// </summary>
-        [Description("店铺有新订单")]
+        [Description("店铺有新预约单")]
         ShopHaveNewOrder,
         /// <summary>
         /// 领取红包通知

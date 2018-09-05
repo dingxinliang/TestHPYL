@@ -45,7 +45,7 @@ namespace Himall.API
 
 
         /// <summary>
-        /// 分页获取门店待结算订单
+        /// 分页获取门店待结算预约单
         /// </summary>
         /// <param name="page"></param>
         /// <param name="pagesize"></param>
@@ -105,7 +105,7 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 分页获取门店已结算订单
+        /// 分页获取门店已结算预约单
         /// </summary>
         /// <param name="page"></param>
         /// <param name="pagesize"></param>

@@ -2,7 +2,7 @@
 @model Himall.Web.Areas.Web.Models.LimitTimeProductDetailModel
 @{
 	Layout = "../Shared/_Base.cshtml";
-	ViewBag.Title = "限时购商品详情";
+	ViewBag.Title = "限时购诊疗项目详情";
 	ViewBag.ShowAside = 1;
 	var DetailModel = (Himall.Web.Areas.Mobile.Models.LimitTimeBuyDetailModel)ViewBag.DetailModel;
 }
@@ -134,7 +134,7 @@
         @*门店信息-前端调整界面样式*@
 		<div class="item detail-comment">
 			<div class="detail-comment-hd">
-				商品评价
+				诊疗项目评价
 				<span class="detail-comment-num">@(DetailModel.CommentCount)</span>
 			</div>
 			@Html.Action("ProductCommentShow", "Product", new { id = Model.Product.Id })

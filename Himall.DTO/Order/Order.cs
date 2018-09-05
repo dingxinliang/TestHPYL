@@ -52,6 +52,10 @@ namespace Himall.DTO
         public OrderInfo.ActiveTypes ActiveType { get; set; }
         public Himall.Core.PlatformType Platform { get; set; }
         public decimal DiscountAmount { get; set; }
+        public int RemindType { get; set; }
+        public Nullable<System.DateTime> ReceiveDate { get; set; }
+        public Nullable<System.DateTime> ReceiveStartTime { get; set; }
+        public Nullable<System.DateTime> ReceiveEndTime { get; set; }
         /// <summary>
         /// 满减优惠
         /// </summary>
@@ -70,40 +74,40 @@ namespace Himall.DTO
         public Nullable<int> SellerRemarkFlag { get; set; }
 
         /// <summary>
-        /// 订单商品总数
+        /// 预约单诊疗项目总数
         /// </summary>
         public long OrderProductQuantity { get; set; }
 
         /// <summary>
-        /// 订单退货总数
+        /// 预约单退货总数
         /// </summary>
         public long OrderReturnQuantity { get; set; }
 
         /// <summary>
-        /// 订单实付金额
-        /// 公式： 商品应付+运费+税 - 优惠券金额 - 积分抵扣金额
+        /// 预约单实付金额
+        /// 公式： 诊疗项目应付+运费+税 - 优惠券金额 - 积分抵扣金额
         /// </summary>
         public decimal OrderTotalAmount { get; set; }
 
         /// <summary>
-        /// 订单金额 （商品应付+运费+税 -优惠券金额） 不包含积分抵扣部分
+        /// 预约单金额 （诊疗项目应付+运费+税 -优惠券金额） 不包含积分抵扣部分
         /// </summary>
         public decimal OrderAmount { get; set; }
 
         /// <summary>
-        /// 商品实付（商品应付-优惠券的价格）
+        /// 诊疗项目实付（诊疗项目应付-优惠券的价格）
         /// </summary>
         public decimal ProductTotal { get; set; }
 
 
         ///// <summary>
-        ///// 订单实付金额(转为数据库冗余字段)
+        ///// 预约单实付金额(转为数据库冗余字段)
         ///// </summary>
         //public decimal TotalAmount { get { return OrderTotalAmount; } }
 
 
         ///// <summary>
-        ///// 订单实收金额（订单实付金额-退款）
+        ///// 预约单实收金额（预约单实付金额-退款）
         ///// </summary>
         //public decimal ActualPayAmount
         //{
@@ -113,13 +117,13 @@ namespace Himall.DTO
 
 
         /// <summary>
-        /// 订单实付金额(转为数据库冗余字段)
+        /// 预约单实付金额(转为数据库冗余字段)
         /// </summary>
         public decimal TotalAmount { get; set; }
 
 
         /// <summary>
-        /// 订单实收金额（订单实付金额-退款）(转为数据库冗余字段)
+        /// 预约单实收金额（预约单实付金额-退款）(转为数据库冗余字段)
         /// </summary>
         public decimal ActualPayAmount
         {
@@ -130,17 +134,17 @@ namespace Himall.DTO
 
 
         /// <summary>
-        /// 订单可退金额
+        /// 预约单可退金额
         /// </summary>
         public decimal OrderEnabledRefundAmount { get; set; }
 
         /// <summary>
-        /// 订单实际分佣
+        /// 预约单实际分佣
         /// </summary>
         public decimal CommisAmount { get; set; }
 
         /// <summary>
-        /// 商家结算金额
+        /// 诊所结算金额
         /// </summary>
         public decimal ShopAccountAmount { get; set; }
 
@@ -151,7 +155,7 @@ namespace Himall.DTO
         public string ShowRefundStats {get;set;        }
 
         /// <summary>
-        /// 是否包含被删除的商品
+        /// 是否包含被删除的诊疗项目
         /// </summary>
         public bool HaveDelProduct { get; set; }
 
@@ -162,7 +166,7 @@ namespace Himall.DTO
         public bool? IsRefundTimeOut { get; set; }
 
         /// <summary>
-        /// 拼团订单的状态
+        /// 拼团预约单的状态
         /// </summary>
         public FightGroupOrderJoinStatus? FightGroupOrderJoinStatus { get; set; }
 
@@ -178,7 +182,7 @@ namespace Himall.DTO
 
 
         /// <summary>
-        /// 订单
+        /// 预约单
         /// </summary>
         public string CreateTimeStr
         {

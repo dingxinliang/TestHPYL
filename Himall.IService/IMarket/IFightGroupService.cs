@@ -22,7 +22,7 @@ namespace Himall.IServices
         void AddActive(FightGroupActiveInfo data);
 
         /// <summary>
-        /// 商品是否可以参加拼团活动
+        /// 诊疗项目是否可以参加拼团活动
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace Himall.IServices
         void DeleteActive(long id);
 
         /// <summary>
-        /// 根据商品ID取活动信息
+        /// 根据诊疗项目ID取活动信息
         /// </summary>
         /// <param name="proId"></param>
         /// <returns></returns>
@@ -52,14 +52,14 @@ namespace Himall.IServices
         /// 获取拼团活动
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="needGetProductCommentNumber">是否需要同步获取商品的评价数量,会自动加载产品信息</param>
+        /// <param name="needGetProductCommentNumber">是否需要同步获取诊疗项目的评价数量,会自动加载产品信息</param>
         /// <param name="isLoadItems">是否加载节点信息</param>
         /// <param name="isLoadPorductInfo">是否加载产品信息</param>
         /// <returns></returns>
         FightGroupActiveInfo GetActive(long id, bool needGetProductCommentNumber = false, bool isLoadItems = true, bool isLoadPorductInfo = true);
         List<FightGroupActiveInfo> GetActive(long[] ids);
         /// <summary>
-        /// 使用商品编号获取正在进行的拼团活动编号
+        /// 使用诊疗项目编号获取正在进行的拼团活动编号
         /// <para>0表示无数据</para>
         /// </summary>
         /// <param name="productId"></param>
@@ -79,7 +79,7 @@ namespace Himall.IServices
         /// <param name="Statuses"></param>
         /// <param name="StartTime"></param>
         /// <param name="EndTime"></param>
-        /// <param name="ProductName">商品名</param>
+        /// <param name="ProductName">诊疗项目名</param>
         /// <param name="ShopName">店铺名</param>
         /// <param name="ShopId">店铺编号</param>
         /// <param name="PageNo"></param>
@@ -183,7 +183,7 @@ namespace Himall.IServices
         void CheckAndUpdateGroupStatus(long activeId, long groupId);
         #endregion
 
-        #region 拼团订单
+        #region 拼团预约单
         /// <summary>
         /// 根据拼团活动Id和团组Id获取用户
         /// </summary>
@@ -199,14 +199,14 @@ namespace Himall.IServices
         /// <returns></returns>
         int GetMarketSaleCountForUserId(long activeId, long userId);
         /// <summary>
-        /// 根据用户id获取拼团订单
+        /// 根据用户id获取拼团预约单
         /// </summary>
         /// <param name="userID">用户id</param>
         /// <returns></returns>
         QueryPageModel<FightGroupOrderInfo> GetFightGroupOrderByUser(int PageNo, int PageSize, long userID, List<FightGroupOrderJoinStatus> status = null);
 
         /// <summary>
-        /// 虚拟订单
+        /// 虚拟预约单
         /// </summary>
         /// <param name="PageNo"></param>
         /// <param name="PageSize"></param>
@@ -216,14 +216,14 @@ namespace Himall.IServices
         /// <summary>
         /// 设定加入拼团状态
         /// </summary>
-        /// <param name="orderId">订单号</param>
+        /// <param name="orderId">预约单号</param>
         /// <param name="status">状态</param>
         FightGroupOrderJoinStatus SetOrderStatus(long orderId, FightGroupOrderJoinStatus status);
         /// <summary>
-        /// 拼团订单
+        /// 拼团预约单
         /// </summary>
         /// <param name="actionId">活动编号</param>
-        /// <param name="orderId">订单编号</param>
+        /// <param name="orderId">预约单编号</param>
         /// <param name="userId">用户编号</param>
         /// <param name="groupId">拼团编号 0表示开新团</param>
         FightGroupOrderInfo AddOrder(long actionId, long orderId, long userId, long groupId = 0, long shopId = 0, long invitationUserId = 0);
@@ -234,53 +234,53 @@ namespace Himall.IServices
         /// <param name="status"></param>
         void SendMessage(long orderId, FightGroupOrderJoinStatus status);
         /// <summary>
-        /// 根据订单流水Id获取拼团订单详情
+        /// 根据预约单流水Id获取拼团预约单详情
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         FightGroupOrderInfo GetFightGroupOrderById(long id);
         /// <summary>
-        /// 根据原订单号获取拼团订单信息
+        /// 根据原预约单号获取拼团预约单信息
         /// </summary>
-        /// <param name="orderId">原订单号</param>
+        /// <param name="orderId">原预约单号</param>
         /// <returns></returns>
         FightGroupOrderInfo GetFightGroupOrderStatusByOrderId(long orderId);
         /// <summary>
-        /// 订单是否可以支付
-        /// <para>成团成功后，未完成支付的订单不可付款</para>
-        /// <para>成团失败后，未完成支付的订单不可付款</para>
+        /// 预约单是否可以支付
+        /// <para>成团成功后，未完成支付的预约单不可付款</para>
+        /// <para>成团失败后，未完成支付的预约单不可付款</para>
         /// </summary>
-        /// <param name="orderId">订单编号</param>
+        /// <param name="orderId">预约单编号</param>
         /// <returns></returns>
         bool OrderCanPay(long orderId);
 
         /// <summary>
-        /// 获取拼团订单
+        /// 获取拼团预约单
         /// </summary>
-        /// <param name="orderId">订单编号</param>
+        /// <param name="orderId">预约单编号</param>
         /// <returns></returns>
 
         FightGroupOrderInfo GetOrder(long orderId);
         /// <summary>
-        /// 获取参团中的订单数
+        /// 获取参团中的预约单数
         /// </summary>
         /// <param name="userId">用户编号</param>
         /// <returns></returns>
         int CountJoiningOrder(long userId);
         /// <summary>
-        /// 新增拼团订单
+        /// 新增拼团预约单
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         long AddGroupOrder(FightGroupOrderInfo data);
         /// <summary>
-        /// 付款成功后更新拼团订单状态
+        /// 付款成功后更新拼团预约单状态
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         void UpdateGroupOrderStatus(FightGroupOrderInfo data);
         /// <summary>
-        /// 根据团组Id获取订单数据
+        /// 根据团组Id获取预约单数据
         /// </summary>
         /// <param name="statuses"></param>
         /// <param name="groupId"></param>

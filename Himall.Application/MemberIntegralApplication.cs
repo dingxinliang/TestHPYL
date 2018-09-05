@@ -143,14 +143,14 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 订单是否已经分享
+        /// 预约单是否已经分享
         /// </summary>
         /// <param name="orderid"></param>
         /// <returns>true:已经分享过</returns>
         public static bool OrderIsShared(IEnumerable<long> orderids)
         {
             var recordAction = _iMemberIntegralService.GetIntegralRecordAction(orderids, MemberIntegral.VirtualItemType.ShareOrder);
-            if (recordAction.Count > 0)//有分享记录，就认为已经分享过（不管分享的订单个数）
+            if (recordAction.Count > 0)//有分享记录，就认为已经分享过（不管分享的预约单个数）
                 return true;
             return false;
         }

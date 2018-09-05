@@ -522,7 +522,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return templateHtml;
         }
         /// <summary>
-        /// 商品模块
+        /// 诊疗项目模块
         /// </summary>
         /// <param name="context"></param>
         /// <param name="path"></param>
@@ -554,7 +554,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     string gdboxid = "goods_" + Guid.NewGuid().ToString("N");
                     //首节数量
                     string layout = data["content"]["layout"].ToString();
-                    //int modNum = 4;//根据不同显示样式，设置最小商品模块包括的商品数量
+                    //int modNum = 4;//根据不同显示样式，设置最小诊疗项目模块包括的诊疗项目数量
                     //if (layout == "1" || layout == "5")
                     //{//小图是两个一组
                     //    modNum = 8;
@@ -629,7 +629,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         /// <summary>
-        /// 商品分组模块
+        /// 诊疗项目分组模块
         /// </summary>
         /// <param name="context"></param>
         /// <param name="path"></param>

@@ -3,7 +3,7 @@
 
 function SellerRemark(id, remark, flag) {
     $.dialog({
-        title: '商家备注',
+        title: '诊所备注',
         lock: true,
         id: 'SellerRemark',
         content: document.getElementById("remark-form"),
@@ -75,11 +75,11 @@ $(function () {
 
 
     function typeChoose(val) {
-        var isOpenStore = { field: "门店未授权" };
+        var isOpenStore = { field: "诊所未授权" };
         if ($("#isOpenStore").val() == "True") {
-            isOpenStore = { field: "ShopBranchName", title: "门店名称", width: 140, align: "center" };
+            isOpenStore = { field: "ShopBranchName", title: "诊所名称", width: 140, align: "center" };
         }
-        //订单表格
+        //预约单表格
         $("#list").hiMallDatagrid({
             url: './list',
             nowrap: false,
@@ -95,7 +95,7 @@ $(function () {
             pageNumber: 1,
             queryParams: { status: val },
             rowHeadFormatter: function (target, index, row) {
-                return '<tr class="child-title"><td colspan="8" style="padding:10px 15px; background:#fff; border:0;font-size: 12px; color:#6b6c6e;"><img src="' + row.IconSrc + '" title="' + (row.PlatformText == 'Android' ? 'App' : row.PlatformText) + '订单' + '" width="16" style="margin:0 8px 0 0;position:relative;top:-1px;" /> 订单号:' + row.OrderId + ' &nbsp;&nbsp;&nbsp;&nbsp;  ' + row.OrderDate + '<span class="pull-right">' + (row.PaymentTypeStr || '') + '</span></td></tr>';
+                return '<tr class="child-title"><td colspan="8" style="padding:10px 15px; background:#fff; border:0;font-size: 12px; color:#6b6c6e;"><img src="' + row.IconSrc + '" title="' + (row.PlatformText == 'Android' ? 'App' : row.PlatformText) + '预约单' + '" width="16" style="margin:0 8px 0 0;position:relative;top:-1px;" /> 预约单号:' + row.OrderId + ' &nbsp;&nbsp;&nbsp;&nbsp; 下单时间: ' + row.OrderDate + '<span class="pull-right">' + (row.PaymentTypeStr || '') + '</span></td></tr>';
             },
             rowFootFormatter: function (target, index, row) {
                 var html = [];
@@ -120,106 +120,114 @@ $(function () {
             operationButtons: "#orderOperate",
             onLoadSuccess: CheckStatus,
             columns:
-			[[
-                {
-                    checkbox: true, width: 35, formatter: function (value, row, index) {
-                        var html = "<input type=\"checkbox\" data-isbranch=\"" + (row.ShopBranchId > 0) + "\"";
-                        if (row.CanSendGood == false || row.OrderStatus == "待付款" || row.OrderStatus == "已关闭") {
-                            html += ' disabled ';
+                [[
+                    {
+                        checkbox: true, width: 35, formatter: function (value, row, index) {
+                            var html = "<input type=\"checkbox\" data-isbranch=\"" + (row.ShopBranchId > 0) + "\"";
+                            if (row.CanSendGood == false || row.OrderStatus == "待付款" || row.OrderStatus == "已关闭") {
+                                html += ' disabled ';
+                            }
+                            html += ">";
+                            return html;
                         }
-                        html += ">";
-                        return html;
+                    },
+                    {
+                        field: "ProductName", title: '就诊项目', width: 70,
+                        formatter: function (value, row, index) {
+                            var html = [];
+                            for (var i = 0; i < row.OrderItems.length; i++) {
+                                var showUnit = row.OrderItems[i].Unit || "";
+                                html.push('<div class="img-list">' +
+                                    //'<img src="' + row.OrderItems[i].ThumbnailsUrl + '">' +
+                                    '<span class="overflow-ellipsis"><a title="' + row.OrderItems[i].ProductName + '" href="javascript:;" target="_blank" >' + row.OrderItems[i].ProductName + '</a>' +
+                                    '<p>￥' + row.OrderItems[i].SalePrice.toFixed(2) + ' &nbsp; ' + row.OrderItems[i].Quantity + showUnit + '</p>' +
+                                    '</span></div>');
+                            }
+                            return html.join('');
+                        }
+                    },
+                    {
+                        field: "SellerAddress", title: "就诊地址", width: 170, align: "center", formatter: function (value, row, index) {
+                            return row.ShopName + '<br/>' + row.SellerAddress;
+                        }
+                    },
+                    {
+                        field: "ReceiveDate", title: "预约时间", width: 120, align: "center",
+                        formatter: function (value, row, index) {
+                            if (value != null) {
+                                return row.YYDate + ' ' + row.ReceiveStartTime + "~" + row.ReceiveEndTime;
+                            }
+                        }
+                    },
+                    {
+                        field: "TotalPrice", title: "预约单总额", width: 120, align: "center",
+                        formatter: function (value, row, index) {
+                            var html = "<span class='ftx-04'>" + '￥' + value.toFixed(2) + "</span>";
+                            return html;
+                        }
+                    },
+
+                    {
+                        field: "UserName", title: "患者", width: 70, align: "center", formatter: function (value, row, index) {
+                            return row.ShipTo + '<br/>' + row.CellPhone;
+                        }
+                    },
+                    //isOpenStore,
+                    {
+                        field: "OrderStatus", title: "预约状态", width: 70, align: "center",
+                        formatter: function (value, row, index) {
+                            var html = ["<span class='ordstbox'>"];
+                            html.push(row.OrderStatus);
+                            html.push("</span>");
+                            return html.join("");
+                        }
+                    },
+                    {
+                        field: "operation", operation: true, title: "操作", width: 120,
+                        formatter: function (value, row, index) {
+                            var id = row.OrderId.toString();
+                            var html = ["<span class=\"btn-a\">"];
+                            html.push("<a href='./Detail/" + id + "' target=\"_blank\">查看</a>");
+                            if (row.OrderStatus == "待付款") {
+                                //html.push("<a href='./Detail/" + id + "?&updatePrice=" + true + "' target=\"_blank\">改价</a>");
+                                if (row.OrderType != 3) {
+                                    html.push("<a class=\"good-check\" onclick=\"OpenCloseOrder('" + id + "')\">取消</a>");
+                                }
+                            }
+                            if (row.OrderStatus == "待结算" && row.ShopBranchId <= 0) {
+                                if (row.CanSendGood) {
+                                    html.push("<a href='./SendGood?ids=" + id + "' target=\"_blank\">结算</a>");
+                                }
+                                if (row.PaymentType == 3 && row.OrderType != 3) {
+                                    html.push("<a class=\"good-check\" onclick=\"OpenCloseOrder('" + id + "')\">取消</a>");
+                                }
+                            }
+                            if (row.OrderStatus == "待结算") {
+                                if (row.PaymentType == 3 && row.OrderType != 3) {
+                                    html.push("<a class=\"good-check\" onclick=\"OpenCloseOrder('" + id + "')\">取消</a>");
+                                } else if (row.ShipOrderNumber && row.ShipOrderNumber.length > 0) {
+                                    //html.push("<a href='./UpdateExpress?id=" + id + "'>修改运单号</a>");
+                                }
+                            }
+                            html.push("<a class=\"good-check\" href='javascript:void(0)' onclick=\"SellerRemark('" + id + "','" + row.SellerRemark + "','" + row.SellerRemarkFlag + "')\">备注</a>");
+                            if ($("#isOpenStore").val() == "True") {
+                                if (row.OrderStatus == "待付款" || row.OrderStatus == "待就诊") {
+                                    //var text = row.ShopBranchId > 0 ? "更改诊所" : "分配诊所";
+                                    //html.push("<a class=\"good-check\" onclick=\"ProcessStore('" + id + "','" + row.RegionId + "','" + row.RegionFullName + "','" + row.Address + "','" + row.ShopId + "','" + row.RefundStatusText + "','" + row.LatAndLng + "')\">" + text + "</a>");
+                                    html.push("<a class=\"good-check\" onclick=\"OpenCloseOrder('" + id + "')\">取消</a>");
+                                    html.push("<a class=\"good-down\" onclick=\"DownOrder('" + id + "')\">完成</a>");
+                                }
+                            }
+                            //if (row.OrderType == 3) {
+                            //    if (row.FightGroupJoinStatus == 0 || row.FightGroupJoinStatus == 1) {
+                            //        html.push("<br/><span>组团中，不可发货</span>");
+                            //    }
+                            //}
+                            html.push("</span>");
+                            return html.join("");
+                        }
                     }
-                },
-				{
-				    field: "ProductName", title: '商品', width: 200,
-				    formatter: function (value, row, index) {
-				        var html = [];
-				        for (var i = 0; i < row.OrderItems.length; i++) {
-				            var showUnit = row.OrderItems[i].Unit || "";
-				            html.push('<div class="img-list">' +
-			            	'<img src="' + row.OrderItems[i].ThumbnailsUrl + '">' +
-			            	'<span class="overflow-ellipsis"><a title="' + row.OrderItems[i].ProductName + '" href="/product/detail/' + row.OrderItems[i].ProductId + '" target="_blank" >' + row.OrderItems[i].ProductName + '</a>' +
-			            	'<p>￥' + row.OrderItems[i].SalePrice.toFixed(2) + ' &nbsp; ' + row.OrderItems[i].Quantity + showUnit + '</p>' +
-			            	'</span></div>');
-				        }
-				        return html.join('');
-				    }
-				},
-               {
-                   field: "TotalPrice", title: "订单总额", width: 120, align: "center",
-                   formatter: function (value, row, index) {
-                       var html = "<span class='ftx-04'>" + '￥' + value.toFixed(2) + "</span>";
-                       return html;
-                   }
-               },
-               {
-                   field: "RefundStatusText", title: "售后", width: 120, align: "center",
-                   formatter: function (value, row, index) {
-                       if (value != null) {
-                           return '<a href=\"javascript:;\" onclick=\"GetRrefundType(' + row.OrderId + ',' + row.ShopId + ')\">' + value + '</a>';
-                       }
-                   }
-               },
-            {
-                field: "UserName", title: "买家", width: 70, align: "center", formatter: function (value, row, index) {
-                    return row.UserName + '<br/>' + row.CellPhone;
-                }
-            },
-		    isOpenStore,
-				{
-				    field: "OrderStatus", title: "订单状态", width: 70, align: "center",
-				    formatter: function (value, row, index) {
-				        var html = ["<span class='ordstbox'>"];
-				        html.push(row.OrderStatus);
-				        html.push("</span>");
-				        return html.join("");
-				    }
-				},
-				{
-				    field: "operation", operation: true, title: "操作", width: 120,
-				    formatter: function (value, row, index) {
-				        var id = row.OrderId.toString();
-				        var html = ["<span class=\"btn-a\">"];
-				        html.push("<a href='./Detail/" + id + "' target=\"_blank\">查看</a>");
-				        if (row.OrderStatus == "待付款") {
-				            html.push("<a href='./Detail/" + id + "?&updatePrice=" + true + "' target=\"_blank\">改价</a>");
-				            if (row.OrderType != 3) {
-				                html.push("<a class=\"good-check\" onclick=\"OpenCloseOrder('" + id + "')\">取消</a>");
-				            }
-				        }
-				        if (row.OrderStatus == "待发货" && row.ShopBranchId <= 0) {
-				            if (row.CanSendGood) {
-				                html.push("<a href='./SendGood?ids=" + id + "' target=\"_blank\">发货</a>");
-				            }
-				            if (row.PaymentType == 3 && row.OrderType != 3) {
-				                html.push("<a class=\"good-check\" onclick=\"OpenCloseOrder('" + id + "')\">取消</a>");
-				            }
-				        }
-				        if (row.OrderStatus == "待收货") {
-				            if (row.PaymentType == 3 && row.OrderType != 3) {
-				                html.push("<a class=\"good-check\" onclick=\"OpenCloseOrder('" + id + "')\">取消</a>");
-				            } else if (row.ShipOrderNumber && row.ShipOrderNumber.length > 0) {
-				                html.push("<a href='./UpdateExpress?id=" + id + "'>修改运单号</a>");
-				            }
-				        }
-				        html.push("<a class=\"good-check\" href='javascript:void(0)' onclick=\"SellerRemark('" + id + "','" + row.SellerRemark + "','" + row.SellerRemarkFlag + "')\">备注</a>");
-				        if ($("#isOpenStore").val() == "True") {
-				            if (row.OrderStatus == "待付款" || row.OrderStatus == "待发货") {
-				                var text = row.ShopBranchId > 0 ? "更改门店" : "分配门店";
-				                html.push("<a class=\"good-check\" onclick=\"ProcessStore('" + id + "','" + row.RegionId + "','" + row.RegionFullName + "','" + row.Address + "','" + row.ShopId + "','" + row.RefundStatusText + "','" + row.LatAndLng + "')\">" + text + "</a>");
-				            }
-				        }
-				        if (row.OrderType == 3) {
-				            if (row.FightGroupJoinStatus == 0 || row.FightGroupJoinStatus == 1) {
-				                html.push("<br/><span>组团中，不可发货</span>");
-				            }
-				        }
-				        html.push("</span>");
-				        return html.join("");
-				    }
-				}
-			]]
+                ]]
         });
     }
 
@@ -241,7 +249,7 @@ $(function () {
         var endDate = $("#inputEndDate").val();
         var orderId = $.trim($('#txtOrderId').val());
         if (isNaN(orderId)) {
-            $.dialog.errorTips("请输入正确的查询订单号"); return false;
+            $.dialog.errorTips("请输入正确的查询预约单号"); return false;
         }
         var userName = $.trim($('#txtUserName').val());
         var orderType = $("#orderType").val();
@@ -270,7 +278,7 @@ $(function () {
                 $(".search-box form")[0].reset();
                 ///无效会重新加载
                 //if ($(this).attr('value') == 0 || $(this).attr('value') == 2) {
-                //    var html = '<a href="javascript:downloadOrderList()" class="btn btn-default btn-ssm">订单配货表</a><a href="myPreview()" class="btn btn-default btn-ssm">打印发货单</a><a href="printOrders()" class="btn btn-default btn-ssm">打印快递单</a><a href="sendGood()" class="btn btn-default btn-ssm">批量发货</a>';
+                //    var html = '<a href="javascript:downloadOrderList()" class="btn btn-default btn-ssm">预约单配货表</a><a href="myPreview()" class="btn btn-default btn-ssm">打印发货单</a><a href="printOrders()" class="btn btn-default btn-ssm">打印快递单</a><a href="sendGood()" class="btn btn-default btn-ssm">批量发货</a>';
                 //    $(".tabel-operate").html('');
                 //    $(".tabel-operate").append(html);
                 //}
@@ -329,7 +337,7 @@ function InitAreaSelect(areaId, latAndLng) {
 function downloadProductList() {
     var ids = getSelectedIds();
     if (ids.length <= 0) {
-        $.dialog.tips('请至少选择一个订单');
+        $.dialog.tips('请至少选择一个预约单');
         return false;
     }
 
@@ -343,12 +351,12 @@ function hasSelectBranchOrder() {
 function downloadOrderList() {
     var ids = getSelectedIds();
     if (ids.length <= 0) {
-        $.dialog.tips('请至少选择一个订单');
+        $.dialog.tips('请至少选择一个预约单');
         return false;
     }
-    //判断是否有分店订单
+    //判断是否有分店预约单
     if (hasSelectBranchOrder()) {
-        $.dialog.tips('不可以操作门店订单');
+        $.dialog.tips('不可以操作诊所预约单');
         return false;
     }
 
@@ -367,7 +375,7 @@ function downloadOrderList() {
 function exportOrderList() {
     var ids = getSelectedIds();
     if (ids.length <= 0) {
-        $.dialog.tips('请至少选择一个订单');
+        $.dialog.tips('请至少选择一个预约单');
         return false;
     }
     window.open("/SellerAdmin/Order/DownloadOrderList?ids=" + ids.toString());
@@ -375,7 +383,7 @@ function exportOrderList() {
 function exportOrderProductList() {
     var ids = getSelectedIds();
     if (ids.length <= 0) {
-        $.dialog.tips('请至少选择一个订单');
+        $.dialog.tips('请至少选择一个预约单');
         return false;
     }
     window.open("/SellerAdmin/Order/DownloadOrderProductList?ids=" + ids.toString());
@@ -398,12 +406,12 @@ function loadIframeURL(url) {
 function myPreview() {
     var orderIds = getSelectedIds();
     if (orderIds.length <= 0) {
-        $.dialog.tips('请至少选择一个订单');
+        $.dialog.tips('请至少选择一个预约单');
         return false;
     }
-    //判断是否有分店订单
+    //判断是否有分店预约单
     if (hasSelectBranchOrder()) {
-        $.dialog.tips('不可以操作门店订单');
+        $.dialog.tips('不可以操作诊所预约单');
         return false;
     }
 
@@ -425,40 +433,73 @@ function myPreview() {
 function sendGood() {
     var orderIds = getSelectedIds();
     if (orderIds.length <= 0) {
-        $.dialog.tips('请至少选择一个订单');
+        $.dialog.tips('请至少选择一个预约单');
         return false;
     }
-    //判断是否有分店订单
+    //判断是否有分店预约单
     if (hasSelectBranchOrder()) {
-        $.dialog.tips('不可以操作门店订单');
+        $.dialog.tips('不可以操作诊所预约单');
         return false;
     }
 
     location.href = "./SendGood?ids=" + orderIds.toString();
 }
-
+function DownOrder(orderId) {
+    $.dialog({
+        title: '就诊结束',
+        lock: true,
+        id: 'gooddown',
+        content: ['<div class="dialog-form">',
+            '<div class="form-group">',
+            '<p style="padding:0">确认要完成预约单吗？完成后预约单将会是就诊结束状态。</p>',
+            '</div>',
+            '</div>'].join(''),
+        padding: '20px 60px',
+        button: [
+            {
+                name: '确认完成',
+                callback: function () {
+                    EndOrder(orderId);
+                },
+                focus: true
+            }]
+    });
+}
 function OpenCloseOrder(orderId) {
     $.dialog({
-        title: '取消订单',
+        title: '取消预约单',
         lock: true,
         id: 'goodCheck',
         content: ['<div class="dialog-form">',
             '<div class="form-group">',
-                '<p style="padding:0">确认要取消订单吗？取消后订单将会是关闭状态。</p>',
+            '<p style="padding:0">确认要取消预约单吗？取消后预约单将会是关闭状态。</p>',
             '</div>',
-        '</div>'].join(''),
+            '</div>'].join(''),
         padding: '20px 60px',
         button: [
-        {
-            name: '确认取消',
-            callback: function () {
-                CloseOrder(orderId);
-            },
-            focus: true
-        }]
+            {
+                name: '确认取消',
+                callback: function () {
+                    CloseOrder(orderId);
+                },
+                focus: true
+            }]
     });
 }
 
+function EndOrder(orderId) {
+    var loading = showLoading();
+    $.post('./EndOrder', { orderId: orderId }, function (result) {
+        loading.close();
+        if (result.success) {
+            $.dialog.succeedTips("操作成功！");
+            var pageNo = $("#list").hiMallDatagrid('options').pageNumber;
+            $("#list").hiMallDatagrid('reload', { pageNumber: pageNo });
+        }
+        else
+            $.dialog.errorTips("操作失败");
+    });
+}
 function CloseOrder(orderId) {
     var loading = showLoading();
     $.post('./CloseOrder', { orderId: orderId }, function (result) {
@@ -485,12 +526,12 @@ function getSelectedIds() {
 function printOrders() {
     var ids = getSelectedIds();
     if (ids.length == 0) {
-        $.dialog.tips('请至少选择一个订单');
+        $.dialog.tips('请至少选择一个预约单');
         return false;
     } else {
-        //判断是否有分店订单
+        //判断是否有分店预约单
         if (hasSelectBranchOrder()) {
-            $.dialog.tips('不可以操作门店订单');
+            $.dialog.tips('不可以操作诊所预约单');
             return false;
         }
         location.href = "print?orderIds=" + ids.toString();
@@ -510,7 +551,7 @@ function ExportExecl() {
     var txtUserContact = $.trim($('#txtUserContact').val());
 
     var href = "/SellerAdmin/Order/ExportToExcel?status={0}&startDate={1}&endDate={2}&orderId={3}&userName={4}&orderType={5}&paymentType={6}&userContact={7}"
-	.format(status, startDate, endDate, orderId, userName, orderType, selectPaymentType, txtUserContact);
+        .format(status, startDate, endDate, orderId, userName, orderType, selectPaymentType, txtUserContact);
 
     $("#aExport").attr("href", href);
 }
@@ -556,24 +597,24 @@ $(function () {
         }
     });
 });
-// 商家手动处理门店
+// 诊所手动处理诊所
 var _shopId = 0, _orderId = 0;
 function ProcessStore(orderId, regionId, regionFullName, address, shopId, refundStatusText, latAndLng) {
     $("#storeHelper").html('');
     if (refundStatusText != "null" && refundStatusText.length > 0) {
-        $.dialog.tips("订单正在申请售后，请先处理售后申请");
+        $.dialog.tips("预约单正在申请售后，请先处理售后申请");
         return;
     }
-    _shopId = shopId;//商家ID
-    _orderId = orderId;//订单ID
+    _shopId = shopId;//诊所ID
+    _orderId = orderId;//预约单ID
     $("#shippingAddresses").html(regionFullName + address);
     InitAreaSelect(Number(regionId), latAndLng);
     StoreOperate();
-    GetArealShopBranchs(latAndLng);//默认加载与订单收货地址同区域门店
+    GetArealShopBranchs(latAndLng);//默认加载与预约单收货地址同区域诊所
 }
 function StoreOperate() {
     $.dialog({
-        title: '订单分配到门店',
+        title: '预约单分配到诊所',
         lock: true,
         id: 'StoreOperate',
         content: document.getElementById("storeSelect-form"),
@@ -582,12 +623,12 @@ function StoreOperate() {
         init: function () {
         },
         ok: function () {
-            //开始分配门店
+            //开始分配诊所
             var queryData = {
                 orderId: _orderId, shopId: _shopId, shopBranchId: $("#ddlStores").val(), url: "DistributionStore"
             }
             if (queryData.shopBranchId == -1) {
-                $.dialog.tips("请先选择门店");
+                $.dialog.tips("请先选择诊所");
                 return false;
             }
             $.ajax({
@@ -634,7 +675,7 @@ function GetArealShopBranchs(latAndLng) {
             } else {
                 var databox = $("#ddlStores");
                 databox.empty();
-                databox.append("<option value='-1'>请选择门店</option><option value='0'>总店</option>");
+                databox.append("<option value='-1'>请选择诊所</option><option value='0'>总店</option>");
                 if (data) {
                     if (data.Models && data.Models.length > 0) {
                         $.each(data.Models, function (i, model) {

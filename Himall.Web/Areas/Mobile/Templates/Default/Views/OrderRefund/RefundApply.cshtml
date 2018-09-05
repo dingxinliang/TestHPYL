@@ -10,7 +10,7 @@
     Himall.Model.OrderInfo OrderData = (Himall.Model.OrderInfo)Model.OrderInfo;
     long? OrderItemId = (long?)Model.OrderItemId;
     int RefundType = 0;
-    bool isRefundOrder = (OrderItemId == null);    //是否为整笔订单退款
+    bool isRefundOrder = (OrderItemId == null);    //是否为整笔预约单退款
     if (Model != null)
     {
         if (Model.RefundMode == Himall.Model.OrderRefundInfo.OrderRefundMode.OrderRefund)

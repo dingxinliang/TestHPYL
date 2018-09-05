@@ -79,7 +79,7 @@ namespace Himall.CommonModel
             set;
         }
          /// <summary>
-         /// 推荐商品
+         /// 推荐诊疗项目
          /// </summary>
         public string RecommendProductInfo { get; set; }
         /// <summary>

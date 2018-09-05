@@ -20,7 +20,7 @@ namespace Himall.Model
         [NotMapped]
         public string Photo { get; set; }
         /// <summary>
-        /// 订单用户名
+        /// 预约单用户名
         /// </summary>
         [NotMapped]
         public string UserName { get; set; }
@@ -46,11 +46,11 @@ namespace Himall.Model
         /// </summary>
         public DateTime AddGroupTime { get; set; }
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         /// </summary>
         public string ProductName { get; set; }
         /// <summary>
-        /// 商品图片
+        /// 诊疗项目图片
         /// </summary>
         public string IconUrl { get; set; }
         /// <summary>
@@ -141,7 +141,7 @@ namespace Himall.Model
         [NotMapped]
         public string Photo { get; set; }
         /// <summary>
-        /// 订单用户名
+        /// 预约单用户名
         /// </summary>
         [NotMapped]
         public string UserName { get; set; }

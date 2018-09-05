@@ -39,7 +39,7 @@ namespace Himall.Model.WeiXin
             DataList = new List<WX_MsgTemplateLinkData>();
             WX_MsgTemplateLinkData _tmp;
 
-            #region 订单创建时
+            #region 预约单创建时
             _tmp = new WX_MsgTemplateLinkData();
             _tmp.MsgType = MessageTypeEnum.OrderCreated;
             _tmp.MsgTemplateShortId = "OPENTM207102467";
@@ -47,7 +47,7 @@ namespace Himall.Model.WeiXin
             DataList.Add(_tmp);
             #endregion
 
-            #region 订单付款时
+            #region 预约单付款时
             _tmp = new WX_MsgTemplateLinkData();
             _tmp.MsgType = MessageTypeEnum.OrderPay;
             _tmp.MsgTemplateShortId = "OPENTM207185188";
@@ -55,7 +55,7 @@ namespace Himall.Model.WeiXin
             DataList.Add(_tmp);
             #endregion
 
-            #region 订单发货
+            #region 预约单发货
             _tmp = new WX_MsgTemplateLinkData();
             _tmp.MsgType = MessageTypeEnum.OrderShipping;
             _tmp.MsgTemplateShortId = "OPENTM202243318";
@@ -63,7 +63,7 @@ namespace Himall.Model.WeiXin
             DataList.Add(_tmp);
             #endregion
 
-            #region 订单退款
+            #region 预约单退款
             _tmp = new WX_MsgTemplateLinkData();
             _tmp.MsgType = MessageTypeEnum.OrderRefund;
             _tmp.MsgTemplateShortId = "TM00430";
@@ -78,7 +78,7 @@ namespace Himall.Model.WeiXin
             DataList.Add(_tmp);
             #endregion
 
-            #region 店铺有新订单
+            #region 店铺有新预约单
             _tmp = new WX_MsgTemplateLinkData();
             _tmp.MsgType = MessageTypeEnum.ShopHaveNewOrder;
             _tmp.MsgTemplateShortId = "OPENTM200750297";

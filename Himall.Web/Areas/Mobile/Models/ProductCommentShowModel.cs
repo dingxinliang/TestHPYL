@@ -6,7 +6,7 @@ using System.Web;
 namespace Himall.Web.Areas.Mobile.Models
 {
     /// <summary>
-    /// 商品评价部份显示
+    /// 诊疗项目评价部份显示
     /// </summary>
     public class ProductCommentShowModel
     {

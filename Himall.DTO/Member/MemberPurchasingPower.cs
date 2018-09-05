@@ -33,7 +33,7 @@ namespace Himall.DTO
         public decimal NetAmount { set; get; }
 
         /// <summary>
-        /// 订单数
+        /// 预约单数
         /// </summary>
         public int OrderNumber { get; set; }
 

@@ -12,7 +12,7 @@ namespace Himall.Model
         }
 
         /// <summary>
-        /// 购物车 商品项
+        /// 购物车 诊疗项目项
         /// </summary>
         public IEnumerable<ShoppingCartItem> Items { get; set; }
 
@@ -24,27 +24,27 @@ namespace Himall.Model
     }
 
     /// <summary>
-    /// 购物车商品项
+    /// 购物车诊疗项目项
     /// </summary>
     public class ShoppingCartItem
     {
         /// <summary>
-        /// 购物车商品项Id
+        /// 购物车诊疗项目项Id
         /// </summary>
         public long Id { get; set; }
 
         /// <summary>
-        /// 商品Id
+        /// 诊疗项目Id
         /// </summary>
         public long ProductId { get; set; }
 
         /// <summary>
-        /// 商品SKUID
+        /// 诊疗项目SKUID
         /// </summary>
         public string SkuId { get; set; }
 
         /// <summary>
-        /// 商品数量
+        /// 诊疗项目数量
         /// </summary>
         public int Quantity { get; set; }
 

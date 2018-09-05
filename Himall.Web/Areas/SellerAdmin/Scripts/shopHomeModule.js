@@ -40,7 +40,7 @@ function initModuleNameAutoSave() {
 function bindAddModuleBtnClickEvent() {
     $('#addModule').click(function () {
         var loading = showLoading();
-        $.post('AddShopHomeModule', { name: '新商品模块' }, function (result) {
+        $.post('AddShopHomeModule', { name: '新诊疗项目模块' }, function (result) {
             loading.close();
             if (result.success) {
                 var id = result.id;
@@ -58,7 +58,7 @@ function bindDeleteBtnClickEvent() {
     $('#moduleTable').on('click', 'a[delete]', function () {
         var id = $(this).parents('tr').attr('moduleId');
         var name = $(this).parents('tr').find('input[modulename]').val();
-        $.dialog.confirm('您确定要删除商品模块 ' + name + ' 吗？', function () {
+        $.dialog.confirm('您确定要删除诊疗项目模块 ' + name + ' 吗？', function () {
             del(id);
         });
     })
@@ -83,7 +83,7 @@ function bindSelectProductsBtnClickEvent() {
                 return false;
             }
             saveShopModuleProducts(id, newProductIds, function () {
-                $.dialog.tips('保存商品成功!');
+                $.dialog.tips('保存诊疗项目成功!');
                 thisObj.parents('tr').find('td[count]').html(newProductIds.length);
                 thisObj.attr('productids', newProductIds.toString());
             });
@@ -109,7 +109,7 @@ function addNewRow(id, name, productIds) {
     var html = '<tr moduleId="' + id + '">\
                     <td><input class="text-order" style="width:200px" type="text" value="' + name + '" modulename preText="' + name + '"></td>\
                     <td count>' + productsCount + '</td>\
-                    <td class="td-operate"><span class="btn-a"><a productIds="' + productIds.toString() + '">选择商品</a><a delete>删除</a></span></td>\
+                    <td class="td-operate"><span class="btn-a"><a productIds="' + productIds.toString() + '">选择诊疗项目</a><a delete>删除</a></span></td>\
                 </tr>';
     $('#moduleTable').append(html);
 }

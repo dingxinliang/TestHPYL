@@ -9,16 +9,16 @@ using Hishop.Open.Api;
 namespace Himall.OpenApi.Model.Parameter
 {
     /// <summary>
-    /// 修改商品销售状态传入参数
+    /// 修改诊疗项目销售状态传入参数
     /// </summary>
     public class UpdateProductApproveStatusParameterModel : BaseParameterModel
     {
         /// <summary>
-        /// 商品编号
+        /// 诊疗项目编号
         /// </summary>
         public int num_iid { get; set; }
         /// <summary>
-        /// 商品状态
+        /// 诊疗项目状态
         /// </summary>
         public string approve_status { get; set; }
 

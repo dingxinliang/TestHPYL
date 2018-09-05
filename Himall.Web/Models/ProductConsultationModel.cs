@@ -86,7 +86,7 @@ namespace Himall.Web.Models
 
 
         //日龙添加
-        //7.16号， 显示出商品的规格
+        //7.16号， 显示出诊疗项目的规格
         /// <summary>
         /// 颜色
         /// </summary>

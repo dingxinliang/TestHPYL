@@ -7,7 +7,7 @@
 
 
 function initGrid() {
-    //商品表格
+    //诊疗项目表格
     $("#list").hiMallDatagrid({
         url: 'list',
         nowrap: false,

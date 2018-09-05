@@ -8,18 +8,21 @@ using Himall.CommonModel;
 
 namespace Himall.Web.Models
 {
+
+  
     public class OrderModel
     {
         public long OrderId { set; get; }
 
         public string OrderStatus { get; set; }
-
+        public string ShipTo { get; set; }
         public string OrderDate { get; set; }
         
         public long ShopId { set; get; }
 
         public string ShopName { set; get; }
 
+        public long ShareUserId { get; set; }
         public long UserId { set; get; }
 
         public string UserName { set; get; }
@@ -48,8 +51,19 @@ namespace Himall.Web.Models
 
         public string PaymentTypeStr { get; set; }
 
+        public string SellerAddress { get; set; }
         /// <summary>
-        ///商家 备注
+        /// 预约时间
+        /// </summary>
+        public string doctorName { get; set; }
+        public int RemindType { get; set; }
+        public string  YYDate { get; set; }
+        public DateTime ReceiveDate { get; set; }
+        public string ReceiveStartTime { get; set; }
+        public string ReceiveEndTime { get; set; }
+
+        /// <summary>
+        ///诊所 备注
         /// </summary>
 
         public string SellerRemark { set; get; }
@@ -64,7 +78,7 @@ namespace Himall.Web.Models
         public bool CanSendGood { get; set; }
         /// <summary>
         /// 拼团状态
-        /// <para>拼团订单独有</para>
+        /// <para>拼团预约单独有</para>
         /// </summary>
         public FightGroupOrderJoinStatus FightGroupJoinStatus { get; set; }
         /// <summary>

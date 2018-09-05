@@ -11,14 +11,14 @@ namespace Himall.IServices
     public interface ITradeCommentService : IService
     {
         /// <summary>
-        /// 查询订单评价
+        /// 查询预约单评价
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
         ObsoletePageModel<OrderCommentInfo> GetOrderComments(OrderCommentQuery query);
 
         /// <summary>
-        /// 删除订单评价
+        /// 删除预约单评价
         /// </summary>
         /// <param name="id"></param>
         void DeleteOrderComment(long id);
@@ -26,14 +26,14 @@ namespace Himall.IServices
 
         void AddOrderComment(OrderCommentInfo info);
         /// <summary>
-        /// 根据用户ID和订单ID获取单个订单评价信息
+        /// 根据用户ID和预约单ID获取单个预约单评价信息
         /// </summary>
         /// <param name="?"></param>
         /// <returns></returns>
         OrderCommentInfo GetOrderCommentInfo(long orderId,long userId);
 
         /// <summary>
-        /// 获取订单评论
+        /// 获取预约单评论
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

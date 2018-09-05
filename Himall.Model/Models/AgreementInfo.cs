@@ -11,9 +11,9 @@ namespace Himall.Model
         public enum AgreementTypes
         {
             /// <summary>
-            /// 买家
+            /// 患者
             /// </summary>
-            [Description("买家")]
+            [Description("患者")]
             Buyers = 0,
 
             /// <summary>

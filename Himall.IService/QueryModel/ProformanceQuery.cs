@@ -27,7 +27,7 @@ namespace Himall.IServices.QueryModel
       public long? UserId { set; get; }
 
       /// <summary>
-      /// 订单编号
+      /// 预约单编号
       /// </summary>
       public long? OrderId { set; get; }
 

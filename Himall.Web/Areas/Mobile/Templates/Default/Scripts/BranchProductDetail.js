@@ -13,7 +13,7 @@ $(function () {
     returnFavoriteHref = "/" + areaName + "/Product/Detail/" + pid;
     //returnFavoriteHref = encodeURIComponent(returnFavoriteHref);
 
-    // 获取商品价格
+    // 获取诊疗项目价格
     GetNeedRefreshProductInfo();
     ShowPromotion();
     LoadActives();
@@ -39,7 +39,7 @@ $(function () {
             vshopid = -1;
         }
         if (vshopid < 1) {
-            $.dialog.errorTips("商家暂未开通微店！");
+            $.dialog.errorTips("诊所暂未开通微店！");
             return false;
         }
     });
@@ -162,8 +162,8 @@ function GetNeedRefreshProductInfo() {
                 $(".goods-info h6").html("月销 " + data.salecount + ((data.measureunit && data.measureunit.length>0) ? data.measureunit : ""));
 
                 $(".att-popup-trigger").each(function () {
-                    if ($(this).html().indexOf('商品评价') > -1) {
-                        $(this).html("商品评价(" + data.allComment + ")")
+                    if ($(this).html().indexOf('诊疗项目评价') > -1) {
+                        $(this).html("诊疗项目评价(" + data.allComment + ")")
                     }
                 })
 
@@ -500,7 +500,7 @@ function editcart(numObj) {
         }
 
     } else {
-        $.dialog.errorTips('请选择商品规格');
+        $.dialog.errorTips('请选择诊疗项目规格');
     }
 }
 
@@ -585,7 +585,7 @@ function escClose(obj, claName) {
 escClose('.modul-popup', 'is-visible');
 escClose('#J_pbuy_cover', 'hmui-cover-show');
 
-// 商品无属性隐藏已选择
+// 诊疗项目无属性隐藏已选择
 if ($('#choose').length == 0) {
     $('#choose-result').css('display', 'none');
 }

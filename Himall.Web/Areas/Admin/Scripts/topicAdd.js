@@ -24,7 +24,7 @@
         var moduleIndex = $(this).attr('index');
         !moduleIndex && (moduleIndex = 0);
         var ids = null;
-        if (moduleProducts[moduleIndex]) {//当前模块已选择过商品，则获取所有本模块商品的编号
+        if (moduleProducts[moduleIndex]) {//当前模块已选择过诊疗项目，则获取所有本模块诊疗项目的编号
             ids = [];
             $.each(moduleProducts[moduleIndex], function (i, product) {
                 ids.push(product.id);
@@ -32,7 +32,7 @@
         }
 
         $.productSelector.show(ids, function (selectedProducts) {
-            //记录当前选中的商品
+            //记录当前选中的诊疗项目
             moduleProducts[moduleIndex] = selectedProducts;
             $('tr[index="' + moduleIndex + '"] td[type="selectedNumber"]').html(selectedProducts.length);
         });
@@ -50,7 +50,7 @@
 
 });
 
-//模块商品,用于装载各模块已选择的商品
+//模块诊疗项目,用于装载各模块已选择的诊疗项目
 var moduleProducts = [];
 
 
@@ -68,7 +68,7 @@ function addModule() {
                             <td><input class="text-module" type="text" value="默认模块' + (moduleIndex + 1) + '" placeholder="默认模块' + (moduleIndex + 1) + '" /></td>\
                             <td><select class="form-control input-sm"><option value="0" selected="selected">左对齐</option><option value="1">居中</option><option value="2">右对齐</option></select></td>\
                             <td type="selectedNumber">未选择</td>\
-                            <td class="td-operate"><span class="btn-a"><a class="choose-goods" index="' + moduleIndex + '">选择商品</a><a class="a-del" index="' + moduleIndex + '">删除</a></span></td>\
+                            <td class="td-operate"><span class="btn-a"><a class="choose-goods" index="' + moduleIndex + '">选择诊疗项目</a><a class="a-del" index="' + moduleIndex + '">删除</a></span></td>\
                  </tr>';
     container.append(html);
 }
@@ -145,7 +145,7 @@ function generateTopicInfo() {
             throw new Error('模块名称不能为空!');
         }
         if (!moduleProducts[moduleIndex] || moduleProducts[moduleIndex].length == 0) {
-            throw new Error('“' + moduleInfo.name + '”至少要选择一件商品');
+            throw new Error('“' + moduleInfo.name + '”至少要选择一件诊疗项目');
         }
         $.each(moduleProducts[moduleIndex], function (i, moduleProduct) {
             moduleInfo.moduleProductInfo.push({

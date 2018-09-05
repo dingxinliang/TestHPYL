@@ -21,7 +21,7 @@ namespace Himall.DTO
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 最大上传商品数量
+        /// 最大上传诊疗项目数量
         /// </summary>
         public int ProductLimit { get; set; }
         /// <summary>

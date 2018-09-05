@@ -7,18 +7,18 @@
         <div class="float-nav-wrap">
             <div class="mt">
                 <ul class="tab">
-                    <li class="curr goods-li"><span><a href="javascript:;" class="toggle-link">商品介绍<b></b></a></span></li>
-                    <li class="comment-li"><a href="javascript:;" class="toggle-link">商品评价<b></b><span id="CommentsU" class="hl_blue"> 0 </span></a></li>
-                    <li class="consult-li"><a href="javascript:;" class="toggle-link">商品咨询<b></b><span id="ConsU" class="hl_blue"> 0 </span></a></li>
+                    <li class="curr goods-li"><span><a href="javascript:;" class="toggle-link">诊疗项目介绍<b></b></a></span></li>
+                    <li class="comment-li"><a href="javascript:;" class="toggle-link">诊疗项目评价<b></b><span id="CommentsU" class="hl_blue"> 0 </span></a></li>
+                    <li class="consult-li"><a href="javascript:;" class="toggle-link">诊疗项目咨询<b></b><span id="ConsU" class="hl_blue"> 0 </span></a></li>
                 </ul>
             </div>
         </div>
         <div class="mc" id="product-detail-1">
             <ul class="detail-list" id="detail-list">
-                <li title="">商品名称：@Model.ProductName</li>
+                <li title="">诊疗项目名称：@Model.ProductName</li>
                 @if (!string.IsNullOrWhiteSpace(Model.ProductCode))
                 {
-                <li>商品货号：@Model.ProductCode</li>}
+                <li>诊疗项目货号：@Model.ProductCode</li>}
                 @if (!string.IsNullOrWhiteSpace(Model.BrandName))
                 {
                 <li>品牌：@Model.BrandName</li>}
@@ -30,7 +30,7 @@
     <!--product-detail end-->
     <div id="comment" class="m m1">
         <div class="mt">
-            <h2>商品评价</h2>
+            <h2>诊疗项目评价</h2>
         </div>
         <div class="mc">
             <div id="i-comment">
@@ -79,7 +79,7 @@
     <div id="consult" class="m m2">
         <div class="mt">
             <ul class="tab">
-                <li class="curr"><a href="javascript:;">商品咨询</a></li>
+                <li class="curr"><a href="javascript:;">诊疗项目咨询</a></li>
             </ul>
             <div class="consult-pub"> <a href="@Url.Action("index", "ProductConsultation" , new { id=Model.Id})#ConsultForm" class="css3-btn" target="_blank">发表咨询</a> </div>
         </div>
@@ -92,7 +92,7 @@
     </div>
     <!--consult end-->
     
-    <!-- 相关商品 -->
+    <!-- 相关诊疗项目 -->
     <div class="clearfix" style="display:none;">
         <div class="relation-title" style="margin-top: 30px;">猜你喜欢</div>
         <div id="relationProducts">

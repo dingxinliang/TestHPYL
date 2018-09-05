@@ -15,6 +15,8 @@ using Himall.Web.Framework;
 using Himall.Web.Models;
 using Himall.Core.Helper;
 using Himall.CommonModel;
+using Himall.IServices.IDXL;
+using static Himall.Model.OrderInfo;
 
 namespace Himall.Web.Areas.SellerAdmin.Controllers
 {
@@ -31,6 +33,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         private IShopOpenApiService _iShopOpenApiService;
         private IFightGroupService _iFightGroupService;
         private IPaymentConfigService _iPaymentConfigService;
+        private INOrderService _NOrderService;
         public OrderController(IOrderService iOrderService,
             IExpressService iExpressService,
             IRegionService iRegionService,
@@ -40,7 +43,8 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
              IDistributionService iDistributionService,
              IShopOpenApiService iShopOpenApiService,
              IFightGroupService iFightGroupService,
-            IPaymentConfigService iPaymentConfigService
+            IPaymentConfigService iPaymentConfigService,
+            INOrderService nNOrderService
             )
         {
             _iOrderService = iOrderService;
@@ -53,6 +57,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             _iShopOpenApiService = iShopOpenApiService;
             _iFightGroupService = iFightGroupService;
             _iPaymentConfigService = iPaymentConfigService;
+            _NOrderService =nNOrderService;
         }
 
         public class SendGoodMode
@@ -78,7 +83,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             bool isOpenStore = SiteSettingApplication.GetSiteSettings() != null && SiteSettingApplication.GetSiteSettings().IsOpenStore;
             if (isOpenStore)
             {
-                #region 商家下所有门店
+                #region 诊所下所有门店
                 var data = ShopBranchApplication.GetShopBranchsAll(new ShopBranchQuery()
                 {
                     ShopId = CurrentSellerManager.ShopId
@@ -96,9 +101,10 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         public ActionResult Detail(long id, bool updatePrice = false)
         {
             OrderInfo order = _iOrderService.GetOrder(id);
+            var Newmodel = GetNewmodel(order.Id);
             if (order == null || order.ShopId != CurrentSellerManager.ShopId)
             {
-                throw new HimallException("订单已被删除，或者不属于该店铺！");
+                throw new HimallException("预约单已被删除，或者不属于该店铺！");
             }
 
 
@@ -108,6 +114,11 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 order.FightGroupOrderJoinStatus = fgord.GetJoinStatus;
                 order.FightGroupCanRefund = fgord.CanRefund;
             }
+
+            order.ReceiveDate = Newmodel[0].ReceiveDate.ToString("yyyy-MM-dd");
+            order.ReceiveStartTime = Newmodel[0].ReceiveStartTime;
+            order.ReceiveEndTime = Newmodel[0].ReceiveEndTime;
+            order.doctorName = Newmodel[0].doctorName;
             //if (order.ShopBranchId.HasValue && order.ShopBranchId.Value != 0)
             //{//补充数据
             //    var branch = ShopBranchApplication.GetShopBranchById(order.ShopBranchId.Value);
@@ -152,6 +163,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             IEnumerable<OrderModel> orderModels = models.Select(item =>
             {
                 var shop = shops.FirstOrDefault(sp => sp.Id == item.ShopId);
+                var Newmodel = GetNewmodel(item.Id);
                 return new OrderModel()
                 {
                     OrderId = item.Id,
@@ -163,6 +175,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     ShopBranchName = item.ShopBranchName,
                     UserId = item.UserId,
                     UserName = item.UserName,
+                    ShipTo = item.ShipTo,
                     TotalPrice = item.OrderTotalAmount,
                     PaymentTypeName = item.PaymentTypeName,
                     IconSrc = GetIconSrc(item.Platform),
@@ -182,11 +195,29 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     ShipOrderNumber = item.ShipOrderNumber,
                     OrderItems = item.OrderItems,
                     ShopBranchId = item.ShopBranchId.HasValue ? item.ShopBranchId.Value : 0,
-                    RegionId = item.RegionId
+                    RegionId = item.RegionId,
+                    YYDate = Newmodel[0].ReceiveDate.ToString("yyyy-MM-dd"),
+                    ReceiveDate = Newmodel[0].ReceiveDate,
+                    ReceiveStartTime = Newmodel[0].ReceiveStartTime,
+                    ReceiveEndTime = Newmodel[0].ReceiveEndTime,
+                    doctorName = Newmodel[0].doctorName,
+                    SellerAddress = item.SellerAddress,
+                    //ShareUserId=(long)item.ShareUserId
                 };
             });
-            orderModels = orderModels.ToList();
 
+            orderModels = orderModels.ToList().OrderByDescending(t=>t.ReceiveDate);
+            //开始结束时间
+            if (query.StartDate.HasValue)
+            {
+                DateTime sdt = query.StartDate.Value;
+                orderModels = orderModels.Where(d => d.ReceiveDate >= sdt);
+            }
+            if (query.EndDate.HasValue)
+            {
+                DateTime edt = query.EndDate.Value.AddDays(1);
+                orderModels = orderModels.Where(d => d.ReceiveDate < edt);
+            }
             #region 数据补偿
             //EDIT DZY [150624]
             List<long> ordidl = orderModels.Select(d => d.OrderId).ToList();
@@ -214,8 +245,8 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                         }
                     }
 
-                    item.FightGroupCanRefund = true;   //非拼团订单默认可退
-                    item.CanSendGood = true;   //非拼团订单默认可以发货
+                    item.FightGroupCanRefund = true;   //非拼团预约单默认可退
+                    item.CanSendGood = true;   //非拼团预约单默认可以发货
 
                     if (item.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery.ToDescription())
                     {
@@ -249,6 +280,16 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
         }
 
+        /// <summary>
+        /// 获取新模型
+        /// </summary>
+        /// <param name="OrderId"></param>
+        /// <returns></returns>
+        public List<NewOrdermodel> GetNewmodel(long OrderId)
+        {
+            var data= _NOrderService.GetNewmodel(OrderId);
+            return data;
+        }
         public JsonResult GoExpressBills()
         {
             Result result = new Result();
@@ -291,11 +332,11 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             query.ShopId = CurrentSellerManager.ShopId;
             var orders = OrderApplication.GetFullOrdersNoPage(query);
 
-            return ExcelView("ExportOrderinfo", "店铺订单信息", orders);
+            return ExcelView("ExportOrderinfo", "店铺预约单信息", orders);
         }
 
         /// <summary>
-        /// 获取订单来源图标地址
+        /// 获取预约单来源图标地址
         /// </summary>
         /// <param name="platform"></param>
         /// <returns></returns>
@@ -307,12 +348,12 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         /// <summary>
-        /// 取消订单
+        /// 取消预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="payRemark">收款备注</param>
         /// <returns></returns>
-        [ShopOperationLog(Message = "商家取消订单")]
+        [ShopOperationLog(Message = "诊所取消预约单")]
         [HttpPost]
         public JsonResult CloseOrder(long orderId)
         {
@@ -328,7 +369,23 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             return Json(result);
         }
-
+        [ShopOperationLog(Message = "诊所完成预约单")]
+        [HttpPost]
+        public JsonResult EndOrder(long orderId)
+        {
+            Result result = new Result();
+            try
+            {
+                _iOrderService.EndOrder(orderId, CurrentSellerManager.UserName);
+                result.success = true;
+            }
+            catch (Exception ex)
+            {
+                result.msg = ex.Message;
+            }
+            return Json(result);
+        }
+        
         public void DownloadProductList(string ids)
         {
             IEnumerable<long> idList = ids.Split(',').Select(item => long.Parse(item));
@@ -340,7 +397,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             sb.AppendLine("<table cellspacing=\"0\" cellpadding=\"5\" rules=\"all\" border=\"1\">");
             sb.AppendLine("<caption style='text-align:center;'>配货单(仓库拣货表)</caption>");
             sb.AppendLine("<tr style=\"font-weight: bold; white-space: nowrap;\">");
-            sb.AppendLine("<td>商品名称</td>");
+            sb.AppendLine("<td>诊疗项目名称</td>");
             sb.AppendLine("<td>货号</td>");
             sb.AppendLine("<td>规格</td>");
             sb.AppendLine("<td>拣货数量</td>");
@@ -378,7 +435,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             Response.End();
         }
         /// <summary>
-        /// 商品配货表
+        /// 诊疗项目配货表
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -403,7 +460,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
         }
         /// <summary>
-        /// 订单配货表
+        /// 预约单配货表
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -419,8 +476,8 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             //sb.AppendLine("<table cellspacing=\"0\" cellpadding=\"5\" rules=\"all\" border=\"1\">");
             //sb.AppendLine("<caption style='text-align:center;'>配货单(仓库拣货表)</caption>");
             //sb.AppendLine("<tr style=\"font-weight: bold; white-space: nowrap;\">");
-            //sb.AppendLine("<td>订单单号</td>");
-            //sb.AppendLine("<td>商品名称</td>");
+            //sb.AppendLine("<td>预约单单号</td>");
+            //sb.AppendLine("<td>诊疗项目名称</td>");
             //sb.AppendLine("<td>货号</td>");
             //sb.AppendLine("<td>规格</td>");
             //sb.AppendLine("<td>拣货数量</td>");
@@ -483,7 +540,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
         }
         /// <summary>
-        /// 导出商品配货单
+        /// 导出诊疗项目配货单
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -539,7 +596,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
             NPOI.SS.UserModel.Row row0 = excelSheet.CreateRow(0);
             string[] columns ={
-                                  "商品名称","货号","规格","拣货数量","现库存数"
+                                  "诊疗项目名称","货号","规格","拣货数量","现库存数"
                              };
             for (int i = 0; i < columns.Length; i++)
             {
@@ -582,7 +639,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
             NPOI.SS.UserModel.Row row0 = excelSheet.CreateRow(0);
             string[] columns ={
-                                  "订单单号","商品名称","货号","规格","拣货数量","现库存数","备注"
+                                  "预约单单号","诊疗项目名称","货号","规格","拣货数量","现库存数","备注"
                              };
             for (int i = 0; i < columns.Length; i++)
             {
@@ -670,13 +727,13 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 {
                     sb.AppendFormat("<h3 class=\"print-order\"><strong>{0}店发货清单</strong></h3>", order.ShopName);
                     sb.Append("<div class=\"print-detail\">");
-                    sb.AppendFormat("<span>订单号：{0}</span><span>下单时间：{1}</span>", order.Id, order.OrderDate.ToString("yyyy-MM-dd hh:mm:ss"));
+                    sb.AppendFormat("<span>预约单号：{0}</span><span>下单时间：{1}</span>", order.Id, order.OrderDate.ToString("yyyy-MM-dd hh:mm:ss"));
                     sb.AppendFormat("<span>姓名：{0}</span><span>联系方式：{1}</span>", order.ShipTo, order.CellPhone);
                     sb.AppendFormat("<span>地址：{0}</span>", order.RegionFullName + " " + order.Address);
                     sb.Append("</div>");
 
 
-                    sb.Append("<table class=\"table table-bordered print-tab\"><thead><tr><th>商品名称</th><th>规格</th><th>数量</th><th>单价</th><th>总价</th></tr></thead><tbody>");
+                    sb.Append("<table class=\"table table-bordered print-tab\"><thead><tr><th>诊疗项目名称</th><th>规格</th><th>数量</th><th>单价</th><th>总价</th></tr></thead><tbody>");
                     foreach (OrderItemInfo orderItem in order.OrderItemInfo.ToList())
                     {
                         sb.Append("<tr>");
@@ -687,7 +744,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                         sb.AppendFormat("<td>￥{0}</td>", orderItem.RealTotalPrice);
                         sb.Append("</tr>");
                     }
-                    sb.AppendFormat("<tr><td style=\"text-align:right\" colspan=\"6\"><span>商品总价：￥{0} &nbsp; 运费：￥{1}</span> &nbsp; <b>实付金额：￥{2}</b></td></tr>",
+                    sb.AppendFormat("<tr><td style=\"text-align:right\" colspan=\"6\"><span>诊疗项目总价：￥{0} &nbsp; 运费：￥{1}</span> &nbsp; <b>实付金额：￥{2}</b></td></tr>",
                         order.ProductTotalAmount, order.Freight, order.OrderTotalAmount);
                     sb.AppendLine("</tbody></table>");
                     sb.Append("<div class=\"print-tags\">");
@@ -755,10 +812,10 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             IEnumerable<long> idList = ids.Split(',').Select(item => long.Parse(item));
 
             var sendGoodMode = new SendGoodMode();
-            var orders = OrderApplication.GetOrders(idList).Where(a => a.OrderStatus == OrderInfo.OrderOperateStatus.WaitDelivery && a.ShopId == CurrentSellerManager.ShopId && (!a.ShopBranchId.HasValue || (a.ShopBranchId.HasValue && a.ShopBranchId.Value <= 0))).OrderByDescending(a => a.OrderDate);//商家后台发货应排除门店订单
+            var orders = OrderApplication.GetOrders(idList).Where(a => a.OrderStatus == OrderInfo.OrderOperateStatus.WaitDelivery && a.ShopId == CurrentSellerManager.ShopId && (!a.ShopBranchId.HasValue || (a.ShopBranchId.HasValue && a.ShopBranchId.Value <= 0))).OrderByDescending(a => a.OrderDate);//诊所后台发货应排除门店预约单
             if (orders == null)
             {
-                throw new HimallException("没有找到相关的订单" + ids);
+                throw new HimallException("没有找到相关的预约单" + ids);
             }
             sendGoodMode.Orders = orders.ToList();
             sendGoodMode.LogisticsCompanies = _iExpressService.GetAllExpress();
@@ -787,7 +844,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             catch (Exception ex)
             {
-                Log.Error("商家发货操作失败", ex);
+                Log.Error("诊所发货操作失败", ex);
                 result.msg = ex.Message;
             }
 
@@ -800,7 +857,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             var order = OrderApplication.GetOrder(id);
             if (order == null || order.ShopId != CurrentSellerManager.ShopId)
             {
-                throw new HimallException("没有找到相关的订单" + id);
+                throw new HimallException("没有找到相关的预约单" + id);
             }
             sendGoodMode.Orders = new List<Himall.DTO.Order>() { order };
             sendGoodMode.LogisticsCompanies = _iExpressService.GetAllExpress();
@@ -947,7 +1004,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 IEnumerable<long> orderIds_long = orderIds.Split(',').Select(item => long.Parse(item));
 
                 foreach (long orderId in orderIds_long)
-                {//为每个订单建立打印数据模型
+                {//为每个预约单建立打印数据模型
 
                     //设置基本打印信息
                     PrintModel printModel = new PrintModel()
@@ -958,7 +1015,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
                     };
 
-                    //获取打印元素对应订单中的实际内容
+                    //获取打印元素对应预约单中的实际内容
                     var dic = expressService.GetPrintElementIndexAndOrderValue(CurrentSellerManager.ShopId, orderId, printElementIndexes);
 
                     //获取打印元素
@@ -979,7 +1036,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     printModels.Add(printModel);
                 }
 
-                //保存订单信息
+                //保存预约单信息
                 _iOrderService.SetOrderExpressInfo(CurrentSellerManager.ShopId, expressName, startNo, orderIds_long);
 
                 return Json(new { success = true, data = printModels });
@@ -989,7 +1046,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         /// <summary>
-        /// 查询同一区域配送范围内的商家下门店
+        /// 查询同一区域配送范围内的诊所下门店
         /// </summary>
         /// <param name="areaId"></param>
         /// <returns></returns>
@@ -999,16 +1056,16 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             if (areaId <= 0)
                 return Json(new { Success = false, Message = "请先选择区域！" }, JsonRequestBehavior.AllowGet);
             if (shopId <= 0)
-                return Json(new { Success = false, Message = "无法确定商家！" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Success = false, Message = "无法确定诊所！" }, JsonRequestBehavior.AllowGet);
 
             var shopBranchs = ShopBranchApplication.GetArealShopBranchsAll(areaId, shopId, latAndLng);
             return Json(new { Success = true, Models = shopBranchs.Models }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
-        /// 商家手动给订单分配门店
+        /// 诊所手动给预约单分配门店
         /// </summary>
-        /// <param name="orderId">订单ID</param>
+        /// <param name="orderId">预约单ID</param>
         /// <param name="shopBranchId">要分配的门店ID</param>
         /// <returns></returns>
         [HttpPost]
@@ -1016,7 +1073,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         {
             var orderInfo = OrderApplication.GetOrder(orderId);//这里要查一次,靠传值不准确
             if (orderInfo == null)
-                return Json(new { Success = false, Message = "获取订单错误！" });
+                return Json(new { Success = false, Message = "获取预约单错误！" });
 
             if (orderInfo.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.WaitDelivery || orderInfo.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.WaitPay)
             {
@@ -1027,10 +1084,10 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     PageSize = 1,
                     PageNo = 1
                 });
-                if (refunds != null && refunds.Total > 0) return Json(new { Success = false, Message = "订单正在申请售后，请先处理售后申请！" });
+                if (refunds != null && refunds.Total > 0) return Json(new { Success = false, Message = "预约单正在申请售后，请先处理售后申请！" });
 
                 var orderItems = OrderApplication.GetOrderItemsByOrderId(orderId);
-                List<string> skuIds = orderItems.Where(p => p.ShopId == shopId && p.OrderId == orderId).Select(p => p.SkuId).ToList();//原则上一个订单只属于一个商家,所以此处可不判断shopId
+                List<string> skuIds = orderItems.Where(p => p.ShopId == shopId && p.OrderId == orderId).Select(p => p.SkuId).ToList();//原则上一个预约单只属于一个诊所,所以此处可不判断shopId
                 List<int> counts = orderItems.Where(p => p.ShopId == shopId && p.OrderId == orderId).Select(p => TypeHelper.ObjectToInt(p.Quantity)).ToList();
 
                 if (shopBranchId > 0)//分配给门店
@@ -1044,7 +1101,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                         if (orderInfo.ShopBranchId.Value != shopBranchId)
                         {
                             OrderApplication.DistributionStoreUpdateStockToNewShopBranch(skuIds, counts, shopBranchId, orderInfo.ShopBranchId.Value);
-                            OrderApplication.UpdateOrderShopBranch(orderId, shopBranchId);// 更新订单所属门店为新分配的门店
+                            OrderApplication.UpdateOrderShopBranch(orderId, shopBranchId);// 更新预约单所属门店为新分配的门店
                             orderInfo.ShopBranchId = shopBranchId;
                             if (orderInfo.OrderStatus == OrderInfo.OrderOperateStatus.WaitDelivery) AddAppMessages(orderInfo);
                         }
@@ -1057,12 +1114,12 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                         if (orderInfo.OrderStatus == OrderInfo.OrderOperateStatus.WaitDelivery) AddAppMessages(orderInfo);
                     }
                 }
-                else//分配给商家
+                else//分配给诊所
                 {
                     if (orderInfo != null && orderInfo.ShopBranchId.HasValue && orderInfo.ShopBranchId.Value > 0)
                     {
                         OrderApplication.DistributionStoreUpdateStockToShop(skuIds, counts, orderInfo.ShopBranchId.Value);
-                        OrderApplication.UpdateOrderShopBranch(orderId, 0);// 更新订单所属门店为商家总店，门店ID为0
+                        OrderApplication.UpdateOrderShopBranch(orderId, 0);// 更新预约单所属门店为诊所总店，门店ID为0
                         orderInfo.ShopBranchId = 0;
                         if (orderInfo.OrderStatus == OrderInfo.OrderOperateStatus.WaitDelivery) AddAppMessages(orderInfo);
                     }
@@ -1071,12 +1128,12 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             else
             {
-                return Json(new { Success = false, Message = "订单只能在待付款、待发货状态下分配门店！" });
+                return Json(new { Success = false, Message = "预约单只能在待付款、待发货状态下分配门店！" });
             }
         }
 
         /// <summary>
-        /// 判断门店是否具有订单中所有商品的库存
+        /// 判断门店是否具有预约单中所有诊疗项目的库存
         /// </summary>
         /// <param name="shopBranchId"></param>
         /// <param name="skuIds"></param>
@@ -1093,8 +1150,8 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             query.PageNo = 1;
             query.ShopId = shopId;
 
-            var data = ShopBranchApplication.GetShopBranchsAll(query);//这里用来判断是否当前要分配的门店是否具有该订单内所有的商品
-            var shopBranchSkus = ShopBranchApplication.GetSkus(query.ShopId, data.Models.Select(p => p.Id));//获取商家下门店的SKU
+            var data = ShopBranchApplication.GetShopBranchsAll(query);//这里用来判断是否当前要分配的门店是否具有该预约单内所有的诊疗项目
+            var shopBranchSkus = ShopBranchApplication.GetSkus(query.ShopId, data.Models.Select(p => p.Id));//获取诊所下门店的SKU
             return data.Models.Any(p => skuInfos.All(skuInfo => shopBranchSkus.Any(sbSku => sbSku.ShopBranchId == p.Id && sbSku.Stock >= counts[skuInfos.IndexOf(skuInfo)] && sbSku.SkuId == skuInfo.Id)));
         }
 
@@ -1102,9 +1159,9 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         public JsonResult GetShopBranchStock(long orderId, long shopBranchId, long shopId)
         {
             if (orderId <= 0)
-                return Json(new { Success = false, Message = "获取订单错误" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Success = false, Message = "获取预约单错误" }, JsonRequestBehavior.AllowGet);
 
-            if (shopBranchId <= 0)//如果传过来的门店ID为0，则分配给商家
+            if (shopBranchId <= 0)//如果传过来的门店ID为0，则分配给诊所
                 return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
 
             var orderItems = OrderApplication.GetOrderItemsByOrderId(orderId);
@@ -1119,7 +1176,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         /// <summary>
-        /// 新增门店/商家APP发货通知
+        /// 新增门店/诊所APP发货通知
         /// </summary>
         /// <param name="appMessages"></param>
         public static void AddAppMessages(DTO.Order orderInfo)
@@ -1130,7 +1187,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 IsRead = false,
                 SendTime = DateTime.Now,
                 SourceId = orderInfo.Id,
-                Title = "您有新的订单",
+                Title = "您有新的预约单",
                 TypeId = (int)AppMessagesType.Order,
                 OrderPayDate = TypeHelper.ObjectToDateTime(orderInfo.PayDate),
                 ShopId = 0,

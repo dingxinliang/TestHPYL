@@ -6,15 +6,15 @@
 
 <div class="container clear-q1">
     <ul class="breadcrumb clearfix" style="margin-bottom:0;">
-        <li><a>订单列表</a></li>
-        <li><a>查看订单详情 </a></li>
+        <li><a>预约单列表</a></li>
+        <li><a>查看预约单详情 </a></li>
     </ul>
 
     <div class="order-info clearfix mr20">
-        <h3> <span></span>订单信息</h3>
+        <h3> <span></span>预约单信息</h3>
         <div class="caption">
             <div class="form-group clearfix">
-                <label class="col-sm-4">订单状态：</label>
+                <label class="col-sm-4">预约单状态：</label>
                 <div class="col-sm-5 form-control-static">@Model.OrderStatus.ToDescription()</div>
                 @if (Model.OrderType == Himall.Model.OrderInfo.OrderTypes.FightGroup)
                 {
@@ -24,7 +24,7 @@
                 }
             </div>
             <div class="form-group clearfix"><label class="col-sm-4">订 单 号：</label><div class="col-sm-8 form-control-static">@Model.Id</div></div>
-            <div class="form-group clearfix"><label class="col-sm-4">买家：</label><div class="col-sm-8 form-control-static">@Model.UserName</div></div>
+            <div class="form-group clearfix"><label class="col-sm-4">患者：</label><div class="col-sm-8 form-control-static">@Model.UserName</div></div>
             <div class="form-group clearfix"><label class="col-sm-4">下单时间：</label><div class="col-sm-8 form-control-static">@Model.OrderDate.ToString("yyyy-MM-dd HH:mm:ss")</div></div>
 
             @if (Model.PayDate != null && Model.OrderStatus != Himall.Model.OrderInfo.OrderOperateStatus.WaitPay)
@@ -53,7 +53,7 @@
             @if (Model.SellerRemarkFlag.HasValue)
             {
                 <div class="form-group" title="@Model.SellerRemark">
-                    <label class="col-sm-4">商家备注：</label>
+                    <label class="col-sm-4">诊所备注：</label>
 
 
                     <div class="col-sm-8 form-control-static" id="txtSellerRemark">@Model.SellerRemark</div>
@@ -123,16 +123,16 @@
                 <div class="form-group"><label class="col-sm-4">联系方式：</label><div class="col-sm-8 form-control-static">@shopBranchInfo.ContactPhone</div></div>
                 <div class="form-group"><label class="col-sm-4">门店地址：</label><div class="col-sm-8 form-control-static">@shopBranchInfo.AddressFullName</div></div>
             }
-            @*<p>买家备注：@Model.UserRemark</p>*@<p></p>
+            @*<p>患者备注：@Model.UserRemark</p>*@<p></p>
         </div>
     </div>
 
     <div class="order-detail-list">
-        <h3><span></span>订单清单</h3>
+        <h3><span></span>预约单清单</h3>
         <table class="table clearfix">
             <thead>
                 <tr class="tac">
-                    <th class="tac" width="300">商品名称</th>
+                    <th class="tac" width="300">诊疗项目名称</th>
                     <th class="tac" width="100">规格</th>
                     <th class="tac" width="100">单价/数量</th>
                     @if (itemDis != 0)
@@ -178,11 +178,11 @@
         <div class="order-bottom-detail clearfix">
             <!--留言字段添加6-12-->
             <div class="leave-message">
-                <label>买家留言：</label>
+                <label>患者留言：</label>
                 <span>@Model.OrderRemarks</span>
             </div>
             <div class="order-total">
-                <span><label>商品总价：</label><i>￥ @Model.ProductTotalAmount.ToString("F2")</i></span>
+                <span><label>诊疗项目总价：</label><i>￥ @Model.ProductTotalAmount.ToString("F2")</i></span>
                 @if (Model.FullDiscount > 0)
             {
                     <span><label>满减优惠:</label><i>-￥@Model.FullDiscount.ToString("F2")</i></span>
@@ -199,7 +199,7 @@
                 @if (itemDis != 0)
                 {
                     <span>
-                        <label class="pl4">商家改价：</label>
+                        <label class="pl4">诊所改价：</label>
                         @if (itemDis > 0)
                         {
                             <i>- @itemDis</i>
@@ -215,7 +215,7 @@
                 {
                     <span><label>预付款金额：</label><i>-￥@Model.CapitalAmount.ToString("F2")</i></span>
                 }
-                <span><label class="clear-q2">订单实付金额：</label><i class="clear-q2">￥@Html.Raw((Model.OrderTotalAmount - Model.CapitalAmount).ToString("F2"))</i></span>
+                <span><label class="clear-q2">预约单实付金额：</label><i class="clear-q2">￥@Html.Raw((Model.OrderTotalAmount - Model.CapitalAmount).ToString("F2"))</i></span>
             </div>
         </div>
         <div class="delivery-detail" id="delivery-detail">
@@ -225,7 +225,7 @@
         </div>
 
         <div class="order-log">
-            <p>订单操作日志<span class="list-open"></span></p>
+            <p>预约单操作日志<span class="list-open"></span></p>
             <table class="table dln">
                 <thead>
                     <tr>

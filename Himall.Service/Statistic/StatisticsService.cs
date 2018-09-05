@@ -347,7 +347,7 @@ namespace Himall.Service
         #region 店铺统计图表
 
         /// <summary>
-        /// 初始化按照订单量维度获取前N店铺排行
+        /// 初始化按照预约单量维度获取前N店铺排行
         /// </summary>
         /// <param name="start">开始时间</param>
         /// <param name="end">结束时间</param>
@@ -375,7 +375,7 @@ namespace Himall.Service
 
             if (null != data && 0 < data.Count())
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "店铺订单量排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "店铺预约单量排行Top" + rankSize.ToString() };
                 foreach (var item in data.Take(rankSize))
                 {
                     series.Data[index] = item.Count;
@@ -385,7 +385,7 @@ namespace Himall.Service
             }
             else
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "店铺订单量排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "店铺预约单量排行Top" + rankSize.ToString() };
                 for (int i = 0; i < rankSize; i++)
                 {
 
@@ -653,7 +653,7 @@ namespace Himall.Service
         #region 销量排行
 
         /// <summary>
-        /// 初始化按照销售量维度获取前N商品排行
+        /// 初始化按照销售量维度获取前N诊疗项目排行
         /// </summary>
         /// <param name="start">开始时间</param>
         /// <param name="end">结束时间</param>
@@ -685,7 +685,7 @@ namespace Himall.Service
 
             if (null != data && 0 < data.Count())
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "商品销售量排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售量排行Top" + rankSize.ToString() };
                 foreach (var item in data.Take(rankSize))
                 {
                     series.Data[index] = (int)item.Count;
@@ -695,7 +695,7 @@ namespace Himall.Service
             }
             else
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "商品销售量排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售量排行Top" + rankSize.ToString() };
                 for (int i = 0; i < rankSize; i++)
                 {
 
@@ -732,7 +732,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 初始化按照销售额维度获取前N商品排行
+        /// 初始化按照销售额维度获取前N诊疗项目排行
         /// </summary>
         /// <param name="start">开始时间</param>
         /// <param name="end">结束时间</param>
@@ -807,7 +807,7 @@ namespace Himall.Service
 
             if (null != data && 0 < data.Count())
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "商品销售额排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售额排行Top" + rankSize.ToString() };
                 foreach (var item in data.Take(rankSize))
                 {
                     series.Data[index] = (int)item.Money;
@@ -817,7 +817,7 @@ namespace Himall.Service
             }
             else
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "商品销售额排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售额排行Top" + rankSize.ToString() };
                 for (int i = 0; i < rankSize; i++)
                 {
 
@@ -910,7 +910,7 @@ namespace Himall.Service
 
         #endregion
 
-        #region 商家
+        #region 诊所
 
         public LineChartDataModel<int> GetShopFlowChart(long shopId, int year, int month)
         {
@@ -1112,7 +1112,7 @@ namespace Himall.Service
 
             if (null != data && 0 < data.Count())
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "商品浏览量排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目浏览量排行Top" + rankSize.ToString() };
                 foreach (var item in data.Take(rankSize))
                 {
                     series.Data[index] = (int)item.Visit;
@@ -1122,7 +1122,7 @@ namespace Himall.Service
             }
             else
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "商品浏览量排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目浏览量排行Top" + rankSize.ToString() };
                 for (int i = 0; i < rankSize; i++)
                 {
 
@@ -1288,7 +1288,7 @@ namespace Himall.Service
 
             if (null != data && 0 < data.Count())
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "商品销售额排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售额排行Top" + rankSize.ToString() };
                 foreach (var item in data.Take(rankSize))
                 {
                     series.Data[index] = (int)item.Money;
@@ -1298,7 +1298,7 @@ namespace Himall.Service
             }
             else
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "商品销售额排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售额排行Top" + rankSize.ToString() };
                 for (int i = 0; i < rankSize; i++)
                 {
 

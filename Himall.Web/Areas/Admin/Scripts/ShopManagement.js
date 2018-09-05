@@ -17,9 +17,9 @@ function deleteShopEvent(id) {
 }
 
 function FreezeShop(id, state) {
-    var tipsmsg = "冻结店铺将导致商家无法登陆后台,商品会自动下架，请谨慎操作！";
+    var tipsmsg = "冻结店铺将导致诊所无法登陆后台,诊疗项目会自动下架，请谨慎操作！";
     if (!state) {
-        tipsmsg = "解冻店铺后该商家即可登陆后台，请手动上架商品，您确定解冻吗？";
+        tipsmsg = "解冻店铺后该诊所即可登陆后台，请手动上架诊疗项目，您确定解冻吗？";
     }
     $.dialog.confirm(tipsmsg,
     function () {

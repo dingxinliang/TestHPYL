@@ -5,7 +5,7 @@
 <div class="container login-00">
     <div class="img"><img src="@(Himall.Core.HimallIO.GetImagePath(ViewBag.WXLogo))"></div>
     <div class="code">注册即可获得<i class="i-01">@Model.InviteIntegral.Value.ToString()</i>积分</div>
-    <div class="money">无门槛抵扣<i>@ViewBag.Money</i>元订单金额</div>
+    <div class="money">无门槛抵扣<i>@ViewBag.Money</i>元预约单金额</div>
     @if (ViewBag.IsRegist == 0) { 
         if (ViewBag.RegisterType == Himall.Model.SiteSettingsInfo.RegisterTypes.Normal.GetHashCode())//注册类型
         {

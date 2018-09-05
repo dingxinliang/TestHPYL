@@ -51,7 +51,7 @@ namespace Himall.IServices
         /// <summary>
         /// 判断门店名称是否重复
         /// </summary>
-        /// <param name="shopId">商家店铺ID</param>
+        /// <param name="shopId">诊所店铺ID</param>
         /// <param name="shopBranchName">门店名字</param>
 		/// <returns></returns>
 		bool Exists(long shopId, long shopBranchId, string shopBranchName);
@@ -109,7 +109,7 @@ namespace Himall.IServices
         /// <returns></returns>
         QueryPageModel<ShopBranchInfo> GetShopBranchs(ShopBranchQuery query);
         /// <summary>
-        /// 取商家所有门店
+        /// 取诊所所有门店
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -132,7 +132,7 @@ namespace Himall.IServices
         void UnFreezeShopBranch(long shopBranchId);
 
         /// <summary>
-        /// 获取分店经营的商品SKU
+        /// 获取分店经营的诊疗项目SKU
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="shopBranchIds"></param>
@@ -157,7 +157,7 @@ namespace Himall.IServices
         /// <param name="skuIds"></param>
         void SetStock(long shopBranchId, IEnumerable<string> skuIds, IEnumerable<int> stock);
         /// <summary>
-        /// 设置门店商品库存
+        /// 设置门店诊疗项目库存
         /// </summary>
         /// <param name="shopBranchId"></param>
         /// <param name="pids"></param>
@@ -171,7 +171,7 @@ namespace Himall.IServices
         /// <param name="stock"></param>
         void AddStock(long shopBranchId, IEnumerable<string> skuIds, IEnumerable<int> stock);
         /// <summary>
-        /// 增加门店商品库存
+        /// 增加门店诊疗项目库存
         /// </summary>
         /// <param name="shopBranchId"></param>
         /// <param name="pids"></param>
@@ -185,7 +185,7 @@ namespace Himall.IServices
         /// <param name="stock"></param>
         void ReduceStock(long shopBranchId, IEnumerable<string> skuIds, IEnumerable<int> stock);
         /// <summary>
-        /// 减少门店商品库存
+        /// 减少门店诊疗项目库存
         /// </summary>
         /// <param name="shopBranchId"></param>
         /// <param name="pids"></param>
@@ -205,7 +205,7 @@ namespace Himall.IServices
         /// <param name="status"></param>
         void SetBranchProductStatus(long productId, ShopBranchSkuStatus status);
         /// <summary>
-        /// 搜索门店商品
+        /// 搜索门店诊疗项目
         /// </summary>
         /// <param name="search"></param>
         /// <returns></returns>
@@ -245,7 +245,7 @@ namespace Himall.IServices
         /// <returns></returns>
         QueryPageModel<ShopBranchInfo> GetArealShopBranchsAll(int areaId, int shopId, float latitude, float longitude);
         /// <summary>
-        /// 自动分配订单到门店
+        /// 自动分配预约单到门店
         /// </summary>
         /// <param name="query"></param>
         /// <param name="skuIds"></param>
@@ -253,7 +253,7 @@ namespace Himall.IServices
         /// <returns></returns>
         ShopBranchInfo GetAutoMatchShopBranch(ShopBranchQuery query, string[] skuIds, int[] counts);
         /// <summary>
-        /// 获取代理商品的门店编号集
+        /// 获取代理诊疗项目的门店编号集
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>

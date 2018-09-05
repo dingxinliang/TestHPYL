@@ -347,7 +347,7 @@ namespace Himall.Web.Areas.Admin.Controllers
 
         #endregion
 
-        #region 商品统计
+        #region 诊疗项目统计
         public ActionResult ProductSaleStatistic()
         {
             return View();
@@ -382,7 +382,7 @@ namespace Himall.Web.Areas.Admin.Controllers
 
             return Json(new { success = true, model = productCateSales }, JsonRequestBehavior.AllowGet);
         }
-        #endregion 商品统计
+        #endregion 诊疗项目统计
 
         #region 交易统计
         public ActionResult TradeStatistic()
@@ -424,10 +424,10 @@ namespace Himall.Web.Areas.Admin.Controllers
             var model = StatisticApplication.GetProductSales(query);
 
             ViewData.Model = model.Models;
-            string Title = startDate.ToString("yyyy-MM-dd") + "至" + endDate.ToString("yyyy-MM-dd") + "商品统计数据";
+            string Title = startDate.ToString("yyyy-MM-dd") + "至" + endDate.ToString("yyyy-MM-dd") + "诊疗项目统计数据";
             ViewData.Add("Title", Title);
             string viewHtml = RenderPartialViewToString(this, "ExportProductStatistic");
-            return File(System.Text.UTF8Encoding.Default.GetBytes(viewHtml), "application/ms-excel", "商品销售情况.xls");
+            return File(System.Text.UTF8Encoding.Default.GetBytes(viewHtml), "application/ms-excel", "诊疗项目销售情况.xls");
 
         }
         #endregion 导出

@@ -13,14 +13,14 @@ namespace Himall.IServices
     {
 
         /// <summary>
-        /// 商家添加一个组合购
+        /// 诊所添加一个组合购
         /// </summary>
         /// <param name="info"></param>
         void AddCollocation(CollocationInfo info);
 
 
         /// <summary>
-        /// 商家修改一个组合购
+        /// 诊所修改一个组合购
         /// </summary>
         /// <param name="info"></param>
         void EditCollocation(CollocationInfo info);
@@ -32,14 +32,14 @@ namespace Himall.IServices
         /// <summary>
 
           /// <summary>
-        /// 获取商家添加的组合购列表
+        /// 获取诊所添加的组合购列表
         /// </summary>
         /// <returns></returns>
         ObsoletePageModel<CollocationInfo> GetCollocationList(CollocationQuery query);
 
 
         /// <summary>
-        /// 根据商品ID获取组合购信息
+        /// 根据诊疗项目ID获取组合购信息
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -53,14 +53,14 @@ namespace Himall.IServices
         CollocationInfo GetCollocation(long Id);
 
         /// <summary>
-        /// 根据组合商品获取组合SKU信息
+        /// 根据组合诊疗项目获取组合SKU信息
         /// </summary>
         /// <param name="colloPid"></param>
         /// <param name="skuid"></param>
         /// <returns></returns>
          CollocationSkuInfo GetColloSku(long colloPid, string skuid);
 
-        //获取一个商品的组合购SKU信息
+        //获取一个诊疗项目的组合购SKU信息
          List<CollocationSkuInfo> GetProductColloSKU(long productid, long colloPid);
     }
 }

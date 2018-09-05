@@ -71,14 +71,14 @@ namespace Himall.IServices
         IQueryable<BannerInfo> GetPlatNavigations();
 
       /// <summary>
-      /// 获取商家导航列表
+      /// 获取诊所导航列表
       /// </summary>
       /// <param name="shopid">店铺ID</param>
       /// <returns></returns>
         IQueryable<BannerInfo> GetSellerNavigations(long shopId, PlatformType plat=PlatformType.PC);
 
         /// <summary>
-        /// 获取商家单个导航
+        /// 获取诊所单个导航
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="id"></param>

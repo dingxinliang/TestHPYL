@@ -182,7 +182,7 @@ namespace Himall.Web.Areas.Web.Controllers
 						string showRefundStats = "";
 						if (itemrefund.SellerAuditStatus == OrderRefundInfo.OrderRefundAuditStatus.Audited)
 							showRefundStats = itemrefund.ManagerConfirmStatus.ToDescription();
-                        else if (item.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake || (item.ShopBranchId.HasValue && item.ShopBranchId.Value > 0))//如果是自提订单或分配门店订单则转为门店审核状态
+                        else if (item.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake || (item.ShopBranchId.HasValue && item.ShopBranchId.Value > 0))//如果是自提预约单或分配门店预约单则转为门店审核状态
                             showRefundStats = ((CommonModel.Enum.OrderRefundShopAuditStatus)itemrefund.SellerAuditStatus).ToDescription();
 						else
 							showRefundStats = itemrefund.SellerAuditStatus.ToDescription();
@@ -239,7 +239,7 @@ namespace Himall.Web.Areas.Web.Controllers
 					else
 						item.OrderCanRefund = true;
 
-                    item.FightGroupCanRefund = true;   //非拼团订单默认可退
+                    item.FightGroupCanRefund = true;   //非拼团预约单默认可退
 
                     //拼团状态补偿
                     if (item.OrderType == OrderInfo.OrderTypes.FightGroup)
@@ -302,7 +302,7 @@ namespace Himall.Web.Areas.Web.Controllers
         public ActionResult Detail(long id)
         {
             OrderInfo order = _iOrderService.GetOrder(id, CurrentUser.Id);//限制到用户
-            //补充商品货号
+            //补充诊疗项目货号
             IEnumerable<long> proids = order.OrderItemInfo.Select(d => d.ProductId).AsEnumerable();
             var procodelist = _iProductService.GetProductByIds(proids).Select(d => new { d.Id, d.ProductCode, d.FreightTemplateId }).ToList();
             var orderiItems = order.OrderItemInfo.ToList();
@@ -385,7 +385,7 @@ namespace Himall.Web.Areas.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(expressCompanyName) || string.IsNullOrWhiteSpace(shipOrderNumber))
             {
-                throw new HimallException("错误的订单信息");
+                throw new HimallException("错误的预约单信息");
             }
             string kuaidi100Code = ServiceHelper.Create<IExpressService>().GetExpress(expressCompanyName).Kuaidi100Code;
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(string.Format("http://www.kuaidi100.com/query?type={0}&postid={1}", kuaidi100Code, shipOrderNumber));
@@ -414,7 +414,7 @@ namespace Himall.Web.Areas.Web.Controllers
         }
 
         /// <summary>
-        /// 取消订单
+        /// 取消预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
@@ -444,14 +444,14 @@ namespace Himall.Web.Areas.Web.Controllers
             }
             else
             {
-                return Json(new Result() { success = false, msg = "取消失败，该订单已删除或者不属于当前用户！" });
+                return Json(new Result() { success = false, msg = "取消失败，该预约单已删除或者不属于当前用户！" });
             }
             return Json(new Result() { success = true, msg = "取消成功" });
         }
 
 
         /// <summary>
-        /// 确认订单收货
+        /// 确认预约单收货
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
@@ -468,11 +468,11 @@ namespace Himall.Web.Areas.Web.Controllers
                     break;
                 case 1:
                     result.success = false;
-                    result.msg = "该订单已经确认过!";
+                    result.msg = "该预约单已经确认过!";
                     break;
                 case 2:
                     result.success = false;
-                    result.msg = "订单状态发生改变，请重新刷页面操作!";
+                    result.msg = "预约单状态发生改变，请重新刷页面操作!";
                     break;
             }
            // var data = _iOrderService.GetOrder(orderId);

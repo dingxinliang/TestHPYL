@@ -143,7 +143,7 @@ namespace Himall.Application
             return shopBranchs;
         }
         /// <summary>
-        /// 获取分店经营的商品SKU
+        /// 获取分店经营的诊疗项目SKU
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="shopBranchIds"></param>
@@ -165,7 +165,7 @@ namespace Himall.Application
             return list;
         }
         /// <summary>
-        /// 根据商品ID取门店sku信息
+        /// 根据诊疗项目ID取门店sku信息
         /// </summary>
         /// <param name="shopBranchId"></param>
         /// <param name="pid"></param>
@@ -208,7 +208,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 门店商品查询
+        /// 门店诊疗项目查询
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -226,7 +226,7 @@ namespace Himall.Application
                 if (productCount != null)
                     p.SaleCounts = productCount.saleCount;
                 else
-                    p.SaleCounts = 0;//门店商品无销量则为0，不应用默认的商家商品销量
+                    p.SaleCounts = 0;//门店诊疗项目无销量则为0，不应用默认的诊所诊疗项目销量
 
             }
             return pageModel;
@@ -340,7 +340,7 @@ namespace Himall.Application
             }
             if (ManagerApplication.CheckUserNameExist(shopBranch.UserName))
             {
-                throw new HimallException("门店管理员名称不能与商家重复！");
+                throw new HimallException("门店管理员名称不能与诊所重复！");
             }
             AutoMapper.Mapper.CreateMap<ShopBranch, ShopBranchInfo>();
             var shopBranchInfo = AutoMapper.Mapper.Map<ShopBranch, ShopBranchInfo>(shopBranch);
@@ -446,7 +446,7 @@ namespace Himall.Application
         }
         #endregion 门店登录
 
-        #region 门店商品管理
+        #region 门店诊疗项目管理
         /// <summary>
         /// 添加SKU，并过滤已添加的
         /// </summary>
@@ -457,7 +457,7 @@ namespace Himall.Application
         {
             var productsInfo = ProductManagerApplication.GetProductsByIds(pids).Where(e => e.ShopId == shopId);
             if (productsInfo == null)
-                throw new HimallException("未找到商品数据");
+                throw new HimallException("未找到诊疗项目数据");
             //查询已添加的SKU，用于添加时过滤
             var oldskus = _shopBranchService.GetSkus(shopId, new List<long> { shopBranchId },null).Select(e => e.SkuId);
             var allSkus = SKUApplication.GetByProductIds(productsInfo.Select(p => p.Id));
@@ -477,7 +477,7 @@ namespace Himall.Application
             _shopBranchService.AddSkus(shopBranchSkus);
         }
         /// <summary>
-        /// 修正商品sku
+        /// 修正诊疗项目sku
         /// <para>0库存添加新的sku</para>
         /// </summary>
         /// <param name="productId"></param>
@@ -486,7 +486,7 @@ namespace Himall.Application
             var productsInfo = ProductManagerApplication.GetProduct(productId);
             if (productsInfo == null || productsInfo.ShopId != shopId)
             {
-                throw new HimallException("未找到商品数据");
+                throw new HimallException("未找到诊疗项目数据");
             }
             var shopbrids = _shopBranchService.GetAgentShopBranchIds(productId);
             List<long> pids = new List<long>();
@@ -536,7 +536,7 @@ namespace Himall.Application
             }
         }
         /// <summary>
-        /// 修改门店商品库存
+        /// 修改门店诊疗项目库存
         /// </summary>
         /// <param name="shopBranchId"></param>
         /// <param name="pids"></param>
@@ -559,7 +559,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 下架商品
+        /// 下架诊疗项目
         /// </summary>
         /// <param name="shopBranchId"></param>
         /// <param name="productIds"></param>
@@ -568,7 +568,7 @@ namespace Himall.Application
             _shopBranchService.SetBranchProductStatus(shopBranchId, productIds, ShopBranchSkuStatus.InStock);
         }
         /// <summary>
-        /// 下架所有门店的商品
+        /// 下架所有门店的诊疗项目
         /// <para></para>
         /// </summary>
         /// <param name="productId"></param>
@@ -584,7 +584,7 @@ namespace Himall.Application
             return flag;
         }
         /// <summary>
-        /// 上架商品
+        /// 上架诊疗项目
         /// </summary>
         /// <param name="shopBranchId"></param>
         /// <param name="productIds"></param>
@@ -592,7 +592,7 @@ namespace Himall.Application
         {
             _shopBranchService.SetBranchProductStatus(shopBranchId, productIds, ShopBranchSkuStatus.Normal);
         }
-        #endregion 门店商品管理
+        #endregion 门店诊疗项目管理
 
         #region 私有方法
         private static bool isRepeatBranchName(long shopId, long shopBranchId, string branchName)
@@ -602,7 +602,7 @@ namespace Himall.Application
         }
         #endregion
         /// <summary>
-        /// 取门店商品数量
+        /// 取门店诊疗项目数量
         /// </summary>
         /// <param name="shopBranchId"></param>
         /// <param name="startDate"></param>

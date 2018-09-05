@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.IServices
 {
     /// <summary>
-    /// 商家入驻设置
+    /// 诊所入驻设置
     /// </summary>
     public interface ISettledService:IService
     {

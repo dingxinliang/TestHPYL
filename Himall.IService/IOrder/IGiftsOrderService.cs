@@ -11,51 +11,51 @@ namespace Himall.IServices
     public interface IGiftsOrderService : IService
     {
         /// <summary>
-        /// 创建订单
+        /// 创建预约单
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         GiftOrderInfo CreateOrder(GiftOrderModel model);
         /// <summary>
-        /// 获取订单
+        /// 获取预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
         GiftOrderInfo GetOrder(long orderId);
         /// <summary>
-        /// 获取订单
+        /// 获取预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
         GiftOrderInfo GetOrder(long orderId, long userId);
         /// <summary>
-        /// 查询订单
+        /// 查询预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
         ObsoletePageModel<GiftOrderInfo> GetOrders(GiftsOrderQuery query);
         /// <summary>
-        /// 获取订单
+        /// 获取预约单
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
         IEnumerable<GiftOrderInfo> GetOrders(IEnumerable<long> ids);
         /// <summary>
-        /// 获取订单计数
+        /// 获取预约单计数
         /// </summary>
-        /// <param name="status">为空表示所有订单</param>
+        /// <param name="status">为空表示所有预约单</param>
         /// <param name="userId"></param>
         /// <returns></returns>
         int GetOrderCount(GiftOrderInfo.GiftOrderStatus? status, long userId = 0);
         /// <summary>
-        /// 获取订单项
+        /// 获取预约单项
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         GiftOrderItemInfo GetOrderItemById(long id);
         /// <summary>
-        /// 关闭订单
+        /// 关闭预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="closeReason"></param>
@@ -68,13 +68,13 @@ namespace Himall.IServices
         /// <param name="shipOrderNumber"></param>
         void SendGood(long id, string shipCompanyName, string shipOrderNumber);
         /// <summary>
-        /// 确认订单到货
+        /// 确认预约单到货
         /// </summary>
         /// <param name="id"></param>
         /// <param name="userId"></param>
         void ConfirmOrder(long id, long userId);
         /// <summary>
-        /// 过期自动确认订单到货
+        /// 过期自动确认预约单到货
         /// </summary>
         void AutoConfirmOrder();
         /// <summary>

@@ -12,13 +12,13 @@ namespace Himall.Model
             /// <summary>
             /// 待处理
             /// </summary>
-            [Description("等待商家处理")]
+            [Description("等待诊所处理")]
             WaitDeal = 1,
 
             /// <summary>
             /// 等待会员确认
             /// </summary>
-            [Description("商家处理完成")]
+            [Description("诊所处理完成")]
             Dealed,
 
             /// <summary>

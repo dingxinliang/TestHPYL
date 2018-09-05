@@ -93,9 +93,9 @@ namespace Himall.Web.Areas.Mobile.Controllers
             var member = _iMemberService.GetMember(CurrentUser.Id);
             model.Member = member;
             model.AllOrders = orders.Count();
-            model.WaitingForRecieve = orders.Count(item => item.UserId == CurrentUser.Id && (item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitReceiving || item.OrderStatus == OrderInfo.OrderOperateStatus.WaitSelfPickUp));//获取待收货订单数
-            model.WaitingForPay = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitPay);//获取待支付订单数
-            var waitdelordnum = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitDelivery);//获取待发货订单数
+            model.WaitingForRecieve = orders.Count(item => item.UserId == CurrentUser.Id && (item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitReceiving || item.OrderStatus == OrderInfo.OrderOperateStatus.WaitSelfPickUp));//获取待结算预约单数
+            model.WaitingForPay = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitPay);//获取待支付预约单数
+            var waitdelordnum = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitDelivery);//获取待发货预约单数
             var fgwaitdelordnum = _iOrderService.GetFightGroupOrderByUser(CurrentUser.Id);
             model.WaitingForDelivery = waitdelordnum - fgwaitdelordnum;
             model.WaitingForComments = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.Finish && item.OrderCommentInfo.Count == 0);
@@ -150,7 +150,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return View();
         }
 
-        #region 订单相关处理
+        #region 预约单相关处理
         public ActionResult Orders(int? orderStatus)
         {
             //判断是否需要跳转到支付地址
@@ -175,9 +175,9 @@ namespace Himall.Web.Areas.Mobile.Controllers
 
             var member = _iMemberService.GetMember(CurrentUser.Id);
             ViewBag.AllOrders = orders.Count();
-            ViewBag.WaitingForRecieve = orders.Count(item => item.UserId == CurrentUser.Id && (item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitReceiving || item.OrderStatus == OrderInfo.OrderOperateStatus.WaitSelfPickUp));//获取待收货订单数
-            ViewBag.WaitingForPay = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitPay);//获取待支付订单数
-            var waitdelordnum = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitDelivery);//获取待发货订单数
+            ViewBag.WaitingForRecieve = orders.Count(item => item.UserId == CurrentUser.Id && (item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitReceiving || item.OrderStatus == OrderInfo.OrderOperateStatus.WaitSelfPickUp));//获取待结算预约单数
+            ViewBag.WaitingForPay = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitPay);//获取待支付预约单数
+            var waitdelordnum = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitDelivery);//获取待发货预约单数
             var fgwaitdelordnum = _iOrderService.GetFightGroupOrderByUser(CurrentUser.Id);
             ViewBag.WaitingForDelivery = waitdelordnum - fgwaitdelordnum;
             return View();
@@ -222,9 +222,9 @@ namespace Himall.Web.Areas.Mobile.Controllers
 
             var member = _iMemberService.GetMember(CurrentUser.Id);
             ViewBag.AllOrders = orders.Count();
-            ViewBag.WaitingForRecieve = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitReceiving);//获取待收货订单数
-            ViewBag.WaitingForPay = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitPay);//获取待支付订单数
-            var waitdelordnum = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitDelivery);//获取待发货订单数
+            ViewBag.WaitingForRecieve = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitReceiving);//获取待结算预约单数
+            ViewBag.WaitingForPay = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitPay);//获取待支付预约单数
+            var waitdelordnum = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitDelivery);//获取待发货预约单数
             var fgwaitdelordnum = _iOrderService.GetFightGroupOrderByUser(CurrentUser.Id);
             ViewBag.WaitingForDelivery = waitdelordnum - fgwaitdelordnum;
             if (orders != null)
@@ -267,7 +267,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 queryModel.MoreStatus.Add(OrderInfo.OrderOperateStatus.WaitSelfPickUp);
             }
             if (orderStatus.GetValueOrDefault() == (int)Model.OrderInfo.OrderOperateStatus.Finish)
-                queryModel.Commented = false;//只查询未评价的订单
+                queryModel.Commented = false;//只查询未评价的预约单
 
             var orders = OrderApplication.GetOrders(queryModel);
             var orderItems = OrderApplication.GetOrderItemsByOrderId(orders.Models.Select(p => p.Id));
@@ -354,7 +354,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         {
             var orderInfo = OrderApplication.GetOrder(id);
             if (orderInfo == null)
-                throw new HimallException("订单不存在！");
+                throw new HimallException("预约单不存在！");
             if (orderInfo.UserId != CurrentUser.Id)
                 throw new HimallException("只能查看自己的提货码！");
 
@@ -373,7 +373,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
 
             return View(orderModel);
         }
-        #endregion 订单相关处理
+        #endregion 预约单相关处理
         public ActionResult CollectionProduct()
         {
             return View();

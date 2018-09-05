@@ -35,9 +35,9 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             distributorConfig = _iDistributionService.getShopDistributorSettingInfo(curshopid);
         }
 
-        #region 订单业绩
+        #region 预约单业绩
         /// <summary>
-        /// 分销业绩(订单)
+        /// 分销业绩(预约单)
         /// </summary>
         /// <returns></returns>
         public ActionResult Order()
@@ -119,9 +119,9 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return Json(values);
         }
 
-        #region 商品业绩
+        #region 诊疗项目业绩
         /// <summary>
-        /// 商品分销明细
+        /// 诊疗项目分销明细
         /// </summary>
         /// <returns></returns>
         public ActionResult Product()

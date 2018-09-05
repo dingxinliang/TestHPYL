@@ -11,9 +11,9 @@ namespace Himall.Model
         public enum EnumCommentKey
         {
             /// <summary>
-            /// 宝贝与描述相符 商家得分
+            /// 宝贝与描述相符 诊所得分
             /// </summary>
-            [Description("宝贝与描述相符 商家得分")]
+            [Description("宝贝与描述相符 诊所得分")]
             ProductAndDescription = 1,
 
             /// <summary>
@@ -23,20 +23,20 @@ namespace Himall.Model
             ProductAndDescriptionPeer ,
 
             /// <summary>
-            /// 宝贝与描述相符 同行业商家最高得分
+            /// 宝贝与描述相符 同行业诊所最高得分
             /// </summary>
-            [Description("宝贝与描述相符 同行业商家最高得分")]
+            [Description("宝贝与描述相符 同行业诊所最高得分")]
             ProductAndDescriptionMax ,
 
             /// <summary>
-            /// 宝贝与描述相符 同行业商家最低得分
+            /// 宝贝与描述相符 同行业诊所最低得分
             /// </summary>
-            [Description("宝贝与描述相符 同行业商家最低得分")]
+            [Description("宝贝与描述相符 同行业诊所最低得分")]
             ProductAndDescriptionMin,
             /// <summary>
-            /// 卖家发货速度 商家得分
+            /// 卖家发货速度 诊所得分
             /// </summary>
-            [Description("卖家发货速度 商家得分")]
+            [Description("卖家发货速度 诊所得分")]
             SellerDeliverySpeed,
 
             /// <summary>
@@ -46,21 +46,21 @@ namespace Himall.Model
             SellerDeliverySpeedPeer,
 
             /// <summary>
-            /// 卖家发货速度 同行业商家最高得分
+            /// 卖家发货速度 同行业诊所最高得分
             /// </summary>
-            [Description("卖家发货速度 同行业商家最高得分")]
+            [Description("卖家发货速度 同行业诊所最高得分")]
             SellerDeliverySpeedMax,
 
             /// <summary>
-            /// 卖家发货速度 同行业商家最低得分
+            /// 卖家发货速度 同行业诊所最低得分
             /// </summary>
-            [Description("卖家发货速度 同行业商家最低得分")]
+            [Description("卖家发货速度 同行业诊所最低得分")]
             SellerDeliverySpeedMin,
 
             /// <summary>
-            /// 卖家服务态度 商家得分
+            /// 卖家服务态度 诊所得分
             /// </summary>
-            [Description("卖家服务态度 商家得分")]
+            [Description("卖家服务态度 诊所得分")]
             SellerServiceAttitude ,
 
             /// <summary>
@@ -70,15 +70,15 @@ namespace Himall.Model
             SellerServiceAttitudePeer ,
 
             /// <summary>
-            /// 卖家服务态度 同行业商家最高得分
+            /// 卖家服务态度 同行业诊所最高得分
             /// </summary>
-            [Description("卖家服务态度 同行业商家最高得分")]
+            [Description("卖家服务态度 同行业诊所最高得分")]
             SellerServiceAttitudeMax ,
 
             /// <summary>
-            /// 卖家服务态度 同行业商家最低得分
+            /// 卖家服务态度 同行业诊所最低得分
             /// </summary>
-            [Description("卖家服务态度 同行业商家最低得分")]
+            [Description("卖家服务态度 同行业诊所最低得分")]
             SellerServiceAttitudeMin,
 
 

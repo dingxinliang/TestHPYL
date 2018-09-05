@@ -123,12 +123,12 @@ namespace Himall.Web.Areas.Web.Controllers
 
 
 
-            #region 导航和3个推荐商品
+            #region 导航和3个推荐诊疗项目
 
             //导航
             model.Navignations = _iNavigationService.GetSellerNavigations(shopObj.Id).ToList();
 
-            //banner和3个推荐商品
+            //banner和3个推荐诊疗项目
             var list = _iSlideAdsService.GetImageAds(shopObj.Id).OrderBy(item => item.Id).ToList();
             model.ImageAds = list.Where(p => !p.IsTransverseAD).ToList();
             model.TransverseAD = list.FirstOrDefault(p => p.IsTransverseAD);
@@ -339,12 +339,12 @@ namespace Himall.Web.Areas.Web.Controllers
 
             #endregion
 
-            #region 导航和3个推荐商品
+            #region 导航和3个推荐诊疗项目
 
             //导航
             model.Navignations = _iNavigationService.GetSellerNavigations(shopObj.Id).ToList();
 
-            //banner和3个推荐商品
+            //banner和3个推荐诊疗项目
             model.ImageAds = _iSlideAdsService.GetImageAds(shopObj.Id).OrderBy(item => item.Id).ToList();
 
             model.Slides = _iSlideAdsService.GetSlidAds(shopObj.Id, SlideAdInfo.SlideAdType.ShopHome).ToList();
@@ -392,7 +392,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
             #endregion
 
-            #region 初始化查询Model并查询商品
+            #region 初始化查询Model并查询诊疗项目
             SearchProductQuery search = new SearchProductQuery()
             {
                 StartPrice = startPrice,
@@ -603,12 +603,12 @@ namespace Himall.Web.Areas.Web.Controllers
 
             #endregion
 
-            #region 导航和3个推荐商品
+            #region 导航和3个推荐诊疗项目
 
             //导航
             model.Navignations = _iNavigationService.GetSellerNavigations(shopObj.Id).ToList();
 
-            //banner和3个推荐商品
+            //banner和3个推荐诊疗项目
             model.ImageAds = _iSlideAdsService.GetImageAds(shopObj.Id).OrderBy(item => item.Id).ToList();
 
             model.Slides = _iSlideAdsService.GetSlidAds(shopObj.Id, SlideAdInfo.SlideAdType.ShopHome).ToList();

@@ -341,7 +341,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
         #endregion
 
-        #region 订单列表
+        #region 预约单列表
         public ActionResult Order()
         {
             return View();
@@ -397,7 +397,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         /// <param name="expnum"></param>
         /// <returns></returns>
         [HttpPost]
-        [OperationLog(Message = "礼品订单发货")]
+        [OperationLog(Message = "礼品预约单发货")]
         public JsonResult SendGift(long id, string expname, string expnum)
         {
             Result result = new Result();
@@ -428,7 +428,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         {
             if (string.IsNullOrWhiteSpace(expressCompanyName) || string.IsNullOrWhiteSpace(shipOrderNumber))
             {
-                throw new HimallException("错误的订单信息");
+                throw new HimallException("错误的预约单信息");
             }
             string kuaidi100Code = _iExpressService.GetExpress(expressCompanyName).Kuaidi100Code;
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(string.Format("http://www.kuaidi100.com/query?type={0}&postid={1}", kuaidi100Code, shipOrderNumber));

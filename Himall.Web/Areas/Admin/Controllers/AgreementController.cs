@@ -25,7 +25,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             {
                 AgreementTypes = Himall.Model.AgreementInfo.AgreementTypes.Seller;
             }
-            //初始化默认返回买家注册协议
+            //初始化默认返回患者注册协议
             return View(GetManagementModel(AgreementTypes));
         }
         /// <summary>
@@ -34,7 +34,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         /// <returns></returns>
         public ActionResult SettledLink()
         {
-            #region 商家入驻链接和二维码
+            #region 诊所入驻链接和二维码
             string LinkUrl = String.Format("http://{0}/m-weixin/shopregister/step1", Request.Url.Authority);
             ViewBag.LinkUrl = LinkUrl;
             string qrCodeImagePath = string.Empty;
@@ -98,7 +98,7 @@ namespace Himall.Web.Areas.Admin.Controllers
 
 
         /// <summary>
-        /// 商家入驻设置
+        /// 诊所入驻设置
         /// </summary>
         /// <param name="mSettled"></param>
         /// <returns></returns>

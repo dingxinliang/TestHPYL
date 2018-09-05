@@ -125,7 +125,7 @@ function renderBrand(data) {
 
 function init() {
     if ($('#searchList li').length == 0)
-        $('#autoLoad').html('没有搜索相关商品');
+        $('#autoLoad').html('没有搜索相关诊疗项目');
 
     $(window).scroll(function () {
         var scrollTop = $(this).scrollTop();
@@ -284,7 +284,7 @@ function loadProducts() {
                 }
                 else {
                     isnodata = true;
-                    $('#autoLoad').html('没有更多商品了');
+                    $('#autoLoad').html('没有更多诊疗项目了');
                 }
             }
         );

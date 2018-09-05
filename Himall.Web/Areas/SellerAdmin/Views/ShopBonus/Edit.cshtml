@@ -87,7 +87,7 @@
                 @Html.TextBoxFor( p => p.GrantPrice , new { @class = "w50" , @onkeypress = "return (/[\\d.]/.test(String.fromCharCode(event.which?event.which:window.event.keyCode)))" } ) 元
             </div>
             <div class="col-sm-6">
-                <p class="help-default">订单实付金额达到设定的值可获得，0元代表任何付完款的订单均可获得红包</p>
+                <p class="help-default">预约单实付金额达到设定的值可获得，0元代表任何付完款的预约单均可获得红包</p>
             </div>
         </div>
 
@@ -188,7 +188,7 @@
 
 
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label">每个订单每人限领：</label>
+            <label for="" class="col-sm-2 control-label">每个预约单每人限领：</label>
             <div class="col-sm-3">
                 <label for="rdi1">1次</label>
             </div>

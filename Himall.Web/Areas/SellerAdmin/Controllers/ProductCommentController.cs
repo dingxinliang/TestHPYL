@@ -65,7 +65,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 Size = "",
                 UserId = item.UserId
             }).ToList();
-            //TODO LRL 2015/08/06 从评价信息添加商品的规格信息
+            //TODO LRL 2015/08/06 从评价信息添加诊疗项目的规格信息
             foreach (var item in comments)
             {
                 item.ImagePath = Core.HimallIO.GetProductSizeImage(item.ImagePath, 1, (int)ImageSize.Size_100);

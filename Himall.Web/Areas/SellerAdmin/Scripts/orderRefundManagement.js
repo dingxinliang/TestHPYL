@@ -29,14 +29,14 @@
     }
     datacols = [[
             {
-                field: "OrderId", title: '订单号', width: 120,
+                field: "OrderId", title: '预约单号', width: 120,
                 formatter: function (value, row, index) {
                     return '<a href="/SellerAdmin/order/Detail/' + value + '" target="_blank">' + value + '</a>';
                 }
             },
-            { field: "ProductName", title: "商品", width: 280, align: "center" },
+            { field: "ProductName", title: "诊疗项目", width: 280, align: "center" },
             isOpenStore,
-            { field: "UserName", title: "买家", width: 80, align: "center" },
+            { field: "UserName", title: "患者", width: 80, align: "center" },
             { field: "ApplyDate", title: "申请日期", width: 140, align: "center" },
             {
                 field: "Amount", title: "退款金额", width: 90, align: "center",
@@ -58,15 +58,15 @@
             formatter: function (value, row, index) {
                 var html = ["<span class=\"btn-a\">"];
                 // html.push("<input type=\"hidden\" name=\"rowdata\" id=\"rowdata-" + row.RefundId + "\" value='" + JSON.stringify(row) + "'>");
-                if (row.ShopBranchId > 0) {//门店售后订单只能查看不可进行操作
+                if (row.ShopBranchId > 0) {//门店售后预约单只能查看不可进行操作
                     html.push("<a class=\"good-check\" onclick=\"ShowRefundInfo('" + index + "')\">查看原因</a>");
                 } else {
                     switch (row.AuditStatus) {
-                        case "待商家审核":
+                        case "待诊所审核":
                             html.push("<a class=\"good-check\" onclick=\"OpenDealRefund('" + index + "')\">审核</a>");
                             html.push("<br><span style='font-size:12px;color:#666'>还剩" + secondFormat(row.nextSecond) + "</span>");
                             break;
-                        case "待商家收货":
+                        case "待诊所收货":
                             html.push("<a class=\"good-check\" onclick=\"OpenConfirmGood('" + row.RefundId + "','" + row.ExpressCompanyName + "','" + row.ShipOrderNumber + "')\">审核</a>");
                             html.push("<br><span> 还剩" + secondFormat(row.nextSecond) + "</span>");
                             break;
@@ -81,7 +81,7 @@
         }
     ]);
 
-    //订单表格
+    //预约单表格
     $("#list").hiMallDatagrid({
         url: './list?showtype=' + showtype,
         nowrap: false,
@@ -165,7 +165,7 @@ function OpenDealRefund(rowIndex) {
                 '<p class="only-text">' + data.RefundId + '</p>',
             '</div>',
             '<div class="form-group">',
-                '<label class="label-inline fl">商品名称</label>',
+                '<label class="label-inline fl">诊疗项目名称</label>',
                 '<p class="only-text">' + data.ProductName + '</p>',
             '</div>'];
     dlgcontent = dlgcontent.concat(['<div class="form-group">',
@@ -221,9 +221,9 @@ function OpenDealRefund(rowIndex) {
     }
     dlgcontent = dlgcontent.concat([
             '<div class="form-group">',
-                '<label class="label-inline fl">回复买家</label>',
+                '<label class="label-inline fl">回复患者</label>',
                 '<p class="only-text">',
-                '<textarea class="form-control" type="text" name="txtRefundRemark" id="txtRefundRemark" placeholder="回复买家" style="width:100%;" />',
+                '<textarea class="form-control" type="text" name="txtRefundRemark" id="txtRefundRemark" placeholder="回复患者" style="width:100%;" />',
                 '</p>',
             '</div>'
     ]);
@@ -288,7 +288,7 @@ function ShowRefundInfo(rowIndex) {
                 '<p class="only-text">' + data.RefundId + '</p>',
             '</div>',
             '<div class="form-group">',
-                '<label class="label-inline fl">商品名称</label>',
+                '<label class="label-inline fl">诊疗项目名称</label>',
                 '<p class="only-text">' + data.ProductName + '</p>',
             '</div>'
     ];
@@ -346,7 +346,7 @@ function ShowRefundInfo(rowIndex) {
     if (data.SellerRemark) {
         dlgcontent = dlgcontent.concat([
                 '<div class="form-group">',
-                    '<label class="label-inline fl">商家备注</label>',
+                    '<label class="label-inline fl">诊所备注</label>',
                     '<p class="help-top">' + data.SellerRemark.replace(/>/g, '&gt;').replace(/</g, '&lt;') + '</p>',
                ' </div>']);
     }
@@ -399,7 +399,7 @@ function OpenConfirmGood(refundId, expressCompanyName, shipOrderNumber) {
                 '</p>',
             '</div>',
             '<div class="form-group">',
-                '<p class="help-top" style="padding-left: 80px;color: #e3393c;font-size: 12px">确认已经收到订单的退货了吗？</p>',
+                '<p class="help-top" style="padding-left: 80px;color: #e3393c;font-size: 12px">确认已经收到预约单的退货了吗？</p>',
             '</div>',
         '</div>'].join(''),
         padding: '0 40px',

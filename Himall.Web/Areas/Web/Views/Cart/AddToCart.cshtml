@@ -3,8 +3,8 @@
         <div class="m" id="succeed">
             <div class="success">
                 <div class="success-b">
-                    <h3>商品已成功加入购物车！</h3>
-                    <span style="display:none">商品数量有限，请您尽快下单并付款！</span><!--如果商品数量只有1， 提示-->
+                    <h3>诊疗项目已成功加入购物车！</h3>
+                    <span style="display:none">诊疗项目数量有限，请您尽快下单并付款！</span><!--如果诊疗项目数量只有1， 提示-->
                 </div>
                 <span><a href="/cart/cart?returnUrl=@HttpUtility.UrlEncode(Request.RawUrl)" class="btn-pay">去结算</a><a href="/product/detail/@ViewBag.ProductId" class="btn-continue">继续购物</a></span>
             </div>
@@ -19,8 +19,8 @@
             @if (product != null)
             {
                 <div class="mc" id="cart_content">
-                    <!--刚加入的商品 start-->
-                    <h3>刚加入购物车的商品</h3>
+                    <!--刚加入的诊疗项目 start-->
+                    <h3>刚加入购物车的诊疗项目</h3>
                     <dl class="new">
                         <dt class="p-img"><a href="/product/detail/@(product.id)" target="_blank"><img src="@Himall.Core.HimallIO.GetImagePath(product.imgUrl)" alt="" /></a></dt>
                         <dd class="p-info">
@@ -28,8 +28,8 @@
                             <div class="p-price"><span>@product.price.ToString("F2")</span><em>×@product.count</em></div>
                         </dd>
                     </dl>
-                    <!--其它商品 start-->
-                    <h3>您购物车中的其它商品</h3>
+                    <!--其它诊疗项目 start-->
+                    <h3>您购物车中的其它诊疗项目</h3>
 
                     @{var products = (IEnumerable<Himall.Web.Areas.Web.Models.CartItemModel>)ViewBag.Others; }
                     @foreach (var item in products)
@@ -42,7 +42,7 @@
                             </dd>
                         </dl>
                     }
-                    <div class="total">共<strong>@ViewBag.TotalCount</strong>件商品<br />金额总计：<strong>@ViewBag.Amount.ToString("F2")</strong></div>
+                    <div class="total">共<strong>@ViewBag.TotalCount</strong>件诊疗项目<br />金额总计：<strong>@ViewBag.Amount.ToString("F2")</strong></div>
                     <div class="btns"><a href="/cart/cart?returnUrl=@HttpUtility.UrlEncode(Request.RawUrl)" class="btn-pay">去结算</a></div>
                 </div>
             }

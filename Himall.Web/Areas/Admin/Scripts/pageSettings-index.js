@@ -243,7 +243,7 @@ function SetRecommand() {
 
         //}
         $.dialog({
-            title: '推荐商品编辑',
+            title: '推荐诊疗项目编辑',
             lock: true,
             width:430,
             padding: '0 40px',
@@ -291,7 +291,7 @@ function SetRecommand() {
                     success: function (data) {
                         loading.close();
                         if (data.success == true) {
-                            $.dialog.succeedTips("推荐商品修改成功！", function () { location.reload(); });
+                            $.dialog.succeedTips("推荐诊疗项目修改成功！", function () { location.reload(); });
                         }
                     },
                     error: function (data) {

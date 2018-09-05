@@ -68,7 +68,7 @@ namespace Himall.CommonModel
         /// </summary>
         public DateTime? LoginTimeEnd { get; set; }
         /// <summary>
-        /// 是否入驻商家
+        /// 是否入驻诊所
         /// </summary>
         public bool? IsSeller { get; set; }
         /// <summary>

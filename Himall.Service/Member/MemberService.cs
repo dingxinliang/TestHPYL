@@ -515,7 +515,7 @@ namespace Himall.Service
             model.RefundCount = Context.OrderRefundInfo.Count(a => a.UserId == id && (a.SellerAuditStatus != OrderRefundInfo.OrderRefundAuditStatus.UnAudit && a.ManagerConfirmStatus != OrderRefundInfo.OrderRefundConfirmStatus.Confirmed));
             model.WaitPayOrders = orders.Where(a => a.OrderStatus == OrderInfo.OrderOperateStatus.WaitPay).Count();
             model.WaitReceivingOrders = orders.Where(a => a.OrderStatus == OrderInfo.OrderOperateStatus.WaitReceiving).Count();
-            var waitdelordnum = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitDelivery);//获取待发货订单数
+            var waitdelordnum = orders.Count(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitDelivery);//获取待发货预约单数
             var fgwaitdelordnum = ServiceProvider.Instance<IOrderService>.Create.GetFightGroupOrderByUser(id);
             model.WaitDeliveryOrders = waitdelordnum - fgwaitdelordnum;
             model.WaitEvaluationOrders = orders.Where(a => a.OrderStatus == OrderInfo.OrderOperateStatus.Finish && a.OrderCommentInfo.Count == 0).Count();
@@ -1532,7 +1532,7 @@ namespace Himall.Service
         /// 更新用户关系
         /// </summary>
         /// <param name="id">关系信息编号列表</param>
-        /// <param name="userId">买家编号</param>
+        /// <param name="userId">患者编号</param>
         public void UpdateDistributionUserLink(IEnumerable<long> ids, long userId)
         {
             if (ids.Count() > 0 && userId > 0)

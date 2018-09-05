@@ -10,9 +10,9 @@ namespace Himall.Model
     public enum ShopDimension : int
     {
         /// <summary>
-        /// 订单量
+        /// 预约单量
         /// </summary>
-        [Description("订单量")]
+        [Description("预约单量")]
         OrderCount = 1,
 
         /// <summary>

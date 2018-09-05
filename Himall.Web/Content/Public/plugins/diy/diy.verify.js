@@ -94,7 +94,7 @@ $(function () {
         return modulePassed;
     };
 
-    //模块类型4 商品
+    //模块类型4 诊疗项目
     HiShop.DIY.Unit.verify_type4 = function (data) {
         var ctrlVisible = false,//控制内容是否为显示状态
 			modulePassed = true;
@@ -110,14 +110,14 @@ $(function () {
         if (!data.content.goodslist.length) {
             showCtrl();
             var ele = data.dom_ctrl.find(".j-verify");
-            HiShop.FormShowError(ele, "请至少选择一件商品");
+            HiShop.FormShowError(ele, "请至少选择一件诊疗项目");
         }
 
         // console.log("verify4")
         return modulePassed;
     };
 
-    //模块类型5 商品分组列表
+    //模块类型5 诊疗项目分组列表
     HiShop.DIY.Unit.verify_type5 = function (data) {
         var ctrlVisible = false,//控制内容是否为显示状态
 			modulePassed = true;
@@ -133,7 +133,7 @@ $(function () {
         if (!data.content.group) {
             showCtrl();
             var ele = data.dom_ctrl.find(".j-verify");
-            HiShop.FormShowError(ele, "请选择商品分组");
+            HiShop.FormShowError(ele, "请选择诊疗项目分组");
         }
 
         // console.log("verify5")

@@ -21,7 +21,7 @@ namespace Himall.IServices
         /// <summary>
         /// 回复产品评论
         /// </summary>
-        /// <param name="id">商品评论的ID</param>
+        /// <param name="id">诊疗项目评论的ID</param>
         /// <param name="shopId">店铺的ID防止跨店回复</param>
         /// <param name="replyConent">回复内容</param>
         void ReplyComment(long id, string replyConent, long shopId);
@@ -56,7 +56,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 订单列表项判断有没有追加评论
+        /// 预约单列表项判断有没有追加评论
         /// </summary>
         /// <param name="subOrderId"></param>
         /// <returns></returns>
@@ -84,7 +84,7 @@ namespace Himall.IServices
         ObsoletePageModel<ProductEvaluation> GetProductEvaluation(CommentQuery query);
 
         /// <summary>
-        /// 获取用户订单评价的列表
+        /// 获取用户预约单评价的列表
         /// </summary>
         /// <param name="userID"></param>
         /// <returns></returns>
@@ -92,7 +92,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 获取用户订单中商品的评价列表
+        /// 获取用户预约单中诊疗项目的评价列表
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="userId"></param>
@@ -100,7 +100,7 @@ namespace Himall.IServices
         List<ProductEvaluation> GetProductEvaluationByOrderId(long orderId, long userId);
 
         /// <summary>
-        /// 获取用户订单中商品的评价列表
+        /// 获取用户预约单中诊疗项目的评价列表
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="userId"></param>
@@ -110,7 +110,7 @@ namespace Himall.IServices
         void SetCommentEmpty( long id );
 
         /// <summary>
-        /// 获取用户未评论的商品
+        /// 获取用户未评论的诊疗项目
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="topN"></param>

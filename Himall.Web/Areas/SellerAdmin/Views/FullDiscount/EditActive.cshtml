@@ -26,7 +26,7 @@
     </ul>
 
     <div class="form-group">
-        <div class="col-sm-12 toptips"><span class="help-default">注：同一商品只能参加一个满额减活动且不能再参加满额减活动。若商品已参加了某个满减活动，则该商品在选择商品列表中排除。保存活动时，若已选择商品列表中商品参加了其他满额减活动或者商品下架，则标红此商品且活动不能被保存。</span></div>
+        <div class="col-sm-12 toptips"><span class="help-default">注：同一诊疗项目只能参加一个满额减活动且不能再参加满额减活动。若诊疗项目已参加了某个满减活动，则该诊疗项目在选择诊疗项目列表中排除。保存活动时，若已选择诊疗项目列表中诊疗项目参加了其他满额减活动或者诊疗项目下架，则标红此诊疗项目且活动不能被保存。</span></div>
     </div>
 
     @using (Ajax.BeginForm("EditActive", "FullDiscount", null
@@ -95,13 +95,13 @@
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>参与活动商品：</label>
+            <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>参与活动诊疗项目：</label>
             <div class="col-sm-3">
-                <label for="rdi1">@Html.RadioButton("IsAllProduct", "True") 全部商品</label><br />
-                <label for="rdi1">@Html.RadioButton("IsAllProduct", "False") 部份商品</label>
-                <span class="help-default">己选商品(<span id="s-selnum">0</span>)个</span>
+                <label for="rdi1">@Html.RadioButton("IsAllProduct", "True") 全部诊疗项目</label><br />
+                <label for="rdi1">@Html.RadioButton("IsAllProduct", "False") 部份诊疗项目</label>
+                <span class="help-default">己选诊疗项目(<span id="s-selnum">0</span>)个</span>
                 @Html.HiddenFor(d => d.ProductIds)
-                <a href="javascript:;" id="a-selpro" style="@(Model.IsAllProduct?"display:none;":"")">选择商品</a>
+                <a href="javascript:;" id="a-selpro" style="@(Model.IsAllProduct?"display:none;":"")">选择诊疗项目</a>
             </div>
             <div class="col-sm-3"></div>
         </div>
@@ -109,17 +109,17 @@
             <label class="col-sm-2 control-label" for=""></label>
             <div class="col-sm-9">
                 <div class="selectedbox">
-                    <div class="selectedtitle">己选商品列表</div>
+                    <div class="selectedtitle">己选诊疗项目列表</div>
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <label class="label-inline w75" for="">商品货号</label>
+                                <label class="label-inline w75" for="">诊疗项目货号</label>
                                 <input class="form-control input-ssm txt-search" type="text" id="txtproductcode">
                             </div>
                         </div>
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <label class="label-inline w75" for="">商品名称</label>
+                                <label class="label-inline w75" for="">诊疗项目名称</label>
                                 <input class="form-control input-ssm txt-search" type="text" id="txtproductname">
                             </div>
                         </div>
@@ -132,11 +132,11 @@
                                     <thead>
                                         <tr>
                                             <th style="width:50px">选择</th>
-                                            <th style="width:300px">商品名称</th>
+                                            <th style="width:300px">诊疗项目名称</th>
                                             <th style="width:100px">售价</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="prodatabox"><tr style="height:60px"><td colspan="3">无商品</td></tr></tbody>
+                                    <tbody id="prodatabox"><tr style="height:60px"><td colspan="3">无诊疗项目</td></tr></tbody>
                                 </table>
 
                                 <script id="datatmp" type="text/html">

@@ -64,7 +64,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 });
             ProductInfo refreshProductInfo = productService.GetNeedRefreshProductInfo(productId);
             if (refreshProductInfo == null)
-                throw new HimallException("很抱歉，您查看的商品不存在，可能被转移。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             ShopBranchInfo shopBranchById = this._iShopBranchService.GetShopBranchById(bid);
             if (refreshProductInfo == null)
                 throw new HimallException("很抱歉，您查看的门店不存在。");
@@ -73,7 +73,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         bid
       }, new ShopBranchSkuStatus?(ShopBranchSkuStatus.Normal));
             if (skus == null || skus.Count <= 0)
-                throw new HimallException("很抱歉，您查看的门店没有该商品，可能已下架。");
+                throw new HimallException("很抱歉，您查看的门店没有该诊疗项目，可能已下架。");
             VShopInfo vshopByShopId = this._iVShopService.GetVShopByShopId(refreshProductInfo.ShopId);
             long num1 = vshopByShopId != null ? vshopByShopId.Id : -1L;
             IQueryable<SKUInfo> skUs = productService.GetSKUs(productId);
@@ -148,10 +148,10 @@ namespace Himall.Web.Areas.Mobile.Controllers
                     area = "Web"
                 });
             if (!productService.CheckProductIsExist(result1))
-                throw new HimallException("很抱歉，您查看的商品不存在，可能被转移。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             ProductInfo product = productService.GetProduct(result1);
             if (product == null)
-                throw new HimallException("很抱歉，您查看的商品不存在，可能被转移。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             long result2 = 0L;
             long.TryParse(shopBranchId, out result2);
             if (result2 == 0L)
@@ -163,13 +163,13 @@ namespace Himall.Web.Areas.Mobile.Controllers
             if (shopBranchById == null || shopBranchById.Status == ShopBranchStatus.Freeze)
                 throw new HimallException("很抱歉，您查看的门店不存在，可能已关闭。");
             if (!this._iShopBranchService.CheckProductIsExist(result2, result1))
-                throw new HimallException("很抱歉，该门店不存在您查看的商品，可能已转移。");
+                throw new HimallException("很抱歉，该门店不存在您查看的诊疗项目，可能已转移。");
             List<ShopBranchSkusInfo> skus = this._iShopBranchService.GetSkus(shopBranchById.ShopId, (IEnumerable<long>)new List<long>()
       {
         result2
       }, new ShopBranchSkuStatus?(ShopBranchSkuStatus.Normal));
             if (skus == null || skus.Count <= 0)
-                throw new HimallException("很抱歉，您查看的门店没有该商品，可能已下架。");
+                throw new HimallException("很抱歉，您查看的门店没有该诊疗项目，可能已下架。");
             bool flag = false;
             foreach (ShopBranchSkusInfo shopBranchSkusInfo in skus)
             {
@@ -180,7 +180,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 }
             }
             if (!flag)
-                throw new HimallException("很抱歉，您查看的门店商品已下架。");
+                throw new HimallException("很抱歉，您查看的门店诊疗项目已下架。");
             if (partnerid > 0L)
             {
                 long uid = 0L;
@@ -221,16 +221,16 @@ namespace Himall.Web.Areas.Mobile.Controllers
             long num = id;
             if (num == 0L)
             {
-                throw new HimallException("很抱歉，您查看的商品不存在，可能被转移。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             }
             product = this._iProductService.GetProduct(num);
             if (product == null)
             {
-                throw new HimallException("很抱歉，您查看的商品不存在，可能被转移。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             }
             if (product.IsDeleted)
             {
-                throw new HimallException("很抱歉，您查看的商品不存在，可能被转移。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             }
             long result = 0;
             long.TryParse(shopBranchId, out result);
@@ -249,7 +249,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             }
             if (!this._iShopBranchService.CheckProductIsExist(result, num))
             {
-                throw new HimallException("很抱歉，该门店不存在您查看的商品，可能已转移。");
+                throw new HimallException("很抱歉，该门店不存在您查看的诊疗项目，可能已转移。");
             }
             ((dynamic)base.ViewBag).bid = result;
             if (partnerid > 0L)
@@ -948,7 +948,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         skuId
       });
             if (skusByIds == null)
-                throw new HimallException("很抱歉，您查看的商品不存在，或已下架。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，或已下架。");
             int stock = Enumerable.FirstOrDefault<ShopBranchSkusInfo>((IEnumerable<ShopBranchSkusInfo>)skusByIds).Stock;
             int num1 = 0;
             long memberId = 0L;
@@ -983,7 +983,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         bid
       }, new ShopBranchSkuStatus?(ShopBranchSkuStatus.Normal));
             if (skus == null || skus.Count <= 0)
-                throw new HimallException("门店商品不存在");
+                throw new HimallException("门店诊疗项目不存在");
             bool flag = false;
             foreach (ShopBranchSkusInfo shopBranchSkusInfo in skus)
             {
@@ -991,7 +991,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                     flag = true;
             }
             if (!flag)
-                throw new HimallException("门店商品已下架");
+                throw new HimallException("门店诊疗项目已下架");
             ProductShowSkuInfoModel showSkuInfoModel = new ProductShowSkuInfoModel();
             showSkuInfoModel.MinSalePrice = product.MinSalePrice;
             showSkuInfoModel.ProductImagePath = product.RelativePath;
@@ -1083,7 +1083,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         {
             ProductDescriptionInfo productDescription = ServiceHelper.Create<IProductService>().GetProductDescription(pid);
             if (productDescription == null)
-                throw new HimallException("错误的商品编号");
+                throw new HimallException("错误的诊疗项目编号");
             string str1 = "";
             string str2 = "";
             IProductDescriptionTemplateService descriptionTemplateService = ServiceHelper.Create<IProductDescriptionTemplateService>();
@@ -1136,19 +1136,19 @@ namespace Himall.Web.Areas.Mobile.Controllers
         },
         {
           1,
-          "商品已下架"
+          "诊疗项目已下架"
         },
         {
           2,
-          "很抱歉，您查看的商品不存在，可能被转移。"
+          "很抱歉，您查看的诊疗项目不存在，可能被转移。"
         },
         {
           3,
-          "超出商品最大限购数"
+          "超出诊疗项目最大限购数"
         },
         {
           9,
-          "商品无货"
+          "诊疗项目无货"
         }
       };
             int reason;
@@ -1345,9 +1345,9 @@ namespace Himall.Web.Areas.Mobile.Controllers
             if (top < 1)
                 commentShowModel.IsShowCommentList = false;
             if (product == null)
-                throw new HimallException("商品不存在");
+                throw new HimallException("诊疗项目不存在");
             if (product.IsDeleted)
-                throw new HimallException("商品不存在");
+                throw new HimallException("诊疗项目不存在");
             IEnumerable<ProductCommentInfo> source = Enumerable.Where<ProductCommentInfo>((IEnumerable<ProductCommentInfo>)product.Himall_ProductComments, (Func<ProductCommentInfo, bool>)(item => !item.IsHidden.HasValue || !item.IsHidden.Value));
             int num = Enumerable.Count<ProductCommentInfo>(source);
             commentShowModel.CommentCount = num;
@@ -1404,7 +1404,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 return this.Json((object)new
                 {
                     Success = false,
-                    Message = "请传入合法商家ID"
+                    Message = "请传入合法诊所ID"
                 }, true);
             if (fromLatLng.Split(',').Length != 2)
                 return this.Json((object)new
@@ -1437,7 +1437,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             if (shopId <= 0L)
                 return this.Json((object)new
                 {
-                    Message = "请传入合法商家ID",
+                    Message = "请传入合法诊所ID",
                     IsSelfDelivery = 0
                 }, true);
             if (fromLatLng.Split(',').Length != 2)

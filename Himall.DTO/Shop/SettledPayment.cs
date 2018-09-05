@@ -16,7 +16,7 @@ namespace Himall.DTO
         /// </summary>
         public long Id { get; set; }
         /// <summary>
-        /// 商家
+        /// 诊所
         /// </summary>
         public string ShopName { set; get; }
 

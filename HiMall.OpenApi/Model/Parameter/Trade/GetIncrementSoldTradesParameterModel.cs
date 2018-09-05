@@ -9,7 +9,7 @@ using Hishop.Open.Api;
 namespace Himall.OpenApi.Model.Parameter
 {
     /// <summary>
-    /// 商品/SKU库存修改传入参数
+    /// 诊疗项目/SKU库存修改传入参数
     /// </summary>
     public class GetIncrementSoldTradesParameterModel : BasePageParameterModel
     {
@@ -26,11 +26,11 @@ namespace Himall.OpenApi.Model.Parameter
         public DateTime? end_modified { get; set; }
         /// <summary>
         /// 交易状态
-        /// <para>WAIT_BUYER_PAY（等待买家付款）、 WAIT_SELLER_SEND_GOODS （等待商家发货）、 WAIT_BUYER_CONFIRM_GOODS（等待买家确认收货）、 TRADE_CLOSED （交易关闭）、TRADE_FINISHED（交易成功） 默认查询所有交易状态的数据， 除了默认值外每次只能查询一种状态</para>
+        /// <para>WAIT_BUYER_PAY（等待患者付款）、 WAIT_SELLER_SEND_GOODS （等待诊所发货）、 WAIT_BUYER_CONFIRM_GOODS（等待患者确认收货）、 TRADE_CLOSED （交易关闭）、TRADE_FINISHED（交易成功） 默认查询所有交易状态的数据， 除了默认值外每次只能查询一种状态</para>
         /// </summary>
         public string status { get; set; }
         /// <summary>
-        /// 买家帐号
+        /// 患者帐号
         /// </summary>
         public string buyer_uname { get; set; }
 

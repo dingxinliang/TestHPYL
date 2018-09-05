@@ -40,7 +40,7 @@ $(function () {
                         reload(1);
                     }
                     else {
-                        $.dialog.alert('添加分销推广商品失败!' + data.msg);
+                        $.dialog.alert('添加分销推广诊疗项目失败!' + data.msg);
                     }
                 });
             }, 'selleradmin');
@@ -56,7 +56,7 @@ function CancelEventBind() {
     $('#list').on('click', '.btnCancel', function () {
         var name = $(this).siblings('.thisName').val();
         var ids = $(this).siblings('.thisId').val();
-        $.dialog.confirm('您确定要取消这件商品的分销推广吗？', function () {
+        $.dialog.confirm('您确定要取消这件诊疗项目的分销推广吗？', function () {
             loading = showLoading();
             $.post('./CancelProduct', { id: ids }, function (result) {
                 loading.close();
@@ -135,12 +135,12 @@ function reload(pageNo) {
 function LoadData() {
     $("#list").html('');
 
-    //商品表格
+    //诊疗项目表格
     $("#list").hiMallDatagrid({
         url: './GetProductList',
         nowrap: false,
         rownumbers: true,
-        NoDataMsg: '没有找到符合条件的商品',
+        NoDataMsg: '没有找到符合条件的诊疗项目',
         border: false,
         fit: true,
         fitColumns: true,
@@ -151,7 +151,7 @@ function LoadData() {
         columns:
         [[
             {
-                field: "ProductName", title: '商品', width: 150, align: 'left',
+                field: "ProductName", title: '诊疗项目', width: 150, align: 'left',
                 formatter: function (value, row, index) {
                     var html = '<span class="overflow-ellipsis" style="width:300px"><a title="' + value + '" target="_blank" href="/product/detail/' + row.ProductId + '">' + value + '</a></span>';
                     return html;
@@ -170,7 +170,7 @@ function LoadData() {
             field: "SellPrice", title: "价格", align: "center"
         },
         {
-            field: "ShowProductSaleState", title: "商品状态", align: "center"
+            field: "ShowProductSaleState", title: "诊疗项目状态", align: "center"
         },
         {
             field: "s", title: "操作", width: 150, align: "center",

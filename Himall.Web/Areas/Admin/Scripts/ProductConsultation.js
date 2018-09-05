@@ -68,7 +68,7 @@ function query() {
         [[
             { field: "Id", hidden: true },            
             {
-                field: "ProductName", title: '咨询商品', align: "left", width: 250,
+                field: "ProductName", title: '咨询诊疗项目', align: "left", width: 250,
                 formatter: function (value, row, index) {
                     var html = '<a title="' + value + '" href="/product/detail/' + row.ProductId + '" target="_blank" href="/product/detail/' + row.ProductId + '"><img class="ml15" width="40" height="40" src="' + row.ImagePath + '" /><span class="single-ellipsis w150 lh40">' + value + '</a></span>';
                     return html;

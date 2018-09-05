@@ -36,16 +36,16 @@ namespace Himall.Application
 
 		#region 方法
 		/// <summary>
-		/// 添加商品
+		/// 添加诊疗项目
 		/// </summary>
 		/// <param name="shopId">店铺id</param>
-		/// <param name="product">商品信息</param>
-		/// <param name="pics">需要转移的商品图片地址</param>
+		/// <param name="product">诊疗项目信息</param>
+		/// <param name="pics">需要转移的诊疗项目图片地址</param>
 		/// <param name="skus">skus，至少要有一项</param>
 		/// <param name="description">描述</param>
-		/// <param name="attributes">商品属性</param>
-		/// <param name="goodsCategory">商家分类</param>
-		/// <param name="sellerSpecifications">商家自定义规格</param>
+		/// <param name="attributes">诊疗项目属性</param>
+		/// <param name="goodsCategory">诊所分类</param>
+		/// <param name="sellerSpecifications">诊所自定义规格</param>
 		public static Product AddProduct(long shopId, Product product, string[] pics, SKU[] skus, ProductDescription description, ProductAttribute[] attributes, long[] goodsCategory, SellerSpecificationValue[] sellerSpecifications)
 		{
 			var productInfo = product.Map<ProductInfo>();
@@ -60,15 +60,15 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 更新商品
+		/// 更新诊疗项目
 		/// </summary>
-		/// <param name="product">修改后的商品</param>
-		/// <param name="pics">需要转移的商品图片地址</param>
+		/// <param name="product">修改后的诊疗项目</param>
+		/// <param name="pics">需要转移的诊疗项目图片地址</param>
 		/// <param name="skus">skus，至少要有一项</param>
 		/// <param name="description">描述</param>
-		/// <param name="attributes">商品属性</param>
-		/// <param name="goodsCategory">商家分类</param>
-		/// <param name="sellerSpecifications">商家自定义规格</param>
+		/// <param name="attributes">诊疗项目属性</param>
+		/// <param name="goodsCategory">诊所分类</param>
+		/// <param name="sellerSpecifications">诊所自定义规格</param>
 		public static void UpdateProduct(Product product, string[] pics, SKU[] skus, ProductDescription description, ProductAttribute[] attributes, long[] goodsCategory, SellerSpecificationValue[] sellerSpecifications)
 		{
             Func<string, bool> predicate = null;
@@ -157,7 +157,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 生成指定商品详情html
+        /// 生成指定诊疗项目详情html
         /// </summary>
         public static void CreateHtml(long productId)
         {
@@ -210,7 +210,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取指定商品详情html
+        /// 获取指定诊疗项目详情html
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -229,7 +229,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取指定商品详情html
+        /// 获取指定诊疗项目详情html
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -258,7 +258,7 @@ namespace Himall.Application
             ProductManagerApplication.RefreshWAPLocalBranchProductHtml(productId, str, mapPath, branchId);
         }
         /// <summary>
-        /// 刷新本地缓存商品html文件 
+        /// 刷新本地缓存诊疗项目html文件 
         /// </summary>     
         /// <param name="targetFilename">本地待生成的html文件名</param>
         static void RefreshWAPLocalProductHtml(long productId, string htmlUrl, string targetFilename)
@@ -313,7 +313,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 刷新本地缓存商品html文件 
+        /// 刷新本地缓存诊疗项目html文件 
         /// </summary>
         /// <param name="htmlUrl">远程html文件地址</param>
         /// <param name="targetFilename">本地待生成的html文件名</param>
@@ -367,7 +367,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取一个商品
+        /// 获取一个诊疗项目
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -376,7 +376,7 @@ namespace Himall.Application
 			return _productService.GetProduct(id).Map<Product>();
 		}
 		/// <summary>
-		/// 根据多个ID取多个商品信息
+		/// 根据多个ID取多个诊疗项目信息
 		/// </summary>
 		/// <param name="ids"></param>
 		/// <returns></returns>
@@ -386,7 +386,7 @@ namespace Himall.Application
 			return productsInfo.ToList().Map<List<Product>>();
 		}
         /// <summary>
-        /// 根据多个ID，取商品信息（所有状态）
+        /// 根据多个ID，取诊疗项目信息（所有状态）
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -418,9 +418,9 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 根据商品id获取属性
+		/// 根据诊疗项目id获取属性
 		/// </summary>
-		/// <param name="id">商品id</param>
+		/// <param name="id">诊疗项目id</param>
 		/// <returns></returns>
 		public static List<DTO.ProductAttribute> GetProductAttribute(long id)
 		{
@@ -429,9 +429,9 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 根据商品id获取描述
+		/// 根据诊疗项目id获取描述
 		/// </summary>
-		/// <param name="id">商品id</param>
+		/// <param name="id">诊疗项目id</param>
 		/// <returns></returns>
 		public static DTO.ProductDescription GetProductDescription(long id)
 		{
@@ -440,9 +440,9 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 根据商品id获取描述
+		/// 根据诊疗项目id获取描述
 		/// </summary>
-		/// <param name="ids">商品ids</param>
+		/// <param name="ids">诊疗项目ids</param>
 		/// <returns></returns>
 		public static List<DTO.ProductDescription> GetProductDescription(long[] ids)
 		{
@@ -456,9 +456,9 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 根据商品id获取SKU
+		/// 根据诊疗项目id获取SKU
 		/// </summary>
-		/// <param name="id">商品id</param>
+		/// <param name="id">诊疗项目id</param>
 		/// <returns></returns>
 		public static List<DTO.SKU> GetSKU(long id)
 		{
@@ -467,9 +467,9 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 根据商品id获取SKU
+		/// 根据诊疗项目id获取SKU
 		/// </summary>
-		/// <param name="productIds">商品id</param>
+		/// <param name="productIds">诊疗项目id</param>
 		/// <returns></returns>
 		public static List<DTO.SKU> GetSKU(IEnumerable<long> productIds)
 		{
@@ -489,7 +489,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 获取商品的评论数
+		/// 获取诊疗项目的评论数
 		/// </summary>
 		/// <param name="productId"></param>
 		/// <returns></returns>
@@ -498,7 +498,7 @@ namespace Himall.Application
 			return _productService.GetProductCommentCount(productId);
 		}
         /// <summary>
-        /// 取店铺超出安全库存的商品数
+        /// 取店铺超出安全库存的诊疗项目数
         /// </summary>
         /// <param name="shopid"></param>
         /// <returns></returns>
@@ -513,7 +513,7 @@ namespace Himall.Application
 
 		}
         /// <summary>
-        /// 取超出警戒库存的商品ID
+        /// 取超出警戒库存的诊疗项目ID
         /// </summary>
         /// <param name="pids"></param>
         /// <returns></returns>
@@ -533,7 +533,7 @@ namespace Himall.Application
             _productService.SetProductOverSafeStock(pids, stock);
         }
 		/// <summary>
-		/// 删除门店对应的商品
+		/// 删除门店对应的诊疗项目
 		/// </summary>
 		/// <param name="ids"></param>
 		/// <param name="shopId"></param>
@@ -550,7 +550,7 @@ namespace Himall.Application
             ProductManagerApplication._productService.DeleteProductCircle(id);
         }
 		/// <summary>
-		/// 修改推荐商品
+		/// 修改推荐诊疗项目
 		/// </summary>
 		/// <param name="productId"></param>
 		/// <param name="relationProductIds"></param>
@@ -560,7 +560,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 获取商品的推荐商品
+		/// 获取诊疗项目的推荐诊疗项目
 		/// </summary>
 		/// <param name="productId"></param>
 		/// <returns></returns>
@@ -570,7 +570,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 获取商品的推荐商品
+		/// 获取诊疗项目的推荐诊疗项目
 		/// </summary>
 		/// <param name="productId"></param>
 		/// <returns></returns>
@@ -580,7 +580,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 获取指定类型下面热销的前N件商品
+		/// 获取指定类型下面热销的前N件诊疗项目
 		/// </summary>
 		/// <param name="categoryId"></param>
 		/// <param name="count"></param>
@@ -591,7 +591,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 获取商家所有商品描述模板
+		/// 获取诊所所有诊疗项目描述模板
 		/// </summary>
 		/// <param name="shopId"></param>
 		/// <returns></returns>
@@ -600,7 +600,7 @@ namespace Himall.Application
 			return _productDescriptionTemplateService.GetTemplates(shopId).ToList().Map<List<ProductDescriptionTemplate>>();
 		}
         /// <summary>
-        /// 批量下架商品
+        /// 批量下架诊疗项目
         /// </summary>
         /// <param name="ids"></param>
         /// <param name="shopid"></param>
@@ -609,7 +609,7 @@ namespace Himall.Application
             _productService.SaleOff(ids, shopid);
         }
         /// <summary>
-        /// 批量上架商品
+        /// 批量上架诊疗项目
         /// </summary>
         /// <param name="ids"></param>
         /// <param name="shopid"></param>
@@ -641,7 +641,7 @@ namespace Himall.Application
             }
         }
         /// <summary>
-        /// 设置商品库存
+        /// 设置诊疗项目库存
         /// </summary>
         /// <param name="shopBranchId"></param>
         /// <param name="pids"></param>

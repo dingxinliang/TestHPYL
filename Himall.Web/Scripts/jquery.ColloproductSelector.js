@@ -7,7 +7,7 @@
             <div class="choose-left">\
                 <div class="choose-search">\
                 	<div class="form-group">\
-                        <label class="label-inline" for="">商品分类</label>\
+                        <label class="label-inline" for="">诊疗项目分类</label>\
                         <select class="form-control input-ssm"></select>\
                         <select class="form-control input-ssm"></select>\
                         <select class="form-control input-ssm"></select>\
@@ -48,7 +48,7 @@
         var columns=[
              { checkbox: true,width:50 },
                 {
-                    field: "name", title: '商品', width: 366, align: "left",
+                    field: "name", title: '诊疗项目', width: 366, align: "left",
                     formatter: function (value, row, index) {
                         var html = '<img src="' + row.imgUrl + '"/><span class="overflow-ellipsis">' + row.name + '</span>';
                         return html;
@@ -194,7 +194,7 @@
         return products;
     },
     show: function (selectedProductIds, onSelectFinishedCallBack, serviceType, multiSelect, exceptProductIds) {
-        /// <param name="serviceType" type="String">平台：admin,商家：selleradmin,默认为平台</param>
+        /// <param name="serviceType" type="String">平台：admin,诊所：selleradmin,默认为平台</param>
         /// <param name="multiSelect" type="Bool">是否多选，默认为True</param>
         if (serviceType)
             this.serviceType = serviceType;
@@ -202,7 +202,7 @@
             this.multiSelect = multiSelect;
 
         $.dialog({
-            title: '商品选择',
+            title: '诊疗项目选择',
             lock: true,
             content: this.html,
             padding: '0',

@@ -45,7 +45,7 @@
                 }
             },
             {
-                field: "ProductCount", title: "商品数", width: 100, formatter: function (value, row, index) {
+                field: "ProductCount", title: "诊疗项目数", width: 100, formatter: function (value, row, index) {
                     var html = value;
                     if (value == -1) {
                         html = "全部";
@@ -79,7 +79,7 @@
             id: 'goodCheck',
             content: ['<div class="dialog-form">',
                 '<div class="form-group">',
-                    '<p style="padding:0">删除后该活动相关的商品将不享受优惠，是否确认删除？</p>',
+                    '<p style="padding:0">删除后该活动相关的诊疗项目将不享受优惠，是否确认删除？</p>',
                 '</div>',
             '</div>'].join(''),
             padding: '20px 60px',

@@ -9,12 +9,12 @@ using Hishop.Open.Api;
 namespace Himall.OpenApi.Model.Parameter
 {
     /// <summary>
-    /// 商品/SKU库存修改传入参数
+    /// 诊疗项目/SKU库存修改传入参数
     /// </summary>
     public class UpdateProductQuantityParameterModel : BaseParameterModel
     {
         /// <summary>
-        /// 商品编号
+        /// 诊疗项目编号
         /// </summary>
         public int num_iid { get; set; }
         /// <summary>

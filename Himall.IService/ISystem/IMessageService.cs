@@ -52,26 +52,26 @@ namespace Himall.IServices
         /// <param name="info"></param>
         void SendMessageOnFindPassWord(long userId, MessageUserInfo info);
         /// <summary>
-        /// 创建订单
+        /// 创建预约单
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
         void SendMessageOnOrderCreate(long userId, MessageOrderInfo info);
 
         /// <summary>
-        /// 订单支付
+        /// 预约单支付
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
         void SendMessageOnOrderPay(long userId, MessageOrderInfo info);
         /// <summary>
-        /// 店铺有新订单
+        /// 店铺有新预约单
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
         void SendMessageOnShopHasNewOrder(long shopId, MessageOrderInfo info);
         /// <summary>
-        /// 订单退款
+        /// 预约单退款
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
@@ -84,7 +84,7 @@ namespace Himall.IServices
         void SendMessageOnRefundDeliver(long userId, MessageOrderInfo info, long refundid = 0);
 
         /// <summary>
-        /// 订单发货
+        /// 预约单发货
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>

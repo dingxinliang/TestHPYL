@@ -47,7 +47,7 @@ namespace Himall.API
             d.AllOrders = orders.Count().ToString();
             d.WaitingForPay=orders.Count(item => item.OrderStatus == OrderInfo.OrderOperateStatus.WaitPay).ToString();
             d.WaitingForRecieve=orders.Count(item => item.UserId == id && item.OrderStatus == OrderInfo.OrderOperateStatus.WaitReceiving || item.OrderStatus == OrderInfo.OrderOperateStatus.WaitSelfPickUp).ToString();
-            d.WaitingForDelivery = orders.Count(item => item.OrderStatus == OrderInfo.OrderOperateStatus.WaitDelivery) - fightGroupOrderCount;//获取待发货订单数
+            d.WaitingForDelivery = orders.Count(item => item.OrderStatus == OrderInfo.OrderOperateStatus.WaitDelivery) - fightGroupOrderCount;//获取待发货预约单数
             d.WaitingForComments = ServiceProvider.Instance<IOrderService>.Create.GetOrders<OrderInfo>(queryModel).Total.ToString();
 
             RefundQuery query = new RefundQuery()
@@ -179,13 +179,13 @@ namespace Himall.API
                     {
                         orderIds += item.VirtualItemId + ",";
                     }
-                    remark = "使用订单号(" + orderIds.TrimEnd(',') + ")";
+                    remark = "使用预约单号(" + orderIds.TrimEnd(',') + ")";
                     break;
                 //case MemberIntegral.IntegralType.Comment:
-                //    remark = "商品评价（商品ID：" + recordAction.FirstOrDefault().VirtualItemId + ")";
+                //    remark = "诊疗项目评价（诊疗项目ID：" + recordAction.FirstOrDefault().VirtualItemId + ")";
                 //    break;
                 //case MemberIntegral.IntegralType.ProportionRebate:
-                //    remark = "使用订单号(" +recordAction.FirstOrDefault().VirtualItemId + ")";
+                //    remark = "使用预约单号(" +recordAction.FirstOrDefault().VirtualItemId + ")";
                 //    break;
                 default:
                     return remark;

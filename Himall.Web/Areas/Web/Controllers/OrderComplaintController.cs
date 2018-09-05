@@ -67,7 +67,7 @@ namespace Himall.Web.Areas.Web.Controllers
             }
             if (order == null || order.ShopId != model.ShopId)
             {
-                throw new HimallException("该订单不属于当前用户！");
+                throw new HimallException("该预约单不属于当前用户！");
             }
             model.ShopName = shop == null ? "" : shop.ShopName;
             model.ShopPhone = shop == null ? "" : shop.CompanyPhone;

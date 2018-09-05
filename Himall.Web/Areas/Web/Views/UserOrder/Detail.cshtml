@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Areas/Web/Views/Shared/_UserCenter.cshtml";
-    ViewBag.Title = "订单详情";
+    ViewBag.Title = "预约单详情";
 }
 @model Himall.DTO.OrderListModel
 @using Himall.Core
@@ -36,17 +36,17 @@
 </style>
 <div class="box1 lh24">
     <div class="title" style="float:none">
-        <span class="title_txt curr">订单详情</span>
+        <span class="title_txt curr">预约单详情</span>
     </div>
 
     <div class="process">
         <div class="submit-order">
-            <span class="txt01">提交订单</span>
+            <span class="txt01">提交预约单</span>
             <time>@Model.OrderDate.ToString("yyyy/MM/dd HH:mm:ss")</time>
             <i class="p-gray"></i>
         </div>
         <div class="payment-order">
-            <span class="txt01">订单支付</span>
+            <span class="txt01">预约单支付</span>
             <time>@(Model.PayDate.HasValue ? Model.PayDate.Value.ToString("yyyy/MM/dd HH:mm:ss") : "")</time>
             <i class="p-gray"></i>
         </div>
@@ -61,7 +61,7 @@
         else
         {
             <div class="shipment-order">
-                <span class="txt01">商家发货</span>
+                <span class="txt01">诊所发货</span>
                 <time>@(Model.ShippingDate.HasValue ? Model.ShippingDate.Value.ToString("yyyy/MM/dd HH:mm:ss") : "")</time>
                 <i class="p-gray"></i>
             </div>
@@ -75,14 +75,14 @@
 
     <div class="orderstate-detail">
         <p>
-            <label>订单状态：</label><span style="color:#fe3a3a;">@Model.OrderStatus.ToDescription()</span>
+            <label>预约单状态：</label><span style="color:#fe3a3a;">@Model.OrderStatus.ToDescription()</span>
             @if (Model.OrderType == Himall.Model.OrderInfo.OrderTypes.FightGroup)
             {
                 <span class="fgordstatus  fgordstatus@(fgojoinstate.GetHashCode())">@(fgojoinstate.ToDescription())</span>
             }
             <em style="font-size:13px;color:#acb1b9;padding-left:13px;font-family:SimSun;">@Model.CloseReason</em><span id="pay-button-1622972656"></span>
         </p>
-        <p><label>订单单号：</label><span>@Model.Id</span></p>
+        <p><label>预约单单号：</label><span>@Model.Id</span></p>
         @if (!String.IsNullOrEmpty(Model.PaymentTypeName))
         {
             <p style="position:relative">
@@ -142,7 +142,7 @@
     }
     <dl class="detail-pro-list">
         <dt>
-            <span class="i-mt">商品清单</span>
+            <span class="i-mt">诊疗项目清单</span>
             <span style="vertical-align: middle;">@Html.Action("CustmerServices", new { shopId = Model.ShopId })</span>
             <div id="couponListShow" class="prompt p-fquan">
                 <div id="couponList" class="pc"></div>
@@ -153,7 +153,7 @@
             <table width="100%" cellspacing="0" cellpadding="0">
                 <thead>
                     <tr>
-                        <th style="text-align:left;padding-left:43px;font-weight: bold;" width="300">商品</th>
+                        <th style="text-align:left;padding-left:43px;font-weight: bold;" width="300">诊疗项目</th>
                         <th style="text-align:center;font-weight: bold;" width="100">单价/数量</th>
                         <th style="text-align:center;font-weight: bold;" width="100">总价</th>
                         @if (itemDis != 0)
@@ -221,7 +221,7 @@
     <div class="barcode">
 
         <ul class="hide" id="sn_list"></ul>
-    </div>    <!-- 商家运费险  -->
+    </div>    <!-- 诊所运费险  -->
     <input type="hidden" value="" id="venderIdListStr">
     <div id="yunFeiXian"></div>
 
@@ -229,11 +229,11 @@
     <div class="order-bottom-detail">
         <!--留言字段添加6-12-->
         <div class="leave-message">
-            <label>买家留言：</label>
+            <label>患者留言：</label>
             <span>@Model.UserRemark</span>
         </div>
         <div class="order-total">
-            <span><label>商品总价 :</label><i>￥@Model.ProductTotalAmount.ToString("F2")</i></span>
+            <span><label>诊疗项目总价 :</label><i>￥@Model.ProductTotalAmount.ToString("F2")</i></span>
             @if (Model.FullDiscount > 0)
             {
                 <span><label>满减优惠 :</label><i>-￥@Model.FullDiscount.ToString("F2")</i></span>
@@ -251,7 +251,7 @@
             @if (itemDis != 0)
             {
                 <span>
-                    <label style="position:relative;left:3px;">商家改价 :</label>
+                    <label style="position:relative;left:3px;">诊所改价 :</label>
 
                     @if (itemDis > 0)
                     {
@@ -268,7 +268,7 @@
             {
                 <span><label>预付款支付金额 :</label><i>-￥@Model.CapitalAmount.ToString("F2")</i></span>
             }
-            <span><label style="color:#fe3a3a;">订单实付金额 :</label><i style="color:#fe3a3a;"> ￥@Html.Raw((Model.OrderTotalAmount - Model.CapitalAmount).ToString("F2"))</i></span>
+            <span><label style="color:#fe3a3a;">预约单实付金额 :</label><i style="color:#fe3a3a;"> ￥@Html.Raw((Model.OrderTotalAmount - Model.CapitalAmount).ToString("F2"))</i></span>
         </div>
     </div>
 </div>

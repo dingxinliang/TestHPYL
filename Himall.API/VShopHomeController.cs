@@ -57,7 +57,7 @@ namespace Himall.API
                 }
                 
 
-                topVShop.Products = topShopProducts;//主推店铺的商品
+                topVShop.Products = topShopProducts;//主推店铺的诊疗项目
                 //topVShop.Url = "http://" + Url.Request.RequestUri.Host + "/m-IOS/vshop/detail/" + topShop.Id;
                 topVShop.Url = Core.HimallIO.GetRomoteImagePath("/m-IOS/vshop/detail/") + topShop.Id;
                 if (CurrentUser != null)

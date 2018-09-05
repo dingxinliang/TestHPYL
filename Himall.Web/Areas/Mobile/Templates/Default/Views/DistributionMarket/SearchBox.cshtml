@@ -4,16 +4,16 @@
     string skey=ViewBag.SearchBoxKey;
     int stype=(int)ViewBag.SearchBoxType;
     List<string> hkeys = (List<string>)ViewBag.HistorySearchKey;
-    string seltext = "商品", noseltext = "店铺";
+    string seltext = "诊疗项目", noseltext = "店铺";
     if (stype==0)
     {
-        seltext = "商品";
+        seltext = "诊疗项目";
         noseltext = "店铺";
     }
     else
     {
         seltext = "店铺";
-        noseltext = "商品";        
+        noseltext = "诊疗项目";        
     }
 }
 
@@ -27,7 +27,7 @@
                     <div class="tab-text"><span class="toggle-target">@(seltext)</span> <span class="glyphicon glyphicon-triangle-bottom"></span></div>
                     <ul class="tab-nav">
                         <li id="toggle-shop"><span class="litxt icon1" style="width:100%;">@(noseltext)</span><span class="glyphicon glyphicon-triangle-top" style="position:absolute;color:rgba(73, 78, 82, 0.7);font-size:16px;top:-11px;right:28px;"></span></li>
-                         <li id="toggle-shop"><span class="sptxt icon2" style="width:100%;">商品</span></li>
+                         <li id="toggle-shop"><span class="sptxt icon2" style="width:100%;">诊疗项目</span></li>
                     </ul>
                 </div>
             </div>
@@ -36,7 +36,7 @@
     </div>
 
     <div class="Mar-history" style="display:none">
-        <!--商品搜索页-->
+        <!--诊疗项目搜索页-->
         <h5>历史搜索</h5>
         @foreach (var item in hkeys)
         {

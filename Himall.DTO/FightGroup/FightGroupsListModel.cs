@@ -73,8 +73,8 @@ namespace Himall.DTO
         ///</summary>
         public DateTime OverTime { get; set; }
         /// <summary>
-        /// 参团订单
-        /// <para>已付款的订单</para>
+        /// 参团预约单
+        /// <para>已付款的预约单</para>
         /// </summary>
        public List<long> OrderIds { get; set; }
         /// <summary>

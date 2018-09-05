@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WinStatisticsService.Model
 {
     /// <summary>
-    /// 会员订单统计表
+    /// 会员预约单统计表
     /// </summary>
     public class MemberOrderStatisticsInfo : BaseModel
     {
@@ -17,7 +17,7 @@ namespace WinStatisticsService.Model
         public long UserId { get; set; }
 
         /// <summary>
-        /// 订单数
+        /// 预约单数
         /// </summary>
         public int OrderNumber { get; set; }
 

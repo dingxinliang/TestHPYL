@@ -9,11 +9,11 @@ namespace Himall.Core.Plugins.Payment
     public class PaymentPara
     {
         /// <summary>
-        /// 订单号
+        /// 预约单号
         /// </summary>
         public long order_id { get; set; }
         /// <summary>
-        /// 商户支付订单号
+        /// 商户支付预约单号
         /// </summary>
         public string out_trade_no { get; set; }
         /// <summary>
@@ -46,7 +46,7 @@ namespace Himall.Core.Plugins.Payment
     public class EnterprisePayPara
     {
         /// <summary>
-        /// 商户订单号
+        /// 商户预约单号
         /// </summary>
         public string out_trade_no { get; set; }
         bool checkname = false;

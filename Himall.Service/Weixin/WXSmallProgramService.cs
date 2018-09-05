@@ -15,7 +15,7 @@ namespace Himall.Service
     public class WXSmallProgramService : ServiceBase, IWXSmallProgramService
     {
         /// <summary>
-        /// 添加商品
+        /// 添加诊疗项目
         /// </summary>
         /// <param name="mWXSmallChoiceProductsInfo"></param>
         public void AddWXSmallProducts(WXSmallChoiceProductsInfo mWXSmallChoiceProductsInfo)
@@ -25,7 +25,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取所有的商品
+        /// 获取所有的诊疗项目
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取商品
+        /// 获取诊疗项目
         /// </summary>
         /// <returns></returns>
         public List<WXSmallChoiceProductsInfo> GetWXSmallProducts()
@@ -56,7 +56,7 @@ namespace Himall.Service
             return Context.WXSmallChoiceProductsInfo.ToList();
         }
         /// <summary>
-        /// 批量获取商品信息
+        /// 批量获取诊疗项目信息
         /// </summary>
         /// <param name="productIds"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 移除商品
+        /// 移除诊疗项目
         /// </summary>
         /// <param name="Ids"></param>
         public void RemoveWXSmallProducts(IEnumerable<long> Ids)

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace Himall.CommonModel
 {
     /// <summary>
-    /// 待结算订单查询实体
+    /// 待结算预约单查询实体
     /// </summary>
     public class PendingSettlementOrderQuery : BaseQuery
     {
        /// <summary>
-       /// 订单ID
+       /// 预约单ID
        /// </summary>
         public long? OrderId { set; get; }
 
@@ -32,11 +32,11 @@ namespace Himall.CommonModel
         public string PaymentName { set; get; }
 
         /// <summary>
-        /// 订单完成开始时间
+        /// 预约单完成开始时间
         /// </summary>
         public DateTime? OrderStart { set; get; }
         /// <summary>
-        /// 订单完成结束时间
+        /// 预约单完成结束时间
         /// </summary>
         public DateTime? OrderEnd { set; get; }
        

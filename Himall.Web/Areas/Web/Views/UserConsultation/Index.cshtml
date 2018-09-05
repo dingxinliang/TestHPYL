@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Areas/Web/Views/Shared/_UserCenter.cshtml";
-    ViewBag.Title = "商品咨询";
+    ViewBag.Title = "诊疗项目咨询";
 }
 @model  IEnumerable<Himall.Web.Models.ProductConsultationModel>
 <style>
@@ -22,8 +22,8 @@
             </colgroup>
             <thead>
                 <tr>
-                    <th style="text-align: left;padding-left: 27px;">咨询商品</th>
-                    <th>商品名称</th>
+                    <th style="text-align: left;padding-left: 27px;">咨询诊疗项目</th>
+                    <th>诊疗项目名称</th>
                     <th>咨询回复</th>
                 </tr>
             </thead>
@@ -61,7 +61,7 @@
                                 <div class="col3a mt5">
                                     @if (!string.IsNullOrWhiteSpace(m.ReplyContent))
                                     {
-                                        <div class="ftx04 col3a-lcol">商家回复：</div>
+                                        <div class="ftx04 col3a-lcol">诊所回复：</div>
                                         <div class="col3a-rcol">
                                             @m.ReplyContent.Replace("&nbsp", "")
                                         </div>

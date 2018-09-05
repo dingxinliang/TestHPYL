@@ -44,7 +44,7 @@ function reload(pageNo) {
 function LoadData() {
     $("#list").html('');
 
-    //商品表格
+    //诊疗项目表格
     $("#list").hiMallDatagrid({
         url: './GetOrderList',
         nowrap: false,
@@ -59,9 +59,9 @@ function LoadData() {
         pageNumber: 1,
         columns:
         [[
-            { field: "OrderId", title: '订单编号', width: 150, align: 'left' },
+            { field: "OrderId", title: '预约单编号', width: 150, align: 'left' },
             {
-                field: "ProductName", title: '商品', width: 450, align: 'left',
+                field: "ProductName", title: '诊疗项目', width: 450, align: 'left',
                 formatter: function (value, row, index) {
                     var html = '<span class="overflow-ellipsis" style="width:300px"><a title="' + value + '" target="_blank" href="/product/detail/' + row.ProductId + '">' + value + '</a></span>';
                     return html;
@@ -76,7 +76,7 @@ function LoadData() {
                     return html;
                 }
             },
-            { field: "ShowOrderState", title: '订单状态', width: 120, align: 'center' },
+            { field: "ShowOrderState", title: '预约单状态', width: 120, align: 'center' },
             {
                 field: "SettleTime", title: '结算时间', width: 120, align: 'left',
                 formatter: function (value, row, index) {

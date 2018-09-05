@@ -525,7 +525,7 @@ a {
 .tag-linkname span:before{ left: -80px;}
 .tag-linkname span:after{ right: -80px;}
 
-/*门店订单提交*/
+/*门店预约单提交*/
 .store-submit .detail-anchor{ background: #fff; border-bottom: none; margin-left: 0; padding-left: 11px; font-size: 16px; height: 56px; line-height: 56px; color: #212121;}
 .store-submit .divider-btn{ padding: 2px 8px; border: 1px solid #212121; border-radius: 4px; margin-top: 12px; font-size: 14px;vertical-align: middle;}
 .store-submit .divider-btn.active{ border: 1px solid #ff1744; color: #ff1744;}

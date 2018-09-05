@@ -26,7 +26,7 @@ namespace Himall.Service
     public class ShopAppletService : ServiceBase, IShopAppletService
     {
         /// <summary>
-        /// 获取附近商家列表
+        /// 获取附近诊所列表
         /// </summary>
         /// <param name="Lng"></param>
         /// <param name="Lat"></param>

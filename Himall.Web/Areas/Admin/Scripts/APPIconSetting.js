@@ -75,7 +75,7 @@ function changeAppIconSequence(oriRowNumber, newRowNumber, callback) {
 //}
 
 function initAppIconTable() {
-    //商品表格
+    //诊疗项目表格
     $("#appIconTable").hiMallDatagrid({
         url: '/admin/APPShop/GetAPPIcons',
         nowrap: false,

@@ -19,9 +19,9 @@ namespace Himall.DTO
         [Required(ErrorMessage = "门店ID")]
         public long ShopBranchId { get; set; }
         /// <summary>
-        /// 商家ID
+        /// 诊所ID
         /// </summary>
-        [Required(ErrorMessage = "商家ID")]
+        [Required(ErrorMessage = "诊所ID")]
         public long ShopId { get; set; }
         /// <summary>
         /// 消息类型
@@ -29,9 +29,9 @@ namespace Himall.DTO
         [Required(ErrorMessage = "消息类型")]
         public int TypeId { get; set; }
         /// <summary>
-        /// 数据来源编号，对应订单ID或者售后ID
+        /// 数据来源编号，对应预约单ID或者售后ID
         /// </summary>
-        [Required(ErrorMessage = "数据来源编号，对应订单ID或者售后ID")]
+        [Required(ErrorMessage = "数据来源编号，对应预约单ID或者售后ID")]
         public long SourceId { get; set; }
         /// <summary>
         /// 消息内容

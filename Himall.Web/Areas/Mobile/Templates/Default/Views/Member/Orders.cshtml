@@ -1,6 +1,6 @@
 ﻿@using Himall.Model;
 @{
-	ViewBag.Title = "我的订单";
+	ViewBag.Title = "我的预约单";
 	Dictionary<long, ShopBonusInfo> bonusGrant = null;
 	if (ViewBag.BonusGrantIds != null)
 	{
@@ -10,10 +10,10 @@
 <div class="container myorder-L">
 	<div class="my_menu">
 		<ul class="clearfix">
-			<li><a onclick="userOrders(0)">全部订单@*@(ViewBag.AllOrders == 0 ? "" : "(" + ViewBag.AllOrders + ")")*@</a></li>
+			<li><a onclick="userOrders(0)">全部预约单@*@(ViewBag.AllOrders == 0 ? "" : "(" + ViewBag.AllOrders + ")")*@</a></li>
 			<li><a onclick="userOrders(1)">待付款@(ViewBag.WaitingForPay == 0 ? "" : "(" + ViewBag.WaitingForPay + ")")</a></li>
 			<li><a onclick="userOrders(2)">待发货@(ViewBag.WaitingForDelivery == 0 ? "" : "(" + ViewBag.WaitingForDelivery + ")")</a></li>
-			<li><a onclick="userOrders(3)">待收货@(ViewBag.WaitingForRecieve == 0 ? "" : "(" + ViewBag.WaitingForRecieve + ")")</a></li>
+			<li><a onclick="userOrders(3)">待结算@(ViewBag.WaitingForRecieve == 0 ? "" : "(" + ViewBag.WaitingForRecieve + ")")</a></li>
 			<li><a onclick="userOrders(5)">待评价@(ViewBag.WaitingForComments == 0 ? "" : "(" + ViewBag.WaitingForComments + ")")</a></li>
 		</ul>
 	</div>

@@ -60,7 +60,7 @@ namespace Himall.OpenApi
             }
         }
         /// <summary>
-        /// 检测订单信息
+        /// 检测预约单信息
         /// </summary>
         /// <param name="data"></param>
         private void CheckOrderInfo(OrderInfo data)
@@ -75,7 +75,7 @@ namespace Himall.OpenApi
             }
         }
         /// <summary>
-        /// 订单信息转换
+        /// 预约单信息转换
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -105,7 +105,7 @@ namespace Himall.OpenApi
                     break;
                 case OrderInfo.OrderOperateStatus.WaitDelivery:
                     status = "WAIT_SELLER_SEND_GOODS";
-                    //拼团订单信息修正
+                    //拼团预约单信息修正
                     if (data.OrderType == OrderInfo.OrderTypes.FightGroup)
                     {
                         var fgord = _iFightGroupService.GetOrder(data.Id);
@@ -113,7 +113,7 @@ namespace Himall.OpenApi
                         {
                             if(fgord.GetJoinStatus != FightGroupOrderJoinStatus.BuildSuccess)
                             {
-                                //未拼团成功的订单为待付款状态返回
+                                //未拼团成功的预约单为待付款状态返回
                                 status = "WAIT_BUYER_PAY";   
                             }
                         }
@@ -165,7 +165,7 @@ namespace Himall.OpenApi
             result.storeId = "0";  //无门店功能,云商城有
             result.orders = new List<trade_itme_model>();
 
-            #region 子订单装配
+            #region 子预约单装配
             
             foreach (var orderitem in data.OrderItemInfo)
             {
@@ -203,7 +203,7 @@ namespace Himall.OpenApi
             return result;
         }
         /// <summary>
-        /// 订单列表信息转换
+        /// 预约单列表信息转换
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -219,8 +219,8 @@ namespace Himall.OpenApi
         #endregion
 
         /// <summary>
-        /// 查询订单的增量交易数据（根据修改时间）
-        /// <para>返回的数据结果是以订单的修改时间倒序排列的，通过从后往前翻页的方式可以避免漏单问题</para>
+        /// 查询预约单的增量交易数据（根据修改时间）
+        /// <para>返回的数据结果是以预约单的修改时间倒序排列的，通过从后往前翻页的方式可以避免漏单问题</para>
         /// <para>一次请求只能查询时间跨度为一天的增量交易记录，即end_modified - start_modified小于等于1天。</para>
         /// </summary>
         /// <param name="app_key"></param>
@@ -251,8 +251,8 @@ namespace Himall.OpenApi
             return GetSoldTrades(app_key, start_modified, end_modified, status, buyer_uname, page_no, page_size,true);
         }
         /// <summary>
-        /// 获取当前商家的订单列表（根据创建时间）
-        /// <para>返回的数据结果是以订单的创建时间倒序排列的</para>
+        /// 获取当前诊所的预约单列表（根据创建时间）
+        /// <para>返回的数据结果是以预约单的创建时间倒序排列的</para>
         /// </summary>
         /// <param name="app_key"></param>
         /// <param name="start_created"></param>
@@ -307,7 +307,7 @@ namespace Himall.OpenApi
                 ordque.UserName = buyer_uname;
             }
 
-            #region 订单状态
+            #region 预约单状态
             //请不要使用MoreStatus
             TradeStatus queryts = TradeStatus.Trade_NORMAL;
             if (!string.IsNullOrWhiteSpace(status))
@@ -385,7 +385,7 @@ namespace Himall.OpenApi
             return result;
         }
         /// <summary>
-        /// 订单发货
+        /// 预约单发货
         /// </summary>
         /// <param name="app_key"></param>
         /// <param name="tid"></param>
@@ -408,7 +408,7 @@ namespace Himall.OpenApi
             CheckExpressCompanyName(company_name);
             #endregion
 
-            #region 商家发货
+            #region 诊所发货
 			Application.OrderApplication.SellerSendGood(orderId, _shophelper.SellerName, company_name, out_sid);
             #endregion
 
@@ -433,7 +433,7 @@ namespace Himall.OpenApi
 
             if (orderdata.OrderStatus != OrderInfo.OrderOperateStatus.WaitReceiving)
             {
-                //只有是已经发货且待收货的订单才能修改物流信息
+                //只有是已经发货且待结算的预约单才能修改物流信息
                 throw new HimallOpenApiException(OpenApiErrorCode.Trade_Status_is_Invalid, "tid");
             }
             CheckExpressCompanyName(company_name);

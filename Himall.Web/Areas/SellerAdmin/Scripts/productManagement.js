@@ -324,7 +324,7 @@ function initInfractionSaleOffGrid() {
             {
                 field: "Name", title: '科目', width: 450, align: 'left',
                 formatter: function (value, row, index) {
-                    var html = '<img style="margin-left:15px;" width="40" height="40" src="' + row.Image + '" /><span class="overflow-ellipsis" style="width:300px"><a title="' + value + '" target="_blank" href="/product/detail/' + row.Id + '">' + value + '</a></span>';
+                    var html = '<span class="overflow-ellipsis" style="width:300px"><a title="' + value + '" target="_blank" href="/product/detail/' + row.Id + '">' + value + '</a></span>';
                     return html;
                 }
             },
@@ -384,7 +384,7 @@ function initAuditGrid() {
             {
                 field: "Name", title: '科目', align: 'left',
                 formatter: function (value, row, index) {
-                    var html = '<img class="ml15 mr10" width="40" height="40" src="' + row.Image + '" /><a class="single-ellipsis w350 h40 lh40" title="' + value + '" href="/product/detail/' + row.Id + '" target="_blank">' + value + '</a>';
+                    var html = '<a class="single-ellipsis w350 h40 lh40" title="' + value + '" href="/product/detail/' + row.Id + '" target="_blank">' + value + '</a>';
                     return html;
                 }
             },
@@ -447,16 +447,18 @@ function initGrid(params) {
             { checkbox: true, width: 40 },
             { field: "IsLimitTimeBuy", hidden: true, width: 40 },
             {
-                field: "Name", title: '科目', align: 'left', width: 400,
+                field: "Name", title: '科目', align: 'left', width: 90,
                 formatter: function (value, row, index) {
-                    var html = '<img class="ml15" width="40" height="40" src="' + row.Image + '" /><a class="single-ellipsis w320 lh20" title="' + value + '" target="_blank" href="/product/detail/' + row.Id + '">' + value + '</a>';
+                    var html = '<a class="single-ellipsis w320 lh20" title="' + value + '" target="_blank" href="/product/detail/' + row.Id + '">' + value + '</a>';
                     html = html + '<p class="lh20" style="color:#ffa702;">￥' + row.Price.toFixed(2) + '</p>';
                     return html;
                 }
             },
         //    { field: "ProductCode", title: '科目货号', width: 90 },
         //{ field: "BrandName", title: "品牌", width: 90, align: "center" },
-        { field: "CategoryName", title: "商家分类", width: 90, align: "center" },
+        { field: "CategoryName", title: "科目分类", width: 90, align: "center" },
+          
+
         //{ field: "Stock", title: "库存", width: 80, align: "center" },
         //{
         //    field: "MaxBuyCount", title: "限购数", width: 70, align: "center",

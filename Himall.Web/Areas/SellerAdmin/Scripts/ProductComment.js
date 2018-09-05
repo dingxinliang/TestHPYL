@@ -124,14 +124,14 @@ function query(val) {
         [[
             { field: "Id", hidden: true },
             {
-                field: "OrderId", title: '订单号', align: "center", width: 100,
+                field: "OrderId", title: '预约单号', align: "center", width: 100,
                 formatter: function (value, row, index) {
                     var html = '<a href="/SellerAdmin/order/Detail/' + value + '" >' + value + '</a>';
                     return html;
                 }
             },
             {
-                field: "ProductName", title: '评价商品', align: "left", width: 180,
+                field: "ProductName", title: '评价诊疗项目', align: "left", width: 180,
                 formatter: function (value, row, index) {
                     var spc = " ";
                     if (row.Color != null && row.Color.length > 0) { spc += row.ColorAlias + "：" + row.Color; }
@@ -153,7 +153,7 @@ function query(val) {
                     return html;
                 }
             },
-            { field: "CommentMark", title: '商品评分',align: "center", width:70 },
+            { field: "CommentMark", title: '诊疗项目评分',align: "center", width:70 },
             { field: "CommentDateStr", title: '初评日期', width: 80 },
              { field: "AppendDateStr", title: '追评日期', width: 80 },
 

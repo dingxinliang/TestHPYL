@@ -266,6 +266,7 @@
     <Compile Include="Areas\Mobile\Controllers\BranchOrderController.cs" />
     <Compile Include="Areas\Mobile\Controllers\BranchProductController.cs" />
     <Compile Include="Areas\Mobile\Controllers\CouponRecord.cs" />
+    <Compile Include="Areas\SellerAdmin\Controllers\DXL\FollowController.cs" />
     <Compile Include="Areas\SellerAdmin\Controllers\DXL\TemPlateController.cs" />
     <Compile Include="Wdgj_Api\WdgjApiHandler.ashx.cs">
       <DependentUpon>WdgjApiHandler.ashx</DependentUpon>
@@ -756,6 +757,9 @@
     <Compile Include="Models\WeiXinShareArgsModel.cs" />
     <Compile Include="ObjectEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Areas\SellerAdmin\Scripts\DXL\doctorContent.js" />
+    <Content Include="Areas\SellerAdmin\Scripts\DXL\FolwManagement.js" />
+    <Content Include="Areas\SellerAdmin\Scripts\DXL\UserPlan.js" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -3735,6 +3739,10 @@
     <Content Include="Areas\SellerAdmin\Views\TemPlate\doctorfollow.cshtml" />
     <Content Include="Areas\SellerAdmin\Views\TemPlate\followcontent.cshtml" />
     <Content Include="Areas\SellerAdmin\Views\TemPlate\Save.cshtml" />
+    <Content Include="Areas\SellerAdmin\Views\TemPlate\doctorEdit.cshtml" />
+    <Content Include="Areas\SellerAdmin\Views\TemPlate\doctorcontent.cshtml" />
+    <Content Include="Areas\SellerAdmin\Views\Follow\management.cshtml" />
+    <Content Include="Areas\SellerAdmin\Views\Follow\FollowPlanDetail.cshtml" />
     <None Include="Properties\PublishProfiles\Deploy.pubxml" />
     <Content Include="Areas\Admin\Views\PageSettings\AddHomeFloorDetail7.cshtml" />
     <Content Include="Areas\Admin\Views\PageSettings\AddHomeFloorDetail8.cshtml" />

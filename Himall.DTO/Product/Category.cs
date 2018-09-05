@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 商品类别
+    /// 诊疗项目类别
     /// </summary>
     public class Category
     {

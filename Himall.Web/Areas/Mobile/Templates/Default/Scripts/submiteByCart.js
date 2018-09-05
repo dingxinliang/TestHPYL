@@ -164,7 +164,7 @@ $("#choiceAddr").click(function () {
 
 $(document).on('click','.cover, #paymentsChooser .close',function () {
     $('.cover,.custom-dialog').fadeOut();
-    if (paymentShown) {//如果已经显示支付方式，则跳转到订单列表页面
+    if (paymentShown) {//如果已经显示支付方式，则跳转到预约单列表页面
         location.href = '/' + areaName + '/Member/Orders';
     }
 });

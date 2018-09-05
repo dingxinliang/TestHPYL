@@ -74,13 +74,13 @@ namespace Himall.Web.Areas.Web.Controllers
                     {
                         orderIds += item.VirtualItemId + ",";
                     }
-                    remark = "使用订单号(" + orderIds.TrimEnd(',') + ")";
+                    remark = "使用预约单号(" + orderIds.TrimEnd(',') + ")";
                     break;
                 //case MemberIntegral.IntegralType.Comment:
-                //    remark = "商品评价（商品ID：" + recordAction.FirstOrDefault().VirtualItemId + ")";
+                //    remark = "诊疗项目评价（诊疗项目ID：" + recordAction.FirstOrDefault().VirtualItemId + ")";
                 //    break;
                 //case MemberIntegral.IntegralType.ProportionRebate:
-                //    remark = "使用订单号(" +recordAction.FirstOrDefault().VirtualItemId + ")";
+                //    remark = "使用预约单号(" +recordAction.FirstOrDefault().VirtualItemId + ")";
                 //    break;
                 default:
                     return remark;
@@ -88,7 +88,7 @@ namespace Himall.Web.Areas.Web.Controllers
             return remark;
         }
 
-        #region 礼品订单
+        #region 礼品预约单
         public ActionResult OrderList(string skey,GiftOrderInfo.GiftOrderStatus? status, int page=1)
         {
             int rows = 12;
@@ -135,7 +135,7 @@ namespace Himall.Web.Areas.Web.Controllers
             _iGiftsOrderService.ConfirmOrder(id, CurrentUser.Id);
             result.success = true;
             result.status = 1;
-            result.msg = "订单完成";
+            result.msg = "预约单完成";
             return Json(result);
         }
         #endregion

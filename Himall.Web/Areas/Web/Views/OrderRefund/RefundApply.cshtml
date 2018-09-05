@@ -7,7 +7,7 @@
     Himall.Model.OrderInfo OrderData = Model.OrderInfo;
     long? OrderItemId = Model.OrderItemId;
     int RefundType = 0;
-    bool isRefundOrder = Model.IsOrderAllRefund;    //是否为整笔订单退款
+    bool isRefundOrder = Model.IsOrderAllRefund;    //是否为整笔预约单退款
     if (Model.RefundMode.HasValue)
     {
         RefundType = 1;
@@ -61,7 +61,7 @@
                 </colgroup>
                 <thead>
                     <tr class="tr">
-                        <th>订单编号</th>
+                        <th>预约单编号</th>
                         <th>下单时间</th>
                         <th>运费</th>
                         <th>实付金额</th>
@@ -78,7 +78,7 @@
                 </colgroup>
                 <thead>
                     <tr class="tr">
-                        <th>商品</th>
+                        <th>诊疗项目</th>
                         <th>购买数量</th>
                         <th>实付金额</th>
                     </tr>

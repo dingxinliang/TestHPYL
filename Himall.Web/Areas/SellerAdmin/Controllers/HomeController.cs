@@ -172,9 +172,9 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 model.SellerServiceAttitude = sellerServiceAttitude != null ? string.Format("{0:F}", sellerServiceAttitude.CommentValue) : defaultValue;
                 //卖家发货速度
                 model.SellerDeliverySpeed = sellerDeliverySpeed != null ? string.Format("{0:F}", sellerDeliverySpeed.CommentValue) : defaultValue;
-                //所有商品数
+                //所有诊疗项目数
                 model.ProductsNumberIng = model.SellerConsoleModel.ProductLimit.ToString();
-                //发布商品数量
+                //发布诊疗项目数量
                 model.ProductsNumber = model.SellerConsoleModel.ProductsCount.ToString();
 
                 //使用空间
@@ -182,11 +182,11 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 //正使用的空间
                 model.UseSpaceing = model.SellerConsoleModel.ProductImages.ToString();
 
-                //商品咨询
+                //诊疗项目咨询
                 model.OrderProductConsultation = model.SellerConsoleModel.ProductConsultations.ToString();
-                //订单总数
+                //预约单总数
                 model.OrderCounts = model.SellerConsoleModel.OrderCounts.ToString();
-                //待买家付款
+                //待患者付款
                 model.OrderWaitPay = model.SellerConsoleModel.WaitPayTrades.ToString();
                 //待发货
                 model.OrderWaitDelivery = model.SellerConsoleModel.WaitDeliveryTrades.ToString();
@@ -205,7 +205,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 model.OrderWithRefund = model.SellerConsoleModel.RefundTrades.ToString();
                 //待处理退货
                 model.OrderWithRefundAndRGoods = model.SellerConsoleModel.RefundAndRGoodsTrades.ToString();
-                //商品评价
+                //诊疗项目评价
                 model.ProductsEvaluation = model.SellerConsoleModel.ProductComments.ToString();
                 //授权品牌
                 model.ProductsBrands =_iBrandService.GetShopBrandApplys(CurrentSellerManager.ShopId).Where(c => c.AuditStatus == 1).Count().ToString();

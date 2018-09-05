@@ -25,7 +25,7 @@ namespace Himall.DTO
         /// </summary>
         public List<FightGroupActiveItemModel> skulist { get; set; }
         /// <summary>
-        /// 商品图片
+        /// 诊疗项目图片
         /// </summary>
         public string ProductImg { get; set; }
     }

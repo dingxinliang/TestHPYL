@@ -151,7 +151,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 case Himall.Model.CouponInfo.CouponReceiveType.IntegralExchange:
                     if (!couponser.CanAddIntegralCoupon(shopId, info.Id))
                     {
-                        return Json(new Result() { success = false, msg = "当前已有积分优惠券，每商家只可以推广一张积分优惠券！" });
+                        return Json(new Result() { success = false, msg = "当前已有积分优惠券，每诊所只可以推广一张积分优惠券！" });
                     }
                     info.Himall_CouponSetting.Clear();
                     if (info.EndIntegralExchange == null)

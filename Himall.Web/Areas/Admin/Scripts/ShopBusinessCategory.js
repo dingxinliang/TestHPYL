@@ -179,7 +179,7 @@ function deleteCategoryLine(obj) {
                 $("tr#" + id).remove();
                 //console.log(categoryArray);
             } else {
-                $.dialog.errorTips('不可以删除，用户有运营商品被购买！');
+                $.dialog.errorTips('不可以删除，用户有运营诊疗项目被购买！');
             }
             loading.close();
         }, error: function () { loading.close(); }

@@ -27,7 +27,7 @@ namespace Himall.Service
 
 			var result = specifications.ToList();
 
-			//获取商家自定义的规格
+			//获取诊所自定义的规格
 			var shopSpecifications = this.Context.SellerSpecificationValueInfo.Where(p => p.ShopId == shopId && p.TypeId == category.TypeId).ToList();
 			//覆盖平台默认规格
 			foreach (var item in shopSpecifications)

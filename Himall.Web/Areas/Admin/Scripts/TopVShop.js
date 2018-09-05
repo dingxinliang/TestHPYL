@@ -29,7 +29,7 @@ function ReplaceHotVShop(oldVShopId) {
         content: $('#replace-HotVShop')[0],
     });
 
-    //商品表格
+    //诊疗项目表格
     $("#repaceList").hiMallDatagrid({
         url: '/admin/VShop/GetVshops',
         nowrap: false,

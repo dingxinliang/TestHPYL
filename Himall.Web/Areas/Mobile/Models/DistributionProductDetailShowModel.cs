@@ -94,7 +94,7 @@ namespace Himall.Web.Areas.Mobile.Models
         /// </summary>
         public decimal sellerDeliverySpeedMin { get; set; }
         /// <summary>
-        /// 商品二维码
+        /// 诊疗项目二维码
         /// </summary>
         public string Code { get; set; }
 
@@ -109,7 +109,7 @@ namespace Himall.Web.Areas.Mobile.Models
 
         public string VShopLog { get; set; }
         /// <summary>
-        /// 推广商品数
+        /// 推广诊疗项目数
         /// </summary>
         public long ShopDistributionProductNum { get; set; }
         /// <summary>

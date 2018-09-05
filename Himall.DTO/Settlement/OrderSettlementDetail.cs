@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 订单结算详情
-    //结算金额=商品实付+运费-平台佣金-分销佣金-退款金额+平台佣金退还+分销佣金退还
+    /// 预约单结算详情
+    //结算金额=诊疗项目实付+运费-平台佣金-分销佣金-退款金额+平台佣金退还+分销佣金退还
     /// </summary>
     public class OrderSettlementDetail
     {
         /// <summary>
-        /// 订单支付时间
+        /// 预约单支付时间
         /// </summary>
         public string OrderPayTime { set; get; }
 
         /// <summary>
-        /// 商品实付
+        /// 诊疗项目实付
         /// </summary>
         public decimal ProductsTotal { set; get; }
 
         /// <summary>
-        /// 订单运费
+        /// 预约单运费
         /// </summary>
         public decimal Freight { set; get; }
 

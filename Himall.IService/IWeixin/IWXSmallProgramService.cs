@@ -13,26 +13,26 @@ namespace Himall.IServices
     public interface IWXSmallProgramService : IService
     {
         /// <summary>
-        /// 获取所有商品
+        /// 获取所有诊疗项目
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
         ObsoletePageModel<ProductInfo> GetWXSmallProducts(int page,int rows);
 
         /// <summary>
-        /// 添加商品
+        /// 添加诊疗项目
         /// </summary>
         void AddWXSmallProducts(WXSmallChoiceProductsInfo model);
 
         /// <summary>
-        /// 批量商品信息
+        /// 批量诊疗项目信息
         /// </summary>
-        /// <param name="productIds">分销商品ids</param>
+        /// <param name="productIds">分销诊疗项目ids</param>
         /// <returns></returns>
         List<WXSmallChoiceProductsInfo> GetWXSmallProductInfo(IEnumerable<long> productIds);
 
         /// <summary>
-        /// 获取所有商品
+        /// 获取所有诊疗项目
         /// </summary>
         /// <returns></returns>
         List<WXSmallChoiceProductsInfo> GetWXSmallProducts();

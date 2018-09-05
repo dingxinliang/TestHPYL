@@ -10,7 +10,7 @@ namespace Himall.Web.Areas.Web.Models
         /// </summary>
         public int IntegralPerMoney { get; set; }
         /// <summary>
-        /// 订单使用的积分
+        /// 预约单使用的积分
         /// </summary>
         public int Integral { get; set; }
         /// <summary>
@@ -20,7 +20,7 @@ namespace Himall.Web.Areas.Web.Models
 
         public string cartItemIds { get; set; }
         /// <summary>
-        /// 完成订单将可以获得的积分
+        /// 完成预约单将可以获得的积分
         /// </summary>
         public decimal TotalIntegral { get; set; }
         /// <summary>
@@ -37,7 +37,7 @@ namespace Himall.Web.Areas.Web.Models
         public List<OrderSubmitItemModel> freightProductGroup { get; set; }
 
         /// <summary>
-        /// 订单总金额
+        /// 预约单总金额
         /// </summary>
         public decimal totalAmount { get; set; }
 

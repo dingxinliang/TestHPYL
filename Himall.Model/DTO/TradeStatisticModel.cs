@@ -24,7 +24,7 @@ namespace Himall.Model
 
         public bool StatisticFlag { get; set; }
         /// <summary>
-        /// 订单转化率
+        /// 预约单转化率
         /// </summary>
         public decimal OrderConversionsRates
         {
@@ -34,7 +34,7 @@ namespace Himall.Model
                 else
                 {
                     if (this.OrderUserCount > 0)
-                    {//有订单，没浏览人数，默认为100%
+                    {//有预约单，没浏览人数，默认为100%
                         return Math.Round((Convert.ToDecimal(this.OrderUserCount) / this.OrderUserCount) * 100, 2);
                     }
                     return 0;

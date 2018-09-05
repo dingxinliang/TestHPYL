@@ -56,7 +56,7 @@ $(function () {
 				    checkbox: true, width: 73,
 				},
                 {
-                    field: "name", title: '商品', width: 280, align: "left",
+                    field: "name", title: '诊疗项目', width: 280, align: "left",
                     formatter: function (value, row, index) {
                         var html = '<img width="40" height="40" src="' + row.imgUrl + '" style="" /><span class="overflow-ellipsis" style="width:200px"><a title="' + value + '" href="/product/detail/' + row.id + '" target="_blank" href="' + row.url + '">' + value + '</a>';
                         html = html + '<p>￥' + row.price.toFixed(2) + '</p></span>';
@@ -90,7 +90,7 @@ $(function () {
 			        var html = "";
 			        html += '<span class="btn-a">';
 			        html += '<a class="good-check view-mobile-product" title="预览" data-url="/m/product/detail/' + row.id + '?sv=True" style="font-size:13px;text-decoration: none; cursor:pointer;">预览</a>';
-			        if (row.auditStatus == 1 && row.saleStatus == 1)//仅未审核的商品需要审核
+			        if (row.auditStatus == 1 && row.saleStatus == 1)//仅未审核的诊疗项目需要审核
 			            html += '<a class="good-check" onclick="audit(' + row.id + ')">审核</a>';
 			        else if (row.auditStatus == 2)//
 			            html += '<a class="good-break" onclick="infractionSaleOffDialog(' + row.id + ')">违规下架</a>';
@@ -214,7 +214,7 @@ $(function () {
 function batchInfractionSaleOff() {
     var productIds = getSelectedIds();
     if (productIds.length == 0) {
-        $.dialog.errorTips("请至少选择一件销售中的商品");
+        $.dialog.errorTips("请至少选择一件销售中的诊疗项目");
         return;
     }
     infractionSaleOffDialog(productIds);
@@ -224,7 +224,7 @@ function batchInfractionSaleOff() {
 function batchAuditProduct() {
     var productIds = getWaitForAuditingSelIds();
     if (productIds.length == 0) {
-        $.dialog.errorTips("请至少选择一件待审核的商品");
+        $.dialog.errorTips("请至少选择一件待审核的诊疗项目");
         return;
     }
     audit(productIds);
@@ -257,7 +257,7 @@ function getWaitForAuditingSelIds() {
 function audit(productId) {
 
     $.dialog({
-        title: '商品审核',
+        title: '诊疗项目审核',
         lock: true,
         id: 'goodCheck',
         padding: '0 40px',

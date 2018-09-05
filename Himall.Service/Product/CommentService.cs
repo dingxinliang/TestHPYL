@@ -23,7 +23,7 @@ namespace Himall.Service
             var m = Context.OrderItemInfo.Where(a => a.Id == model.SubOrderId && a.OrderInfo.UserId == model.UserId).FirstOrDefault();
             if (m == null)
             {
-                throw new Himall.Core.HimallException("不能对此商品进行评价！");
+                throw new Himall.Core.HimallException("不能对此诊疗项目进行评价！");
             }
             model.ShopId = m.ShopId;
             model.ProductId = m.ProductId;
@@ -31,7 +31,7 @@ namespace Himall.Service
             model.IsHidden = false;
             Context.ProductCommentInfo.Add(model);
 
-            //更新搜索商品评论数
+            //更新搜索诊疗项目评论数
             var searchProduct = Context.SearchProductsInfo.FirstOrDefault(r => r.ProductId == m.ProductId);
             if(searchProduct != null)
                 searchProduct.Comments += 1;
@@ -45,14 +45,14 @@ namespace Himall.Service
 				var m = Context.OrderItemInfo.Where(a => a.Id == model.SubOrderId && a.OrderInfo.UserId == model.UserId).FirstOrDefault();
 				if (m == null)
 				{
-					throw new Himall.Core.HimallException("不能对此商品进行评价！");
+					throw new Himall.Core.HimallException("不能对此诊疗项目进行评价！");
 				}
 				model.ShopId = m.ShopId;
 				model.ProductId = m.ProductId;
 				model.ShopName = Context.ShopInfo.Where(a => a.Id == m.ShopId).Select(a => a.ShopName).FirstOrDefault();
 				model.IsHidden = false;
 
-                //更新搜索商品评论数
+                //更新搜索诊疗项目评论数
                 var searchProduct = Context.SearchProductsInfo.FirstOrDefault(r => r.ProductId == m.ProductId);
                 if (searchProduct != null)
                     searchProduct.Comments += 1;
@@ -69,7 +69,7 @@ namespace Himall.Service
             //windows服务调用此方法不报错
             var siteSetting = ServiceProvider.Instance<ISiteSettingService>.Create.GetSiteSettingsByObjectCache();
 
-            //自动订单评价天数
+            //自动预约单评价天数
             int intIntervalDay = siteSetting == null ? 7 : (siteSetting.OrderCommentTimeout == 0 ? 7 : siteSetting.OrderCommentTimeout);
             DateTime waitCommentDate = DateTime.Now.AddDays(-intIntervalDay);
             List<OrderInfo> info = new List<OrderInfo>();
@@ -112,7 +112,7 @@ namespace Himall.Service
                     model.IsHidden = false;
                     Context.ProductCommentInfo.Add(model);
 
-                    //更新商品评论数
+                    //更新诊疗项目评论数
                     var searchProduct = Context.SearchProductsInfo.FirstOrDefault(r => r.ProductId == item.ProductId);
                     if (searchProduct != null)
                         searchProduct.Comments += 1;
@@ -139,7 +139,7 @@ namespace Himall.Service
                 Context.SaveChanges();
                 //MemberIntegralRecord record = new MemberIntegralRecord();
                 //record.UserName = info.UserName;
-                //record.ReMark = "订单号:" + info.OrderId;
+                //record.ReMark = "预约单号:" + info.OrderId;
                 //record.MemberId = info.UserId;
                 //record.RecordDate = DateTime.Now;
                 //record.TypeId = MemberIntegral.IntegralType.Comment;
@@ -157,7 +157,7 @@ namespace Himall.Service
             var model = Context.ProductCommentInfo.FindBy(item => item.Id == id && item.ShopId == shopId).FirstOrDefault();
             if (shopId == 0 || model == null)
             {
-                throw new Himall.Core.HimallException("不存在该商品评论");
+                throw new Himall.Core.HimallException("不存在该诊疗项目评论");
             }
             model.ReplyContent = replyContent;
             model.ReplyDate = DateTime.Now;
@@ -333,7 +333,7 @@ namespace Himall.Service
             return pageModel;
         }
         /// <summary>
-        /// 根据订单ID获取订单商品的评价
+        /// 根据预约单ID获取预约单诊疗项目的评价
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="userId"></param>
@@ -466,7 +466,7 @@ namespace Himall.Service
             var model = Context.ProductCommentInfo.FindBy(item => item.Id == id && item.ShopId == shopId).FirstOrDefault();
             if (shopId == 0 || model == null)
             {
-                throw new Himall.Core.HimallException("不存在该商品评论");
+                throw new Himall.Core.HimallException("不存在该诊疗项目评论");
             }
             if (!string.IsNullOrEmpty(replyContent))
             {
@@ -540,7 +540,7 @@ namespace Himall.Service
                 var m = Context.ProductCommentInfo.FindBy(item => item.Id == model.Id && item.UserId == model.UserId).FirstOrDefault();
                 if (model.UserId == 0 || m == null)
                 {
-                    throw new Himall.Core.HimallException("该商品尚未评论，请先评论。");
+                    throw new Himall.Core.HimallException("该诊疗项目尚未评论，请先评论。");
                 }
                 if(m.AppendDate.HasValue)
                 {
@@ -584,7 +584,7 @@ namespace Himall.Service
                 info.MemberId = userid;
                 info.RecordDate = DateTime.Now;
                 info.TypeId = MemberIntegral.IntegralType.Comment;
-                info.ReMark = "追加评论,订单号:" + orderId;
+                info.ReMark = "追加评论,预约单号:" + orderId;
                 MemberIntegralRecordAction action = new MemberIntegralRecordAction();
                 action.VirtualItemTypeId = MemberIntegral.VirtualItemType.Comment;
                 action.VirtualItemId = orderId;

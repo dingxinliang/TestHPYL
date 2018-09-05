@@ -53,7 +53,7 @@ function loadProductComments(page) {
                 html += '<p class="c-2a2a2a">' + items.ReviewContent + '</p><dl class="comment-img" data-img=\''+dataImg+'\'>'+showImg+'</dl>';
 
                 if (items.ReplyContent != null && items.ReplyContent != '' && items.ReplyContent != "暂无回复") {
-                    html += '<dl class="shop-reply">商家回复：' + items.ReplyContent + '</><div class="date-answer">' + items.ReplyDate + '</div></dl>'
+                    html += '<dl class="shop-reply">诊所回复：' + items.ReplyContent + '</><div class="date-answer">' + items.ReplyDate + '</div></dl>'
                 }
                 if (items.AppendDate != null && items.AppendDate != "") {
                     dataImg = showImg = '';
@@ -64,7 +64,7 @@ function loadProductComments(page) {
                     html += '<dl class="comment-ago"><dt>收货' + GetDateDiff(items.FinshDate, items.AppendDate) + '天后追加</dt><dd>' + items.AppendContent + '</dd></dl><dl class="comment-img" data-img=\''+dataImg+'\'>'+showImg+'</dl>';
                 }
                 if (items.ReplyDate != null && items.ReplyAppendContent != null && items.ReplyAppendContent != "" && items.ReplyAppendContent != "暂无回复") {
-                    html += '<dl class="shop-reply">商家回复：' + items.ReplyAppendContent + '</dl>';//e.ReplyDate
+                    html += '<dl class="shop-reply">诊所回复：' + items.ReplyAppendContent + '</dl>';//e.ReplyDate
                 }
 
                 html += '</li>';

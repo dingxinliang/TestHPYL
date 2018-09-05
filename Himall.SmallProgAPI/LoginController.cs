@@ -301,7 +301,7 @@ namespace Himall.SmallProgAPI
                     HasSKU = item.HasSKU,
                     SkuId = GetSkuIdByProductId(item.Id),//d.Himall_Products d.Field<string>("SkuId"),
                     ActiveId = activeId,
-                    ActiveType = activetype//获取该商品是否参与活动
+                    ActiveType = activetype//获取该诊疗项目是否参与活动
                 };
                 productList.Add(ChoiceProducts);
 
@@ -321,9 +321,9 @@ namespace Himall.SmallProgAPI
             var model = ServiceProvider.Instance<IMemberService>.Create.GetUserCenterModel(member.Id);
             var memgradeid = ServiceProvider.Instance<IMemberGradeService>.Create.GetMemberGradeByUserId(member.Id);
             string gradeName = model.GradeName == null ? "" : model.GradeName;
-            //获取会员等待付款订单数
+            //获取会员等待付款预约单数
             int waitPayCount = Convert.ToInt32(model.WaitPayOrders);
-            //获取会员待收货数量
+            //获取会员待结算数量
             int waitFinishCount = Convert.ToInt32(model.WaitReceivingOrders);
             //获取会员待发货数量
             int waitSendCount = Convert.ToInt32(model.WaitDeliveryOrders);

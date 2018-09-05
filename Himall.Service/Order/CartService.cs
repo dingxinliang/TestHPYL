@@ -96,7 +96,7 @@ namespace Himall.Service
             }
             if (count < 0)
             {
-                throw new InvalidPropertyException("商品数量不能小于0");
+                throw new InvalidPropertyException("诊疗项目数量不能小于0");
             }
             if (base.Context.UserMemberInfo.FirstOrDefault<UserMemberInfo>(item => (item.Id == memberId)) == null)
             {
@@ -118,7 +118,7 @@ namespace Himall.Service
             }
             if (count < 0)
             {
-                throw new InvalidPropertyException("商品数量不能小于0");
+                throw new InvalidPropertyException("诊疗项目数量不能小于0");
             }
             if (shopbranchId <= 0L)
             {

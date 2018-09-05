@@ -172,7 +172,7 @@ namespace Himall.IServices
         void UpdateShopStatus(long shopId, ShopInfo.ShopAuditStatus status, string comments = "", int TrialDays = 0);
 
         /// <summary>
-        /// 商家后台控制台
+        /// 诊所后台控制台
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -370,7 +370,7 @@ namespace Himall.IServices
         List<ShopAccountInfo> GetShopAccounts(IEnumerable<long> ids);
 
 		/// <summary>
-		/// 获取商家名称
+		/// 获取诊所名称
 		/// </summary>
 		/// <param name="ids"></param>
 		/// <returns></returns>
@@ -392,7 +392,7 @@ namespace Himall.IServices
         ShopInfo.ShopVistis GetShopVistiInfo(DateTime startDate, DateTime endDate, long shopId);
 
         /// <summary>
-        /// 获取店铺的订单销量
+        /// 获取店铺的预约单销量
         /// </summary>
         int GetSales(long id);
 
@@ -418,7 +418,7 @@ namespace Himall.IServices
         /// <param name="state">true冻结 false解冻</param>
         void FreezeShop(long id, bool state);
         /// <summary>
-        /// 将所有在售的商品下架
+        /// 将所有在售的诊疗项目下架
         /// </summary>
         /// <param name="id"></param>
         void SaleOffAllProduct(long id);
@@ -427,7 +427,7 @@ namespace Himall.IServices
         /// </summary>
         void AutoCloseMarketingActionByShopExpiredOrFreeze();
         /// <summary>
-        /// 下架过期或冻结店铺的商品(JOB)
+        /// 下架过期或冻结店铺的诊疗项目(JOB)
         /// </summary>
         void AutoSaleOffProductByShopExpiredOrFreeze();
 

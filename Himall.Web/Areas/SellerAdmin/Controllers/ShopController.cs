@@ -355,7 +355,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             decimal spread = newGrade.ChargeStandard - shopGrade.ChargeStandard;
             DateTime endTime = shopInfo.EndDate.Value;
             string amount = (endTime.Subtract(DateTime.Now).Days * spread / 365).ToString("F2");
-            string newGradeInfo = "可发布商品 " + newGrade.ProductLimit + "个，使用图片空间 " + newGrade.ImageLimit + "M";
+            string newGradeInfo = "可发布诊疗项目 " + newGrade.ProductLimit + "个，使用图片空间 " + newGrade.ImageLimit + "M";
 
             return Json(new { success = true, amount = amount, gradeTip = newGradeInfo });
         }

@@ -16,7 +16,7 @@ namespace Himall.API
     public class ShopOrderController : BaseShopApiController
     {
         /// <summary>
-        /// 搜索门店订单
+        /// 搜索门店预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace Himall.API
             OrderInfo order = ordser.GetOrder(id);
             if (order == null || order.ShopId != shopid)
             {
-                throw new HimallApiException("错误的订单编号");
+                throw new HimallApiException("错误的预约单编号");
             }
             var bonusService = ServiceProvider.Instance<IShopBonusService>.Create;
             var orderRefundService = ServiceProvider.Instance<IRefundService>.Create;
@@ -78,7 +78,7 @@ namespace Himall.API
             {
                 ShopBranchInfo = ShopBranchApplication.GetShopBranchById(order.ShopBranchId.Value);
             }
-            //获取订单商品项数据
+            //获取预约单诊疗项目项数据
             var orderDetail = new
             {
                 ShopName = shopService.GetShop(order.ShopId).ShopName,

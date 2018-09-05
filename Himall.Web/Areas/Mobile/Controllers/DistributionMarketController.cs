@@ -123,7 +123,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return Json(new Result() { success = true });
         }
 
-        #region 分销市场商品
+        #region 分销市场诊疗项目
         public ActionResult Index()
         {
 
@@ -132,7 +132,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             ViewBag.slideImage = slideImageSettings;
 
             CheckPromoter();
-            //首页推荐商品
+            //首页推荐诊疗项目
             var models = DistributionApplication.GetDistributionProducts(CurrentUser.Id);
             foreach(var product in models)
             {
@@ -161,7 +161,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        /// 商品分类
+        /// 诊疗项目分类
         /// </summary>
         /// <returns></returns>
         public ActionResult DistributionMarketCategory()
@@ -207,7 +207,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return View(model);
         }
         /// <summary>
-        /// 获取分销商品列表
+        /// 获取分销诊疗项目列表
         /// </summary>
         /// <param name="skey"></param>
         /// <param name="page"></param>
@@ -291,7 +291,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return Json(result);
         }
         /// <summary>
-        /// 代理商品
+        /// 代理诊疗项目
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -301,12 +301,12 @@ namespace Himall.Web.Areas.Mobile.Controllers
             List<long> proids = new List<long>();
             proids.Add(id);
             _iDistributionService.AddAgentProducts(proids, curUserId);
-            result = new Result { success = true, msg = "代理商品成功" };
+            result = new Result { success = true, msg = "代理诊疗项目成功" };
             return Json(result);
         }
         #endregion
 
-        #region 商品详情
+        #region 诊疗项目详情
 
         public ActionResult ProductDetail(string id = "")
         {
@@ -330,7 +330,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             ShopInfo shop = null;
             long gid = 0;
 
-            #region 商品Id不合法
+            #region 诊疗项目Id不合法
             if (long.TryParse(id, out gid)) { }
             if (gid == 0)
             {
@@ -341,7 +341,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
 
 
 
-            #region 初始化商品和店铺
+            #region 初始化诊疗项目和店铺
             probroker = _iDistributionService.GetDistributionProductInfo(gid);
             product = _iProductService.GetProduct(gid);
 
@@ -399,7 +399,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             detailModel.IsFavorite = isFavorite;
             #endregion
 
-            #region 商品规格
+            #region 诊疗项目规格
 
             ProductTypeInfo typeInfo = _iTypeService.GetType(product.TypeId);
             string colorAlias = (typeInfo == null || string.IsNullOrEmpty(typeInfo.ColorAlias)) ? SpecificationType.Color.ToDescription() : typeInfo.ColorAlias;
@@ -632,7 +632,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         /// 搜索框
         /// </summary>
         /// <param name="skey">关键词</param>
-        /// <param name="stype">类型(0商品 1店铺)</param>
+        /// <param name="stype">类型(0诊疗项目 1店铺)</param>
         /// <returns></returns>
         public ActionResult SearchBox(string skey, int stype = 0)
         {

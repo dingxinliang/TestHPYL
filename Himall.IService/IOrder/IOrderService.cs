@@ -11,13 +11,13 @@ using Himall.CommonModel.Delegates;
 namespace Himall.IServices
 {
     /// <summary>
-    /// 订单服务接口
+    /// 预约单服务接口
     /// </summary>
     public interface IOrderService : IService
     {
         #region 属性
         /// <summary>
-        /// 订单支付成功
+        /// 预约单支付成功
         /// </summary>
         event OrderPaySuccessed OnOrderPaySuccessed;
         #endregion
@@ -26,7 +26,7 @@ namespace Himall.IServices
         SKUInfo GetSkuByID(string skuid);
 
         /// <summary>
-        /// 创建订单
+        /// 创建预约单
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -34,80 +34,80 @@ namespace Himall.IServices
 
         void UpdateProductVistiOrderCount(long orderId);
         /// <summary>
-        /// 确认0元订单（使用积分抵扣为0）
+        /// 确认0元预约单（使用积分抵扣为0）
         /// </summary>
         /// <param name="orders"></param>
         void ConfirmZeroOrder(IEnumerable<long> Ids, long userId);
 
         /// <summary>
-        /// 删除订单（使用积分抵扣会生成订单，生成后用户可能会点击取消使用积分抵扣）
+        /// 删除预约单（使用积分抵扣会生成预约单，生成后用户可能会点击取消使用积分抵扣）
         /// </summary>
         void CancelOrders(IEnumerable<long> Ids, long userId);
 
         /// <summary>
-        /// 获取订单列表
+        /// 获取预约单列表
         /// </summary>
         /// <param name="orderQuery"></param>
         /// <returns></returns>
         ObsoletePageModel<OrderInfo> GetOrders<Tout>(OrderQuery orderQuery, Expression<Func<OrderInfo, Tout>> sort = null);
         /// <summary>
-        /// 分页获取订单
+        /// 分页获取预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
         QueryPageModel<OrderInfo> GetOrders(OrderQuery query);
 
         /// <summary>
-        /// 获取订单列表(忽略分页)
+        /// 获取预约单列表(忽略分页)
         /// </summary>
         /// <param name="orderQuery"></param>
         /// <returns></returns>
         List<OrderInfo> GetOrdersNoPage(OrderQuery orderQuery);
 
         /// <summary>
-        /// 获取增量订单
+        /// 获取增量预约单
         /// </summary>
         /// <param name="orderQuery"></param>
         /// <returns></returns>
         ObsoletePageModel<OrderInfo> GetOrdersByLastModifyTime(OrderQuery orderQuery);
 
         /// <summary>
-        /// 获取一批指定的订单
+        /// 获取一批指定的预约单
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
         List<OrderInfo> GetOrders(IEnumerable<long> ids);
 
         /// <summary>
-        /// 根据订单id获取订单项
+        /// 根据预约单id获取预约单项
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
         List<OrderItemInfo> GetOrderItemsByOrderId(long orderId);
 
         /// <summary>
-        /// 根据订单id获取订单项
+        /// 根据预约单id获取预约单项
         /// </summary>
         /// <param name="orderIds"></param>
         /// <returns></returns>
         List<OrderItemInfo> GetOrderItemsByOrderId(IEnumerable<long> orderIds);
 
         /// <summary>
-        /// 获取订单的评论数
+        /// 获取预约单的评论数
         /// </summary>
         /// <param name="orderIds"></param>
         /// <returns></returns>
         Dictionary<long, int> GetOrderCommentCount(IEnumerable<long> orderIds);
 
         /// <summary>
-        /// 根据订单项id获取订单项
+        /// 根据预约单项id获取预约单项
         /// </summary>
         /// <param name="orderItemIds"></param>
         /// <returns></returns>
         List<OrderItemInfo> GetOrderItemsByOrderItemId(IEnumerable<long> orderItemIds);
 
         /// <summary>
-        /// 根据订单项id获取售后记录
+        /// 根据预约单项id获取售后记录
         /// </summary>
         /// <param name="orderItemIds"></param>
         /// <returns></returns>
@@ -116,7 +116,7 @@ namespace Himall.IServices
         decimal GetIntegralDiscountAmount(int integral, long userId);
 
         /// <summary>
-        /// 获取某个用户的订单
+        /// 获取某个用户的预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="userId"></param>
@@ -124,19 +124,19 @@ namespace Himall.IServices
         OrderInfo GetOrder(long orderId, long userId);
 
         /// <summary>
-        /// 获取某个用户的订单
+        /// 获取某个用户的预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
         OrderInfo GetOrder(long orderId);
         /// <summary>
-        /// 根据提货码取订单
+        /// 根据提货码取预约单
         /// </summary>
         /// <param name="pickCode"></param>
         /// <returns></returns>
         OrderInfo GetOrderByPickCode(string pickCode);
         /// <summary>
-        /// 获取商品已购数
+        /// 获取诊疗项目已购数
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="productIds"></param>
@@ -144,14 +144,14 @@ namespace Himall.IServices
         Dictionary<long, int> GetProductBuyCount(long userId, IEnumerable<long> productIds);
 
         /// <summary>
-        /// 是否存在订单
+        /// 是否存在预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="shopId">店铺Id,0表示不限店铺</param>
         /// <returns></returns>
         bool IsExistOrder(long orderId, long shopId = 0);
         /// <summary>
-        /// 平台确认订单收款
+        /// 平台确认预约单收款
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="payRemark"></param>
@@ -161,7 +161,7 @@ namespace Himall.IServices
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="orderIds">订单Id</param>
+        /// <param name="orderIds">预约单Id</param>
         /// <param name="paymentId">支付方式Id</param>
         /// <param name="payNo">支付流水号</param>
         /// <param name="payTime">支付时间</param>
@@ -171,21 +171,21 @@ namespace Himall.IServices
 
         bool PayByCapitalIsOk(long userid, IEnumerable<long> orderIds);
         /// <summary>
-        /// 平台取消订单
+        /// 平台取消预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="managerName"></param>
         void PlatformCloseOrder(long orderId, string managerName, string CloseReason = "");
 
         /// <summary>
-        /// 商家取消订单
+        /// 诊所取消预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="sellerName"></param>
         void SellerCloseOrder(long orderId, string sellerName);
 
         /// <summary>
-        /// 商家修改订单收货地址
+        /// 诊所修改预约单收货地址
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="sellerName"></param>
@@ -198,7 +198,7 @@ namespace Himall.IServices
         void SellerUpdateAddress(long orderId, string sellerName, string shipTo, string cellPhone, int topRegionId, int regionId, string regionFullName, string address);
 
         /// <summary>
-        /// 商家修改订单商品的优惠金额
+        /// 诊所修改预约单诊疗项目的优惠金额
         /// </summary>
         /// <param name="orderItemId"></param>
         /// <param name="discountAmount"></param>
@@ -207,14 +207,14 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 商家修改订单的运费
+        /// 诊所修改预约单的运费
         /// </summary>
         /// <param name="roderId"></param>
         /// <param name="Freight"></param>
         void SellerUpdateOrderFreight(long orderId, decimal freight);
 
         /// <summary>
-        /// 商家发货
+        /// 诊所发货
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="companyName"></param>
@@ -243,27 +243,27 @@ namespace Himall.IServices
         OrderInfo UpdateExpress(long orderId, string companyName, string shipOrderNumber);
 
         /// <summary>
-        /// 会员取消订单
+        /// 会员取消预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="memberName"></param>
         void MemberCloseOrder(long orderId, string memberName);
 
         /// <summary>
-        /// 会员确认订单收货
+        /// 会员确认预约单收货
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="memberName"></param>
         void MembeConfirmOrder(long orderId, string memberName);
         /// <summary>
-        /// 门店核销订单
+        /// 门店核销预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="shopBranchId"></param>
         /// <param name="managerName"></param>
         void ShopBranchConfirmOrder(long orderId, long shopBranchId, string managerName);
         /// <summary>
-        /// 设置订单物流信息
+        /// 设置预约单物流信息
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="expressName"></param>
@@ -271,7 +271,7 @@ namespace Himall.IServices
         /// <param name="orderIds"></param>
         void SetOrderExpressInfo(long shopId, string expressName, string startCode, IEnumerable<long> orderIds);
         /// <summary>
-        /// 设置订单商家备注
+        /// 设置预约单诊所备注
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="mark"></param>
@@ -282,15 +282,15 @@ namespace Himall.IServices
         int GetFightGroupOrderByUser(long userId);
 
         /// <summary>
-        /// 更新订单数
+        /// 更新预约单数
         /// </summary>
         /// <param name="userId">会员Id</param>
-        /// <param name="addOrderCount">变更订单数(正数表示增加，负数表示减少）</param>
-        /// <param name="addOrderAmount">变量订单金额(正数表示增加，负数表示减少）</param>
+        /// <param name="addOrderCount">变更预约单数(正数表示增加，负数表示减少）</param>
+        /// <param name="addOrderAmount">变量预约单金额(正数表示增加，负数表示减少）</param>
         void UpdateMemberOrderInfo(long userId, decimal addOrderAmount = 0, int addOrderCount = 1);
 
         /// <summary>
-        /// 获取指定商品最近一个月的平均成交价格
+        /// 获取指定诊疗项目最近一个月的平均成交价格
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="productId"></param>
@@ -298,31 +298,31 @@ namespace Himall.IServices
         decimal GetRecentMonthAveragePrice(long shopId, long productId);
 
         /// <summary>
-        /// 根据商品编号、状态 获取订单成交笔数
+        /// 根据诊疗项目编号、状态 获取预约单成交笔数
         /// </summary>
-        /// <param name="productId">商品编号</param>
-        /// <param name="orserStatus">订单状态</param>
+        /// <param name="productId">诊疗项目编号</param>
+        /// <param name="orserStatus">预约单状态</param>
         /// <returns></returns>
         int GetSuccessOrderCountByProductID(long productId = 0, OrderInfo.OrderOperateStatus orserStatus = OrderInfo.OrderOperateStatus.Finish);
         /// <summary>
-        /// 计算订单条目可退款金额
+        /// 计算预约单条目可退款金额
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="isCompel">是否强制计算</param>
         void CalculateOrderItemRefund(long orderId, bool isCompel = false);
         /// <summary>
-        /// 商家同意退款，关闭订单
+        /// 诊所同意退款，关闭预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="managerName"></param>
         void AgreeToRefundBySeller(long orderId);
         /// <summary>
-        /// 过期自动确认订单
+        /// 过期自动确认预约单
         /// </summary>
         void AutoConfirmOrder();
 
         /// <summary>
-        /// 过期自动关闭订单
+        /// 过期自动关闭预约单
         /// </summary>
         void AutoCloseOrder();
         /// <summary>
@@ -361,14 +361,14 @@ namespace Himall.IServices
         void DeleteInvoiceTitle(long id, long userId = 0);
 
         /// <summary>
-        /// 根据支付订单号的取订单
+        /// 根据支付预约单号的取预约单
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         IQueryable<OrderPayInfo> GetOrderPay(long id);
 
         /// <summary>
-        /// 保存支付订单信息，生成支付订单
+        /// 保存支付预约单信息，生成支付预约单
         /// </summary>
         /// <param name="model"></param>
         /// <param name="platform"></param>
@@ -376,15 +376,15 @@ namespace Himall.IServices
         long SaveOrderPayInfo(IEnumerable<OrderPayInfo> model, PlatformType platform);
 
         /// <summary>
-        /// 根据订单id获取OrderPayInfo
+        /// 根据预约单id获取OrderPayInfo
         /// </summary>
         /// <param name="orderIds"></param>
         /// <returns></returns>
         List<OrderPayInfo> GetOrderPays(IEnumerable<long> orderIds);
 
-        //TODO LRL 2015/08/06 添加获取子订单对象的方法
+        //TODO LRL 2015/08/06 添加获取子预约单对象的方法
         /// <summary>
-        /// 获取子订单对象
+        /// 获取子预约单对象
         /// </summary>
         /// <param name="orderItemId"></param>
         /// <returns></returns>
@@ -406,58 +406,60 @@ namespace Himall.IServices
         bool IsRefundTimeOut(OrderInfo order);
 
         /// <summary>
-        /// 获取昨天订单交易金额
+        /// 获取昨天预约单交易金额
         /// </summary>
         /// <param name="shopId">店铺ID平台不需要填写</param>
         /// <returns></returns>
         decimal GetYesterDaySaleAmount(long? shopId = null);
 
         /// <summary>
-        /// 昨天下单订单数
+        /// 昨天下单预约单数
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
         int GetYesterDayOrdersNum(long? shopId = null);
 
         /// <summary>
-        /// 昨天付款订单数
+        /// 昨天付款预约单数
         /// </summary>
         /// <returns></returns>
         int GetYesterDayPayOrdersNum(long? shopId = null);
         /// <summary>
-        /// 订单完成订单数据写入待结算表
+        /// 预约单完成预约单数据写入待结算表
         /// </summary>
         /// <param name="o"></param>
         void WritePendingSettlnment(OrderInfo o);
 
         /// <summary>
-        /// 商家给订单备注
+        /// 诊所给预约单备注
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="reMark"></param>
         void UpdateSellerRemark(long orderId, long shopId, string reMark, int flag);
         /// <summary>
-        /// 分配商家订单到门店，更新商家、门店库存
+        /// 分配诊所预约单到门店，更新诊所、门店库存
         /// </summary>
         /// <param name="skuIds"></param>
         /// <param name="quantity"></param>
         void DistributionStoreUpdateStock(List<string> skuIds, List<int> counts, long shopBranchId);
+        void EndOrder(long orderId, string userName);
+
         /// <summary>
-        /// 分配门店订单到新门店
+        /// 分配门店预约单到新门店
         /// </summary>
         /// <param name="skuIds"></param>
         /// <param name="newShopBranchId"></param>
         /// <param name="oldShopBranchId"></param>
         void DistributionStoreUpdateStockToNewShopBranch(List<string> skuIds, List<int> counts, long newShopBranchId, long oldShopBranchId);
         /// <summary>
-        /// 分配门店订单回到商家
+        /// 分配门店预约单回到诊所
         /// </summary>
         /// <param name="skuIds"></param>
         /// <param name="shopBranchId"></param>
         /// <param name="shopId"></param>
         void DistributionStoreUpdateStockToShop(List<string> skuIds, List<int> counts, long shopBranchId);
         /// <summary>
-        /// 更新订单所属门店
+        /// 更新预约单所属门店
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="shopBranchId"></param>

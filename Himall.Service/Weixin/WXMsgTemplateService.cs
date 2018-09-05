@@ -545,7 +545,7 @@ namespace Himall.Service
                 switch (type)
                 {
                     case Core.Plugins.Message.MessageTypeEnum.OrderCreated:
-                        #region 创建订单(买家)
+                        #region 创建预约单(患者)
                         var _ocmsgdata = new WX_MsgTemplateKey3DataModel();
                         _ocmsgdata.first.value = data.first.value;
                         _ocmsgdata.first.color = data.first.color;
@@ -561,7 +561,7 @@ namespace Himall.Service
                         break;
                     #endregion
                     case Core.Plugins.Message.MessageTypeEnum.OrderPay:
-                        #region 订单支付(买家)
+                        #region 预约单支付(患者)
                         var _opmsgdata = new WX_MsgTemplateKey4DataModel();
                         _opmsgdata.first.value = data.first.value;
                         _opmsgdata.first.color = data.first.color;
@@ -579,7 +579,7 @@ namespace Himall.Service
                         break;
                     #endregion
                     case Core.Plugins.Message.MessageTypeEnum.OrderShipping:
-                        #region 订单发货(买家)
+                        #region 预约单发货(患者)
                         var _osmsgdata = new WX_MsgTemplateKey4DataModel();
                         _osmsgdata.first.value = data.first.value;
                         _osmsgdata.first.color = data.first.color;
@@ -597,7 +597,7 @@ namespace Himall.Service
                         break;
                     #endregion
                     case Core.Plugins.Message.MessageTypeEnum.OrderRefund:
-                        #region 退款退货(买家)
+                        #region 退款退货(患者)
                         var _ormsgdata = new WX_MsgTemplateRefundDataModel();
                         _ormsgdata.first.value = data.first.value;
                         _ormsgdata.first.color = data.first.color;
@@ -613,7 +613,7 @@ namespace Himall.Service
                         break;
                     #endregion
                     case Core.Plugins.Message.MessageTypeEnum.RefundDeliver:
-                        #region 退款退货(买家)
+                        #region 退款退货(患者)
                         var _rdmsgdata = new WX_MsgTemplateKey5DataModel();
                         _rdmsgdata.first.value = data.first.value;
                         _rdmsgdata.first.color = data.first.color;
@@ -633,7 +633,7 @@ namespace Himall.Service
                         break;
                     #endregion
                     case Core.Plugins.Message.MessageTypeEnum.ShopHaveNewOrder:
-                        #region 店铺有新订单(卖家)
+                        #region 店铺有新预约单(卖家)
                         var _shnomsgdata = new WX_MsgTemplateKey5DataModel();
                         _shnomsgdata.first.value = data.first.value;
                         _shnomsgdata.first.color = data.first.color;
@@ -1030,7 +1030,7 @@ namespace Himall.Service
                 switch (type)
                 {
                     case Core.Plugins.Message.MessageTypeEnum.OrderCreated:
-                        #region 创建订单(买家)
+                        #region 创建预约单(患者)
                         var _ocmsgdata = new WX_MsgTemplateKey5DataModel();
                         _ocmsgdata.keyword1.value = data.keyword1.value;
                         _ocmsgdata.keyword1.color = data.keyword1.color;
@@ -1046,7 +1046,7 @@ namespace Himall.Service
                         break;
                         #endregion
                     case Core.Plugins.Message.MessageTypeEnum.OrderPay:
-                        #region 订单支付(买家)
+                        #region 预约单支付(患者)
                         var _opmsgdata = new WX_MsgTemplateKey4DataModel();
                         _opmsgdata.keyword1.value = data.keyword1.value;
                         _opmsgdata.keyword1.color = data.keyword1.color;
@@ -1060,7 +1060,7 @@ namespace Himall.Service
                         break;
                         #endregion
                     case Core.Plugins.Message.MessageTypeEnum.OrderShipping:                        
-                        #region 订单发货(买家)
+                        #region 预约单发货(患者)
                         var _osmsgdata = new WX_MsgTemplateKey5DataModel();
                         _osmsgdata.keyword1.value = data.keyword1.value;
                         _osmsgdata.keyword1.color = data.keyword1.color;
@@ -1076,7 +1076,7 @@ namespace Himall.Service
                         break;
                         #endregion
                     case Core.Plugins.Message.MessageTypeEnum.OrderRefund:
-                        #region 退款退货(买家)
+                        #region 退款退货(患者)
                         var _ormsgdata = new WX_MsgTemplateKey5DataModel();
                         _ormsgdata.keyword1.value = data.keyword1.value;
                         _ormsgdata.keyword1.color = data.keyword1.color;
@@ -1092,7 +1092,7 @@ namespace Himall.Service
                         break;
                         #endregion
                     case Core.Plugins.Message.MessageTypeEnum.RefundDeliver:
-                        #region 退款退货(买家)
+                        #region 退款退货(患者)
                         var _rdmsgdata = new WX_MsgTemplateKey5DataModel();
                         _rdmsgdata.keyword1.value = data.keyword1.value;
                         _rdmsgdata.keyword1.color = data.keyword1.color;

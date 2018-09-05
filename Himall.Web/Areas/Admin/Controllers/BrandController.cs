@@ -211,7 +211,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                     IsRecommend = brand.IsRecommend,
                 };
                 _iBrandService.UpdateBrand(model);
-                //更新商品搜索冗余数据
+                //更新诊疗项目搜索冗余数据
                 Task.Factory.StartNew(() =>
                 {
                     _iSearchProductService.UpdateBrand(model);

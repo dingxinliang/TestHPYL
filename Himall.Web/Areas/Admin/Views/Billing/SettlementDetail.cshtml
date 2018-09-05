@@ -2,11 +2,11 @@
 @model Himall.DTO.OrderSettlementDetail
 <div class="container">
     <ul class="breadcrumb clearfix">
-        <li><a>已结算订单</a></li>
+        <li><a>已结算预约单</a></li>
         <li class="active"><a>结算金额明细</a></li>
     </ul>
     <div class="tips-top-single mt20">
-        <span class="tips-top-single-icon">结算金额 = 商品实付 + 运费 - 平台佣金 - 分销佣金 - 退款金额 + 平台佣金退还 + 分销佣金退还</span>
+        <span class="tips-top-single-icon">结算金额 = 诊疗项目实付 + 运费 - 平台佣金 - 分销佣金 - 退款金额 + 平台佣金退还 + 分销佣金退还</span>
     </div>
     <table id="list" class="table table-bordered">
         <thead>
@@ -20,7 +20,7 @@
         <tbody>
             <tr>
                 <td>@Model.OrderPayTime</td>
-                <td>商品实付</td>
+                <td>诊疗项目实付</td>
                 <td>@Model.ProductsTotal</td>
                 <td></td>
             </tr>

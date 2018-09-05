@@ -56,10 +56,10 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 根据打印元素序号获取对应订单中的实际内容
+        /// 根据打印元素序号获取对应预约单中的实际内容
         /// </summary>
         /// <param name="shopId">店铺id</param>
-        /// <param name="orderId">订单id</param>
+        /// <param name="orderId">预约单id</param>
         /// <param name="printElementIndexes">打印元素序号集</param>
         /// <returns></returns>
         IDictionary<int, string> GetPrintElementIndexAndOrderValue(long shopId, long orderId, IEnumerable<int> printElementIndexes);

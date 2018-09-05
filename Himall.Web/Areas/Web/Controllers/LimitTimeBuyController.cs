@@ -116,7 +116,7 @@ namespace Himall.Web.Areas.Web.Controllers
             #endregion
 
 
-            #region 查询商品
+            #region 查询诊疗项目
 
             //var itemsModel = _iLimitTimeBuyService.GetItemList(model);
             var itemsModel = _iLimitTimeBuyService.GetAll(model);
@@ -181,7 +181,7 @@ namespace Himall.Web.Areas.Web.Controllers
             #endregion
 
 
-            #region 商品Id不合法
+            #region 诊疗项目Id不合法
             if (long.TryParse(id, out mid)) { }
             if (mid == 0)
             {
@@ -191,7 +191,7 @@ namespace Himall.Web.Areas.Web.Controllers
             #endregion
 
 
-            #region 初始化商品和店铺
+            #region 初始化诊疗项目和店铺
 
             market = _iLimitTimeBuyService.Get(mid);
 
@@ -211,7 +211,7 @@ namespace Himall.Web.Areas.Web.Controllers
             model.FlashSale = market;
             if (market == null || market.Id == 0 || market.Status != FlashSaleInfo.FlashSaleStatus.Ongoing)
             {
-                //可能参数是商品ID
+                //可能参数是诊疗项目ID
                 market = market == null ? _iLimitTimeBuyService.GetFlaseSaleByProductId(mid) : market;
                 if (market == null)
                 {
@@ -231,7 +231,7 @@ namespace Himall.Web.Areas.Web.Controllers
             model.Shop.Name = shop.ShopName;
             #endregion
 
-            #region 商品描述
+            #region 诊疗项目描述
             var product = _iProductService.GetProduct(market.ProductId);
             gid = market.ProductId;
             //product.MarketPrice = market.MinPrice;
@@ -325,7 +325,7 @@ namespace Himall.Web.Areas.Web.Controllers
             }
             #endregion
 
-            #region 商品规格
+            #region 诊疗项目规格
 
             ProductTypeInfo typeInfo = _iTypeService.GetType(product.TypeId);
             string colorAlias = (typeInfo == null || string.IsNullOrEmpty(typeInfo.ColorAlias)) ? SpecificationType.Color.ToDescription() : typeInfo.ColorAlias;
@@ -430,7 +430,7 @@ namespace Himall.Web.Areas.Web.Controllers
             model.Price = string.IsNullOrWhiteSpace(price) ? product.MinSalePrice.ToString("f2") : price;
             #endregion
 
-            #region 商品属性
+            #region 诊疗项目属性
             List<TypeAttributesModel> ProductAttrs = new List<TypeAttributesModel>();
             var prodAttrs = _iProductService.GetProductAttribute(product.Id).ToList();
             foreach (var attr in prodAttrs)
@@ -502,7 +502,7 @@ namespace Himall.Web.Areas.Web.Controllers
             }
 
             //_iProductService.LogProductVisti(gid);
-            //统计商品浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、店铺浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
             #endregion
 

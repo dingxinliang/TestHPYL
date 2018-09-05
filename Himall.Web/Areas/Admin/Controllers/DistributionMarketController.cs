@@ -91,7 +91,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         {
             if (!string.IsNullOrEmpty(model.ProShareTitle)&& model.ProShareTitle.Length > 200)
             {
-                return Json(new Result() { success = false, msg = "商品分享标题超过长度" });
+                return Json(new Result() { success = false, msg = "诊疗项目分享标题超过长度" });
             }
             if (!string.IsNullOrEmpty(model.ShopShareTitle)&&model.ShopShareTitle.Length > 200)
             {
@@ -111,7 +111,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             }
             if (!string.IsNullOrEmpty(model.ProShareDesc) && model.ProShareDesc.Length > 200)
             {
-                return Json(new Result() { success = false, msg = "商品分享描述过长" });
+                return Json(new Result() { success = false, msg = "诊疗项目分享描述过长" });
             }
             if (!string.IsNullOrEmpty(model.DisShareDesc) && model.DisShareDesc.Length > 200)
             {

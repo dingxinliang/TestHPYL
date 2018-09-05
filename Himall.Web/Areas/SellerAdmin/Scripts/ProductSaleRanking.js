@@ -9,11 +9,11 @@ option = {
             var type = $("button.active").val();
             var html = '';
             if (1 == type) {
-                var t1 = '<span style="text-align:left;">商品：<b style="color:yellow;font-size:14px;">' + mapName[params[0][1] - 1] + '</b></span>';
+                var t1 = '<span style="text-align:left;">诊疗项目：<b style="color:yellow;font-size:14px;">' + mapName[params[0][1] - 1] + '</b></span>';
                 var t2 = '<span style="text-align:left;">销售量：<b style="color:yellow;font-size:14px;">' + params[0][2] + '</b>个</span>';
                 html = ['<div style="text-align:left;">', t1, '<br />', t2, '</div>'];
             } else {
-                var t1 = '<span style="text-align:left;">商品：<b style="color:yellow;font-size:14px;">' + mapName[params[0][1] - 1] + '</b></span>';
+                var t1 = '<span style="text-align:left;">诊疗项目：<b style="color:yellow;font-size:14px;">' + mapName[params[0][1] - 1] + '</b></span>';
                 var t2 = '<span style="text-align:left;">销售额：<b style="color:yellow;font-size:14px;">' + params[0][2] + '</b>元</span>';
                 html = ['<div style="text-align:left;">', t1, '<br />', t2, '</div>'];
             }

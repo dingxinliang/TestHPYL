@@ -16,24 +16,24 @@ namespace Himall.Model
             FollowShopCarts = new List<FollowShopCart>();
         }
         /// <summary>
-        /// 待支付订单
+        /// 待支付预约单
         /// </summary>
         public long WaitPayOrders { set; get; }
 
         /// <summary>
-        /// 待收货订单
+        /// 待结算预约单
         /// </summary>
         public long WaitReceivingOrders { set; get; }
 
 
         /// <summary>
-        /// 待发货订单
+        /// 待发货预约单
         /// </summary>
         public long WaitDeliveryOrders { set; get; }
 
 
         /// <summary>
-        /// 待评价订单
+        /// 待评价预约单
         /// </summary>
         public long WaitEvaluationOrders { set; get; }
 
@@ -43,12 +43,12 @@ namespace Himall.Model
         public decimal Expenditure { set; get; }
 
         /// <summary>
-        /// 关注商品
+        /// 关注诊疗项目
         /// </summary>
         public List<FollowProduct> FollwProducts { set; get; }
 
         /// <summary>
-        /// 关注商品数
+        /// 关注诊疗项目数
         /// </summary>
         public int FollowProductCount { set; get; }
 
@@ -91,7 +91,7 @@ namespace Himall.Model
         public int FollowShopCartsCount { get; set; }
 
         public MemberAccountSafety memberAccountSafety { get; set; }
-        //订单信息
+        //预约单信息
         public IQueryable<OrderInfo> Orders { set; get; }
     }
 
@@ -101,7 +101,7 @@ namespace Himall.Model
 
         private string _imagePath;
         /// <summary>
-        /// 商品价格
+        /// 诊疗项目价格
         /// </summary>
         public decimal Price { set; get; }
 
@@ -115,12 +115,12 @@ namespace Himall.Model
         }
 
         /// <summary>
-        /// 商品ID
+        /// 诊疗项目ID
         /// </summary>
         public long ProductId { set; get; }
 
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         /// </summary>
         public string ProductName { set; get; }
     }

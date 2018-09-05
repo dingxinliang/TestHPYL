@@ -223,7 +223,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 更新分销商品排序
+        /// 更新分销诊疗项目排序
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="sort"></param>
@@ -232,7 +232,7 @@ namespace Himall.Service
             var model = Context.ProductBrokerageInfo.Where(a => a.ProductId == productId).FirstOrDefault();
             if (model == null)
             {
-                throw new HimallException("不存在该分销商品");
+                throw new HimallException("不存在该分销诊疗项目");
             }
             model.Sort = sort;
 
@@ -325,9 +325,9 @@ namespace Himall.Service
             return pageModel;
         }
 
-        #region 商家分销设置
+        #region 诊所分销设置
         /// <summary>
-        /// 获取商家分销设置
+        /// 获取诊所分销设置
         /// </summary>
         /// <returns></returns>
         public ShopDistributorSettingInfo getShopDistributorSettingInfo(long shopid)
@@ -353,7 +353,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 商家聚合页推广设置
+        /// 诊所聚合页推广设置
         /// </summary>
         /// <param name="model"></param>
         public void UpdateShopDistributor(ShopDistributorSettingInfo model)
@@ -365,7 +365,7 @@ namespace Himall.Service
             Context.SaveChanges();
         }
         /// <summary>
-        /// 设置商家默认分佣比例
+        /// 设置诊所默认分佣比例
         /// </summary>
         /// <param name="rate"></param>
         public void UpdateDefaultBrokerage(decimal rate, long shopid)
@@ -393,7 +393,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取当前所有分销商品编号
+        /// 获取当前所有分销诊疗项目编号
         /// </summary>
         /// <param name="shopid"></param>
         /// <returns></returns>
@@ -407,7 +407,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 批量添加分销商品
+        /// 批量添加分销诊疗项目
         /// </summary>
         /// <param name="productids"></param>
         /// <param name="shopid"></param>
@@ -416,7 +416,7 @@ namespace Himall.Service
         {
             if (productids.Count() < 1)
             {
-                throw new HimallException("错误的商品编号");
+                throw new HimallException("错误的诊疗项目编号");
             }
             if (shopid < 0)
             {
@@ -478,7 +478,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// (批量)取消商品分销推广
+        /// (批量)取消诊疗项目分销推广
         /// </summary>
         /// <param name="ProductIds"></param>
         /// <param name="shopId">店铺编号,null表示所有店铺</param>
@@ -497,7 +497,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// （批量）设置商品的分佣比例
+        /// （批量）设置诊疗项目的分佣比例
         /// </summary>
         /// <param name="percent"></param>
         /// <param name="ProductIds"></param>
@@ -808,11 +808,11 @@ namespace Himall.Service
             throw new NotImplementedException();
         }
         /// <summary>
-        /// 获取productIds中可以代理的商品编号
+        /// 获取productIds中可以代理的诊疗项目编号
         /// </summary>
-        /// <param name="productIds">商品编号范围</param>
+        /// <param name="productIds">诊疗项目编号范围</param>
         /// <param name="userId"></param>
-        /// <returns>可以代理的商品编号</returns>
+        /// <returns>可以代理的诊疗项目编号</returns>
         public IEnumerable<long> GetCanAgentProductId(IEnumerable<long> productIds, long userId)
         {
             List<long> result = new List<long>();
@@ -835,7 +835,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// （批量）移除用户代理的商品
+        /// （批量）移除用户代理的诊疗项目
         /// </summary>
         /// <param name="ProductIds"></param>
         /// <param name="userId"></param>
@@ -994,7 +994,7 @@ namespace Himall.Service
         /// 发生退款退货行为时，改变结算状态为不可结算
         /// </summary>
         /// <param name="userId"></param>
-        /// <param name="orderItemId">订单条目ID</param>
+        /// <param name="orderItemId">预约单条目ID</param>
         public void DisabledSettlement(long userId, long orderItemId)
         {
             var model = Context.BrokerageIncomeInfo.Where(a => a.UserId == userId && a.OrderItemId == orderItemId).FirstOrDefault();
@@ -1021,7 +1021,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取所有的分销商品
+        /// 获取所有的分销诊疗项目
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -1175,7 +1175,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取分销商品信息
+        /// 获取分销诊疗项目信息
         /// </summary>productId
         /// <param name="id"></param>
         /// <returns></returns>
@@ -1185,7 +1185,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 批量获取分销商品信息
+        /// 批量获取分销诊疗项目信息
         /// </summary>
         /// <param name="productIds"></param>
         /// <returns></returns>
@@ -1267,7 +1267,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 获取店铺分销商品数量
+        /// 获取店铺分销诊疗项目数量
         /// <para>仅统计可以正常购买的</para>
         /// </summary>
         /// <param name="shopId"></param>
@@ -1474,7 +1474,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取所有分销首页商品(过滤下架和删除的商品)
+        /// 获取所有分销首页诊疗项目(过滤下架和删除的诊疗项目)
         /// </summary>
         /// <returns></returns>
         public List<DistributionProductsInfo> GetDistributionProducts()
@@ -1492,7 +1492,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 添加首页商品设置
+        /// 添加首页诊疗项目设置
         /// </summary>
         /// <param name="mDistributionProductsInfo"></param>
         public void AddDistributionProducts(DistributionProductsInfo mDistributionProductsInfo)
@@ -1501,7 +1501,7 @@ namespace Himall.Service
             Context.SaveChanges();
         }
         /// <summary>
-        /// 移除首页分销商品
+        /// 移除首页分销诊疗项目
         /// </summary>
         /// <param name="Ids"></param>
         public void RemoveDistributionProducts(IEnumerable<long> Ids)
@@ -1512,7 +1512,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 获取分销首页所有商品
+        /// 获取分销首页所有诊疗项目
         /// </summary>
         /// <param name="page">分页页码</param>
         /// <param name="rows">每页行数</param>
@@ -1551,7 +1551,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取所有分销首页商品
+        /// 获取所有分销首页诊疗项目
         /// </summary>
         /// <param name="status"></param>
         /// <returns></returns>
@@ -1602,7 +1602,7 @@ namespace Himall.Service
         }
     }
     /// <summary>
-    /// 分销商品中间引用类
+    /// 分销诊疗项目中间引用类
     /// <para>仅service使用</para>
     /// </summary>
     public class ProductBrokerageInfoDto : ProductBrokerageInfo

@@ -39,13 +39,13 @@ function typeChoose(val) {
             field: "Remark", title: "备注", width: 200, align: "left",
             formatter: function (value, row, index) {
                 if (row['SourceType'] == 4) {
-                    var html = '消费,订单号:<a target="_blank" href="/UserOrder/Detail/' + row.SourceData + '">' + row.SourceData + '</a>';
+                    var html = '消费,预约单号:<a target="_blank" href="/UserOrder/Detail/' + row.SourceData + '">' + row.SourceData + '</a>';
                     return html;
                 } else if (row['SourceType'] == 5) {
                     var html = '退款,售后编号:' + row.SourceData;
                     return html;
                 } else if (row['SourceType'] == 6) {
-                    var html = '佣金收入,订单号:' + row.SourceData;
+                    var html = '佣金收入,预约单号:' + row.SourceData;
                     return html;
                 }
                 else {
@@ -139,7 +139,7 @@ function typeChoose(val) {
             dataColumn.push({
                 field: "Remark", title: "备注", width: 200, align: "left",
                 formatter: function (value, row, index) {
-                    var html = '佣金收入,订单号:' + row.SourceData;
+                    var html = '佣金收入,预约单号:' + row.SourceData;
                     return html;
                 }
             });

@@ -17,7 +17,7 @@ namespace Himall.Model
         [NotMapped]
         public string ShopName { get; set; }
         /// <summary>
-        /// 商品图片地址
+        /// 诊疗项目图片地址
         /// </summary>
         [NotMapped]
         public string ProductImgPath { get; set; }
@@ -69,32 +69,32 @@ namespace Himall.Model
         [NotMapped]
         public long FreightTemplateId { get; set; }
         /// <summary>
-        /// 商品广告语
+        /// 诊疗项目广告语
         /// </summary>
         [NotMapped]
         public string ProductShortDescription { get; set; }
         /// <summary>
-        /// 商品评价数
+        /// 诊疗项目评价数
         /// </summary>
         [NotMapped]
         public int ProductCommentNumber { get; set; }
         /// <summary>
-        /// 商品编码
+        /// 诊疗项目编码
         /// </summary>
         [NotMapped]
         public string ProductCode { get; set; }
         /// <summary>
-        /// 商品单位
+        /// 诊疗项目单位
         /// </summary>
         [NotMapped]
         public string MeasureUnit { get; set; }
         /// <summary>
-        /// 商品是否可购买
+        /// 诊疗项目是否可购买
         /// </summary>
         [NotMapped]
         public bool CanBuy { get; set; }
         /// <summary>
-        /// 商品是否还有库存
+        /// 诊疗项目是否还有库存
         /// </summary>
         [NotMapped]
         public bool HasStock { get; set; }
@@ -118,12 +118,12 @@ namespace Himall.Model
         public List<ComboDetail> ComboList { get; set; }
 
         /// <summary>
-        /// 商品默认图片
+        /// 诊疗项目默认图片
         /// </summary>
         [NotMapped]
         public string ProductDefaultImage { get; set; }
         /// <summary>
-        /// 商品其他图片
+        /// 诊疗项目其他图片
         /// </summary>
         [NotMapped]
         public List<string> ProductImages { get; set; }

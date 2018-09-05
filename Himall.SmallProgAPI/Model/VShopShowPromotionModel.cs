@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.SmallProgAPI.Model
 {
     /// <summary>
-    /// 商品营销活动显示
+    /// 诊疗项目营销活动显示
     /// </summary>
     public class VShopShowPromotionModel
     {

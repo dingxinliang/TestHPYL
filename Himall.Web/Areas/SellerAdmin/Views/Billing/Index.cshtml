@@ -5,7 +5,7 @@
 <div class="container">
     <ul class="nav nav-tabs-custom clearfix">
         <li class="active"><a href="@Url.Action("index")">财务总览</a></li>
-        <li><a href="@Url.Action("PendingSettlementOrders")">待结算订单</a></li>
+        <li><a href="@Url.Action("PendingSettlementOrders")">待结算预约单</a></li>
         <li><a href="@Url.Action("SettlementList")">已结算列表</a></li>
         <li><a href="@Url.Action("ShopAccountItem")">收支明细</a></li>
         <li><a href="@Url.Action("Management","ShopAccount")">提现明细</a></li>
@@ -19,11 +19,11 @@
             </li>
             <li class="wait-clearing">
                 <h5>待结算</h5>
-                <p><i></i><span>@Model.ShopAccout.PendingSettlement</span><a href="@Url.Action("PendingSettlementOrders")">待结算订单</a></p>
+                <p><i></i><span>@Model.ShopAccout.PendingSettlement</span><a href="@Url.Action("PendingSettlementOrders")">待结算预约单</a></p>
             </li>
             <li class="po-clear">
                 <h5>已结算</h5>
-                <p><i></i><span>@Model.ShopAccout.Settled</span><a href="@Url.Action("SettlementOrders")">已结算订单</a></p>
+                <p><i></i><span>@Model.ShopAccout.Settled</span><a href="@Url.Action("SettlementOrders")">已结算预约单</a></p>
                 @if (ViewBag.IsMainAccount != null && ViewBag.IsMainAccount == true)
                 {
                 <div class="clear-btn">
@@ -59,7 +59,7 @@
                 <ul>
                     <li><p><i class="i01"></i><span>@Model.YesterDaySaleAmount</span><br /><em>昨日交易额</em></p><b>|</b></li>
                     <li><p><i class="i02"></i><span>@Model.YesterDayOrders</span><br /><em>昨日下单数</em></p><b>|</b></li>
-                    <li><p><i class="i03"></i><span>@Model.YesterDayPayOrders</span><br /><em>昨日付款订单数</em></p></li>
+                    <li><p><i class="i03"></i><span>@Model.YesterDayPayOrders</span><br /><em>昨日付款预约单数</em></p></li>
                 </ul>
             </div>
         </div>

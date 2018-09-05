@@ -15,12 +15,12 @@ namespace Himall.Model
         [NotMapped]
         public string SkuName { get; set; }
         /// <summary>
-        /// 商品售价
+        /// 诊疗项目售价
         /// </summary>
         [NotMapped]
         public decimal ProductPrice { get; set; }
         /// <summary>
-        /// 商品成本价
+        /// 诊疗项目成本价
         /// </summary>
         [NotMapped]
         public decimal ProductCostPrice { get; set; }

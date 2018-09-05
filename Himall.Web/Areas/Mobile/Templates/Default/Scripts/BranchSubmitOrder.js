@@ -147,7 +147,7 @@ function submit(model, loading) {
     $.post(url, model, function (result) {
         if (result.success) {
             if (result.orderIds != null && result != undefined) {
-                orderIds = result.orderIds;//当前订单号
+                orderIds = result.orderIds;//当前预约单号
                 //在货到付款，且只有一个店铺时
                 if (model.isCashOnDelivery && model.orderShops.length == 1) {
                     loading.close();
@@ -171,7 +171,7 @@ function submit(model, loading) {
             }
             else if (result.Id != null && result != undefined) {//限时购
                 var requestcount = 0;
-                ///检查订单状态并做处理
+                ///检查预约单状态并做处理
                 function checkOrderState() {
                     $.getJSON('/OrderState/Check', { Id: result.Id }, function (r) {
                         if (r.state == "Processed" && r.Total === 0) {
@@ -187,12 +187,12 @@ function submit(model, loading) {
                             if (requestcount <= 10)
                                 setTimeout(checkOrderState, 0);
                             else {
-                                $.dialog.tips("服务器繁忙,请稍后去订单中心查询订单");
+                                $.dialog.tips("服务器繁忙,请稍后去预约单中心查询预约单");
                                 loading && loading.close();
                             }
                         }
                         else {
-                            $.dialog.tips('订单提交失败,错误原因:' + r.message);
+                            $.dialog.tips('预约单提交失败,错误原因:' + r.message);
                             loading && loading.close();
                         }
                     });
@@ -217,7 +217,7 @@ $(document).on('click', '.cover, #paymentsChooser .close', function () {
     if ($(".bootstrapSwitch1").bootstrapSwitch("state")) {
         $('.bootstrapSwitch1').click();
     }
-    if (paymentShown) {//如果已经显示支付方式，则跳转到订单列表页面
+    if (paymentShown) {//如果已经显示支付方式，则跳转到预约单列表页面
         //location.href = '/' + areaName + '/Member/Orders';
         location.href = '/common/site/pay?area=mobile&platform=' + areaName.replace('m-', '') + '&controller=member&action=orders&neworderids=' + orderIds;
     }

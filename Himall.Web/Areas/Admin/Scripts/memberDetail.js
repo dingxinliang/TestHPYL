@@ -61,7 +61,7 @@ function queryBuyList() {
         columns:
         [[
               {
-                  field: "orderId", title: '订单号', formatter: function (value, row, index) {
+                  field: "orderId", title: '预约单号', formatter: function (value, row, index) {
                       var id = row.orderId.toString();
                       var html = ["<span class=\"btn-a\">"];
                       html.push("<a href='../../Order/Detail/" + id + "'>" + id + "</a>");
@@ -71,8 +71,8 @@ function queryBuyList() {
               },
             { field: "shopName", title: '下单门店' },
             { field: "createTimeStr", title: '下单时间' },
-            { field: "totalAmount", title: '订单实付金额' },
-            { field: "actualPayAmount", title: '订单实收金额' }
+            { field: "totalAmount", title: '预约单实付金额' },
+            { field: "actualPayAmount", title: '预约单实收金额' }
         ]]
     });
 }

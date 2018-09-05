@@ -14,9 +14,9 @@ namespace Himall.Web.Models
         [RegularExpression(@"^[a-zA-Z0-9_\u4e00-\u9fa5]+$", ErrorMessage = "套餐名称必须是中文、英文、字母和下划线")]
         public string Name { get; set; }
 
-        [Display(Name = "可发布商品数")]
+        [Display(Name = "可发布诊疗项目数")]
         [RegularExpression(@"^\+?[1-9][0-9]*$",ErrorMessage = "只能是大于零的整数")]
-        [Required(ErrorMessage = "* 可发布商品数为必填项")]
+        [Required(ErrorMessage = "* 可发布诊疗项目数为必填项")]
         public int ProductLimit { get; set; }
 
         [Display(Name = "可用空间(M)")]

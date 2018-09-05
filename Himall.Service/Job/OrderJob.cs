@@ -26,11 +26,11 @@ namespace Himall.Service.Job
 
             //    using (Entity.Entities entity = new Entity.Entities())
             //    {
-            //        // 关闭过期未付款的订单
+            //        // 关闭过期未付款的预约单
             //        SqlParameter[] para = new SqlParameter[] { new SqlParameter("@OrderDate", DateTime.Now.AddDays(0 - 7)) };
             //        entity.Database.ExecuteSqlCommand("UPDATE Himall_Orders SET OrderStatus = 4, CloseReason='过期没付款，自动关闭' WHERE OrderStatus = 1 AND OrderDate <= @OrderDate", para);
 
-            //        // 完成过期未确认收货的订单
+            //        // 完成过期未确认收货的预约单
             //        para = new SqlParameter[] { new SqlParameter("@ShippingDate", DateTime.Now.AddDays(0 - 7)) };
             //        entity.Database.ExecuteSqlCommand("UPDATE Hishop_Orders SET FinishDate = getdate(), OrderStatus = 5 WHERE OrderStatus=3 AND ShippingDate <= @ShippingDate", para);
             //    }
@@ -46,11 +46,11 @@ namespace Himall.Service.Job
                      int intIntervalDay = siteSetting == null ? 7 : (siteSetting.NoReceivingTimeout == 0 ? 7 : siteSetting.NoReceivingTimeout);
                      DateTime waitPayDate = DateTime.Now;
                      DateTime waitReceivingDate = DateTime.Now.AddDays(-intIntervalDay);
-                     // 关闭过期未付款的订单
+                     // 关闭过期未付款的预约单
                      //Entity.Entities entity = new Entity.Entities();
                      var productService = ServiceProvider.Instance<Himall.IServices.IProductService>.Create;
                      var orderService = ServiceProvider.Instance<Himall.IServices.IOrderService>.Create;
-                     //查找待付款的订单
+                     //查找待付款的预约单
                      var ordersWaitPay = (
                          from p in entity.OrderInfo
                          where p.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitPay &&
@@ -84,7 +84,7 @@ namespace Himall.Service.Job
                      {
                          order.FinishDate = DateTime.Now;
                          order.OrderStatus = Model.OrderInfo.OrderOperateStatus.Finish;
-                         order.CloseReason = "完成过期未确认收货的订单";
+                         order.CloseReason = "完成过期未确认收货的预约单";
                      }
                      entity.SaveChanges();
                      transaction.Complete();
@@ -103,7 +103,7 @@ namespace Himall.Service.Job
            // service.AutoConfirmOrder();
            // var service2 = ServiceProvider.Instance<ICommentService>.Create;
            // service2.AutoComment();
-           //// TODO LRL  08/27 添加礼品兑换订单过期
+           //// TODO LRL  08/27 添加礼品兑换预约单过期
            // var giftorderser = ServiceProvider.Instance<IGiftsOrderService>.Create;
            // giftorderser.AutoConfirmOrder();
         }

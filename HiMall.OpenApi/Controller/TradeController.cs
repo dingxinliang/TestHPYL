@@ -29,7 +29,7 @@ namespace Himall.OpenApi
         }
 
         /// <summary>
-        /// 获取当前商家的订单列表
+        /// 获取当前诊所的预约单列表
         /// </summary>
         /// <param name="para"></param>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace Himall.OpenApi
             return Json(result);
         }
         /// <summary>
-        /// 查询订单的增量交易数据
+        /// 查询预约单的增量交易数据
         /// </summary>
         /// <param name="app_key"></param>
         /// <param name="timestamp"></param>
@@ -132,7 +132,7 @@ namespace Himall.OpenApi
             return Json(new { trade_memo_update_response = new { trade = new { tid = para.tid, modified = result } } });
         }
         /// <summary>
-        /// 订单发货
+        /// 预约单发货
         /// </summary>
         /// <param name="para"></param>
         /// <returns></returns>

@@ -91,7 +91,7 @@ $(function () {
         }
     });
 
-    loadData(1);//加载商品 
+    loadData(1);//加载诊疗项目 
 });
 
 $('#searchtxt').bind('click', function (e) {
@@ -252,7 +252,7 @@ function loadData(type) {
                         $("#-1").addClass("hidden");
                     }
                     var isTopModel = false;
-                    //置顶商品
+                    //置顶诊疗项目
                     if (data.TopModels && data.TopModels.length > 0) {
                         $.each(data.TopModels, function (i, model) {
                             var userhtml = '<li><ul class="pros">' + getProductHtml(model) + '</ul></li>';
@@ -286,9 +286,9 @@ function loadData(type) {
                         if (!isTopModel) {
                             lodeEnd = true;
                             var databox = $("#productlist");
-                            var noporudct = '<li style="text-align: center;line-height: 30px;color: #494e52;font-size: .11rem;" class="kong"><img src="/Areas/Mobile/Templates/Default/Images/null.png"/><p>此分类暂无商品</p></li>';
+                            var noporudct = '<li style="text-align: center;line-height: 30px;color: #494e52;font-size: .11rem;" class="kong"><img src="/Areas/Mobile/Templates/Default/Images/null.png"/><p>此分类暂无诊疗项目</p></li>';
                             if (type == 2)
-                                noporudct = '<li style="text-align: center;line-height: 30px;color: #494e52;font-size: .11rem;">没有更多商品了</li>';
+                                noporudct = '<li style="text-align: center;line-height: 30px;color: #494e52;font-size: .11rem;">没有更多诊疗项目了</li>';
                             databox.append(noporudct);
                         }
                     }
@@ -304,12 +304,12 @@ function loadData(type) {
 function loadEndProcess() {
     if (lodeEnd) {
         $("#autoLoad").show();
-        $("#autoLoad").html("没有更多商品了");
+        $("#autoLoad").html("没有更多诊疗项目了");
     } else {
         $("#autoLoad").hide();
     }
 }
-//组合商品数据
+//组合诊疗项目数据
 function getProductHtml(obj) {
     var arr = new Array();
     var showUnit = obj.MeasureUnit || "";

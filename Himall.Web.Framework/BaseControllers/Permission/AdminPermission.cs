@@ -48,7 +48,7 @@ namespace Himall.Web.Framework
             //privileges.Add(AdminPrivilege.ConSole, GetActionByControllerName("home","console"));
             //privileges.Add(AdminPrivilege.CopyRight, GetActionByControllerName("home", "copyright"));
             //privileges.Add(AdminPrivilege.AboutUs, GetActionByControllerName("home","about"));
-            //商品7
+            //诊疗项目7
             //  privileges.Add(AdminPrivilege.ProductManage, GetActionByControllerName("product"));
             //  privileges.Add(AdminPrivilege.CategoryManage, GetActionByControllerName("category"));
             //  privileges.Add(AdminPrivilege.BrandManage, GetActionByControllerName("brand"));

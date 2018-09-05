@@ -14,7 +14,7 @@ namespace Himall.Model
         //Console = 1001,
         //[Description("平台公告")]
         //Notice = 1002,
-        /*商品*/
+        /*诊疗项目*/
       
         [Privilege("科目", "科目分类", 2003, "category/management", "category")]
         ProductCategory = 2003,
@@ -30,27 +30,23 @@ namespace Himall.Model
         //ConsultationManage = 2006,
         //[Privilege("科目", "评价管理", 2007, "ProductComment/management", "ProductComment")]
         //CommentManage = 2007,
-        //[Privilege("科目", "商品数据导入", 2008, "ProductImport/ImportManage", "ProductImport")]
+        //[Privilege("科目", "诊疗项目数据导入", 2008, "ProductImport/ImportManage", "ProductImport")]
         //ProductImportManage = 2008,
 
-        /*模板*/
-        [Privilege("模板", "随访计划模板", 38001, "TemPlate/follow", "TemPlate", "follow")]
-        TemPlate = 38001,
-        [Privilege("模板", "医嘱文章模板", 38002, "TemPlate/doctorfollow", "TemPlate", "doctorfollow")]
-         Doctorfollow = 38002,
 
         /*随访*/
-        [Privilege("随访", "已随访", 39001, "Flow/Followdown", "order")]
-         Followdown = 39001,
-        [Privilege("随访", "未随访", 39002, "Flow/FollowWait", "order")]
-        FollowWait = 39002,
-        [Privilege("随访", "已取消", 39003, "Flow/FollowCancel", "order")]
-        FollowCancel = 39003,
+        [Privilege("随访", "随访计划模板", 39001, "TemPlate/follow", "TemPlate", "follow")]
+        TemPlate = 39001,
+        [Privilege("随访", "医嘱文章模板", 39002, "TemPlate/doctorfollow", "TemPlate", "doctorfollow")]
+        Doctorfollow = 39002,
+        [Privilege("随访", "随访计划管理", 39003, "Follow/management", "Flow", "management")]
+         Followdown = 39003,
+     
         /*交易*/
-        [Privilege("交易", "预约单管理", 3001, "order/management", "order")]
+        [Privilege("预约", "预约单管理", 3001, "order/management", "order")]
         OrderManage = 3001,
-        [Privilege("交易", "退款处理", 3002, "orderrefund/management?showtype=2", "orderrefund")]
-        OrderRefund = 3002,
+        //[Privilege("预约", "退款处理", 3002, "orderrefund/management?showtype=2", "orderrefund")]
+        //OrderRefund = 3002,
         //[Privilege("交易", "退货处理", 3003, "orderrefund/management?showtype=3", "orderrefund")]
         //OrderGoodsRefund = 3003,
         //[Privilege("交易", "交易投诉", 3004, "ordercomplaint/management", "ordercomplaint")]
@@ -60,6 +56,20 @@ namespace Himall.Model
         //FreightTemplate = 3006,
         //[Privilege("交易", "支付方式", 3007, "PaymentConfig/Index", "PaymentConfig")]
         //PaymentConfig = 3007,
+        /*分销*/
+        [Privilege("分佣", "分销规则管理", 10001, "DistributionRules/Manage", "DistributionRules")]
+        DistributionRules = 10001,
+        [Privilege("分佣", "分销业绩管理", 10002, "DistributionFeat/Order", "DistributionFeat")]
+        DistributionFeat = 10002,
+        /*统计*/
+        //[Privilege("统计", "流量统计", 5001, "statistics/shopflow", "statistics", "shopflow")]
+        //TrafficStatistics = 5001,
+        //[Privilege("统计", "诊所统计", 5002, "statistics/shopsale", "statistics", "shopsale")]
+        //ShopStatistics = 5002,
+        //[Privilege("统计", "诊疗项目统计", 5003, "Statistics/ProductSaleStatistic", "statistics")]
+        //ProductSaleStatistic = 5003,
+        //[Privilege("统计", "交易统计", 5004, "Statistics/TradeStatistic", "statistics")]
+        //TradeStatistic = 5004,
         /*诊所*/
         [Privilege("诊所", "页面设置", 4001, "PageSettings/management", "PageSettings")]
         [Privilege("诊所", "页面设置", 4001, "PageSettings/management", "ShopHomeModule")]
@@ -82,15 +92,7 @@ namespace Himall.Model
         [Privilege("诊所", "门店管理", 4008, "ShopBranch/Management", "ShopBranch")]
         ShopBranchManagement = 4008,
 
-        /*统计*/
-        [Privilege("统计", "流量统计", 5001, "statistics/shopflow", "statistics", "shopflow")]
-        TrafficStatistics = 5001,
-        [Privilege("统计", "诊所统计", 5002, "statistics/shopsale", "statistics", "shopsale")]
-        ShopStatistics = 5002,
-        [Privilege("统计", "商品统计", 5003, "Statistics/ProductSaleStatistic", "statistics")]
-        ProductSaleStatistic = 5003,
-        [Privilege("统计", "交易统计", 5004, "Statistics/TradeStatistic", "statistics")]
-        TradeStatistic = 5004,
+       
         /*系统*/
         [Privilege("系统", "管理员", 6001, "Manager/management", "Manager")]
         AdminManage = 6001,
@@ -127,11 +129,7 @@ namespace Himall.Model
         //[Privilege("营销", "满额减", 7008, "FullDiscount/Index", "FullDiscount")]
         //FullDiscount = 7008,
 
-        /*分销*/
-        [Privilege("分销", "分销规则管理", 10001, "DistributionRules/Manage", "DistributionRules")]
-        DistributionRules = 10001,
-        [Privilege("分销", "分销业绩管理", 10002, "DistributionFeat/Order", "DistributionFeat")]
-        DistributionFeat = 10002,
+       
 
         /*微信*/
         [Privilege("微信", "微信配置", 8002, "WeiXin/BasicVShopSettings", "WeiXin")]

@@ -179,7 +179,7 @@ function bindProductsBtnClickEvent() {
     var html = ['<tr type="Products" name="">',
                      , '<td><input class="form-control input-xs" type="text" name="name" value="" /></td>'
                      , '<td><span ids="">0</span></td>'
-                     , '<td class="td-operate"><span class="btn-a"><a>选择商品</a></span><span class="btn-del"><a href="#">删除</a></span></td>'
+                     , '<td class="td-operate"><span class="btn-a"><a>选择诊疗项目</a></span><span class="btn-del"><a href="#">删除</a></span></td>'
              , '</tr>'].join();
 
     $('#addProducts').click(function () {
@@ -205,7 +205,7 @@ function bindProductsBtnClickEvent() {
                 });
 
                 if (ids.length > 10) {
-                    $.dialog.errorTips("商品不允许超过10个");
+                    $.dialog.errorTips("诊疗项目不允许超过10个");
                     return false;
                 }
                 else {
@@ -239,7 +239,7 @@ function bindProductsBtnClickEvent() {
             });
 
             if (ids.length > 10) {
-                $.dialog.errorTips("商品不允许超过10个");
+                $.dialog.errorTips("诊疗项目不允许超过10个");
                 return false;
             }
             else {

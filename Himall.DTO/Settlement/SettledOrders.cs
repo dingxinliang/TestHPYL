@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 已结算订单列表
+    /// 已结算预约单列表
     /// </summary>
     public class SettledOrders
     {
         /// <summary>
-        /// 订单ID
+        /// 预约单ID
         /// </summary>
         public long OrderId { set; get; }
 
         /// <summary>
-        /// 订单ID字符串
+        /// 预约单ID字符串
         /// </summary>
 
         public string strOrderId { set; get; }
@@ -43,7 +43,7 @@ namespace Himall.DTO
         public string SettledTime { set; get; }
 
         /// <summary>
-        /// 订单金额
+        /// 预约单金额
         /// </summary>
         public decimal OrderAmount { get; set; }
 
@@ -72,12 +72,12 @@ namespace Himall.DTO
         public decimal RefundAmount { set; get; }
 
         /// <summary>
-        /// 商家结算金额
+        /// 诊所结算金额
         /// </summary>
         public decimal SettlementAmount { set; get; }
 
         /// <summary>
-        /// 订单完成时间
+        /// 预约单完成时间
         /// </summary>
         public string OrderFinshTime { set; get; }
 

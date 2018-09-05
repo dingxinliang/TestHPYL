@@ -1,6 +1,6 @@
 ﻿var datacols = [[
              {
-                 field: "OrderId", title: '订单号', width: 120,
+                 field: "OrderId", title: '预约单号', width: 120,
                  formatter: function (value, row, index) {
                      return '<a href="/SellerAdmin/order/Detail/' + value + '">' + value + '</a>';
                  }
@@ -14,24 +14,24 @@
                  }
 
              },
-             { field: "OrderAmount", title: "订单金额", width: 80, align: "center" },
+             { field: "OrderAmount", title: "预约单金额", width: 80, align: "center" },
                  { field: "PlatCommission", title: "平台佣金", width: 80, align: "center" },
                      { field: "DistributorCommission", title: "分销佣金", width: 80, align: "center" },
                         { field: "RefundAmount", title: "退款金额", width: 80, align: "center" },
                            
-             { field: "OrderFinshTime", title: "订单完成时间", width: 160, align: "center" }
+             { field: "OrderFinshTime", title: "预约单完成时间", width: 160, align: "center" }
 
 ]];
 
 var detailId = GetQueryString('detailId');
 $(function () {
     //组合显示字段
-    //订单表格
+    //预约单表格
     $("#list").hiMallDatagrid({
         url: 'SettlementOrderList',
         nowrap: false,
         rownumbers: true,
-        NoDataMsg: '没有找到符合条件的已结算订单记录',
+        NoDataMsg: '没有找到符合条件的已结算预约单记录',
         border: false,
         fit: true,
         fitColumns: true,

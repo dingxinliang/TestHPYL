@@ -13,7 +13,7 @@ namespace Himall.Application
         private static IBrandService _iBrandService = ObjectContainer.Current.Resolve<IBrandService>();
         #endregion
 
-        #region 首页商品相关
+        #region 首页诊疗项目相关
         /// <summary>
         /// 是否为分销员
         /// </summary>
@@ -35,7 +35,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取已绑定的分销首页商品
+        /// 获取已绑定的分销首页诊疗项目
         /// </summary>
         /// <returns></returns>
         public static object GetAllHomeProductIds()
@@ -44,7 +44,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 设置分销首页商品
+        /// 设置分销首页诊疗项目
         /// </summary>
         /// <param name="productIds"></param>
         public static void SetDistributionProducts(string productIds)
@@ -84,7 +84,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 查询已绑定的分销首页商品信息
+        /// 查询已绑定的分销首页诊疗项目信息
         /// </summary>
         /// <param name="page">分页页码</param>
         /// <param name="rows">每页行数</param>
@@ -103,7 +103,7 @@ namespace Himall.Application
             return query;
         }
         /// <summary>
-        /// 获取分销商品
+        /// 获取分销诊疗项目
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -138,7 +138,7 @@ namespace Himall.Application
             return result;
         }
         /// <summary>
-        /// 取商品计算
+        /// 取诊疗项目计算
         /// </summary>
         /// <param name="productid"></param>
         /// <returns></returns>
@@ -147,7 +147,7 @@ namespace Himall.Application
             return 1M;
         }
         /// <summary>
-        /// 获取所有分销首页数据，不包含已停止商品
+        /// 获取所有分销首页数据，不包含已停止诊疗项目
         /// </summary>
         /// <param name="userId">会员ID</param>
         /// <returns></returns>
@@ -159,7 +159,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 分销首页商品实体转换
+        /// 分销首页诊疗项目实体转换
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>

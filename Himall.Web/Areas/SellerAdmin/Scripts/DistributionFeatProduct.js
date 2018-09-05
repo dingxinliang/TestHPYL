@@ -37,7 +37,7 @@ function reload(pageNo) {
 function LoadData() {
     $("#list").html('');
 
-    //商品表格
+    //诊疗项目表格
     $("#list").hiMallDatagrid({
         url: './GetProductDataList',
         nowrap: false,
@@ -53,7 +53,7 @@ function LoadData() {
         columns:
         [[
             {
-                field: "ProductName", title: '商品名称', width: 350, align: 'left',
+                field: "ProductName", title: '诊疗项目名称', width: 350, align: 'left',
                 formatter: function (value, row, index) {
                     var html = '<span class="overflow-ellipsis" style="width:300px"><a title="' + value + '" target="_blank" href="/product/detail/' + row.Id + '">' + value + '</a></span>';
                     return html;

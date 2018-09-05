@@ -43,7 +43,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
         }
         /// <summary>
-        /// 确认订单信息并提交
+        /// 确认预约单信息并提交
         /// </summary>
         /// <param name="id"></param>
         /// <param name="count"></param>
@@ -53,7 +53,7 @@ namespace Himall.Web.Areas.Web.Controllers
             //Checkout
             GiftOrderConfirmPageModel data = new Models.GiftOrderConfirmPageModel();
             List<GiftOrderItemInfo> gorditemlist = new List<GiftOrderItemInfo>();
-            GiftOrderItemInfo gorditem;     //订单项
+            GiftOrderItemInfo gorditem;     //预约单项
 
             #region 礼品信息判断
             //礼品信息
@@ -64,7 +64,7 @@ namespace Himall.Web.Areas.Web.Controllers
             }
             #endregion
 
-            gorditem = new GiftOrderItemInfo(); //补充订单项
+            gorditem = new GiftOrderItemInfo(); //补充预约单项
             gorditem.GiftId = giftdata.Id;
             gorditem.GiftName = giftdata.GiftName;
             gorditem.GiftValue = giftdata.GiftValue;
@@ -89,7 +89,7 @@ namespace Himall.Web.Areas.Web.Controllers
             return View(data);
         }
         /// <summary>
-        /// 提交并处理订单
+        /// 提交并处理预约单
         /// </summary>
         /// <param name="id"></param>
         /// <param name="regionId"></param>
@@ -235,7 +235,7 @@ namespace Himall.Web.Areas.Web.Controllers
             var data = _iGiftsOrderService.GetOrder(id, CurrentUser.Id);
             if (data == null)
             {
-                throw new HimallException("错误的订单编号！");
+                throw new HimallException("错误的预约单编号！");
             }
             //Logo
             ViewBag.Logo = _iSiteSettingService.GetSiteSettings().Logo;//获取Logo

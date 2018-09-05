@@ -31,12 +31,12 @@ namespace WinOrderService
             var service = Himall.ServiceProvider.Instance<IOrderService>.Create;
             try
             {
-                service.AutoCloseOrder();//自动关闭超时订单
+                service.AutoCloseOrder();//自动关闭超时预约单
                // Himall.Core.Log.Error("AutoOrder运行成功");
             }
             catch (Exception ex)
             {
-                Himall.Core.Log.Error("自动关闭超时订单出错:", ex);
+                Himall.Core.Log.Error("自动关闭超时预约单出错:", ex);
             }
             try
             {
@@ -45,7 +45,7 @@ namespace WinOrderService
             }
             catch (Exception ex)
             {
-                Himall.Core.Log.Error("自动确认完成订单出错:", ex);
+                Himall.Core.Log.Error("自动确认完成预约单出错:", ex);
             }
         }
 

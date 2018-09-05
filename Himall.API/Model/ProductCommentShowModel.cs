@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.API.Model
 {
     /// <summary>
-    /// 商品评价部份显示
+    /// 诊疗项目评价部份显示
     /// </summary>
     public class ProductCommentShowModel
     {

@@ -46,7 +46,7 @@ function bindAddProductsBtn() {
 }
 
 function initGrid() {
-    //商品表格
+    //诊疗项目表格
     $("#productList").hiMallDatagrid({
         url: '/admin/mobileHomeProducts/GetMobileHomeProducts',
         nowrap: false,
@@ -67,7 +67,7 @@ function initGrid() {
             { checkbox: true, width: 39 },
             { field: "id", hidden: true },
              {
-                 field: "name", title: '商品名称', width: 300, align: "center",
+                 field: "name", title: '诊疗项目名称', width: 300, align: "center",
                  formatter: function (value, row, index) {
                      var html = '<img style="margin-left:15px;" width="40" height="40" src="' + row.image + '" /><span class="overflow-ellipsis" style="width:200px">' + value + '</span>';
                      return html;
@@ -101,7 +101,7 @@ function initGrid() {
 }
 
 function del(id) {
-    $.dialog.confirm('确定要从首页删除该商品吗?', function () {
+    $.dialog.confirm('确定要从首页删除该诊疗项目吗?', function () {
         var loading = showLoading();
         $.post('../MobileHomeProducts/Delete', { id: id }, function (result) {
             loading.close();
@@ -148,7 +148,7 @@ function DeleteList() {
         $.dialog.errorTips("你没有选择任何选项！");
     }
     else {
-        $.dialog.confirm('确定删除选择的商品吗？', function () {
+        $.dialog.confirm('确定删除选择的诊疗项目吗？', function () {
             var loading = showLoading();
             $.post('../MobileHomeProducts/DeleteList', { ids: selectids.join(',') },
                 function (data) {

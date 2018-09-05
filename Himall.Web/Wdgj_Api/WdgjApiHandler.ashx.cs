@@ -284,7 +284,7 @@ namespace Himall.Web.Wdgj_Api
             return stringBuilder.ToString();
         }
         /// <summary>
-        /// 获取订单详情
+        /// 获取预约单详情
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
@@ -299,7 +299,7 @@ namespace Himall.Web.Wdgj_Api
             if (order == null)
             {
                 stringBuilder.Append("<Result>0</Result>");
-                stringBuilder.Append("<Cause><![CDATA[{订单不存在}]]></Cause>");
+                stringBuilder.Append("<Cause><![CDATA[{预约单不存在}]]></Cause>");
             }
             else
             {
@@ -366,7 +366,7 @@ namespace Himall.Web.Wdgj_Api
             return stringBuilder.ToString();
         }
         /// <summary>
-        /// 订单发货
+        /// 预约单发货
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
@@ -378,12 +378,12 @@ namespace Himall.Web.Wdgj_Api
             StringBuilder stringBuilder = new StringBuilder();
             string str4 = str1.Trim();
             if (str1.IndexOf(',') > 0)
-                return this.ExMsg("不支持合并发货，请选择单个订单");
+                return this.ExMsg("不支持合并发货，请选择单个预约单");
             OrderInfo order = ServiceHelper.Create<IOrderService>().GetOrder(Convert.ToInt64(str4));
             if (order == null)
-                return this.ExMsg("未找到此订单");
+                return this.ExMsg("未找到此预约单");
             if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery)
-                return this.ExMsg("只有待发货状态的订单才能发货！");
+                return this.ExMsg("只有待发货状态的预约单才能发货！");
             if (string.IsNullOrEmpty(str3.Trim()) || str3.Trim().Length > 20)
                 return this.ExMsg("运单号码不能为空，在1至20个字符之间！");
             try

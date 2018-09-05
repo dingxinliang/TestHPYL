@@ -146,7 +146,7 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 立即购买方式提交的订单
+        /// 立即购买方式提交的预约单
         /// </summary>
         /// <param name="value">数据</param>
         public object PostSubmitOrder(OrderSubmitOrderModel value)
@@ -163,7 +163,7 @@ namespace Himall.API
             string invoiceTitle = value.invoiceTitle;
             string invoiceContext = value.invoiceContext;
             //end
-            string orderRemarks = string.Empty;//value.orderRemarks;//订单备注
+            string orderRemarks = string.Empty;//value.orderRemarks;//预约单备注
 
             OrderCreateModel model = new OrderCreateModel();
             var orderService = ServiceProvider.Instance<IOrderService>.Create;
@@ -218,12 +218,12 @@ namespace Himall.API
             }
             catch (Exception ex)
             {
-                return Json(new { Success = "false", Msg = "提交订单异常" });
+                return Json(new { Success = "false", Msg = "提交预约单异常" });
             }
         }
 
         /// <summary>
-        /// 购物车方式提交的订单
+        /// 购物车方式提交的预约单
         /// </summary>
         /// <param name="value">数据</param>
         public object PostSubmitOrderByCart(OrderSubmitOrderByCartModel value)
@@ -239,7 +239,7 @@ namespace Himall.API
             string invoiceTitle = value.invoiceTitle;
             string invoiceContext = value.invoiceContext;
             //end
-            string orderRemarks = "";//value.orderRemarks;//订单备注
+            string orderRemarks = "";//value.orderRemarks;//预约单备注
             OrderCreateModel model = new OrderCreateModel();
             var orderService = ServiceProvider.Instance<IOrderService>.Create;
             IEnumerable<long> orderIds;
@@ -281,12 +281,12 @@ namespace Himall.API
             }
             catch (Exception ex)
             {
-                return Json(new { Success = "false", Msg = "提交订单异常" });
+                return Json(new { Success = "false", Msg = "提交预约单异常" });
             }
         }
 
         /// <summary>
-        /// 拼团订单提交
+        /// 拼团预约单提交
         /// </summary>
         /// <param name="value">表单数据</param>
         /// <returns></returns>
@@ -352,7 +352,7 @@ namespace Himall.API
                 return (object)this.Json(new
                 {
                     Success = "false",
-                    Msg = "提交订单异常"
+                    Msg = "提交预约单异常"
                 });
             }
         }
@@ -362,7 +362,7 @@ namespace Himall.API
         /// <param name="orderIds"></param>
         void AddVshopBuyNumber(IEnumerable<long> orderIds)
         {
-            var shopIds = ServiceProvider.Instance<IOrderService>.Create.GetOrders(orderIds).Select(item => item.ShopId);//从订单信息获取店铺id
+            var shopIds = ServiceProvider.Instance<IOrderService>.Create.GetOrders(orderIds).Select(item => item.ShopId);//从预约单信息获取店铺id
             var vshopService = ServiceProvider.Instance<IVShopService>.Create;
             var vshopIds = shopIds.Select(item =>
             {
@@ -381,7 +381,7 @@ namespace Himall.API
         /// <summary>
         /// 是否可用积分购买
         /// </summary>
-        /// <param name="orderIds">订单id</param>
+        /// <param name="orderIds">预约单id</param>
         public object GetPayOrderByIntegral(string orderIds)
         {
             CheckUserLogin();
@@ -392,7 +392,7 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 获取拼团订单信息Model
+        /// 获取拼团预约单信息Model
         /// </summary>
         /// <param name="skuId"></param>
         /// <param name="count"></param>
@@ -416,7 +416,7 @@ namespace Himall.API
             CheckUserLogin();
             if (string.IsNullOrWhiteSpace(orderids))
             {
-                throw new HimallException("订单号不能为空！");
+                throw new HimallException("预约单号不能为空！");
             }
             long orderId = 0;
             var ids = orderids.Split(',').Select(e =>
@@ -440,7 +440,7 @@ namespace Himall.API
             var orderids = OrderIds.orderids;
             if (string.IsNullOrWhiteSpace(orderids))
             {
-                throw new HimallException("订单号不能为空！");
+                throw new HimallException("预约单号不能为空！");
             }
             long orderId = 0;
             var ids = orderids.Split(',').Select(e =>
@@ -448,19 +448,19 @@ namespace Himall.API
                 if (long.TryParse(e, out orderId))
                     return orderId;
                 else
-                    throw new HimallException("订单分享增加积分时，订单号异常！");
+                    throw new HimallException("预约单分享增加积分时，预约单号异常！");
             }
             );
             if (MemberIntegralApplication.OrderIsShared(ids))
             {
-                throw new HimallException("订单已经分享过！");
+                throw new HimallException("预约单已经分享过！");
             }
             MemberIntegralRecord record = new MemberIntegralRecord();
             record.MemberId = CurrentUser.Id;
             record.UserName = CurrentUser.UserName;
             record.RecordDate = DateTime.Now;
             record.TypeId = MemberIntegral.IntegralType.Share;
-            record.ReMark = string.Format("订单号:{0}", orderids);
+            record.ReMark = string.Format("预约单号:{0}", orderids);
             List<MemberIntegralRecordAction> recordAction = new List<MemberIntegralRecordAction>();
 
             foreach (var id in ids)
@@ -513,7 +513,7 @@ namespace Himall.API
             var skuInfos = ProductManagerApplication.GetSKUs(_skuIds);
             query.ProductIds = skuInfos.Select(p => p.ProductId).ToArray();
             var data = ShopBranchApplication.GetShopBranchsAll(query);
-            var shopBranchSkus = ShopBranchApplication.GetSkus(shopId, data.Models.Select(p => p.Id));//获取该商家下具有订单内所有商品的门店状态正常数据,不考虑库存
+            var shopBranchSkus = ShopBranchApplication.GetSkus(shopId, data.Models.Select(p => p.Id));//获取该诊所下具有预约单内所有诊疗项目的门店状态正常数据,不考虑库存
             data.Models.ForEach(p =>
             {
                 p.Enabled = skuInfos.All(skuInfo => shopBranchSkus.Any(sbSku => sbSku.ShopBranchId == p.Id && sbSku.Stock >= _counts[skuInfos.IndexOf(skuInfo)] && sbSku.SkuId == skuInfo.Id));

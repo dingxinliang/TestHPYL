@@ -64,7 +64,7 @@ namespace Himall.Web.Framework
 
 			base.OnAuthorization(filterContext);
 
-			//检查登录状态    //检查授权情况    //跳转到第几部//检查当前商家注册情况 //检查店铺是否过期
+			//检查登录状态    //检查授权情况    //跳转到第几部//检查当前诊所注册情况 //检查店铺是否过期
 			if(CheckLoginStatus(filterContext) && CheckAuthorization(filterContext) && CheckRegisterInfo(filterContext) && CheckShopIsExpired(filterContext))
 				return;
 		}
@@ -191,7 +191,7 @@ namespace Himall.Web.Framework
 		}
 
 		/// <summary>
-		/// 检查当前商家注册情况
+		/// 检查当前诊所注册情况
 		/// </summary>
 		/// <param name="filterContext"></param>
 		bool CheckRegisterInfo(AuthorizationContext filterContext)

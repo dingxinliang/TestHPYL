@@ -22,7 +22,7 @@
     //是否退货
     bool isReturnGoods = (Model.RefundMode == OrderRefundInfo.OrderRefundMode.ReturnGoodsRefund);
     var order = Model.Order as Himall.DTO.Order;
-    var who = (order.DeliveryType == Himall.CommonModel.Enum.DeliveryType.SelfTake || (order.ShopBranchId.HasValue && order.ShopBranchId.Value > 0)) ? "门店" : "商家";
+    var who = (order.DeliveryType == Himall.CommonModel.Enum.DeliveryType.SelfTake || (order.ShopBranchId.HasValue && order.ShopBranchId.Value > 0)) ? "门店" : "诊所";
 
     int curstep = 1;
     string curshowcls = "todo";
@@ -66,7 +66,7 @@
             <div class="step-list">
                 <div class="step-u done">
                     <em>@(curstep)</em>
-                    买家申请售后
+                    患者申请售后
                     <span class="tail tail2"></span>
                     <span class="tail"></span>
                 </div>
@@ -117,7 +117,7 @@
 					}
                     <div class="step-u  @(curshowcls)">
                         <em>@(curstep)</em>
-                        买家回寄商品
+                        患者回寄诊疗项目
                         <span class="tail tail2"></span>
                         <span class="tail"></span>
                     </div>
@@ -266,7 +266,7 @@
                         <tr class="tr-td">
                             <td><span>@(Model.BuyerDeliverDate.HasValue ? Model.BuyerDeliverDate.Value.ToString("yyyy-MM-dd HH:mm:ss") : "")</span></td>
                             <td>
-                                【买家回寄商品】
+                                【患者回寄诊疗项目】
                                 <br />
                                 @(Model.ExpressCompanyName)
                                 <br />

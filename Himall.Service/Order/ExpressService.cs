@@ -77,7 +77,7 @@ namespace Himall.Service
         {
             var order = Context.OrderInfo.FirstOrDefault(item => item.Id == orderId && item.ShopId == shopId);
             if (order == null)
-                throw new HimallException(string.Format("未在本店铺中找到id为{0}的订单", orderId));
+                throw new HimallException(string.Format("未在本店铺中找到id为{0}的预约单", orderId));
 
             var shop = Context.ShopInfo.FirstOrDefault(item => item.Id == shopId);
 
@@ -87,7 +87,7 @@ namespace Himall.Service
         IDictionary<int, string> GetPrintElementIndexAndOrderValue(ShopInfo shop, OrderInfo order, IEnumerable<int> printElementIndexes)
         {
             if (order == null)
-                throw new NullReferenceException("订单为空");
+                throw new NullReferenceException("预约单为空");
 
             var dic = new Dictionary<int, string>();
 
@@ -158,19 +158,19 @@ namespace Himall.Service
                     case 14://"发货人-电话"
                         value = shop.SenderPhone;
                         break;
-                    case 15://"订单-订单号"
+                    case 15://"预约单-预约单号"
                         value = order.Id.ToString();
                         break;
-                    case 16://"订单-总金额"
+                    case 16://"预约单-总金额"
                         value = order.OrderTotalAmount.ToString("F2");
                         break;
-                    case 17://"订单-物品总重量"
+                    case 17://"预约单-物品总重量"
                         value = string.Empty;
                         break;
-                    case 18://"订单-备注"
+                    case 18://"预约单-备注"
                         value = string.IsNullOrWhiteSpace(order.UserRemark) ? "" : order.UserRemark.ToString();
                         break;
-                    case 19://"订单-详情"
+                    case 19://"预约单-详情"
                         value = string.Empty;
                         break;
                     case 21://"网店名称"

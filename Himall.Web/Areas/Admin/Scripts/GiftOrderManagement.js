@@ -135,7 +135,7 @@ function sendgift(id) {
     var dobj = $("#rowdata-" + id);
     var data = jQuery.parseJSON(dobj.val());
     $.dialog({
-        title: data.Id + ' 订单发货',
+        title: data.Id + ' 预约单发货',
         width: 400,
         lock: true,
         id: 'dlgsendgift',
@@ -267,7 +267,7 @@ function vieworder(id) {
         '</div>']);
 
     $.dialog({
-        title: data.Id + ' 订单查看',
+        title: data.Id + ' 预约单查看',
         width: 500,
         lock: true,
         id: 'dlgsendgift',

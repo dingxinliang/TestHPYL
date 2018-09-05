@@ -43,7 +43,7 @@ namespace Himall.Web.Areas.Web.Models
         public List<WebFloorProductLinks> Products { get; set; }
 
         /// <summary>
-        /// 推荐商品
+        /// 推荐诊疗项目
         /// </summary>
         public List<ProductModule> ProductModules { get; set; }
 
@@ -163,22 +163,22 @@ namespace Himall.Web.Areas.Web.Models
             public int Tab { get; set; }
 
             /// <summary>
-            /// 商品ID
+            /// 诊疗项目ID
             /// </summary>
             public long ProductId { get; set; }
 
             /// <summary>
-            /// 商品名称
+            /// 诊疗项目名称
             /// </summary>
             public string productName { get; set; }
 
             /// <summary>
-            /// 商品头像
+            /// 诊疗项目头像
             /// </summary>
             public string productImg { get; set; }
 
             /// <summary>
-            /// 商品价格
+            /// 诊疗项目价格
             /// </summary>
             public decimal price { get; set; }
 

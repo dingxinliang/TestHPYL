@@ -13,9 +13,9 @@ namespace Himall.CommonModel
     public enum AppMessagesType
     {
         /// <summary>
-		/// 订单
+		/// 预约单
 		/// </summary>
-		[Description("订单")]
+		[Description("预约单")]
         Order = 1,
         /// <summary>
 		/// 售后

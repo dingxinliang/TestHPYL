@@ -51,9 +51,9 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 if (order == null)
                 {
                     isok = false;
-                    errormsg = "该订单已删除或不属于该用户";
+                    errormsg = "该预约单已删除或不属于该用户";
                     return Redirect(jumpurl);
-                    throw new Himall.Core.HimallException("该订单已删除或不属于该用户");
+                    throw new Himall.Core.HimallException("该预约单已删除或不属于该用户");
                 }
             }
 
@@ -62,9 +62,9 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 if ((int)order.OrderStatus < 2)
                 {
                     isok = false;
-                    errormsg = "错误的售后申请,订单状态有误";
+                    errormsg = "错误的售后申请,预约单状态有误";
                     return Redirect(jumpurl);
-                    throw new Himall.Core.HimallException("错误的售后申请,订单状态有误");
+                    throw new Himall.Core.HimallException("错误的售后申请,预约单状态有误");
                 }
             }
 
@@ -73,9 +73,9 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 if (itemId == null && order.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery && order.OrderStatus != OrderInfo.OrderOperateStatus.WaitSelfPickUp)
                 {
                     isok = false;
-                    errormsg = "错误的订单退款申请,订单状态有误";
+                    errormsg = "错误的预约单退款申请,预约单状态有误";
                     return Redirect(jumpurl);
-                    throw new Himall.Core.HimallException("错误的订单退款申请,订单状态有误");
+                    throw new Himall.Core.HimallException("错误的预约单退款申请,预约单状态有误");
                 }
             }
 
@@ -85,9 +85,9 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 if (_iOrderService.IsRefundTimeOut(orderid))
                 {
                     isok = false;
-                    errormsg = "订单已超过售后期";
+                    errormsg = "预约单已超过售后期";
                     return Redirect(jumpurl);
-                    throw new Himall.Core.HimallException("订单已超过售后期");
+                    throw new Himall.Core.HimallException("预约单已超过售后期");
                 }
             }
 
@@ -233,7 +233,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                         //        _tmpsel.Selected = true;
                         //    }
                         //}
-                        _tmpsel.Selected = true;  //若订单支付方式为支付宝、微信支付则退款方式默认选中“退款原路返回”
+                        _tmpsel.Selected = true;  //若预约单支付方式为支付宝、微信支付则退款方式默认选中“退款原路返回”
                         list.Add(_tmpsel);
                         model.BackOut = 1;
                     }
@@ -255,12 +255,12 @@ namespace Himall.Web.Areas.Mobile.Controllers
             if (info.ReasonDetail != null && info.ReasonDetail.Length > 1000)
                 throw new Himall.Core.HimallException("退款原因不能超过1000字符");
             var order = _iOrderService.GetOrder(info.OrderId, CurrentUser.Id);
-            if (order == null) throw new Himall.Core.HimallException("该订单已删除或不属于该用户");
-            if ((int)order.OrderStatus < 2) throw new Himall.Core.HimallException("错误的售后申请,订单状态有误");
+            if (order == null) throw new Himall.Core.HimallException("该预约单已删除或不属于该用户");
+            if ((int)order.OrderStatus < 2) throw new Himall.Core.HimallException("错误的售后申请,预约单状态有误");
             //售后时间限制
             if (_iOrderService.IsRefundTimeOut(info.OrderId))
             {
-                throw new Himall.Core.HimallException("订单已超过售后期");
+                throw new Himall.Core.HimallException("预约单已超过售后期");
             }
             if (order.OrderStatus == OrderInfo.OrderOperateStatus.WaitDelivery || order.OrderStatus == OrderInfo.OrderOperateStatus.WaitSelfPickUp)
             {
@@ -276,19 +276,19 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 throw new Himall.Core.HimallException("错误的退货数量");
             var orderitem = order.OrderItemInfo.FirstOrDefault(a => a.Id == info.OrderItemId);
             if (orderitem == null && info.RefundMode != OrderRefundInfo.OrderRefundMode.OrderRefund)
-                throw new Himall.Core.HimallException("该订单条目已删除或不属于该用户");
+                throw new Himall.Core.HimallException("该预约单条目已删除或不属于该用户");
             if (info.RefundMode == OrderRefundInfo.OrderRefundMode.OrderRefund)
             {
                 if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery && order.OrderStatus != OrderInfo.OrderOperateStatus.WaitSelfPickUp)
-                    throw new Himall.Core.HimallException("错误的订单退款申请,订单状态有误");
+                    throw new Himall.Core.HimallException("错误的预约单退款申请,预约单状态有误");
                 info.IsReturn = false;
                 info.ReturnQuantity = 0;
                 if (info.Amount > order.OrderEnabledRefundAmount)
-                    throw new Himall.Core.HimallException("退款金额不能超过订单的实际支付金额");
+                    throw new Himall.Core.HimallException("退款金额不能超过预约单的实际支付金额");
             }
             else
             {
-                if (info.Amount > (orderitem.EnabledRefundAmount - orderitem.RefundPrice)) throw new Himall.Core.HimallException("退款金额不能超过订单的可退金额");
+                if (info.Amount > (orderitem.EnabledRefundAmount - orderitem.RefundPrice)) throw new Himall.Core.HimallException("退款金额不能超过预约单的可退金额");
                 if (info.ReturnQuantity > (orderitem.Quantity - orderitem.ReturnQuantity)) throw new Himall.Core.HimallException("退货数量不可以超出可退数量");
             }
             info.IsReturn = false;
@@ -355,7 +355,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         /// <param name="auditStatus"></param>
         /// <param name="pageNo"></param>
         /// <param name="pageSize"></param>
-        /// <param name="showtype">0 所有 1 订单退款 2 仅退款(包含订单退款) 3 退货 4 仅退款</param>
+        /// <param name="showtype">0 所有 1 预约单退款 2 仅退款(包含预约单退款) 3 退货 4 仅退款</param>
         /// <returns></returns>
         public JsonResult List(int pageNo = 1, int pageSize = 10)
         {
@@ -387,9 +387,9 @@ namespace Himall.Web.Areas.Mobile.Controllers
                     orderItems = order.OrderItemInfo.ToList();
                 }
                 var status = string.Empty;
-                if (IsSelfTake || (order.ShopBranchId.HasValue && order.ShopBranchId.Value > 0))//分配门店订单与自提订单一致
+                if (IsSelfTake || (order.ShopBranchId.HasValue && order.ShopBranchId.Value > 0))//分配门店预约单与自提预约单一致
                 {
-                    status = item.RefundStatus.Replace("商家", "门店");
+                    status = item.RefundStatus.Replace("诊所", "门店");
                 }
 
                 return new
@@ -469,7 +469,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             string status = refundinfo.RefundStatus;
             if (order.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake || (order.ShopBranchId.HasValue && order.ShopBranchId.Value > 0))
             {
-                status = refundinfo.RefundStatus.Replace("商家", "门店");
+                status = refundinfo.RefundStatus.Replace("诊所", "门店");
             }
             ViewBag.RefundStatus = status;
             return View(refundinfo);

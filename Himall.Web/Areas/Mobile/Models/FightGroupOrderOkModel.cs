@@ -11,7 +11,7 @@ namespace Himall.Web.Areas.Mobile.Models
     public class FightGroupOrderOkModel
     {
         /// <summary>
-        /// 是否团首订单
+        /// 是否团首预约单
         /// </summary>
         public bool isFirst { get; set; }
         /// <summary>

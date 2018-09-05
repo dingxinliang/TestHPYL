@@ -12,7 +12,7 @@ namespace Himall.IServices
 	public interface ISpecificationService : IService
 	{
 		/// <summary>
-		/// 获取分类对应的规格，如果商家有自定义规格，将返回修改后的规格
+		/// 获取分类对应的规格，如果诊所有自定义规格，将返回修改后的规格
 		/// </summary>
 		/// <param name="categoryId"></param>
 		/// <param name="shopId"></param>

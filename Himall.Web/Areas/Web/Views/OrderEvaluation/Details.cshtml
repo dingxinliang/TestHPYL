@@ -20,7 +20,7 @@
 
 <div class="box1 lh24">
     <div class="title">
-        <span class="title_txt curr">查看订单评价</span>
+        <span class="title_txt curr">查看预约单评价</span>
     </div>
     <div class="border-box">
         <div class="tb-void tb-line">
@@ -33,7 +33,7 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>商品信息</th>
+                        <th>诊疗项目信息</th>
                         <th>购买时间</th>
                         <th>评价</th>
                     </tr>
@@ -169,7 +169,7 @@
                         <input type="hidden" value="69" name="gid">
                         <input type="hidden" value="549656" name="sid">
                         <dl class="ev-list">
-                            <dt>商品包装满意度</dt>
+                            <dt>诊疗项目包装满意度</dt>
                             <dd>
                                 <span class="commstar" id="id_a">
                                     <a data-t="1" class="star1" href="javascript:;"></a>
@@ -300,7 +300,7 @@
             //    if ($(e).val()) {
             //        //
             //    } else {
-            //        $(e).val('商品是否给力？快分享你的购买心得吧~');
+            //        $(e).val('诊疗项目是否给力？快分享你的购买心得吧~');
             //        $(e).css('color', '#333');
             //    }
             //});
@@ -311,7 +311,7 @@
                 var uid = $(e).attr('data'),
                     star = $('#' + uid + ' .commstar').attr('data'),
                     cont = $('#' + uid + ' .id_cont_txt').val();
-                if (cont == '商品是否给力？快分享你的购买心得吧~') {
+                if (cont == '诊疗项目是否给力？快分享你的购买心得吧~') {
                     cont = false;
                 }
                 if (!star) {
@@ -422,7 +422,7 @@
                         star = $(this).attr('data-t');
                     }
                 });
-                var cont = $("[name=cont_txt]", this).val() == "商品是否给力？快分享你的购买心得吧~" ? "" : $("[name=cont_txt]", this).val();
+                var cont = $("[name=cont_txt]", this).val() == "诊疗项目是否给力？快分享你的购买心得吧~" ? "" : $("[name=cont_txt]", this).val();
                 var arr = {
                     "subOrderId": uid,
                     "star": star,
@@ -462,7 +462,7 @@
 
 
     $(function () {
-        //商品包装满意度
+        //诊疗项目包装满意度
         $("#orderComment dl:eq(0) .commstar a:eq(" + PackMark + ")").trigger("click");
         $("#orderComment dl:eq(0) .commstar a:eq(" + PackMark + ")").nextAll().each(function () {
             $(this).removeAttr("class");

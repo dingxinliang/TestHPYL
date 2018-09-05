@@ -47,7 +47,7 @@ var tn = getQueryString("tn");
 //}
 
 
-// 微商城可视化：控制添加商品的图片显示高度，确保商品布局正常
+// 微商城可视化：控制添加诊疗项目的图片显示高度，确保诊疗项目布局正常
 // 2016-03-15 已改为CSS控制
 // $('.b_mingoods,.mingoods').each(function (index, el) {
 //   var me = $(this),
@@ -101,7 +101,7 @@ $(function () {
                 });
             });
 
-            //处理商品移动
+            //处理诊疗项目移动
             var gdid = _t.attr("data-gdid");
             if (gdid && gdid.length > 0) {
                 var gdbox = $("#" + gdid);
@@ -258,7 +258,7 @@ function addcart() {
         }
 
     } else {
-        $.dialog.errorTips('请选择商品规格');
+        $.dialog.errorTips('请选择诊疗项目规格');
 
     }
 }
@@ -287,7 +287,7 @@ function getQueryString(name) {
             square($('.goods-list .p-img'));
         }
         else {
-            $('#autoLoad').html('没有更多商品了');
+            $('#autoLoad').html('没有更多诊疗项目了');
         }
     });
 }*/

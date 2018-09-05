@@ -25,7 +25,7 @@ namespace Himall.Application
 		#region 方法
 
 		/// <summary>
-		/// 获取用户订单中商品的评价列表
+		/// 获取用户预约单中诊疗项目的评价列表
 		/// </summary>
 		/// <param name="orderId"></param>
 		/// <param name="userId"></param>

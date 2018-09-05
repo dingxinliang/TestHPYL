@@ -24,7 +24,7 @@ namespace Himall.Service
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException("楼层名称不能为空");
             if (topLevelCategoryIds == null || topLevelCategoryIds.Count() == 0)
-                throw new ArgumentNullException("至少要选择一个商品分类");
+                throw new ArgumentNullException("至少要选择一个诊疗项目分类");
 
             var homeFloorInfo = new HomeFloorInfo()
             {
@@ -56,7 +56,7 @@ namespace Himall.Service
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException("楼层名称不能为空");
             if (topLevelCategoryIds == null || topLevelCategoryIds.Count() == 0)
-                throw new ArgumentNullException("至少要选择一个商品分类");
+                throw new ArgumentNullException("至少要选择一个诊疗项目分类");
 
             var homeFloorBasicInfo = Context.HomeFloorInfo.FindById(homeFloorId);
 
@@ -65,9 +65,9 @@ namespace Himall.Service
             topLevelCategoryIds = topLevelCategoryIds.Distinct();
 
 
-            var allTopCategoryids = homeFloorBasicInfo.FloorCategoryInfo.Select(item => item.CategoryId);//当前楼层所有一级商品分类id
-            var deletedTopLevelCategoryIds = allTopCategoryids.Where(item => !topLevelCategoryIds.Contains(item));//当前楼层待删除的一级商品分类id
-            var newTopLevelCategoryIds = topLevelCategoryIds.Where(item => !allTopCategoryids.Contains(item));//待添加的一级商品分类id
+            var allTopCategoryids = homeFloorBasicInfo.FloorCategoryInfo.Select(item => item.CategoryId);//当前楼层所有一级诊疗项目分类id
+            var deletedTopLevelCategoryIds = allTopCategoryids.Where(item => !topLevelCategoryIds.Contains(item));//当前楼层待删除的一级诊疗项目分类id
+            var newTopLevelCategoryIds = topLevelCategoryIds.Where(item => !allTopCategoryids.Contains(item));//待添加的一级诊疗项目分类id
 
             var newFloorCategories = new FloorCategoryInfo[newTopLevelCategoryIds.Count()];
 
@@ -230,7 +230,7 @@ namespace Himall.Service
             //var ids = tabs.Where( item => item.FloorId == floorId ).Select( item => item.Id );
             //获取该删除的所有选项卡
             var ids = Context.FloorTablsInfo.Where(item => item.FloorId == floorId).Select(item => item.Id);
-            //先删除所有选项卡的关联商品
+            //先删除所有选项卡的关联诊疗项目
             Context.FloorTablDetailsInfo.Remove(item => ids.Contains(item.TabId));
             //再删除选项卡
             Context.FloorTablsInfo.Remove(item => item.FloorId == floorId);
@@ -409,8 +409,8 @@ namespace Himall.Service
 
         void UpdateProductModule(HomeFloorInfo homeFloor)
         {
-            //保存商品信息
-            string[] tabNames = new string[] { "特价商品" };
+            //保存诊疗项目信息
+            string[] tabNames = new string[] { "特价诊疗项目" };
             Context.FloorProductInfo.Remove(item => item.FloorId == homeFloor.Id);
             Context.FloorProductInfo.AddRange(homeFloor.FloorProductInfo);
             var oriHomeFloor = Context.HomeFloorInfo.FindById(homeFloor.Id);

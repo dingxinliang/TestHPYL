@@ -52,10 +52,10 @@ namespace Himall.Web.Areas.Web.Controllers
                 return RedirectToAction("Pay", "Order", new { orderIds = ids });
             }
             var orderIdArr = ids.Split(',').Select(item => long.Parse(item));
-            //获取待支付的所有订单
+            //获取待支付的所有预约单
             var orders = _iOrderService.GetOrders(orderIdArr).Where(item => item.OrderStatus == Model.OrderInfo.OrderOperateStatus.WaitPay && item.UserId == CurrentUser.Id).ToList();
 
-            if (orders == null || orders.Count == 0) //订单状态不正确
+            if (orders == null || orders.Count == 0) //预约单状态不正确
             {
                 return RedirectToAction("index", "userCenter", new { url = "/userOrder", tar = "userOrder" });
             }
@@ -72,12 +72,12 @@ namespace Himall.Web.Areas.Web.Controllers
                 {
                     if (!_iFightGroupService.OrderCanPay(item.Id))
                     {
-                        throw new HimallException("有拼团订单为不可付款状态");
+                        throw new HimallException("有拼团预约单为不可付款状态");
                     }
                 }
             }
 
-            //获取所有订单中的商品名称
+            //获取所有预约单中的诊疗项目名称
             var productInfos = GetProductNameDescriptionFromOrders(orders);
             string webRoot = Request.Url.Scheme + "://" + HttpContext.Request.Url.Host + (HttpContext.Request.Url.Port == 80 ? "" : (":" + HttpContext.Request.Url.Port.ToString()));
             //获取同步返回地址
@@ -96,7 +96,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 PayId = 0,
                 OrderId = item.Id
             });
-            //保存支付订单
+            //保存支付预约单
             long payid = _iOrderService.SaveOrderPayInfo(orderPayModel, PlatformType.PC);
             #endregion
 
@@ -136,7 +136,7 @@ namespace Himall.Web.Areas.Web.Controllers
         }
 
         /// <summary>
-        /// 获取订单内商品名称
+        /// 获取预约单内诊疗项目名称
         /// </summary>
         /// <param name="orders"></param>
         /// <returns></returns>
@@ -145,7 +145,7 @@ namespace Himall.Web.Areas.Web.Controllers
             List<string> productNames = new List<string>();
             foreach (var order in orders.ToList())
                 productNames.AddRange(order.OrderItemInfo.Select(t => t.ProductName));
-            var productInfos = productNames.Count() > 1 ? (productNames.ElementAt(0) + " 等" + productNames.Count() + "种商品") : productNames.ElementAt(0);
+            var productInfos = productNames.Count() > 1 ? (productNames.ElementAt(0) + " 等" + productNames.Count() + "种诊疗项目") : productNames.ElementAt(0);
             return productInfos;
         }
 
@@ -561,7 +561,7 @@ namespace Himall.Web.Areas.Web.Controllers
                        if (payStateObj == null)
                        {//没有进入缓存
                            var orderIdArr = orderIds.Split(',').Select(item => long.Parse(item));
-                           //检查对应订单是否已经支付
+                           //检查对应预约单是否已经支付
 
                            using (var service = ServiceHelper.Create<IOrderService>())
                            {
@@ -614,7 +614,7 @@ namespace Himall.Web.Areas.Web.Controllers
                     payStateObj = Cache.Get(payStateKey);
                     if (payStateObj == null)
                     {//没有进入缓存
-                        //检查对应订单是否已经支付
+                        //检查对应预约单是否已经支付
 
                         using (var service = ServiceHelper.Create<IMemberCapitalService>())
                         {

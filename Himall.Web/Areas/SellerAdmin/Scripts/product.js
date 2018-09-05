@@ -71,7 +71,7 @@ function SetFreightType() {
     //    });
 
     //    return result;
-    //}, '请至少上传一张商品图片');
+    //}, '请至少上传一张诊疗项目图片');
 
     $.validator.addMethod('desrequired', function (value, element, param) {
         var des = $('textarea[name="Description.Description"]').val();
@@ -86,7 +86,7 @@ function SetFreightType() {
         }
 
         return true;
-    }, '请输入商品描述');
+    }, '请输入诊疗项目描述');
 
     window.productInit = function () {
         var txtCategoryPath = $('#txtCategoryPath');
@@ -336,7 +336,7 @@ function SetFreightType() {
                     }
                     //生成SKU设置表格
                     generateSKUTable(spes);
-                    //保存商家修改后的规格
+                    //保存诊所修改后的规格
                     generateSellerSpec(changeSpecs);
                     $(".j_spec").show();
                 }
@@ -467,7 +467,7 @@ function SetFreightType() {
             return false;
         });
 
-        //商品列表页点编辑跳转过来时有值
+        //诊疗项目列表页点编辑跳转过来时有值
         if ($.notNullOrEmpty(txtCategoryPath.val())) {
             //绑定分类下拉框
             var categoryPath = txtCategoryPath.val().split('|');
@@ -732,7 +732,7 @@ function SetFreightType() {
             txtStock.val(min);
     }
 
-    //生成商家自定义规格隐藏控件
+    //生成诊所自定义规格隐藏控件
     function generateSellerSpec(changeSpecs) {
         var sellerSpecDiv = $('#skusDiv div.sellerSpec');
         if (sellerSpecDiv.length == 0) {

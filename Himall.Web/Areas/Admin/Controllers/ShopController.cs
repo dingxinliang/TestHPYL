@@ -35,7 +35,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             _iRegionService = iRegionService;
             _iCategoryService = iCategoryService;
             _iSearchProductService = iSearchProductService;
-            //获取当前店铺发布商品的数量
+            //获取当前店铺发布诊疗项目的数量
         }
         /// <summary>
         /// 店铺管理
@@ -229,7 +229,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 修改商家入驻信息
+        /// 修改诊所入驻信息
         /// </summary>
         /// <param name="shop"></param>
         /// <returns></returns>
@@ -243,7 +243,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             //验证修改的店铺等级是否通过
             if (!CheckShopGrade(shop.Id, Convert.ToInt64(shop.ShopGrade)))
             {
-                throw new HimallException("该店铺已使用空间数或已添加商品数大于该套餐");
+                throw new HimallException("该店铺已使用空间数或已添加诊疗项目数大于该套餐");
             }
 
             if (service.ExistShop(shop.Name, shop.Id))
@@ -346,7 +346,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             //验证修改的店铺等级是否通过
             if (!CheckShopGrade(shop.Id, Convert.ToInt64(shop.ShopGrade)))
             {
-                throw new HimallException("该店铺已使用空间数或已添加商品数大于该套餐");
+                throw new HimallException("该店铺已使用空间数或已添加诊疗项目数大于该套餐");
             }
 
             if (service.ExistShop(shop.Name, shop.Id))
@@ -592,7 +592,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             return Json(new { Successful = true });
         }
         /// <summary>
-        /// 商家分类
+        /// 诊所分类
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -604,7 +604,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             return View(bc);
         }
         /// <summary>
-        /// 判断是否能删除商家分类
+        /// 判断是否能删除诊所分类
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cid"></param>
@@ -619,12 +619,12 @@ namespace Himall.Web.Areas.Admin.Controllers
             }
             else
             {
-                result = new Result { status = -1, msg = "不可删除，有商品被购买", success = false };
+                result = new Result { status = -1, msg = "不可删除，有诊疗项目被购买", success = false };
             }
             return Json(result);
         }
         /// <summary>
-        /// 保存商家分类
+        /// 保存诊所分类
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="bcategory"></param>
@@ -674,7 +674,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         {
             var shopservice = _iShopService;
             var productservice = _iProductService;
-            //获取当前店铺发布商品的数量
+            //获取当前店铺发布诊疗项目的数量
             var productCount = productservice.GetShopAllProducts(shopId);
             //获取当前店铺使用的空间
             var SpaceUsage = shopservice.GetShopSpaceUsage(shopId);
@@ -688,7 +688,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                 {
                     var newproductLimit = newshopGrade.ProductLimit;
                     var newimageLimit = newshopGrade.ImageLimit;
-                    //如果修改的店铺等级商品发布数、使用空间 任何一个小于正在使用的商品发布数、使用空间 则不通过
+                    //如果修改的店铺等级诊疗项目发布数、使用空间 任何一个小于正在使用的诊疗项目发布数、使用空间 则不通过
                     if (newproductLimit < productCount || newimageLimit < UseSpaceing)
                         return false;
                     else

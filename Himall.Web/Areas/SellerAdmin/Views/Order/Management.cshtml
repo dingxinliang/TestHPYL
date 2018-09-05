@@ -14,7 +14,7 @@
 <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.zh-CN.js"></script>
 <script src="~/Scripts/LodopFuncs.js"></script>
-<script src="~/Areas/SellerAdmin/Scripts/orderManagement.js"></script>
+<script src="~/Areas/SellerAdmin/Scripts/orderManagement.js?@DateTime.UtcNow"></script>
 <script src="~/Scripts/jquery.himall.Region.js"></script>
 <style>
     .dialog-form .input-sm {
@@ -26,12 +26,12 @@
 </style>
 <div class="container">
     <ul class="nav nav-tabs-custom clearfix">
-        <li value="0" type="statusTab"><a>所有订单</a></li>
+        <li value="0" type="statusTab"><a>所有预约单</a></li>
         <li value="1" type="statusTab"><a>待付款</a></li>
-        <li value="2" type="statusTab"><a>待发货</a></li>
-        <li value="6" type="statusTab"><a>待自提</a></li>
-        <li value="3" type="statusTab"><a>待收货</a></li>
-        <li value="5" type="statusTab"><a>交易完成</a></li>
+        <li value="2" type="statusTab"><a>待就诊</a></li>
+        @*<li value="6" type="statusTab"><a>待确认</a></li>*@
+        @*<li value="3" type="statusTab"><a>待结算</a></li>*@
+        <li value="5" type="statusTab"><a>就诊结束</a></li>
         <li value="4" type="statusTab"><a>已关闭</a></li>
     </ul>
     @if (CanGoBills)
@@ -41,33 +41,30 @@
     <div class="search-box" id="search-box">
         <form class="form-inline custom-inline">
             <div class="form-group">
-                <label class="label-inline w75" for="">订单号</label>
+                <label class="label-inline w75" for="">预约单号</label>
                 <input class="form-control input-ssm input-number" type="text" id="txtOrderId">
             </div>
             <div class="form-group">
                 <label class="label-inline w75" for="">手机号码</label>
                 <input class="form-control input-ssm input-number" type="text" id="txtUserContact">
             </div>
-            <div class="form-group">
-                <label class="label-inline w75" for="">买家</label>
-                <input class="form-control input-ssm" type="text" id="txtUserName">
-            </div>
+
             @if (isOpenStore)
             {
-            <div class="form-group">
-                <label class="label-inline w75" for="">门店名称</label>
-                <select id="shopBranchId" class="form-control input-ssm">
-                    <option>全部</option>
-                    <option value="0">总店</option>
-                    @foreach (var item in storeList)
-                    {
-                        <option value="@item.Id">@item.ShopBranchName</option>
-                    }
-                </select>
-            </div>
+                <div class="form-group" style="display:none">
+                    <label class="label-inline w75" for="">门店名称</label>
+                    <select id="shopBranchId" class="form-control input-ssm">
+                        <option>全部</option>
+                        <option value="0">总店</option>
+                        @foreach (var item in storeList)
+                        {
+                            <option value="@item.Id">@item.ShopBranchName</option>
+                        }
+                    </select>
+                </div>
             }
-            <div class="form-group">
-                <label class="label-inline w75" for="">订单类型</label>
+            <div class="form-group" style="display:none">
+                <label class="label-inline w75" for="">预约单类型</label>
                 <select id="orderType" class="form-control input-ssm">
                     <option value="">全部类型</option>
                     @foreach (var item in Enum.GetValues(typeof(Himall.Core.PlatformType)))
@@ -79,10 +76,10 @@
                             case Himall.Core.PlatformType.Mobile:
                                 break;
                             case Himall.Core.PlatformType.Android:
-                                <option value="@((int)item)">APP订单</option>
+                                <option value="@((int)item)">APP预约单</option>
                                 break;
                             default:
-                                <option value="@((int)item)">@(((Himall.Core.PlatformType)item).ToDescription())订单</option>
+                                <option value="@((int)item)">@(((Himall.Core.PlatformType)item).ToDescription())预约单</option>
                                 break;
 
                         }
@@ -90,12 +87,12 @@
                 </select>
             </div>
             @*<div class="form-group">
-                <label class="label-inline w75" for="">付款方式</label>
-                <select class="form-control input-ssm">
-                    <option value="">全部</option>
-                </select>
-            </div>*@
-            <div class="form-group">
+            <label class="label-inline w75" for="">付款方式</label>
+            <select class="form-control input-ssm">
+                <option value="">全部</option>
+            </select>
+        </div>*@
+            <div class="form-group" style="display:none">
                 <label class="label-inline w75" for="">付款方式</label>
                 <select class="form-control input-ssm" id="selectPaymentTypeName">
                     <option value="">全部</option>
@@ -106,41 +103,45 @@
                 </select>
             </div>
             @*<div class="form-group">
-                    <label class="label-inline w75" for="">支付方式</label>
-                    <select class="form-control input-ssm" id="selectPaymentType">
-                        <option value="0">全部</option>
-                        @foreach (var item in Enum.GetValues(typeof(Himall.Model.OrderInfo.PaymentTypes)))
-                        {
-                            Himall.Model.OrderInfo.PaymentTypes itemdata = (Himall.Model.OrderInfo.PaymentTypes)item;
-                            if ((int)itemdata != 0)
-                            {
-                                <option value="@(( int )itemdata)">@(itemdata.ToDescription())</option>
-                            }
-                        }
-                    </select>
-                </div>*@
+            <label class="label-inline w75" for="">支付方式</label>
+            <select class="form-control input-ssm" id="selectPaymentType">
+                <option value="0">全部</option>
+                @foreach (var item in Enum.GetValues(typeof(Himall.Model.OrderInfo.PaymentTypes)))
+                {
+                    Himall.Model.OrderInfo.PaymentTypes itemdata = (Himall.Model.OrderInfo.PaymentTypes)item;
+                    if ((int)itemdata != 0)
+                    {
+                        <option value="@(( int )itemdata)">@(itemdata.ToDescription())</option>
+                    }
+                }
+            </select>
+        </div>*@
 
             <div class="form-group">
-                <label class="label-inline w75" for="">订单日期</label>
+                <label class="label-inline w75" for="">预约日期</label>
                 <input id="inputStartDate" class="form-control input-ssm start_datetime" type="text">
                 <label class="label-inline-line" for="">-</label>
                 <input id="inputEndDate" class="form-control input-ssm end_datetime" type="text">
             </div>
             @if (isOpenStore)
             {
-            <div class="form-group">
-                <label class="label-inline w75" for="">门店配送</label>
-                <select class="form-control input-ssm"  id="allotStore">
-                    <option value="0">全部</option>
-                    <option value="1">订单已分配门店</option>
-                    <option value="2">订单未分配门店</option>
-                </select>
-            </div>
+                <div class="form-group" style="display:none">
+                    <label class="label-inline w75" for="">门店配送</label>
+                    <select class="form-control input-ssm" id="allotStore">
+                        <option value="0">全部</option>
+                        <option value="1">预约单已分配门店</option>
+                        <option value="2">预约单未分配门店</option>
+                    </select>
+                </div>
             }
             @*<div class="form-group">
-                    <label class="label-inline w75" for="txtUserContact">联系方式</label>
-                    <input class="form-control input-ssm" type="text" id="txtUserContact">
-                </div>*@
+            <label class="label-inline w75" for="txtUserContact">联系方式</label>
+            <input class="form-control input-ssm" type="text" id="txtUserContact">
+        </div>*@
+            <div class="form-group">
+                <label class="label-inline w75" for="">患者</label>
+                <input class="form-control input-ssm" type="text" id="txtUserName">
+            </div>
             <div class="form-group">
                 <button type="button" class="btn btn-primary btn-sm" id="searchButton">搜 索</button>
             </div>
@@ -151,23 +152,27 @@
 
     <div class="table-head-l">
         @*<span class="th1" style="padding:4px 15px 4px 10px;"><input type="checkbox" /><label>全选</label></span>*@
-        <div class="tabel-operate" id="orderOperate">
-            <a onclick="downloadOrderList()" href="#" class="btn btn-default btn-ssm">订单配货表</a>
-            <a onclick="myPreview()" class="btn btn-default btn-ssm">打印发货单</a>
-            <a onclick="printOrders()" class="btn btn-default btn-ssm">打印快递单</a>
-            <a onclick="sendGood()" class="btn btn-default btn-ssm">批量发货</a>
-            <a class=" btn btn-default btn-ssm" id="aExport" href='javascript:;' onclick="ExportExecl();">导出查询结果</a>
-        </div>
-        <div id="prepareGoods">
-            <div class="pregoods-btn">
-                <a onclick="exportOrderList()" id="orderPrepareGoods" class="btn btn-primary btn-sm">订单配货单</a>
-                <a onclick="exportOrderProductList()" id="productPrepareGoods" class="btn btn-primary btn-sm">商品配货单</a>
+        <div   style="display:none">
+            <div class="tabel-operate" id="orderOperate" style="display:none">
+                @*<a onclick="downloadOrderList()" href="#" class="btn btn-default btn-ssm">预约单配货表</a>
+                <a onclick="myPreview()" class="btn btn-default btn-ssm">打印发货单</a>
+                <a onclick="printOrders()" class="btn btn-default btn-ssm">打印快递单</a>
+                <a onclick="sendGood()" class="btn btn-default btn-ssm">批量发货</a>
+                <a class=" btn btn-default btn-ssm" id="aExport" href='javascript:;' onclick="ExportExecl();">导出查询结果</a>*@
             </div>
-            <div class="pregoods-tags">
-                <p>导出内容只包括等待发货状态的订单</p>
-                <p>订单配货表不会合并相同的商品，商品配货表则会合并相同的商品。</p>
+            <div id="prepareGoods">
+                <div class="pregoods-btn">
+                    <a onclick="exportOrderList()" id="orderPrepareGoods" class="btn btn-primary btn-sm">预约单配货单</a>
+                    <a onclick="exportOrderProductList()" id="productPrepareGoods" class="btn btn-primary btn-sm">诊疗项目配货单</a>
+                </div>
+                <div class="pregoods-tags">
+                    <p>导出内容只包括等待发货状态的预约单</p>
+                    <p>预约单配货表不会合并相同的诊疗项目，诊疗项目配货表则会合并相同的诊疗项目。</p>
+                </div>
             </div>
         </div>
+       
+      
         <span class="th3 hide">
             <label>每页显示</label>
             <select class="form-control input-ssm">

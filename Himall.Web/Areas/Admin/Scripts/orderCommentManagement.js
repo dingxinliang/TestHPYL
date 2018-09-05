@@ -1,6 +1,6 @@
 ﻿function query()
 {
-    //订单表格
+    //预约单表格
     $("#list").hiMallDatagrid({
         url: './list',
         nowrap: false,
@@ -17,10 +17,10 @@
         queryParams: {},
         columns:
         [[
-            { field: "OrderId", title: '订单号', width: 150 },
+            { field: "OrderId", title: '预约单号', width: 150 },
             { field: "ShopName", title: "店铺", width: 150, align: "center" },
             { field: "UserName", title: "评价会员", width: 80, align: "center" },
-            { field: "PackMark", title: "商品包装", width: 100, align: "center" },
+            { field: "PackMark", title: "诊疗项目包装", width: 100, align: "center" },
             { field: "DeliveryMark", title: "送货速度", width: 100, align: "center" },
             { field: "ServiceMark", title: "配送服务", width: 100, align: "center" },
             { field: "CommentDate", title: "评价日期", width:150, align: "center" },

@@ -13,7 +13,7 @@ $(function () {
         typeChoose('')
     }
 
-    //订单表格
+    //预约单表格
 
     function typeChoose(val) {
         $('.nav-tabs-custom li').each(function () {
@@ -30,18 +30,18 @@ $(function () {
         datacols = [[
 
                 {
-                    field: "OrderId", title: '订单号', width: 100,
+                    field: "OrderId", title: '预约单号', width: 100,
                     formatter: function (value, row, index) {
                         return '<a href="/Admin/order/Detail/' + value + '" target="_blank">' + value + '</a>';
                     }
                 },
                     { field: "ShopName", title: "店铺", width: 120, align: "center" },
                     {
-                        field: "ProductName", title: "商品", width: 280, align: "center",
+                        field: "ProductName", title: "诊疗项目", width: 280, align: "center",
                         formatter: function (value, row, index) {
                             var html = ""
                             if (row.RefundMode == 1) {
-                                html = "订单所有商品";
+                                html = "预约单所有诊疗项目";
                             } else {
                                 html = '<img style="margin-left:15px;" width="40" height="40" src="' + row.ThumbnailsUrl + '"/>' + '<span class="overflow-ellipsis" style="width:200px;text-align:left"><a title="' + value + '" href="/product/detail/' + row.ProductId + '" target="_blank">' + value + '</a></span>';
                             }
@@ -49,7 +49,7 @@ $(function () {
                         }
                     },
 
-                    { field: "UserName", title: "买家", width: 80, align: "center" },
+                    { field: "UserName", title: "患者", width: 80, align: "center" },
                     { field: "ApplyDate", title: "申请日期", width: 70, align: "center" },
                     {
                         field: "Amount", title: "退款", width: 90, align: "center",
@@ -72,7 +72,7 @@ $(function () {
                 formatter: function (value, row, index) {
                     var html = ["<span class=\"btn-a\">"];
                    // html.push("<input type=\"hidden\" name=\"rowdata\" id=\"rowdata-" + row.RefundId + "\" value='" + jQuery.toJSON(row) + "'>");
-                    if (row.AuditStatus == "商家通过审核" || row.AuditStatus == "待平台确认" || row.AuditStatus == "退款中") {
+                    if (row.AuditStatus == "诊所通过审核" || row.AuditStatus == "待平台确认" || row.AuditStatus == "退款中") {
                         html.push("<a class=\"good-check\" onclick=\"CheckRefund('" + index + "')\">确认退款</a>");
                     } else {
                         html.push("<a class=\"good-check\" onclick=\"OpenRefundReason('" + index + "')\">查看原因</a>");
@@ -135,7 +135,7 @@ function CheckRefund(rowIndex) {
     $.post('./CheckRefund', { refundId: data.RefundId }, function (result) {
         loading.close();
         if (!result.success) {
-            $.dialog.confirm('商家当前帐户余额不足以支付该笔退款金额，退款后，商家帐户余额将为负数，是否确认执行退款操作？', function () {
+            $.dialog.confirm('诊所当前帐户余额不足以支付该笔退款金额，退款后，诊所帐户余额将为负数，是否确认执行退款操作？', function () {
                 OpenConfirmRefund(rowIndex);
             });
         }
@@ -274,7 +274,7 @@ function OpenRefundReason(rowIndex) {
     if (data.SellerRemark) {
         dlgcontent = dlgcontent.concat([
                 '<div class="form-group">',
-                    '<label class="label-inline fl">商家处理</label>',
+                    '<label class="label-inline fl">诊所处理</label>',
                     '<p class="help-top">' + data.SellerRemark.replace(/>/g, '&gt;').replace(/</g, '&lt;') + '</p>',
                ' </div>']);
     }

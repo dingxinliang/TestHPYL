@@ -56,7 +56,7 @@ function Query() {
 
 };
 function closeLabels(id) {
-    $.dialog.confirm('商家消费者保障标识、七天无理由退换标识及及时发货标识将被取消，商家补齐保障金后将自动恢复；确认取消吗？', function () {
+    $.dialog.confirm('诊所消费者保障标识、七天无理由退换标识及及时发货标识将被取消，诊所补齐保障金后将自动恢复；确认取消吗？', function () {
         var loading = showLoading();
         $.post("UpdateEnableLabels", { id: id, enableLabels: false }, function (result) {
             loading.close();

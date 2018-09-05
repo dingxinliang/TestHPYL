@@ -27,7 +27,7 @@ namespace Himall.API
 				Application.ManagerApplication.ChangeSellerManagerPassword(user.Id, user.ShopId, password, user.RoleId);
                 if (CurrentUser.RoleId == 0)
                 {
-                    Application.MemberApplication.ChangePassword(user.UserName, password);//修改商家对应的用户密码
+                    Application.MemberApplication.ChangePassword(user.UserName, password);//修改诊所对应的用户密码
                 }
 
 				return SuccessResult("密码修改成功");

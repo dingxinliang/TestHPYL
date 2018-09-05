@@ -48,7 +48,7 @@ $(document).ready(function () {
         $(".style-toggle").hide();
     });
 
-    /*商品、店铺切换*/
+    /*诊疗项目、店铺切换*/
     $(".tab-text").unbind("click").click(function(){
         $(".tab-nav").toggle();
         return false;
@@ -89,7 +89,7 @@ $(document).ready(function () {
             skey = encodeURIComponent(skey);
         }
         var isjump = true;
-        if ($(".toggle-target").text() == "商品") {
+        if ($(".toggle-target").text() == "诊疗项目") {
             SearchUrl = "/" + areaName + "/DistributionMarket/SearchProduct/";
             SearchUrl += "?skey=" + skey;
         } else {

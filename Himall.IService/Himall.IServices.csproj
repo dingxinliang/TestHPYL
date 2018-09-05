@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="CacheKeyCollection.cs" />
     <Compile Include="IDXL\IFollowtService.cs" />
+    <Compile Include="IDXL\INOrderService.cs" />
     <Compile Include="IMarket\IBranchCartService.cs" />
     <Compile Include="IMarket\IFullDiscountService.cs" />
     <Compile Include="IOrder\IVirtualOrderService.cs" />

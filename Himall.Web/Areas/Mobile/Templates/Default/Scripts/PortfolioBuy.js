@@ -122,7 +122,7 @@ function addcart() {
         $("#" + pid).siblings().find('strong').text($('.price-con').text());
         ComputeShowCartPrice();//重新计算价格
     } else {
-        $.dialog.errorTips('请选择商品规格');
+        $.dialog.errorTips('请选择诊疗项目规格');
     }
 }
 
@@ -132,13 +132,13 @@ function CollocationBuy() {
         arrCounts=[],
         arrCollpids = [];
     if ($('.choice.active').length == 0) {
-        $.dialog.errorTips('请至少选择一个组合商品');
+        $.dialog.errorTips('请至少选择一个组合诊疗项目');
         return false;
     }
     $('.hmui-after').each(function (index) {
         if(index==0){
             if ($(this).find('.att-choice.active').length > 0) {
-                $.dialog.errorTips('请选择商品规格');
+                $.dialog.errorTips('请选择诊疗项目规格');
                 flag = false;
             } else {
                 arrSku.push($(this).data('sku'));
@@ -147,7 +147,7 @@ function CollocationBuy() {
             }
         } else {
             if ($(this).find('.att-choice.active').length > 0 && $(this).find('.choice.active').length > 0) {
-                $.dialog.errorTips('请选择商品规格');
+                $.dialog.errorTips('请选择诊疗项目规格');
                 flag = false;
             }
             if ($(this).find('.choice.active').length > 0) {

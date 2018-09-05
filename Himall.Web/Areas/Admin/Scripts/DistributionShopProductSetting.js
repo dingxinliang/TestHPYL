@@ -46,7 +46,7 @@ function bindAddProductsBtn() {
 }
 
 function initGrid() {
-    //商品表格
+    //诊疗项目表格
     $("#productList").hiMallDatagrid({
         url: 'GetDistributionProducts',
         nowrap: false,
@@ -63,7 +63,7 @@ function initGrid() {
         columns:
         [[
              {
-                 field: "ProductName", title: '商品名称', width: 130, align: "center",
+                 field: "ProductName", title: '诊疗项目名称', width: 130, align: "center",
                  formatter: function (value, row, index) {
                      var html = '<img width="40" height="40" src="' + row.Image + '" /><span class="overflow-ellipsis" style="width:71px">' + value + '</span>';
                      return html;
@@ -103,7 +103,7 @@ function initGrid() {
 }
 
 function del(id) {
-    $.dialog.confirm('确定要从首页删除该商品吗?', function () {
+    $.dialog.confirm('确定要从首页删除该诊疗项目吗?', function () {
         var loading = showLoading();
         $.post('Delete', { id: id }, function (result) {
             loading.close();

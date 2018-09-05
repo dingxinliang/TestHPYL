@@ -132,7 +132,7 @@ namespace Himall.Service
             };
             #endregion
 
-            #region 商家发布
+            #region 诊所发布
             if (info.ShopId > 0)
             {
                 _BaseInfo.custom_url = curHost + "/Shop/Home/" + info.ShopId.ToString();

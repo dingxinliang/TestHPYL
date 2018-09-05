@@ -198,7 +198,7 @@ namespace Himall.Service
 
 			var existProduct = this.Context.ProductInfo.Exist(p => (p.CategoryId == id || allChildIds.Contains(p.CategoryId)) && p.IsDeleted == false);
 			if (existProduct)
-				throw new HimallException("删除失败，因为有商品与该分类或子分类关联");
+				throw new HimallException("删除失败，因为有诊疗项目与该分类或子分类关联");
 
 			allChildIds.Add(id);
 			//this.Context.CategoryInfo.Where(p => p.Id == id || allChildIds.Contains(p.Id)).Update(p => new CategoryInfo { IsDeleted = true });

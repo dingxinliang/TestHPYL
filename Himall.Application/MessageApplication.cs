@@ -72,7 +72,7 @@ namespace Himall.Application
             _iMessageService.SendMessageOnFindPassWord(userId, info);
         }
         /// <summary>
-        /// 创建订单
+        /// 创建预约单
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
@@ -82,7 +82,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 订单支付
+        /// 预约单支付
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
@@ -91,7 +91,7 @@ namespace Himall.Application
             _iMessageService.SendMessageOnOrderPay(userId, info);
         }
         /// <summary>
-        /// 店铺有新订单
+        /// 店铺有新预约单
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
@@ -100,7 +100,7 @@ namespace Himall.Application
             _iMessageService.SendMessageOnShopHasNewOrder(shopId, info);
         }
         /// <summary>
-        /// 订单退款
+        /// 预约单退款
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
@@ -119,7 +119,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 订单发货
+        /// 预约单发货
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>

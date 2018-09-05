@@ -9,7 +9,7 @@ namespace Himall.Model
     {      
         
         /// <summary>
-        /// 今日订单数
+        /// 今日预约单数
         /// </summary>
         public int TodayOrders { set; get; }
 
@@ -46,25 +46,25 @@ namespace Himall.Model
         public decimal ShopFreight { set; get; }
 
         /// <summary>
-        /// 出售商品数
+        /// 出售诊疗项目数
         /// </summary>
         public int OnSaleProducts { set; get; }
 
         /// <summary>
-        /// 待审核商品数
+        /// 待审核诊疗项目数
         /// </summary>
         public int WaitForAuditingProducts { set; get; }
 
         /// <summary>
-        /// 审核失败商品数
+        /// 审核失败诊疗项目数
         /// </summary>
         public int AuditFailureProducts { set; get; }
         /// <summary>
-        /// 违规下架商品数
+        /// 违规下架诊疗项目数
         /// </summary>
         public int InfractionSaleOffProducts { set; get; }
         /// <summary>
-        /// 仓库中商品数
+        /// 仓库中诊疗项目数
         /// </summary>
         public int InStockProducts { set; get; }
 
@@ -74,17 +74,17 @@ namespace Himall.Model
         public int BrandApply { set; get; }
 
         /// <summary>
-        /// 商品评论数
+        /// 诊疗项目评论数
         /// </summary>
         public int ProductComments { set; get; }
 
         /// <summary>
-        /// 商品咨询数
+        /// 诊疗项目咨询数
         /// </summary>
         public int ProductConsultations { set; get; }
 
         /// <summary>
-        /// 所有发布的商品
+        /// 所有发布的诊疗项目
         /// </summary>
         public int ProductsCount { set; get; }
         /// <summary>
@@ -113,7 +113,7 @@ namespace Himall.Model
         public int WaitDeliveryTrades { set; get; }
 
         /// <summary>
-        /// 退款记录数(包括订单退款)
+        /// 退款记录数(包括预约单退款)
         /// </summary>
         public int RefundTrades { set; get; }
         /// <summary>
@@ -126,12 +126,12 @@ namespace Himall.Model
         /// </summary>
         public int Complaints { set; get; }
         /// <summary>
-        /// 订单总数
+        /// 预约单总数
         /// </summary>
         public int OrderCounts { set; get; }
 
         /// <summary>
-        /// 订单总金额
+        /// 预约单总金额
         /// </summary>
         public decimal? OrderAmount { set; get; }
 

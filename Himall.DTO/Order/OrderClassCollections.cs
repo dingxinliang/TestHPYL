@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 订单提交页面ViewModel 
+    /// 预约单提交页面ViewModel 
     /// </summary>
     public class OrderSubmitModel
     {
@@ -19,7 +19,7 @@ namespace Himall.DTO
         /// </summary>
         public int IntegralPerMoney { get; set; }
         /// <summary>
-        /// 订单使用的积分
+        /// 预约单使用的积分
         /// </summary>
         public int Integral { get; set; }
         /// <summary>
@@ -29,7 +29,7 @@ namespace Himall.DTO
 
         public string cartItemIds { get; set; }
         /// <summary>
-        /// 完成订单将可以获得的积分
+        /// 完成预约单将可以获得的积分
         /// </summary>
         public decimal TotalIntegral { get; set; }
         /// <summary>
@@ -46,7 +46,7 @@ namespace Himall.DTO
         public List<OrderSubmitItemModel> freightProductGroup { get; set; }
 
         /// <summary>
-        /// 订单总金额
+        /// 预约单总金额
         /// </summary>
         public decimal totalAmount { get; set; }
 

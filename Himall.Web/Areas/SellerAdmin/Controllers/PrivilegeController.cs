@@ -58,7 +58,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         [UnAuthorize]
-        [ShopOperationLog(Message = "编辑商家权限组")]
+        [ShopOperationLog(Message = "编辑诊所权限组")]
         [HttpPost]
         public JsonResult Edit(string roleJson, long id)
         {
@@ -122,7 +122,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return Json(new { success = true });
         }
 
-        [ShopOperationLog(Message = "删除商家权限组")]
+        [ShopOperationLog(Message = "删除诊所权限组")]
         [UnAuthorize]
         public JsonResult Delete(long id)
         {

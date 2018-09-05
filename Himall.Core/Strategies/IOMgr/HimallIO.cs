@@ -250,7 +250,7 @@ namespace Himall.Core
         }
 
         /// <summary>
-        /// 获取不同尺码的商品图片
+        /// 获取不同尺码的诊疗项目图片
         /// </summary>
         /// <param name="productPath"></param>
         /// <param name="index"></param>

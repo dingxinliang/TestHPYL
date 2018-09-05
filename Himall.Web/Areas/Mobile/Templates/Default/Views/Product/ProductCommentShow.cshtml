@@ -1,12 +1,12 @@
 ﻿@model Himall.Web.Areas.Mobile.Models.ProductCommentShowModel
 @{
-    // ViewBag.Title = "商品评论分布";
+    // ViewBag.Title = "诊疗项目评论分布";
     Layout = null;
 }
 @if (Model.IsShowColumnTitle)
 {
 <div class="item detail-comment">
-    <a class="item-navigate-arrow" href="/@(ViewBag.AreaName)/Product/ProductComment?pId=@(Model.ProductId)&commentType=0">商品评价<span>@(Model.CommentCount)</span></a>
+    <a class="item-navigate-arrow" href="/@(ViewBag.AreaName)/Product/ProductComment?pId=@(Model.ProductId)&commentType=0">诊疗项目评价<span>@(Model.CommentCount)</span></a>
 </div>
 }
 @if (Model.IsShowCommentList)
@@ -63,6 +63,6 @@
     }
     else
     {
-        <div>该商品还没有人写评价呢</div>
+        <div>该诊疗项目还没有人写评价呢</div>
     }
 }

@@ -81,12 +81,12 @@ namespace Himall.Web.Areas.SellerAdmin.Models
         }
 
         /// <summary>
-        /// 发布商品数
+        /// 发布诊疗项目数
         /// </summary>
         public string ProductsNumber { get; set; }
 
         /// <summary>
-        /// 所有商品数
+        /// 所有诊疗项目数
         /// </summary>
         public string ProductsNumberIng { get; set; }
 
@@ -101,17 +101,17 @@ namespace Himall.Web.Areas.SellerAdmin.Models
         public string UseSpaceing { get; set; }
 
         /// <summary>
-        /// 订单 商品咨询
+        /// 预约单 诊疗项目咨询
         /// </summary>
         public string OrderProductConsultation { get; set; }
 
         /// <summary>
-        /// 订单总数
+        /// 预约单总数
         /// </summary>
         public string OrderCounts { get; set; }
 
         /// <summary>
-        /// 待买家付款
+        /// 待患者付款
         /// </summary>
         public string OrderWaitPay { get; set; }
 
@@ -142,40 +142,40 @@ namespace Himall.Web.Areas.SellerAdmin.Models
         public string OrderWithRefundAndRGoods { get; set; }
 
         /// <summary>
-        /// 商品 销售中
+        /// 诊疗项目 销售中
         /// </summary>
         public string ProductsOnSale { get; set; }
         /// <summary>
-        /// 商品 草稿箱
+        /// 诊疗项目 草稿箱
         /// </summary>
         public string ProductsInDraft { get; set; }
 
         /// <summary>
-        /// 商品 待审核
+        /// 诊疗项目 待审核
         /// </summary>
         public string ProductsWaitForAuditing { get; set; }
 
         /// <summary>
-        /// 商品 审核未通过
+        /// 诊疗项目 审核未通过
         /// </summary>
         public string ProductsAuditFailed { get; set; }
 
         /// <summary>
-        /// 商品 违规下架
+        /// 诊疗项目 违规下架
         /// </summary>
         public string ProductsInfractionSaleOff { get; set; }
 
         /// <summary>
-        /// 商品 仓库中
+        /// 诊疗项目 仓库中
         /// </summary>
         public string ProductsInStock { get; set; }
         /// <summary>
-        /// 超出警戒库存的商品数
+        /// 超出警戒库存的诊疗项目数
         /// </summary>
         public string OverSafeStockProducts { get; set; }
 
         /// <summary>
-        /// 商品评价
+        /// 诊疗项目评价
         /// </summary>
         public string ProductsEvaluation { get; set; }
 

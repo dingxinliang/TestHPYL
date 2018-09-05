@@ -73,6 +73,43 @@ namespace Himall.IServices.QueryModel
         public long ShopCategoryId { get; set; }
     }
 
+    public partial class DoctorContentQuery : QueryBase
+    {
+
+
+        /// <summary>
+        /// 主键
+        /// </summary>
+        public long HDC_ID { get; set; }
+        /// <summary>
+        /// 模板类别
+        /// </summary>
+        public long HAA_ID { get; set; }
+        /// <summary>
+        /// 随访间隔时间
+        /// </summary>
+        public int HDC_Days { get; set; }
+        public string Days { get; set; }
+        /// <summary>
+        /// 随访内容
+        /// </summary>
+        public string HDC_Content { get; set; }
+        /// <summary>
+        /// 模板
+        /// </summary>
+        public string FollowName { get; set; }
+        /// <summary>
+        /// 类别
+        /// </summary>
+        public string CategoryName { get; set; }
+        public long shopId { get; set; }
+        /// <summary>
+        /// 要过滤的门店ID
+        /// </summary>
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+
+    }
     public partial class FollowContentQuery : QueryBase
     {
 
@@ -167,5 +204,80 @@ namespace Himall.IServices.QueryModel
         public long ShopCategoryId { get; set; }
     }
 
-    
+
+    //随访明细
+    public class FollowPlanView:FollowPlan {
+
+        //随访计划 历史
+      public   List<FollowPlan> FollowPlanList { get; set; }
+    }
+    //随访计划
+    public class FollowPlan {
+
+        /// <summary>
+        /// 主键
+        /// 
+        /// </summary>
+        public long HFP_ID { get; set; }
+        /// <summary>
+        /// 模板
+        /// </summary>
+        public long HTP_ID { get; set; }
+        /// <summary>
+        /// 随访名称
+        /// </summary>
+        public string HFP_Name { get; set; }
+        /// <summary>
+        /// 随访开始时间
+        /// </summary>
+        public string HFP_CreateTime { get; set; }
+        /// <summary>
+        /// 创建者
+        /// </summary>
+        public long HFP_UserId { get; set; }
+        /// <summary>
+        /// 提醒方式
+        /// </summary>
+        public int HFP_Remind { get; set; }
+        /// <summary>
+        /// 提醒内容
+        /// </summary>
+        public string HFP_Content { get; set; }
+        /// <summary>
+        /// 医生ID
+        /// </summary>
+        public long HFP_DoctorId { get; set; }
+        /// <summary>
+        /// 患者ID
+        /// </summary>
+        public long HFP_PatientId { get; set; }
+        /// <summary>
+        /// 随访状态
+        /// </summary>
+        public int HFP_State { get; set; }
+        public string Time { get; set; }
+        public string doctorName { get; set; }
+        public string patientName { get; set; }
+        public string State { get; set; }
+        public string RemindType { get; set; }
+        public string HFP_LastUser { get; set; }
+        public string HFP_Result { get; set; }
+        public string HFP_Date { get; set; }
+    }
+    /// <summary>
+    /// 随访计划查询
+    /// </summary>
+    public class FollowPlanQuery
+    {
+        public string patientName { get; set; }
+        public string doctorName { get; set; }
+        public long auditStatus { get; set; }
+        public string typtState { get; set; }
+        public string startDate { get; set; }
+        public string endDate { get; set; }
+        public long shopId { get; set; }
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+       
+    }
 }

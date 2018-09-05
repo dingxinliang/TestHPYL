@@ -29,16 +29,16 @@ namespace Himall.API
                     ProductName = item.ProductName,
                     //Image = "http://" + Url.Request.RequestUri.Host + item.ThumbnailsUrl
                     //Image = Core.HimallIO.GetRomoteImagePath(item.ThumbnailsUrl)
-                    Image = Core.HimallIO.GetRomoteProductSizeImage(item.ThumbnailsUrl, 1, (int)Himall.CommonModel.ImageSize.Size_220) //商城App评论时获取商品图片
+                    Image = Core.HimallIO.GetRomoteProductSizeImage(item.ThumbnailsUrl, 1, (int)Himall.CommonModel.ImageSize.Size_220) //商城App评论时获取诊疗项目图片
                 });
 
                 var orderEvaluation = ServiceProvider.Instance<ITradeCommentService>.Create.GetOrderCommentInfo(orderId, CurrentUser.Id);
                 return new { Success = true, Product = model, orderItemIds = order.OrderItemInfo.Select(item => item.Id) };
             }
             else
-                return new { Success = false, ErrorMsg = "该订单不存在或者已评论过" };
+                return new { Success = false, ErrorMsg = "该预约单不存在或者已评论过" };
         }
-        //订单评论
+        //预约单评论
         public object PostAddComment(CommentAddCommentModel value)
         {
             CheckUserLogin();
@@ -51,8 +51,8 @@ namespace Himall.API
                 {
                     using (TransactionScope scope = new TransactionScope())
                     {
-                        AddOrderComment(orderComment);//添加订单评价
-                        AddProductsComment(orderComment.OrderId, orderComment.ProductComments);//添加商品评论
+                        AddOrderComment(orderComment);//添加预约单评价
+                        AddProductsComment(orderComment.OrderId, orderComment.ProductComments);//添加诊疗项目评论
                         scope.Complete();
                     }
                     result = true;
@@ -194,7 +194,7 @@ namespace Himall.API
                     ProductId = item.ProductId,
                     ProductName = item.ProductName,
                     //ThumbnailsUrl = item.ThumbnailsUrl,
-                    ThumbnailsUrl = Core.HimallIO.GetRomoteProductSizeImage(item.ThumbnailsUrl, 1, (int)Himall.CommonModel.ImageSize.Size_220), //商城App追加评论时获取商品图片
+                    ThumbnailsUrl = Core.HimallIO.GetRomoteProductSizeImage(item.ThumbnailsUrl, 1, (int)Himall.CommonModel.ImageSize.Size_220), //商城App追加评论时获取诊疗项目图片
                     BuyTime = item.BuyTime,
                     EvaluationStatus = item.EvaluationStatus,
                     EvaluationContent = item.EvaluationContent,

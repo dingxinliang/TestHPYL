@@ -25,7 +25,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         private ShopDistributorSettingInfo distributorConfig;
         /// <summary>
         /// 参数是否已配置
-        /// <para>佣金比错误时不可以新增分销商品</para>
+        /// <para>佣金比错误时不可以新增分销诊疗项目</para>
         /// </summary>
         private bool isConfigRight = false;
         public DistributionRulesController(IDistributionService iDistributionService)
@@ -62,7 +62,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         /// <summary>
-        /// 分销商品佣金管理
+        /// 分销诊疗项目佣金管理
         /// </summary>
         /// <returns></returns>
         public ActionResult Manage()
@@ -85,7 +85,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return View();
         }
         /// <summary>
-        /// 获取分销商品列表
+        /// 获取分销诊疗项目列表
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -132,7 +132,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return Json(result);
         }
         /// <summary>
-        /// 获取分销的商品编号
+        /// 获取分销的诊疗项目编号
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -155,7 +155,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return Json(proids);
         }
         /// <summary>
-        /// 增加分销商品
+        /// 增加分销诊疗项目
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -175,7 +175,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 if (!Regex.IsMatch(ids, @"^(\d|,)+?"))
                 {
                     isDataOk = false;
-                    result = new Result { success = false, msg = "错误的商品编号列表" };
+                    result = new Result { success = false, msg = "错误的诊疗项目编号列表" };
                 }
             }
             //组装id数据
@@ -196,18 +196,18 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 if (productids.Count < 1)
                 {
                     isDataOk = false;
-                    result = new Result { success = false, msg = "错误的商品编号列表" };
+                    result = new Result { success = false, msg = "错误的诊疗项目编号列表" };
                 }
                 else
                 {
                     _iDistributionService.BatAddDistributionProducts(productids, curshopid, distributorConfig.DistributorDefaultRate);
-                    result = new Result { success = true, msg = "添加分销商品成功" };
+                    result = new Result { success = true, msg = "添加分销诊疗项目成功" };
                 }
             }
             return Json(result);
         }
         /// <summary>
-        /// 取消分销商品
+        /// 取消分销诊疗项目
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -224,11 +224,11 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             else
             {
-                result = new Result { success = false, msg = "错误的商品编号" };
+                result = new Result { success = false, msg = "错误的诊疗项目编号" };
             }
             return Json(result);
         }/// <summary>
-        /// 取消分销商品
+        /// 取消分销诊疗项目
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -267,7 +267,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             else
             {
-                result = new Result { success = false, msg = "错误的商品编号" };
+                result = new Result { success = false, msg = "错误的诊疗项目编号" };
             }
             return Json(result);
         }

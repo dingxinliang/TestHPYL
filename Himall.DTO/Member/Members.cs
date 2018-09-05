@@ -136,7 +136,7 @@ namespace Himall.DTO
         public long HistoryIntegral { set; get; }
 
         /// <summary>
-        /// 订单数
+        /// 预约单数
         /// </summary>
         public int OrderNumber { get; set; }
 

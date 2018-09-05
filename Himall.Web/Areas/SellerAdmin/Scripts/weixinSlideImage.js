@@ -60,7 +60,7 @@ function saveHomePageTitle() {
 }
 
 function initSlideImagesTable() {
-    //商品表格
+    //诊疗项目表格
     $("#slideImagesTable").hiMallDatagrid({
         url: '/selleradmin/VShop/GetSlideImages',
         nowrap: false,
@@ -212,7 +212,7 @@ function changeSequence(oriRowNumber, newRowNumber, callback) {
 
 
 function initVShopBannerTable() {
-    //商品表格
+    //诊疗项目表格
     $("#vshopBannerTable").hiMallDatagrid({
         url: '/selleradmin/VShop/GetVShopBanners',
         nowrap: false,

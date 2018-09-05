@@ -164,9 +164,9 @@
         //     case 1:HiShop.DIY.Unit.event_type1(ctrldom, data);break;//富文本
         //     case 2:HiShop.DIY.Unit.event_type2(ctrldom, data);break;//标题
         //     case 3:HiShop.DIY.Unit.event_type3(ctrldom, data);break;//自定义模块
-        //     case 4:HiShop.DIY.Unit.event_type4(ctrldom, data);break;//商品
-        //     case 5:HiShop.DIY.Unit.event_type5(ctrldom, data);break;//商品列表（分组标签）
-        //     // case 6:HiShop.DIY.Unit.event_type6(ctrldom, data);break;//商品搜索
+        //     case 4:HiShop.DIY.Unit.event_type4(ctrldom, data);break;//诊疗项目
+        //     case 5:HiShop.DIY.Unit.event_type5(ctrldom, data);break;//诊疗项目列表（分组标签）
+        //     // case 6:HiShop.DIY.Unit.event_type6(ctrldom, data);break;//诊疗项目搜索
         //     case 7:HiShop.DIY.Unit.event_type7(ctrldom, data);break;//文本导航
         //     case 8:HiShop.DIY.Unit.event_type8(ctrldom, data);break;//图片导航
         //     case 9:HiShop.DIY.Unit.event_type9(ctrldom, data);break;//图片广告

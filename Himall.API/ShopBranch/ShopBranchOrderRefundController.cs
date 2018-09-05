@@ -62,7 +62,7 @@ namespace Himall.API
                 && reply.AuditStatus == OrderRefundInfo.OrderRefundAuditStatus.WaitReceiving
                 )
             {
-                //如果不是自提订单，则状态还是为待买家寄货，不能直接到待商家收货
+                //如果不是自提预约单，则状态还是为待患者寄货，不能直接到待诊所收货
                 reply.AuditStatus = OrderRefundInfo.OrderRefundAuditStatus.WaitDelivery;
             }
 
@@ -103,7 +103,7 @@ namespace Himall.API
             {
                 logs.Add(new
                 {
-                    Role = roleMap[log.Step],//操作者角色，0：买家，1：门店，2：平台
+                    Role = roleMap[log.Step],//操作者角色，0：患者，1：门店，2：平台
                     Step = log.Step,
                     log.OperateDate,
                     log.Remark

@@ -21,7 +21,7 @@ namespace Himall.Service
 		}
 
 		/// <summary>
-		/// 根据商品id获取sku信息
+		/// 根据诊疗项目id获取sku信息
 		/// </summary>
 		/// <param name="productIds"></param>
 		/// <returns></returns>

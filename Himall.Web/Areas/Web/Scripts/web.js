@@ -83,7 +83,7 @@ $(function () {
 	});
 
 
-    //商品导航
+    //诊疗项目导航
     $('.categorys .item').hover(function () {
         $(this).addClass('hover');
     },function(){
@@ -104,7 +104,7 @@ $(function () {
 
 
 
-    /*商品列表页*/
+    /*诊疗项目列表页*/
     $('#refilter .item').each(function () {
         var _this = $(this);
         $(this).find('b').click(function () {

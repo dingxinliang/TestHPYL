@@ -6,41 +6,41 @@ namespace Himall.Model
 {
     public partial class OrderRefundInfo
     {
-		//由于新增门店自提功能，所以售后审核状态中待商家审核也可能是待门店审核(待商家收货,商家拒绝，商家通过审核等也类似)
-		//由于枚举值已在多个地方判断时固定死，不好添加新枚举，所以需要根据订单的发货方式判断审核状态
+		//由于新增门店自提功能，所以售后审核状态中待诊所审核也可能是待门店审核(待诊所收货,诊所拒绝，诊所通过审核等也类似)
+		//由于枚举值已在多个地方判断时固定死，不好添加新枚举，所以需要根据预约单的发货方式判断审核状态
         /// <summary>
-        /// 商家审核状态
+        /// 诊所审核状态
         /// </summary>
         public enum OrderRefundAuditStatus
         {
             /// <summary>
-            /// 待商家/门店审核
+            /// 待诊所/门店审核
             /// </summary>
-            [Description("待商家审核")]
+            [Description("待诊所审核")]
             WaitAudit = 1,
 
             /// <summary>
-            /// 待买家寄货
+            /// 待患者寄货
             /// </summary>
-            [Description("待买家寄货")]
+            [Description("待患者寄货")]
             WaitDelivery = 2,
 
             /// <summary>
-            /// 待商家/门店收货收货
+            /// 待诊所/门店收货收货
             /// </summary>
-            [Description("待商家收货")]
+            [Description("待诊所收货")]
             WaitReceiving = 3,
 
             /// <summary>
-            /// 商家/门店拒绝
+            /// 诊所/门店拒绝
             /// </summary>
-            [Description("商家拒绝")]
+            [Description("诊所拒绝")]
             UnAudit = 4,
 
             /// <summary>
-            /// 商家/门店通过审核
+            /// 诊所/门店通过审核
             /// </summary>
-            [Description("商家通过审核")]
+            [Description("诊所通过审核")]
             Audited = 5
         }
 
@@ -68,9 +68,9 @@ namespace Himall.Model
         public enum OrderRefundMode
         {
             /// <summary>
-            /// 订单退款
+            /// 预约单退款
             /// </summary>
-            [Description("订单退款")]
+            [Description("预约单退款")]
             OrderRefund = 1,
 
             /// <summary>
@@ -191,12 +191,12 @@ namespace Himall.Model
         }
         /// <summary>
         /// 可退金额
-        /// <para>订单退款为了(实付+运费-优惠)，单件退款(实付-优惠)</para>
+        /// <para>预约单退款为了(实付+运费-优惠)，单件退款(实付-优惠)</para>
         /// </summary>
         public decimal EnabledRefundAmount { get; set; }
 
         /// <summary>
-        /// 订单是否已超过售后期
+        /// 预约单是否已超过售后期
         /// </summary>
         [NotMapped]
         public bool IsOrderRefundTimeOut { get; set; }

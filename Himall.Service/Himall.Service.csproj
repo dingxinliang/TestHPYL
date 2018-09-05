@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DXL\FollowService.cs" />
+    <Compile Include="DXL\NOrderService.cs" />
     <Compile Include="Job\StatisticOrderProductJob.cs" />
     <Compile Include="Job\StatisticOrderJob.cs" />
     <Compile Include="Market\BranchCartService.cs" />

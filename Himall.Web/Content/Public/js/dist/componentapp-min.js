@@ -2,7 +2,7 @@
 HiShop.Constant = HiShop.Constant ? HiShop.Constant : {},
 HiShop.popbox = HiShop.popbox ? HiShop.popbox : {},
 HiShop.linkType = {
-    1: "选择商品",
+    1: "选择诊疗项目",
     2: "优惠劵",
     3: "专题页面",
     4: "现金红包",
@@ -11,7 +11,7 @@ HiShop.linkType = {
     7: "签到",
     8: "自定义链接",
     9: "拼团列表",
-    15: "商家入驻",
+    15: "诊所入驻",
     16: $("#IsOpenStore").val() == "True" ? "周边门店" : "",
     17: "小程序",
     23: "电话",
@@ -607,7 +607,7 @@ HiShop.popbox.GoodsAndGroupPicker = function (a, b) {
             f.find(".tc[data-index='2']").remove(),
             i(1,
             function () {
-                var b = '<span class="fl">选择商品</span><div class="goodsearch"><input type="text" name="title" placeholder="请输入商品名称" /><a href="javascript:;" class="btn btn-primary jGetgood"><i class="gicon-search white"></i>查询</a></div>';
+                var b = '<span class="fl">选择诊疗项目</span><div class="goodsearch"><input type="text" name="title" placeholder="请输入诊疗项目名称" /><a href="javascript:;" class="btn btn-primary jGetgood"><i class="gicon-search white"></i>查询</a></div>';
                 $.jBox.show({
                     title: b,
                     content: f,
@@ -706,7 +706,7 @@ HiShop.popbox.GoodsAndGroupPicker = function (a, b) {
                                     f.find(".paginate").empty();
                                     i && i()
                                 };
-                                /*搜索商品*/
+                                /*搜索诊疗项目*/
                                 $.ajax({
                                     url: HiShop.Config.AjaxUrl.GoodsList,
                                     type: "post",
@@ -734,7 +734,7 @@ HiShop.popbox.GoodsAndGroupPicker = function (a, b) {
             j(1,
             function () {
                 $.jBox.show({
-                    title: "选择商品分组",
+                    title: "选择诊疗项目分组",
                     content: f,
                     btnOK: {
                         show: !1
@@ -752,7 +752,7 @@ HiShop.popbox.GoodsAndGroupPicker = function (a, b) {
             i(1,
             function () {
                 $.jBox.show({
-                    title: "选择商品或商品分组",
+                    title: "选择诊疗项目或诊疗项目分组",
                     content: f,
                     btnOK: {
                         show: !1
@@ -994,7 +994,7 @@ HiShop.popbox.MgzAndMgzCate = function (a, b) {
             showListRender_goods(1,
             function () {
                 $.jBox.show({
-                    title: "选择商品",
+                    title: "选择诊疗项目",
                     content: f,
                     btnOK: {
                         show: !1
@@ -1015,7 +1015,7 @@ HiShop.popbox.MgzAndMgzCate = function (a, b) {
             showListRender_group(1,
             function () {
                 $.jBox.show({
-                    title: "选择商品分组",
+                    title: "选择诊疗项目分组",
                     content: f,
                     btnOK: {
                         show: !1
@@ -1033,7 +1033,7 @@ HiShop.popbox.MgzAndMgzCate = function (a, b) {
             showListRender_goods(1,
             function () {
                 $.jBox.show({
-                    title: "选择商品或商品分组",
+                    title: "选择诊疗项目或诊疗项目分组",
                     content: f,
                     btnOK: {
                         show: !1
@@ -1899,7 +1899,7 @@ HiShop.popbox.GraphicPicker = function (a, b) {
                                     f.find(".paginate").empty();
                                     i && i()
                                 };
-                                /*搜索商品*/
+                                /*搜索诊疗项目*/
                                 $.ajax({
                                     url: HiShop.Config.AjaxUrl.Graphics,
                                     type: "post",
@@ -2130,7 +2130,7 @@ HiShop.popbox.GiftPicker = function (a, b) {
                                     f.find(".paginate").empty();
                                     i && i()
                                 };
-                                /*搜索商品*/
+                                /*搜索诊疗项目*/
                                 $.ajax({
                                     url: HiShop.Config.AjaxUrl.GiftList,
                                     type: "post",
@@ -2361,7 +2361,7 @@ HiShop.popbox.TopicPicker = function (a, b) {
                                     f.find(".paginate").empty();
                                     i && i()
                                 };
-                                /*搜索商品*/
+                                /*搜索诊疗项目*/
                                 $.ajax({
                                     url: HiShop.Config.AjaxUrl.Topic,
                                     type: "post",
@@ -2625,7 +2625,7 @@ HiShop.popbox.dplPickerColletion = function (a) {
     c = $.extend(!0, {},
     b, a);
     switch (parseInt(c.linkType)) {
-        case 1: //商品
+        case 1: //诊疗项目
             HiShop.popbox.GoodsAndGroupPicker("goods", c.callback);
             break;
         case 2: //优惠券
@@ -2668,9 +2668,9 @@ HiShop.popbox.dplPickerColletion = function (a) {
             };
             c.callback(d, 8);
             break;
-        case 15: //商家入驻
+        case 15: //诊所入驻
             var d = {
-                title: "商家入驻",
+                title: "诊所入驻",
                 link: "/m-wap/shopregister/step1"
             };
             c.callback(d, 15);

@@ -34,7 +34,7 @@ namespace Himall.API
             return ids;
         }
         /// <summary>
-        /// 下架商品
+        /// 下架诊疗项目
         /// </summary>
         /// <param name="pids"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace Himall.API
             return Json(new { success = true, msg = "已下架" });
         }
         /// <summary>
-        /// 上架商品
+        /// 上架诊疗项目
         /// </summary>
         /// <param name="pids"></param>
         /// <returns></returns>
@@ -62,7 +62,7 @@ namespace Himall.API
             return Json(new { success = true, msg = "已上架" });
         }
         /// <summary>
-        /// 设置商品库存
+        /// 设置诊疗项目库存
         /// </summary>
         /// <param name="pids"></param>
         /// <param name="stock"></param>
@@ -108,7 +108,7 @@ namespace Himall.API
 			return Json(new { success = true, msg = "设置成功" });
         }
         /// <summary>
-        /// 查询门店商品
+        /// 查询门店诊疗项目
         /// </summary>
         /// <param name="keywords"></param>
         /// <param name="cid"></param>
@@ -158,7 +158,7 @@ namespace Himall.API
             {
                 query.CategoryId = cid;
             }
-            //查询商品
+            //查询诊疗项目
             var pageModel = ProductManagerApplication.GetProducts(query);
             var pids = pageModel.Models.Select(e => e.Id);
             var skus = ProductManagerApplication.GetSKU(pids);
@@ -185,7 +185,7 @@ namespace Himall.API
             return Json(result);
         }
         /// <summary>
-        /// 取商品SKU
+        /// 取诊疗项目SKU
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>

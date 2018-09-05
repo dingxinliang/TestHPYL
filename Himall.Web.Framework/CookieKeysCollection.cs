@@ -12,7 +12,7 @@ namespace Himall.Web.Framework
         public const string PLATFORM_MANAGER = "Himall-PlatformManager";
 
         /// <summary>
-        /// 商家管理员登录标识
+        /// 诊所管理员登录标识
         /// </summary>
         public const string SELLER_MANAGER = "Himall-SellerManager";
 
@@ -47,7 +47,7 @@ namespace Himall.Web.Framework
         public const string HIMALL_CART = "HIMALL-CART";
 
         /// <summary>
-        /// 商品浏览记录
+        /// 诊疗项目浏览记录
         /// </summary>
         public const string HIMALL_PRODUCT_BROWSING_HISTORY = "Himall_ProductBrowsingHistory";
         
@@ -57,7 +57,7 @@ namespace Himall.Web.Framework
         public const string HIMALL_LASTOPERATETIME = "Himall_LastOpTime";
 
         /// <summary>
-        /// 标识是平台还是商家公众号
+        /// 标识是平台还是诊所公众号
         /// </summary>
         public const string MobileAppType = "Himall-Mobile-AppType";
         /// <summary>

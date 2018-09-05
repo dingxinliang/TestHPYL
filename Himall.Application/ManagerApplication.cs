@@ -32,7 +32,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 根据查询条件分页获取商家管理员信息
+        /// 根据查询条件分页获取诊所管理员信息
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 根据角色ID获取商家角色下的管理员
+        /// 根据角色ID获取诊所角色下的管理员
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="shopId"></param>
@@ -81,7 +81,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取当前登录的商家管理员
+        /// 获取当前登录的诊所管理员
         /// </summary>
         /// <returns></returns>
         public static DTO.Manager GetSellerManager(long userId)
@@ -97,7 +97,7 @@ namespace Himall.Application
             _iManagerService.AddPlatformManager(model);
         }
         /// <summary>
-        /// 添加一个商家管理员
+        /// 添加一个诊所管理员
         /// </summary>
         /// <param name="password">密码</param>
         /// <param name="username">用户名</param>
@@ -107,10 +107,10 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 添加商家子帐号（不创建店铺）
+        /// 添加诊所子帐号（不创建店铺）
         /// </summary>
         /// <param name="model"></param>
-        ///<param name="currentSellerName">当前商家帐号用户名</param>
+        ///<param name="currentSellerName">当前诊所帐号用户名</param>
 
         public static void AddSellerManager(ManagerInfo model, string currentSellerName)
         {
@@ -126,7 +126,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 修改商家管理员密码
+        /// 修改诊所管理员密码
         /// </summary>
         /// <param name="model"></param>
         public static void ChangeSellerManagerPassword(long id, long shopId, string password, long roleId)
@@ -136,7 +136,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 修改商家管理员
+        /// 修改诊所管理员
         /// </summary>
         /// <param name="model"></param>
         public static void ChangeSellerManager(ManagerInfo info)
@@ -155,7 +155,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 删除商家管理员
+        /// 删除诊所管理员
         /// </summary>
         /// <param name="id">管理员ID</param>
         /// <param name="shopId">店铺ID</param>
@@ -175,7 +175,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 批量删除商家管理员
+        /// 批量删除诊所管理员
         /// </summary>
         /// <param name="ids"></param>
         public static void BatchDeleteSellerManager(long[] ids, long shopId)
@@ -218,7 +218,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 根据商家名称获取商家信息
+        /// 根据诊所名称获取诊所信息
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Himall.CommonModel
 {
     /// <summary>
-    /// 已结算订单查询实体
+    /// 已结算预约单查询实体
     /// </summary>
     public class SettlementOrderQuery:PendingSettlementOrderQuery
     {      
         public DateTime? SettleStart { set; get; }
         /// <summary>
-        /// 订单结算结束时间
+        /// 预约单结算结束时间
         /// </summary>
         public DateTime? SettleEnd { set; get; }
 

@@ -104,7 +104,7 @@ namespace Himall.Service
             }
         }
         /// <summary>
-        /// 创建订单通知
+        /// 创建预约单通知
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="info"></param>
@@ -135,7 +135,7 @@ namespace Himall.Service
                 if (userinfo != null)
                 {
                     var msgdata = new WX_MsgTemplateSendDataModel();
-                    msgdata.first.value = "尊敬的（" + userinfo.Nick + "），您的订单信息如下：";
+                    msgdata.first.value = "尊敬的（" + userinfo.Nick + "），您的预约单信息如下：";
                     msgdata.first.color = "#000000";
                     msgdata.keyword1.value = info.OrderId.ToString();
                     msgdata.keyword1.color = "#FF0000";
@@ -223,7 +223,7 @@ namespace Himall.Service
                 if (userinfo != null)
                 {
                     var msgdata = new WX_MsgTemplateSendDataModel();
-                    msgdata.first.value = "您好，您有一笔订单已经支付成功";
+                    msgdata.first.value = "您好，您有一笔预约单已经支付成功";
                     msgdata.first.color = "#000000";
                     msgdata.keyword1.value = info.OrderId.ToString();
                     msgdata.keyword1.color = "#000000";
@@ -273,7 +273,7 @@ namespace Himall.Service
                     }
                     else
                     {
-                        Log.Info("订单：" + info.OrderId + " FormId为空");
+                        Log.Info("预约单：" + info.OrderId + " FormId为空");
                     }
                     _iwxtser.SendAppletMessageByTemplate(MessageTypeEnum.OrderPay, userId, msgdata, page, openId, formid);
                 }
@@ -282,7 +282,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 店铺有新订单
+        /// 店铺有新预约单
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
@@ -299,10 +299,10 @@ namespace Himall.Service
                     var msgdata = new WX_MsgTemplateSendDataModel();
 
 #if DEBUG
-                    Core.Log.Info("[模板消息]卖家新订单用户编号：" + sellerinfo.Id.ToString());
+                    Core.Log.Info("[模板消息]卖家新预约单用户编号：" + sellerinfo.Id.ToString());
 #endif
                     msgdata = new WX_MsgTemplateSendDataModel();
-                    msgdata.first.value = "您的店铺有新的订单生成。";
+                    msgdata.first.value = "您的店铺有新的预约单生成。";
                     msgdata.first.color = "#000000";
                     msgdata.keyword1.value = info.ShopName;
                     msgdata.keyword1.color = "#000000";
@@ -318,7 +318,7 @@ namespace Himall.Service
                     msgdata.remark.color = "#000000";
 
 #if DEBUG
-                    Core.Log.Info("[模板消息]卖家新订单开始前：" + sellerinfo.Id.ToString() + "_" + info.OrderId.ToString());
+                    Core.Log.Info("[模板消息]卖家新预约单开始前：" + sellerinfo.Id.ToString() + "_" + info.OrderId.ToString());
 #endif
                     var _iwxtser = Himall.ServiceProvider.Instance<IWXMsgTemplateService>.Create;
                     _iwxtser.SendMessageByTemplate(MessageTypeEnum.ShopHaveNewOrder, sellerinfo.Id, msgdata);
@@ -359,7 +359,7 @@ namespace Himall.Service
                 if (userinfo != null)
                 {
                     var msgdata = new WX_MsgTemplateSendDataModel();
-                    msgdata.first.value = "您的订单已经完成退款，¥" + info.RefundMoney.ToString("F2") + "已经退回您的付款账户（或预存款账户），请留意查收。";
+                    msgdata.first.value = "您的预约单已经完成退款，¥" + info.RefundMoney.ToString("F2") + "已经退回您的付款账户（或预存款账户），请留意查收。";
                     msgdata.first.color = "#000000";
                     msgdata.keyword1.value = "¥" + info.RefundMoney.ToString("F2");
                     msgdata.keyword1.color = "#FF0000";
@@ -383,7 +383,7 @@ namespace Himall.Service
 
                 //小程序发送
                 string status = "退货/退款成功";
-                string remark = "您的订单已经完成退款,¥" + info.RefundMoney.ToString("F2") + "已经退回您的付款账户（或预存款账户），请留意查收.";
+                string remark = "您的预约单已经完成退款,¥" + info.RefundMoney.ToString("F2") + "已经退回您的付款账户（或预存款账户），请留意查收.";
                 
                 var userinfo = Context.UserMemberInfo.FirstOrDefault(d => d.Id == userId);
                 if (userinfo != null)
@@ -465,7 +465,7 @@ namespace Himall.Service
             if (userinfo != null)
             {
                 var msgdata = new WX_MsgTemplateSendDataModel();
-                msgdata.first.value = "您的订单(" + info.OrderId + ")售后已审核通过，请及时发货。";
+                msgdata.first.value = "您的预约单(" + info.OrderId + ")售后已审核通过，请及时发货。";
                 msgdata.first.color = "#000000";
                 msgdata.keyword1.value = "审核通过，请您发货";
                 msgdata.keyword1.color = "#FF0000";
@@ -520,7 +520,7 @@ namespace Himall.Service
                 if (userinfo != null)
                 {
                     var msgdata = new WX_MsgTemplateSendDataModel();
-                    msgdata.first.value = "嗖嗖，您的订单已发货，正加速送到您的手上。";
+                    msgdata.first.value = "嗖嗖，您的预约单已发货，正加速送到您的手上。";
                     msgdata.first.color = "#000000";
                     msgdata.keyword1.value = info.ProductName + "等...";
                     msgdata.keyword1.color = "#000000";

@@ -405,7 +405,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 }
                 if (!_iFightGroupService.ProductCanJoinActive(model.ProductId))
                 {
-                    return Json(new Result { msg = "该商品已参与拼团或其他营销活动，请重新选择！", success = false });
+                    return Json(new Result { msg = "该诊疗项目已参与拼团或其他营销活动，请重新选择！", success = false });
                 }
                 model.ShopId = CurrentSellerManager.ShopId;
                 _iLimitTimeBuyService.AddFlashSale(model);

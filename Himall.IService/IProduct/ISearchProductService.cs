@@ -8,17 +8,17 @@ using Himall.CommonModel;
 namespace Himall.IServices
 {
 	/// <summary>
-	/// 商品搜索服务接口
+	/// 诊疗项目搜索服务接口
 	/// </summary>
 	public interface ISearchProductService : IService
 	{
         /// <summary>
-        /// 添加冗余搜索商品数据
+        /// 添加冗余搜索诊疗项目数据
         /// </summary>
         /// <param name="productId"></param>
         void AddSearchProduct(long productId);
         /// <summary>
-        /// 修改冗余搜索商品数据
+        /// 修改冗余搜索诊疗项目数据
         /// </summary>
         /// <param name="productId"></param>
         void UpdateSearchProduct(long productId);

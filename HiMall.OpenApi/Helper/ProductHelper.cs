@@ -14,7 +14,7 @@ using Himall.CommonModel;
 namespace Himall.OpenApi
 {
     /// <summary>
-    /// 商品辅助工具
+    /// 诊疗项目辅助工具
     /// </summary>
     public class ProductHelper
     {
@@ -31,7 +31,7 @@ namespace Himall.OpenApi
         }
 
         /// <summary>
-        /// 获取指定商品的详情信息
+        /// 获取指定诊疗项目的详情信息
         /// </summary>
         /// <param name="num_iid"></param>
         /// <param name="app_key"></param>
@@ -51,7 +51,7 @@ namespace Himall.OpenApi
         }
 
         /// <summary>
-        /// 获取当前商家的商品列表
+        /// 获取当前诊所的诊疗项目列表
         /// </summary>
         /// <param name="start_modified"></param>
         /// <param name="end_modified"></param>
@@ -150,7 +150,7 @@ namespace Himall.OpenApi
         }
 
         /// <summary>
-        /// 商品/SKU库存修改(提供按照全量或增量形式修改宝贝/SKU库存
+        /// 诊疗项目/SKU库存修改(提供按照全量或增量形式修改宝贝/SKU库存
         /// </summary>
         /// <param name="num_iid"></param>
         /// <param name="sku_id"></param>
@@ -187,7 +187,7 @@ namespace Himall.OpenApi
                     {
                         item.Stock = GetStockQuantity(item.Stock, quantity, type);
                     }
-                    _iProductService.UpdateProduct(prodata);   //直接修改整个商品数据
+                    _iProductService.UpdateProduct(prodata);   //直接修改整个诊疗项目数据
                 }
                 else
                 {
@@ -199,14 +199,14 @@ namespace Himall.OpenApi
                     //prodata.Quantity = GetStockQuantity(prodata.Quantity.Value, quantity, type);
                 }
             }
-            //获取商品新数据
+            //获取诊疗项目新数据
             prodata = _iProductService.GetProduct(proid);
             var result = ProductInfoMapChange(prodata);
             return result;
         }
 
         /// <summary>
-        /// 修改商品销售状态 (上架， 下架， 入库)
+        /// 修改诊疗项目销售状态 (上架， 下架， 入库)
         /// </summary>
         /// <param name="num_iid"></param>
         /// <param name="approve_status"></param>
@@ -263,7 +263,7 @@ namespace Himall.OpenApi
             shopId = _shophelper.ShopId;
         }
         /// <summary>
-        /// 商品信息转换
+        /// 诊疗项目信息转换
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -302,7 +302,7 @@ namespace Himall.OpenApi
             ProductStatus ps = GetProductStatus(prodata);
             result.approve_status = ps.ToString();
 
-            #region 商品属性填充
+            #region 诊疗项目属性填充
             var prodAttrs = _iProductService.GetProductAttribute(prodata.Id).ToList();
             var prodAttrids = prodAttrs.Select(d => d.AttributeId).Distinct().ToList();
             result.props_name = "";
@@ -383,7 +383,7 @@ namespace Himall.OpenApi
             return result;
         }
         /// <summary>
-        /// 商品列表信息项转换
+        /// 诊疗项目列表信息项转换
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -439,7 +439,7 @@ namespace Himall.OpenApi
             return dresult;
         }
         /// <summary>
-        /// 商品列表信息转换
+        /// 诊疗项目列表信息转换
         /// </summary>
         /// <param name="datalist"></param>
         /// <returns></returns>
@@ -454,7 +454,7 @@ namespace Himall.OpenApi
         }
 
         /// <summary>
-        /// 获取商品状态
+        /// 获取诊疗项目状态
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>

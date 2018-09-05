@@ -36,6 +36,7 @@ namespace Himall.IServices
         void BatchStop(IEnumerable<long> ids, long shopId);
         void SaveFollow(string name, string cId, string ids, long shopId,long uid);
         QueryPageModel<FollowContentQuery> GetFollowContent(FollowSearch queryModel, long id);
+        QueryPageModel<FollowPlan> GetFollowPan(FollowPlanQuery queryModel);
         void DeleteContent(IEnumerable<long> enumerable, long shopId);
         void SaveFollowContent(string cId, string ids, long shopId, int day, string cont);
         QueryPageModel<FollowDoctorQuery> GetFollowDoctor(FollowSearch queryModel);
@@ -43,5 +44,13 @@ namespace Himall.IServices
         void doctorOn(IEnumerable<long> ids, long shopId);
         void Deletedoctor(IEnumerable<long> ids, long shopId);
         void Creatdoctor(string cid, string title,string pic, string remark, string ids, long shopId, long id);
+        List<FollowDoctorQuery> GetDoctor(string ids, long shopId);
+        void DeletedoctorContent(IEnumerable<long> ids, long shopId);
+        void DeleteFollowPlan(IEnumerable<long> ids, long shopId);
+        QueryPageModel<DoctorContentQuery> ListDoctorContent(FollowSearch queryModel, long id);
+        void CreatedoctorContent(string cId, string ids, long shopId, int day, string cont);
+        void CancelFollowPlan(IEnumerable<long> ids, long shopId);
+        void DownFollowPlan(IEnumerable<long> ids, long shopId, string LastUser, string result);
+        FollowPlanView UserFollowPlan(IEnumerable<long> ids);
     }
 }

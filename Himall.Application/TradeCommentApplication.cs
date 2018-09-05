@@ -22,7 +22,7 @@ namespace Himall.Application
 
 		#region 方法
 		/// <summary>
-		/// 根据用户ID和订单ID获取单个订单评价信息
+		/// 根据用户ID和预约单ID获取单个预约单评价信息
 		/// </summary>
 		/// <param name="?"></param>
 		/// <returns></returns>

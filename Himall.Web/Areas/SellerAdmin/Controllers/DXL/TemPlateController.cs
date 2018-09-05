@@ -33,13 +33,15 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers.DXL
         {
             return base.View();
         }
+        public ActionResult doctorcontent(long id)
+        {
+            return base.View();
+        }
+
         public ActionResult Save()
         {
             string str;
             ProductCreateModel model = this.InitCreateModel(null);
-             
-                //this.SendMessage("测试", BaseController.MessageType.Alert, null, false);
-            
             return base.View(model);
         }
      
@@ -54,6 +56,17 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers.DXL
             return model;
         }
 
+        /// <summary>
+        /// 获取医嘱模板
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        [HttpPost, UnAuthorize]
+        public JsonResult GetDoctor(string ids)
+        {
+          var data=FollowManagerApplication.GetDoctor(ids, base.CurrentSellerManager.ShopId);
+            return base.Json(new { success = true,data=data });
+        }
         /// <summary>
         /// 创建医嘱内容
         /// </summary>
@@ -151,6 +164,41 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers.DXL
                 return base.Json(new { success = false, msg = exception.Message });
             }
         }
+
+        /// <summary>
+        /// 添加修改随访内容
+        /// </summary>
+        /// <param name="cId"></param>
+        /// <param name="ids"></param>
+        /// <param name="day"></param>
+        /// <param name="cont"></param>
+        /// <returns></returns>
+        [HttpPost, UnAuthorize]
+        public JsonResult CreatedoctorContent(string cId, string ids, int day, string cont)
+        {
+            try
+            {
+
+                FollowManagerApplication.CreatedoctorContent(cId, ids, base.CurrentSellerManager.ShopId, day, cont);
+                LogInfo info = new LogInfo
+                {
+                    Date = DateTime.Now,
+                    Description = "创建/修改关联计划，Ids=" + ids,
+                    IPAddress = base.Request.UserHostAddress,
+                    PageUrl = "/Follow/CreatedoctorContent",
+                    UserName = base.CurrentSellerManager.UserName,
+                    ShopId = base.CurrentSellerManager.ShopId
+                };
+                ServiceHelper.Create<IOperationLogService>().AddSellerOperationLog(info);
+                return base.Json(new { success = true });
+            }
+            catch (Exception exception)
+            {
+                return base.Json(new { success = false, msg = exception.Message });
+            }
+        }
+
+        
         /// <summary>
         /// 获取模板列表
         /// </summary>
@@ -194,6 +242,32 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers.DXL
             QueryPageModel<FollowContentQuery> followcontent = FollowManagerApplication.GetFollowContent(queryModel, id);
 
             DataGridModel<FollowContentQuery> data = new DataGridModel<FollowContentQuery>
+            {
+                total = followcontent.Total,
+                rows = followcontent.Models.ToList()
+            };
+            return base.Json(data);
+        }
+
+
+        /// <summary>
+        /// 获取医嘱关联计划
+        /// </summary>
+        /// <param name="queryModel"></param>
+        /// <param name="id"></param>
+        /// <param name="page"></param>
+        /// <param name="rows"></param>
+        /// <returns></returns>
+        [HttpPost, UnAuthorize]
+        public JsonResult ListDoctorContent(FollowSearch queryModel, long id, int page, int rows)
+        {
+
+            queryModel.PageSize = rows;
+            queryModel.PageNumber = page;
+            queryModel.shopId = base.CurrentSellerManager.ShopId;
+            QueryPageModel<DoctorContentQuery> followcontent = FollowManagerApplication.ListDoctorContent(queryModel, id);
+
+            DataGridModel<DoctorContentQuery> data = new DataGridModel<DoctorContentQuery>
             {
                 total = followcontent.Total,
                 rows = followcontent.Models.ToList()
@@ -285,6 +359,37 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers.DXL
             }
         }
 
+        /// <summary>
+        /// 删除关联计划
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        [HttpPost, UnAuthorize]
+        public JsonResult DeletedoctorContent(string ids)
+        {
+            try
+            {
+                IEnumerable<long> enumerable = from item in ids.Split(new char[] { ',' }) select long.Parse(item);
+                FollowManagerApplication.DeletedoctorContent(enumerable, base.CurrentSellerManager.ShopId);
+                LogInfo info = new LogInfo
+                {
+                    Date = DateTime.Now,
+                    Description = "删除关联计划内容，Ids=" + ids,
+                    IPAddress = base.Request.UserHostAddress,
+                    PageUrl = "/Follow/DeletedoctorContent",
+                    UserName = base.CurrentSellerManager.UserName,
+                    ShopId = base.CurrentSellerManager.ShopId
+                };
+                ServiceHelper.Create<IOperationLogService>().AddSellerOperationLog(info);
+                return base.Json(new { success = true });
+            }
+            catch (Exception exception)
+            {
+                return base.Json(new { success = false, msg = exception.Message });
+            }
+        }
+
+        
         /// <summary>
         /// 删除医嘱模板
         /// </summary>

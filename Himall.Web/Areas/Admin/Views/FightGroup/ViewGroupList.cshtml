@@ -119,14 +119,14 @@
                 },
                 { field: "HeadUserName", title: "团长", width: 100 },
                 {
-                    field: "ShowActiveStatus", title: "参团订单", formatter: function (value, row, index) {
+                    field: "ShowActiveStatus", title: "参团预约单", formatter: function (value, row, index) {
                         var html = [""];
                         if (row.OrderIds) {
                             for (var _i = 0; _i < row.OrderIds.length; _i++) {
                                 html.push("<span><a href=\"/Admin/Order/Detail/" + row.OrderIds[_i] + "\" target=\"_blank\">" + row.OrderIds[_i] + "</a></span><br>");
                             }
                         } else {
-                            html.push("无成功订单");
+                            html.push("无成功预约单");
                         }
                         return html.join("");
                     }

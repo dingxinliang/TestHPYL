@@ -16,7 +16,7 @@ namespace Himall.CommonModel
         /// </summary>
         WapIndex = 1,
         /// <summary>
-        /// 商家移动端首页
+        /// 诊所移动端首页
         /// </summary>
         SellerWapIndex = 2,
         /// <summary>
@@ -24,7 +24,7 @@ namespace Himall.CommonModel
         /// </summary>
         WapSpecial = 11,
         /// <summary>
-        /// 商家移动端专题
+        /// 诊所移动端专题
         /// </summary>
         SellerWapSpecial = 12,
         /// <summary>

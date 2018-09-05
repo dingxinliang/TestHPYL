@@ -1,6 +1,6 @@
 /* CSS Document  */
 
-/*商品发布-------- */
+/*诊疗项目发布-------- */
 
 .StepOne-con {padding:10px 25px;background-color:#f9f9f9;position:relative;}
 .ancestor, .father, .child, .tory { position:relative;display: inline-block; border: 1px solid #e4e4e4; height: 460px; width: 313px; float: left; margin-right: 10px; overflow-y: scroll; cursor: pointer; background-color:#fff;padding:10px 30px 10px 10px;}

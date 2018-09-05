@@ -49,7 +49,7 @@ $(function () {
         sellercate2 = $('#sellercategory2').val() || '0';
 
         if (sellercate1 == '' && sellercate2 == '') {
-            $.dialog.tips('请选择一个商品分类');
+            $.dialog.tips('请选择一个诊疗项目分类');
             return;
         }
         paraSaleStatus = -1;
@@ -60,7 +60,7 @@ $(function () {
         });
         if (paraSaleStatus == -1)
         {
-            $.dialog.tips('请选择一个商品状态');
+            $.dialog.tips('请选择一个诊疗项目状态');
             return;
         }
         if (parseInt($('#freightTemplate').attr('value')) <= 0) {
@@ -176,7 +176,7 @@ function GetImportOpCount() {
            dom_iframe.onload = function () {
                var filename = this.contentDocument.body.innerHTML;
                if (filename != 'NoFile' && filename != 'Error') {
-                   fnUploadFileCallBack(filename);//上传文件后，继续导入商品操作
+                   fnUploadFileCallBack(filename);//上传文件后，继续导入诊疗项目操作
                    $('#inputFile').val('请选择文件');
                }
                else {
@@ -190,7 +190,7 @@ function GetImportOpCount() {
                if (this.readyState == 'complete' || this.readyState == 'loaded') {
                    var filename = this.contentDocument.body.innerHTML;
                    if (filename != 'NoFile' && filename != 'Error') {
-                       fnUploadFileCallBack(filename);//上传文件后，继续导入商品操作
+                       fnUploadFileCallBack(filename);//上传文件后，继续导入诊疗项目操作
                    }
                    else {
                        loading.close();

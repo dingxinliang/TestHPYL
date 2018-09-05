@@ -47,9 +47,9 @@ function query() {
         columns:
         [[
             { field: "Id", hidden: true },
-            { field: "ProductName", title: '商品名称' },
+            { field: "ProductName", title: '诊疗项目名称' },
             { field: "ProDisStatus", title: '分销状态',width:80 },
-            { field: "ShopName", title: '所属商家',width:80 },
+            { field: "ShopName", title: '所属诊所',width:80 },
              { field: "AgentNum", title: '代理次数',width:80 },
               { field: "ForwardNum", title: '转发次数',width:80 },
             { field: "DistributionSaleNum", title: '推广成交数',width:90 },

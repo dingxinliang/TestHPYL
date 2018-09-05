@@ -91,11 +91,11 @@ namespace Himall.Web.Areas.Web.Controllers
                 UserId = CurrentUser.Id
             });
             viewModel.OrderCount = orders.Total;
-            //交易订单 待收货
+            //交易预约单 待结算
             viewModel.OrderWaitReceiving = orders.Models.Where(c => c.OrderStatus == OrderInfo.OrderOperateStatus.WaitReceiving).Count();
-            //交易订单 待付款
+            //交易预约单 待付款
             viewModel.OrderWaitPay = orders.Models.Where(c => c.OrderStatus == OrderInfo.OrderOperateStatus.WaitPay).Count();
-            //交易订单 待评价
+            //交易预约单 待评价
             var productEvaluations = _iCommentService.GetProductEvaluation(new CommentQuery
             {
                 UserID = CurrentUser.Id,

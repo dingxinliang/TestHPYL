@@ -77,7 +77,7 @@ namespace Himall.Web.Areas.Web.Controllers
             //用户积分
             model.MemberIntegral = isLogin ? _iMemberIntegralService.GetMemberIntegral(CurrentUser.Id).AvailableIntegrals : 0;
 
-            //关注商品
+            //关注诊疗项目
             //var concern = isLogin ? _iProductService.GetUserAllConcern(CurrentUser.Id) : new List<FavoriteInfo>();
             //model.Concern = concern.Take(10).ToList();
 
@@ -103,7 +103,7 @@ namespace Himall.Web.Areas.Web.Controllers
             {
                 ViewBag.HeadAds = _iSlideAdsService.GetImageAds(0).Take(1).ToList();
             }
-            //浏览的商品
+            //浏览的诊疗项目
             //var browsingPro = isLogin ? BrowseHistrory.GetBrowsingProducts(10, CurrentUser == null ? 0 : CurrentUser.Id) : new List<ProductBrowsedHistoryModel>();
             //model.BrowsingProducts = browsingPro;
 
@@ -212,7 +212,7 @@ namespace Himall.Web.Areas.Web.Controllers
             //用户积分
             model.MemberIntegral = isLogin ? _iMemberIntegralService.GetMemberIntegral(CurrentUser.Id).AvailableIntegrals : 0;
 
-            //关注商品
+            //关注诊疗项目
             //var concern = isLogin ? _iProductService.GetUserAllConcern(CurrentUser.Id) : new List<FavoriteInfo>();
             //model.Concern = concern.Take(10).ToList();
 
@@ -228,7 +228,7 @@ namespace Himall.Web.Areas.Web.Controllers
             baseCoupons.AddRange(shopBonus);
             model.BaseCoupon = baseCoupons;
 
-            //浏览的商品
+            //浏览的诊疗项目
             //var browsingPro = isLogin ? BrowseHistrory.GetBrowsingProducts(10, CurrentUser == null ? 0 : CurrentUser.Id) : new List<ProductBrowsedHistoryModel>();
             //model.BrowsingProducts = browsingPro;
             InitHeaderData();

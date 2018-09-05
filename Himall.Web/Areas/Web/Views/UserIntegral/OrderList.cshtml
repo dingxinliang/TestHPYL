@@ -19,7 +19,7 @@
     </div>
     <div class="search-area">
         <label>关键字：</label>
-        <input class="search_order" id="txtkeyword" type="text" placeholder="商品名称、订单编号" />
+        <input class="search_order" id="txtkeyword" type="text" placeholder="诊疗项目名称、预约单编号" />
         <button class="search_btn pointer" onclick="Search()">搜索</button>
     </div>
 
@@ -38,7 +38,7 @@
             </colgroup>
             <thead>
                 <tr class="tr">
-                    <th colspan="2">订单信息</th>
+                    <th colspan="2">预约单信息</th>
                     <th>收货人</th>
                     <th>花费积分</th>
                     <th>兑换时间</th>
@@ -51,7 +51,7 @@
             <tbody>
                 @if (Model.Count() == 0)
                 {
-                    <tr><td colspan="8"><div class="empty">暂时没有任何的订单信息！</div></td></tr>
+                    <tr><td colspan="8"><div class="empty">暂时没有任何的预约单信息！</div></td></tr>
                 }
                 @foreach (var m in Model)
                 {
@@ -60,7 +60,7 @@
                         <td class="sep-col"></td>
                         <td class="tr-th-text" colspan="6">
                             <span class="tcol1 pl10">
-                                订单编号:@(m.Id)
+                                预约单编号:@(m.Id)
                             </span>
                         </td>
                         <td class="sep-col"></td>
@@ -159,7 +159,7 @@
 
     function Search() {
         var keywords = $("#txtkeyword").val();
-        if (keywords == "商品名称、订单编号")
+        if (keywords == "诊疗项目名称、预约单编号")
             keywords = "";
         window.location.href = "?skey=" + keywords;
     }
@@ -176,13 +176,13 @@
 
         $('#txtkeyword').focus(function () {
             var a = $(this).val(),
-                b = '商品名称、订单编号';
+                b = '诊疗项目名称、预约单编号';
             if (a == b) {
                 $(this).val('').css('color', '#333');
             }
         }).blur(function () {
             var a = $(this).val(),
-                b = '商品名称、订单编号';
+                b = '诊疗项目名称、预约单编号';
             if (!a) {
                 $(this).val(b).css('color', '#999');
             }
@@ -274,7 +274,7 @@
             '</div>']);
 
         $.dialog({
-            title: data.Id + ' 订单查看',
+            title: data.Id + ' 预约单查看',
             width: 500,
             lock: true,
             id: 'dlgsendgift',

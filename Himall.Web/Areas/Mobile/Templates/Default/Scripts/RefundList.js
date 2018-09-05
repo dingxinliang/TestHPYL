@@ -41,7 +41,7 @@ function loadProducts(page) {
                 }
                 html += '<span class="pull-right">' + record.RefundStatus + '</span>';
                 html += '</h6></a>';
-                if (record.RefundMode == '1') {//整笔订单退
+                if (record.RefundMode == '1') {//整笔预约单退
                     $.each(record.OrderItems, function (idx, detail) {
                         html += '<div class="order-goods clearfix">';
                         html += '<a href="RefundDetail?id=' + record.Id + '">';

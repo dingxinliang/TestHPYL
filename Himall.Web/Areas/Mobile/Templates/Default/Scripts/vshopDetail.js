@@ -125,7 +125,7 @@ function loadProducts(page) {
             $('#products').append(html);
         }
         else {
-            $('#autoLoad').html('没有更多商品了');
+            $('#autoLoad').html('没有更多诊疗项目了');
         }
     });
 }

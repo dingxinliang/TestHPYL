@@ -13,7 +13,7 @@ using System.Configuration;
 namespace WinStatisticsService.Service
 {
     /// <summary>
-    /// 会员每天订单数统计
+    /// 会员每天预约单数统计
     /// </summary>
     public class MemberActivityDegree : ISyncData
     {
@@ -56,7 +56,7 @@ namespace WinStatisticsService.Service
         }
 
         /// <summary>
-        /// 更新会员订单统计表
+        /// 更新会员预约单统计表
         /// </summary>
         private void SetMemberActivity()
         {
@@ -81,7 +81,7 @@ namespace WinStatisticsService.Service
         }
 
         /// <summary>
-        /// 更新会员订单统计表(弃用的解决方法)
+        /// 更新会员预约单统计表(弃用的解决方法)
         /// </summary>
         /// <param name="orders"></param>
         private void UpdateMemberOrderStatistics(List<OrderUser> orders)
@@ -107,16 +107,16 @@ namespace WinStatisticsService.Service
             coll.InsertMany(memberOrderStatisticss);
         }
 
-        #region 会员根据每天订单写入活跃用户数据
+        #region 会员根据每天预约单写入活跃用户数据
         /// <summary>
-        /// 根据新订单更新活跃会员状态
+        /// 根据新预约单更新活跃会员状态
         /// </summary>
         private void UpdateMemberActivityDegreeByOrder(List<OrderUser> orders)
         {
             int ONE_ORDERNUMBER = 1;
-            //三个月活跃会员需要订单数
+            //三个月活跃会员需要预约单数
             int THREE_ORDERNUMBER = 2;
-            //六个月活跃会员需要订单数
+            //六个月活跃会员需要预约单数
             int SIX_ORDERNUMBER = 3;
            
 
@@ -281,9 +281,9 @@ namespace WinStatisticsService.Service
 
         #endregion
 
-        #region 获取订单数据
+        #region 获取预约单数据
         /// <summary>
-        ///分页获取前一天的订单基础信息
+        ///分页获取前一天的预约单基础信息
         /// </summary>
         /// <param name="pageNo"></param>
         /// <param name="pageSize"></param>
@@ -357,7 +357,7 @@ namespace WinStatisticsService.Service
 
 
         ///// <summary>
-        ///// 获取会员前个月前的订单数据
+        ///// 获取会员前个月前的预约单数据
         ///// </summary>
         ///// <returns></returns>
         //private List<NewOrderInfo> GetBeforeThreeMonthsOrders(long userId, int top)

@@ -1,6 +1,6 @@
 ﻿@model Himall.Web.Areas.Web.Models.ShopHomeModel
 @{
-    ViewBag.Title = ViewBag.Keyword + "  商品搜索";
+    ViewBag.Title = ViewBag.Keyword + "  诊疗项目搜索";
     Layout = "~/Areas/Web/Views/Shared/ShopLayout.cshtml";
     PagingInfo CurPageInfo = (PagingInfo)ViewBag.pageInfo;
 }
@@ -16,7 +16,7 @@
             <div class="notice-search" style="height:200px;padding-top:110px;padding-left:360px;">
                 <span class="ns-icon"></span>
                 <div class="ns-content">
-                    <span>抱歉，没有找到与“<em>@(ViewBag.Keyword == string.Empty ? ViewBag.CategoryName : ViewBag.Keyword)</em>”相关的商品</span>
+                    <span>抱歉，没有找到与“<em>@(ViewBag.Keyword == string.Empty ? ViewBag.CategoryName : ViewBag.Keyword)</em>”相关的诊疗项目</span>
                 </div>
             </div>
         
@@ -52,7 +52,7 @@
 	}
 	else
 	{
-	<div class="shop-title"><p>@(ViewBag.Keyword == string.Empty ? ViewBag.CategoryName : ViewBag.Keyword)找到 @(CurPageInfo.TotalItems)件相关商品</p></div>
+	<div class="shop-title"><p>@(ViewBag.Keyword == string.Empty ? ViewBag.CategoryName : ViewBag.Keyword)找到 @(CurPageInfo.TotalItems)件相关诊疗项目</p></div>
 	<div class="shop-goods-list">
 		<ul class="cl">
 			@foreach (var p in Model.Products)

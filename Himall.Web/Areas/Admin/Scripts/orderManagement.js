@@ -72,7 +72,7 @@ $(function () {
         queryParams: { status: status, paymentType: 0 },
         operationButtons: "#orderOperate",
         rowHeadFormatter: function (target, index, row) {
-		    return '<tr class="child-title"><td colspan="7" style="padding:10px 15px; background:#fff;border:0;font-size: 12px; color:#6b6c6e;"><img src="' + row.IconSrc + '" title="' + (row.PlatformText == 'Android' ? 'App' : row.PlatformText) + '订单' + '" width="16" style="margin:0 8px 0 0;position:relative;top:-1px;" /> 订单号： ' + row.OrderId +(row.OrderType == 3?'<span style="margin-left:10px">(拼团订单)</span>':'')+' &nbsp;&nbsp;&nbsp;&nbsp; ' + row.OrderDate + '<span class="pull-right">'+(row.PaymentTypeStr||'')+'</span></td></tr>';
+		    return '<tr class="child-title"><td colspan="7" style="padding:10px 15px; background:#fff;border:0;font-size: 12px; color:#6b6c6e;"><img src="' + row.IconSrc + '" title="' + (row.PlatformText == 'Android' ? 'App' : row.PlatformText) + '预约单' + '" width="16" style="margin:0 8px 0 0;position:relative;top:-1px;" /> 预约单号： ' + row.OrderId +(row.OrderType == 3?'<span style="margin-left:10px">(拼团预约单)</span>':'')+' &nbsp;&nbsp;&nbsp;&nbsp; ' + row.OrderDate + '<span class="pull-right">'+(row.PaymentTypeStr||'')+'</span></td></tr>';
 		},
 		rowFootFormatter: function (target, index, row) {
 		    var html = [];
@@ -97,7 +97,7 @@ $(function () {
         columns:
         [[
             {
-                field: "ProductName", title: '商品', width: 250,
+                field: "ProductName", title: '诊疗项目', width: 250,
                 formatter: function (value, row, index) {
                     var html=[];
                     for(var i=0;i<row.OrderItems.length;i++)
@@ -113,19 +113,19 @@ $(function () {
                 }
             },
             {
-                field: "TotalPrice", title: "订单总额", width: 80, align: "center",
+                field: "TotalPrice", title: "预约单总额", width: 80, align: "center",
                 formatter: function (value, row, index) {
                     var html = "<span class='ftx-04'>" + '￥' + value.toFixed(2) + "</span>";
                     return html;
                 }
             },
         {
-            field: "UserName", title: "买家", width: 70, align: "center", formatter: function (value, row, index) {
+            field: "UserName", title: "患者", width: 70, align: "center", formatter: function (value, row, index) {
                 return row.UserName + '<br/>' + row.CellPhone;
             }
         },
 		{ field: "ShopName", title: "店铺名称", width: 140, align: "center" },
-        { field: "OrderStatus", title: "订单状态", width: 80, align: "center" },
+        { field: "OrderStatus", title: "预约单状态", width: 80, align: "center" },
         {
             field: "operation", operation: true, title: "操作", width: 140,
             formatter: function (value, row, index) {
@@ -204,12 +204,12 @@ function OpenConfirmPay(orderId) {
 
 function OpenCloseOrder(orderId) {
     $.dialog({
-        title: '取消订单',
+        title: '取消预约单',
         lock: true,
         id: 'goodCheck',
         content: ['<div class="dialog-form">',
             '<div class="form-group">',
-                '<p  style="padding:0">确认要取消订单吗？取消后订单将会是关闭状态。</p>',
+                '<p  style="padding:0">确认要取消预约单吗？取消后预约单将会是关闭状态。</p>',
             '</div>',
         '</div>'].join(''),
         padding: '20px 60px',

@@ -18,7 +18,7 @@ namespace Himall.Service
     public partial class GiftsOrderService : ServiceBase, IGiftsOrderService
     {
         /// <summary>
-        /// 创建订单
+        /// 创建预约单
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -83,7 +83,7 @@ namespace Himall.Service
                         throw new HimallException("礼品不存在或已失效！");
                     }
                 }
-                //建立订单
+                //建立预约单
                 result.TotalIntegral = result.Himall_GiftOrderItem.Sum(d => d.Quantity * d.SaleIntegral);
                 result.OrderStatus = GiftOrderInfo.GiftOrderStatus.WaitDelivery;
                 result.OrderDate = DateTime.Now;
@@ -114,7 +114,7 @@ namespace Himall.Service
             record.UserName = member.UserName;
             record.MemberId = member.Id;
             record.RecordDate = DateTime.Now;
-            var remark = "礼品订单号:";
+            var remark = "礼品预约单号:";
             record.TypeId = MemberIntegral.IntegralType.Exchange;
             remark += Id.ToString();
             MemberIntegralRecordAction action = new MemberIntegralRecordAction();
@@ -127,7 +127,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取订单
+        /// 获取预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
@@ -137,7 +137,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 获取订单
+        /// 获取预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="userId"></param>
@@ -148,7 +148,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 查询订单
+        /// 查询预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -199,7 +199,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 获取订单
+        /// 获取预约单
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -209,7 +209,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 获取订单计数
+        /// 获取预约单计数
         /// </summary>
         /// <param name="status"></param>
         /// <param name="userId"></param>
@@ -262,7 +262,7 @@ namespace Himall.Service
             return orders;
         }
         /// <summary>
-        /// 获取订单项
+        /// 获取预约单项
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -272,7 +272,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 关闭订单
+        /// 关闭预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="closeReason"></param>
@@ -295,11 +295,11 @@ namespace Himall.Service
             }
             if (orderdata == null)
             {
-                throw new HimallException("错误的订单编号");
+                throw new HimallException("错误的预约单编号");
             }
             if (orderdata.OrderStatus != GiftOrderInfo.GiftOrderStatus.WaitDelivery)
             {
-                throw new HimallException("订单状态有误，不可重复发货");
+                throw new HimallException("预约单状态有误，不可重复发货");
             }
             orderdata.ExpressCompanyName = shipCompanyName;
             orderdata.ShipOrderNumber = shipOrderNumber;
@@ -308,7 +308,7 @@ namespace Himall.Service
             Context.SaveChanges();
         }
         /// <summary>
-        /// 确认订单到货
+        /// 确认预约单到货
         /// </summary>
         /// <param name="id"></param>
         /// <param name="userId"></param>
@@ -317,7 +317,7 @@ namespace Himall.Service
             var order = Context.GiftOrderInfo.FirstOrDefault(a => a.UserId == userId && a.Id == id && a.OrderStatus == GiftOrderInfo.GiftOrderStatus.WaitReceiving);
             if (order == null)
             {
-                throw new HimallException("错误的订单编号，或订单状态不对！");
+                throw new HimallException("错误的预约单编号，或预约单状态不对！");
             }
             //Log.Debug("orderid=" + o.Id.ToString());
             order.OrderStatus = GiftOrderInfo.GiftOrderStatus.Finish;
@@ -325,7 +325,7 @@ namespace Himall.Service
             Context.SaveChanges();
         }
         /// <summary>
-        /// 过期自动确认订单到货
+        /// 过期自动确认预约单到货
         /// </summary>
         public void AutoConfirmOrder()
         {
@@ -342,7 +342,7 @@ namespace Himall.Service
                 {
                     //Log.Debug("orderid=" + o.Id.ToString());
                     o.OrderStatus = GiftOrderInfo.GiftOrderStatus.Finish;
-                    o.CloseReason = "完成过期未确认收货的礼品订单";
+                    o.CloseReason = "完成过期未确认收货的礼品预约单";
                     o.FinishDate = DateTime.Now;
                 }
                 Context.SaveChanges();
@@ -367,17 +367,17 @@ namespace Himall.Service
             }
             catch (Exception ex)
             {
-                //无订单项时异常处理
+                //无预约单项时异常处理
                 result = 0;
             }
             return result;
         }
 
-        #region 生成订单号
+        #region 生成预约单号
         private static object obj = new object();
         /// <summary>
-        ///  生成订单号
-        ///  <para>所有礼品订单号以1开头</para>
+        ///  生成预约单号
+        ///  <para>所有礼品预约单号以1开头</para>
         /// </summary>
         public long GenerateOrderNumber()
         {

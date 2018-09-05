@@ -313,7 +313,7 @@ namespace Himall.API
 
         #region 礼品下单
         /// <summary>
-        /// 确认订单信息
+        /// 确认预约单信息
         /// </summary>
         /// <param name="id"></param>
         /// <param name="count"></param>
@@ -330,7 +330,7 @@ namespace Himall.API
             //Checkout
             GiftOrderConfirmPageModel data = new GiftOrderConfirmPageModel();
             List<GiftOrderItemDtoModel> gorditemlist = new List<GiftOrderItemDtoModel>();
-            GiftOrderItemDtoModel gorditem;     //订单项
+            GiftOrderItemDtoModel gorditem;     //预约单项
 
             #region 礼品信息判断
             //礼品信息
@@ -341,7 +341,7 @@ namespace Himall.API
             }
             #endregion
 
-            gorditem = new GiftOrderItemDtoModel(); //补充订单项
+            gorditem = new GiftOrderItemDtoModel(); //补充预约单项
             gorditem.GiftId = giftdata.Id;
             gorditem.GiftName = giftdata.GiftName;
             gorditem.GiftValue = giftdata.GiftValue;
@@ -369,7 +369,7 @@ namespace Himall.API
             return data;
         }
         /// <summary>
-        /// 提交并处理订单
+        /// 提交并处理预约单
         /// </summary>
         /// <param name="id"></param>
         /// <param name="regionId"></param>
@@ -533,9 +533,9 @@ namespace Himall.API
         }
         #endregion
 
-        #region 我的礼品订单
+        #region 我的礼品预约单
         /// <summary>
-        /// 获取礼品订单列表
+        /// 获取礼品预约单列表
         /// </summary>
         /// <param name="skey"></param>
         /// <param name="status"></param>
@@ -591,7 +591,7 @@ namespace Himall.API
             return pageresult;
         }
         /// <summary>
-        /// 获取订单综合数据
+        /// 获取预约单综合数据
         /// </summary>
         /// <returns></returns>
         public GiftsOrderAggregateDataModel GetOrderCount()
@@ -609,7 +609,7 @@ namespace Himall.API
             return result;
         }
         /// <summary>
-        /// 获取订单信息
+        /// 获取预约单信息
         /// </summary>
         /// <param name="id"></param>
         /// <param name="orderid"></param>
@@ -623,7 +623,7 @@ namespace Himall.API
             var orderdata = _iGiftsOrderService.GetOrder(id, CurrentUser.Id);
             if (orderdata == null)
             {
-                throw new HimallException("错误的订单编号");
+                throw new HimallException("错误的预约单编号");
             }
             Mapper.CreateMap<GiftOrderInfo, GiftsOrderDtoModel>();
             Mapper.CreateMap<GiftOrderItemInfo, GiftsOrderItemDtoModel>();
@@ -689,13 +689,13 @@ namespace Himall.API
             long id = value.OrderId;
             if (id < 1)
             {
-                throw new HimallException("错误的订单编号");
+                throw new HimallException("错误的预约单编号");
             }
             Result result = new Result();
             _iGiftsOrderService.ConfirmOrder(id, CurrentUser.Id);
             result.success = true;
             result.status = 1;
-            result.msg = "订单完成";
+            result.msg = "预约单完成";
             return result;
         }
         #endregion

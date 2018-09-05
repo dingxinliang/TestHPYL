@@ -8,7 +8,7 @@ namespace Himall.Web.Models
     public class ProductCommentModel
     {
         /// <summary>
-        /// 商品评论
+        /// 诊疗项目评论
         /// </summary>
         public long Id { get; set; }
 
@@ -142,7 +142,7 @@ namespace Himall.Web.Models
         public Nullable<long> OderItemId { get; set; }
 
         /// <summary>
-        /// 订单ID
+        /// 预约单ID
         /// </summary>
         public long OrderId { get; set; }
         

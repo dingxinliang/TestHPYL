@@ -22,7 +22,7 @@ namespace Himall.DTO
         ///</summary>
         public long HeadUserId { get; set; }
         /// <summary>
-        /// 当前订单的用户编号
+        /// 当前预约单的用户编号
         /// </summary>
         //public long OrderUserId { get; set; }
         /// <summary>
@@ -39,19 +39,19 @@ namespace Himall.DTO
         public string ShopName { get; set; }
         public string ShopLogo { get; set; }
         /// <summary>
-        /// 商品编号
+        /// 诊疗项目编号
         ///</summary>
         public long ProductId { get; set; }
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         ///</summary>
         public string ProductName { get; set; }
         /// <summary>
-        /// 商品图片目录
+        /// 诊疗项目图片目录
         /// </summary>
         public string ProductImgPath { get; set; }
         /// <summary>
-        /// 商品默认图片
+        /// 诊疗项目默认图片
         /// </summary>
         public string ProductDefaultImage { get; set; }
         /// <summary>
@@ -119,7 +119,7 @@ namespace Himall.DTO
             }
         }
         /// <summary>
-        /// 拼团订单集
+        /// 拼团预约单集
         /// </summary>
         public List<FightGroupOrderModel> GroupOrders { get; set; }
     }

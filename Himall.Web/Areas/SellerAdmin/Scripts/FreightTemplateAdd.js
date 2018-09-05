@@ -397,7 +397,7 @@
         }
         var sourceAddress = $('#SourceAddress').val();
         if (sourceAddress == '' || sourceAddress == '0') {
-            $.dialog.errorTips('请选择商品地址');
+            $.dialog.errorTips('请选择诊疗项目地址');
             return false;
         }
 

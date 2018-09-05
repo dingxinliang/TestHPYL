@@ -261,7 +261,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 添加待结算订单
+        /// 添加待结算预约单
         /// </summary>
         /// <param name="model"></param>
         public void AddPendingSettlementOrders(PendingSettlementOrdersInfo model)
@@ -271,7 +271,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取待结算订单详情
+        /// 获取待结算预约单详情
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
@@ -318,9 +318,9 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 分页获取待结算订单
+        /// 分页获取待结算预约单
         /// </summary>
-        /// <param name="query">待结算订单查询实体</param>
+        /// <param name="query">待结算预约单查询实体</param>
         /// <returns></returns>
         public QueryPageModel<PendingSettlementOrdersInfo> GetPendingSettlementOrders(PendingSettlementOrderQuery query)
         {
@@ -331,7 +331,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 统计待结算订单
+        /// 统计待结算预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -357,7 +357,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 统计待结算订单
+        /// 统计待结算预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -379,9 +379,9 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取待结算订单
+        /// 获取待结算预约单
         /// </summary>
-        /// <param name="query">待结算订单查询实体</param>
+        /// <param name="query">待结算预约单查询实体</param>
         /// <returns></returns>
         public List<PendingSettlementOrdersInfo> GetPendingSettlementOrdersNoPage(PendingSettlementOrderQuery query)
         {
@@ -390,9 +390,9 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 分页获取已结算订单
+        /// 分页获取已结算预约单
         /// </summary>
-        /// <param name="query">结算订单查询实体</param>
+        /// <param name="query">结算预约单查询实体</param>
         /// <returns></returns>
         public QueryPageModel<AccountDetailInfo> GetSettlementOrders(SettlementOrderQuery query)
         {
@@ -404,7 +404,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取已结算订单
+        /// 获取已结算预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>

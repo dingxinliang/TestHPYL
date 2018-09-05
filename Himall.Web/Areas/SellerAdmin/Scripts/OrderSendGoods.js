@@ -29,7 +29,7 @@ $(function () {
         if (invaldat) { return; }
 
         if (orderIds.length == 0) {
-            $.dialog.errorTips("没有选择任何需要发货的订单！");
+            $.dialog.errorTips("没有选择任何需要发货的预约单！");
             return;
         }
 

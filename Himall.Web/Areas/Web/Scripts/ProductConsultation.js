@@ -5,7 +5,7 @@ $(function () {
 });
 
 function getProductConsultation(page) {
-    var pid = $('#gid').val();// 商品id
+    var pid = $('#gid').val();// 诊疗项目id
     $.ajax({
         type: 'get',
         url: '/Product/GetConsultationByProduct?pId=' + pid + '&pageNo=' + page + '&pageSize=' + 10,
@@ -21,7 +21,7 @@ function getProductConsultation(page) {
                        + '<dl class="ask"><dt>咨询内容：</dt><dd>' + html_decode(e.ConsultationContent) + '</dd></dl>';
 
                     if (e.ReplyContent != "暂无回复") {
-                        str += '<dl class="answer"><dt>商家回复：</dt><dd><div class="content">' + html_decode(e.ReplyContent) + '</></div><div class="date-answer">' + e.ReplyDate + '</div></dd></dl>';
+                        str += '<dl class="answer"><dt>诊所回复：</dt><dd><div class="content">' + html_decode(e.ReplyContent) + '</></div><div class="date-answer">' + e.ReplyDate + '</div></dd></dl>';
                     }
                     str += '</div></div>';
                 }

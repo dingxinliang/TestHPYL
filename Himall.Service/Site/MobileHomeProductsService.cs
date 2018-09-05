@@ -14,16 +14,16 @@ namespace Himall.Service
         public void AddProductsToHomePage(long shopId, PlatformType platformType, IEnumerable<long> productIds)
         {
             var productService = ServiceProvider.Instance<IProductService>.Create;
-            var existHomepageProductIds = Context.MobileHomeProductsInfo.Where(item => item.ShopId == shopId && item.PlatFormType == platformType).Select(item => item.ProductId);//获取当前店铺已添加的首页商品Id
-            var notExistProductIds = productIds.Where(item => !existHomepageProductIds.Contains(item));//从待添加的商品中去除已添加的商品
+            var existHomepageProductIds = Context.MobileHomeProductsInfo.Where(item => item.ShopId == shopId && item.PlatFormType == platformType).Select(item => item.ProductId);//获取当前店铺已添加的首页诊疗项目Id
+            var notExistProductIds = productIds.Where(item => !existHomepageProductIds.Contains(item));//从待添加的诊疗项目中去除已添加的诊疗项目
 
             foreach (var productId in notExistProductIds)
             {
                 var product = productService.GetProduct(productId);
                 if (!product.IsDeleted)
                 {
-                    if (shopId != 0 && product.ShopId != shopId)//店铺添加首页商品时，判断该商品是否为该店铺的商品
-                        throw new Himall.Core.HimallException("待添加至首页的商品不得包含非本店铺商品");
+                    if (shopId != 0 && product.ShopId != shopId)//店铺添加首页诊疗项目时，判断该诊疗项目是否为该店铺的诊疗项目
+                        throw new Himall.Core.HimallException("待添加至首页的诊疗项目不得包含非本店铺诊疗项目");
 
                     var mobileHomepageProduct = new MobileHomeProductsInfo()
                     {
@@ -48,7 +48,7 @@ namespace Himall.Service
         {
             var mobileHomeProduct = Context.MobileHomeProductsInfo.FirstOrDefault(item => item.Id == id && item.ShopId == shopId);
             if (mobileHomeProduct == null)
-                throw new Himall.Core.HimallException(string.Format("不存在Id为{0}的首页商品设置", id));
+                throw new Himall.Core.HimallException(string.Format("不存在Id为{0}的首页诊疗项目设置", id));
             mobileHomeProduct.Sequence = sequence;
             Context.SaveChanges();
         }

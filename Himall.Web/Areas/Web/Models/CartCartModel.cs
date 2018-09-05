@@ -13,7 +13,7 @@ namespace Himall.Web.Areas.Web.Models
             Top3RecommendProducts = new List<ProductInfo>();
         }
         /// <summary>
-        /// 最近一次交易的卖家的推荐商品
+        /// 最近一次交易的卖家的推荐诊疗项目
         /// </summary>
         public List<ProductInfo> Top3RecommendProducts { get; set; }
     }

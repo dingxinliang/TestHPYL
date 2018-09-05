@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.API.Model.ParamsModel
 {
     /// <summary>
-    /// 售后买家寄货
+    /// 售后患者寄货
     /// </summary>
     public class OrderRefundSellerSendGoodsModel
     {

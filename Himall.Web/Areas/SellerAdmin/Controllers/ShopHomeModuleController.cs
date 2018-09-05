@@ -43,7 +43,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             if( string.IsNullOrWhiteSpace( name ) )
                 throw new InvalidPropertyException( "名称不能为空" );
             if( id <= 0 )
-                throw new InvalidPropertyException( "商品模块id必须大于0" );
+                throw new InvalidPropertyException( "诊疗项目模块id必须大于0" );
 
             name = name.Trim();
             _iShopHomeModuleService.UpdateShopProductModuleName( CurrentSellerManager.ShopId , id , name );
@@ -69,11 +69,11 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
 
         [HttpPost]
-        [ShopOperationLog( Message = "删除商品模块" )]
+        [ShopOperationLog( Message = "删除诊疗项目模块" )]
         public JsonResult Delelte( long id )
         {
             if( id <= 0 )
-                throw new InvalidPropertyException( "商品模块id必须大于0" );
+                throw new InvalidPropertyException( "诊疗项目模块id必须大于0" );
 
             _iShopHomeModuleService.Delete( CurrentSellerManager.ShopId , id );
             return Json( new { success = true } );
@@ -82,11 +82,11 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
 
         [HttpPost]
-        [ShopOperationLog( Message = "添加商品模块" )]
+        [ShopOperationLog( Message = "添加诊疗项目模块" )]
         public JsonResult SaveShopModuleProducts( long id , string productIds )
         {
             if( id <= 0 )
-                throw new InvalidPropertyException( "商品模块id必须大于0" );
+                throw new InvalidPropertyException( "诊疗项目模块id必须大于0" );
             IEnumerable<long> productIds_long;
             try
             {
@@ -94,7 +94,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             catch( System.FormatException )
             {
-                throw new InvalidPropertyException( "商品编号不合法，请使用半角逗号连接各商品id" );
+                throw new InvalidPropertyException( "诊疗项目编号不合法，请使用半角逗号连接各诊疗项目id" );
             }
 
             _iShopHomeModuleService.UpdateShopProductModuleProducts( CurrentSellerManager.ShopId , id , productIds_long );

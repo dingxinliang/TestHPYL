@@ -51,7 +51,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         {
             long lngCount = 0, lngTotal = 0;
             int intSuccess = 0;
-            //从缓存取用户导入商品数量
+            //从缓存取用户导入诊疗项目数量
             GetImportCountFromCache(out lngCount, out lngTotal);
 
             if (lngTotal == lngCount && lngTotal > 0)
@@ -137,7 +137,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         {
             long lngCount = 0, lngTotal = 0;
             int intSuccess = 0;
-            //从缓存取用户导入商品数量
+            //从缓存取用户导入诊疗项目数量
             GetImportCountFromCache(out lngCount, out lngTotal);
 
             if (lngTotal == lngCount && lngTotal > 0)
@@ -227,19 +227,19 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                         int intCnt = ProcessProduct(paraCategory, paraShopCategory, brand, paraSaleStatus, _shopid, _userid, freightId, zipinfo.UnZipPath, imgpath1, imgpath2);
                         if (intCnt > 0)
                         {
-                            result = Json(new { success = true, message = "成功导入【" + intCnt.ToString() + "】件商品" }, JsonRequestBehavior.AllowGet);
+                            result = Json(new { success = true, message = "成功导入【" + intCnt.ToString() + "】件诊疗项目" }, JsonRequestBehavior.AllowGet);
                         }
                         else
                         {
-                            result = Json(new { success = false, message = "导入【0】件商品，请检查数据包，是否是重复导入" }, JsonRequestBehavior.AllowGet);
+                            result = Json(new { success = false, message = "导入【0】件诊疗项目，请检查数据包，是否是重复导入" }, JsonRequestBehavior.AllowGet);
                         }
                     }
                     catch (Exception ex)
                     {
-                        Core.Log.Error("导入商品异常：" + ex.Message);
+                        Core.Log.Error("导入诊疗项目异常：" + ex.Message);
                         Core.Cache.Remove(CacheKeyCollection.UserImportProductCount(_userid));
                         Core.Cache.Remove(CacheKeyCollection.UserImportProductTotal(_userid));
-                        result = Json(new { success = false, message = "导入商品异常:" + ex.Message }, JsonRequestBehavior.AllowGet);
+                        result = Json(new { success = false, message = "导入诊疗项目异常:" + ex.Message }, JsonRequestBehavior.AllowGet);
                     }
                 }
                 else
@@ -260,7 +260,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return result;
         }
         /// <summary>
-        /// 异步导入商品
+        /// 异步导入诊疗项目
         /// </summary>
         /// <param name="paraCategory"></param>
         /// <param name="paraShopCategory"></param>
@@ -298,14 +298,14 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                             if (intCnt > 0)
                             {
                                 AsyncManager.Parameters["success"] = true;
-                                AsyncManager.Parameters["message"] = "成功导入【" + intCnt.ToString() + "】件商品";
+                                AsyncManager.Parameters["message"] = "成功导入【" + intCnt.ToString() + "】件诊疗项目";
                             }
                             else
                             {
                                 Core.Cache.Remove(CacheKeyCollection.UserImportProductCount(_userid));
                                 Core.Cache.Remove(CacheKeyCollection.UserImportProductTotal(_userid));
                                 AsyncManager.Parameters["success"] = false;
-                                AsyncManager.Parameters["message"] = "导入【0】件商品，请检查数据包格式，或是否重复导入";
+                                AsyncManager.Parameters["message"] = "导入【0】件诊疗项目，请检查数据包格式，或是否重复导入";
                             }
 
                         }
@@ -318,11 +318,11 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     }
                     catch (Exception ex)
                     {
-                        Core.Log.Error("导入商品异常：" + ex.Message);
+                        Core.Log.Error("导入诊疗项目异常：" + ex.Message);
                         Core.Cache.Remove(CacheKeyCollection.UserImportProductCount(_userid));
                         Core.Cache.Remove(CacheKeyCollection.UserImportProductTotal(_userid));
                         AsyncManager.Parameters["success"] = false;
-                        AsyncManager.Parameters["message"] = "导入商品异常:" + ex.Message;
+                        AsyncManager.Parameters["message"] = "导入诊疗项目异常:" + ex.Message;
                     }
                 }
                 else
@@ -343,7 +343,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return Json(new { success = success, message = message }, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
-        /// 商品明细处理
+        /// 诊疗项目明细处理
         /// </summary>
         /// <param name="paraCategory"></param>
         /// <param name="paraShopCategory"></param>
@@ -393,9 +393,9 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                             var iProcudt = _iProductService;
                             ObsoletePageModel<ProductInfo> products = iProcudt.GetProducts(productQuery);
                             if (products.Total > 0)
-                            {//当前店铺、分类已经存在相同编码的商品
+                            {//当前店铺、分类已经存在相同编码的诊疗项目
                                 result++;
-                                Core.Log.Debug(strProductName + " : 商品不能重复导入");
+                                Core.Log.Debug(strProductName + " : 诊疗项目不能重复导入");
                                 Core.Cache.Insert(CacheKeyCollection.UserImportProductCount(_userid), result);
                                 continue;
                             }
@@ -412,7 +412,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                                 CategoryPath = category.Path,
                                 MarketPrice = price,
                                 ShortDescription = string.Empty,
-                                ProductCode = reader2["商家编码"].Replace("\"", ""),
+                                ProductCode = reader2["诊所编码"].Replace("\"", ""),
                                 ImagePath = "",
                                 DisplaySequence = 1,
                                 ProductName = strProductName,
@@ -524,15 +524,15 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                         }
                         catch (FileNotFoundException fex)
                         {
-                            Core.Log.Error("导入商品处理图片时，没有找到文件", fex);
+                            Core.Log.Error("导入诊疗项目处理图片时，没有找到文件", fex);
                         }
                         catch (System.Runtime.InteropServices.ExternalException eex)
                         {
-                            Core.Log.Error("导入商品处理图片时，ExternalException异常", eex);
+                            Core.Log.Error("导入诊疗项目处理图片时，ExternalException异常", eex);
                         }
                         catch (Exception ex)
                         {
-                            Core.Log.Error("导入商品处理图片时，Exception异常", ex);
+                            Core.Log.Error("导入诊疗项目处理图片时，Exception异常", ex);
                         }
                         //IOHelper.CopyFile(source, Server.MapPath(dest), true);
 

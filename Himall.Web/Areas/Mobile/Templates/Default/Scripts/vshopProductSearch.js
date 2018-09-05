@@ -174,7 +174,7 @@ function loadProducts() {
                 }
                 else {
                     isnodata = true;
-                    $('#autoLoad').html('没有更多商品了');
+                    $('#autoLoad').html('没有更多诊疗项目了');
                 }
             }
         );

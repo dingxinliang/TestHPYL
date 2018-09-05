@@ -84,7 +84,7 @@ function reDrawArrow(obj) {
 
 function initSlideImagesTable() {
     var loading = showLoading();
-    //商品表格
+    //诊疗项目表格
     $("#slideImagesTable").hiMallDatagrid({
         url: '/admin/Gift/AppGetSlideImages',
         nowrap: false,

@@ -19,7 +19,7 @@ namespace Himall.IServices.QueryModel
         public IEnumerable<long> Ids { get; set; }
 
         /// <summary>
-        /// 排除的商品ID
+        /// 排除的诊疗项目ID
         /// </summary>
         public IEnumerable<long> ExceptIds { set; get; }
 

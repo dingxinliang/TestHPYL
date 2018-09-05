@@ -6,7 +6,7 @@ using Himall.Model;
 namespace Himall.IServices
 {
     /// <summary>
-    /// 商品专题服务接口
+    /// 诊疗项目专题服务接口
     /// </summary>
     public interface ITopicService:IService
     {
@@ -34,21 +34,21 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 新增商品专题
+        /// 新增诊疗项目专题
         /// </summary>
-        /// <param name="topicInfo">商品专题实体</param>
+        /// <param name="topicInfo">诊疗项目专题实体</param>
         void AddTopic(TopicInfo topicInfo);
 
         /// <summary>
-        /// 更新商品专题
+        /// 更新诊疗项目专题
         /// </summary>
-        /// <param name="topicInfo">商品专题实体</param>
+        /// <param name="topicInfo">诊疗项目专题实体</param>
         void UpdateTopic(TopicInfo topicInfo);
 
         /// <summary>
-        /// 获取商品专题
+        /// 获取诊疗项目专题
         /// </summary>
-        /// <param name="id">商品专题编号</param>
+        /// <param name="id">诊疗项目专题编号</param>
         /// <returns></returns>
         TopicInfo GetTopicInfo(long id);
     }

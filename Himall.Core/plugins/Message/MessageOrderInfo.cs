@@ -9,7 +9,7 @@ namespace Himall.Core.Plugins.Message
     public class MessageOrderInfo
     {
         /// <summary>
-        /// 订单号
+        /// 预约单号
         /// </summary>
         public string OrderId { set; get; }
         /// <summary>
@@ -68,7 +68,7 @@ namespace Himall.Core.Plugins.Message
         public string SiteName { set; get; }
         /// <summary>
         /// 售后对应OrderItem
-        /// <para>0表示为订单整笔退款</para>
+        /// <para>0表示为预约单整笔退款</para>
         /// </summary>
         public long RefundOrderItemId { get; set; }
         /// <summary>
@@ -96,11 +96,11 @@ namespace Himall.Core.Plugins.Message
         /// </summary>
         public DateTime OrderTime { get; set; }
         /// <summary>
-        /// 订单商品名称
+        /// 预约单诊疗项目名称
         /// </summary>
         public string ProductName { get; set; }
         /// <summary>
-        /// 订单状态
+        /// 预约单状态
         /// </summary>
         public string OrderStatus { get; set; }
         /// <summary>
@@ -108,7 +108,7 @@ namespace Himall.Core.Plugins.Message
         /// </summary>
         public string Remark { get; set; }
         /// <summary>
-        /// 订单消息类型
+        /// 预约单消息类型
         /// </summary>
         public MessageOrderType MsgOrderType { get; set; }
     }

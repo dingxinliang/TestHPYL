@@ -288,7 +288,7 @@ table { empty-cells: show; }
 .tb-void .img-list { text-align: left; }
 .tb-void .img-list .icon-img img{height:24px;}
 
-/*我的订单*/
+/*我的预约单*/
 .tb-void tbody .tr-th{border:1px solid #f1f1f1;border-bottom:none;height:30px;font-size:13px;color:#6B6C6E;background-color:#f8f8f8}
 .tb-void tbody .tr-td{}
 .tb-void .order-doi .btn{color: #fff;border-radius: 5px;background-color: #f9b739;height:19px;line-height:19px;font-size:14px;}
@@ -530,7 +530,7 @@ input .item-error { }
 .palt-popu .bottom .share-box a{margin-right:5px;    display: inline-block;}
 
 
-/*我的订单页面弹框*/
+/*我的预约单页面弹框*/
 .order-dialog{position:fixed;width:600px;height:320px;background-color:#fff;top: 130px;left:30%;border-radius:10px;padding:40px 0;text-align: center;z-index: 999;}
 .order-dialog .close{display:inline-block;position:absolute;top:-15px;right:-15px;width:40px;height:40px;border-radius:20px;background:#fff;}
 .order-dialog .close img{position:relative;left:1px;top:-8px;}

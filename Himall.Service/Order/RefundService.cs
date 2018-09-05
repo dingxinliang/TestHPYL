@@ -69,7 +69,7 @@ namespace Himall.Service
             {
                 refunds = refunds.Where(item => item.Applicant.Contains(refundQuery.UserName));
             }
-            //多订单结果集查询
+            //多预约单结果集查询
             if (refundQuery.MoreOrderId == null)
                 refundQuery.MoreOrderId = new List<long>();
             if (refundQuery.OrderId.HasValue)
@@ -143,7 +143,7 @@ namespace Himall.Service
                 {
                     item.EnabledRefundAmount = (item.OrderItemInfo.EnabledRefundAmount == null ? 0 : item.OrderItemInfo.EnabledRefundAmount.Value);
                 }
-                //处理订单售后期
+                //处理预约单售后期
                 item.IsOrderRefundTimeOut = ordser.IsRefundTimeOut(item.OrderId);
                 //ProductTypeInfo typeInfo = ServiceProvider.Instance<ITypeService>.Create.GetTypeByProductId(item.OrderItemInfo.ProductId);
                 ProductTypeInfo typeInfo = (ProductTypeInfo)Context.ProductTypeInfo.Join(Context.ProductInfo.Where(d => d.Id == item.OrderItemInfo.ProductId), x => x.Id, y => y.TypeId, (x, y) => x).ToList().FirstOrDefault();
@@ -286,7 +286,7 @@ namespace Himall.Service
                     }
                     else
                     {
-                        throw new HimallException("退款时，未找到原支付订单信息！");
+                        throw new HimallException("退款时，未找到原支付预约单信息！");
                     }
                 }
                 else
@@ -404,7 +404,7 @@ namespace Himall.Service
 
                 var integralExchange = ServiceProvider.Instance<IMemberIntegralService>.Create.GetIntegralChangeRule();
 
-                #region 扣除订单产生的积分
+                #region 扣除预约单产生的积分
                 if (integralExchange != null && integralExchange.MoneyPerIntegral > 0)
                 {
 
@@ -428,7 +428,7 @@ namespace Himall.Service
                             var _curuintg = _tmp == null ? 0 : _tmp.AvailableIntegrals;
                             if (DeductIntegral > 0 && _curuintg > 0 && order.OrderStatus == OrderInfo.OrderOperateStatus.Finish)
                             {
-                                //扣除订单产生的积分
+                                //扣除预约单产生的积分
                                 MemberIntegralRecord info = new MemberIntegralRecord();
                                 info.UserName = member.UserName;
                                 info.MemberId = member.Id;
@@ -475,7 +475,7 @@ namespace Himall.Service
                             var _curuintg = _tmp == null ? 0 : _tmp.AvailableIntegrals;
                             if (BackIntegral > 0)
                             {
-                                //补充订单退款的积分
+                                //补充预约单退款的积分
                                 MemberIntegralRecord info = new MemberIntegralRecord();
                                 info.UserName = member.UserName;
                                 info.MemberId = member.Id;
@@ -536,13 +536,13 @@ namespace Himall.Service
                 Task.Factory.StartNew(() => ServiceProvider.Instance<IMessageService>.Create.SendMessageOnOrderRefund(order.UserId, orderMessage, refund.Id));
 
 
-                //销量退还(店铺、商品)
+                //销量退还(店铺、诊疗项目)
                 if (order.PayDate.HasValue)
                 {
                     // 修改店铺访问量
                     UpdateShopVisti(refund, order.PayDate.Value);
 
-                    // 修改商品销量
+                    // 修改诊疗项目销量
                     UpdateProductVisti(refund, order.PayDate.Value);
 
                     //会员服务
@@ -569,7 +569,7 @@ namespace Himall.Service
                 }
                 Context.SaveChanges();
 
-                #region 全部退货后关闭订单
+                #region 全部退货后关闭预约单
                 bool isCloseOrder = true;
                 foreach (var item in order.OrderItemInfo.ToList())
                 {
@@ -588,11 +588,11 @@ namespace Himall.Service
                         }
                     }
                 }
-                //发生退款时重新计算待付结算订单
+                //发生退款时重新计算待付结算预约单
                 RefundSettlement(refund.OrderId, refund.Id, isCloseOrder);
                 if (isCloseOrder)
                 {
-                    order.CloseReason = "已退货，订单自动关闭";
+                    order.CloseReason = "已退货，预约单自动关闭";
                     order.OrderStatus = OrderInfo.OrderOperateStatus.Close;
                 }
                 #endregion
@@ -635,19 +635,19 @@ namespace Himall.Service
 
         private void RefundSettlement(long orderId, long refundId, bool isClose)
         {
-            //获取该订单详情
+            //获取该预约单详情
             var orderInfo = Context.OrderInfo.Where(a => a.Id == orderId).FirstOrDefault();
             if (orderInfo == null)
             {
-                return; //如果没有订单
+                return; //如果没有预约单
             }
-            //获取该订单下所有的退款
+            //获取该预约单下所有的退款
             var list = GetOrderRefundList(orderId);
             if (orderInfo.OrderStatus == OrderInfo.OrderOperateStatus.Finish)
             {
-                //根据订单号获取待结算的订单
+                //根据预约单号获取待结算的预约单
                 var model = Context.PendingSettlementOrdersInfo.Where(a => a.OrderId == orderId).FirstOrDefault();
-                //已结算订单
+                //已结算预约单
                 var Settlement = Context.AccountDetailInfo.Where(a => a.OrderId == orderId).FirstOrDefault();
                 decimal platCommissionReturn = 0;
                 decimal distributorCommissionReturn = 0;
@@ -668,7 +668,7 @@ namespace Himall.Service
                         service.UpdateAccount(orderInfo.ShopId, refund.ReturnBrokerage, CommonModel.ShopAccountType.DistributorCommissionRefund, AccountNo, orderId + "发生退款", refund.OrderId);
                     }
                 }
-                else if (model != null) //如果没结算，更新待结算订单
+                else if (model != null) //如果没结算，更新待结算预约单
                 {
                     foreach (var m in list)
                     {
@@ -694,26 +694,26 @@ namespace Himall.Service
 
             ////lly
             ////需要进入待结算的情况：
-            ////1、已完成订单
-            ////2、非完成订单，因退货(退款不包括在内)导致的订单关闭，需要进入待结算
+            ////1、已完成预约单
+            ////2、非完成预约单，因退货(退款不包括在内)导致的预约单关闭，需要进入待结算
             //if (orderInfo.OrderStatus != OrderInfo.OrderOperateStatus.Finish)
             //{//未完成
             //    if (!isClose)
-            //    {//未关闭、未完成的订单，不结算
-            //        return;//如果订单没完成
+            //    {//未关闭、未完成的预约单，不结算
+            //        return;//如果预约单没完成
             //    }
-            //    //准备关闭的订单，进入结算逻辑
+            //    //准备关闭的预约单，进入结算逻辑
             //    foreach (var r in list)
             //    {
             //        if (r.RefundMode == OrderRefundInfo.OrderRefundMode.OrderRefund)
-            //        {//是订单退款，不结算
+            //        {//是预约单退款，不结算
             //            return;
             //        }
             //    }
             //    //lly
-            //    //结果：准备要关闭的订单、且是退货情况下，进入待结算表
+            //    //结果：准备要关闭的预约单、且是退货情况下，进入待结算表
             // }
-            //已完成的订单，按原流程，进入待结算表
+            //已完成的预约单，按原流程，进入待结算表
         }
 
 
@@ -750,7 +750,7 @@ namespace Himall.Service
 
         }
         /// <summary>
-        /// 修改商品访问量
+        /// 修改诊疗项目访问量
         /// </summary>
         /// <param name="refund"></param>
         /// <param name="payDate"></param>
@@ -831,7 +831,7 @@ namespace Himall.Service
             if (refund.ManagerConfirmStatus != OrderRefundInfo.OrderRefundConfirmStatus.UnConfirm)
                 throw new HimallException("只有未确认状态的退款/退货才能进行确认操作！");
             if (!refund.RefundPayType.HasValue)
-                throw new HimallException("订单退款方式有错，请联系技术人员！");
+                throw new HimallException("预约单退款方式有错，请联系技术人员！");
 
             using (TransactionScope tran = new TransactionScope())
             {
@@ -882,7 +882,7 @@ namespace Himall.Service
             }
         }
         /// <summary>
-        /// 商家审核
+        /// 诊所审核
         /// </summary>
         /// <param name="id"></param>
         /// <param name="auditStatus"></param>
@@ -895,9 +895,9 @@ namespace Himall.Service
             {
                 if (refund.SellerAuditStatus != OrderRefundInfo.OrderRefundAuditStatus.WaitAudit
                     && refund.SellerAuditStatus != OrderRefundInfo.OrderRefundAuditStatus.WaitDelivery   //自动任务
-                    && refund.SellerAuditStatus != OrderRefundInfo.OrderRefundAuditStatus.WaitReceiving  //商家收到的货有问题
+                    && refund.SellerAuditStatus != OrderRefundInfo.OrderRefundAuditStatus.WaitReceiving  //诊所收到的货有问题
                     )
-                    throw new HimallException("只有待审核状态的退款/退货才能进行处理，自动任务时需要状态为待买家寄货");
+                    throw new HimallException("只有待审核状态的退款/退货才能进行处理，自动任务时需要状态为待患者寄货");
             }
             else
             {
@@ -906,12 +906,12 @@ namespace Himall.Service
             }
             if (refund.RefundMode == OrderRefundInfo.OrderRefundMode.OrderRefund)
             {
-                //订单退款无需发货
+                //预约单退款无需发货
                 if (auditStatus == OrderRefundInfo.OrderRefundAuditStatus.WaitDelivery)
                 {
-                    //直接转换为商家审核通过
+                    //直接转换为诊所审核通过
                     auditStatus = OrderRefundInfo.OrderRefundAuditStatus.Audited;
-                    ServiceProvider.Instance<IOrderService>.Create.AgreeToRefundBySeller(refund.OrderId);        //关闭订单
+                    ServiceProvider.Instance<IOrderService>.Create.AgreeToRefundBySeller(refund.OrderId);        //关闭预约单
                 }
             }
             else
@@ -920,7 +920,7 @@ namespace Himall.Service
                 {
                     if (auditStatus == OrderRefundInfo.OrderRefundAuditStatus.WaitDelivery)
                     {
-                        //直接转换为商家审核通过
+                        //直接转换为诊所审核通过
                         auditStatus = OrderRefundInfo.OrderRefundAuditStatus.Audited;
                     }
                 }
@@ -958,7 +958,7 @@ namespace Himall.Service
             orderOperationLog.Operator = sellerName;
             orderOperationLog.OrderId = refund.OrderId;
             orderOperationLog.OperateDate = DateTime.Now;
-            orderOperationLog.OperateContent = "商家处理退款退货申请";
+            orderOperationLog.OperateContent = "诊所处理退款退货申请";
 
             Context.OrderOperationLogInfo.Add(orderOperationLog);
 
@@ -1005,7 +1005,7 @@ namespace Himall.Service
             #endregion
         }
         /// <summary>
-        /// 商家确认到货
+        /// 诊所确认到货
         /// </summary>
         /// <param name="id"></param>
         /// <param name="sellerName"></param>
@@ -1013,7 +1013,7 @@ namespace Himall.Service
         {
             OrderRefundInfo refund = Context.OrderRefundInfo.FindById(id);
             if (refund.SellerAuditStatus != OrderRefundInfo.OrderRefundAuditStatus.WaitReceiving)
-                throw new HimallException("只有待收货状态的退货才能进行确认收货操作");
+                throw new HimallException("只有待结算状态的退货才能进行确认收货操作");
             refund.SellerAuditStatus = OrderRefundInfo.OrderRefundAuditStatus.Audited;
             refund.SellerConfirmArrivalDate = DateTime.Now;
             refund.ManagerConfirmDate = DateTime.Now;
@@ -1022,7 +1022,7 @@ namespace Himall.Service
             orderOperationLog.Operator = sellerName;
             orderOperationLog.OrderId = refund.OrderId;
             orderOperationLog.OperateDate = DateTime.Now;
-            orderOperationLog.OperateContent = "商家确认收到退货";
+            orderOperationLog.OperateContent = "诊所确认收到退货";
             Context.OrderOperationLogInfo.Add(orderOperationLog);
             Context.SaveChanges();
 
@@ -1053,7 +1053,7 @@ namespace Himall.Service
             orderOperationLog.Operator = sellerName;
             orderOperationLog.OrderId = refund.OrderId;
             orderOperationLog.OperateDate = DateTime.Now;
-            orderOperationLog.OperateContent = "买家确认发回商品";
+            orderOperationLog.OperateContent = "患者确认发回诊疗项目";
             Context.OrderOperationLogInfo.Add(orderOperationLog);
             Context.SaveChanges();
             //退款日志
@@ -1072,7 +1072,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 根据订单ID获取退款成功的列表
+        /// 根据预约单ID获取退款成功的列表
         /// </summary>
         /// <param name="OrderId"></param>
         /// <returns></returns>
@@ -1091,9 +1091,9 @@ namespace Himall.Service
             var _iFightGroupService = ServiceProvider.Instance<IFightGroupService>.Create;
             var order = ordser.GetOrder(info.OrderId, info.UserId);
             if (order == null)
-                throw new Himall.Core.HimallException("该订单已删除或不属于该用户");
+                throw new Himall.Core.HimallException("该预约单已删除或不属于该用户");
             if ((int)order.OrderStatus < 2)
-                throw new Himall.Core.HimallException("错误的售后申请,订单状态有误");
+                throw new Himall.Core.HimallException("错误的售后申请,预约单状态有误");
             info.ShopId = order.ShopId;
             info.ShopName = order.ShopName;
 
@@ -1105,38 +1105,38 @@ namespace Himall.Service
             //售后时间限制
             if (ordser.IsRefundTimeOut(info.OrderId))
             {
-                throw new Himall.Core.HimallException("订单已超过售后期");
+                throw new Himall.Core.HimallException("预约单已超过售后期");
             }
             if (order.OrderType == OrderInfo.OrderTypes.FightGroup)
             {
                 var fgord = _iFightGroupService.GetFightGroupOrderStatusByOrderId(order.Id);
                 if (!fgord.CanRefund)
                 {
-                    throw new Himall.Core.HimallException("拼团订单处于不可售后状态");
+                    throw new Himall.Core.HimallException("拼团预约单处于不可售后状态");
                 }
             }
             var orderitem = order.OrderItemInfo.FirstOrDefault(a => a.Id == info.OrderItemId);
             if (orderitem == null && info.RefundMode != OrderRefundInfo.OrderRefundMode.OrderRefund)
-                throw new Himall.Core.HimallException("该订单条目已删除或不属于该用户");
+                throw new Himall.Core.HimallException("该预约单条目已删除或不属于该用户");
             if (info.RefundMode == OrderRefundInfo.OrderRefundMode.OrderRefund)
             {
                 if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery && order.OrderStatus != OrderInfo.OrderOperateStatus.WaitSelfPickUp)
-                    throw new Himall.Core.HimallException("错误的订单退款申请,订单状态有误");
+                    throw new Himall.Core.HimallException("错误的预约单退款申请,预约单状态有误");
                 info.IsReturn = false;
                 info.ReturnQuantity = 0;
                 if (info.Amount > order.OrderEnabledRefundAmount)
-                    throw new Himall.Core.HimallException("退款金额不能超过订单的实际支付金额");
+                    throw new Himall.Core.HimallException("退款金额不能超过预约单的实际支付金额");
             }
             else
             {
                 if (info.Amount > (orderitem.EnabledRefundAmount - orderitem.RefundPrice))
-                    throw new Himall.Core.HimallException("退款金额不能超过订单的可退金额");
+                    throw new Himall.Core.HimallException("退款金额不能超过预约单的可退金额");
                 if (info.ReturnQuantity > (orderitem.Quantity - orderitem.ReturnQuantity))
                     throw new Himall.Core.HimallException("退货数量不可以超出可退数量");
             }
             if (info.ReturnQuantity < 0)
                 throw new Himall.Core.HimallException("错误的退货数量");
-            bool isOrderRefund = false;    //是否整笔订单退款
+            bool isOrderRefund = false;    //是否整笔预约单退款
             if (info.RefundMode == OrderRefundInfo.OrderRefundMode.OrderRefund)
             {
                 isOrderRefund = true;
@@ -1176,7 +1176,7 @@ namespace Himall.Service
                 decimal itemRealTotalMoney = model.RealTotalPrice - model.CouponDiscount - model.FullDiscount;  //实付金额
                 if ((model.Quantity - model.ReturnQuantity) < info.ReturnQuantity || (itemRealTotalMoney - model.RefundPrice) < info.Amount)
                 {
-                    throw new HimallException("退货和退款数量不能超过订单的实际数量和金额！");
+                    throw new HimallException("退货和退款数量不能超过预约单的实际数量和金额！");
                 }
                 // model.ReturnQuantity = info.ShowReturnQuantity; （YX放到完成后修改）
                 //  model.RefundPrice = info.Amount;
@@ -1235,7 +1235,7 @@ namespace Himall.Service
             //退款日志
             AddRefundLog(info.Id, info.ApplyNumber, OrderRefundStep.WaitAudit, info.RefundStatus, user.UserName, reason);
 
-            //分销订单处理
+            //分销预约单处理
             if (distributionRate > 0)
             {
                 IDistributionService _idisser = ServiceProvider.Instance<IDistributionService>.Create;
@@ -1347,7 +1347,7 @@ namespace Himall.Service
                 decimal itemRealTotalMoney = model.RealTotalPrice - model.CouponDiscount;   //实付金额
                 if ((model.Quantity - model.ReturnQuantity) < refund.ReturnQuantity || (itemRealTotalMoney - model.RefundPrice) < refund.Amount)
                 {
-                    throw new HimallException("退货和退款数量不能超过订单的实际数量和金额！");
+                    throw new HimallException("退货和退款数量不能超过预约单的实际数量和金额！");
                 }
 
                 if (model.DistributionRate > 0)
@@ -1409,7 +1409,7 @@ namespace Himall.Service
             //退款日志
             AddRefundLog(refund.Id, refund.ApplyNumber, OrderRefundStep.WaitAudit, refund.RefundStatus, user.UserName, reason);
 
-            //分销订单处理
+            //分销预约单处理
             if (distributionRate > 0)
             {
                 IDistributionService _idisser = ServiceProvider.Instance<IDistributionService>.Create;
@@ -1436,9 +1436,9 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 通过订单编号获取整笔退款
+        /// 通过预约单编号获取整笔退款
         /// </summary>
-        /// <param name="id">订单编号</param>
+        /// <param name="id">预约单编号</param>
         /// <returns></returns>
         public OrderRefundInfo GetOrderRefundByOrderId(long id)
         {
@@ -1650,7 +1650,7 @@ namespace Himall.Service
                 {
                     try
                     {
-                        SellerDealRefund(item, OrderRefundInfo.OrderRefundAuditStatus.UnAudit, "买家超时未寄货，系统自动拒绝售后", "系统Job");
+                        SellerDealRefund(item, OrderRefundInfo.OrderRefundAuditStatus.UnAudit, "患者超时未寄货，系统自动拒绝售后", "系统Job");
                     }
                     catch (Exception ex)
                     {
@@ -1660,7 +1660,7 @@ namespace Himall.Service
             }
         }
         /// <summary>
-        /// 自动商家确认到货(job)
+        /// 自动诊所确认到货(job)
         /// </summary>
         public void AutoShopConfirmArrival()
         {
@@ -1716,7 +1716,7 @@ namespace Himall.Service
             else if (refundInfo.SellerAuditStatus == OrderRefundInfo.OrderRefundAuditStatus.WaitReceiving)
             {
                 app.Content = string.Format("{0} 等待您收货", orderInfo.Id);
-                app.Title = "您有买家寄回的商品";
+                app.Title = "您有患者寄回的诊疗项目";
             }
             if (orderInfo.ShopBranchId.HasValue && orderInfo.ShopBranchId.Value > 0)
             {

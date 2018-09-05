@@ -26,7 +26,7 @@ namespace Himall.API
         /// <returns></returns>
         public object GetStoreList(
             string fromLatLng = "", /* 用户当前位置经纬度 */
-            string shopId = "",  /* 商家ID */
+            string shopId = "",  /* 诊所ID */
             int pageNo = 1, /*页码*/
             int pageSize = 10/*每页显示数据量*/
             )
@@ -42,11 +42,11 @@ namespace Himall.API
             if (query.FromLatLng.Split(',').Length != 2)
                 return Json(new { Success = false, Message = "无法获取您的当前位置，请确认是否开启定位服务！" });
 
-            if (!string.IsNullOrWhiteSpace(shopId))//如果传入了商家ID，则只取商家下门店
+            if (!string.IsNullOrWhiteSpace(shopId))//如果传入了诊所ID，则只取诊所下门店
             {
                 query.ShopId = TypeHelper.ObjectToInt(shopId, 0);
                 if (query.ShopId <= 0)
-                    return Json(new { Success = false, Message = "无法定位到商家！" });
+                    return Json(new { Success = false, Message = "无法定位到诊所！" });
             }
             else//否则取用户同城门店
             {
@@ -116,12 +116,12 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 门店首页获取商品列表
+        /// 门店首页获取诊疗项目列表
         /// </summary>
         /// <param name="pageSize"></param>
         /// <param name="pageNo"></param>
-        /// <param name="shopCategoryId">商家一级分类</param>
-        /// <param name="shopId">商家ID</param>
+        /// <param name="shopCategoryId">诊所一级分类</param>
+        /// <param name="shopId">诊所ID</param>
         /// <param name="shopBranchId">门店ID</param>
         /// <returns></returns>
         public object GetProductList(int pageSize, int pageNo, string shopCategoryId, string shopId, string shopBranchId)
@@ -135,10 +135,10 @@ namespace Himall.API
             query.ShopBranchProductStatus = ShopBranchSkuStatus.Normal;
 
             if (query.ShopId <= 0)
-                return Json(new { Success = false, Message = "无法定位到商家！" });
+                return Json(new { Success = false, Message = "无法定位到诊所！" });
 
             //if (query.ShopCategoryId <= 0)
-            //    return Json(new { Success = false, Message = "无法定位到商家分类！" });
+            //    return Json(new { Success = false, Message = "无法定位到诊所分类！" });
             if (TypeHelper.ObjectToInt(shopCategoryId, 0) > 0)
             {
                 query.ShopCategoryId = TypeHelper.ObjectToInt(shopCategoryId);
@@ -150,13 +150,13 @@ namespace Himall.API
             var pageModel = ShopBranchApplication.GetShopBranchProducts(query);
             if (pageModel.Models != null && pageModel.Models.Count > 0)
             {
-                #region 处理商品 官方自营店会员折扣价，各活动价等。
+                #region 处理诊疗项目 官方自营店会员折扣价，各活动价等。
                 var flashSalePriceList = LimitTimeApplication.GetPriceByProducrIds(pageModel.Models.Select(p => p.Id).ToList());
                 var fightGroupSalePriceList = FightGroupApplication.GetActiveByProductIds(pageModel.Models.Select(p => p.Id).ToArray());
                 if (CurrentUser != null)
                 {
                     var shopInfo = ShopApplication.GetShop(query.ShopId.Value);
-                    if (shopInfo != null && shopInfo.IsSelf)//当前商家是否是官方自营店
+                    if (shopInfo != null && shopInfo.IsSelf)//当前诊所是否是官方自营店
                     {
                         decimal discount = 1M;
                         discount = CurrentUser.MemberDiscount;
@@ -191,7 +191,7 @@ namespace Himall.API
                     ProductName = item.ProductName,
                     MeasureUnit = item.MeasureUnit,
                     MinSalePrice = item.MinSalePrice.ToString("f2"),
-                    SaleCounts = item.SaleCounts,//销量统计没有考虑订单支付完成。
+                    SaleCounts = item.SaleCounts,//销量统计没有考虑预约单支付完成。
                     RelativePath = Core.HimallIO.GetRomoteProductSizeImage(item.RelativePath, 1, (int)Himall.CommonModel.ImageSize.Size_350),//150-350
                 };
             });

@@ -155,13 +155,13 @@ namespace Himall.Web.Areas.Admin.Controllers
                     {
                         orderIds += item.VirtualItemId + ",";
                     }
-                    remark = "使用订单号(" + orderIds.TrimEnd(',') + ")";
+                    remark = "使用预约单号(" + orderIds.TrimEnd(',') + ")";
                     break;
                 case MemberIntegral.IntegralType.Comment:
-                    remark = "商品评价（商品ID：" + recordAction.FirstOrDefault().VirtualItemId + ")";
+                    remark = "诊疗项目评价（诊疗项目ID：" + recordAction.FirstOrDefault().VirtualItemId + ")";
                     break;
                 //case MemberIntegral.IntegralType.ProportionRebate:
-                //    remark = "使用订单号(" +recordAction.FirstOrDefault().VirtualItemId + ")";
+                //    remark = "使用预约单号(" +recordAction.FirstOrDefault().VirtualItemId + ")";
                 //    break;
                 default:
                     return remark;

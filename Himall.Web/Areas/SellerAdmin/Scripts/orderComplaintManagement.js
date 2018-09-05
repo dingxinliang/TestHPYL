@@ -52,7 +52,7 @@ $(function () {
 				$(this).addClass('active').siblings().removeClass('active');
 			}
         });
-		//订单表格
+		//预约单表格
 		$("#list").hiMallDatagrid({
 			url: './list',
 			nowrap: false,
@@ -69,8 +69,8 @@ $(function () {
 			queryParams: { complaintStatus:val },
 			columns:
 			[[
-				{ field: "OrderId", title: '订单号', width: 120 },
-				{ field: "UserName", title: "买家", width: 100, align: "center" },
+				{ field: "OrderId", title: '预约单号', width: 120 },
+				{ field: "UserName", title: "患者", width: 100, align: "center" },
 				{ field: "ComplaintDate", title: "投诉日期", width: 100, align: "center" },
                 {
                     field: "OrderTotalAmount", title: "实付金额", width: 100, align: "center",
@@ -89,7 +89,7 @@ $(function () {
 					   
 						html.push("<a class=\"good-check\" onclick=\"OpenComplaintReason('" + row.OrderId + "','" + myHTMLEnCode(row.ComplaintReason) + "','" + myHTMLEnCode(row.SellerReply) + "')\">查看投诉</a>");
 	
-						if (row.ComplaintStatus == "等待商家处理") {
+						if (row.ComplaintStatus == "等待诊所处理") {
 						    html.push("<a class=\"good-check\" onclick=\"OpenDealComplaint('" + row.Id + "','" + row.OrderId + "','" + myHTMLEnCode(row.ComplaintReason) + "','" + row.ShopPhone + "','" + row.UserPhone + "')\">完成处理</a>");
 						}
 						else {
@@ -171,7 +171,7 @@ function OpenDealComplaint(id, orderId, complaintReason, shopPhone, userPhone) {
         id: 'goodCheck',
         content: ['<div class="dialog-form">',
 				'<div class="form-group">',
-					'<label class="label-inline fl">订单号</label>',
+					'<label class="label-inline fl">预约单号</label>',
 					'<p class="only-text">' + orderId + '</p>',
 				'</div>',
 				'<div class="form-group">',
@@ -183,11 +183,11 @@ function OpenDealComplaint(id, orderId, complaintReason, shopPhone, userPhone) {
 					'<p class="only-text">' + userPhone + '</p>',
 				'</div>',
 				'<div class="form-group">',
-					'<label class="label-inline fl">商家联系方式</label>',
+					'<label class="label-inline fl">诊所联系方式</label>',
 					'<p class="only-text">' + shopPhone + '</p>',
 				'</div>',
                 '<div class="form-group">',
-                    '<label class="label-inline fl">回复买家</label>',
+                    '<label class="label-inline fl">回复患者</label>',
                     '<textarea class="form-control" cols="38" rows="3" id="txtReply"></textarea>',
                 '</div>',
 			'</div>'].join(''),
@@ -218,7 +218,7 @@ function OpenComplaintReason(orderId, complaintReason, sellerReply) {
         id: 'goodCheck',
         content: ['<div class="dialog-form">',
 				'<div class="form-group">',
-					'<label class="label-inline fl">订单号</label>',
+					'<label class="label-inline fl">预约单号</label>',
 					'<p class="only-text">'+orderId+'</p>',
 				'</div>',
 				'<div class="form-group">',
@@ -226,7 +226,7 @@ function OpenComplaintReason(orderId, complaintReason, sellerReply) {
 					'<p class="only-text">' + complaintReason + '</p>',
 				'</div>',
                 '<div class="form-group">',
-					'<label class="label-inline fl">商家回复</label>',
+					'<label class="label-inline fl">诊所回复</label>',
 					'<p class="only-text">' + sellerReply + '</p>',
 				'</div>',
 			'</div>'].join(''),

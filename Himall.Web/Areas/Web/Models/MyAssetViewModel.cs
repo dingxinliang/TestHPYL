@@ -18,7 +18,7 @@ namespace Himall.Web.Areas.Web.Models
         /// </summary>
         public bool isLogin { get; set; }
         /// <summary>
-        /// 我关注的商品
+        /// 我关注的诊疗项目
         /// </summary>
         public List<FavoriteInfo> MyConcernsProducts { get; set; }
         /// <summary>
@@ -38,7 +38,7 @@ namespace Himall.Web.Areas.Web.Models
         /// </summary>
         public int MyCouponCount { get; set; }
         /// <summary>
-        /// 浏览商品记录
+        /// 浏览诊疗项目记录
         /// </summary>
         public List<ProductBrowsedHistoryModel> MyBrowsingProducts { get; set; }
     }

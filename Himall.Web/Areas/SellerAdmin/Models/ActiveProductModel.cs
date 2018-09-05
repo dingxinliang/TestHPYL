@@ -18,8 +18,8 @@ namespace Himall.Web.Areas.SellerAdmin.Models
         public string ProductCode { get; set; }
         public string Unit { get; set; }
         /// <summary>
-        /// 是否异常商品
-        /// <para>己参与其他冲突活动，或商品状态异常</para>
+        /// 是否异常诊疗项目
+        /// <para>己参与其他冲突活动，或诊疗项目状态异常</para>
         /// </summary>
         public bool IsException { get; set; }
     }

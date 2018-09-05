@@ -14,11 +14,11 @@ namespace Himall.DTO
     public class ChargePayModel
     {
         /// <summary>
-        /// 订单充值
+        /// 预约单充值
         /// </summary>
         public Model.ChargeDetailInfo Orders { get; set; }
         /// <summary>
-        /// 订单ID
+        /// 预约单ID
         /// </summary>
         public string OrderIds { get; set; }
         /// <summary>
@@ -52,7 +52,7 @@ namespace Himall.DTO
         public IEnumerable<PaymentModel> Models { get; set; }
 
         /// <summary>
-        /// 订单信息
+        /// 预约单信息
         /// </summary>
         public List<OrderInfo> Orders { get; set; }
 
@@ -67,7 +67,7 @@ namespace Himall.DTO
         public string Msg { get; set; }
 
         /// <summary>
-        /// 是否有非销售中的商品
+        /// 是否有非销售中的诊疗项目
         /// </summary>
         public bool HaveNoSalePro { get; set;}
 
@@ -77,7 +77,7 @@ namespace Himall.DTO
         public decimal Capital { get; set; }
 
         /// <summary>
-        /// 订单总价
+        /// 预约单总价
         /// </summary>
         public decimal TotalAmount { get; set; }
     }

@@ -111,7 +111,7 @@ namespace Himall.API
             {
                 logs.Add(new
                 {
-                    Role = roleMap[log.Step],//操作者角色，0：买家，1：门店，2：平台
+                    Role = roleMap[log.Step],//操作者角色，0：患者，1：门店，2：平台
                     Step = log.Step,
                     log.OperateDate,
                     log.Remark

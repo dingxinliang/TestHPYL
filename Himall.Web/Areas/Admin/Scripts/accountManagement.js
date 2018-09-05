@@ -87,7 +87,7 @@ function Query(status) {
         [[
             { field: "ShopName", title: "店铺名称", width: 120, align: "center" },
             { field: "TimeSlot", title: "时间段", width: 120, align: "center" },
-            { field: "ProductActualPaidAmount", title: "商品实付总额", width: 110, align: "center" },
+            { field: "ProductActualPaidAmount", title: "诊疗项目实付总额", width: 110, align: "center" },
             { field: "FreightAmount", title: "运费", width: 60, align: "center" },
             { field: "CommissionAmount", title: "佣金", width: 80, align: "center" },
             { field: "RefundAmount", title: "退款金额", width: 80, align: "center" },

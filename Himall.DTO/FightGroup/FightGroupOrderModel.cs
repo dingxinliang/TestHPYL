@@ -9,7 +9,7 @@ using Himall.CommonModel;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 拼团订单
+    /// 拼团预约单
     /// </summary>
     public class FightGroupOrderModel
     {
@@ -22,7 +22,7 @@ namespace Himall.DTO
         ///</summary>
         public long ActiveId { get; set; }
         /// <summary>
-        /// 对应商品
+        /// 对应诊疗项目
         ///</summary>
         public long ProductId { get; set; }
         /// <summary>
@@ -34,15 +34,15 @@ namespace Himall.DTO
         ///</summary>
         public long GroupId { get; set; }
         /// <summary>
-        /// 订单时间
+        /// 预约单时间
         ///</summary>
         public long OrderId { get; set; }
         /// <summary>
-        /// 订单用户编号
+        /// 预约单用户编号
         ///</summary>
         public long OrderUserId { get; set; }
         /// <summary>
-        /// 是否团首订单
+        /// 是否团首预约单
         ///</summary>
         public bool IsFirstOrder { get; set; }
         /// <summary>
@@ -66,11 +66,11 @@ namespace Himall.DTO
         /// </summary>
         public decimal SalePrice { get; set; }
         /// <summary>
-        /// 订单用户名
+        /// 预约单用户名
         /// </summary>
         public string UserName { get; set; }
         /// <summary>
-        /// 订单用户头像
+        /// 预约单用户头像
         /// </summary>
         public string Photo { get; set; }
     }

@@ -7,7 +7,7 @@
             <div class="choose-left">\
                 <div class="choose-search">\
                 	<div class="form-group">\
-                        <label for="">商品分类</label>\
+                        <label for="">诊疗项目分类</label>\
                         <select></select>\
                         <select></select>\
                         <select></select>\
@@ -34,7 +34,7 @@
         var columns = [
              { checkbox: true, width: 50 },
                 {
-                    field: "name", title: '商品', width: 366, align: "left",
+                    field: "name", title: '诊疗项目', width: 366, align: "left",
                     formatter: function (value, row, index) {
                         var html = '<img src="' + row.imgUrl + '"/><span class="overflow-ellipsis">' + row.name + '</span>';
                         return html;
@@ -190,7 +190,7 @@
             this.multiSelect = multiSelect;
 
         var dialog=$.dialog({
-            title: '商品选择',
+            title: '诊疗项目选择',
             lock: true,
             content: this.html,
             padding: '10px',

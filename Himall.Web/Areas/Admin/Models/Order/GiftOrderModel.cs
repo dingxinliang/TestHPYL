@@ -33,7 +33,7 @@ namespace Himall.Web.Areas.Admin.Models
         public int FirstGiftBuyQuantity { get; set; }
         public string UserName { get; set; }
         /// <summary>
-        /// 显示订单状态
+        /// 显示预约单状态
         /// </summary>
         [NotMapped]
         public string ShowOrderStatus

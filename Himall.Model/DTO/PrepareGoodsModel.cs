@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.Model
 {
     /// <summary>
-    /// 商品配货表
+    /// 诊疗项目配货表
     /// </summary>
     public class PrepareGoodsModel
     {
@@ -16,7 +16,7 @@ namespace Himall.Model
         /// </summary>
         public string SkuId { get; set; }
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         /// </summary>
         public string ProductName { get; set; }
         /// <summary>

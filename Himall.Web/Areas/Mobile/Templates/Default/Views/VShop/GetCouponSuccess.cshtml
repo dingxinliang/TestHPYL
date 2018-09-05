@@ -48,7 +48,7 @@
         </div>
         <div class="coupon-info">
             <p class="time"><i></i>有效日期：@Model.CouponData.StartTime.ToString("yyyy-MM-dd") 至 @Model.CouponData.EndTime.ToString("yyyy-MM-dd")</p>
-            <p>使用限制：订单满<span>@Model.CouponData.OrderAmount.ToString("f2")元</span>可使用<span>（不含运费）</span></p>
+            <p>使用限制：预约单满<span>@Model.CouponData.OrderAmount.ToString("f2")元</span>可使用<span>（不含运费）</span></p>
         </div>
         @if (Model.IsShowSyncWeiXin) {
             <div class="coupon-btn" id="addCard" style="display:none;"><a class="btn btn-block btn-lg" href="#">同步到微信卡包</a></div>
@@ -67,7 +67,7 @@
             var _vshopid = $(this).data("vshopid");
             console.log(_vshopid);
             if (!(_vshopid > 0)) {
-                $.dialog.errorTips("商家暂未开通微店！");
+                $.dialog.errorTips("诊所暂未开通微店！");
             }
         });
     });

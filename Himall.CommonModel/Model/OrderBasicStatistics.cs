@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.CommonModel
 {
     /// <summary>
-    /// 订单基本统计
+    /// 预约单基本统计
     /// </summary>
     public class OrderBasicStatistics
     {

@@ -143,7 +143,7 @@ namespace Himall.Service
             CopyTemplate(shopId);
         }
 
-        //TODO:ZJT 获取店铺有效的订单总销量
+        //TODO:ZJT 获取店铺有效的预约单总销量
         public int GetSales(long id)
         {
             return Context.OrderInfo.Where(p => p.ShopId == id && p.OrderStatus == OrderInfo.OrderOperateStatus.Finish).Count();
@@ -208,7 +208,7 @@ namespace Himall.Service
         }
 
 		/// <summary>
-		/// 获取商家名称
+		/// 获取诊所名称
 		/// </summary>
 		/// <param name="ids"></param>
 		/// <returns></returns>
@@ -297,7 +297,7 @@ namespace Himall.Service
             actual.WeiXinTrueName = shop.WeiXinTrueName ?? actual.WeiXinTrueName;
             actual.WeiXinOpenId = shop.WeiXinOpenId ?? actual.WeiXinOpenId;
             actual.WeiXinImg = shop.WeiXinImg ?? shop.WeiXinImg;
-            actual.AutoAllotOrder = shop.AutoAllotOrder;//商家是否开启订单自动分配门店
+            actual.AutoAllotOrder = shop.AutoAllotOrder;//诊所是否开启预约单自动分配门店
 
             //TODO:DZY[160225]  防联动修改提前保存值
             var BusinessLicenseCert = shop.BusinessLicenseCert;
@@ -341,7 +341,7 @@ namespace Himall.Service
             actual.ContactsPosition = shop.ContactsPosition ?? shop.ContactsPosition;
 
             Context.SaveChanges();
-            //过期店铺下架所有商品
+            //过期店铺下架所有诊疗项目
             if (actual.EndDate < DateTime.Now.AddDays(1).Date)
             {
                 SaleOffAllProduct(actual.Id);
@@ -1333,7 +1333,7 @@ namespace Himall.Service
             Context.Database.ExecuteSqlCommand("update Himall_FlashSale set Status=4,EndDate='" + DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm:ss") + "' where ShopId=" + id.ToString() + "");
         }
         /// <summary>
-        /// 将所有在售的商品下架
+        /// 将所有在售的诊疗项目下架
         /// </summary>
         /// <param name="id"></param>
         public void SaleOffAllProduct(long id)

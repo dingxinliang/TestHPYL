@@ -55,7 +55,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 商品是否可以参加拼团活动
+        /// 诊疗项目是否可以参加拼团活动
         /// <para>其他活动限时请在bll层操作</para>
         /// </summary>
         /// <param name="productId"></param>
@@ -190,7 +190,7 @@ namespace Himall.Service
             Commit();
         }
         /// <summary>
-        /// 根据商品ID取活动信息
+        /// 根据诊疗项目ID取活动信息
         /// </summary>
         /// <param name="proId"></param>
         /// <returns></returns>
@@ -203,7 +203,7 @@ namespace Himall.Service
         /// 获取拼团活动
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="needGetProductCommentNumber">是否需要同步获取商品的评价数量,会自动加载产品信息</param>
+        /// <param name="needGetProductCommentNumber">是否需要同步获取诊疗项目的评价数量,会自动加载产品信息</param>
         /// <param name="isLoadItems">是否加载节点信息</param>
         /// <param name="isLoadPorductInfo">是否加载产品信息</param>
         /// <returns></returns>
@@ -266,7 +266,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 使用商品编号获取正在进行的拼团活动编号
+        /// 使用诊疗项目编号获取正在进行的拼团活动编号
         /// <para>0表示无数据</para>
         /// </summary>
         /// <param name="productId"></param>
@@ -370,7 +370,7 @@ namespace Himall.Service
         /// <param name="Statuses"></param>
         /// <param name="StartTime"></param>
         /// <param name="EndTime"></param>
-        /// <param name="ProductName">商品名</param>
+        /// <param name="ProductName">诊疗项目名</param>
         /// <param name="ShopName">店铺名</param>
         /// <param name="ShopId">店铺编号</param>
         /// <param name="PageNo"></param>
@@ -461,7 +461,7 @@ namespace Himall.Service
             }
             QueryPageModel<FightGroupActiveInfo> result = new QueryPageModel<FightGroupActiveInfo>();
             var prosql = Context.ProductInfo.Where(d => d.IsDeleted == false && d.AuditStatus == ProductInfo.ProductAuditStatus.Audited
-                        && d.SaleStatus == ProductInfo.ProductSaleStatus.OnSale).Select(d => d.Id);//(过滤已经删除或下架的商品）
+                        && d.SaleStatus == ProductInfo.ProductSaleStatus.OnSale).Select(d => d.Id);//(过滤已经删除或下架的诊疗项目）
             _where = _where.And(d => prosql.Contains(d.ProductId));
             var sql = Context.FightGroupActiveInfo.Where(_where);
             int total = 0;
@@ -476,7 +476,7 @@ namespace Himall.Service
             //外键值补充
             if (datalist.Count > 0)
             {
-                //商家信息
+                //诊所信息
                 var shopids = datalist.Select(d => d.ShopId).ToList();
                 var shopnames = Context.ShopInfo.Where(d => shopids.Contains(d.Id)).Select(d => new { Id = d.Id, ShopName = d.ShopName }).ToList();
 
@@ -554,7 +554,7 @@ namespace Himall.Service
             }
 
             #region 信息修正
-            //进行中的订单判定时间是否失效
+            //进行中的预约单判定时间是否失效
             var gponstate = (int)FightGroupBuildStatus.Ongoing;
             if (result.GroupStatus == gponstate && (DateTime.Now - result.AddGroupTime.Value).TotalHours > (double)result.LimitedHour)
             {
@@ -562,7 +562,7 @@ namespace Himall.Service
             }
             #endregion
 
-            //补充订单与用户信息
+            //补充预约单与用户信息
             FightGroupOrderJoinStatus jstate = FightGroupOrderJoinStatus.JoinSuccess; //取参团成功、参团成功但拼团失败、拼团成功
             List<FightGroupsInfo> fglist = new List<FightGroupsInfo>();
             fglist.Add(result);
@@ -688,7 +688,7 @@ namespace Himall.Service
         /// 补充拼团附属信息
         /// </summary>
         /// <param name="datalist"></param>
-        /// <param name="isLoadOrderData">是否装载订单信息</param>
+        /// <param name="isLoadOrderData">是否装载预约单信息</param>
         /// <param name="joinStatus">最低参团状态 (默认：参团成功、参团成功但拼团失败、拼团成功)</param>
         private void GroupsInfoFill(List<FightGroupsInfo> datalist, bool isLoadOrderData = false, FightGroupOrderJoinStatus joinStatus = FightGroupOrderJoinStatus.JoinSuccess)
         {
@@ -696,7 +696,7 @@ namespace Himall.Service
             {
                 throw new HimallException("错误的数据");
             }
-            //商品信息补充
+            //诊疗项目信息补充
             var proids = datalist.Select(d => d.ProductId);
             var products = Context.ProductInfo.Where(d => proids.Contains(d.Id)).ToList();
 
@@ -714,7 +714,7 @@ namespace Himall.Service
             //拼装数据
             foreach (var item in datalist)
             {
-                //商品信息
+                //诊疗项目信息
                 var _pro = products.FirstOrDefault(d => d.Id == item.ProductId);
                 if (_pro != null)
                 {
@@ -741,11 +741,11 @@ namespace Himall.Service
 
             }
 
-            #region 补充拼团订单信息
+            #region 补充拼团预约单信息
             if (isLoadOrderData)
             {
                 var gpids = datalist.Select(d => (long?)d.Id);
-                //TODO:DZY[160620] 补充拼团订单信息
+                //TODO:DZY[160620] 补充拼团预约单信息
                 int jstate = (int)joinStatus;
                 var gpordsql = Context.FightGroupOrderInfo.Where(d => gpids.Contains(d.GroupId));
                 gpordsql = gpordsql.Where(d => d.JoinStatus >= jstate);
@@ -1030,7 +1030,7 @@ namespace Himall.Service
             if (fgpstate == FightGroupBuildStatus.Failed)
             {
                 //throw new HimallException("拼团已关闭，参团失败");
-                //拼团失败后参与的订单不参与记数
+                //拼团失败后参与的预约单不参与记数
             }
             else
             {
@@ -1119,7 +1119,7 @@ namespace Himall.Service
         }
         #endregion
 
-        #region 拼团订单
+        #region 拼团预约单
         /// <summary>
         /// 根据拼团活动Id和团组Id获取用户
         /// </summary>
@@ -1170,7 +1170,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 根据用户id获取拼团订单
+        /// 根据用户id获取拼团预约单
         /// </summary>
         /// <param name="userID">用户id</param>
         /// <returns></returns>
@@ -1211,7 +1211,7 @@ namespace Himall.Service
             return data;
         }
         /// <summary>
-        /// 虚拟订单
+        /// 虚拟预约单
         /// </summary>
         /// <param name="PageNo"></param>
         /// <param name="PageSize"></param>
@@ -1256,14 +1256,14 @@ namespace Himall.Service
         /// <summary>
         /// 设定加入拼团状态
         /// </summary>
-        /// <param name="orderId">订单号</param>
+        /// <param name="orderId">预约单号</param>
         /// <param name="status">状态</param>
         public FightGroupOrderJoinStatus SetOrderStatus(long orderId, FightGroupOrderJoinStatus status)
         {
             var gpord = Context.FightGroupOrderInfo.FirstOrDefault(d => d.OrderId == orderId);
             if (gpord == null)
             {
-                throw new HimallException("错误的拼团订单信息");
+                throw new HimallException("错误的拼团预约单信息");
             }
             var gpobj = Context.FightGroupsInfo.FirstOrDefault(d => d.Id == gpord.GroupId);
             switch (status)
@@ -1283,7 +1283,7 @@ namespace Himall.Service
                     {
                         gpord.JoinStatus = status.GetHashCode();
                         gpord.OverTime = DateTime.Now;
-                        //处理订单
+                        //处理预约单
                         var orderobj = Context.OrderInfo.FirstOrDefault(d => d.Id == gpord.OrderId);
                         if (orderobj != null)
                         {
@@ -1369,9 +1369,9 @@ namespace Himall.Service
             return result;
         }
 
-        #region 拼团订单状态处理私有方法
+        #region 拼团预约单状态处理私有方法
         /// <summary>
-        /// 订单拼团失败
+        /// 预约单拼团失败
         /// </summary>
         /// <param name="groupOrder"></param>
         /// <param name="group"></param>
@@ -1392,13 +1392,13 @@ namespace Himall.Service
             //退库存
             UpdateActiveStock(groupOrder.ActiveId.Value, groupOrder.SkuId, groupOrder.Quantity);
 
-            #region 订单退款
+            #region 预约单退款
             var _iOrderService = ServiceProvider.Instance<IOrderService>.Create;
             OrderInfo order = _iOrderService.GetOrder(orderId);
-            //订单有可能被删
+            //预约单有可能被删
             if (order != null)
             {
-                if (order.OrderStatus >= OrderInfo.OrderOperateStatus.WaitDelivery)  //已付款订单
+                if (order.OrderStatus >= OrderInfo.OrderOperateStatus.WaitDelivery)  //已付款预约单
                 {
                     var userinfos = Context.UserMemberInfo.FirstOrDefault(d => d.Id == groupOrder.OrderUserId.Value);
                     //处理退款
@@ -1436,7 +1436,7 @@ namespace Himall.Service
                 }
                 else
                 {
-                    //未付款订单 先不处理，等job自动关闭
+                    //未付款预约单 先不处理，等job自动关闭
                     //_iOrderService.PlatformCloseOrder(orderId, "系统Job", "拼团失败，系统自动处理");
                 }
             }
@@ -1572,13 +1572,13 @@ namespace Himall.Service
                     create.SendMessageByTemplate(MessageTypeEnum.FightGroupFailed, gpord.OrderUserId.Value, data1, url3, "");
                     break;
                 case FightGroupOrderJoinStatus.BuildSuccess:
-                    data1.first.value = "您参团的商品［" + fightGroupsInfo2.ProductName + "］已组团成功！";
+                    data1.first.value = "您参团的诊疗项目［" + fightGroupsInfo2.ProductName + "］已组团成功！";
                     data1.first.color = "#000000";
                     data1.keyword1.value = gpord.SalePrice.ToString("F2") + "元";
                     data1.keyword1.color = "#000000";
                     data1.keyword2.value = gpord.OrderId.ToString();
                     data1.keyword2.color = "#000000";
-                    data1.remark.value = "点击查看订单详情！";
+                    data1.remark.value = "点击查看预约单详情！";
                     data1.remark.color = "#000000";
                     string messageTemplateShowUrl2 = create.GetMessageTemplateShowUrl(MessageTypeEnum.FightGroupSuccess);
                     string oldValue4 = "{gid}";
@@ -1602,9 +1602,9 @@ namespace Himall.Service
             Log.Debug((object)("[FG]SendMessage:" + orderId.ToString() + " _ " + EnumHelper.ToDescription((Enum)status)));
         }
         /// <summary>
-        /// 获取拼团订单详情
+        /// 获取拼团预约单详情
         /// </summary>
-        /// <param name="Id">拼团订单流水Id</param>
+        /// <param name="Id">拼团预约单流水Id</param>
         /// <returns></returns>
         public FightGroupOrderInfo GetFightGroupOrderById(long id)
         {
@@ -1622,11 +1622,11 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 订单是否可以支付
-        /// <para>成团成功后，未完成支付的订单不可付款</para>
-        /// <para>成团失败后，未完成支付的订单不可付款</para>
+        /// 预约单是否可以支付
+        /// <para>成团成功后，未完成支付的预约单不可付款</para>
+        /// <para>成团失败后，未完成支付的预约单不可付款</para>
         /// </summary>
-        /// <param name="orderId">订单编号</param>
+        /// <param name="orderId">预约单编号</param>
         /// <returns></returns>
         public bool OrderCanPay(long orderId)
         {
@@ -1647,16 +1647,16 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 获取拼团订单详情
+        /// 获取拼团预约单详情
         /// </summary>
-        /// <param name="orderId">订单编号</param>
+        /// <param name="orderId">预约单编号</param>
         /// <returns></returns>
         public FightGroupOrderInfo GetOrder(long orderId)
         {
             var result = Context.FightGroupOrderInfo.AsNoTracking().FirstOrDefault(d => d.OrderId == orderId);
             if (result == null)
             {
-                throw new HimallException("错误的拼团订单信息");
+                throw new HimallException("错误的拼团预约单信息");
             }
             var group = Context.FightGroupsInfo.AsNoTracking().FirstOrDefault(d => d.Id == result.GroupId);
             if (group != null)
@@ -1670,7 +1670,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 获取参团中的订单数
+        /// 获取参团中的预约单数
         /// </summary>
         /// <param name="userId">用户编号</param>
         /// <returns></returns>
@@ -1680,11 +1680,11 @@ namespace Himall.Service
             return Context.FightGroupOrderInfo.Count(d => d.JoinStatus == jstate && d.OrderUserId == userId);
         }
         /// <summary>
-        /// 拼团订单
+        /// 拼团预约单
         /// <para>未付款</para>
         /// </summary>
         /// <param name="actionId">活动编号</param>
-        /// <param name="orderId">订单编号</param>
+        /// <param name="orderId">预约单编号</param>
         /// <param name="userId">用户编号</param>
         /// <param name="groupId">拼团编号 0表示开新团</param>
         /// <param name="invitationUserId">推荐人Id</param>
@@ -1695,7 +1695,7 @@ namespace Himall.Service
                 flag = true;
             OrderInfo orderInfo = Queryable.FirstOrDefault<OrderInfo>((IQueryable<OrderInfo>)this.Context.OrderInfo, (Expression<Func<OrderInfo, bool>>)(a => a.Id == orderId && a.UserId == userId));
             if (orderInfo == null)
-                throw new HimallException("错误的订单信息，或订单不属于当前用户");
+                throw new HimallException("错误的预约单信息，或预约单不属于当前用户");
             OrderItemInfo orderItemInfo = Enumerable.FirstOrDefault<OrderItemInfo>((IEnumerable<OrderItemInfo>)orderInfo.OrderItemInfo);
             long quantity = orderItemInfo.Quantity;
             string skuId = orderItemInfo.SkuId;
@@ -1722,9 +1722,9 @@ namespace Himall.Service
             return entity;
         }
         /// <summary>
-        /// 根据原订单号获取拼团订单信息
+        /// 根据原预约单号获取拼团预约单信息
         /// </summary>
-        /// <param name="orderId">原订单号</param>
+        /// <param name="orderId">原预约单号</param>
         /// <returns></returns>
         public FightGroupOrderInfo GetFightGroupOrderStatusByOrderId(long orderId)
         {
@@ -1732,7 +1732,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 新增拼团订单
+        /// 新增拼团预约单
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -1742,7 +1742,7 @@ namespace Himall.Service
             return result.Id;
         }
         /// <summary>
-        /// 付款成功后更新拼团订单状态
+        /// 付款成功后更新拼团预约单状态
         /// </summary>
         /// <param name="data"></param>
         public void UpdateGroupOrderStatus(FightGroupOrderInfo data)
@@ -1755,7 +1755,7 @@ namespace Himall.Service
             Context.SaveChanges();
         }
         /// <summary>
-        /// 根据团组Id获取订单数据
+        /// 根据团组Id获取预约单数据
         /// </summary>
         /// <param name="statuses"></param>
         /// <param name="groupId"></param>

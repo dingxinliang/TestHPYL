@@ -18,11 +18,11 @@
 }
 <div class="container clear-q">
     <ul class="nav nav-tabs-custom clearfix">
-        <li value="0" class="active" type="statusTab"><a>所有订单</a></li>
+        <li value="0" class="active" type="statusTab"><a>所有预约单</a></li>
         <li value="1" type="statusTab"><a>待付款</a></li>
         <li value="2" type="statusTab"><a>待发货</a></li>
         <li value="6" type="statusTab"><a>待自提</a></li>
-        <li value="3" type="statusTab"><a>待收货</a></li>
+        <li value="3" type="statusTab"><a>待结算</a></li>
         <li value="5" type="statusTab"><a>交易完成</a></li>
         <li value="4" type="statusTab"><a>已关闭</a></li>
 
@@ -31,7 +31,7 @@
     <div class="search-box" id="search-box">
         <form class="form-inline custom-inline">
             <div class="form-group">
-                <label class="label-inline w75" for="">订单号</label>
+                <label class="label-inline w75" for="">预约单号</label>
                 <input class="form-control input-ssm input-number" type="text" id="txtOrderId">
             </div>
             <div class="form-group">
@@ -39,7 +39,7 @@
                 <input class="form-control input-ssm input-number" type="text" id="txtUserContact">
             </div>
             <div class="form-group">
-                <label class="label-inline w75" for="">买家</label>
+                <label class="label-inline w75" for="">患者</label>
                 <input class="form-control input-ssm" type="text" id="txtUserName">
             </div>
             <div class="form-group">
@@ -47,7 +47,7 @@
                 <input class="form-control input-ssm" type="text" id="txtShopName">
             </div>
             <div class="form-group">
-                <label class="label-inline w75" for="">订单类型</label>
+                <label class="label-inline w75" for="">预约单类型</label>
                 <select id="orderType" class="form-control input-ssm">
                     <option value="">全部</option>
                     @foreach (var item in Enum.GetValues(typeof(Himall.Core.PlatformType)))
@@ -58,10 +58,10 @@
                             case Himall.Core.PlatformType.Mobile:
                                 break;
                             case Himall.Core.PlatformType.Android:
-                                <option value="@((int)item)">APP订单</option>
+                                <option value="@((int)item)">APP预约单</option>
                                 break;
                             default:
-                            <option value="@((int)item)">@(((Himall.Core.PlatformType)item).ToDescription())订单</option>
+                            <option value="@((int)item)">@(((Himall.Core.PlatformType)item).ToDescription())预约单</option>
                                 break;
                         }
                     }
@@ -96,7 +96,7 @@
 				<input class="form-control input-ssm" type="text" id="txtUserContact">
 			</div>*@
             <div class="form-group">
-                <label class="label-inline w75" for="">订单日期</label>
+                <label class="label-inline w75" for="">预约单日期</label>
                 <input id="inputStartDate" class="form-control input-ssm start_datetime" type="text">
                 <label class="label-inline-line">-</label>
                 <input id="inputEndDate" class="form-control input-ssm end_datetime" type="text">

@@ -3,7 +3,7 @@ var isPosting = false;
 
 function SellerRemark(id, remark, flag) {
     $.dialog({
-        title: '商家备注',
+        title: '诊所备注',
         lock: true,
         id: 'SellerRemark',
         content: document.getElementById("remark-form"),

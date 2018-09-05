@@ -21,7 +21,7 @@
                     {
                         link: "/Shop/index",
                         linkType: 6,
-                        showtitle: "所有商品",
+                        showtitle: "所有诊疗项目",
                         title: "",
                         pic: "/PublicMob/images/index10-3.png"
                     },

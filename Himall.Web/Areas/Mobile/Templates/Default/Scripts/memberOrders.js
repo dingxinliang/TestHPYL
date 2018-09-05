@@ -1,5 +1,5 @@
 ﻿var orderStatus = QueryString("orderStatus");
-var ShowRefundStats = ["", "待商家审核", "待买家寄货", "待商家收货", "商家拒绝", "待平台确认", "退款成功"];
+var ShowRefundStats = ["", "待诊所审核", "待患者寄货", "待诊所收货", "诊所拒绝", "待平台确认", "退款成功"];
 
 $(function () {
     if (orderStatus == 1)
@@ -22,7 +22,7 @@ function userOrders(status) {
     if (returnUrl && returnUrl.length > 0) {
         ret = "&returnUrl=" + encodeURIComponent(returnUrl);
     }
-    if (status == 0 || status == 1)//全部订单或待支付订单
+    if (status == 0 || status == 1)//全部预约单或待支付预约单
         location.href = '/common/site/pay?area=mobile&platform=' + areaName.replace('m-', '') + '&controller=member&action=orders&orderStatus=' + status + ret;
     else
         location.href = '/' + areaName + '/Member/Orders?orderStatus=' + status + ret;
@@ -98,7 +98,7 @@ function loadOrders(page, status) {
                         }
                         html += '</div></a>';
                     });
-                    html += '<p class="order-text"><a href="/' + areaName + '/Order/Detail?id=' + item.id + '"><span>共 ' + item.productCount + ' 件商品</span> <span>总价： <em>¥' + item.orderTotalAmount + '</em></span></a></p>';
+                    html += '<p class="order-text"><a href="/' + areaName + '/Order/Detail?id=' + item.id + '"><span>共 ' + item.productCount + ' 件诊疗项目</span> <span>总价： <em>¥' + item.orderTotalAmount + '</em></span></a></p>';
 
                     var orderBtns = [];
                     //晒单链接
@@ -107,12 +107,12 @@ function loadOrders(page, status) {
                         case 1:
                             orderBtns.push('<a class="btn-cnf" pay orderTotal="{0}" orderId="{1}">去付款</a>'.format(item.orderTotalAmount - item.capitalAmount, item.id));
                             if (item.OrderType != 3)
-                                orderBtns.push('<a class="btn-del" onclick="CancelOrder({0})">取消订单</a>'.format(item.id));
+                                orderBtns.push('<a class="btn-del" onclick="CancelOrder({0})">取消预约单</a>'.format(item.id));
                             break;
                         case 2:
                             orderBtns.push('<a class="btn-del" href="' + orderShare + '">我要晒单</a>');//待发货晒单
                             if (item.PaymentType == 3 && item.OrderType != 3)
-                                orderBtns.push('<a class="btn-del" onclick="CancelOrder({0})">取消订单</a>'.format(item.id));
+                                orderBtns.push('<a class="btn-del" onclick="CancelOrder({0})">取消预约单</a>'.format(item.id));
                             break;
                         case 3:
                             orderBtns.push('<a class="btn-del" href="' + orderShare + '">我要晒单</a>');//待收获晒单
@@ -157,7 +157,7 @@ function loadOrders(page, status) {
             $('.order-list').append('<li>{0}</li>'.format(htmls.join('</li><li>')));
         }
         else {
-            $('#autoLoad').html('没有更多订单了').removeClass('hide');
+            $('#autoLoad').html('没有更多预约单了').removeClass('hide');
         }
         if (page == 1)
             loading.close();
@@ -189,7 +189,7 @@ function Confirm(orderId) {
 }
 
 function CancelOrder(orderId) {
-    $.dialog.confirm("确定取消该订单吗？", function () { Cancel(orderId); });
+    $.dialog.confirm("确定取消该预约单吗？", function () { Cancel(orderId); });
 }
 
 function Cancel(orderId) {

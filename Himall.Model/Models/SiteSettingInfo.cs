@@ -177,7 +177,7 @@ namespace Himall.Model
         public string UserCookieKey { get; set; }
 
         /// <summary>
-        /// 商家入住协议
+        /// 诊所入住协议
         /// </summary>
         public string SellerAdminAgreement { get; set; }
 
@@ -260,7 +260,7 @@ namespace Himall.Model
         /// </summary>
         public int SalesReturnTimeout { get; set; }
         /// <summary>
-        /// 售后-商家自动确认售后时限(天数)
+        /// 售后-诊所自动确认售后时限(天数)
         /// <para>到期未审核，自动认为同意售后</para>
         /// </summary>
         public int AS_ShopConfirmTimeout { get; set; }
@@ -270,14 +270,14 @@ namespace Himall.Model
         /// </summary>
         public int AS_SendGoodsCloseTimeout { get; set; }
         /// <summary>
-        /// 售后-商家确认到货时限(天数)
+        /// 售后-诊所确认到货时限(天数)
         /// <para>到期未收货，自动收货</para>
         /// </summary>
         public int AS_ShopNoReceivingTimeout { get; set; }
 
 
         /// <summary>
-        /// 是否开启商品免审核上架
+        /// 是否开启诊疗项目免审核上架
         /// </summary>
         public int ProdutAuditOnOff { get; set; }
 
@@ -321,19 +321,19 @@ namespace Himall.Model
 
         [NotMapped]
         /// <summary>
-        /// 门店、商家app版本号
+        /// 门店、诊所app版本号
         /// </summary>
         public string ShopAppVersion { set; get; }
         [NotMapped]
         /// <summary>
-        /// 门店、商家安卓下载地址
+        /// 门店、诊所安卓下载地址
         /// </summary>
         public string ShopAndriodDownLoad { set; get; }
 
 
         [NotMapped]
         /// <summary>
-        /// 门店、商家IOS下载地址
+        /// 门店、诊所IOS下载地址
         /// </summary>
         public string ShopIOSDownLoad { set; get; }
 
@@ -393,7 +393,7 @@ namespace Himall.Model
 
         [NotMapped]
         /// <summary>
-        /// 是否开启订单自动匹配到门店
+        /// 是否开启预约单自动匹配到门店
         /// </summary>
         public bool AutoAllotOrder { set; get; }
 
@@ -403,7 +403,7 @@ namespace Himall.Model
         public bool IsOpenStore { get; set; }
 
         /// <summary>
-        /// 是否授权商家APP
+        /// 是否授权诊所APP
         /// </summary>
         public bool IsOpenShopApp { get; set; }
 

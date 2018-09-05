@@ -15,7 +15,7 @@ namespace Himall.IServices
         void AddPlatformRole(RoleInfo model);
 
         /// <summary>
-        /// 添加一个商家管理员角色
+        /// 添加一个诊所管理员角色
         /// </summary>
         void AddSellerRole(RoleInfo model);
 
@@ -26,7 +26,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 修改商家管理员角色
+        /// 修改诊所管理员角色
         /// </summary>
         void UpdateSellerRole(RoleInfo model);
 
@@ -44,7 +44,7 @@ namespace Himall.IServices
         RoleInfo GetPlatformRole(long id);
 
          /// <summary>
-        /// 获取一个商家角色的详情
+        /// 获取一个诊所角色的详情
         /// </summary>
         /// <param name="id"></param>
         /// <param name="shopId">店铺ID</param>
@@ -52,9 +52,9 @@ namespace Himall.IServices
         RoleInfo GetSellerRole(long id, long shopId);
 
         /// <summary>
-        /// 获取商家角色列表
+        /// 获取诊所角色列表
         /// </summary>
-        /// <param name="shopID">商家的店铺ID</param>
+        /// <param name="shopID">诊所的店铺ID</param>
         /// <returns></returns>
         IQueryable<RoleInfo> GetSellerRoles(long shopId);
         /// <summary>

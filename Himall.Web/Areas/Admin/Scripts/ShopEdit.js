@@ -3,7 +3,7 @@ $(function () {
 
   //  bindCity("consignee_province", "consignee_city", "consignee_county", companyRegionIds);
     //bindCity("bank_consignee_province", "bank_consignee_city", "bank_consignee_county", bankRegionIds);
-    //初始化商家地址
+    //初始化诊所地址
     $("#regionSelector").RegionSelector({
         selectClass: "form-control input-sm select-sort",
         valueHidden: "#NewCompanyRegionId"

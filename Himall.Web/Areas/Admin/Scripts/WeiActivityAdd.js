@@ -45,7 +45,7 @@
         var ids = null;
 
         $.productSelector.show(ids, function () {
-            //记录当前选中的商品
+            //记录当前选中的诊疗项目
             //moduleProducts[moduleIndex] = selectedProducts;
             $('tr[index="' + moduleIndex + '"] td[type="selectedNumber"]').html();
         }, 'selleradmin');
@@ -119,7 +119,7 @@
 });
 
 
-//模块商品,用于装载各模块已选择的商品
+//模块诊疗项目,用于装载各模块已选择的诊疗项目
 var moduleProducts = [];
 function check1() {
 
@@ -479,7 +479,7 @@ function bind(couponId) {
              [[
             { field: "CouponName", title: "优惠券名称" },
             { field: "Price", title: "面额" },
-            { field: "ShopName", title: "商家" },
+            { field: "ShopName", title: "诊所" },
             { field: "OrderAmount", title: "使用条件" },
             { field: "strEndTime", title: "有效期" },
             {

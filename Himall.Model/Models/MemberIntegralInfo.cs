@@ -39,9 +39,9 @@ namespace Himall.Model
             [Description("绑定微信")]
             BindWX = 6,
             /// <summary>
-            /// 商品评论
+            /// 诊疗项目评论
             /// </summary>
-            [Description("订单评价")]
+            [Description("预约单评价")]
             Comment = 7,
             /// <summary>
             /// 管理员操作
@@ -54,7 +54,7 @@ namespace Himall.Model
             [Description("完善用户信息")]
             Reg = 9,
 
-            [Description("取消订单")]
+            [Description("取消预约单")]
             Cancel = 10,
 
             [Description("其他")]
@@ -67,7 +67,7 @@ namespace Himall.Model
 
             [Description("微信活动")]
             WeiActivity = 13,
-            [Description("晒订单")]
+            [Description("晒预约单")]
             Share = 14,
         }
 
@@ -86,7 +86,7 @@ namespace Himall.Model
             Comment = 4,
             [Description("交易获得")]
             Consumption = 5,
-            [Description("取消订单")]
+            [Description("取消预约单")]
             Cancel = 6,
             /// <summary>
             /// 晒单送积分

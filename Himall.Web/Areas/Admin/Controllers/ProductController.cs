@@ -149,7 +149,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             #region 构建Excel文档
             ViewData.Model = products;
             string viewHtml = RenderPartialViewToString(this, "ExportProductinfo");
-            return File(System.Text.Encoding.UTF8.GetBytes(viewHtml), "application/ms-excel", string.Format("平台商品信息_{0}.xls", DateTime.Now.ToString("yyyy-MM-dd")));
+            return File(System.Text.Encoding.UTF8.GetBytes(viewHtml), "application/ms-excel", string.Format("平台诊疗项目信息_{0}.xls", DateTime.Now.ToString("yyyy-MM-dd")));
             #endregion
         }
 
@@ -172,7 +172,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         /// <param name="auditState">审核状态</param>
         /// <param name="message">理由</param>
         /// <returns></returns>
-        [OperationLog(Message = "审核商品状态")]
+        [OperationLog(Message = "审核诊疗项目状态")]
         [HttpPost]
         public JsonResult Audit(long productId, int auditState, string message)
         {
@@ -181,7 +181,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             {
                 Model.ProductInfo.ProductAuditStatus status = (Model.ProductInfo.ProductAuditStatus)auditState;
                 _iProductService.AuditProduct(productId, status, message);
-                #region 修改搜索商品状态
+                #region 修改搜索诊疗项目状态
                 _iSearchProductService.UpdateSearchStatusByProduct(productId);
                 #endregion
                 if (status != ProductInfo.ProductAuditStatus.Audited)
@@ -211,7 +211,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         /// <param name="auditState">审核状态</param>
         /// <param name="message">理由</param>
         /// <returns></returns>
-        [OperationLog(Message = "批量审核商品状态")]
+        [OperationLog(Message = "批量审核诊疗项目状态")]
         [HttpPost]
         public JsonResult BatchAudit(string productIds, int auditState, string message)
         {

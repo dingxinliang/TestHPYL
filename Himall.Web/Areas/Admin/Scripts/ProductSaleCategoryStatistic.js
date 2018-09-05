@@ -17,7 +17,7 @@ $(function () {
     }
     countOption = {
         title: {
-            text: '一级分类商品销售数                                                                              一级分类商品销售金额',
+            text: '一级分类诊疗项目销售数                                                                              一级分类诊疗项目销售金额',
             x: 'center',
             textStyle: {
                 fontWeight: 'normal',

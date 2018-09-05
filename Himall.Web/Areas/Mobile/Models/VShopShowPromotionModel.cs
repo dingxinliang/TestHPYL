@@ -6,7 +6,7 @@ using System.Web;
 namespace Himall.Web.Areas.Mobile.Models
 {
     /// <summary>
-    /// 商品营销活动显示
+    /// 诊疗项目营销活动显示
     /// </summary>
     public class VShopShowPromotionModel
     {

@@ -60,7 +60,7 @@ namespace WinOrderTradeStatisticsService
                     //是否第一次统计
                     var visitInfo = entity.ShopVistiInfo.FirstOrDefault();
                     if (visitInfo == null)
-                    {//取第一个订单时间
+                    {//取第一个预约单时间
                         var firstOrder = entity.OrderInfo.FirstOrDefault();
                         if (firstOrder != null)
                             startDate = firstOrder.OrderDate.Date;
@@ -85,7 +85,7 @@ namespace WinOrderTradeStatisticsService
         void StatisticCreateOrder(DateTime statisticStartDate, DateTime statisticEndDate)
         {
             Himall.Entity.Entities entity = new Himall.Entity.Entities();
-            //时间段内所有订单（下单数据统计）
+            //时间段内所有预约单（下单数据统计）
             var orders = entity.OrderInfo.Where(e => e.OrderDate >= statisticStartDate && e.OrderDate < statisticEndDate).ToList();
             var orderGroups = orders.GroupBy(e => e.ShopId);
             //已存在的店铺统计
@@ -109,7 +109,7 @@ namespace WinOrderTradeStatisticsService
                 shopVisit.StatisticFlag = true;
             }
 
-            //将没有订单记录的统计信息，统一修改为已统计
+            //将没有预约单记录的统计信息，统一修改为已统计
             var noOrdersStatistic = shopVisitInfos.Where(e => !shopids.Any(p => p == e.ShopId));
             foreach (var v in noOrdersStatistic)
             {
@@ -118,7 +118,7 @@ namespace WinOrderTradeStatisticsService
             entity.ShopVistiInfo.AddRange(shopVisitRange);
             entity.SaveChanges();
 
-            //时间段内已支付订单(付款数据统计)
+            //时间段内已支付预约单(付款数据统计)
             var payOrders = entity.OrderInfo.Where(e => e.PayDate.HasValue && e.PayDate.Value >= statisticStartDate && e.PayDate.Value < statisticEndDate).ToList();
             var payOrderGroups = payOrders.GroupBy(e => e.ShopId);
             //已存在的店铺统计
@@ -141,7 +141,7 @@ namespace WinOrderTradeStatisticsService
                 shopVisit.SaleCounts = g.Sum(e => e.OrderProductQuantity);
                 shopVisit.StatisticFlag = true;
             }
-            //将没有订单记录的统计信息，统一修改为已统计
+            //将没有预约单记录的统计信息，统一修改为已统计
             var noPayOrdersStatistic = shopVisitInfos.Where(e => !shopids.Any(p => p == e.ShopId));
             foreach (var v in noPayOrdersStatistic)
             {
@@ -162,7 +162,7 @@ namespace WinOrderTradeStatisticsService
             platVisit.OrderAmount = orders.Sum(e => e.TotalAmount);
             platVisit.OrderUserCount = orders.Select(e => e.UserId).Distinct().Count();
             platVisit.OrderProductCount = orders.Sum(e => e.OrderProductQuantity);
-            //已支付订单
+            //已支付预约单
             platVisit.OrderPayCount = payOrders.Count();
             platVisit.OrderPayUserCount = payOrders.Select(e => e.UserId).Distinct().Count();
             platVisit.SaleAmounts = payOrders.Sum(e => e.TotalAmount);

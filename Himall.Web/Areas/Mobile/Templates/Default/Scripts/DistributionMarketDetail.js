@@ -13,7 +13,7 @@ $('.bt_agent').on('click', function () {
             }
         });
     } else {
-        alert("您已代理此商品！");
+        alert("您已代理此诊疗项目！");
     }
 });
 
@@ -94,7 +94,7 @@ $(function () {
 
     function loadProductImg() {
         if ($(".goods-img").html() == "")
-            $(".goods-img").append('<h4><a name="top">商品图文详情</a></h4>' + $("#proDesc").val());
+            $(".goods-img").append('<h4><a name="top">诊疗项目图文详情</a></h4>' + $("#proDesc").val());
     }
 
 });

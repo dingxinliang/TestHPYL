@@ -11,7 +11,7 @@ namespace Himall.CommonModel
     {
         /// <summary>
         /// 开团中
-        /// <para>团长订单未付款</para>
+        /// <para>团长预约单未付款</para>
         /// </summary>
         [Description("开团中")]
         BuildOpening = -10,

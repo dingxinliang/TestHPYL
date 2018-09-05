@@ -75,7 +75,7 @@ namespace Himall.DTO
         public bool HasAppendComment { set; get; }
         /// <summary>
         /// 拼团状态
-        /// <para>拼团订单独有</para>
+        /// <para>拼团预约单独有</para>
         /// </summary>
         public FightGroupOrderJoinStatus FightGroupJoinStatus { get; set; }
         /// <summary>
@@ -138,7 +138,7 @@ namespace Himall.DTO
         public bool IsRefundTimeOut { get; set; }
         /// <summary>
         /// 拼团状态
-        /// <para>拼团订单独有</para>
+        /// <para>拼团预约单独有</para>
         /// </summary>
         public FightGroupOrderJoinStatus FightGroupJoinStatus { get; set; }
         /// <summary>

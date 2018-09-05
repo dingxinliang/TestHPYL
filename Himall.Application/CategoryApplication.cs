@@ -8,7 +8,7 @@ using Himall.Model;
 namespace Himall.Application
 {
     /// <summary>
-    /// 商品类别
+    /// 诊疗项目类别
     /// </summary>
     public class CategoryApplication
     {

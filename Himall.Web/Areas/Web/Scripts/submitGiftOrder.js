@@ -117,7 +117,7 @@ function bindSubmit() {
             loading.close();
             $.dialog.tips('请选择或新建收货地址');
         } else {
-            //提交订单
+            //提交预约单
             $.post('/GiftOrder/SubmitOrder', { id: giftid, regionId: recieveAddressId, count: count }, function (result) {
                 if (result.success) {
                     location.href = '/GiftOrder/OrderSuccess/' + result.msg;

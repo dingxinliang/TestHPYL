@@ -96,7 +96,7 @@
         $ctrl.find(".j-btn-modify").click(modify);//初始化模块时的修改按钮时间
     };
 
-    //模块类型4 商品
+    //模块类型4 诊疗项目
     HiShop.DIY.Unit.event_type4 = function (ctrldom, data) {
         var $conitem = data.dom_conitem, //手机内容
             $ctrl = ctrldom, //控制内容
@@ -130,7 +130,7 @@
             reRender(setImgHeightcallback);
         });
 
-        //是否显示商品名称
+        //是否显示诊疗项目名称
         $ctrl.find("input[name='showName']").change(function () {
             var val = $(this).val();
             data.content.showName = val;//同步数据到缓存
@@ -144,14 +144,14 @@
             reRender();
         });
 
-        //是否显示商品价格
+        //是否显示诊疗项目价格
         $ctrl.find("input[name='showPrice']").change(function () {
             var val = $(this).is(":checked");
             data.content.showPrice = val;//同步数据到缓存
             reRender();
         });
 
-        //删除商品
+        //删除诊疗项目
         $ctrl.find(".j-delgoods").click(function () {
             var index = $(this).parents("li").index();
             data.content.goodslist.splice(index, 1);
@@ -159,7 +159,7 @@
             return false;
         });
 
-        //添加商品
+        //添加诊疗项目
         $ctrl.find(".j-addgoods").click(function () {
             HiShop.popbox.GoodsAndGroupPicker("goodsMulti", function (list) {
                 _.each(list, function (goods) {
@@ -171,7 +171,7 @@
         });
     };
 
-    //模块类型5 商品列表（分组标签）
+    //模块类型5 诊疗项目列表（分组标签）
     HiShop.DIY.Unit.event_type5 = function (ctrldom, data) {
         var $conitem = data.dom_conitem, //手机内容
             $ctrl = ctrldom, //控制内容
@@ -198,7 +198,7 @@
             reRender();
         });
 
-        //是否显示商品名称
+        //是否显示诊疗项目名称
         $ctrl.find("input[name='showName']").change(function () {
             var val = $(this).is(":checked");
             data.content.showName = val;//同步数据到缓存
@@ -212,7 +212,7 @@
             reRender();
         });
 
-        //是否显示商品价格
+        //是否显示诊疗项目价格
         $ctrl.find("input[name='showPrice']").change(function () {
             var val = $(this).is(":checked");
             data.content.showPrice = val;//同步数据到缓存
@@ -247,7 +247,7 @@
                 reRender();
             });
         });
-        // 选择商品显示数量
+        // 选择诊疗项目显示数量
         $ctrl.find('input[name="goodsize"]').change(function (event) {
             var me = $(this),
                 num = me.val();

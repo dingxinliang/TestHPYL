@@ -17,7 +17,7 @@ namespace Himall.Application
         private static IShopService _iShopService = ObjectContainer.Current.Resolve<IShopService>();
         private static IAppMessageService _appMessageService = ObjectContainer.Current.Resolve<IAppMessageService>();
 
-        #region 商家入驻设置
+        #region 诊所入驻设置
         /// <summary>
         /// 设置
         /// </summary>
@@ -53,10 +53,10 @@ namespace Himall.Application
         }
         #endregion
 
-        #region 商家入驻流程
+        #region 诊所入驻流程
 
         /// <summary>
-        /// 添加商家管理员
+        /// 添加诊所管理员
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
@@ -131,7 +131,7 @@ namespace Himall.Application
 		}
 		
 		/// <summary>
-		/// 获取商家名称
+		/// 获取诊所名称
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
@@ -141,7 +141,7 @@ namespace Himall.Application
 		}
 		
 		/// <summary>
-		/// 获取商家名称
+		/// 获取诊所名称
 		/// </summary>
 		/// <param name="ids"></param>
 		/// <returns></returns>
@@ -156,7 +156,7 @@ namespace Himall.Application
             return model;
         }
         /// <summary>
-        /// 商家入驻第二部
+        /// 诊所入驻第二部
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -264,7 +264,7 @@ namespace Himall.Application
             return step1;
         }
         /// <summary>
-        /// 获取商家入驻第三部信息
+        /// 获取诊所入驻第三部信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -295,7 +295,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 商家入驻协议
+        /// 诊所入驻协议
         /// </summary>
         /// <returns></returns>
         public static string GetSellerAgreement()
@@ -321,7 +321,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 商家入驻店铺信息更新
+        /// 诊所入驻店铺信息更新
         /// </summary>
         /// <param name="model"></param>
         /// <param name="ShopId"></param>

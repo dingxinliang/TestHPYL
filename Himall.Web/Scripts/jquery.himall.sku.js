@@ -1,5 +1,5 @@
 ﻿/*
- * Description:商品规格SKU处理
+ * Description:诊疗项目规格SKU处理
  * 2016.6.14--five(673921852)
  * SkuData格式:{"SkuId": "294_19_0_15", //可根据需求添加参数在callback中处理,SkuId、Price、Stock必须
 			"Color": "黄色",
@@ -14,7 +14,7 @@
 
         var defautls = {
             data: {},   // ajax请求data
-            productId: null,   // 商品id,选填，默认为data第一个参数值
+            productId: null,   // 诊疗项目id,选填，默认为data第一个参数值
             spec: '.spec',       //sku组父级
             itemClass: '.itemSku',  //每个sku选项
             resultClass: {

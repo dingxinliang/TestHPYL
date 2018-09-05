@@ -15,19 +15,19 @@ namespace Himall.Web.Areas.Web.Models
         /// </summary>
         public string Logo { get; set; }
         /// <summary>
-        /// 购物车商品
+        /// 购物车诊疗项目
         /// </summary>
         public ProductInfo[] ShoppingCartItems { get; set; }
         /// <summary>
-        /// 未评论商品数量
+        /// 未评论诊疗项目数量
         /// </summary>
         public int UnEvaluatProductsNum { get; set; }
         /// <summary>
-        /// 用户未评论的3个商品
+        /// 用户未评论的3个诊疗项目
         /// </summary>
         public OrderItemInfo[] Top3UnEvaluatProducts { get; set; }
         /// <summary>
-        /// 最近一次交易的卖家的推荐商品
+        /// 最近一次交易的卖家的推荐诊疗项目
         /// </summary>
         public ProductInfo[] Top3RecommendProducts { get; set; }
         public List<ProductBrowsedHistoryModel> BrowsingProducts { get; set; }
@@ -36,7 +36,7 @@ namespace Himall.Web.Areas.Web.Models
 
         public int OrderCount { get; set; }
         /// <summary>
-        /// 待收货
+        /// 待结算
         /// </summary>
         public int OrderWaitReceiving { get; set; }
         /// <summary>

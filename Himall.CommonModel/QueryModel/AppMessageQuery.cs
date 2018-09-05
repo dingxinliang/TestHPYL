@@ -12,7 +12,7 @@ namespace Himall.CommonModel
     public class AppMessageQuery : BaseQuery
     {
         /// <summary>
-        /// 商家编号
+        /// 诊所编号
         /// </summary>
         public long? ShopId { get; set; }
         /// <summary>

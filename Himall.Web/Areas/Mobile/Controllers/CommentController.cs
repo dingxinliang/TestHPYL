@@ -30,7 +30,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             bool valid = false;
 			if (order != null && (!orderComments.ContainsKey(orderId)||orderComments[orderId]==0))
             {
-                // 订单还未被评价过，有效
+                // 预约单还未被评价过，有效
                 valid = true;
                 var model = CommentApplication.GetProductEvaluationByOrderId(orderId, CurrentUser.Id);
                 var orderEvaluation = TradeCommentApplication.GetOrderComment(orderId, CurrentUser.Id);
@@ -51,8 +51,8 @@ namespace Himall.Web.Areas.Mobile.Controllers
 			var orderComment = Newtonsoft.Json.JsonConvert.DeserializeObject<OrderCommentModel>(comment);
 			if (orderComment != null)
 			{
-				AddOrderComment(orderComment);//添加订单评价
-				AddProductsComment(orderComment.OrderId, orderComment.ProductComments);//添加商品评论
+				AddOrderComment(orderComment);//添加预约单评价
+				AddProductsComment(orderComment.OrderId, orderComment.ProductComments);//添加诊疗项目评论
 				result = true;
 			}
 			return Json(new { success = result });

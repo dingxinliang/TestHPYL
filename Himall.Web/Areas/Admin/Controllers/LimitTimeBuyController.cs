@@ -102,7 +102,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         /// <param name="message">理由</param>
         /// <returns></returns>
         [UnAuthorize]
-        [OperationLog(Message = "审核商品状态")]
+        [OperationLog(Message = "审核诊疗项目状态")]
         [HttpPost]
         public JsonResult AuditItem(long id)
         {
@@ -131,7 +131,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         /// 拒绝
         /// </summary>
         [UnAuthorize]
-        [OperationLog(Message = "拒绝商品状态")]
+        [OperationLog(Message = "拒绝诊疗项目状态")]
         [HttpPost]
         public JsonResult RefuseItem(long id)
         {
@@ -314,7 +314,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
         #endregion
 
-        #region 活动商品分类
+        #region 活动诊疗项目分类
 
         public ActionResult MarketCategory()
         {

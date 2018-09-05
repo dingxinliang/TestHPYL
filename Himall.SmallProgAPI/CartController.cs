@@ -172,7 +172,7 @@ namespace Himall.SmallProgAPI
         }
 
         /// <summary>
-        /// 检查失效商品
+        /// 检查失效诊疗项目
         /// </summary>
         /// <param name="skus"></param>
         /// <param name="memeberId"></param>
@@ -199,12 +199,12 @@ namespace Himall.SmallProgAPI
                 }
                 else
                 {
-                    json = GetErrorJson("有失效商品");
+                    json = GetErrorJson("有失效诊疗项目");
                 }
             }
             else
             {
-                json = GetErrorJson("请选择商品");
+                json = GetErrorJson("请选择诊疗项目");
             }
             return json;
         }

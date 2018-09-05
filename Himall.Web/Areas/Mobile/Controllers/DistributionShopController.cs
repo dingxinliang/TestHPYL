@@ -76,7 +76,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return View(model);
         }
         /// <summary>
-        /// 获取商品列表
+        /// 获取诊疗项目列表
         /// </summary>
         /// <param name="skey"></param>
         /// <param name="page"></param>

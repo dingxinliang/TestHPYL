@@ -28,7 +28,7 @@ function bindSearchBtn()
 
 function initGrid()
 {
-    //商品表格
+    //诊疗项目表格
     $( "#list" ).hiMallDatagrid( {
         url: '/admin/VShop/GetVshops',
         nowrap: false,
@@ -176,7 +176,7 @@ $( '#list' ).on( 'click', '.good-down', function ()
 {
     var name = $( this ).siblings( '.thisName' ).val();
     var id = $( this ).siblings( '.thisId' ).val();
-    $.dialog.confirm('下架后该商家的微店将无法访问且不再显示在商城微店列表中,是否确定下架 ' + name + '?', function ()
+    $.dialog.confirm('下架后该诊所的微店将无法访问且不再显示在商城微店列表中,是否确定下架 ' + name + '?', function ()
     {
         var loading = showLoading();
         $.post( '../VShop/DeleteVshop', { vshopId: id }, function ( result )

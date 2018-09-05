@@ -29,7 +29,7 @@ namespace Himall.DTO
         /// </summary>
         public long Id { get; set; }
         /// <summary>
-        /// 所属商家店铺ID
+        /// 所属诊所店铺ID
         /// </summary>
         public long ShopId { get; set; }
         /// <summary>
@@ -128,7 +128,7 @@ namespace Himall.DTO
         [Required(ErrorMessage = "距离单位")]
         public string DistanceUnit { get; set; }
         /// <summary>
-        /// 是否有商品且有库存
+        /// 是否有诊疗项目且有库存
         /// </summary>
         public bool Enabled { get; set; }
         /// <summary>

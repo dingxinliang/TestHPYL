@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Himall.CommonModel.Delegates
 {
 	/// <summary>
-	/// 订单支付成功
+	/// 预约单支付成功
 	/// </summary>
-	/// <param name="orderId">订单id</param>
+	/// <param name="orderId">预约单id</param>
 	public delegate void OrderPaySuccessed(long orderId);
 
 	/// <summary>

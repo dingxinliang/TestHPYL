@@ -152,7 +152,7 @@ namespace Himall.Web.Areas.Admin.Controllers
 			query.OrderId = orderId;
 			query.ShopId = shopId;
 			var models = BillingApplication.GetPendingSettlementOrdersNoPage(query);
-			return ExcelView("待结算订单", models);
+			return ExcelView("待结算预约单", models);
 		}
 
 		/// <summary>
@@ -227,7 +227,7 @@ namespace Himall.Web.Areas.Admin.Controllers
 		}
 
 		/// <summary>
-		/// 已结算订单
+		/// 已结算预约单
 		/// </summary>
 		/// <param name="startDate"></param>
 		/// <param name="endDate"></param>
@@ -260,7 +260,7 @@ namespace Himall.Web.Areas.Admin.Controllers
 		}
 
 		/// <summary>
-		/// 导出已结算订单
+		/// 导出已结算预约单
 		/// </summary>
 		/// <param name="startDate"></param>
 		/// <param name="endDate"></param>
@@ -283,7 +283,7 @@ namespace Himall.Web.Areas.Admin.Controllers
 			query.OrderId = orderId;
 			query.ShopId = shopId;
 			var models = BillingApplication.GetSettlementOrdersNoPage(query);
-			return ExcelView("已结算订单", models);
+			return ExcelView("已结算预约单", models);
 		}
 
 		public ActionResult MarketServiceRecordInfo(long Id)

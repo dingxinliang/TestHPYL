@@ -31,7 +31,7 @@ namespace Himall.Web.Areas.SellerAdmin.Models
         [Display(Name = "结束时间")]
         public System.DateTime EndTime { get; set; }
         /// <summary>
-        /// 是否全部商品
+        /// 是否全部诊疗项目
         /// </summary>
         public bool IsAllProduct { get; set; }
         /// <summary>
@@ -45,7 +45,7 @@ namespace Himall.Web.Areas.SellerAdmin.Models
         [Display(Name = "活动规则")]
         public string RuleJSON { get; set; }
         /// <summary>
-        /// 商品集
+        /// 诊疗项目集
         /// </summary>
         public string ProductIds { get; set; }
 
@@ -62,7 +62,7 @@ namespace Himall.Web.Areas.SellerAdmin.Models
             }
             if (!IsAllProduct && string.IsNullOrWhiteSpace(ProductIds))
             {
-                throw new HimallException("请选择参与活动的商品");
+                throw new HimallException("请选择参与活动的诊疗项目");
             }
             if (string.IsNullOrWhiteSpace(RuleJSON))
             {

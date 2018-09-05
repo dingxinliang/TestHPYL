@@ -16,7 +16,7 @@
         login = plus.storage.getItem('appuserkey');
         e.preventDefault();
         var href = $(this).attr("href");
-        if (href.indexOf('m-wap/Product/Detail') != -1) {  //商品详情
+        if (href.indexOf('m-wap/Product/Detail') != -1) {  //诊疗项目详情
             var id = href.split("/");
             id = id[id.length - 1];
             showProduct(id);
@@ -51,12 +51,12 @@
                                 });
                             }
                         } else
-                            if (href.indexOf('/m-wap/shopregister/step1') != -1) {  //商家入驻 
+                            if (href.indexOf('/m-wap/shopregister/step1') != -1) {  //诊所入驻 
                                 if (isLogin(login, "1")) {
                                     mui.openWindow({
                                         id: 'wx-page.html',
                                         url: url + 'wx-page.html',
-                                        extras: { title: "商家入驻", url: "/m-wap/shopregister/step1", fullPath: url }
+                                        extras: { title: "诊所入驻", url: "/m-wap/shopregister/step1", fullPath: url }
                                     });
                                 }
                             } else

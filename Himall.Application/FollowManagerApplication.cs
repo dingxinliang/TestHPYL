@@ -43,7 +43,10 @@ namespace Himall.Application
         #endregion
 
         #region 方法
-
+        public static QueryPageModel<FollowPlan> GetFollowPan(FollowPlanQuery queryModel)
+        {
+            return _followwService.GetFollowPan(queryModel);
+        }
         public static QueryPageModel<FollowQuery> GetFollow(FollowSearch queryModel)
         {
             var data = _followwService.SearchFollow(queryModel);
@@ -59,6 +62,17 @@ namespace Himall.Application
         {
             _followwService.SaveFollow(name, cId, ids ,shopId,uid);
         }
+
+        public static void DeleteFollowPlan(IEnumerable<long> ids, long shopId)
+        {
+            _followwService.DeleteFollowPlan(ids, shopId);
+        }
+
+        public static List<FollowDoctorQuery> GetDoctor(string ids, long shopId)
+        {
+            return _followwService.GetDoctor(ids, shopId);
+        }
+
         public static void DeleteProduct(IEnumerable<long> ids, long shopId)
         {
             _followwService.DeleteProduct(ids, shopId);
@@ -112,6 +126,35 @@ namespace Himall.Application
         public static void Deletedoctor(IEnumerable<long> ids, long shopId)
         {
             _followwService.Deletedoctor(ids, shopId);
+        }
+
+        public static void DeletedoctorContent(IEnumerable<long> ids, long shopId)
+        {
+            _followwService.DeletedoctorContent(ids, shopId);
+        }
+
+        public static QueryPageModel<DoctorContentQuery> ListDoctorContent(FollowSearch queryModel, long id)
+        {
+            return _followwService.ListDoctorContent(queryModel, id);
+        }
+
+        public static void CreatedoctorContent(string cId, string ids, long shopId, int day, string cont)
+        {
+               _followwService.CreatedoctorContent(cId, ids, shopId, day, cont);
+        }
+
+        public static void CancelFollowPlan(IEnumerable<long> ids, long shopId)
+        {
+            _followwService.CancelFollowPlan(ids, shopId);
+        }
+        public static void DownFollowPlan(IEnumerable<long> ids, long shopId, string LastUser, string result)
+        {
+            _followwService.DownFollowPlan(ids, shopId,LastUser,result);
+        }
+
+        public static FollowPlanView UserFollowPlan(IEnumerable<long> ids)
+        {
+           return  _followwService.UserFollowPlan(ids);
         }
         #endregion
 

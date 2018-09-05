@@ -1,5 +1,5 @@
 ﻿$(function () {
-    //开启订单自动分配到门店复选框更改时
+    //开启预约单自动分配到门店复选框更改时
     $('#ckbSpecifications').change(function () {
         var autoAllotOrder = this.checked == true;
         $.post('Setting', { autoAllotOrder: autoAllotOrder }, function (result) {

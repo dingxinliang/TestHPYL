@@ -148,7 +148,7 @@ namespace Himall.DTO
         public string CompanyPhone { get; set; }
 
         /// <summary>
-        /// 商品证书
+        /// 诊疗项目证书
         /// </summary>
         public string ProductCert { get; set; }
 
@@ -219,7 +219,7 @@ namespace Himall.DTO
 
 
         /// <summary>
-        /// 商家类别
+        /// 诊所类别
         /// </summary>
         public Himall.CommonModel.ShopBusinessType? BusinessType { get; set; }
 

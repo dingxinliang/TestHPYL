@@ -10,7 +10,7 @@ namespace Himall.Model
     {
         public string UserName { get; set; }
         /// <summary>
-        /// 订单状态
+        /// 预约单状态
         /// </summary>
         public enum GiftOrderStatus
         {
@@ -25,9 +25,9 @@ namespace Himall.Model
             [Description("待发货")]
             WaitDelivery = 2,
             /// <summary>
-            /// 待收货
+            /// 待结算
             /// </summary>
-            [Description("待收货")]
+            [Description("待结算")]
             WaitReceiving = 3,
             /// <summary>
             /// 已关闭
@@ -41,7 +41,7 @@ namespace Himall.Model
             Finish = 5
         }
         /// <summary>
-        /// 显示订单状态
+        /// 显示预约单状态
         /// </summary>
         [NotMapped]
         public string ShowOrderStatus

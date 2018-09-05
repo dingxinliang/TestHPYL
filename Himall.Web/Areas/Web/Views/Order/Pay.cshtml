@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "订单支付";
+    ViewBag.Title = "预约单支付";
     Layout = "~/Areas/Web/Views/Shared/_PayTopBar.cshtml";
     var orders = ViewBag.Orders as List<Himall.Model.OrderInfo>;
 }
@@ -8,15 +8,15 @@
     <div class="m mainbody">
         <div class="mc">
             <s class="icon-succ04"></s>
-            <h3 class="orderinfo">订单提交成功，请您尽快付款！</h3>
+            <h3 class="orderinfo">预约单提交成功，请您尽快付款！</h3>
             <ul class="list-orderinfo">
                 @foreach (var order in orders)
                 {
-                    <li>订单号：@order.Id</li>
+                    <li>预约单号：@order.Id</li>
                 }
                 <li class="li-last">应付金额：<strong class="ftx-01" id="totalAmount">@(((decimal)ViewBag.TotalAmount).ToString("F2"))</strong> 元</li>
             </ul>
-            <p class="mb-tip">请您在提交订单后<span class="ftx-04">@(ViewBag.UnpaidTimeout)小时</span>内完成支付，否则订单会自动取消。</p>
+            <p class="mb-tip">请您在提交预约单后<span class="ftx-04">@(ViewBag.UnpaidTimeout)小时</span>内完成支付，否则预约单会自动取消。</p>
         </div>
     </div>
     <div class="m pay-box">

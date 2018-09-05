@@ -20,24 +20,24 @@
         <div class="form-group">
             <label class="col-sm-2 control-label" for="">活动标题：</label>
             <div class="col-sm-3"><input id="txtTitle" type="text" class="form-control input-sm" value="@Model.Title" maxlength="5" /></div>
-            <div class="col-sm-7"><span class="help-default">活动标题是商家对限时折扣活动的别名操作，请使用例如“新品打折”、“月末折扣”类短语表现，限5个字；非必填选项，默认显示“限时折扣”字样。</span></div>
+            <div class="col-sm-7"><span class="help-default">活动标题是诊所对限时折扣活动的别名操作，请使用例如“新品打折”、“月末折扣”类短语表现，限5个字；非必填选项，默认显示“限时折扣”字样。</span></div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>活动商品：</label>
+            <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>活动诊疗项目：</label>
             <div class="col-sm-3"><input id="txtProductName" type="text" class="form-control input-sm" readonly="readonly" value="@Model.ProductName" /></div>
-            <div class="col-sm-3"><a class="btn btn-primary btn-sm" id="SelectProduct"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; 选择商品</a></div>
+            <div class="col-sm-3"><a class="btn btn-primary btn-sm" id="SelectProduct"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; 选择诊疗项目</a></div>
             <input type="hidden" id="txtProductId" name="ProductId" value="@Model.ProductId" />
             <input type="hidden" id="txtId" name="txtId" value="@Model.Id" />
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>商品详情：</label>
+            <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>诊疗项目详情：</label>
             <div class="col-sm-9">
                 <table id="tbl" class="table table-bordered">
                     <thead>
                         <tr>
-                            <td>主商品</td>
+                            <td>主诊疗项目</td>
                             <td>规格</td>
                             <td>原价</td>
                             <td>限时价</td>
@@ -124,7 +124,7 @@
         {
             if ( $.trim( $( "#txtProductName" ).val() ) == "" )
             {
-                $.dialog.errorTips( "商品不能为空 " );
+                $.dialog.errorTips( "诊疗项目不能为空 " );
                 return false;
             }
             if ( $.trim( $( "#txtEndDate" ).val() ) == "" )
@@ -225,7 +225,7 @@
                             skuShow(selectedProducts[0].id);
                         }
                         else {
-                            $.dialog.errorTips("此商品已参与限时购或其他活动");
+                            $.dialog.errorTips("此诊疗项目已参与限时购或其他活动");
                         }
                     })
                 }, 'selleradmin', false );

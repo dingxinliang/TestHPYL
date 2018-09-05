@@ -57,7 +57,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 获取某个店铺的一批商品正在进行的满额减活动
+        /// 获取某个店铺的一批诊疗项目正在进行的满额减活动
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="shopId"></param>
@@ -136,7 +136,7 @@ namespace Himall.Application
             return result;
         }
         /// <summary>
-        /// 商品是否可以参加满减活动
+        /// 诊疗项目是否可以参加满减活动
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="activeId">添加活动使用0</param>
@@ -146,8 +146,8 @@ namespace Himall.Application
             return _iFullDiscountService.ProductCanJoinActive(productId, activeId);
         }
         /// <summary>
-        /// 过滤活动商品编号
-        /// <para>返回可以能加商动的商品</para>
+        /// 过滤活动诊疗项目编号
+        /// <para>返回可以能加商动的诊疗项目</para>
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="activeId">添加活动使用0</param>
@@ -219,7 +219,7 @@ namespace Himall.Application
 
         #region 其他功能
         /// <summary>
-        /// 获取可以参与满减活动的商品集
+        /// 获取可以参与满减活动的诊疗项目集
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="productName"></param>
@@ -238,7 +238,7 @@ namespace Himall.Application
             return result;
         }
         /// <summary>
-        /// 获取不在销售中的商品
+        /// 获取不在销售中的诊疗项目
         /// </summary>
         /// <param name="productIds"></param>
         /// <returns></returns>
@@ -247,7 +247,7 @@ namespace Himall.Application
             return _iFullDiscountService.GetNoSaleProductId(productIds);
         }
         /// <summary>
-        /// 获取商品信息
+        /// 获取诊疗项目信息
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="shopId"></param>
@@ -336,7 +336,7 @@ namespace Himall.Application
             bool result = false;
             if (shopId <= 0)
             {
-                throw new HimallException("错误的商家编号");
+                throw new HimallException("错误的诊所编号");
             }
             var market = GetMarketService(shopId);
             if (market != null)
@@ -358,7 +358,7 @@ namespace Himall.Application
 
             if (shopId <= 0)
             {
-                throw new HimallException("错误的商家编号");
+                throw new HimallException("错误的诊所编号");
             }
             if (month <= 0)
             {

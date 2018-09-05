@@ -46,7 +46,7 @@
 	        });
 
 	        if (index > 12) {
-	            $.dialog.errorTips("商品不允许超过12个");
+	            $.dialog.errorTips("诊疗项目不允许超过12个");
 	            return false;
 	        }
 	        else {
@@ -58,7 +58,7 @@
 });
 
 function delProduct() {
-    //删除商品
+    //删除诊疗项目
     $(".proremove").click(function () {
         $(this).parent().parent().remove();
     })
@@ -190,7 +190,7 @@ function getPLink() {
 }
 
 
-//商品
+//诊疗项目
 function getProduct() {
     var pids = $(".fid");
     var pIdArray = [];
@@ -201,9 +201,9 @@ function getProduct() {
         index++;
     });
     if (index == 0) {
-        throw Error('请选择推荐商品!');
+        throw Error('请选择推荐诊疗项目!');
     } else if (index > 12) {
-        throw Error('请选择商品不能超过12个!');
+        throw Error('请选择诊疗项目不能超过12个!');
     }
     return pIdArray;
 }

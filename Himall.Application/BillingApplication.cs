@@ -175,12 +175,12 @@ namespace Himall.Application
         }
 
         /// <summary>
-        ///分页获取待结算订单列表
+        ///分页获取待结算预约单列表
         /// </summary>
-        /// <param name="orderId">订单ID</param>
+        /// <param name="orderId">预约单ID</param>
         /// <param name="shopId">店铺ID</param>
-        /// <param name="StartTime">订单完成时间</param>
-        /// <param name="EndTime">订单完成时间</param>
+        /// <param name="StartTime">预约单完成时间</param>
+        /// <param name="EndTime">预约单完成时间</param>
         ///<param name="pageNo">当前页</param>
         ///<param name="pageSize">每页显示记录数</param>
         /// <returns></returns>
@@ -198,10 +198,10 @@ namespace Himall.Application
             {
                 m.DistributorCommission = m.DistributorCommission - m.DistributorCommissionReturn;
                 m.PlatCommission = m.PlatCommission - m.PlatCommissionReturn;
-                if (m.OrderFinshTime < CurrentSettlementCycle.StartTime) //如果订单完成时间不在当前结算周期之内
+                if (m.OrderFinshTime < CurrentSettlementCycle.StartTime) //如果预约单完成时间不在当前结算周期之内
                 {
                     var cycle = GetDateBilingTime(settlementCycle, end, m.OrderFinshTime);
-                    m.SettlementCycle = "此订单为" + cycle.StartTime.ToString("yyyy-MM-dd HH:mm:ss") + "至" + cycle.EndTime.ToString("yyyy-MM-dd HH:mm:ss") + "周期内订单";
+                    m.SettlementCycle = "此预约单为" + cycle.StartTime.ToString("yyyy-MM-dd HH:mm:ss") + "至" + cycle.EndTime.ToString("yyyy-MM-dd HH:mm:ss") + "周期内预约单";
                 }
             }
 
@@ -209,7 +209,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        ///分页获取待结算订单列表
+        ///分页获取待结算预约单列表
         /// </summary>
 		/// <param name="query"></param>
         /// <returns></returns>
@@ -225,10 +225,10 @@ namespace Himall.Application
             {
                 m.DistributorCommission = m.DistributorCommission - m.DistributorCommissionReturn;
                 m.PlatCommission = m.PlatCommission - m.PlatCommissionReturn;
-                if (m.OrderFinshTime < CurrentSettlementCycle.StartTime) //如果订单完成时间不在当前结算周期之内
+                if (m.OrderFinshTime < CurrentSettlementCycle.StartTime) //如果预约单完成时间不在当前结算周期之内
                 {
                     var cycle = GetDateBilingTime(settlementCycle, end, m.OrderFinshTime);
-                    m.SettlementCycle = "此订单为" + cycle.StartTime.ToString("yyyy-MM-dd HH:mm:ss") + "至" + cycle.EndTime.ToString("yyyy-MM-dd HH:mm:ss") + "周期内订单";
+                    m.SettlementCycle = "此预约单为" + cycle.StartTime.ToString("yyyy-MM-dd HH:mm:ss") + "至" + cycle.EndTime.ToString("yyyy-MM-dd HH:mm:ss") + "周期内预约单";
                 }
             }
 
@@ -236,9 +236,9 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 根据订单ID获取结算详情（传入shopId防止跨店铺调用）
+        /// 根据预约单ID获取结算详情（传入shopId防止跨店铺调用）
         /// </summary>
-        /// <param name="orderId">订单ID</param>
+        /// <param name="orderId">预约单ID</param>
         /// <param name="shopId">店铺ID</param>
         /// <returns></returns>
         public static OrderSettlementDetail GetPendingOrderSettlementDetail(long orderId, long? shopId = null)
@@ -269,9 +269,9 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 根据订单ID获取结算详情（传入shopId防止跨店铺调用）
+        /// 根据预约单ID获取结算详情（传入shopId防止跨店铺调用）
         /// </summary>
-        /// <param name="orderId">订单ID</param>
+        /// <param name="orderId">预约单ID</param>
         /// <param name="shopId">店铺ID</param>
         /// <returns></returns>
         public static OrderSettlementDetail GetOrderSettlementDetail(long orderId, long? shopId = null)
@@ -302,7 +302,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 分页获取已结算订单列表
+        /// 分页获取已结算预约单列表
         /// </summary>
         /// <param name="query">查询实体</param>
         /// <returns></returns>
@@ -334,7 +334,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取已结算订单
+        /// 获取已结算预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -390,7 +390,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 统计待结算订单
+        /// 统计待结算预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -400,7 +400,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 统计待结算订单
+        /// 统计待结算预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -579,7 +579,7 @@ namespace Himall.Application
         /// <summary>
         /// 店铺充值
         /// </summary>
-        /// <param name="Id">充值流水订单ID</param>
+        /// <param name="Id">充值流水预约单ID</param>
         /// <param name="TradNo">支付流水号</param>
         /// <param name="ChargeWay">支付方式</param>
         public static void ShopRecharge(long Id, string TradNo, string ChargeWay)
@@ -603,7 +603,7 @@ namespace Himall.Application
         #region 提现
         private static object obj = new object();
         /// <summary>
-        /// 商家申请提现
+        /// 诊所申请提现
         /// </summary>
         /// <param name="draw">申请提现实体</param>
         /// <returns></returns>

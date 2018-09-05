@@ -103,7 +103,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        #region 商品分类设置
+        #region 诊疗项目分类设置
 
         public ActionResult HomeCategory()
         {
@@ -301,7 +301,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                 }
                 catch (FormatException)
                 {
-                    msg = "商品分类编号有误";
+                    msg = "诊疗项目分类编号有误";
                 }
 
             }
@@ -493,7 +493,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                     }).OrderBy(i => i.Id);
 
 
-                //商品
+                //诊疗项目
                 homeFloorDetail.ProductModules = homeFloor.FloorProductInfo
                     .Where(item => item.FloorId == homeFloor.Id).OrderBy(p => p.Id)
                     .Select(item => new HomeFloorDetail.ProductModule()

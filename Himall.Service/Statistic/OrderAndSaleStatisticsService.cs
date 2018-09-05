@@ -13,7 +13,7 @@ using MySql.Data.MySqlClient;
 namespace Himall.Service
 {
     /// <summary>
-    /// 订单和销售统计
+    /// 预约单和销售统计
     /// </summary>
     public class OrderAndSaleStatisticsService : ServiceBase, IOrderAndSaleStatisticsService
     {
@@ -28,7 +28,7 @@ namespace Himall.Service
         public OrderBasicStatistics GetLastThreeMonthOrderStatisticsByUser(long userId)
         {
             var time = DateTime.Now.AddMonths(-3);
-            //最近三个月的订单，即只需要查询Mysql中所有的订单
+            //最近三个月的预约单，即只需要查询Mysql中所有的预约单
             var orders = Context.OrderInfo.Where(item => item.UserId == userId && item.PayDate.HasValue && item.OrderDate >= time);
             var userOrderStatistics = GetLastThreeMonthOrderStatistics(orders);
             return userOrderStatistics;
@@ -39,7 +39,7 @@ namespace Himall.Service
         #region 私有方法
 
         /// <summary>
-        /// 根据已有条件的订单获取其统计信息
+        /// 根据已有条件的预约单获取其统计信息
         /// </summary>
         /// <param name="orders"></param>
         /// <returns></returns>
@@ -181,7 +181,7 @@ namespace Himall.Service
 
             #region 当前数据
 
-            //统计已付款的订单
+            //统计已付款的预约单
             var orders = Context.OrderInfo.Where(p => p.ShopId == shopId);
             if (startTime.HasValue)
             {
@@ -191,7 +191,7 @@ namespace Himall.Service
             {
                 orders = orders.Where(p => p.PayDate <= endTime);
             }
-            //已付款的订单（包括关闭的）用于计算退款率
+            //已付款的预约单（包括关闭的）用于计算退款率
             var payOrders = orders.Where(p => p.OrderStatus != OrderInfo.OrderOperateStatus.WaitPay).ToList();
             var payOrderIds = payOrders.Select(e => e.Id);
             var dealOrders = payOrders.Where(p => p.OrderStatus != OrderInfo.OrderOperateStatus.Close);
@@ -217,7 +217,7 @@ namespace Himall.Service
             #endregion
 
             //退款率
-            //在筛选时间内退款成功的订单
+            //在筛选时间内退款成功的预约单
             var refunds = Context.OrderRefundInfo.Where(p => payOrderIds.Contains(p.OrderId) && p.ManagerConfirmStatus == OrderRefundInfo.OrderRefundConfirmStatus.Confirmed);
 
             if (startTime.HasValue)
@@ -250,11 +250,11 @@ namespace Himall.Service
         }
 
 
-        #region 会员购买商品类别冗余统计
+        #region 会员购买诊疗项目类别冗余统计
 
 
         /// <summary>
-        /// 会员购买商品类别添加
+        /// 会员购买诊疗项目类别添加
         /// </summary>
         /// <param name="model"></param>
         public void AddMemberBuyCategory(MemberBuyCategoryInfo model)
@@ -265,7 +265,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 会员购买商品类别查询
+        /// 会员购买诊疗项目类别查询
         /// </summary>
         /// <param name="categoryId"></param>
         /// <param name="userId"></param>
@@ -276,7 +276,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 会员购买商品类别删除
+        /// 会员购买诊疗项目类别删除
         /// </summary>
         /// <param name="id"></param>
         public void DeleteMemberBuyCategory(long id)
@@ -286,7 +286,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 会员购买商品类别修改
+        /// 会员购买诊疗项目类别修改
         /// </summary>
         /// <param name="model"></param>
         public void UpdateMemberBuyCategory(MemberBuyCategoryInfo model)
@@ -321,7 +321,7 @@ namespace Himall.Service
 
             #region 当前数据
 
-            //统计已付款的订单
+            //统计已付款的预约单
             var orders = Context.OrderInfo.Where(p => p.ShopBranchId == branchShopId);
             if (startTime.HasValue)
             {
@@ -331,7 +331,7 @@ namespace Himall.Service
             {
                 orders = orders.Where(p => p.PayDate <= endTime);
             }
-            //已付款的订单（包括关闭的）用于计算退款率
+            //已付款的预约单（包括关闭的）用于计算退款率
             var payOrders = orders.Where(p => p.OrderStatus != OrderInfo.OrderOperateStatus.WaitPay).ToList() ;
             var payOrderIds = payOrders.Select(e => e.Id);
             var dealOrders = payOrders.Where(p => p.OrderStatus != OrderInfo.OrderOperateStatus.Close);
@@ -357,7 +357,7 @@ namespace Himall.Service
             #endregion
 
             //退款率
-            //在筛选时间内退款成功的订单
+            //在筛选时间内退款成功的预约单
             var refunds = Context.OrderRefundInfo.Where(p => payOrderIds.Contains(p.OrderId)&&p.ManagerConfirmStatus == OrderRefundInfo.OrderRefundConfirmStatus.Confirmed);
 
             if (startTime.HasValue)

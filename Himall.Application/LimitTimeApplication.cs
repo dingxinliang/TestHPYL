@@ -25,7 +25,7 @@ namespace Himall.Application
         /// <summary>
         /// 是否正在限时购
         /// </summary>
-        /// <param name="pid">商品ID</param>
+        /// <param name="pid">诊疗项目ID</param>
         /// <returns></returns>
         public static bool IsLimitTimeMarketItem(long pid)
         {
@@ -50,7 +50,7 @@ namespace Himall.Application
             return result;
         }
         /// <summary>
-        /// 商家删除限时购
+        /// 诊所删除限时购
         /// </summary>
         /// <param name="id"></param>
         public void DeleteLimitBuy(long id, long shopId)

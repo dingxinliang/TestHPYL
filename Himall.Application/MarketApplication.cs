@@ -33,7 +33,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取指定营销类型服务的已购买商家列表
+        /// 获取指定营销类型服务的已购买诊所列表
         /// </summary>
         /// <param name="MarketBoughtQuery">营销查询对象</param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 商家订购服务
+        /// 诊所订购服务
         /// </summary>
         /// <param name="monthCount"></param>
         /// <param name="shopId"></param>

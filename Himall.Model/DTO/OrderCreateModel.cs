@@ -26,7 +26,7 @@ namespace Himall.Model
         public IEnumerable<string[]> CouponIdsStr { set; get; } 
 
         /// <summary>
-        /// 组合购的商品编号
+        /// 组合购的诊疗项目编号
         /// </summary>
         public IEnumerable<long> CollPids { set; get; }
 
@@ -40,7 +40,7 @@ namespace Himall.Model
 
         public string InvoiceCode { get; set; }
         /// <summary>
-        /// 买家留言
+        /// 患者留言
         /// </summary>
         public IEnumerable<string> OrderRemarks { get; set; }
         public string InvoiceContext
@@ -85,7 +85,7 @@ namespace Himall.Model
 	}
 
     /// <summary>
-    /// 订单的额外对象，其中有创建日期、收货地址、使用的优惠券
+    /// 预约单的额外对象，其中有创建日期、收货地址、使用的优惠券
     /// </summary>
     public class OrderCreateAdditional
     {    

@@ -26,7 +26,7 @@ namespace WinOrderService
             }
             catch (Exception ex)
             {
-                Himall.Core.Log.Error("订单自动评价错误:"+ex);
+                Himall.Core.Log.Error("预约单自动评价错误:"+ex);
             }
         }
     }

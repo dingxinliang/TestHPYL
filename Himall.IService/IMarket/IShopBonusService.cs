@@ -80,7 +80,7 @@ namespace Himall.IServices
         ActiveMarketServiceInfo GetShopBonusService( long shopId );
 
         /// <summary>
-        /// 订单支付完成时，生成红包详情
+        /// 预约单支付完成时，生成红包详情
         /// </summary>
         long GenerateBonusDetail( ShopBonusInfo model  , long orderid , string receiveurl );
 

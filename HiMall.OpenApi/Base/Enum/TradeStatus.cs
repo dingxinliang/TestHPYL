@@ -15,9 +15,9 @@ namespace Himall.OpenApi
         [Description("正常状态")]
         Trade_NORMAL = 1,
         /// <summary>
-        /// 等待买家付款
+        /// 等待患者付款
         /// </summary>
-        [Description("等待买家付款")]
+        [Description("等待患者付款")]
         WAIT_BUYER_PAY,
         /// <summary>
         /// 等待卖家发货
@@ -25,14 +25,14 @@ namespace Himall.OpenApi
         [Description("等待卖家发货")]
         WAIT_SELLER_SEND_GOODS,
         /// <summary>
-        /// 等待买家确认收货
+        /// 等待患者确认收货
         /// </summary>
-        [Description("等待买家确认收货")]
+        [Description("等待患者确认收货")]
         WAIT_BUYER_CONFIRM_GOODS,
         /// <summary>
-        /// 等待买家提货
+        /// 等待患者提货
         /// </summary>
-        [Description("等待买家提货")]
+        [Description("等待患者提货")]
         WAIT_BUYER_TAKE_GOODS,
         /// <summary>
         /// 交易关闭
@@ -60,14 +60,14 @@ namespace Himall.OpenApi
         [Description("等待退货用户发货")]
         WAIT_RETURN_BUYER_SEND_GOODS,
         /// <summary>
-        /// 退货用户已发货，等待商家收货
+        /// 退货用户已发货，等待诊所收货
         /// </summary>
-        [Description("退货用户已发货，等待商家收货")]
+        [Description("退货用户已发货，等待诊所收货")]
         WAIT_RETURN_SELLER_GOODS,
         /// <summary>
-        /// 商家确认收货
+        /// 诊所确认收货
         /// </summary>
-        [Description("商家确认收货")]
+        [Description("诊所确认收货")]
         WAIT_REFUND_SELLER_CONFIRM_GOODS,
         /// <summary>
         /// 申请换货
@@ -75,19 +75,19 @@ namespace Himall.OpenApi
         [Description("申请换货")]
         TRADE_APPLY_FOR_REPLACE,
         /// <summary>
-        /// 商家已同意换货, 待用户发货
+        /// 诊所已同意换货, 待用户发货
         /// </summary>
-        [Description("商家已同意换货, 待用户发货")]
+        [Description("诊所已同意换货, 待用户发货")]
         WAIT_REPLACE_BUYER_SEND_GOODS,
         /// <summary>
-        /// 申请换货的用户已发货，待商家确认收到货
+        /// 申请换货的用户已发货，待诊所确认收到货
         /// </summary>
-        [Description("申请换货的用户已发货，待商家确认收到货")]
+        [Description("申请换货的用户已发货，待诊所确认收到货")]
         WAIT_REPLACE_SELLER_GOODS,
         /// <summary>
-        /// 商家换货，待用户确认收货
+        /// 诊所换货，待用户确认收货
         /// </summary>
-        [Description("商家换货，待用户确认收货")]
+        [Description("诊所换货，待用户确认收货")]
         WAIT_REPLACE_BUYER_CONFIRM_GOODS,
         /// <summary>
         /// 退款成功

@@ -132,7 +132,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             NPOI.SS.UserModel.Row row1 = sheet1.CreateRow(0);
             row1.CreateCell(0).SetCellValue("店铺名称");
             row1.CreateCell(1).SetCellValue("时间段");
-            row1.CreateCell(2).SetCellValue("商品实付总额");
+            row1.CreateCell(2).SetCellValue("诊疗项目实付总额");
             row1.CreateCell(3).SetCellValue("运费");
             row1.CreateCell(4).SetCellValue("佣金");
             row1.CreateCell(5).SetCellValue("退款金额");
@@ -265,10 +265,10 @@ namespace Himall.Web.Areas.Admin.Controllers
             NPOI.SS.UserModel.Row row1 = sheet1.CreateRow(0);
             if (enumOrderTypeId == 1)
             {
-                titleFlag = "订单列表";
+                titleFlag = "预约单列表";
                 row1.CreateCell(0).SetCellValue("类型");
-                row1.CreateCell(1).SetCellValue("订单编号");
-                row1.CreateCell(2).SetCellValue("商品实付金额");
+                row1.CreateCell(1).SetCellValue("预约单编号");
+                row1.CreateCell(2).SetCellValue("诊疗项目实付金额");
                 row1.CreateCell(3).SetCellValue("运费");
                 row1.CreateCell(4).SetCellValue("佣金");
                 row1.CreateCell(5).SetCellValue("下单日期");
@@ -285,8 +285,8 @@ namespace Himall.Web.Areas.Admin.Controllers
             {
                 titleFlag = "退单列表";
                 row1.CreateCell(0).SetCellValue("类型");
-                row1.CreateCell(1).SetCellValue("订单编号");
-                row1.CreateCell(2).SetCellValue("商品实付金额");
+                row1.CreateCell(1).SetCellValue("预约单编号");
+                row1.CreateCell(2).SetCellValue("诊疗项目实付金额");
                 row1.CreateCell(3).SetCellValue("运费");
                 row1.CreateCell(4).SetCellValue("退款金额");
                 row1.CreateCell(5).SetCellValue("退还佣金");

@@ -23,7 +23,7 @@ function initStarsReaction() {
 function checkOrderIsUncomment() {
     var isValid = $('#isValid').val();
     if (!isValid) {
-        $.dialog.tips('已经评论过该订单或订单无效!', function () {
+        $.dialog.tips('已经评论过该预约单或预约单无效!', function () {
             history.go(-1);//返回
         });
     }
@@ -90,15 +90,15 @@ function submitComment() {
 function checkComments(comment) {
     $.each(comment.productComments, function (i, productComment) {
         if (!productComment.mark)
-            throw new Error('请给商品打分');
+            throw new Error('请给诊疗项目打分');
         if (!productComment.content)
-            throw new Error('请填写商品评价内容');
+            throw new Error('请填写诊疗项目评价内容');
         if (productComment.content.length < 6)
-            throw new Error('商品评价内容不能少于6个字符');
+            throw new Error('诊疗项目评价内容不能少于6个字符');
     });
 
     if (!comment.packMark)
-        throw new Error('请给商品包装打分');
+        throw new Error('请给诊疗项目包装打分');
     if (!comment.deliveryMark)
         throw new Error('请给送货速度打分');
     if (!comment.serviceMark)

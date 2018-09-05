@@ -79,7 +79,7 @@ namespace Himall.Service.Job
                              CommentValue = (decimal)avgPackMarkPeerShops
                          });
 
-                        //宝贝与描述相符 同行业商家最高得分
+                        //宝贝与描述相符 同行业诊所最高得分
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
@@ -87,7 +87,7 @@ namespace Himall.Service.Job
                             CommentValue = (decimal)productAndDescriptionMax
                         });
 
-                        //宝贝与描述相符 同行业商家最低得分
+                        //宝贝与描述相符 同行业诊所最低得分
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
@@ -110,14 +110,14 @@ namespace Himall.Service.Job
                              CommentValue = (decimal)avgServiceMarkPeerShops
                          });
 
-                        //卖家服务态度 同行业商家最高得分
+                        //卖家服务态度 同行业诊所最高得分
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
                             CommentKey = StatisticOrderCommentsInfo.EnumCommentKey.SellerServiceAttitudeMax,
                             CommentValue = (decimal)sellerServiceAttitudeMax
                         });
-                        //卖家服务态度 同行业商家最低得分
+                        //卖家服务态度 同行业诊所最低得分
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
@@ -139,14 +139,14 @@ namespace Himall.Service.Job
                              CommentKey = StatisticOrderCommentsInfo.EnumCommentKey.SellerDeliverySpeedPeer,
                              CommentValue = (decimal)avgDeliveryMarkPeerShops
                          });
-                        //卖家发货速度 同行业商家最高得分
+                        //卖家发货速度 同行业诊所最高得分
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
                             CommentKey = StatisticOrderCommentsInfo.EnumCommentKey.SellerDeliverySpeedMax,
                             CommentValue = (decimal)sellerDeliverySpeedMax
                         });
-                        //卖家发货速度 同行业商家最低得分
+                        //卖家发货速度 同行业诊所最低得分
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,

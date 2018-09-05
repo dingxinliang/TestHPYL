@@ -16,7 +16,7 @@ using Himall.CommonModel;
 namespace Himall.Web.Areas.Mobile.Controllers
 {
     /// <summary>
-    /// 商家入驻
+    /// 诊所入驻
     /// </summary>
     public class ShopRegisterController : BaseMobileMemberController
     {
@@ -65,7 +65,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         #endregion
 
         /// <summary>
-        /// 商家入驻协议
+        /// 诊所入驻协议
         /// </summary>
         /// <returns></returns>
         public ActionResult Step1()
@@ -264,7 +264,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        /// 商家入驻第一步信息保存
+        /// 诊所入驻第一步信息保存
         /// </summary>
         /// <param name="shopProfileStep1"></param>
         /// <returns></returns>

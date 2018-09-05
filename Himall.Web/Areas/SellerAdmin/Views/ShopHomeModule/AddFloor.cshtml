@@ -70,10 +70,10 @@
         </div>
 
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label"><b>*</b>商品区域：</label>
+            <label for="" class="col-sm-2 control-label"><b>*</b>诊疗项目区域：</label>
             <div class="col-sm-3">
-                <input id="addp" class="btn btn-primary btn-sm" type="button" value="选择商品" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="help-default">建议选择八件商品</span>
+                <input id="addp" class="btn btn-primary btn-sm" type="button" value="选择诊疗项目" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="help-default">建议选择八件诊疗项目</span>
             </div>
         </div>
 
@@ -83,7 +83,7 @@
                 <table id="tblp" class="table table-bordered">
                     <thead>
                         <tr>
-                            <td width="20%">商品缩略图</td>
+                            <td width="20%">诊疗项目缩略图</td>
                             <td width="20%">排序</td>
                             <td width="20%">操作</td>
                         </tr>
@@ -165,7 +165,7 @@
 
             $.productSelector.show(productids, function (selectedProducts) {
                 if (selectedProducts.length > 40) {
-                    $.dialog.errorTips('商品最大数不能超过40！');
+                    $.dialog.errorTips('诊疗项目最大数不能超过40！');
                     return;
                 }
 
@@ -218,7 +218,7 @@
                 //return;
             }
             if (send.Products.length == 0) {
-                $.dialog.errorTips('楼层商品不能为空！');
+                $.dialog.errorTips('楼层诊疗项目不能为空！');
 
                 return;
             }

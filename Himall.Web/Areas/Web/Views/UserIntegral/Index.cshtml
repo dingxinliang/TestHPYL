@@ -45,10 +45,10 @@
 
                 @if (@ViewBag.IntegralPerMoney != 0)
                 {
-                    <p><label>可抵扣订单金额：</label><span>@(Math.Round(ViewBag.Integral / (decimal)ViewBag.IntegralPerMoney, 2, MidpointRounding.AwayFromZero)) 元</span></p>
+                    <p><label>可抵扣预约单金额：</label><span>@(Math.Round(ViewBag.Integral / (decimal)ViewBag.IntegralPerMoney, 2, MidpointRounding.AwayFromZero)) 元</span></p>
                     <p>
 
-                        <label>积分使用说明：</label><span style="margin-left:26px;">1、每 @ViewBag.IntegralPerMoney 积分可抵扣1元； 2、如订单发生退款、退货等问题时，获得的积分将被扣除。</span>
+                        <label>积分使用说明：</label><span style="margin-left:26px;">1、每 @ViewBag.IntegralPerMoney 积分可抵扣1元； 2、如预约单发生退款、退货等问题时，获得的积分将被扣除。</span>
                     </p> }
             </div>
             <div class="clr"></div>

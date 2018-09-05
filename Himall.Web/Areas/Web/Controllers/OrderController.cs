@@ -16,7 +16,7 @@ namespace Himall.Web.Areas.Web.Controllers
 	{
 
 		/// <summary>
-		/// 提交订单页面显示
+		/// 提交预约单页面显示
 		/// </summary>
 		/// <param name="cartItemIds">提交的购物车物品集合</param>
 		/// <param name="regionId">客户送货区域标识</param>
@@ -58,7 +58,7 @@ namespace Himall.Web.Areas.Web.Controllers
 		/// <param name="counts">每个库存对应的数据量</param>
 		/// <param name="regionId">客户收货地区的id</param>
 		/// <param name="collpids">组合购Id集合</param>
-		/// <returns>订单提交页面的数据</returns>
+		/// <returns>预约单提交页面的数据</returns>
 		public ActionResult SubmitByProductId(string skuIds, string counts, long? regionId, string collpids = null)
 		{
             ViewBag.Logo = base.CurrentSiteSetting.Logo;
@@ -100,10 +100,10 @@ namespace Himall.Web.Areas.Web.Controllers
 		}
 
 		/// <summary>
-		/// 从购物车中提交订单时调用的POST方法
+		/// 从购物车中提交预约单时调用的POST方法
 		/// </summary>
 		/// <param name="model"></param>
-		/// <returns>返回订单列表和调转地址</returns>
+		/// <returns>返回预约单列表和调转地址</returns>
 		[HttpPost]
 		public JsonResult SubmitOrder(CommonModel.OrderPostModel model)
 		{
@@ -118,7 +118,7 @@ namespace Himall.Web.Areas.Web.Controllers
 		}
 
 		/// <summary>
-		/// 限时购订单提交
+		/// 限时购预约单提交
 		/// </summary>
 		/// <param name="skuIds">库存ID</param>
 		/// <param name="counts">购买数量</param>
@@ -132,7 +132,7 @@ namespace Himall.Web.Areas.Web.Controllers
 		/// <param name="integral">使用积分</param>
 		/// <param name="collpIds">组合构ID</param>
 		/// <param name="isCashOnDelivery">是否货到付款</param>
-		/// <returns>redis方式返回虚拟订单ID，数据库方式返回实际订单ID</returns>
+		/// <returns>redis方式返回虚拟预约单ID，数据库方式返回实际预约单ID</returns>
 		[HttpPost]
 		public JsonResult SubmitLimitOrder(CommonModel.OrderPostModel model)
 		{
@@ -146,7 +146,7 @@ namespace Himall.Web.Areas.Web.Controllers
 				if (r == SubmitOrderResult.SoldOut)
 					throw new HimallException("已售空");
 				else if (r == SubmitOrderResult.NoSkuId)
-					throw new InvalidPropertyException("创建订单的时候，SKU为空，或者数量为0");
+					throw new InvalidPropertyException("创建预约单的时候，SKU为空，或者数量为0");
 				else if (r == SubmitOrderResult.NoData)
 					throw new InvalidPropertyException("参数错误");
 				else if (r == SubmitOrderResult.NoLimit)
@@ -167,9 +167,9 @@ namespace Himall.Web.Areas.Web.Controllers
 		}
 
 		/// <summary>
-		/// 确认零元订单
+		/// 确认零元预约单
 		/// </summary
-		/// <param name="orderIds">订单ID集合</param>
+		/// <param name="orderIds">预约单ID集合</param>
 		/// <returns>返回付款成功</returns>
 		[HttpPost]
 		public ActionResult PayConfirm(string orderIds)
@@ -185,7 +185,7 @@ namespace Himall.Web.Areas.Web.Controllers
 		/// <summary>
 		/// 进入支付页面
 		/// </summary>
-		/// <param name="orderIds">订单Id集合</param>
+		/// <param name="orderIds">预约单Id集合</param>
 		/// <returns></returns>
 		public ActionResult Pay(string orderIds)
 		{
@@ -232,7 +232,7 @@ namespace Himall.Web.Areas.Web.Controllers
 		/// <summary>
 		/// 预付款支付
 		/// </summary>
-		/// <param name="orderIds">订单Id集合</param>
+		/// <param name="orderIds">预约单Id集合</param>
 		/// <param name="pwd">密码</param>
 		/// <returns>支付结果</returns>
 		public JsonResult PayByCapital(string orderIds, string pwd)
@@ -245,7 +245,7 @@ namespace Himall.Web.Areas.Web.Controllers
 		/// <summary>
 		/// 增加资产充值
 		/// </summary>
-		/// <param name="orderIds">订单id集合</param>
+		/// <param name="orderIds">预约单id集合</param>
 		/// <returns></returns>
 		public ActionResult ChargePay(string orderIds)
 		{
@@ -332,7 +332,7 @@ namespace Himall.Web.Areas.Web.Controllers
 	}
 
 	/// <summary>
-	/// 服务器异步处理限时购订单
+	/// 服务器异步处理限时购预约单
 	/// </summary>
 	public class OrderStateController : BaseAsyncController
 	{

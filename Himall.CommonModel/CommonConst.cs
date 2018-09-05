@@ -40,7 +40,7 @@ namespace Himall.CommonModel
         public const int HIMALL_SHOP_VISIT_COUNT_MAX = 2;
 
         /// <summary>
-        /// 商品访问用户数
+        /// 诊疗项目访问用户数
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace Himall.CommonModel
         }
         public const int HIMALL_PRODUCT_VISITUSER_COUNT_MAX = 2;
         /// <summary>
-        /// 商品访问数
+        /// 诊疗项目访问数
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>

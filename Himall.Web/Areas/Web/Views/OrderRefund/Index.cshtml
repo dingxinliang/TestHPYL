@@ -15,7 +15,7 @@
         <span class="title_txt curr" style="margin-left:40px;margin-top:2px;">申请售后</span>
     </div>
     <div class="search-area">
-        <label>关键字：</label><input class="search_order" id="txtkeyword" type="text" value="商品名称、订单编号" />
+        <label>关键字：</label><input class="search_order" id="txtkeyword" type="text" value="诊疗项目名称、预约单编号" />
         <button id="btnSearch" class="search_btn pointer" onclick="Search()">搜索</button>
     </div>
     <div class="border-box">
@@ -29,9 +29,9 @@
             </colgroup>
             <thead>
                 <tr class="tr">
-                    <th>订单编号</th>
-                    <th>订单商品</th>
-                    <th>订单状态</th>
+                    <th>预约单编号</th>
+                    <th>预约单诊疗项目</th>
+                    <th>预约单状态</th>
                     <th>
                         <select class="sele" id="submitDate" onchange="Query()">
                             <option value="all">下单时间</option>
@@ -52,7 +52,7 @@
                 {
                     <tr class="tr-td">
                         <td><span class="col-blue">@m.Id @if (m.UserId != ViewBag.UserId)
-                        { <span>[子订单]</span>}</span></td>
+                        { <span>[子预约单]</span>}</span></td>
                         <td>
                             <ul class="back-goods-list">
                                 @foreach (var item in m.OrderItemInfo)
@@ -157,13 +157,13 @@
 
         $('#txtkeyword').focus(function () {
             var a = $(this).val(),
-                b = '商品名称、订单编号';
+                b = '诊疗项目名称、预约单编号';
             if (a == b) {
                 $(this).val('');
             }
         }).blur(function () {
             var a = $(this).val(),
-                b = '商品名称、订单编号';
+                b = '诊疗项目名称、预约单编号';
             if (!a) {
                 $(this).val(b);
             }

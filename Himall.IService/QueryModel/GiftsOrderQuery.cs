@@ -11,7 +11,7 @@ namespace Himall.IServices.QueryModel
         /// </summary>
         public string skey { get; set; }
         /// <summary>
-        /// 订单编号
+        /// 预约单编号
         /// </summary>
         public long? OrderId { get; set; }
 

@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="">订单金额：</label>
+                    <label class="col-sm-2 control-label" for="">预约单金额：</label>
                     <div class="col-sm-4">
                         <div class="radio  @(Model.Id > 0 ? "disabled" : "")">
                             <label>
@@ -149,7 +149,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="">可使用商品：</label>
+                    <label class="col-sm-2 control-label" for="">可使用诊疗项目：</label>
                     <div class="col-sm-9 form-control-static">
                     	全店通用
                     </div>
@@ -286,7 +286,7 @@
                     }
                     else
                     {
-                        <span>订单满<span style="color:#f60;display:inline-block;" id="id_p">@Model.OrderAmount</span>元可使用（不含运费）</span>
+                        <span>预约单满<span style="color:#f60;display:inline-block;" id="id_p">@Model.OrderAmount</span>元可使用（不含运费）</span>
                     }
                 </div>
             </div>
@@ -302,7 +302,7 @@
         $("#imgIntegralCover").himallUpload(
         {
             title: '封面图片：',
-            imageDescript: '非必填，建议尺寸 150 *120；默认显示商家logo',
+            imageDescript: '非必填，建议尺寸 150 *120；默认显示诊所logo',
             displayImgSrc: "@(Himall.Core.HimallIO.GetImagePath(Model.IntegralCover))",
             headerWidth: 2,
             dataWidth: 9,
@@ -351,7 +351,7 @@
 
     function showlimittxt(v) {
         if (v != 0) {
-            $("#limit").html('使用限制：<span>订单满<span style="color:#f60;display:inline-block;" id="id_p">' + v + '</span>元可使用（不含运费）</span>');
+            $("#limit").html('使用限制：<span>预约单满<span style="color:#f60;display:inline-block;" id="id_p">' + v + '</span>元可使用（不含运费）</span>');
         } else {
             $("#limit").html('使用限制：<span>无门槛(不含运费)</span>');
         }

@@ -109,7 +109,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                     Name = item.ProductName,
                     SalePrice = item.MinSalePrice
                 });
-                ViewBag.TopShopProducts = topShopProducts;//主推店铺的商品
+                ViewBag.TopShopProducts = topShopProducts;//主推店铺的诊疗项目
                 if (CurrentUser != null)
                 {
                     var favoriteShopIds = _iShopService.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注店铺
@@ -705,7 +705,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        /// 商品价格
+        /// 诊疗项目价格
         /// </summary>
         /// <returns></returns>
         private decimal GetProductPrice(ProductInfo item, List<FlashSalePrice> limit, List<FightGroupPrice> fight, decimal discount, long selfShopId)
@@ -724,7 +724,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        ///  商品搜索页面
+        ///  诊疗项目搜索页面
         /// </summary>
         /// <param name="keywords">搜索关键字</param>
         /// <param name="exp_keywords">渐进搜索关键字</param>

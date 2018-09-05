@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 商家财务总览
+    /// 诊所财务总览
     /// </summary>
     public class ShopBillingIndex
     {
@@ -28,7 +28,7 @@ namespace Himall.DTO
         public int YesterDayOrders { set; get; }
 
         /// <summary>
-        /// 昨日付款订单数
+        /// 昨日付款预约单数
         /// </summary>
         public int YesterDayPayOrders { set; get; }
 

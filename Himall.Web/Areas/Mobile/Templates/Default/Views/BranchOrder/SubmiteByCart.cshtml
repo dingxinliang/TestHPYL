@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "订单提交";
+    ViewBag.Title = "预约单提交";
 }
 <link rel="stylesheet" href="/Areas/Mobile/Templates/Default/Content/bootstrap-switch.css">
 <script src="~/Areas/Mobile/Templates/Default/Scripts/bootstrap-switch.min.js"></script>
@@ -253,7 +253,7 @@
     <em class="cart-total cart-total-lg">
         共<a>@products.Sum( p => p.CartItemModels.Count )</a>件，总金额<a id="allTotal">¥@ViewBag.ConfirmModel.orderAmount.ToString( "F2" )</a>
     </em>
-    <a id="submit-order" class="cart-pay">提交订单</a>
+    <a id="submit-order" class="cart-pay">提交预约单</a>
 </footer>
 <script src="~/Areas/Mobile/Templates/Default/Scripts/submiteByCart.js"></script>
 
@@ -266,7 +266,7 @@
 
 
     $(function(){
-		//<!--商品滑动-->
+		//<!--诊疗项目滑动-->
 		$(".pro-list .pro-img").each(function() {
 			$(this).width($('li',this).length*72);
 			
@@ -348,7 +348,7 @@
                 $( "#1 .total-m .pay" ).html( "货到付款" );
             }
             $( '.payment-way').css('right','-100%');
-            document.title = "订单提交";
+            document.title = "预约单提交";
         } );
 
         //<!--发票弹框动画--!>

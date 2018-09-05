@@ -6,40 +6,40 @@ using Himall.Model;
 namespace Himall.IServices
 {
     /// <summary>
-    /// 订单和销售统计
+    /// 预约单和销售统计
     /// </summary>
     public interface IOrderAndSaleStatisticsService : IService
     {
 
         /// <summary>
-        /// 获取指定会员最近三个月订单统计数据
+        /// 获取指定会员最近三个月预约单统计数据
         /// </summary>
         /// <param name="userId">会员编号</param>
         /// <returns></returns>
         OrderBasicStatistics GetLastThreeMonthOrderStatisticsByUser(long userId);
 
-        #region 会员购买商品类别冗余统计
+        #region 会员购买诊疗项目类别冗余统计
 
         /// <summary>
-        /// 会员购买商品类别添加
+        /// 会员购买诊疗项目类别添加
         /// </summary>
         /// <param name="model"></param>
         void AddMemberBuyCategory(MemberBuyCategoryInfo model);
 
         /// <summary>
-        /// 会员购买商品类别查询
+        /// 会员购买诊疗项目类别查询
         /// </summary>
         /// <param name="model"></param>
         MemberBuyCategoryInfo GetMemberBuyCategory(long categoryId, long userId);
 
         /// <summary>
-        /// 会员购买商品类别删除
+        /// 会员购买诊疗项目类别删除
         /// </summary>
         /// <param name="model"></param>
         void DeleteMemberBuyCategory(long Id);
 
         /// <summary>
-        /// 会员购买商品类别修改
+        /// 会员购买诊疗项目类别修改
         /// </summary>
         /// <param name="model"></param>
         void UpdateMemberBuyCategory(MemberBuyCategoryInfo model);

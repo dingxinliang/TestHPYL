@@ -44,7 +44,7 @@
                 break;
                 //自定义模块
             case 3: break;
-                //商品
+                //诊疗项目
             case 4:
                 moduleData.content = {
                     layout: 1,
@@ -54,7 +54,7 @@
                     goodslist: []
                 }
                 break;
-                //商品列表（分组标签）
+                //诊疗项目列表（分组标签）
             case 5:
                 moduleData.content = {
                     layout: 1,
@@ -73,7 +73,7 @@
                             pc_link: "#",
                             pic: "/Content/Public/images/diy/goodsView1.jpg",
                             price: "100.00",
-                            title: "第一个商品"
+                            title: "第一个诊疗项目"
                         },
                         {
                             item_id: "2",
@@ -81,7 +81,7 @@
                             pc_link: "#",
                             pic: "/Content/Public/images/diy/goodsView2.jpg",
                             price: "200.00",
-                            title: "第二个商品"
+                            title: "第二个诊疗项目"
                         },
                         {
                             item_id: "3",
@@ -89,7 +89,7 @@
                             pc_link: "#",
                             pic: "/Content/Public/images/diy/goodsView3.jpg",
                             price: "300.00",
-                            title: "第三个商品"
+                            title: "第三个诊疗项目"
                         },
                         {
                             item_id: "4",
@@ -97,7 +97,7 @@
                             pc_link: "#",
                             pic: "/Content/Public/images/diy/goodsView4.jpg",
                             price: "400.00",
-                            title: "第四个商品"
+                            title: "第四个诊疗项目"
                         }
                     ]
                 }

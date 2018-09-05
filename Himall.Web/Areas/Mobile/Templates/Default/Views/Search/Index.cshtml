@@ -3,7 +3,7 @@
 @using Himall.CommonModel;
 @model List<ProductView>
 @{
-    ViewBag.Title = ViewBag.keywords + "  商品搜索";
+    ViewBag.Title = ViewBag.keywords + "  诊疗项目搜索";
     List<FlashSalePrice> FlashSalePriceList = ViewBag.FlashSalePriceList;
     List<Himall.DTO.FightGroupActiveModel> FightGroupSalePriceList = ViewBag.FightGroupSalePriceList;
 }
@@ -18,7 +18,7 @@
             <a href="javascript:" class="switch">&nbsp;<i class="icon_switch"></i></a>
         </div>
     </div>
-    <div class="s_found gray">找到相关商品 <span>@ViewBag.Total</span> 件。<a class="search_screen">筛选</a></div>
+    <div class="s_found gray">找到相关诊疗项目 <span>@ViewBag.Total</span> 件。<a class="search_screen">筛选</a></div>
     <ul class="search-list clearfix" id="searchList" style="display:none;">
         @foreach (var product in Model)
         {
@@ -84,7 +84,7 @@
             <a class="btn btn-default btn-block">清除选项</a>
         </div>
     </div>
-    <div class="loading" id="autoLoad">@Html.Raw(ViewBag.Total<=10? "没有更多商品了" : "<span></span>")</div>
+    <div class="loading" id="autoLoad">@Html.Raw(ViewBag.Total<=10? "没有更多诊疗项目了" : "<span></span>")</div>
 </div>
 <div class="wx_aside">
     <a href="javascript:;" class="btn_top"></a>
@@ -108,8 +108,8 @@
 
 	var winxinShareArgs = {
 		share: {
-			title: '搜索到@(ViewBag.Total)件"@(ViewBag.keywords)"@(this.SiteSetting.SiteName)优质商品',
-			desc: '@(this.SiteSetting.SiteName)商品，优质好货任你挑',
+			title: '搜索到@(ViewBag.Total)件"@(ViewBag.keywords)"@(this.SiteSetting.SiteName)优质诊疗项目',
+			desc: '@(this.SiteSetting.SiteName)诊疗项目，优质好货任你挑',
 			link: location.href,
 			imgUrl: '@firstProductImage'
 		}

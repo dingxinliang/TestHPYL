@@ -157,7 +157,7 @@ function initHomeProduct() {
         columns:
         [[
              {
-                 field: "name", title: '商品', width: 300, align: "center",
+                 field: "name", title: '诊疗项目', width: 300, align: "center",
                  formatter: function (value, row, index) {
                      var html = '<img style="margin-left:15px;" width="40" height="40" src="' + row.image + '" /><span class="overflow-ellipsis" style="width:200px">' + value + '</span>';
                      return html;
@@ -172,7 +172,7 @@ function initHomeProduct() {
                 }
             },
             {
-                field: "categoryName", title: '商品分类', align: "center"
+                field: "categoryName", title: '诊疗项目分类', align: "center"
             },
             {
                 field: "s", title: "操作", width: 90, align: "center",
@@ -189,7 +189,7 @@ function initHomeProduct() {
 
 
 function del(id) {
-    $.dialog.confirm('确定要从首页删除该商品吗?', function () {
+    $.dialog.confirm('确定要从首页删除该诊疗项目吗?', function () {
         var loading = showLoading();
         $.post('/SellerAdmin/MobileHomeProducts/Delete', { id: id }, function (result) {
             loading.close();

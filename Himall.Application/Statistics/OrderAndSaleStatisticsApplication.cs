@@ -17,7 +17,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// c最近三个月订单统计数据
+        /// c最近三个月预约单统计数据
         /// </summary>
         /// <param name="userId">会员编号</param>
         /// <returns></returns>
@@ -93,7 +93,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 维护会员购买商品类别
+        /// 维护会员购买诊疗项目类别
         /// </summary>
         /// <param name="categoryId"></param>
         /// <param name="userId"></param>

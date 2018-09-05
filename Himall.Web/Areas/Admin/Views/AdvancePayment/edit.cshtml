@@ -16,14 +16,14 @@
     {
         <div class="form-horizontal mt0">
             
-            <h3 class="table-hd mt0">订单参数</h3>
+            <h3 class="table-hd mt0">预约单参数</h3>
             <div class="form-group">
                 <label class="col-sm-2 clear-d control-label" for="">下单后，超过</label>
                 <div class="col-sm-2 clear-d">
                     @Html.TextBoxFor(item => item.UnpaidTimeout, new { @class = "form-control input-sm", onkeyup = "value = value.replace(/[^\\d]/g, '')" })
                 </div>
                 <div class="col-sm-3 clear-d">
-                    小时未付款，订单关闭
+                    小时未付款，预约单关闭
                 </div>
                 <div class="col-sm-4">
                     @Html.ValidationMessageFor(item => item.UnpaidTimeout)
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="col-sm-3 ckear-d">
-                    天未收货，订单自动完成
+                    天未收货，预约单自动完成
                 </div>
                 <div class="col-sm-4">
                     <p class="help-default"></p>
@@ -57,7 +57,7 @@
             </div>
             <h3 class="table-hd">售后参数</h3>
             <div class="form-group">
-                <label class="col-sm-2 clear-d control-label" for="">订单完成后</label>
+                <label class="col-sm-2 clear-d control-label" for="">预约单完成后</label>
                 <div class="col-sm-2 clear-d">
                     @Html.TextBoxFor(item => item.SalesReturnTimeout, new { @class = "form-control input-sm", onkeyup = "value = value.replace(/[^\\d]/g, '')" })
 
@@ -72,7 +72,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 clear-d control-label" for="">提交申请后商家/门店逾期</label>
+                <label class="col-sm-2 clear-d control-label" for="">提交申请后诊所/门店逾期</label>
                 <div class="col-sm-2 clear-d">
                     @Html.TextBoxFor(item => item.AS_ShopConfirmTimeout, new { @class = "form-control input-sm", onkeyup = "value = value.replace(/[^\\d]/g, '')" })
                 </div>
@@ -85,7 +85,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 clear-d control-label" for="">退货申请买家逾期</label>
+                <label class="col-sm-2 clear-d control-label" for="">退货申请患者逾期</label>
                 <div class="col-sm-2 clear-d">
                     @Html.TextBoxFor(item => item.AS_SendGoodsCloseTimeout, new { @class = "form-control input-sm", onkeyup = "value = value.replace(/[^\\d]/g, '')" })
                 </div>
@@ -98,7 +98,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 clear-d control-label" for="">买家寄货后卖家逾期</label>
+                <label class="col-sm-2 clear-d control-label" for="">患者寄货后卖家逾期</label>
                 <div class="col-sm-2 clear-d">
                     @Html.TextBoxFor(item => item.AS_ShopNoReceivingTimeout, new { @class = "form-control input-sm", onkeyup = "value = value.replace(/[^\\d]/g, '')" })
                 </div>

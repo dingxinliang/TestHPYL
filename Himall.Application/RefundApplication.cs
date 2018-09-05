@@ -42,9 +42,9 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 通过订单编号获取整笔退款
+		/// 通过预约单编号获取整笔退款
 		/// </summary>
-		/// <param name="id">订单编号</param>
+		/// <param name="id">预约单编号</param>
 		/// <returns></returns>
 		public static OrderRefundInfo GetOrderRefundByOrderId(long id)
 		{
@@ -116,7 +116,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 买家确定退回商品
+		/// 患者确定退回诊疗项目
 		/// </summary>
 		/// <param name="id"></param>
 		/// <param name="sellerName">用户名</param>
@@ -128,7 +128,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 商家处理退款退货申请
+		/// 诊所处理退款退货申请
 		/// </summary>
 		/// <param name="id"></param>
 		/// <param name="auditStatus"></param>
@@ -140,7 +140,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 商家确认收到退货
+		/// 诊所确认收到退货
 		/// </summary>
 		/// <param name="id"></param>
 		/// <param name="sellerName"></param>
@@ -219,7 +219,7 @@ namespace Himall.Application
 			_iRefundService.AutoCloseByDeliveryExpired();
 		}
 		/// <summary>
-		/// 自动商家确认到货(job)
+		/// 自动诊所确认到货(job)
 		/// </summary>
 		public static void AutoShopConfirmArrival()
 		{

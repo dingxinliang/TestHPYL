@@ -68,7 +68,7 @@ function GetProductDesc() {
                     });
 
                     if (prodesccon) {
-                        prodesccon.append('<h4><a name="top">商品图文详情</a></h4>');
+                        prodesccon.append('<h4><a name="top">诊疗项目图文详情</a></h4>');
                         prodesccon.append(d_prodes);
 
                         //图片延迟加载

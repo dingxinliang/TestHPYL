@@ -228,7 +228,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
 		/// <summary>
-		/// 导出未结算订单
+		/// 导出未结算预约单
 		/// </summary>
 		/// <param name="startDate"></param>
 		/// <param name="endDate"></param>
@@ -243,11 +243,11 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 			query.OrderId = orderId;
 			query.ShopId = CurrentSellerManager.ShopId;
 			var models = BillingApplication.GetPendingSettlementOrdersNoPage(query);
-			return ExcelView("待结算订单", models);
+			return ExcelView("待结算预约单", models);
 		}
 
 		/// <summary>
-		/// 导出已结算订单
+		/// 导出已结算预约单
 		/// </summary>
 		/// <param name="startDate"></param>
 		/// <param name="endDate"></param>
@@ -266,7 +266,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 			query.WeekSettlementId = detailId;
 			var models = BillingApplication.GetSettlementOrdersNoPage(query);
 
-			return ExcelView("已结算订单", models);
+			return ExcelView("已结算预约单", models);
 		}
 
 		/// <summary>

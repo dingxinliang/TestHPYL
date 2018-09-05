@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "订单支付";
+    ViewBag.Title = "预约单支付";
     Layout = "~/Areas/Web/Views/Shared/_PayTopBar.cshtml";
     var orders = (IEnumerable<Himall.Model.OrderInfo>)ViewBag.Orders;
 }
@@ -8,7 +8,7 @@
         <div class="m mainbody">
             <div class="mc">
                 <s class="icon-succ04"></s>
-                <h3 class="orderinfo">您的订单已提交！</h3>
+                <h3 class="orderinfo">您的预约单已提交！</h3>
                 <ul class="list-orderinfo">
                     @{var ids = orders.Select(a => a.Id).ToArray();
 
@@ -17,7 +17,7 @@
                       }
                     @foreach (var order in orders)
                     {
-                        <li>订单号：@order.Id</li>
+                        <li>预约单号：@order.Id</li>
 
 
                     }

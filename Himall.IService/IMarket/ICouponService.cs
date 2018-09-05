@@ -13,7 +13,7 @@ namespace Himall.IServices
     public interface ICouponService : IService
     {
         /// <summary>
-        /// 商家添加一个优惠券
+        /// 诊所添加一个优惠券
         /// </summary>
         /// <param name="info"></param>
         void AddCoupon(CouponInfo info);
@@ -40,7 +40,7 @@ namespace Himall.IServices
         /// </summary>
         void ClearErrorWeiXinCardSync();
         /// <summary>
-        /// 商家修改一个优惠券
+        /// 诊所修改一个优惠券
         /// </summary>
         /// <param name="info"></param>
         void EditCoupon(CouponInfo info);
@@ -82,18 +82,18 @@ namespace Himall.IServices
         /// <returns></returns>
         CouponInfo GetCouponInfo(long shopId, long couponId);
         /// <summary>
-        /// 获取商家添加的优惠券列表
+        /// 获取诊所添加的优惠券列表
         /// </summary>
         /// <returns></returns>
         ObsoletePageModel<CouponInfo> GetCouponList(CouponQuery query);
         /// <summary>
-        /// 获取商家添加的优惠券列表(全部)
+        /// 获取诊所添加的优惠券列表(全部)
         /// </summary>
         /// <param name="shopid"></param>
         /// <returns></returns>
         IQueryable<CouponInfo> GetCouponList(long shopid);
         /// <summary>
-        /// 获取商家添加的优惠券列表(全部)
+        /// 获取诊所添加的优惠券列表(全部)
         /// </summary>
         /// <param name="shopid"></param>
         /// <returns></returns>

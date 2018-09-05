@@ -128,7 +128,7 @@ namespace Himall.IServices
         /// 更新用户关系
         /// </summary>
         /// <param name="id">关系信息编号列表</param>
-        /// <param name="userId">买家编号</param>
+        /// <param name="userId">患者编号</param>
         void UpdateDistributionUserLink(IEnumerable<long> ids, long userId);
         #endregion
 

@@ -42,7 +42,7 @@ namespace Himall.Service
         #region 构造函数
         public OrderService()
         {
-            /**  订单windows服务里调用此处有异常,无法注册 特注释掉
+            /**  预约单windows服务里调用此处有异常,无法注册 特注释掉
             //_iFightGroupService = ObjectContainer.Current.Resolve<IFightGroupService>();
             //_iShopService = ObjectContainer.Current.Resolve<IShopService>();
             //_iShippingAddressService = ObjectContainer.Current.Resolve<IShippingAddressService>();
@@ -66,7 +66,7 @@ namespace Himall.Service
         #endregion
 
         #region 方法
-        #region 获取订单相关 done
+        #region 获取预约单相关 done
         public ObsoletePageModel<OrderInfo> GetOrders<Tout>(OrderQuery query, Expression<Func<OrderInfo, Tout>> sort = null)
         {
             var orders = ToWhere(query);
@@ -104,7 +104,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 分页获取订单
+        /// 分页获取预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -125,7 +125,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取订单列表(忽略分页)
+        /// 获取预约单列表(忽略分页)
         /// </summary>
         /// <param name="orderQuery"></param>
         /// <returns></returns>
@@ -137,7 +137,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取增量订单
+        /// 获取增量预约单
         /// </summary>
         /// <param name="orderQuery"></param>
         /// <returns></returns>
@@ -183,7 +183,7 @@ namespace Himall.Service
 
                 orders = orders.Where(item => !pc.Contains(item.Id));
             }
-            //订单类型
+            //预约单类型
             if (orderQuery.OrderType != null)
             {
                 orders = orders.Where(item => (int)item.Platform == orderQuery.OrderType);
@@ -269,7 +269,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 是否存在订单
+        /// 是否存在预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="shopId">店铺Id,0表示不限店铺</param>
@@ -320,7 +320,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 根据订单项id获取订单项
+        /// 根据预约单项id获取预约单项
         /// </summary>
         /// <param name="orderItemIds"></param>
         /// <returns></returns>
@@ -330,7 +330,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 根据订单id获取订单项
+        /// 根据预约单id获取预约单项
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
@@ -340,7 +340,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 根据订单id获取订单项
+        /// 根据预约单id获取预约单项
         /// </summary>
         /// <param name="orderIds"></param>
         /// <returns></returns>
@@ -350,7 +350,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取订单的评论数
+        /// 获取预约单的评论数
         /// </summary>
         /// <param name="orderIds"></param>
         /// <returns></returns>
@@ -364,7 +364,7 @@ namespace Himall.Service
             return Context.SKUInfo.FindById(skuid);
         }
 
-        //获取所有订单明细
+        //获取所有预约单明细
         public int GetSuccessOrderCountByProductID(long productId = 0, OrderInfo.OrderOperateStatus orserStatus = OrderInfo.OrderOperateStatus.Finish)
         {
             ProductVistiInfo productVisti = Context.ProductVistiInfo.FindBy(p => p.ProductId == productId).FirstOrDefault();
@@ -376,7 +376,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 根据订单项id获取售后记录
+        /// 根据预约单项id获取售后记录
         /// </summary>
         /// <param name="orderItemIds"></param>
         /// <returns></returns>
@@ -386,7 +386,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取商品已购数
+        /// 获取诊疗项目已购数
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="productIds"></param>
@@ -396,9 +396,9 @@ namespace Himall.Service
             return this.Context.OrderItemInfo.Where(p => productIds.Contains(p.ProductId) && p.OrderInfo.UserId == userId && p.OrderInfo.OrderStatus != OrderInfo.OrderOperateStatus.Close)
                 .GroupBy(p => p.ProductId).ToDictionary(p => p.Key, p => (int)p.Sum(pp => pp.Quantity));
         }
-        #endregion 获取订单相关 done
+        #endregion 获取预约单相关 done
 
-        #region 创建订单相关  done
+        #region 创建预约单相关  done
         public List<OrderInfo> CreateOrder(OrderCreateModel model)
         {
             CheckWhenCreateOrder(model);
@@ -412,10 +412,10 @@ namespace Himall.Service
                 AddInvoiceTitle(model.InvoiceTitle, model.CurrentUser.Id);
             }
 
-            //创建订单额外对象
+            //创建预约单额外对象
             var additional = CreateAdditional(orderSkuInfos, model);
 
-            //创建订单列表对象
+            //创建预约单列表对象
             var infos = GetOrderInfos(orderSkuInfos, model, additional);
 
             using (MySqlConnection conn = new MySqlConnection(Connection.ConnectionString))
@@ -586,17 +586,17 @@ namespace Himall.Service
             }
             Context.SaveChanges();
 
-            #region 系统处理订单自动分配门店
+            #region 系统处理预约单自动分配门店
             if (_iSiteSettingService.GetSiteSettings() != null && _iSiteSettingService.GetSiteSettings().IsOpenStore)//如果开启门店授权
             {
-                var shipAddressInfo = additional.Address;//获取当前订单收货地址对象
+                var shipAddressInfo = additional.Address;//获取当前预约单收货地址对象
                 ShopBranchQuery query = null;
                 foreach (var p in infos)
                 {
-                    if ((p.ShopBranchId.HasValue && p.ShopBranchId.Value == 0) || (!p.ShopBranchId.HasValue))//如果订单之前不属于任何门店，则系统尝试匹配
+                    if ((p.ShopBranchId.HasValue && p.ShopBranchId.Value == 0) || (!p.ShopBranchId.HasValue))//如果预约单之前不属于任何门店，则系统尝试匹配
                     {
                         var shopInfo = _iShopService.GetShop(p.ShopId);
-                        bool autoAllotOrder = shopInfo != null && shopInfo.AutoAllotOrder.HasValue && shopInfo.AutoAllotOrder.Value;//每个订单所属商家的后台是否开启订单自动分配
+                        bool autoAllotOrder = shopInfo != null && shopInfo.AutoAllotOrder.HasValue && shopInfo.AutoAllotOrder.Value;//每个预约单所属诊所的后台是否开启预约单自动分配
                         if (!autoAllotOrder) continue;
 
                         if (shipAddressInfo != null)
@@ -639,7 +639,7 @@ namespace Himall.Service
                 ServiceProvider.Instance<ILimitTimeBuyService>.Create.IncreaseSaleCount(orderIds.ToList());
             }
 
-            //发送微信消息  提交订单
+            //发送微信消息  提交预约单
             if (!string.IsNullOrEmpty(model.formId))
             {
                 var orderId = string.Join(",", orderIds);
@@ -671,7 +671,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 设置订单的优惠券金额分摊到每个子订单
+        /// 设置预约单的优惠券金额分摊到每个子预约单
         /// </summary>
         /// <param name="infos"></param>
         /// <param name="Coupon"></param>
@@ -699,7 +699,7 @@ namespace Himall.Service
 
         public long SaveOrderPayInfo(IEnumerable<OrderPayInfo> model, Core.PlatformType platform)
         {
-            //只有一个订单就取第一个订单号，否则生成一个支付订单号
+            //只有一个预约单就取第一个预约单号，否则生成一个支付预约单号
             var orderid = long.Parse(model.FirstOrDefault().OrderId.ToString() + ((int)platform).ToString());
             var payid = model.Count() == 1 ? orderid : GetOrderPayId();
             foreach (var pay in model)
@@ -720,7 +720,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 根据订单id获取OrderPayInfo
+        /// 根据预约单id获取OrderPayInfo
         /// </summary>
         /// <param name="orderIds"></param>
         /// <returns></returns>
@@ -729,21 +729,21 @@ namespace Himall.Service
             return Context.OrderPayInfo.Where(p => orderIds.Contains(p.OrderId)).ToList();
         }
 
-        #endregion 创建订单相关  done
+        #endregion 创建预约单相关  done
 
-        #region 订单操作 done
+        #region 预约单操作 done
 
-        // 商家发货
+        // 诊所发货
         public OrderInfo SellerSendGood(long orderId, string sellerName, string companyName, string shipOrderNumber)
         {
             OrderInfo order = Context.OrderInfo.FindById(orderId);
             if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery)
             {
-                throw new HimallException("只有待发货状态的订单才能发货");
+                throw new HimallException("只有待发货状态的预约单才能发货");
             }
             if (!CanSendGood(orderId))
             {
-                throw new HimallException("拼团完成后订单才可以发货");
+                throw new HimallException("拼团完成后预约单才可以发货");
             }
             order.OrderStatus = OrderInfo.OrderOperateStatus.WaitReceiving;
             order.ExpressCompanyName = companyName;
@@ -751,12 +751,12 @@ namespace Himall.Service
             order.ShippingDate = DateTime.Now;
             order.LastModifyTime = DateTime.Now;
 
-            //处理订单退款
+            //处理预约单退款
             var refund = Context.OrderRefundInfo.FirstOrDefault(d => d.OrderId == orderId && d.RefundMode == OrderRefundInfo.OrderRefundMode.OrderRefund && d.SellerAuditStatus == OrderRefundInfo.OrderRefundAuditStatus.WaitAudit);
             if (refund != null)
             {
                 //自动拒绝退款申请
-                ServiceProvider.Instance<IRefundService>.Create.SellerDealRefund(refund.Id, OrderRefundInfo.OrderRefundAuditStatus.UnAudit, "商家已发货", sellerName);
+                ServiceProvider.Instance<IRefundService>.Create.SellerDealRefund(refund.Id, OrderRefundInfo.OrderRefundAuditStatus.UnAudit, "诊所已发货", sellerName);
             }
 
             Context.SaveChanges();
@@ -792,7 +792,7 @@ namespace Himall.Service
                             Context.BrokerageIncomeInfo.Add(income);
                             var m = Context.ProductBrokerageInfo.Where(a => a.ProductId == item.ProductId).FirstOrDefault();
                             m.saleAmount += item.RealTotalPrice;
-                            m.SaleNum += Convert.ToInt32(item.Quantity); //增加商品销售量和商品销售额
+                            m.SaleNum += Convert.ToInt32(item.Quantity); //增加诊疗项目销售量和诊疗项目销售额
                             m.BrokerageTotal += income.Brokerage;
                         }
                     }
@@ -800,7 +800,7 @@ namespace Himall.Service
                 }
             }
 
-            AddOrderOperationLog(orderId, sellerName, "商家发货");
+            AddOrderOperationLog(orderId, sellerName, "诊所发货");
 
             return order;
         }
@@ -808,7 +808,7 @@ namespace Himall.Service
         /// <summary>
         /// 门店发货
         /// </summary>
-        /// <param name="orderId">订单号</param>
+        /// <param name="orderId">预约单号</param>
         /// <param name="deliveryType">配送方式（2店员配送或1快递配送）</param>
         /// <param name="shopkeeperName">发货人（门店管理员账号名称）</param>
         /// <param name="companyName">快递公司</param>
@@ -819,11 +819,11 @@ namespace Himall.Service
             OrderInfo order = Context.OrderInfo.FindById(orderId);
             if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery)
             {
-                throw new HimallException("只有待发货状态的订单才能发货");
+                throw new HimallException("只有待发货状态的预约单才能发货");
             }
             if (!CanSendGood(orderId))
             {
-                throw new HimallException("拼团完成后订单才可以发货");
+                throw new HimallException("拼团完成后预约单才可以发货");
             }
             order.OrderStatus = OrderInfo.OrderOperateStatus.WaitReceiving;
             if (deliveryType == 2)
@@ -839,7 +839,7 @@ namespace Himall.Service
             order.ShippingDate = DateTime.Now;
             order.LastModifyTime = DateTime.Now;
 
-            //处理订单退款
+            //处理预约单退款
             var refund = Context.OrderRefundInfo.FirstOrDefault(d => d.OrderId == orderId && d.RefundMode == OrderRefundInfo.OrderRefundMode.OrderRefund && d.SellerAuditStatus == OrderRefundInfo.OrderRefundAuditStatus.WaitAudit);
 
             if (refund != null)
@@ -881,7 +881,7 @@ namespace Himall.Service
                             Context.BrokerageIncomeInfo.Add(income);
                             var m = Context.ProductBrokerageInfo.Where(a => a.ProductId == item.ProductId).FirstOrDefault();
                             m.saleAmount += item.RealTotalPrice;
-                            m.SaleNum += Convert.ToInt32(item.Quantity); //增加商品销售量和商品销售额
+                            m.SaleNum += Convert.ToInt32(item.Quantity); //增加诊疗项目销售量和诊疗项目销售额
                             m.BrokerageTotal += income.Brokerage;
                         }
                     }
@@ -895,7 +895,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 判断订单是否在申请售后
+        /// 判断预约单是否在申请售后
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
@@ -932,13 +932,13 @@ namespace Himall.Service
             return order;
         }
 
-        // 商家更新收货地址
+        // 诊所更新收货地址
         public void SellerUpdateAddress(long orderId, string sellerName, string shipTo, string cellPhone, int topRegionId, int regionId, string regionFullName, string address)
         {
             OrderInfo order = Context.OrderInfo.FindById(orderId);
             if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitPay && order.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery)
             {
-                throw new HimallException("只有待付款或待发货状态的订单才能修改收货地址");
+                throw new HimallException("只有待付款或待发货状态的预约单才能修改收货地址");
             }
 
             order.ShipTo = shipTo;
@@ -948,21 +948,21 @@ namespace Himall.Service
             order.RegionFullName = regionFullName;
             order.Address = address;
             Context.SaveChanges();
-            AddOrderOperationLog(orderId, sellerName, "商家修改订单的收货地址");
+            AddOrderOperationLog(orderId, sellerName, "诊所修改预约单的收货地址");
         }
 
-        // 会员确认订单
+        // 会员确认预约单
         public void MembeConfirmOrder(long orderId, string memberName)
         {
             OrderInfo order = Context.OrderInfo.Where(a => a.Id == orderId && a.UserName == memberName).FirstOrDefault();
 
             if (order.OrderStatus == OrderInfo.OrderOperateStatus.Finish)
             {
-                throw new HimallException("该订单已经确认过!");
+                throw new HimallException("该预约单已经确认过!");
             }
             if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitReceiving && order.OrderStatus != OrderInfo.OrderOperateStatus.WaitSelfPickUp)
             {
-                throw new HimallException("订单状态发生改变，请重新刷页面操作!");
+                throw new HimallException("预约单状态发生改变，请重新刷页面操作!");
             }
             this.SetStateToConfirm(order);
             order.LastModifyTime = DateTime.Now;
@@ -983,7 +983,7 @@ namespace Himall.Service
             //WritePendingSettlnment(order);
         }
         /// <summary>
-        /// 门店核销订单
+        /// 门店核销预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="shopBranchId"></param>
@@ -993,11 +993,11 @@ namespace Himall.Service
             OrderInfo order = Context.OrderInfo.Where(a => a.Id == orderId && a.ShopBranchId.Value == shopBranchId).FirstOrDefault();
             if (order == null)
             {
-                throw new HimallException("处理订单错误，请确认参数正确");
+                throw new HimallException("处理预约单错误，请确认参数正确");
             }
             if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitSelfPickUp)
             {
-                throw new HimallException("只有待自提状态的订单才能进行核销操作");
+                throw new HimallException("只有待自提状态的预约单才能进行核销操作");
             }
             if (order.PaymentType == OrderInfo.PaymentTypes.CashOnDelivery)
             {
@@ -1011,7 +1011,7 @@ namespace Himall.Service
             var member = Context.UserMemberInfo.FirstOrDefault(a => a.Id == order.UserId);
 
             AddIntegral(member, order.Id, order.ActualPayAmount);//增加积分
-            AddOrderOperationLog(orderId, managerName, "门店核销订单");
+            AddOrderOperationLog(orderId, managerName, "门店核销预约单");
             UpdateProductVistiOrderCount(orderId);
 
             if (order.PaymentType == OrderInfo.PaymentTypes.CashOnDelivery)
@@ -1022,13 +1022,13 @@ namespace Himall.Service
             //现在是拼团完成就结算
             //WritePendingSettlnment(order);
         }
-        // 平台关闭订单
+        // 平台关闭预约单
         public void PlatformCloseOrder(long orderId, string managerName, string closeReason = "")
         {
             OrderInfo order = Context.OrderInfo.FindById(orderId);
             if (string.IsNullOrWhiteSpace(closeReason))
             {
-                closeReason = "平台取消订单";
+                closeReason = "平台取消预约单";
             }
             order.CloseReason = closeReason;
             order.LastModifyTime = DateTime.Now;
@@ -1044,37 +1044,37 @@ namespace Himall.Service
             }
 
             var member = Context.UserMemberInfo.FirstOrDefault(a => a.Id == order.UserId);
-            CancelIntegral(member, order.Id, order.IntegralDiscount);  //取消订单增加积分
+            CancelIntegral(member, order.Id, order.IntegralDiscount);  //取消预约单增加积分
             AddOrderOperationLog(orderId, managerName, closeReason);
         }
 
-        // 商家关闭订单
+        // 诊所关闭预约单
         public void SellerCloseOrder(long orderId, string sellerName)
         {
             OrderInfo order = Context.OrderInfo.FindById(orderId);
             if (order == null)
             {
-                throw new HimallException("错误的订单编号！");
+                throw new HimallException("错误的预约单编号！");
             }
             if (order.OrderType == OrderInfo.OrderTypes.FightGroup)
             {
-                throw new HimallException("拼团订单，不可以手动取消！");
+                throw new HimallException("拼团预约单，不可以手动取消！");
             }
             if (order.OrderStatus == OrderInfo.OrderOperateStatus.Close)
             {
-                throw new HimallException("您的订单已被取消了，不需再重复操作！");
+                throw new HimallException("您的预约单已被取消了，不需再重复操作！");
             }
             if (order.PaymentType != OrderInfo.PaymentTypes.CashOnDelivery
                 && (order.OrderStatus == OrderInfo.OrderOperateStatus.WaitDelivery || order.OrderStatus == OrderInfo.OrderOperateStatus.WaitSelfPickUp))
             {
-                throw new HimallException("订单已付款，不能取消订单！");
+                throw new HimallException("预约单已付款，不能取消预约单！");
             }
             if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitPay && order.PaymentType != OrderInfo.PaymentTypes.CashOnDelivery ||
                 order.PaymentType == OrderInfo.PaymentTypes.CashOnDelivery && order.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery)
             {
-                throw new HimallException("您的订单状态已发生变化，不能进行取消操作！");
+                throw new HimallException("您的预约单状态已发生变化，不能进行取消操作！");
             }
-            order.CloseReason = "商家取消订单";
+            order.CloseReason = "诊所取消预约单";
             order.OrderStatus = OrderInfo.OrderOperateStatus.Close;
             order.LastModifyTime = DateTime.Now;
             ReturnStock(order);
@@ -1086,50 +1086,50 @@ namespace Himall.Service
                 SetFightGroupOrderStatus(orderId, FightGroupOrderJoinStatus.BuildFailed);
             }
             var member = Context.UserMemberInfo.FirstOrDefault(a => a.Id == order.UserId);
-            CancelIntegral(member, order.Id, order.IntegralDiscount);  //取消订单增加积分
+            CancelIntegral(member, order.Id, order.IntegralDiscount);  //取消预约单增加积分
             AddOrderOperationLog(orderId, sellerName, order.CloseReason);
         }
 
-        // 会员关闭订单
+        // 会员关闭预约单
         public void MemberCloseOrder(long orderId, string memberName)
         {
             OrderInfo order = Context.OrderInfo.Where(a => a.Id == orderId && a.UserName == memberName).FirstOrDefault();
             if (order == null)
             {
-                throw new HimallException("该订单不属于该用户！");
+                throw new HimallException("该预约单不属于该用户！");
             }
             if (order.OrderType == OrderInfo.OrderTypes.FightGroup)
             {
-                throw new HimallException("拼团订单，不可以手动取消！");
+                throw new HimallException("拼团预约单，不可以手动取消！");
             }
             if (order.OrderStatus == OrderInfo.OrderOperateStatus.Close)
             {
-                throw new HimallException("您的订单已被取消了，不需再重复操作！");
+                throw new HimallException("您的预约单已被取消了，不需再重复操作！");
             }
             if (order.PaymentType != OrderInfo.PaymentTypes.CashOnDelivery
                 && (order.OrderStatus == OrderInfo.OrderOperateStatus.WaitDelivery || order.OrderStatus == OrderInfo.OrderOperateStatus.WaitSelfPickUp))
             {
-                throw new HimallException("订单已付款，不能取消订单！");
+                throw new HimallException("预约单已付款，不能取消预约单！");
             }
             if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitPay && order.PaymentType != OrderInfo.PaymentTypes.CashOnDelivery ||
                 order.PaymentType == OrderInfo.PaymentTypes.CashOnDelivery && order.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery)
             {
-                throw new HimallException("您的订单状态已发生变化，不能进行取消操作！");
+                throw new HimallException("您的预约单状态已发生变化，不能进行取消操作！");
             }
 
-            string closeReason = "会员取消订单";
+            string closeReason = "会员取消预约单";
             this.CloseOrder(order);
             ReturnStock(order);
 
             order.LastModifyTime = DateTime.Now;
             Context.SaveChanges();
             var member = Context.UserMemberInfo.FirstOrDefault(a => a.Id == order.UserId);
-            CancelIntegral(member, order.Id, order.IntegralDiscount);  //取消订单增加积分
+            CancelIntegral(member, order.Id, order.IntegralDiscount);  //取消预约单增加积分
             AddOrderOperationLog(orderId, memberName, closeReason);
         }
 
         /// <summary>
-        /// 用户申请关闭订单（需审核才能真正关闭） 去掉申请取消订单状态
+        /// 用户申请关闭预约单（需审核才能真正关闭） 去掉申请取消预约单状态
         /// </summary>
 
         public void MemberApplyCloseOrder(long orderId, string memberName, bool isBackStock = false)
@@ -1137,9 +1137,9 @@ namespace Himall.Service
             OrderInfo order = Context.OrderInfo.Where(a => a.Id == orderId && a.UserName == memberName).FirstOrDefault();
             if (order == null)
             {
-                throw new HimallException("该订单不属于该用户！");
+                throw new HimallException("该预约单不属于该用户！");
             }
-            string closeReason = "会员取消订单";
+            string closeReason = "会员取消预约单";
             // order.OrderStatus = OrderInfo.OrderOperateStatus.CloseByUser;
 
             if (isBackStock)
@@ -1148,7 +1148,7 @@ namespace Himall.Service
             }
             Context.SaveChanges();
             var member = Context.UserMemberInfo.FirstOrDefault(a => a.Id == order.UserId);
-            CancelIntegral(member, order.Id, order.IntegralDiscount);  //取消订单增加积分
+            CancelIntegral(member, order.Id, order.IntegralDiscount);  //取消预约单增加积分
             AddOrderOperationLog(orderId, memberName, closeReason);
         }
 
@@ -1197,7 +1197,7 @@ namespace Himall.Service
             return result;
         }
 
-        // 设置订单快递信息
+        // 设置预约单快递信息
         public void SetOrderExpressInfo(long shopId, string expressName, string startCode, IEnumerable<long> orderIds)
         {
             var expressService = ServiceProvider.Instance<IExpressService>.Create;
@@ -1233,7 +1233,7 @@ namespace Himall.Service
             Context.SaveChanges();
         }
         /// <summary>
-        /// 设置订单商家备注
+        /// 设置预约单诊所备注
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="mark"></param>
@@ -1242,20 +1242,20 @@ namespace Himall.Service
             var orderdata = Context.OrderInfo.FirstOrDefault(d => d.Id == orderId);
             if (orderdata == null)
             {
-                throw new HimallException("错误的订单编号");
+                throw new HimallException("错误的预约单编号");
             }
             orderdata.SellerRemark = mark;
             Context.SaveChanges();
         }
 
-        //商家更新金额
+        //诊所更新金额
         public void SellerUpdateItemDiscountAmount(long orderItemId, decimal discountAmount, string sellerName)
         {
             OrderItemInfo item = Context.OrderItemInfo.FindById(orderItemId);
             var order = Context.OrderInfo.FindById(item.OrderId);
             if (order.OrderType == OrderInfo.OrderTypes.FightGroup)
             {
-                throw new HimallException("拼团订单不可以改价");
+                throw new HimallException("拼团预约单不可以改价");
             }
 
             item.DiscountAmount += discountAmount;
@@ -1268,11 +1268,11 @@ namespace Himall.Service
             item.OrderInfo.TotalAmount = item.OrderInfo.OrderTotalAmount;
             item.OrderInfo.CommisTotalAmount = Context.OrderItemInfo.Where(i => i.OrderId == item.OrderId).Sum(i => i.RealTotalPrice * i.CommisRate);
 
-            SetActualItemPrice(order);         //平摊订单的优惠券金额
+            SetActualItemPrice(order);         //平摊预约单的优惠券金额
             order.LastModifyTime = DateTime.Now;
             Context.SaveChanges();
 
-            AddOrderOperationLog(item.OrderId, sellerName, "商家修改订单商品的优惠金额");
+            AddOrderOperationLog(item.OrderId, sellerName, "诊所修改预约单诊疗项目的优惠金额");
         }
 
         public void SellerUpdateOrderFreight(long orderId, decimal freight)
@@ -1280,26 +1280,26 @@ namespace Himall.Service
             OrderInfo order = Context.OrderInfo.FindById(orderId);
             if (order.OrderType == OrderInfo.OrderTypes.FightGroup)
             {
-                throw new HimallException("拼团订单不可以改价");
+                throw new HimallException("拼团预约单不可以改价");
             }
             this.SetFreight(order, freight);
             order.LastModifyTime = DateTime.Now;
             Context.SaveChanges();
         }
 
-        // 平台确认订单支付
+        // 平台确认预约单支付
         public void PlatformConfirmOrderPay(long orderId, string payRemark, string managerName)
         {
             OrderInfo order = Context.OrderInfo.FindById(orderId);
             if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitPay)
             {
-                throw new HimallException("只有待付款状态的订单才能进行付款操作");
+                throw new HimallException("只有待付款状态的预约单才能进行付款操作");
             }
             if (order.OrderType == OrderInfo.OrderTypes.FightGroup)
             {
                 if (!FightGroupOrderCanPay(orderId))
                 {
-                    throw new HimallException("拼团订单的状态为不可付款状态");
+                    throw new HimallException("拼团预约单的状态为不可付款状态");
                 }
             }
 
@@ -1317,28 +1317,28 @@ namespace Himall.Service
             order.PayDate = DateTime.Now;
             order.LastModifyTime = DateTime.Now;
 
-            AddOrderOperationLog(orderId, managerName, "平台确认收到订单货款");
+            AddOrderOperationLog(orderId, managerName, "平台确认收到预约单货款");
 
             var orderItems = Context.OrderItemInfo.Where(p => p.OrderId == orderId).ToList();
 
             UpdateShopVisti(order);                // 修改店铺销量
-            UpdateProductVisti(orderItems.Where(p => p.OrderId == order.Id));            // 修改商品销量
+            UpdateProductVisti(orderItems.Where(p => p.OrderId == order.Id));            // 修改诊疗项目销量
             UpdateLimitTimeBuyLog(orderItems.Where(p => p.OrderId == order.Id));    // 修改限时购销售数量
 
             var firstOrderItem = orderItems.First();
             PaySuccessed(order, firstOrderItem.ProductName, "线下收款", "已付款", DateTime.Now);
         }
 
-        // 更新用户订单数
+        // 更新用户预约单数
         public void UpdateMemberOrderInfo(long userId, decimal addOrderAmount = 0, int addOrderCount = 1)
         {
             var member = Context.UserMemberInfo.FirstOrDefault(item => item.Id == userId);
-            member.OrderNumber += addOrderCount;//变更订单数
+            member.OrderNumber += addOrderCount;//变更预约单数
             member.Expenditure += addOrderAmount;//变更总金额
             Context.SaveChanges();
         }
 
-        // 订单支付成功
+        // 预约单支付成功
         public void PaySucceed(IEnumerable<long> orderIds, string paymentId, DateTime payTime, string payNo = null, long payId = 0)
         {
             var orders = Context.OrderInfo.FindBy(item => orderIds.Contains(item.Id)).ToArray();
@@ -1353,7 +1353,7 @@ namespace Himall.Service
                         if (!FightGroupOrderCanPay(order.Id))
                         {
                             //在线支付流程不处理拼团状态，在拼团服务中自己完成退款操作
-                            //throw new HimallException("拼团订单的状态为不可付款状态");
+                            //throw new HimallException("拼团预约单的状态为不可付款状态");
                         }
                     }
                     var orderPayInfo = Context.OrderPayInfo.FirstOrDefault(item => item.OrderId == order.Id && item.PayId == payId);
@@ -1387,9 +1387,9 @@ namespace Himall.Service
                         //设置实收金额=实付金额
                         order.ActualPayAmount = order.TotalAmount;
 
-                        //  SetActualItemPrice(order);         //平摊订单的优惠券金额
+                        //  SetActualItemPrice(order);         //平摊预约单的优惠券金额
                         UpdateShopVisti(order);               // 修改店铺销量
-                        UpdateProductVisti(orderItems.Where(p => p.OrderId == order.Id));           // 修改商品销量
+                        UpdateProductVisti(orderItems.Where(p => p.OrderId == order.Id));           // 修改诊疗项目销量
                         UpdateLimitTimeBuyLog(orderItems.Where(p => p.OrderId == order.Id));   // 修改限时购销售数量
                         order.GatewayOrderId = payNo;
                         order.LastModifyTime = DateTime.Now;
@@ -1423,7 +1423,7 @@ namespace Himall.Service
             Task.Factory.StartNew(() => ServiceProvider.Instance<IMessageService>.Create.SendMessageOnOrderPay(userId, orderMessage));
         }
 
-        //TODO:【2015-09-01】预付款支付订单
+        //TODO:【2015-09-01】预付款支付预约单
         public void PayCapital(IEnumerable<long> orderIds, string payNo = null, long payId = 0)
         {
             var orders = Context.OrderInfo.FindBy(item => orderIds.Contains(item.Id)).ToArray();
@@ -1432,11 +1432,11 @@ namespace Himall.Service
             var capital = Context.CapitalInfo.FirstOrDefault(e => e.MemId == userid);
             if (capital == null)
             {
-                throw new HimallException("预付款金额少于订单金额");
+                throw new HimallException("预付款金额少于预约单金额");
             }
             if (capital.Balance < totalAmount)
             {
-                throw new HimallException("预付款金额少于订单金额");
+                throw new HimallException("预付款金额少于预约单金额");
             }
             var orderItems = Context.OrderItemInfo.Where(p => orderIds.Contains(p.OrderId)).ToList();
             foreach (var order in orders)
@@ -1448,7 +1448,7 @@ namespace Himall.Service
                     {
                         if (!FightGroupOrderCanPay(order.Id))
                         {
-                            throw new HimallException("拼团订单的状态为不可付款状态");
+                            throw new HimallException("拼团预约单的状态为不可付款状态");
                         }
                     }
                     CapitalDetailInfo detail = new CapitalDetailInfo()
@@ -1490,9 +1490,9 @@ namespace Himall.Service
                         }
                         capital.Balance -= order.OrderTotalAmount;
                         Context.CapitalDetailInfo.Add(detail);
-                        //    SetActualItemPrice(order);         //平摊订单的优惠券金额
+                        //    SetActualItemPrice(order);         //平摊预约单的优惠券金额
                         UpdateShopVisti(order);               // 修改店铺销量
-                        UpdateProductVisti(orderItems.Where(p => p.OrderId == order.Id));           // 修改商品销量
+                        UpdateProductVisti(orderItems.Where(p => p.OrderId == order.Id));           // 修改诊疗项目销量
                         UpdateLimitTimeBuyLog(orderItems.Where(p => p.OrderId == order.Id));   // 修改限时购销售数量
 
                         Context.SaveChanges();
@@ -1566,7 +1566,7 @@ namespace Himall.Service
             }
             return false;
         }
-        // 计算订单条目可退款金额
+        // 计算预约单条目可退款金额
         // 看不懂具体逻辑，暂时不改
         public void CalculateOrderItemRefund(long orderId, bool isCompel = false)
         {
@@ -1629,23 +1629,23 @@ namespace Himall.Service
             }
         }
 
-        // 商家同意退款，关闭订单
+        // 诊所同意退款，关闭预约单
         public void AgreeToRefundBySeller(long orderId)
         {
             OrderInfo order = Context.OrderInfo.FindById(orderId);
             if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery)
             {
-                throw new HimallException("只可以关闭待发货订单！");
+                throw new HimallException("只可以关闭待发货预约单！");
             }
 
             order.OrderStatus = OrderInfo.OrderOperateStatus.Close;
-            order.CloseReason = "商家同意退款，取消订单";
+            order.CloseReason = "诊所同意退款，取消预约单";
             order.LastModifyTime = DateTime.Now;
             ReturnStock(order);
             Context.SaveChanges();
         }
 
-        #endregion 订单操作 done
+        #endregion 预约单操作 done
 
         #region 发票相关 done
 
@@ -1741,7 +1741,7 @@ namespace Himall.Service
                 if (sku != null)
                 {
                     //if (order.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake)
-                    if (order.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake || (order.ShopBranchId.HasValue && order.ShopBranchId.Value > 0))//此处如果是系统自动将订单匹配到门店或者由商家手动分配订单到门店，其配送方式仍为快递。所以改为也能根据门店ID去判断
+                    if (order.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake || (order.ShopBranchId.HasValue && order.ShopBranchId.Value > 0))//此处如果是系统自动将预约单匹配到门店或者由诊所手动分配预约单到门店，其配送方式仍为快递。所以改为也能根据门店ID去判断
                     {
                         var sbSku = Context.ShopBranchSkusInfo.FirstOrDefault(p => p.SkuId == sku.Id && p.ShopBranchId == order.ShopBranchId.Value);
                         if (sbSku != null)
@@ -1772,7 +1772,7 @@ namespace Himall.Service
             record.MemberId = member.Id;
             record.RecordDate = DateTime.Now;
             record.TypeId = MemberIntegral.IntegralType.Cancel;
-            record.ReMark = "订单被取消，返还积分，订单号:" + orderId.ToString();
+            record.ReMark = "预约单被取消，返还积分，预约单号:" + orderId.ToString();
             MemberIntegralRecordAction action = new MemberIntegralRecordAction();
             action.VirtualItemTypeId = MemberIntegral.VirtualItemType.Cancel;
             action.VirtualItemId = orderId;
@@ -1808,7 +1808,7 @@ namespace Himall.Service
             ServiceProvider.Instance<IMemberIntegralService>.Create.AddMemberIntegral(record, memberIntegral);
         }
 
-        // 添加订单操作日志
+        // 添加预约单操作日志
         private void AddOrderOperationLog(long orderId, string userName, string operateContent)
         {
             OrderOperationLogInfo orderOperationLog = new OrderOperationLogInfo();
@@ -1831,7 +1831,7 @@ namespace Himall.Service
             record.UserName = member.UserName;
             record.MemberId = member.Id;
             record.RecordDate = DateTime.Now;
-            var remark = "订单号:";
+            var remark = "预约单号:";
             record.TypeId = MemberIntegral.IntegralType.Exchange;
             foreach (var t in Ids)
             {
@@ -1858,18 +1858,18 @@ namespace Himall.Service
             var userIntegral = userIntegralModel == null ? 0 : userIntegralModel.AvailableIntegrals;
             if (userIntegral < integral)
             {
-                throw new Himall.Core.HimallException("用户积分不足不能抵扣订单");
+                throw new Himall.Core.HimallException("用户积分不足不能抵扣预约单");
             }
             var exchangeModel = integralService.GetIntegralChangeRule();
             var integralPerMoney = exchangeModel == null ? 0 : exchangeModel.IntegralPerMoney;
             return integralPerMoney == 0 ? 0 : Math.Round(integral / (decimal)integralPerMoney, 2, MidpointRounding.AwayFromZero);
         }
 
-        // 获取单个商品的销售价格
+        // 获取单个诊疗项目的销售价格
         public decimal GetSalePrice(string skuId, decimal salePrice, long? collid, int SkuCount, bool IslimitBuy = false)
         {
             var price = salePrice;
-            if (collid.HasValue && collid.Value != 0 && SkuCount > 1)//组合购且大于一个商品
+            if (collid.HasValue && collid.Value != 0 && SkuCount > 1)//组合购且大于一个诊疗项目
             {
                 var collsku = ServiceProvider.Instance<ICollocationService>.Create.GetColloSku(collid.Value, skuId);
                 if (collsku != null)
@@ -1878,7 +1878,7 @@ namespace Himall.Service
                 }
                 //获取组合购的价格
             }
-            else if (SkuCount == 1 && IslimitBuy) //订单是限时购
+            else if (SkuCount == 1 && IslimitBuy) //预约单是限时购
             {
                 var limit = ServiceProvider.Instance<ILimitTimeBuyService>.Create.GetDetail(skuId);
                 if (limit != null)
@@ -1889,12 +1889,12 @@ namespace Himall.Service
             return price;
         }
 
-        //  获取一个订单所使用的优惠券金额
+        //  获取一个预约单所使用的优惠券金额
         private decimal GetShopCouponDiscount(IEnumerable<CouponRecordInfo> coupons, long shopId)
         {
             if (coupons != null)
             {
-                var couponAmount = coupons.ToList().Where(a => a.ShopId == shopId).Select(a => a.Himall_Coupon.Price).FirstOrDefault(); //单个订单使用的优惠券金额
+                var couponAmount = coupons.ToList().Where(a => a.ShopId == shopId).Select(a => a.Himall_Coupon.Price).FirstOrDefault(); //单个预约单使用的优惠券金额
                 return couponAmount;
             }
             return 0;
@@ -1932,10 +1932,10 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取一个订单所使用的积分金额
+        /// 获取一个预约单所使用的积分金额
         /// </summary>
-        /// <param name="OrderTotal">当前订单金额</param>
-        /// <param name="OrdersTotal">所有订单金额</param>
+        /// <param name="OrderTotal">当前预约单金额</param>
+        /// <param name="OrdersTotal">所有预约单金额</param>
         /// <param name="integral">积分</param>
         /// <param name="userId">用户ID</param>
         /// <returns></returns>
@@ -1949,8 +1949,8 @@ namespace Himall.Service
         /// <summary>
         /// 獲取當個訂單项所使用的优惠券的金额大小
         /// </summary>
-        /// <param name="realTotalPrice">當前商品的減價後的價格</param>
-        /// <param name="ProductTotal">訂單所有商品的總價格</param>
+        /// <param name="realTotalPrice">當前诊疗项目的減價後的價格</param>
+        /// <param name="ProductTotal">訂單所有诊疗项目的總價格</param>
         /// <param name="couponDisCount">總的優惠券金額</param>
         /// <returns></returns>
         private decimal GetItemCouponDisCount(decimal realTotalPrice, decimal ProductTotal, decimal couponDiscount)
@@ -1999,7 +1999,7 @@ namespace Himall.Service
         private void UpdateLimitTimeBuyLog(IEnumerable<OrderItemInfo> orderItems)
         {
             var marketService = ServiceProvider.Instance<ILimitTimeBuyService>.Create;
-            //如果是限时购活动商品，更新已购买记录，（日龙）
+            //如果是限时购活动诊疗项目，更新已购买记录，（日龙）
             foreach (OrderItemInfo orderItem in orderItems)
             {
                 if (marketService.IsLimitTimeMarketItem(orderItem.ProductId))
@@ -2046,12 +2046,12 @@ namespace Himall.Service
             Context.SaveChanges();
         }
 
-        // 更新商品购买的订单总数
+        // 更新诊疗项目购买的预约单总数
         public void UpdateProductVistiOrderCount(long orderId)
         {
-            //获取订单明细
+            //获取预约单明细
             var items = Context.OrderItemInfo.Where(o => o.OrderId == orderId);
-            //更新商品购买的订单总数
+            //更新诊疗项目购买的预约单总数
             foreach (OrderItemInfo model in items.ToList())
             {
                 ProductVistiInfo productVisti = Context.ProductVistiInfo.FindBy(p => p.ProductId == model.ProductId).FirstOrDefault();
@@ -2094,7 +2094,7 @@ namespace Himall.Service
             var ordobj = Context.OrderInfo.FirstOrDefault(d => d.Id == orderId);
             if (ordobj == null)
             {
-                throw new HimallException("错误的订单编号");
+                throw new HimallException("错误的预约单编号");
             }
             if (ordobj.OrderType == OrderInfo.OrderTypes.FightGroup)
             {
@@ -2111,9 +2111,9 @@ namespace Himall.Service
             return result;
         }
 
-        #region 拼团订单
+        #region 拼团预约单
         /// <summary>
-        /// 设定拼团订单状态
+        /// 设定拼团预约单状态
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="status"></param>
@@ -2124,7 +2124,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 拼团订单是否可以付款
+        /// 拼团预约单是否可以付款
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
@@ -2175,7 +2175,7 @@ namespace Himall.Service
                 {
                     //Log.Debug("orderid=" + o.Id.ToString());
                     o.OrderStatus = OrderInfo.OrderOperateStatus.Finish;
-                    o.CloseReason = "完成过期未确认收货的订单";
+                    o.CloseReason = "完成过期未确认收货的预约单";
                     o.FinishDate = DateTime.Now;
                     var member = Context.UserMemberInfo.FirstOrDefault(a => a.Id == o.UserId);
                     AddIntegral(member, o.Id, o.ProductTotalAmount - o.DiscountAmount - o.IntegralDiscount - o.RefundTotalAmount);//增加积分
@@ -2186,7 +2186,7 @@ namespace Himall.Service
                         UpdateProductVisti(orderItems);
                     }
 
-                    #region 到期自动订单确认,写入待结算
+                    #region 到期自动预约单确认,写入待结算
                     //现在是拼团完成就结算
                     //WritePendingSettlnment(o);
                     #endregion
@@ -2267,7 +2267,7 @@ namespace Himall.Service
                         //加回库存
                         ReturnStock(o);
                         var member = Context.UserMemberInfo.FirstOrDefault(a => a.Id == o.UserId);
-                        CancelIntegral(member, o.Id, o.IntegralDiscount);//取消订单增加积分
+                        CancelIntegral(member, o.Id, o.IntegralDiscount);//取消预约单增加积分
 
                         //拼团失败
                         if (o.OrderType == OrderInfo.OrderTypes.FightGroup)
@@ -2332,14 +2332,14 @@ namespace Himall.Service
             }
         }
 
-        //TODO LRL 2015/08/06 获取子订单对象
+        //TODO LRL 2015/08/06 获取子预约单对象
         public OrderItemInfo GetOrderItem(long orderItemId)
         {
             return Context.OrderItemInfo.FindById(orderItemId);
         }
 
         /// <summary>
-        /// 获取昨天订单交易金额
+        /// 获取昨天预约单交易金额
         /// </summary>
         /// <param name="shopId">店铺ID平台不需要填写</param>
         /// <returns></returns>
@@ -2367,7 +2367,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 昨天下单订单数
+        /// 昨天下单预约单数
         /// </summary>
         /// <param name="shopId">店铺ID平台不需要填写</param>
         /// <returns></returns>
@@ -2394,7 +2394,7 @@ namespace Himall.Service
             return num;
         }
         /// <summary>
-        /// 昨天付款订单数
+        /// 昨天付款预约单数
         /// </summary>
         /// <param name="shopId">店铺ID平台不需要填写</param>
         /// <returns></returns>
@@ -2423,7 +2423,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 商家给订单备注
+        /// 诊所给预约单备注
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="reMark"></param>
@@ -2439,12 +2439,12 @@ namespace Himall.Service
             }
             else
             {
-                throw new HimallException("找不到该订单数据");
+                throw new HimallException("找不到该预约单数据");
             }
         }
 
         /// <summary>
-        /// 根据提货码取订单
+        /// 根据提货码取预约单
         /// </summary>
         /// <param name="pickCode"></param>
         /// <returns></returns>
@@ -2462,13 +2462,13 @@ namespace Himall.Service
             if (model.CurrentUser.Id <= 0)
                 throw new InvalidPropertyException("会员Id无效");
             if (model.SkuIds == null || model.SkuIds.Count() == 0)
-                throw new InvalidPropertyException("待提交订单的商品不能为空");
+                throw new InvalidPropertyException("待提交预约单的诊疗项目不能为空");
             if (model.Counts == null || model.Counts.Count() == 0)
-                throw new InvalidPropertyException("待提交订单的商品数量不能为空");
+                throw new InvalidPropertyException("待提交预约单的诊疗项目数量不能为空");
             if (model.Counts.Count(item => item <= 0) > 0)
-                throw new InvalidPropertyException("待提交订单的商品数量必须都大于0");
+                throw new InvalidPropertyException("待提交预约单的诊疗项目数量必须都大于0");
             if (model.SkuIds.Count() != model.Counts.Count())
-                throw new InvalidPropertyException("商品数量不一致");
+                throw new InvalidPropertyException("诊疗项目数量不一致");
             if (model.ReceiveAddressId <= 0)
                 throw new InvalidPropertyException("收货地址无效");
 
@@ -2506,7 +2506,7 @@ namespace Himall.Service
                 var skuId = model.SkuIds.ElementAt(i);
                 var sku = skus.FirstOrDefault(p => p.Id == skuId);
                 if (sku == null)
-                    throw new InvalidPropertyException("未找到" + skuId + "对应的商品");
+                    throw new InvalidPropertyException("未找到" + skuId + "对应的诊疗项目");
                 if (!skuAndCounts.ContainsKey(sku))
                     skuAndCounts.Add(sku, model.Counts.ElementAt(i));
             }
@@ -2514,16 +2514,16 @@ namespace Himall.Service
             var products = productService.GetAllProductByIds(skus.Select(p => p.ProductId));
 
             if (products.Any(p => p.SaleStatus != ProductInfo.ProductSaleStatus.OnSale && p.AuditStatus != ProductInfo.ProductAuditStatus.Audited))
-                throw new InvalidPropertyException(products.Count > 1 ? "商品中有下架商品" : "商品已下架");
+                throw new InvalidPropertyException(products.Count > 1 ? "诊疗项目中有下架诊疗项目" : "诊疗项目已下架");
             if (products.Any(p => p.IsDeleted))
-                throw new InvalidPropertyException(products.Count > 1 ? "商品中有删除商品" : "商品已删除");
+                throw new InvalidPropertyException(products.Count > 1 ? "诊疗项目中有删除诊疗项目" : "诊疗项目已删除");
 
             if (products.Any(p => p.MaxBuyCount > 0))
             {
                 var buyedCounts = GetProductBuyCount(model.CurrentUser.Id, products.Where(p => p.MaxBuyCount > 0).Select(p => p.Id));
                 var outMaxBuyCountProduct = products.FirstOrDefault(p => p.MaxBuyCount > 0 && p.MaxBuyCount < skus.Where(sku => sku.ProductId == p.Id).Sum(sku => skuAndCounts[sku]) + (buyedCounts.ContainsKey(p.Id) ? buyedCounts[p.Id] : 0));
                 if (outMaxBuyCountProduct != null)
-                    throw new InvalidPropertyException(string.Format("已超出商品[{0}]的最大购买数", outMaxBuyCountProduct.ProductName));
+                    throw new InvalidPropertyException(string.Format("已超出诊疗项目[{0}]的最大购买数", outMaxBuyCountProduct.ProductName));
             }
             
             int JoinedNumber = 0;
@@ -2542,11 +2542,11 @@ namespace Himall.Service
                     var activeItem = actobj.ActiveItems.FirstOrDefault(d => d.SkuId == sku.Id);
                     if (activeItem == null)
                     {
-                        throw new InvalidPropertyException("未找到" + sku.Id + "对应的商品");
+                        throw new InvalidPropertyException("未找到" + sku.Id + "对应的诊疗项目");
                     }
                     if (activeItem.ActiveStock < buynum)
                     {
-                        throw new InvalidPropertyException("商品“" + actobj.ProductName + "”库存不够，仅剩" + activeItem.ActiveStock + "件");
+                        throw new InvalidPropertyException("诊疗项目“" + actobj.ProductName + "”库存不够，仅剩" + activeItem.ActiveStock + "件");
                     }
 
                     //sku.SalePrice = Convert.ToDecimal(activeItem.ActivePrice - actobj.ReturnMoney * JoinedNumber);
@@ -2570,7 +2570,7 @@ namespace Himall.Service
 
                     if (sku.Stock < buynum)
                     {
-                        throw new HimallException("商品“" + product.ProductName + "”库存不够，仅剩" + sku.Stock + "件");
+                        throw new HimallException("诊疗项目“" + product.ProductName + "”库存不够，仅剩" + sku.Stock + "件");
                     }
                 }
 
@@ -2610,7 +2610,7 @@ namespace Himall.Service
         /// <summary>
         /// 设置运费
         /// </summary>
-        /// <param name="order">订单</param>
+        /// <param name="order">预约单</param>
         /// <param name="freight">运费</param>
         public void SetFreight(OrderInfo order, decimal freight)
         {
@@ -2622,17 +2622,17 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 设置订单状态为完成
+        /// 设置预约单状态为完成
         /// </summary>
         public void SetStateToConfirm(OrderInfo order)
         {
             if (order == null)
             {
-                throw new HimallException("处理订单错误，请确认该订单状态正确");
+                throw new HimallException("处理预约单错误，请确认该预约单状态正确");
             }
             if (order.OrderStatus != OrderInfo.OrderOperateStatus.WaitReceiving)
             {
-                throw new HimallException("只有等待收货状态的订单才能进行确认操作");
+                throw new HimallException("只有等待结算状态的预约单才能进行确认操作");
             }
             if (order.PaymentType == OrderInfo.PaymentTypes.CashOnDelivery)
             {
@@ -2643,9 +2643,9 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 关闭订单
+        /// 关闭预约单
         /// </summary>
-        /// <param name="order">订单ID</param>
+        /// <param name="order">预约单ID</param>
         /// <param name="closeReason">理由</param>
         public void CloseOrder(OrderInfo order)
         {
@@ -2654,7 +2654,7 @@ namespace Himall.Service
             order.OrderStatus = OrderInfo.OrderOperateStatus.Close;
         }
         /// <summary>
-        /// 检测订单是否可以被关闭
+        /// 检测预约单是否可以被关闭
         /// </summary>
         /// <param name="order"></param>
         public void CheckCloseOrder(OrderInfo order)
@@ -2672,13 +2672,13 @@ namespace Himall.Service
                         fgord.JoinStatus == FightGroupOrderJoinStatus.BuildSuccess.GetHashCode()
                         )
                     {
-                        throw new HimallException("拼团订单不可关闭");
+                        throw new HimallException("拼团预约单不可关闭");
                     }
                 }
             }
             else
             {
-                throw new HimallException("只有待付款状态或货到付款待发货状态的订单才能进行取消操作");
+                throw new HimallException("只有待付款状态或货到付款待发货状态的预约单才能进行取消操作");
             }
         }
 
@@ -2708,11 +2708,11 @@ namespace Himall.Service
         {
             if (item.RealTotalPrice - discountAmount < 0)
             {
-                throw new HimallException("优惠金额不能大于商品总金额！");
+                throw new HimallException("优惠金额不能大于诊疗项目总金额！");
             }
             if (order.OrderTotalAmount - discountAmount < 0)
             {
-                throw new HimallException("减价不能导致订单总金额为负值！");
+                throw new HimallException("减价不能导致预约单总金额为负值！");
             }
 
             return item.RealTotalPrice - discountAmount;
@@ -2721,7 +2721,7 @@ namespace Himall.Service
 
         private static object obj = new object();
         /// <summary>
-        ///  生成订单号
+        ///  生成预约单号
         /// </summary>
         public long GenerateOrderNumber()
         {
@@ -2743,7 +2743,7 @@ namespace Himall.Service
 
         private static object objpay = new object();
         /// <summary>
-        /// 生成支付订单号
+        /// 生成支付预约单号
         /// </summary>
         /// <returns></returns>
         public long GetOrderPayId()
@@ -2777,14 +2777,14 @@ namespace Himall.Service
             }
         }
 
-        #region 创建额外订单信息
+        #region 创建额外预约单信息
         /// <summary>
-        /// 从订单对象中拆分出额外的订单信息
+        /// 从预约单对象中拆分出额外的预约单信息
         /// </summary>
         public OrderCreateAdditional CreateAdditional(IEnumerable<OrderSkuInfo> orderSkuInfos, OrderCreateModel model)
         {
-            var baseOrderCoupons = GetOrdersCoupons(model.CurrentUser.Id, model.CouponIdsStr);//获取所有订单使用的优惠券列表
-            var orderIntegral = GetIntegralDiscountAmount(model.Integral, model.CurrentUser.Id);//获取所有订单能使用的积分金额
+            var baseOrderCoupons = GetOrdersCoupons(model.CurrentUser.Id, model.CouponIdsStr);//获取所有预约单使用的优惠券列表
+            var orderIntegral = GetIntegralDiscountAmount(model.Integral, model.CurrentUser.Id);//获取所有预约单能使用的积分金额
             var address = ServiceProvider.Instance<IShippingAddressService>.Create.GetUserShippingAddress(model.ReceiveAddressId);//获取用户的收货地址
             if (address == null)
             {
@@ -2818,7 +2818,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取所有订单使用的优惠券列表
+        /// 获取所有预约单使用的优惠券列表
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="couponIdsStr"></param>
@@ -2866,13 +2866,13 @@ namespace Himall.Service
         }
         #endregion
 
-        #region  创建订单列表对象
+        #region  创建预约单列表对象
         /// <summary>
-        /// 创建订单列表对象
+        /// 创建预约单列表对象
         /// </summary>
         public List<OrderInfo> GetOrderInfos(IEnumerable<OrderSkuInfo> orderSkuInfos, OrderCreateModel model, OrderCreateAdditional additional)
         {
-            //把购买的商品信息按店铺分组
+            //把购买的诊疗项目信息按店铺分组
             var cartGroupInfo = orderSkuInfos.GroupBy(item => item.Product.ShopId).ToList();
 
             List<OrderInfo> infos = new List<OrderInfo>();
@@ -2881,13 +2881,13 @@ namespace Himall.Service
             {
                 string remark = string.Empty;
                 if (model.OrderRemarks.LongCount() >= i + 1)
-                {//如果有输入备注，则补充。正常情况下，备注条数与订单数一致
+                {//如果有输入备注，则补充。正常情况下，备注条数与预约单数一致
                     remark = model.OrderRemarks.ElementAt(i);
                 }
                 var order = CreateOrderInfo(item, model, additional, remark);
                 order.DeliveryType = CommonModel.Enum.DeliveryType.Express;
                 if (model.OrderShops != null)
-                {//过滤null,商城APP订单提交时，暂未处理门店逻辑
+                {//过滤null,商城APP预约单提交时，暂未处理门店逻辑
                     var orderShop = model.OrderShops.FirstOrDefault(p => p.ShopId == order.ShopId);
                     if (orderShop != null)
                     {
@@ -2909,11 +2909,11 @@ namespace Himall.Service
                 infos.Add(order);
             }
 
-            //计算商品总金额，并且减去优惠券的金额，减满额减价格
-            decimal productsTotals = infos.Sum(a => a.ProductTotal); //商品价-优惠券-满额减
+            //计算诊疗项目总金额，并且减去优惠券的金额，减满额减价格
+            decimal productsTotals = infos.Sum(a => a.ProductTotal); //诊疗项目价-优惠券-满额减
             if (additional.IntegralTotal > productsTotals)
             {
-                throw new HimallException("积分抵扣金额不能超过商品总金额！");
+                throw new HimallException("积分抵扣金额不能超过诊疗项目总金额！");
             }
 
             //处理积分
@@ -2927,7 +2927,7 @@ namespace Himall.Service
             return infos;
         }
         /// <summary>
-        /// 创建单个订单对象
+        /// 创建单个预约单对象
         /// </summary>
         /// <returns></returns>
         private OrderInfo CreateOrderInfo(IGrouping<long, OrderSkuInfo> groupItem, OrderCreateModel model, OrderCreateAdditional additional, string remark)
@@ -2942,13 +2942,13 @@ namespace Himall.Service
             var shop = ServiceProvider.Instance<IShopService>.Create.GetShop(groupItem.Key);
             if (shop.ShopStatus == ShopInfo.ShopAuditStatus.Freeze || shop.ShopStatus == ShopInfo.ShopAuditStatus.HasExpired)
             {
-                throw new HimallException(shop.ShopName + "已冻结或者过期，请移除此店铺的商品！");
+                throw new HimallException(shop.ShopName + "已冻结或者过期，请移除此店铺的诊疗项目！");
             }
 
             IEnumerable<long> productIds = groupItem.ToList().Select(item => item.Product.Id);
             IEnumerable<int> productCounts = groupItem.ToList().Select(item => (int)item.Quantity);
 
-            //总的商品价格计算每一个订单项的价格
+            //总的诊疗项目价格计算每一个预约单项的价格
             //  decimal productTotalAmount = groupItem.Sum(item => GetSalePrice(item.Product.Id, item.SKU, item.ColloPid, productIds.Count()) * item.Quantity);
 
             //货到付款相关
@@ -2987,7 +2987,7 @@ namespace Himall.Service
                 Freight = ServiceProvider.Instance<IProductService>.Create.GetFreight(productIds, productCounts, cityId),
                 IsPrinted = false,
                 OrderRemarks = remark,
-                // ProductTotalAmount = productTotalAmount,商品总价格
+                // ProductTotalAmount = productTotalAmount,诊疗项目总价格
                 RefundTotalAmount = 0,
                 CommisTotalAmount = 0,
                 RefundCommisAmount = 0,
@@ -3007,7 +3007,7 @@ namespace Himall.Service
             }
             if (model.ActiveId > 0)
             {
-                order.OrderType = Himall.Model.OrderInfo.OrderTypes.FightGroup;  //拼团订单
+                order.OrderType = Himall.Model.OrderInfo.OrderTypes.FightGroup;  //拼团预约单
             }
             if (model.IslimitBuy)
             {
@@ -3027,7 +3027,7 @@ namespace Himall.Service
             {
                 if (item.Product.SaleStatus != Himall.Model.ProductInfo.ProductSaleStatus.OnSale || item.Product.AuditStatus != Himall.Model.ProductInfo.ProductAuditStatus.Audited)
                 {
-                    throw new HimallException("订单中有失效的商品，请返回重新提交！");
+                    throw new HimallException("预约单中有失效的诊疗项目，请返回重新提交！");
                 }
                 var orderItem = new OrderItemInfo();
                 orderItem.OrderId = order.Id;
@@ -3054,10 +3054,10 @@ namespace Himall.Service
                 {
                     bool IsDistributionProduct = Context.DistributionUserLinkInfo.Any(a => a.PartnerId == order.ShareUserId && a.ShopId == order.ShopId);
 
-                    if (IsDistributionProduct)//如果用户分享过此店铺的商品则计算佣金
+                    if (IsDistributionProduct)//如果用户分享过此店铺的诊疗项目则计算佣金
                     {
                         var productRate = Context.ProductBrokerageInfo.Where(a => a.ProductId == item.Product.Id && a.Status == ProductBrokerageInfo.ProductBrokerageStatus.Normal).FirstOrDefault();
-                        if (productRate != null && productRate.rate != 0) //商品的佣金比例存在订单表防止改价的时候直接存金额不正确
+                        if (productRate != null && productRate.rate != 0) //诊疗项目的佣金比例存在预约单表防止改价的时候直接存金额不正确
                         {
                             orderItem.DistributionRate = productRate.rate;
                         }
@@ -3089,7 +3089,7 @@ namespace Himall.Service
                 order.OrderItemInfo.Add(orderItem);
             }
 
-            //订单的商品价格只包含会员价，限时购价，拼团价等不包含其他优惠
+            //预约单的诊疗项目价格只包含会员价，限时购价，拼团价等不包含其他优惠
             order.ProductTotalAmount = order.OrderItemInfo.Sum(a => a.RealTotalPrice);
 
             //处理平摊满额减
@@ -3119,7 +3119,7 @@ namespace Himall.Service
                     {
                         throw new HimallException("优惠券不满足使用条件");
                     }
-                    if (couponDiscount >= order.ProductTotalAmount) //优惠券面值大于商品总金额,优惠金额为订单总金额
+                    if (couponDiscount >= order.ProductTotalAmount) //优惠券面值大于诊疗项目总金额,优惠金额为预约单总金额
                     {
                         order.DiscountAmount = order.ProductTotalAmount;
                     }
@@ -3127,7 +3127,7 @@ namespace Himall.Service
                     {
                         order.DiscountAmount = couponDiscount;
                     }
-                    //订单处理平摊优惠券
+                    //预约单处理平摊优惠券
                     SetActualItemPrice(order);
                 }
             }
@@ -3143,7 +3143,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 订单提交处理满额减
+        /// 预约单提交处理满额减
         /// </summary>
         /// <param name="order"></param>
         private static void SetOrderFullDiscount(OrderInfo order)
@@ -3159,7 +3159,7 @@ namespace Himall.Service
                 {
                     items = items.Where(a => pids.Contains(a.ProductId)).ToList();
                 }
-                var realTotal = items.Sum(a => a.RealTotalPrice);  //满足满额减的总商品金额
+                var realTotal = items.Sum(a => a.RealTotalPrice);  //满足满额减的总诊疗项目金额
                 var rule = active.Rules.Where(a => a.Quota <= realTotal).OrderByDescending(a => a.Quota).FirstOrDefault();
                 decimal fullDiscount = 0;
                 if (rule != null)//找不到就是不满足金额
@@ -3168,7 +3168,7 @@ namespace Himall.Service
                     var infos = items.ToArray();
                     var count = items.Count();
                     decimal itemFullDiscount = 0;
-                    //平分优惠金额到各个订单项
+                    //平分优惠金额到各个预约单项
                     for (var i = 0; i < count; i++)
                     {
                         var _order = infos[i];
@@ -3182,7 +3182,7 @@ namespace Himall.Service
                             infos[i].FullDiscount = fullDiscount - itemFullDiscount;
                         }
                     }
-                    orderFullDiscount += fullDiscount; //订单总优惠金额 
+                    orderFullDiscount += fullDiscount; //预约单总优惠金额 
                 }
 
             }
@@ -3220,7 +3220,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 处理商品库存，这是订单服务内部的方法，整个网站就一个地方使用
+        /// 处理诊疗项目库存，这是预约单服务内部的方法，整个网站就一个地方使用
         /// </summary>
         /// <param name="skuId"></param>
         /// <param name="stockChange"></param>
@@ -3231,7 +3231,7 @@ namespace Himall.Service
             {
                 sku.Stock += stockChange;
                 if (sku.Stock < 0)
-                    throw new HimallException("商品库存不足");
+                    throw new HimallException("诊疗项目库存不足");
             }
         }
 
@@ -3276,8 +3276,8 @@ namespace Himall.Service
 
         #region 私有方法
         /// <summary>
-        /// 处理自提订单提货码
-        /// <para>拼团订单的提货码需要成团成功后生成</para>
+        /// 处理自提预约单提货码
+        /// <para>拼团预约单的提货码需要成团成功后生成</para>
         /// </summary>
         /// <param name="order"></param>
         /// <param name="isMust">必须生成</param>
@@ -3368,8 +3368,10 @@ namespace Himall.Service
             }
             if (!string.IsNullOrWhiteSpace(query.ShopName))
                 orders = orders.Where(p => p.ShopName.Contains(query.ShopName));
+            //if (!string.IsNullOrWhiteSpace(query.UserName))
+            //    orders = orders.Where(p => p.UserName.Contains(query.UserName));
             if (!string.IsNullOrWhiteSpace(query.UserName))
-                orders = orders.Where(p => p.UserName.Contains(query.UserName));
+                orders = orders.Where(p => p.ShipTo.Contains(query.UserName));
             if (query.UserId.HasValue)
             {
                 var userId = query.UserId.Value;
@@ -3459,7 +3461,7 @@ namespace Himall.Service
             if ((query.ShopBranchId.HasValue && query.ShopBranchId.Value != 0) || !string.IsNullOrWhiteSpace(query.ShopBranchName))
             {
                 //orders = orders.Where(p => p.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake);
-                orders = orders.Where(p => p.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake || (p.ShopBranchId.HasValue && p.ShopBranchId.Value > 0));//3.0版本新增订单自动分配到门店，其配送方式不是到店自提但仍属于门店订单
+                orders = orders.Where(p => p.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake || (p.ShopBranchId.HasValue && p.ShopBranchId.Value > 0));//3.0版本新增预约单自动分配到门店，其配送方式不是到店自提但仍属于门店预约单
 
                 if (query.ShopBranchId.HasValue)
                 {
@@ -3494,7 +3496,7 @@ namespace Himall.Service
         #endregion
         #region 分配门店
         /// <summary>
-        /// 商家订单分配门店时更新商家、门店库存(单个订单)
+        /// 诊所预约单分配门店时更新诊所、门店库存(单个预约单)
         /// </summary>
         /// <param name="skuIds"></param>
         /// <param name="quantity"></param>
@@ -3518,7 +3520,7 @@ namespace Himall.Service
                             sbSku.Stock -= quantity;
 
                         if (sbSku.Stock < 0)
-                            throw new HimallException("门店商品库存不足");
+                            throw new HimallException("门店诊疗项目库存不足");
                     }
                     Context.SaveChanges();
                     //提交事务
@@ -3528,7 +3530,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 更改旧门店订单到新门店(单个订单)
+        /// 更改旧门店预约单到新门店(单个预约单)
         /// </summary>
         /// <param name="stuIds"></param>
         /// <param name="newShopBranchId"></param>
@@ -3549,7 +3551,7 @@ namespace Himall.Service
                     if (sbSkuOld != null)
                         sbSkuOld.Stock += quantity;
                     if (sbSkuNew.Stock < 0)
-                        throw new HimallException("门店商品库存不足");
+                        throw new HimallException("门店诊疗项目库存不足");
                 }
                 Context.SaveChanges();
                 //提交事务
@@ -3558,7 +3560,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 更改门店订单回到商家(单个订单)
+        /// 更改门店预约单回到诊所(单个预约单)
         /// </summary>
         public void DistributionStoreUpdateStockToShop(List<string> skuIds, List<int> counts, long shopBranchId)
         {
@@ -3578,7 +3580,7 @@ namespace Himall.Service
                         sbSku.Stock += quantity;
 
                     if (sku.Stock < 0)
-                        throw new HimallException("商品库存不足");
+                        throw new HimallException("诊疗项目库存不足");
                 }
 
                 Context.SaveChanges();
@@ -3587,7 +3589,7 @@ namespace Himall.Service
             }
         }
         /// <summary>
-        /// 更新订单所属门店
+        /// 更新预约单所属门店
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="shopBranchId"></param>
@@ -3596,13 +3598,13 @@ namespace Himall.Service
             var orderdata = Context.OrderInfo.FirstOrDefault(d => d.Id == orderId);
             if (orderdata == null)
             {
-                throw new HimallException("错误的订单编号");
+                throw new HimallException("错误的预约单编号");
             }
             orderdata.ShopBranchId = shopBranchId;
             Context.SaveChanges();
         }
         #endregion
-        #region 门店/商家APP发货消息推送
+        #region 门店/诊所APP发货消息推送
         public void SendAppMessage(OrderInfo orderInfo)
         {
             var app = new AppMessagesInfo()
@@ -3611,7 +3613,7 @@ namespace Himall.Service
                 IsRead = false,
                 sendtime = DateTime.Now,
                 SourceId = orderInfo.Id,
-                Title = "您有新的订单",
+                Title = "您有新的预约单",
                 TypeId = (int)AppMessagesType.Order,
                 OrderPayDate = Core.Helper.TypeHelper.ObjectToDateTime(orderInfo.PayDate),
                 ShopId = 0,
@@ -3625,7 +3627,7 @@ namespace Himall.Service
 
             if (orderInfo.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake)
             {
-                app.Title = "您有新自提订单";
+                app.Title = "您有新自提预约单";
                 app.TypeId = (int)AppMessagesType.Order;
                 app.Content = string.Format("{0} 等待您备货", orderInfo.Id);
             }
@@ -3653,6 +3655,73 @@ namespace Himall.Service
                 return;
             this.Context.InvoiceTitleInfo.Remove(entity);
             this.Context.SaveChanges();
+        }
+
+
+        /// <summary>
+        /// 完成订单
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="userName"></param>
+        public void EndOrder(long orderId, string userName)
+        {
+            OrderInfo order = Context.OrderInfo.FindById(orderId);
+            if (order == null)
+            {
+                throw new HimallException("错误的预约单编号！");
+            }
+            if (order.OrderStatus == OrderInfo.OrderOperateStatus.Finish)
+            {
+                throw new HimallException("您的预约单已被确认了，不需再重复操作！");
+            }
+            
+            order.CloseReason = "诊所确认预约单";
+            order.OrderStatus = OrderInfo.OrderOperateStatus.Finish;
+            order.LastModifyTime = DateTime.Now;
+            Context.SaveChanges();
+
+            //处理推荐用户佣金
+            //if (order.ShareUserId.HasValue)
+            //{
+            //    //增加分销员清退处理
+            //    //var promoter = Context.PromoterInfo.FirstOrDefault(e => e.UserId == order.ShareUserId.Value);
+            //    //if (promoter != null && promoter.Status == PromoterInfo.PromoterStatus.Audited)
+            //    //{
+            //        //只有审核状态的分销员才计算佣金
+            //        //处理佣金
+            //        foreach (var item in order.OrderItemInfo)
+            //        {
+            //            if (item.DistributionRate.HasValue && item.DistributionRate.Value > 0)
+            //            {
+            //                var income = new BrokerageIncomeInfo();
+            //                income.SkuID = item.SkuId;
+            //                income.SkuInfo = item.SKU;
+            //                income.ProductID = item.ProductId;
+            //                income.OrderItemId = item.Id;
+            //                income.OrderId = item.OrderId;
+            //                income.ProductName = item.ProductName;
+            //                income.CreateTime = DateTime.Now;
+            //                income.OrderTime = order.OrderDate;
+            //                income.ShopId = item.ShopId;
+            //                income.TotalPrice = item.RealTotalPrice;
+            //                income.SettlementTime = null;
+            //                income.UserId = order.ShareUserId.Value;
+            //                income.Status = BrokerageIncomeInfo.BrokerageStatus.NotSettled;
+            //                income.Brokerage = Math.Round((item.DistributionRate.Value * (item.RealTotalPrice - item.CouponDiscount - item.FullDiscount)) / 100, 2, MidpointRounding.AwayFromZero);
+            //                income.BuyerUserId = order.UserId;
+            //                Context.BrokerageIncomeInfo.Add(income);
+            //                var m = Context.ProductBrokerageInfo.Where(a => a.ProductId == item.ProductId).FirstOrDefault();
+            //                m.saleAmount += item.RealTotalPrice;
+            //                m.SaleNum += Convert.ToInt32(item.Quantity); //增加诊疗项目销售量和诊疗项目销售额
+            //                m.BrokerageTotal += income.Brokerage;
+            //            }
+            //        }
+            //        Context.SaveChanges();
+            //    //}
+            //}
+            //var member = Context.UserMemberInfo.FirstOrDefault(a => a.UserName == order.UserName);
+            //AddIntegral(member, order.Id, order.ActualPayAmount);//增加积分
+
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Himall.Web.Areas.SellerAdmin.Models
 		public long? SafeStock { get; set; }
 
 		/// <summary>
-		/// 商家修改的规格
+		/// 诊所修改的规格
 		/// </summary>
 		public SpecificationValue[] UpdateSpecs
 		{
@@ -87,7 +87,7 @@ namespace Himall.Web.Areas.SellerAdmin.Models
 		#region 方法
 		public SellerSpecificationValue[] GetSellerSpecification(long shopId, long productTypeId)
 		{
-			//保存商家自定义规格
+			//保存诊所自定义规格
 			if (this.UpdateSpecs != null && this.UpdateSpecs.Length > 0)
 			{
 				return this.UpdateSpecs.Select(item => new SellerSpecificationValue()
@@ -235,18 +235,18 @@ namespace Himall.Web.Areas.SellerAdmin.Models
 			RuleFor(p => p.Stock).NotNull().WithMessage("请输入库存").GreaterThanOrEqualTo(0).WithMessage("请输入正确的库存");
 			RuleFor(p => p.MinSalePrice).NotNull().WithMessage("请输入吊牌价").GreaterThanOrEqualTo((decimal)0.01).WithMessage("请输入正确的金额");
 			RuleFor(p => p.CategoryId).NotNull().WithMessage("请选择平台分类");
-			RuleFor(p => p.ProductName).NotNull().WithMessage("请输入商品名称").Length(1, 100).WithMessage("商品名称不能超过100个字符");
-			RuleFor(p => p.ProductCode).NotNull().WithMessage("请输入商品货号").Length(1, 100).WithMessage("商品货号不能超过100个字符");
+			RuleFor(p => p.ProductName).NotNull().WithMessage("请输入诊疗项目名称").Length(1, 100).WithMessage("诊疗项目名称不能超过100个字符");
+			RuleFor(p => p.ProductCode).NotNull().WithMessage("请输入诊疗项目货号").Length(1, 100).WithMessage("诊疗项目货号不能超过100个字符");
 			RuleFor(p => p.ShortDescription).Length(0, 4000).WithMessage("广告词过长");
 			RuleFor(p => p.MarketPrice).NotNull().WithMessage("请输入默认供货价").GreaterThanOrEqualTo((decimal)0.01).WithMessage("请输入大于0.01的金额");
 			RuleFor(p => p.MeasureUnit).NotNull().WithMessage("请输入计量单位").Length(1, 20).WithMessage("计量单位不能超过20个字符");
 			RuleFor(p => p.FreightTemplateId).NotNull().WithMessage("请选择运费模版").GreaterThan(0).WithMessage("请选择运费模版");
-			//RuleFor(p => p.Pics).SetValidator(new PicsValidator("请至少上传一张商品图片"));
-			RuleFor(p => p.Description).NotNull().WithMessage("请输入用于PC端展示的商品描述");
-			RuleFor(p => p.Description.Description).NotNull().WithMessage("请输入用于PC端展示的商品描述");
-			RuleFor(p => p.Description.MobileDescription).NotNull().WithMessage("请输入用于手机端展示的商品描述");
-            RuleFor(p => p.Weight).NotNull().WithMessage("请输入商品重量");
-            RuleFor(p => p.Volume).NotNull().WithMessage("请输入商品体积");
+			//RuleFor(p => p.Pics).SetValidator(new PicsValidator("请至少上传一张诊疗项目图片"));
+			RuleFor(p => p.Description).NotNull().WithMessage("请输入用于PC端展示的诊疗项目描述");
+			RuleFor(p => p.Description.Description).NotNull().WithMessage("请输入用于PC端展示的诊疗项目描述");
+			RuleFor(p => p.Description.MobileDescription).NotNull().WithMessage("请输入用于手机端展示的诊疗项目描述");
+            RuleFor(p => p.Weight).NotNull().WithMessage("请输入诊疗项目重量");
+            RuleFor(p => p.Volume).NotNull().WithMessage("请输入诊疗项目体积");
         }
 	}
 

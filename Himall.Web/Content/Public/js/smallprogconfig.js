@@ -33,18 +33,18 @@ $(function () {
         Topic: "/Admin/TemplateVisualizationAjax/Hi_Ajax_Topic",//专题
         LimitBuy: "/Admin/TemplateVisualizationAjax/Hi_Ajax_SmallProgLimitBuy",//限时购列表
         Bonus: "/Admin/TemplateVisualizationAjax/Hi_Ajax_Bonus",//现金红包
-        /*商品相关 start*/
-        GoodsList: "/Admin/TemplateVisualizationAjax/Hi_Ajax_GetSmallProgGoodsList",//商品列表
-        goodGroup: "/Admin/TemplateVisualizationAjax/Hi_Ajax_GoodsGourp",//商品分类
-        /*商品相关 end*/
+        /*诊疗项目相关 start*/
+        GoodsList: "/Admin/TemplateVisualizationAjax/Hi_Ajax_GetSmallProgGoodsList",//诊疗项目列表
+        goodGroup: "/Admin/TemplateVisualizationAjax/Hi_Ajax_GoodsGourp",//诊疗项目分类
+        /*诊疗项目相关 end*/
         gamesUrl: "/Admin/TemplateVisualizationAjax/Hi_Ajax_GetGames"
     }
 
     HiShop.Config.CodeBehind = {
-        /*解析商品分组数据接口*/
-        getGoodGroupUrl: "/api/Hi_Ajax_GoodsListGroup",//解析商品分组  
-        /*解析商品数据接口*/
-        getGoodUrl: "/api/Hi_Ajax_GoodsList"//解析商品 
+        /*解析诊疗项目分组数据接口*/
+        getGoodGroupUrl: "/api/Hi_Ajax_GoodsListGroup",//解析诊疗项目分组  
+        /*解析诊疗项目数据接口*/
+        getGoodUrl: "/api/Hi_Ajax_GoodsList"//解析诊疗项目 
       
     }
     HiShop.Config.HiTempLatePath = {

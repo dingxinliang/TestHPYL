@@ -25,7 +25,7 @@ namespace Himall.Application
 
 		#region 方法
 		/// <summary>
-		/// 获取所有的商品类型列表，包括分页信息
+		/// 获取所有的诊疗项目类型列表，包括分页信息
 		/// search是搜索条件，如果search为空即显示全部
 		/// </summary>
 		/// <param name="search">搜索条件</param>
@@ -45,7 +45,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 获取所有的商品类型列表
+		/// 获取所有的诊疗项目类型列表
 		/// </summary>
 		/// <returns></returns>
 		public static List<ProductTypeInfo> GetTypes()
@@ -54,7 +54,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 根据Id获取商品类型实体
+		/// 根据Id获取诊疗项目类型实体
 		/// </summary>
 		/// <param name="id">类型Id</param>
 		/// <returns></returns>
@@ -64,7 +64,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 更新商品类型
+		/// 更新诊疗项目类型
 		/// </summary>
 		/// <param name="model"></param>
 		public static void UpdateType(DTO.ProductType model)
@@ -73,7 +73,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 删除商品类型
+		/// 删除诊疗项目类型
 		/// </summary>
 		/// <param name="id"></param>
 		public static void DeleteType(long id)
@@ -82,7 +82,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 创建商品类型
+		/// 创建诊疗项目类型
 		/// </summary>
 		/// <param name="model"></param>
 		public static void AddType(DTO.ProductType model)

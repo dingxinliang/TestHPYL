@@ -88,7 +88,7 @@ function chooseImgAdJumpUrl() {
         finaly = topicId[topicId.length - 1];
     }
 
-    //商品表格
+    //诊疗项目表格
     $("#ImgAdGrid").hiMallDatagrid({
         url: queryUrl,
         nowrap: false,

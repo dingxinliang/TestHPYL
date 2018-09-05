@@ -13,27 +13,27 @@ namespace Himall.CommonModel.Enum
 	public enum OrderRefundStep:short
 	{
 		/// <summary>
-		/// 待商家/门店审核
+		/// 待诊所/门店审核
 		/// </summary>
-		[Description("待商家审核")]
+		[Description("待诊所审核")]
 		WaitAudit = 1,
 
 		/// <summary>
-		/// 待买家寄货
+		/// 待患者寄货
 		/// </summary>
-		[Description("待买家寄货")]
+		[Description("待患者寄货")]
 		WaitDelivery = 2,
 
 		/// <summary>
-		/// 待商家/门店收货
+		/// 待诊所/门店收货
 		/// </summary>
-		[Description("待商家收货")]
+		[Description("待诊所收货")]
 		WaitReceiving = 3,
 
 		/// <summary>
-		/// 商家/门店拒绝
+		/// 诊所/门店拒绝
 		/// </summary>
-		[Description("商家拒绝")]
+		[Description("诊所拒绝")]
 		UnAudit = 4,
 
 		/// <summary>

@@ -24,13 +24,13 @@ namespace Himall.IServices
         TemplateVisualizationSettingsInfo GetCurrentTemplate(long shopId=0);
 
         /// <summary>
-        /// 从缓存取首页商品Tag
+        /// 从缓存取首页诊疗项目Tag
         /// </summary>
         /// <param name="page">页码</param>
         /// <returns></returns>
         string GetGoodTagFromCache(long page, string tName="");
         /// <summary>
-        /// 从缓存取店铺首页商品Tag
+        /// 从缓存取店铺首页诊疗项目Tag
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="page"></param>

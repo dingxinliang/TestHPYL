@@ -16,7 +16,7 @@ namespace Himall.Service
 		}
 
 		/// <summary>
-		/// 获取所有商品分类并缓存
+		/// 获取所有诊疗项目分类并缓存
 		/// </summary>
 		/// <returns></returns>
 		IEnumerable<ShopCategoryInfo> GetCategories()
@@ -39,7 +39,7 @@ namespace Himall.Service
 		public void AddCategory(ShopCategoryInfo model)
 		{
 			if (null == model)
-				throw new ArgumentNullException("model", "添加一个商品分类时，Model为空");
+				throw new ArgumentNullException("model", "添加一个诊疗项目分类时，Model为空");
 
 			var obja = Context.ShopCategoryInfo.Where(r => r.Name.Equals(model.Name) && r.ShopId == model.ShopId && r.ParentCategoryId == model.ParentCategoryId);
 			if (obja.Count() > 0)
@@ -53,7 +53,7 @@ namespace Himall.Service
 		public ShopCategoryInfo GetCategoryByProductId(long id)
 		{
 			if (id <= 0)
-				throw new ArgumentNullException("id", string.Format("获取一个商品分类时，id={0}", id));
+				throw new ArgumentNullException("id", string.Format("获取一个诊疗项目分类时，id={0}", id));
 
 			//var model = GetCategories().Where(t => t.Id == id).FirstOrDefault();
 
@@ -73,7 +73,7 @@ namespace Himall.Service
 		public ShopCategoryInfo GetCategory(long id)
 		{
 			if (id <= 0)
-				throw new ArgumentNullException("id", string.Format("获取一个商品分类时，id={0}", id));
+				throw new ArgumentNullException("id", string.Format("获取一个诊疗项目分类时，id={0}", id));
 
 			var model = GetCategories().Where(t => t.Id == id).FirstOrDefault();
 			//var model = context.ProductShopCategoryInfo.Where(p => p.ProductId == id).FirstOrDefault().ShopCategoryInfo;
@@ -84,13 +84,13 @@ namespace Himall.Service
 		public void UpdateCategoryName(long id, string name)
 		{
 			if (id <= 0)
-				throw new ArgumentNullException("id", string.Format("更新一个商品分类的名称时，id={0}", id));
+				throw new ArgumentNullException("id", string.Format("更新一个诊疗项目分类的名称时，id={0}", id));
 			if (string.IsNullOrWhiteSpace(name))
-				throw new ArgumentNullException("name", "更新一个商品分类的名称时，name为空");
+				throw new ArgumentNullException("name", "更新一个诊疗项目分类的名称时，name为空");
 
 			var category = Context.ShopCategoryInfo.FindById(id);
 			if (null == category || category.Id != id)
-				throw new HimallException(string.Format("更新一个商品分类的名称时，找不到id={0} 的商品分类", id));
+				throw new HimallException(string.Format("更新一个诊疗项目分类的名称时，找不到id={0} 的诊疗项目分类", id));
 
 
 			var obja = Context.ShopCategoryInfo.Where(r => r.Name.Equals(name) && r.ShopId == category.ShopId && r.ParentCategoryId == category.ParentCategoryId && r.Id != id);
@@ -106,13 +106,13 @@ namespace Himall.Service
 		public void UpdateCategoryDisplaySequence(long id, long displaySequence)
 		{
 			if (id <= 0)
-				throw new ArgumentNullException("id", string.Format("更新一个商品分类的显示顺序时，id={0}", id));
+				throw new ArgumentNullException("id", string.Format("更新一个诊疗项目分类的显示顺序时，id={0}", id));
 			if (0 >= displaySequence)
-				throw new ArgumentNullException("displaySequence", "更新一个商品分类的显示顺序时，displaySequence小于等于零");
+				throw new ArgumentNullException("displaySequence", "更新一个诊疗项目分类的显示顺序时，displaySequence小于等于零");
 
 			var category = Context.ShopCategoryInfo.FindById(id);
 			if (null == category || category.Id != id)
-				throw new Exception(string.Format("更新一个商品分类的显示顺序时，找不到id={0} 的商品分类", id));
+				throw new Exception(string.Format("更新一个诊疗项目分类的显示顺序时，找不到id={0} 的诊疗项目分类", id));
 
 			category.DisplaySequence = displaySequence;
 			Context.SaveChanges();
@@ -124,7 +124,7 @@ namespace Himall.Service
 		public IEnumerable<ShopCategoryInfo> GetCategoryByParentId(long id)
 		{
 			if (id < 0)
-				throw new ArgumentNullException("id", string.Format("获取子级商品分类时，id={0}", id));
+				throw new ArgumentNullException("id", string.Format("获取子级诊疗项目分类时，id={0}", id));
 
 			if (id == 0)
 			{

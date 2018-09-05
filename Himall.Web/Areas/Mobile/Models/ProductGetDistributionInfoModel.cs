@@ -9,7 +9,7 @@ namespace Himall.Web.Areas.Mobile.Models
     public class ProductGetDistributionInfoModel
     {
         /// <summary>
-        /// 是否分销商品
+        /// 是否分销诊疗项目
         /// </summary>
         public bool IsDistribution { get; set; }
         /// <summary>
@@ -17,7 +17,7 @@ namespace Himall.Web.Areas.Mobile.Models
         /// </summary>
         public decimal Brokerage { get; set; }
         /// <summary>
-        /// 商品编号
+        /// 诊疗项目编号
         /// </summary>
         public long ProductId { get; set; }
         /// <summary>

@@ -153,7 +153,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 ShopBranch shopBranchById = ShopBranchApplication.GetShopBranchById(shopBranch.Id);
                 if ((shopBranchById != null) && (shopBranchById.ShopId != shopBranch.ShopId))
                 {
-                    throw new HimallException("不能修改其他商家的门店！");
+                    throw new HimallException("不能修改其他诊所的门店！");
                 }
                 try
                 {
@@ -253,7 +253,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 LogInfo info = new LogInfo
                 {
                     Date = DateTime.Now,
-                    Description = string.Format("{0}:订单自动分配到门店", autoAllotOrder ? "开启" : "关闭"),
+                    Description = string.Format("{0}:预约单自动分配到门店", autoAllotOrder ? "开启" : "关闭"),
                     IPAddress = base.Request.UserHostAddress,
                     PageUrl = "/ShopBranch/Setting",
                     UserName = base.CurrentSellerManager.UserName,

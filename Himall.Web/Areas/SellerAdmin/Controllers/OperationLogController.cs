@@ -26,7 +26,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             _iOperationLogService = iOperationLogService;
         }
 
-        [Description("商家日志管理页面")]
+        [Description("诊所日志管理页面")]
         // GET: Admin/OperationLog
         public ActionResult Management()
         {

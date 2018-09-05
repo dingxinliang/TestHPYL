@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace Himall.Model
 {
     /// <summary>
-    /// 虚拟订单实体
+    /// 虚拟预约单实体
     /// </summary>
     public partial class VirtualOrderInfo
     {
         /// <summary>
-        /// 虚拟订单Id
+        /// 虚拟预约单Id
         /// </summary>
         public long Id { get; set; }
         /// <summary>
@@ -32,7 +32,7 @@ namespace Himall.Model
         /// </summary>
         public string PayNum { get; set; }
         /// <summary>
-        /// 商家Id
+        /// 诊所Id
         /// </summary>
         public long ShopId { get; set; }
         /// <summary>

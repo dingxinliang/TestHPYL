@@ -68,12 +68,12 @@ namespace Himall.DTO
 		public int? RefundStatusValue { get; set; }
 		/// <summary>
 		/// 可退金额
-		/// <para>订单退款为了(实付+运费-优惠)，单件退款(实付-优惠)</para>
+		/// <para>预约单退款为了(实付+运费-优惠)，单件退款(实付-优惠)</para>
 		/// </summary>
 		public decimal EnabledRefundAmount { get; set; }
 
 		/// <summary>
-		/// 订单是否已超过售后期
+		/// 预约单是否已超过售后期
 		/// </summary>
 		public bool IsOrderRefundTimeOut { get; set; }
 	}

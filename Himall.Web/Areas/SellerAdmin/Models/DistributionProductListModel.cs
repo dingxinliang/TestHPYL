@@ -9,19 +9,19 @@ namespace Himall.Web.Areas.SellerAdmin.Models
     public class DistributionProductListModel
     {
         /// <summary>
-        /// 分销商品记录编号
+        /// 分销诊疗项目记录编号
         /// </summary>
         public long BrokerageId { get; set; }
         /// <summary>
-        /// 分销商品编号
+        /// 分销诊疗项目编号
         /// </summary>
         public long? ProductId { get; set; }
         /// <summary>
-        /// 分销商品名称
+        /// 分销诊疗项目名称
         /// </summary>
         public string ProductName { get; set; }
         /// <summary>
-        /// 分销商品佣金比
+        /// 分销诊疗项目佣金比
         /// </summary>
         public decimal? DistributorRate { get; set; }
         /// <summary>
@@ -53,7 +53,7 @@ namespace Himall.Web.Areas.SellerAdmin.Models
         /// </summary>
         public string ShowProductBrokerageState { get; set; }
         /// <summary>
-        /// 商品图片
+        /// 诊疗项目图片
         /// </summary>
         public string Image { get; set; }
     }

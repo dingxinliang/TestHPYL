@@ -16,8 +16,8 @@ $(function () {
         queryParams: { shopId: $("#Mshopid").val(), startDate: $("#Msd").val(), endDate: $("#Med").val() },
         columns:
         [[
-            { field: "OrderId", title: "订单", width: 120, align: "center" },
-            { field: "OrderAmount", title: "商品实付金额", width: 120, align: "center" },
+            { field: "OrderId", title: "预约单", width: 120, align: "center" },
+            { field: "OrderAmount", title: "诊疗项目实付金额", width: 120, align: "center" },
             { field: "CommissionAmount", title: "佣金", width: 120, align: "center" },
             { field: "RefundTotalAmount", title: "退单金额", width: 120, align: "center" },
             { field: "RefundCommisAmount", title: "退还佣金", width: 120, align: "center" },

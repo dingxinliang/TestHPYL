@@ -9,7 +9,7 @@ namespace Himall.SmallProgAPI.Model
 {
    
     /// <summary>
-    /// 小程序订单提交页查询参数
+    /// 小程序预约单提交页查询参数
     /// </summary>
     public class OrderSubmitPagePara
     {

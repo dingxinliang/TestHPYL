@@ -9,26 +9,26 @@ using Hishop.Open.Api;
 namespace Himall.OpenApi.Model.Parameter
 {
     /// <summary>
-    /// 商品/SKU库存修改传入参数
+    /// 诊疗项目/SKU库存修改传入参数
     /// </summary>
     public class GetSoldTradesParameterModel : BasePageParameterModel
     {
         /// <summary>
-        /// 获取时间区间内订单的开始时间。
+        /// 获取时间区间内预约单的开始时间。
         /// <para>yyyy-MM-dd HH:mm:ss</para>
         /// </summary>
         public DateTime? start_created { get; set; }
         /// <summary>
-        /// 获取时间区间内订单的结束时间
+        /// 获取时间区间内预约单的结束时间
         /// </summary>
         public DateTime? end_created { get; set; }
         /// <summary>
         /// 交易状态
-        /// <para>WAIT_BUYER_PAY（等待买家付款）、 WAIT_SELLER_SEND_GOODS （等待商家发货）、 WAIT_BUYER_CONFIRM_GOODS（等待买家确认收货）、 TRADE_CLOSED （交易关闭）、TRADE_FINISHED（交易成功） 默认查询所有交易状态的数据， 除了默认值外每次只能查询一种状态</para>
+        /// <para>WAIT_BUYER_PAY（等待患者付款）、 WAIT_SELLER_SEND_GOODS （等待诊所发货）、 WAIT_BUYER_CONFIRM_GOODS（等待患者确认收货）、 TRADE_CLOSED （交易关闭）、TRADE_FINISHED（交易成功） 默认查询所有交易状态的数据， 除了默认值外每次只能查询一种状态</para>
         /// </summary>
         public string status { get; set; }
         /// <summary>
-        /// 买家帐号
+        /// 患者帐号
         /// </summary>
         public string buyer_uname { get; set; }
 

@@ -20,23 +20,23 @@ namespace Himall.Model
         //[Description("关于我们")]
         //AboutUs = 1003,
 
-        /*商品*/
-        [Privilege("商品", "商品管理", 2001, "product/management", "product")]
+        /*诊疗项目*/
+        [Privilege("诊疗项目", "诊疗项目管理", 2001, "product/management", "product")]
         ProductManage = 2001,
-        [Privilege("商品", "分类管理", 2002, "category/management", "category")]
+        [Privilege("诊疗项目", "分类管理", 2002, "category/management", "category")]
         CategoryManage = 2002,
-        [Privilege("商品", "品牌管理", 2003, "brand/Management", "brand")]
+        [Privilege("诊疗项目", "品牌管理", 2003, "brand/Management", "brand")]
 
         BrandManage = 2003,
-        [Privilege("商品", "类型管理", 2004, "ProductType/management", "ProductType")]
+        [Privilege("诊疗项目", "类型管理", 2004, "ProductType/management", "ProductType")]
         ProductTypeManage = 2004,
-        [Privilege("商品", "咨询管理", 2006, "ProductConsultation/management", "productconsultation")]
+        [Privilege("诊疗项目", "咨询管理", 2006, "ProductConsultation/management", "productconsultation")]
         ConsultationManage = 2006,
-        [Privilege("商品", "评论管理", 2007, "ProductComment/management", "ProductComment")]
+        [Privilege("诊疗项目", "评论管理", 2007, "ProductComment/management", "ProductComment")]
         CommentManage = 2007,
         ///*交易*/
 
-        [Privilege("交易", "订单管理", 3001, "Order/management", "order")]
+        [Privilege("交易", "预约单管理", 3001, "Order/management", "order")]
         OrderManage = 3001,
         [Privilege("交易", "退款处理", 3002, "OrderRefund/management?showtype=2", "orderrefund")]
         ReturnRefundManage = 3002,
@@ -91,7 +91,7 @@ namespace Himall.Model
         SettlementManage = 5003,
         [Privilege("店铺", "保证金管理", 5004, "CashDeposit/Management", "CashDeposit")]
         CashDepositManagement = 5004,
-        [Privilege("店铺", "商家提现管理", 5005, "ShopWithDraw/Management", "ShopWithDraw")]
+        [Privilege("店铺", "诊所提现管理", 5005, "ShopWithDraw/Management", "ShopWithDraw")]
         ShopWithDrawManagement = 5004,
 
         ///*统计*/
@@ -101,7 +101,7 @@ namespace Himall.Model
         MemberStatistics = 6002,
         [Privilege("统计", "店铺统计", 6003, "Statistics/NewShop", "statistics", "newshop")]
         ShopStatistics = 6003,
-        [Privilege("统计", "商品统计", 6004, "Statistics/ProductSaleStatistic", "statistics")]
+        [Privilege("统计", "诊疗项目统计", 6004, "Statistics/ProductSaleStatistic", "statistics")]
         ProductSaleStatistic = 6004,
         [Privilege("统计", "交易统计", 6005, "Statistics/TradeStatistic", "statistics")]
         TradeStatistic = 6005,
@@ -204,7 +204,7 @@ namespace Himall.Model
         [Privilege("微商城", "素材管理", 10005, "Weixin/WXMsgTemplateManage", "WeiXin")]
         WXMsgTemplateManage = 10005,
 
-        [Privilege("APP", "APP商品配置", 12003, "APPShop/ProductSetting", "APPShop", "", AdminCatalogType.Default, "")]
+        [Privilege("APP", "APP诊疗项目配置", 12003, "APPShop/ProductSetting", "APPShop", "", AdminCatalogType.Default, "")]
         APPProductSetting = 12003,
         [Privilege("APP", "APP首页配置", 12001, "APPShop/AppHomePageSetting", "APPShop", "", AdminCatalogType.Default, "", LinkTarget = "_blank")]
         APPShop = 12001,
@@ -213,7 +213,7 @@ namespace Himall.Model
         [Privilege("APP", "APP引导页", 12004, "APPShop/APPGuidePages", "APPShop")]
         APPGuidePages = 12004,
 
-        [Privilege("小程序", "商品配置", 13002, "WXSmallProgram/ProductSetting", "WXSmallProgram")]
+        [Privilege("小程序", "诊疗项目配置", 13002, "WXSmallProgram/ProductSetting", "WXSmallProgram")]
         ProductSetting = 13002,
         [Privilege("小程序", "首页配置", 13001, "WXSmallProgram/HomePageSetting", "WXSmallProgram", LinkTarget = CommonModel.TargetType.Blank)]
         WXSmallProgramHomePageSetting = 13001,

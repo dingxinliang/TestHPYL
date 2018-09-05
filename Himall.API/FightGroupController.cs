@@ -74,7 +74,7 @@ namespace Himall.API
             }
         }
         /// <summary>
-        /// 拼团活动商品详情
+        /// 拼团活动诊疗项目详情
         /// </summary>
         /// <param name="id">拼团活动ID</param>
         /// /// <param name="grouId">团活动ID</param>
@@ -98,7 +98,7 @@ namespace Himall.API
                 {
                     result.IsEnd = false;
                 }
-                //商品图片地址修正
+                //诊疗项目图片地址修正
                 result.ProductDefaultImage = HimallIO.GetRomoteProductSizeImage(data.ProductImgPath, 1, (int)ImageSize.Size_350);
                 result.ProductImgPath = HimallIO.GetRomoteProductSizeImage(data.ProductImgPath, 1);
             }
@@ -133,7 +133,7 @@ namespace Himall.API
                         IsUserEnter = true;
                 }
             }
-            #region 商品规格
+            #region 诊疗项目规格
             ProductInfo product = ServiceProvider.Instance<IProductService>.Create.GetProduct((long)result.ProductId);
 
             //if (product == null)
@@ -259,7 +259,7 @@ namespace Himall.API
                 item.EndHourOrMinute = item.ShowHourOrMinute(item.GetEndHour);
             }
 
-            #region 商品评论
+            #region 诊疗项目评论
             ProductCommentShowModel modelSay = new ProductCommentShowModel();
             modelSay.ProductId = (long)result.ProductId;
             var productSay = ServiceProvider.Instance<IProductService>.Create.GetProduct((long)result.ProductId);
@@ -270,12 +270,12 @@ namespace Himall.API
             if (productSay == null)
             {
                 //跳转到404页面
-                throw new Core.HimallException("商品不存在");
+                throw new Core.HimallException("诊疗项目不存在");
             }
             if (product.IsDeleted)
             {
                 //跳转到404页面
-                throw new Core.HimallException("商品不存在");
+                throw new Core.HimallException("诊疗项目不存在");
             }
             var com = product.Himall_ProductComments.Where(item => !item.IsHidden.HasValue || item.IsHidden.Value == false);
             var comCount = com.Count();
@@ -487,13 +487,13 @@ namespace Himall.API
                 modelVshop.BonusRandomAmountEnd = bonus.RandomAmountEnd;
             }
             #endregion
-            //商品描述
+            //诊疗项目描述
             var ProductDescription = ServiceHelper.Create<IProductService>().GetProductDescription((long)result.ProductId);
             if (ProductDescription == null)
             {
-                throw new Himall.Core.HimallException("错误的商品编号");
+                throw new Himall.Core.HimallException("错误的诊疗项目编号");
             }
-            //统计商品浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、店铺浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
 
             AutoMapper.Mapper.CreateMap<FightGroupActiveModel, FightGroupActiveResult>();
@@ -566,7 +566,7 @@ namespace Himall.API
 
         }
         /// <summary>
-        /// 根据用户ID获取拼团订单列表
+        /// 根据用户ID获取拼团预约单列表
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
@@ -613,9 +613,9 @@ namespace Himall.API
             });
         }
         /// <summary>
-        /// 获取拼团订单详情
+        /// 获取拼团预约单详情
         /// </summary>
-        /// <param name="Id">订单Id</param>
+        /// <param name="Id">预约单Id</param>
         /// <returns></returns>
         public object GetFightGroupOrderDetail(long Id)
         {
@@ -630,7 +630,7 @@ namespace Himall.API
             Mapper.CreateMap<FightGroupActiveItemInfo, FightGroupActiveItemModel>();
             if (data != null)
             {
-                //商品图片地址修正
+                //诊疗项目图片地址修正
                 data.ProductDefaultImage = HimallIO.GetProductSizeImage(data.ProductImgPath, 1, (int)ImageSize.Size_350);
                 data.ProductImgPath = HimallIO.GetRomoteImagePath(data.ProductImgPath);
             }
@@ -672,19 +672,19 @@ namespace Himall.API
                 orderDetail.HeadUserIcon = !string.IsNullOrWhiteSpace(GroupsData.HeadUserIcon) ? Core.HimallIO.GetRomoteImagePath(GroupsData.HeadUserIcon) : "";
                 orderDetail.ShowHeadUserIcon = !string.IsNullOrWhiteSpace(GroupsData.ShowHeadUserIcon) ? Core.HimallIO.GetRomoteImagePath(GroupsData.ShowHeadUserIcon) : "";
             }
-            //商品评论数
+            //诊疗项目评论数
             var product = ServiceProvider.Instance<IProductService>.Create.GetProduct((long)orderDetail.ProductId);
             var com = product.Himall_ProductComments.Where(item => !item.IsHidden.HasValue || item.IsHidden.Value == false);
             var comCount = com.Count();
-            //商品描述
+            //诊疗项目描述
 
             var ProductDescription = ServiceHelper.Create<IProductService>().GetProductDescription((long)orderDetail.ProductId);
             if (ProductDescription == null)
             {
-                throw new Himall.Core.HimallException("错误的商品编号");
+                throw new Himall.Core.HimallException("错误的诊疗项目编号");
             }
 
-            string description = ProductDescription.ShowMobileDescription.Replace("src=\"/Storage/", "src=\"" + Core.HimallIO.GetRomoteImagePath("/Storage/"));//商品描述
+            string description = ProductDescription.ShowMobileDescription.Replace("src=\"/Storage/", "src=\"" + Core.HimallIO.GetRomoteImagePath("/Storage/"));//诊疗项目描述
 
             return Json(new
             {

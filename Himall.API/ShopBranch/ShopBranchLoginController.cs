@@ -32,12 +32,12 @@ namespace Himall.API
             //普通登录
             if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(password))
             {
-                //商家登录也放在这里，因为商家app和门店app为同一个并且没做登录区分，只能通过登录后才能知道是登录的商家还是门店管理员
+                //诊所登录也放在这里，因为诊所app和门店app为同一个并且没做登录区分，只能通过登录后才能知道是登录的诊所还是门店管理员
                 var seller = ManagerApplication.Login(userName, password);
                 if (seller != null)
                 {
                     if (!siteSettings.IsOpenShopApp)
-                        return ErrorResult("未授权商家APP");
+                        return ErrorResult("未授权诊所APP");
                     
                     var shop = ShopApplication.GetShop(seller.ShopId);
                     if (shop != null && shop.ShopStatus != ShopInfo.ShopAuditStatus.Open)

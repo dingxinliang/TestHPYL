@@ -18,14 +18,14 @@ namespace Himall.Web.Areas.Web.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// 主商品Id
+        /// 主诊疗项目Id
         /// </summary>
         public long ProductId { get; set; }
 
         public long ShopId { get; set; }
 
         /// <summary>
-        /// 活动商品
+        /// 活动诊疗项目
         /// </summary>
         public List<Himall.Model.CollocationProducts> Products { get; set; }
 

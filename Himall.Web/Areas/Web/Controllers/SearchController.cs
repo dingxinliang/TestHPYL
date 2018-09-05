@@ -53,7 +53,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
         // GET: Web/Search/SearchAd
         /// <summary>
-        ///  商品搜索页面
+        ///  诊疗项目搜索页面
         /// </summary>
         /// <param name="keywords">搜索关键字</param>
         /// <param name="cid">分类ID</param>

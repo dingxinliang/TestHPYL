@@ -19,9 +19,9 @@ namespace Himall.IServices
         }
 
         /// <summary>
-        /// 商家账号信息缓存键
+        /// 诊所账号信息缓存键
         /// </summary>
-        /// <param name="sellerId">商家id</param>
+        /// <param name="sellerId">诊所id</param>
         /// <returns></returns>
         public static string Seller(long sellerId)
         {
@@ -69,7 +69,7 @@ namespace Himall.IServices
         }
 
         /// <summary>
-        /// 店铺热销的前N件商品
+        /// 店铺热销的前N件诊疗项目
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -78,7 +78,7 @@ namespace Himall.IServices
             return string.Format("Cache-HotSaleProduct-{0}", shopId);
         }
         /// <summary>
-        /// 移动端首页分页商品
+        /// 移动端首页分页诊疗项目
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -88,7 +88,7 @@ namespace Himall.IServices
         }
 
         /// <summary>
-        /// 移动端店铺首页分页商品
+        /// 移动端店铺首页分页诊疗项目
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -104,7 +104,7 @@ namespace Himall.IServices
             return string.Format("Cache-MobileHomeTemplate-{0}-{1}", shopid, client);
         }
         /// <summary>
-        /// 店铺最新上架的前N件商品
+        /// 店铺最新上架的前N件诊疗项目
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -115,7 +115,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 店铺最受关注的前N件商品
+        /// 店铺最受关注的前N件诊疗项目
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -245,7 +245,7 @@ namespace Himall.IServices
         /// <summary>
         /// 支付状态缓存
         /// </summary>
-        /// <param name="orderIds">订单编号</param>
+        /// <param name="orderIds">预约单编号</param>
         /// <returns></returns>
         public static string PaymentState(string orderIds)
         {
@@ -291,7 +291,7 @@ namespace Himall.IServices
         public const string Region = "Cache-Regions";
 
         /// <summary>
-        /// 商品分类
+        /// 诊疗项目分类
         /// </summary>
         public const string Category = "Cache-Categories";
 
@@ -333,12 +333,12 @@ namespace Himall.IServices
         public const string Themes = "Cache-Themes";
 
         /// <summary>
-        /// 商家入驻设置
+        /// 诊所入驻设置
         /// </summary>
         public const string Settled = "Cache-Settled";
 
         /// <summary>
-        /// 昨天订单数
+        /// 昨天预约单数
         /// </summary>
         /// 
 
@@ -396,17 +396,17 @@ namespace Himall.IServices
         {
             return string.Format("CART_{0}", userId);
         }
-        //商品详情获取店铺信息
+        //诊疗项目详情获取店铺信息
         public static string CACHE_SHOPDTO(long id, bool businessCategoryOn)
         {
             return string.Format("CACHE_SHOPDTO_{0}_{1}", id, businessCategoryOn);
         }
-        //商品详情获取店铺信息
+        //诊疗项目详情获取店铺信息
         public static string CACHE_SHOP(long id, bool businessCategoryOn)
         {
             return string.Format("CACHE_SHOP_{0}_{1}", id, businessCategoryOn);
         }
-        //商品详情缓存
+        //诊疗项目详情缓存
         public static string CACHE_PRODUCTDESC(long id)
         {
             return string.Format("CACHE_SHOP_{0}", id);

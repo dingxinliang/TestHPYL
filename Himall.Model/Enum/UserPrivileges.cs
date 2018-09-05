@@ -13,14 +13,14 @@ namespace Himall.Model
 
         [Privilege("首页", "个人中心", 1001, "UserCenter/home", "UserOrder")]
         Home = 1001,
-        [Privilege("首页", "我的订单", 1002, "UserOrder", "UserOrder")]
+        [Privilege("首页", "我的预约单", 1002, "UserOrder", "UserOrder")]
         OrderManage = 1002,
         [Privilege("首页", "咨询管理", 1003, "userConsultation", "userConsultation")]
         UserConsultation = 1003,
         [Privilege("首页", "评价管理", 1004, "userComment", "userComment")]
         UserComment = 1004,
 
-        [Privilege("我的关注", "商品关注", 2001, "productConcern/index", "ProductConcern")]
+        [Privilege("我的关注", "诊疗项目关注", 2001, "productConcern/index", "ProductConcern")]
         ProductConcern = 2001,
         [Privilege("我的关注", "店铺关注", 2002, "shopConcern/Index", "ShopConcern")]
         ShopConcern = 2002,

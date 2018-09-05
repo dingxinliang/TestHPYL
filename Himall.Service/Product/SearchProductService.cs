@@ -125,7 +125,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 商品搜索
+        /// 诊疗项目搜索
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -149,7 +149,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 商品属性、分类、品牌搜索
+        /// 诊疗项目属性、分类、品牌搜索
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -407,7 +407,7 @@ namespace Himall.Service
             return index;
         }
         /// <summary>
-        /// 获取搜索商品分页sql
+        /// 获取搜索诊疗项目分页sql
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -417,10 +417,10 @@ namespace Himall.Service
         }
         #endregion
 
-        #region 小程序商品查询
+        #region 小程序诊疗项目查询
 
         /// <summary>
-        /// 商品搜索
+        /// 诊疗项目搜索
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>

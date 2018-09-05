@@ -54,7 +54,7 @@ function LoadData(date1, date2)
         queryParams: para,
         columns: [[
              {
-                 field: "ProductName", title: '商品名称', width: 'auto'
+                 field: "ProductName", title: '诊疗项目名称', width: 'auto'
              },
 
              { field: "VistiCounts", sort: true, title: "浏览量", width: 'auto', align: "center" },

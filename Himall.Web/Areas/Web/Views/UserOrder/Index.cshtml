@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Areas/Web/Views/Shared/_UserCenter.cshtml";
-    ViewBag.Title = "我的订单";
+    ViewBag.Title = "我的预约单";
 }
 <div class="coverd cover" style="display:none;"></div>
 @model IEnumerable<Himall.DTO.OrderListModel>
@@ -32,11 +32,11 @@
 <div class="box1 lh24">
 
     <div class="title">
-        <span class="title_txt cur">我的订单</span>
+        <span class="title_txt cur">我的预约单</span>
     </div>
     <div class="search-area" style="margin-bottom:17px;">
         <label style="width:66px;">关键字：</label>
-        <input class="search_order" id="txtkeyword" type="text" value="商品名称、订单编号" />
+        <input class="search_order" id="txtkeyword" type="text" value="诊疗项目名称、预约单编号" />
         <label>开始日期：</label>
         <input id="inputStartDate" class="search_order start_datetime" type="text">
 
@@ -56,9 +56,9 @@
             </colgroup>
             <thead>
                 <tr class="tr">
-                    <th colspan="2"><span style="width:53%;text-align:left;padding-left:42px;">订单信息</span><span style="width:20%;text-align:center">单价 数量</span><span style="width:20%;text-align:center">操作商品</span></th>
+                    <th colspan="2"><span style="width:53%;text-align:left;padding-left:42px;">预约单信息</span><span style="width:20%;text-align:center">单价 数量</span><span style="width:20%;text-align:center">操作诊疗项目</span></th>
 
-                    <th>订单实付</th>
+                    <th>预约单实付</th>
                     @*<th>
                             <select name="" id="submitDate" onchange="Query()">
                                 <option selected="selected" value="all">请选择...</option>
@@ -78,7 +78,7 @@
                 <tr style="height:15px;width:100%;"><td colspan="8" style="padding: 8px 0;"></td></tr>
                 @if (Model.Count() == 0)
                 {
-                    <tr><td colspan="8" class="ety"><div class="empty">暂时没有任何的订单信息！</div></td></tr>
+                    <tr><td colspan="8" class="ety"><div class="empty">暂时没有任何的预约单信息！</div></td></tr>
                 }
                 @{var before = true;
                     var child = false;}
@@ -91,7 +91,7 @@
                         <!--<tr class="tr-th-info">
                             <td colspan="6">
                                 <span class="tcol">
-                                    尊敬的客户，由于你的商品属于不同商家，所以你的订单被拆分为多个子订单分开配送，给你带来的不便还请谅解。
+                                    尊敬的客户，由于你的诊疗项目属于不同诊所，所以你的预约单被拆分为多个子预约单分开配送，给你带来的不便还请谅解。
                                 </span>
                             </td>
                         </tr>-->
@@ -110,10 +110,10 @@
                         <td class="tr-th-text" colspan="6">
                             <span>@(m.OrderDate)</span>
                             <span class="tcol1" style="margin-right:27px;position:relative;padding-right:30px;">
-                                订单编号:
+                                预约单编号:
                                 <a href="@Url.Action("detail", new { id=@m.Id})">
                                     @m.Id @if (m.UserId != ViewBag.UserId)
-                                    {<label>(子订单)</label>}
+                                    {<label>(子预约单)</label>}
                                 </a>
 
                                 @if (m.ReceiveBonus != null)
@@ -129,7 +129,7 @@
                             <span class="tcol3">
                                 @Html.Action("CustmerServices", new { shopId = @m.ShopId })
                             </span>
-                            <span class="tcol3 hl_blue">@(m.OrderType.HasValue ? m.OrderType.Value.ToDescription() + "订单" : "")</span>
+                            <span class="tcol3 hl_blue">@(m.OrderType.HasValue ? m.OrderType.Value.ToDescription() + "预约单" : "")</span>
                             @if (!string.IsNullOrEmpty(m.PickupCode))
                             {
                                 <span class="tcol3 hl_blue">提货码：@m.PickupCode</span>
@@ -251,7 +251,7 @@
                                 }
                                 if (m.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.Finish && m.CommentCount == 0)
                                 {
-                                    <a href="@Url.Action("index", "OrderEvaluation", new { id = @m.Id })" class="cmm">评价订单</a>
+                                    <a href="@Url.Action("index", "OrderEvaluation", new { id = @m.Id })" class="cmm">评价预约单</a>
                                 }
                                 else if (m.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.Finish && m.CommentCount == 1 && !m.HasAppendComment)
                                 {
@@ -267,7 +267,7 @@
                                 if (m.OrderType != Himall.Model.OrderInfo.OrderTypes.FightGroup && (m.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.WaitPay ||
                                 m.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.WaitDelivery && m.PaymentType == Himall.Model.OrderInfo.PaymentTypes.CashOnDelivery))
                                 {
-                                    <a href="javascript:;" onclick="CancelOrder('@m.Id')" class="b-agian">取消订单</a><br />
+                                    <a href="javascript:;" onclick="CancelOrder('@m.Id')" class="b-agian">取消预约单</a><br />
                                 }
                                 if (m.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.WaitDelivery || m.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.WaitSelfPickUp)
                                 {
@@ -281,7 +281,7 @@
                                             {
                                                 if (m.FightGroupCanRefund)
                                                 {
-                                                    <a href=@Url.Action("RefundApply", "OrderRefund", new { orderid = m.Id, refundid = m.OrderRefundId })>订单退款</a><br />
+                                                    <a href=@Url.Action("RefundApply", "OrderRefund", new { orderid = m.Id, refundid = m.OrderRefundId })>预约单退款</a><br />
                                                 }
                                             }
                                             break;
@@ -395,7 +395,7 @@
 
     function CancelOrder( orderId )
     {
-        $.dialog.confirm( "确定取消该订单吗？", function () { Cancel( orderId ); } );
+        $.dialog.confirm( "确定取消该预约单吗？", function () { Cancel( orderId ); } );
     }
     function Cancel( orderId )
     {
@@ -426,7 +426,7 @@
     function Search()
     {
         var keywords = $( "#txtkeyword" ).val();
-        if ( keywords == "商品名称、订单编号" )
+        if ( keywords == "诊疗项目名称、预约单编号" )
             keywords = "";
         var purchaser = $( "#purchaser" ).val();
         var startDate = $( "#inputStartDate" ).val();
@@ -445,7 +445,7 @@
         {
             var ev = document.all ? window.event : e;
             var keywords = $( "#txtkeyword" ).val();
-            if ( keywords == "商品名称、订单编号" )
+            if ( keywords == "诊疗项目名称、预约单编号" )
                 keywords = "";
             var purchaser = $( "#purchaser" ).val();
             var startDate = $( "#inputStartDate" ).val();
@@ -460,7 +460,7 @@
         $( '#txtkeyword' ).focus( function ()
         {
             var a = $( this ).val(),
-                b = '商品名称、订单编号';
+                b = '诊疗项目名称、预约单编号';
             if ( a == b )
             {
                 $( this ).val( '' ).css( 'color', '#333' );
@@ -468,7 +468,7 @@
         } ).blur( function ()
         {
             var a = $( this ).val(),
-                b = '商品名称、订单编号';
+                b = '诊疗项目名称、预约单编号';
             if ( !a )
             {
                 $( this ).val( b ).css( 'color', '#999' );

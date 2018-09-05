@@ -70,7 +70,7 @@ namespace Himall.Web.Models
         public bool IsValidationService { get; set; }
 
         /// <summary>
-        /// 商家入住协议
+        /// 诊所入住协议
         /// </summary>
         public string SellerAdminAgreement { get; set; }
 
@@ -163,7 +163,7 @@ namespace Himall.Web.Models
         /// </summary>
         public int SalesReturnTimeout { get; set; }
         /// <summary>
-        /// 售后-商家自动确认售后时限(天数)
+        /// 售后-诊所自动确认售后时限(天数)
         /// <para>到期未审核，自动认为同意售后</para>
         /// </summary>
         public int AS_ShopConfirmTimeout { get; set; }
@@ -173,7 +173,7 @@ namespace Himall.Web.Models
         /// </summary>
         public int AS_SendGoodsCloseTimeout { get; set; }
         /// <summary>
-        /// 售后-商家确认到货时限(天数)
+        /// 售后-诊所确认到货时限(天数)
         /// <para>到期未收货，自动收货</para>
         /// </summary>
         public int AS_ShopNoReceivingTimeout { get; set; }

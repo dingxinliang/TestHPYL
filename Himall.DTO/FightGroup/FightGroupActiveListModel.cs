@@ -27,11 +27,11 @@ namespace Himall.DTO
         /// </summary>
         public string ShopName { get; set; }
         /// <summary>
-        /// 商品编号
+        /// 诊疗项目编号
         ///</summary>
         public long ProductId { get; set; }
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         ///</summary>
         public string ProductName { get; set; }
         /// <summary>
@@ -118,7 +118,7 @@ namespace Himall.DTO
         /// </summary>
         public Nullable<long> ManagerId { get; set; }
         /// <summary>
-        /// 商品是否还有库存
+        /// 诊疗项目是否还有库存
         /// </summary>
         public bool HasStock { get; set; }
     }

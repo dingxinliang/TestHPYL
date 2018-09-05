@@ -69,12 +69,12 @@ function CreateMainSkuTable(selectedProducts) {
     var other = $("#OtherTable tr[data-pid='" + t + "']");
     if (other.length > 0)
     {
-        $.dialog.errorTips('主商品不能和附商品相同！');
+        $.dialog.errorTips('主诊疗项目不能和附诊疗项目相同！');
         return;
     }
 
     var table = "<table id='MainTable' class='table  table-bordered tabel-list'>";
-    var title = "<thead><tr><th>主商品</th><th>规格</th><th>原价格/组合价格</th></tr></thead><tbody>";
+    var title = "<thead><tr><th>主诊疗项目</th><th>规格</th><th>原价格/组合价格</th></tr></thead><tbody>";
     var td = "<tr><td><a href='/product/detail/" + selectedProducts[0].id + "' target='_blank' title=" + selectedProducts[0].name + "><img src='" + selectedProducts[0].imgUrl + "'></img></a></td><td>";
     $(selectedProducts[0].skus).each(function (index, item) {
         td += "<p>" + (item.Color == null ? "" : item.Color) + " " + (item.Size == null ? "" : item.Size) + " " + (item.Version == null ? "" : item.Version) + "</p>";
@@ -94,7 +94,7 @@ function CreateOtherSkuTable(selectedProducts) {
     var mainpid = $("#MainProductId").val();
     if (selectedProducts.length == 0) { $("#otherProducts").html(""); return; };
     var table = "<table id='OtherTable' class='table table-bordered tabel-list'>";
-    var title = "<thead><tr><th>搭配商品</th><th>规格</th><th>原价格/组合价格</th><th>排序</th><th>操作</th></tr></thead><tbody>";
+    var title = "<thead><tr><th>搭配诊疗项目</th><th>规格</th><th>原价格/组合价格</th><th>排序</th><th>操作</th></tr></thead><tbody>";
     var td = "";
     $(selectedProducts).each(function (i, pro) {
         if (pro.id == mainpid) { return true; }
@@ -190,15 +190,15 @@ function CheckCollocation() {
         return false;
     }
     else if ($("#MainTable .skutd").length == 0) {
-        $.dialog.errorTips('没有选择主商品！');
+        $.dialog.errorTips('没有选择主诊疗项目！');
         return false;
     }
     else if ($(".otherTR").length == 0) {
-        $.dialog.errorTips('没有选择附加商品！');
+        $.dialog.errorTips('没有选择附加诊疗项目！');
         return false;
     }
     else if ($(".otherTR").length > 9) {
-        $.dialog.errorTips('附加商品最多允许9个！');
+        $.dialog.errorTips('附加诊疗项目最多允许9个！');
         return false;
     }
     else if (!regDate.test(startTime) || !regDate.test(endTime)) {

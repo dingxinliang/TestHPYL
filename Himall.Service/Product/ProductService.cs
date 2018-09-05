@@ -33,7 +33,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 判断商品是否存在
+        /// 判断诊疗项目是否存在
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -51,9 +51,9 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 根据条件获取商品
+        /// 根据条件获取诊疗项目
         /// </summary>
-        /// <param name="productQueryModel">商品查询模型</param>
+        /// <param name="productQueryModel">诊疗项目查询模型</param>
         /// <param name="total">总记录数</param>
         /// <returns></returns>
         IQueryable<ProductInfo> GetProductsByQueryModel(ProductQuery productQueryModel, out int total)
@@ -63,13 +63,13 @@ namespace Himall.Service
             if (productQueryModel.ShopId.HasValue)//过滤店铺
                 products = products.Where(item => item.ShopId == productQueryModel.ShopId);
 
-            //过滤已删除的商品
+            //过滤已删除的诊疗项目
             products = products.Where(item => item.IsDeleted == false);
 
             if (productQueryModel.Ids != null && productQueryModel.Ids.Count() > 0)//条件 编号
                 products = products.Where(item => productQueryModel.Ids.Contains(item.Id));
 
-            //排除某些商品的ID
+            //排除某些诊疗项目的ID
             if (productQueryModel.ExceptIds != null && productQueryModel.ExceptIds.Count() > 0)
             {
                 products = products.Where(item => !productQueryModel.ExceptIds.Contains(item.Id));
@@ -104,7 +104,7 @@ namespace Himall.Service
             if (!string.IsNullOrWhiteSpace(productQueryModel.KeyWords))// 条件 关键字
                 products = products.Where(item => item.ProductName.Contains(productQueryModel.KeyWords));
 
-            if (!string.IsNullOrWhiteSpace(productQueryModel.ShopName))//查询商家关键字
+            if (!string.IsNullOrWhiteSpace(productQueryModel.ShopName))//查询诊所关键字
             {
                 var shopIds = Context.ShopInfo.FindBy(item => item.ShopName.Contains(productQueryModel.ShopName)).Select(item => item.Id);
                 products = products.Where(item => shopIds.Contains(item.ShopId));
@@ -159,9 +159,9 @@ namespace Himall.Service
         {
             ProductInfo product = Context.ProductInfo.FindById(productId);
             if (product == null)
-                throw new HimallException("此商品不存在");
+                throw new HimallException("此诊疗项目不存在");
             if (product.IsDeleted)
-                throw new HimallException("此商品已被删除");
+                throw new HimallException("此诊疗项目已被删除");
             AuditProducts(new long[] { productId }, auditStatus, message);
         }
 
@@ -197,7 +197,7 @@ namespace Himall.Service
 
         #endregion
 
-        #region 商家服务
+        #region 诊所服务
 
         public void UpdateProductImagePath(long pId, string path)
         {
@@ -280,7 +280,7 @@ namespace Himall.Service
             model.EditStatus = (short)ProductInfo.ProductEditStatus.EditedAndPending;  //初始修改状态
             Context.ProductInfo.Add(model);
             Context.SaveChanges();
-            //商品上架
+            //诊疗项目上架
             if (model.SaleStatus == ProductInfo.ProductSaleStatus.OnSale)
             {
                 ApplyForSale(model.Id);
@@ -289,7 +289,7 @@ namespace Himall.Service
 
         public void AddProduct(long shopId, ProductInfo product, string[] pics, SKUInfo[] skus, ProductDescriptionInfo description, ProductAttributeInfo[] attributes, long[] goodsCategory, SellerSpecificationValueInfo[] sellerSpecifications)
         {
-            //设置商品基本属性
+            //设置诊疗项目基本属性
             product.AddedDate = DateTime.Now;
             if (product.SaleStatus == ProductInfo.ProductSaleStatus.RawState)
                 product.SaleStatus = ProductInfo.ProductSaleStatus.OnSale;
@@ -300,7 +300,7 @@ namespace Himall.Service
 
             this.AddProduct(product);
 
-            //转移商品图片
+            //转移诊疗项目图片
             product.ImagePath = this.ProductImageToStorageAndCreateThumbnail(product.ShopId, product.Id, pics);
 
             this.ProcessSKU(shopId, product.Id, skus);
@@ -348,13 +348,13 @@ namespace Himall.Service
             var productAuditONoff = ServiceProvider.Instance<ISiteSettingService>.Create.GetSiteSettings().ProdutAuditOnOff;
             if (productAuditONoff == 0 && product.AuditStatus == ProductInfo.ProductAuditStatus.InfractionSaleOff)
             {
-                throw new HimallException("违规下架的商品不能执行此操作！");
+                throw new HimallException("违规下架的诊疗项目不能执行此操作！");
             }
 
             product.BrandId = model.BrandId;
             product.CategoryId = model.CategoryId;
             product.CategoryPath = model.CategoryPath;
-            //product.SaleStatus = model.SaleStatus;    修改商品时不修正销售状态
+            //product.SaleStatus = model.SaleStatus;    修改诊疗项目时不修正销售状态
 
             product.MarketPrice = model.MarketPrice;
             product.MinSalePrice = model.MinSalePrice;
@@ -367,7 +367,7 @@ namespace Himall.Service
             product.Weight = model.Weight;
             product.MeasureUnit = model.MeasureUnit;
             product.ImagePath = model.RelativePath;
-            //商品信息修改状态
+            //诊疗项目信息修改状态
             product.EditStatus = model.EditStatus;
 
             var productDesc = Context.ProductDescriptionInfo.FirstOrDefault(p => p.ProductId == model.Id);
@@ -382,7 +382,7 @@ namespace Himall.Service
 
             Context.SaveChanges();
 
-            //商品上架
+            //诊疗项目上架
             if (model.SaleStatus == ProductInfo.ProductSaleStatus.OnSale)
             {
                 ApplyForSale(product.Id);
@@ -390,9 +390,9 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 申请商品上架
+        /// 申请诊疗项目上架
         /// </summary>
-        /// <param name="id">商品编号</param>
+        /// <param name="id">诊疗项目编号</param>
         /// <returns></returns>
         /// Add:DZY[150715]
         public bool ApplyForSale(long id)
@@ -434,7 +434,7 @@ namespace Himall.Service
             {
                 if (product.AuditStatus == ProductInfo.ProductAuditStatus.InfractionSaleOff)
                 {
-                    throw new HimallException("违规下架的商品不能申请免审核上架！");
+                    throw new HimallException("违规下架的诊疗项目不能申请免审核上架！");
                     //return false;   //强制退出
                 }
                 if (isCanAuditPass)
@@ -483,7 +483,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 更新商品分类服务
+        /// 更新诊疗项目分类服务
         /// </summary>
         /// <param name="model"></param>
         private void UpdateCategory(ProductInfo model)
@@ -494,21 +494,21 @@ namespace Himall.Service
             Context.SaveChanges();
         }
         /// <summary>
-        /// 更新商品服务
+        /// 更新诊疗项目服务
         /// </summary>
-        /// <param name="model">商品实体</param>
+        /// <param name="model">诊疗项目实体</param>
         public void UpdateProduct(ProductInfo model)
         {
-            //更新试商品基本信息
+            //更新试诊疗项目基本信息
             UpdateCommon(model);
 
-            //更新商品SKU
+            //更新诊疗项目SKU
             //UpdateSKUs(model);
 
-            //更新商品属性
+            //更新诊疗项目属性
             UpdateAttr(model);
 
-            //更新商品分类
+            //更新诊疗项目分类
             UpdateCategory(model);
         }
 
@@ -517,7 +517,7 @@ namespace Himall.Service
             var context = this.Context;
             product.HasSKU = skus != null && skus.Length > 0 && (skus.Length > 1 || !string.IsNullOrEmpty(skus[0].Color) || !string.IsNullOrEmpty(skus[0].Size) || !string.IsNullOrEmpty(skus[0].Version));
 
-            //转移商品图片
+            //转移诊疗项目图片
             if (pics != null)
             {
                 if (pics.Any(path => string.IsNullOrWhiteSpace(path) || !path.StartsWith(product.ImagePath)))
@@ -548,14 +548,14 @@ namespace Himall.Service
             context.SKUInfo.RemoveRange(context.SKUInfo.Where(p => p.ProductId == product.Id));
             context.SKUInfo.AddRange(skus);
 
-            //商品属性
+            //诊疗项目属性
             if (attributes != null && attributes.Length > 0)
             {
                 context.ProductAttributeInfo.RemoveRange(context.ProductAttributeInfo.Where(p => p.ProductId == product.Id));
                 context.ProductAttributeInfo.AddRange(attributes);
             }
 
-            //商家分类
+            //诊所分类
             if (goodsCategory != null && goodsCategory.Where(p => p > 0).Any())
             {
                 var temp = goodsCategory.Where(p => p > 0).Select(shopCategoryId => new ProductShopCategoryInfo()
@@ -568,7 +568,7 @@ namespace Himall.Service
                 context.ProductShopCategoryInfo.AddRange(temp);
             }
 
-            //保存商家规格
+            //保存诊所规格
             if (sellerSpecifications != null && sellerSpecifications.Length > 0)
                 this.SaveSellerSpecifications(sellerSpecifications.ToList());
             context.SaveChanges();
@@ -610,7 +610,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取商品详情页需要及时刷新的信息
+        /// 获取诊疗项目详情页需要及时刷新的信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -637,9 +637,9 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取商品描述
+        /// 获取诊疗项目描述
         /// </summary>
-        /// <param name="id">商品编号</param>
+        /// <param name="id">诊疗项目编号</param>
         /// <returns></returns>
         public ProductDescriptionInfo GetProductDescription(long id)
         {
@@ -648,9 +648,9 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取商品描述
+        /// 获取诊疗项目描述
         /// </summary>
-        /// <param name="ids">商品编号</param>
+        /// <param name="ids">诊疗项目编号</param>
         /// <returns></returns>
         public List<ProductDescriptionInfo> GetProductDescriptions(IEnumerable<long> ids)
         {
@@ -658,7 +658,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取商品的评论数
+        /// 获取诊疗项目的评论数
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -702,7 +702,7 @@ namespace Himall.Service
         {
             var product = Context.ProductInfo.FindById(id);
             if (product.ShopId != shopid)
-                throw new HimallException("只能下架指定店铺的商品");
+                throw new HimallException("只能下架指定店铺的诊疗项目");
 
             //标记为下架状态
             product.SaleStatus = ProductInfo.ProductSaleStatus.InStock;
@@ -714,7 +714,7 @@ namespace Himall.Service
         {
             var products = Context.ProductInfo.Where(item => ids.Contains(item.Id) && item.IsDeleted == false).ToArray();
             if (products.Count(item => item.ShopId != shopid) > 0)
-                throw new HimallException("只能下架指定店铺的商品");
+                throw new HimallException("只能下架指定店铺的诊疗项目");
 
             //标记为下架状态
             foreach (var product in products)
@@ -735,7 +735,7 @@ namespace Himall.Service
         {
             var products = Context.ProductInfo.Where(item => ids.Contains(item.Id) && item.IsDeleted == false);
             if (products.Any(item => item.ShopId != shopId))
-                throw new HimallException("只能上架指定店铺的商品");
+                throw new HimallException("只能上架指定店铺的诊疗项目");
             //标记为上架架状态
             foreach (var item in products)
             {
@@ -751,7 +751,7 @@ namespace Himall.Service
             //this.Context.ProductInfo.Where(item => ids.Contains(item.Id) && item.ShopId == shopId)
             //    .Update(p => new ProductInfo { IsDeleted = true, EditStatus = (int)ProductInfo.ProductEditStatus.CompelPendingAudit });
 
-            ////清理微店推荐商品
+            ////清理微店推荐诊疗项目
             //this.Context.MobileHomeProductsInfo.Where(d => ids.Contains(d.ProductId) && d.ShopId == shopId).Delete();//批量删除
 
             ////清理专题
@@ -762,7 +762,7 @@ namespace Himall.Service
             {
                 var products = Context.ProductInfo.Where(item => ids.Contains(item.Id) && item.IsDeleted == false).ToList();
                 //if (products.Count(item => item.ShopId != shopId) > 0)
-                //    throw new HimallException("只能下架指定店铺的商品");
+                //    throw new HimallException("只能下架指定店铺的诊疗项目");
                 //context.ProductInfo.RemoveRange(products);
                 //context.SaveChanges();
                 foreach (var product in products)
@@ -772,7 +772,7 @@ namespace Himall.Service
                 }
 
                 #region
-                //清理微店推荐商品
+                //清理微店推荐诊疗项目
                 var mplist = Context.MobileHomeProductsInfo.Where(d => ids.Contains(d.ProductId)).ToList();
                 Context.MobileHomeProductsInfo.RemoveRange(mplist);   //批量删除
                                                                       //清理专题
@@ -784,7 +784,7 @@ namespace Himall.Service
                 Context.ShoppingCartItemInfo.RemoveRange(cartlist);
                 #endregion
 
-                //删除门店商品
+                //删除门店诊疗项目
                 Context.Database.ExecuteSqlCommand("delete from himall_shopbranchskus where ProductId in(" + string.Join(",", ids) + ")");
 
                 Context.SaveChanges();
@@ -1080,12 +1080,12 @@ namespace Himall.Service
                 result = result.Where(p => p.ProductName.Contains(search.Ex_Keyword));
             }
             if (search.shopBranchId.HasValue && search.shopBranchId.Value != 0)
-            {//过滤门店已选商品
+            {//过滤门店已选诊疗项目
                 var pid = Context.ShopBranchSkusInfo.Where(e => e.ShopBranchId == search.shopBranchId.Value).Select(item => item.ProductId).Distinct();
                 result = result.Where(e => !pid.Any(id => id == e.Id));
             }
 
-            //判断商品所在店铺是否已经过期
+            //判断诊疗项目所在店铺是否已经过期
 
             //ServiceProvider.Instance<IShopService>.Create.GetShops
             //var shopsevice = ServiceProvider.Instance<IShopService>.Create;
@@ -1169,7 +1169,7 @@ namespace Himall.Service
             {
                 long freightTemplateId = p.FreightTemplateId;
                 p.ShopName = p.Himall_Shops.ShopName;
-                //TODO:直接取商品表里的销售数量
+                //TODO:直接取诊疗项目表里的销售数量
                 if (p.Himall_ProductVistis == null)
                 {
                     p.SaleCounts = 0;
@@ -1321,7 +1321,7 @@ namespace Himall.Service
             }
 
 
-            //判断商品所在店铺是否已经过期
+            //判断诊疗项目所在店铺是否已经过期
 
             //ServiceProvider.Instance<IShopService>.Create.GetShops
             //var shopsevice = ServiceProvider.Instance<IShopService>.Create;
@@ -1402,7 +1402,7 @@ namespace Himall.Service
                     productsResult = productsResult.OrderByDescending(item => item.Id);
                     break;
             }
-            //全部商品的品牌（未分页）
+            //全部诊疗项目的品牌（未分页）
             List<BrandInfo> brandArray = new List<BrandInfo>();
             var brandIds = productsResult.Where(a => a.BrandId != 0).Select(a => a.BrandId).Distinct();
             var _brand = Context.BrandInfo.Where(e => brandIds.Contains(e.Id) && e.IsDeleted == false);
@@ -1419,7 +1419,7 @@ namespace Himall.Service
             {
                 long freightTemplateId = p.FreightTemplateId;
                 p.ShopName = p.Himall_Shops.ShopName;
-                //TODO:直接取商品表里的销售数量
+                //TODO:直接取诊疗项目表里的销售数量
                 //if (p.Himall_ProductVistis == null)
                 //{
                 //    p.SaleCounts = 0;
@@ -1537,7 +1537,7 @@ namespace Himall.Service
             return ProductAttrs;
         }
 
-        #region 获取店铺热销的前N件商品
+        #region 获取店铺热销的前N件诊疗项目
         public IQueryable<ProductInfo> GetHotSaleProduct(long shopId, int count = 5)
         {
             string CACHE_MANAGER_KEY = CacheKeyCollection.HotSaleProduct(shopId);
@@ -1732,7 +1732,7 @@ namespace Himall.Service
             return Context.ProductInfo.Where(a => a.SaleStatus == Himall.Model.ProductInfo.ProductSaleStatus.OnSale && a.AuditStatus == ProductInfo.ProductAuditStatus.Audited).OrderByDescending(p => p.SaleCounts).Take(count);
         }
 
-        #region 获取店铺最新上架的前N件商品
+        #region 获取店铺最新上架的前N件诊疗项目
         public IQueryable<ProductInfo> GetNewSaleProduct(long shopId, int count = 5)
         {
             string CACHE_MANAGER_KEY = CacheKeyCollection.NewSaleProduct(shopId);
@@ -1756,7 +1756,7 @@ namespace Himall.Service
         }
         #endregion
 
-        #region 获取店铺最受关注的前N件商品
+        #region 获取店铺最受关注的前N件诊疗项目
         public IQueryable<ProductInfo> GetHotConcernedProduct(long shopId, int count = 5)
         {
             string CACHE_MANAGER_KEY = CacheKeyCollection.HotConcernedProduct(shopId);
@@ -1836,7 +1836,7 @@ namespace Himall.Service
         }
         #endregion
 
-        #region 获取用户关注的商品
+        #region 获取用户关注的诊疗项目
         public ObsoletePageModel<FavoriteInfo> GetUserConcernProducts(long userId, int pageNo, int pageSize)
         {
             int total = 0;
@@ -1860,7 +1860,7 @@ namespace Himall.Service
         }
         #endregion
 
-        #region 取消用户关注的商品
+        #region 取消用户关注的诊疗项目
         public void CancelConcernProducts(IEnumerable<long> ids, long userId)
         {
             Context.FavoriteInfo.Remove(a => a.UserId == userId && ids.Contains(a.Id));
@@ -1874,7 +1874,7 @@ namespace Himall.Service
         }
         #endregion
 
-        #region 累加商品浏览次数 /*作废*/
+        #region 累加诊疗项目浏览次数 /*作废*/
         public void LogProductVisti(long productId)
         {
             /*
@@ -1966,7 +1966,7 @@ namespace Himall.Service
             {
                 sku.Stock += stockChange;
                 if (sku.Stock < 0)
-                    throw new HimallException("商品库存不足");
+                    throw new HimallException("诊疗项目库存不足");
             }
             Context.SaveChanges();
         }
@@ -2045,7 +2045,7 @@ namespace Himall.Service
         }
         #endregion
 
-        #region 更新商品销售数量
+        #region 更新诊疗项目销售数量
 
         public void UpdateSalesCount(string skuId, int addSalesCount)
         {
@@ -2287,13 +2287,13 @@ namespace Himall.Service
         void CheckWhenGetFreight(IEnumerable<string> skuIds, IEnumerable<int> counts, int cityId)
         {
             if (skuIds == null || skuIds.Count() == 0)
-                throw new InvalidPropertyException("待计算运费的商品不能这空");
+                throw new InvalidPropertyException("待计算运费的诊疗项目不能这空");
             if (counts == null || counts.Count() == 0)
-                throw new InvalidPropertyException("待计算运费的商品数量不能这空");
+                throw new InvalidPropertyException("待计算运费的诊疗项目数量不能这空");
             if (counts.Count(item => item <= 0) > 0)
-                throw new InvalidPropertyException("待计算运费的商品数量必须都大于0");
+                throw new InvalidPropertyException("待计算运费的诊疗项目数量必须都大于0");
             if (skuIds.Count() != counts.Count())
-                throw new InvalidPropertyException("商品数量不一致");
+                throw new InvalidPropertyException("诊疗项目数量不一致");
             if (cityId <= 0)
                 throw new InvalidPropertyException("收货地址无效");
 
@@ -2303,20 +2303,20 @@ namespace Himall.Service
             {
                 var sku = productService.GetSku(skuIds.ElementAt(i));
                 if (sku == null)
-                    throw new HimallException("未找到" + sku + "对应的商品");
+                    throw new HimallException("未找到" + sku + "对应的诊疗项目");
             }
         }
 
         void CheckWhenGetFreight(IEnumerable<long> productIds, IEnumerable<int> counts, int cityId)
         {
             if (productIds == null || productIds.Count() == 0)
-                throw new InvalidPropertyException("待计算运费的商品不能这空");
+                throw new InvalidPropertyException("待计算运费的诊疗项目不能这空");
             if (counts == null || counts.Count() == 0)
-                throw new InvalidPropertyException("待计算运费的商品数量不能这空");
+                throw new InvalidPropertyException("待计算运费的诊疗项目数量不能这空");
             if (counts.Count(item => item <= 0) > 0)
-                throw new InvalidPropertyException("待计算运费的商品数量必须都大于0");
+                throw new InvalidPropertyException("待计算运费的诊疗项目数量必须都大于0");
             if (productIds.Count() != counts.Count())
-                throw new InvalidPropertyException("商品数量不一致");
+                throw new InvalidPropertyException("诊疗项目数量不一致");
             if (cityId <= 0)
                 throw new InvalidPropertyException("收货地址无效");
 
@@ -2326,11 +2326,11 @@ namespace Himall.Service
             //{
             //    var product = productService.GetProduct(productIds.ElementAt(i));
             //    if (product == null)
-            //        throw new HimallException("未找到" + product.ProductName + "对应的商品");
+            //        throw new HimallException("未找到" + product.ProductName + "对应的诊疗项目");
             //    //if (sku.Stock < counts.ElementAt(i))
             //    //{
             //    //    var product = productService.GetProduct(sku.ProductId);
-            //    //    throw new HimallException("商品“" + product.ProductName + "”库存不够，仅剩" + sku.Stock + "件");
+            //    //    throw new HimallException("诊疗项目“" + product.ProductName + "”库存不够，仅剩" + sku.Stock + "件");
             //    //}
             //}
         }
@@ -2428,8 +2428,8 @@ namespace Himall.Service
         /// 取数据修改状态
         /// <para>不包含图片修改判断</para>
         /// </summary>
-        /// <param name="id">用于比对的商品编号</param>
-        /// <param name="model">当前商品数据</param>
+        /// <param name="id">用于比对的诊疗项目编号</param>
+        /// <param name="model">当前诊疗项目数据</param>
         /// <returns></returns>
         /// Add:DZY[150714]
         public ProductInfo.ProductEditStatus GetEditStatus(long id, ProductInfo model)
@@ -2519,7 +2519,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 是否为限时购商品
+        /// 是否为限时购诊疗项目
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -2533,7 +2533,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 修改推荐商品
+        /// 修改推荐诊疗项目
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="relationProductIds"></param>
@@ -2559,7 +2559,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取商品的推荐商品
+        /// 获取诊疗项目的推荐诊疗项目
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -2569,7 +2569,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-		/// 获取商品所有状态的推荐商品
+		/// 获取诊疗项目所有状态的推荐诊疗项目
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -2579,7 +2579,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取指定类型下面热销的前N件商品
+        /// 获取指定类型下面热销的前N件诊疗项目
         /// </summary>
         /// <param name="categoryId"></param>
         /// <param name="count"></param>
@@ -2714,7 +2714,7 @@ namespace Himall.Service
 
         #endregion
 
-        #region 门店首页商品列表
+        #region 门店首页诊疗项目列表
         public QueryPageModel<ProductInfo> GetStoreHomeProducts(ProductQuery productQueryModel)
         {
             int total;
@@ -2730,11 +2730,11 @@ namespace Himall.Service
         IQueryable<ProductInfo> GetStoreHomeProductsByQueryModel(ProductQuery productQueryModel, out int total)
         {
             //var products = Context.ProductInfo.Where(item => true);
-            var products = Context.ProductInfo.Where(item => item.IsDeleted==false);//过滤删除了的商品
-            if (productQueryModel.ShopId.HasValue)//过滤商家
+            var products = Context.ProductInfo.Where(item => item.IsDeleted==false);//过滤删除了的诊疗项目
+            if (productQueryModel.ShopId.HasValue)//过滤诊所
                 products = products.Where(item => item.ShopId == productQueryModel.ShopId);
 
-            if (productQueryModel.ShopCategoryId.HasValue && productQueryModel.ShopId.HasValue)//过滤商家分类，包括下面子类
+            if (productQueryModel.ShopCategoryId.HasValue && productQueryModel.ShopId.HasValue)//过滤诊所分类，包括下面子类
             {
                 var shopCategoryId = productQueryModel.ShopCategoryId.Value;
                 var shopId = productQueryModel.ShopId.Value;
@@ -2743,7 +2743,7 @@ namespace Himall.Service
                 products = products.Where(p => productIds.Contains(p.Id));
             }
 
-            if (productQueryModel.ShopBranchId.HasValue)//过滤出商家下门店商品
+            if (productQueryModel.ShopBranchId.HasValue)//过滤出诊所下门店诊疗项目
             {
                 var shopBranchProducts = this.Context.ShopBranchSkusInfo.Where(p => p.ShopId == productQueryModel.ShopId && p.ShopBranchId == productQueryModel.ShopBranchId)
                    .GroupBy(p => new { p.ProductId })

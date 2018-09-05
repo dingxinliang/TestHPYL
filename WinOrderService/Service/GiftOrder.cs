@@ -20,7 +20,7 @@ namespace WinOrderService
             try
             {
 
-                //  LRL   添加礼品兑换订单过期
+                //  LRL   添加礼品兑换预约单过期
                 var giftorderser = Instance<IGiftsOrderService>.Create;
                 giftorderser.AutoConfirmOrder();
                // Himall.Core.Log.Error("AutoGiftOrder运行成功");

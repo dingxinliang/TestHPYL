@@ -51,7 +51,7 @@
 
     var Id = GetQueryString('id')
 
-    //商品表格
+    //诊疗项目表格
     $("#list").hiMallDatagrid({
         url: 'List',
         nowrap: false,

@@ -24,7 +24,7 @@ namespace Himall.DTO
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
         /// <summary>
-        /// 是否全部商品
+        /// 是否全部诊疗项目
         /// </summary>
         public bool IsAllProduct { get; set; }
         /// <summary>
@@ -70,8 +70,8 @@ namespace Himall.DTO
             }
         }
         /// <summary>
-        /// 活动商品数
-        /// <para>手动维护,-1表示所有商品</para>
+        /// 活动诊疗项目数
+        /// <para>手动维护,-1表示所有诊疗项目</para>
         /// </summary>
         public int ProductCount { get; set; }
     }

@@ -50,16 +50,16 @@ namespace Himall.Model
         public int ShopCashNumber { set; get; }
 
         /// <summary>
-        /// 商品总数
+        /// 诊疗项目总数
         /// </summary>
         public long ProductNum { set; get; }
         /// <summary>
-        /// 出售商品数
+        /// 出售诊疗项目数
         /// </summary>
         public int OnSaleProducts { set; get; }
 
         /// <summary>
-        /// 待审核商品数
+        /// 待审核诊疗项目数
         /// </summary>
         public int WaitForAuditingProducts { set; get; }
 
@@ -69,12 +69,12 @@ namespace Himall.Model
         public int WaitForAuditingBrands { set; get; }
 
           /// <summary>
-        /// 商品评论数
+        /// 诊疗项目评论数
         /// </summary>
         public long ProductComments { set; get; }
 
         /// <summary>
-        /// 商品咨询数
+        /// 诊疗项目咨询数
         /// </summary>
         public long ProductConsultations { set; get; }
 
@@ -111,7 +111,7 @@ namespace Himall.Model
         /// </summary>
         public long GiftSend { set; get; }
         /// <summary>
-        /// 订单总数
+        /// 预约单总数
         /// </summary>
         public int OrderCounts { set; get; }
     }

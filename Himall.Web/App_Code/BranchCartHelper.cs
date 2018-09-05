@@ -262,7 +262,7 @@ namespace Himall.Web.App_Code
         skuId
       });
             if (skusByIds == null || skusByIds.Count == 0 || skusByIds[0].Status == ShopBranchSkuStatus.InStock)
-                throw new HimallException("门店没有该商品或已下架");
+                throw new HimallException("门店没有该诊疗项目或已下架");
             if (memberId > 0L)
             {
                 this._iBranchCartService.UpdateCart(skuId, count, memberId, shopBranchId);
@@ -312,7 +312,7 @@ namespace Himall.Web.App_Code
         skuId
       });
             if (skusByIds == null || skusByIds.Count == 0 || skusByIds[0].Status == ShopBranchSkuStatus.InStock)
-                throw new HimallException("门店没有该商品或已下架");
+                throw new HimallException("门店没有该诊疗项目或已下架");
             if (memberId > 0L)
             {
                 this._iBranchCartService.AddToCart(skuId, count, memberId, shopBranchId);

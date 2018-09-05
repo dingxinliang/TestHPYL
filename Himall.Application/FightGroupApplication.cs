@@ -102,7 +102,7 @@ namespace Himall.Application
             bool result = false;
             if (shopId <= 0)
             {
-                throw new HimallException("错误的商家编号");
+                throw new HimallException("错误的诊所编号");
             }
             var market = GetMarketService(shopId);
             if (market != null)
@@ -124,7 +124,7 @@ namespace Himall.Application
 
             if (shopId <= 0)
             {
-                throw new HimallException("错误的商家编号");
+                throw new HimallException("错误的诊所编号");
             }
             if (month <= 0)
             {
@@ -193,7 +193,7 @@ namespace Himall.Application
             Cache.Remove(CacheKeyCollection.CACHE_FIGHTGROUP);
         }
         /// <summary>
-        /// 商品是否可以参加拼团活动
+        /// 诊疗项目是否可以参加拼团活动
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -232,7 +232,7 @@ namespace Himall.Application
         /// 获取拼团活动
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="needGetProductCommentNumber">是否需要同步获取商品的评价数量</param>
+        /// <param name="needGetProductCommentNumber">是否需要同步获取诊疗项目的评价数量</param>
         /// <param name="isLoadItems">是否加载节点信息</param>
         /// <returns></returns>
         public static FightGroupActiveModel GetActive(long id, bool needGetProductCommentNumber = false, bool isLoadItems = true)
@@ -267,7 +267,7 @@ namespace Himall.Application
         /// 获取拼团活动
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="needGetProductCommentNumber">是否需要同步获取商品的评价数量</param>
+        /// <param name="needGetProductCommentNumber">是否需要同步获取诊疗项目的评价数量</param>
         /// <param name="isLoadItems">是否加载节点信息</param>
         /// <returns></returns>
         public static FightGroupActiveModel XcxGetActive(long id, bool needGetProductCommentNumber = false, bool isLoadItems = true)
@@ -281,7 +281,7 @@ namespace Himall.Application
             result.MiniSalePrice = data.MiniSalePrice;
             if (result != null)
             {
-                //商品图片地址修正
+                //诊疗项目图片地址修正
                 result.ProductDefaultImage = HimallIO.GetProductSizeImage(data.ProductImgPath, 1, (int)ImageSize.Size_350);
                 if (!string.IsNullOrWhiteSpace(result.IconUrl))
                 {
@@ -310,7 +310,7 @@ namespace Himall.Application
             return result;
         }
         /// <summary>
-        /// 使用商品编号获取正在进行的拼团活动
+        /// 使用诊疗项目编号获取正在进行的拼团活动
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -351,7 +351,7 @@ namespace Himall.Application
         /// <summary>
         /// 获取拼团项用于新增活动
         /// </summary>
-        /// <param name="productId">商品编号</param>
+        /// <param name="productId">诊疗项目编号</param>
         /// <returns></returns>
         public static FightGroupGetSkuListModel GetNewActiveItems(long productId)
         {
@@ -377,7 +377,7 @@ namespace Himall.Application
         /// 获取活动列表
         /// </summary>
         /// <param name="Statuses">状态集</param>
-        /// <param name="ProductName">商品名</param>
+        /// <param name="ProductName">诊疗项目名</param>
         /// <param name="ShopName">店铺名</param>
         /// <param name="ShopId">店铺编号</param>
         /// <param name="page"></param>
@@ -591,7 +591,7 @@ namespace Himall.Application
         }
         #endregion
 
-        #region 拼团订单
+        #region 拼团预约单
         /// <summary>
         /// 用户在营销活动中已购买数量
         /// </summary>
@@ -603,10 +603,10 @@ namespace Himall.Application
             return _iFightGroupService.GetMarketSaleCountForUserId(activeId, userId);
         }
         /// <summary>
-        /// 拼团订单
+        /// 拼团预约单
         /// </summary>
         /// <param name="actionId">活动编号</param>
-        /// <param name="orderId">订单编号</param>
+        /// <param name="orderId">预约单编号</param>
         /// <param name="userId">用户编号</param>
         /// <param name="groupId">拼团编号 0表示开新团</param>
         public static FightGroupOrderModel AddOrder(long actionId, long orderId, long userId, long groupId = 0)
@@ -623,7 +623,7 @@ namespace Himall.Application
         /// <summary>
         /// 设定加入拼团状态
         /// </summary>
-        /// <param name="orderId">订单号</param>
+        /// <param name="orderId">预约单号</param>
         /// <param name="status">状态</param>
         public static FightGroupOrderJoinStatus SetOrderStatus(long orderId, FightGroupOrderJoinStatus status)
         {
@@ -631,9 +631,9 @@ namespace Himall.Application
             return result;
         }
         /// <summary>
-        /// 获取拼团订单
+        /// 获取拼团预约单
         /// </summary>
-        /// <param name="orderId">订单编号</param>
+        /// <param name="orderId">预约单编号</param>
         /// <returns></returns>
         public static FightGroupOrderModel GetOrder(long orderId)
         {
@@ -648,7 +648,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取参团中的订单数
+        /// 获取参团中的预约单数
         /// </summary>
         /// <param name="userId">用户编号</param>
         /// <returns></returns>
@@ -660,11 +660,11 @@ namespace Himall.Application
         #endregion
 
         /// <summary>
-        /// 订单是否可以支付
-        /// <para>成团成功后，未完成支付的订单不可付款</para>
-        /// <para>成团失败后，未完成支付的订单不可付款</para>
+        /// 预约单是否可以支付
+        /// <para>成团成功后，未完成支付的预约单不可付款</para>
+        /// <para>成团失败后，未完成支付的预约单不可付款</para>
         /// </summary>
-        /// <param name="orderId">订单编号</param>
+        /// <param name="orderId">预约单编号</param>
         /// <returns></returns>
         public static bool OrderCanPay(long orderId)
         {
@@ -672,9 +672,9 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 根据原订单号获取拼团订单信息
+        /// 根据原预约单号获取拼团预约单信息
         /// </summary>
-        /// <param name="orderId">原订单号</param>
+        /// <param name="orderId">原预约单号</param>
         /// <returns></returns>
         public static FightGroupOrderInfo GetFightGroupOrderStatusByOrderId(long orderId)
         {

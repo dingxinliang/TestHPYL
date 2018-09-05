@@ -118,9 +118,9 @@ namespace Himall.Web.Areas.Web.Controllers
         }
 
         /// <summary>
-        /// 验证商品是否可加入购物车
+        /// 验证诊疗项目是否可加入购物车
         /// </summary>
-        /// <param name="id">商品ID</param>
+        /// <param name="id">诊疗项目ID</param>
         /// <returns>success  JSON数据,返回真表示可以加入购物车</returns>
         [HttpPost]
         public JsonResult verificationToCart(long id)

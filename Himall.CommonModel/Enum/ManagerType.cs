@@ -12,7 +12,7 @@ namespace Himall.CommonModel
     public enum ManagerType
     {
         /// <summary>
-        /// 商家管理员
+        /// 诊所管理员
         /// </summary>
         ShopManager = 1,
         /// <summary>

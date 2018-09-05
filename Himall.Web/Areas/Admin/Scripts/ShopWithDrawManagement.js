@@ -86,7 +86,7 @@ function getPage(status) {
             columns:
             [[
                 { field: "ApplyTime", title: "申请时间", width: 140 },
-                { field: "ShopName", title: "商家", width: 140 },
+                { field: "ShopName", title: "诊所", width: 140 },
                 { field: "CashAmount", title: "申请金额", width: 130 },
                 { field: "CashType", title: "提现方式", width: 130 },
                 { field: "Account", title: "账户", width: 130 },
@@ -141,7 +141,7 @@ function getPage(status) {
             [[
                 { field: "ApplyTime", title: "申请时间", width: 140 },
                 { field: "DealTime", title: "拒绝时间", width: 140 },
-                { field: "ShopName", title: "商家", width: 140 },
+                { field: "ShopName", title: "诊所", width: 140 },
                 { field: "CashAmount", title: "申请金额", width: 130 },
                 { field: "CashType", title: "提现方式", width: 130 },
                 { field: "Account", title: "账户", width: 130 },
@@ -170,7 +170,7 @@ function getPage(status) {
             [[
                 { field: "DealTime", title: "审核时间", width: 140 },
                 { field: "ApplyTime", title: "申请时间", width: 140 },
-                { field: "ShopName", title: "商家", width: 140 },
+                { field: "ShopName", title: "诊所", width: 140 },
                 { field: "CashAmount", title: "申请金额", width: 130 },
                 { field: "CashType", title: "提现方式", width: 130 },
                 { field: "Account", title: "账户", width: 130 },
@@ -211,8 +211,8 @@ function DoOperate(id, action, msg,cashType) {
         var weiTitle = "处理提现到微信钱包申请";
         var bankTitle = "处理提现到银行申请";
 
-       var bankMsg = "商家提现的账户为银行账户，需要人工给商家转账，是否已确认完成转账？";
-        var WeiMsg = "商家提现的账户为微信账户，确认后将自动转账到商家提现账户，是否确认转账？";
+       var bankMsg = "诊所提现的账户为银行账户，需要人工给诊所转账，是否已确认完成转账？";
+        var WeiMsg = "诊所提现的账户为微信账户，确认后将自动转账到诊所提现账户，是否确认转账？";
         var confrimMsg = bankMsg;
         var title = bankTitle;
         if (cashType == "微信")
@@ -220,7 +220,7 @@ function DoOperate(id, action, msg,cashType) {
             confrimMsg = WeiMsg;
             title = weiTitle;
         } else if (cashType == "支付宝") {
-            confrimMsg = "商家提现的账户为支付宝账户，系统会跳转支付宝完成支付流程,是否确认转账？";
+            confrimMsg = "诊所提现的账户为支付宝账户，系统会跳转支付宝完成支付流程,是否确认转账？";
             title = "处理提现到支付宝申请";
         }
         else

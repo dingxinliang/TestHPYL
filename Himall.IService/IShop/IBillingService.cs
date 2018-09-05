@@ -128,7 +128,7 @@ namespace Himall.IServices
 
 
 		/// <summary>
-		/// 获取待结算订单详情
+		/// 获取待结算预约单详情
 		/// </summary>
 		/// <param name="orderId"></param>
 		/// <returns></returns>
@@ -136,7 +136,7 @@ namespace Himall.IServices
 
 
 		/// <summary>
-		/// 已结算订单详情
+		/// 已结算预约单详情
 		/// </summary>
 		/// <param name="orderId"></param>
 		/// <returns></returns>
@@ -179,55 +179,55 @@ namespace Himall.IServices
 
 
 		/// <summary>
-		/// 添加待结算订单
+		/// 添加待结算预约单
 		/// </summary>
 		/// <param name="model"></param>
 		void AddPendingSettlementOrders(PendingSettlementOrdersInfo model);
 
 		/// <summary>
-		/// 分页获取待结算订单
+		/// 分页获取待结算预约单
 		/// </summary>
-		/// <param name="query">待结算订单查询实体</param>
+		/// <param name="query">待结算预约单查询实体</param>
 		/// <returns></returns>
 		QueryPageModel<PendingSettlementOrdersInfo> GetPendingSettlementOrders(PendingSettlementOrderQuery query);
 
 		/// <summary>
-		/// 获取待结算订单
+		/// 获取待结算预约单
 		/// </summary>
-		/// <param name="query">待结算订单查询实体</param>
+		/// <param name="query">待结算预约单查询实体</param>
 		/// <returns></returns>
 		List<PendingSettlementOrdersInfo> GetPendingSettlementOrdersNoPage(PendingSettlementOrderQuery query);
 
 		/// <summary>
-		/// 统计待结算订单
+		/// 统计待结算预约单
 		/// </summary>
 		/// <param name="query"></param>
 		/// <returns></returns>
 		QueryPageModel<StatisticsPendingSettlement> StatisticsPendingSettlementOrders(StatisticsPendingSettlementQuery query);
 
 		/// <summary>
-		/// 统计待结算订单
+		/// 统计待结算预约单
 		/// </summary>
 		/// <param name="query"></param>
 		/// <returns></returns>
 		List<StatisticsPendingSettlement> StatisticsPendingSettlementOrdersNoPage(StatisticsPendingSettlementQuery query);
 
 		/// <summary>
-		/// 分页获取已结算订单
+		/// 分页获取已结算预约单
 		/// </summary>
-		/// <param name="query">结算订单查询实体</param>
+		/// <param name="query">结算预约单查询实体</param>
 		/// <returns></returns>
 		QueryPageModel<AccountDetailInfo> GetSettlementOrders(SettlementOrderQuery query);
 
 		/// <summary>
-		/// 获取已结算订单
+		/// 获取已结算预约单
 		/// </summary>
 		/// <param name="query"></param>
 		/// <returns></returns>
 		List<AccountDetailInfo> GetSettlementOrdersNoPage(SettlementOrderQuery query);
 
 		/// <summary>
-		/// 结算（把待结算订单转为结算订单）
+		/// 结算（把待结算预约单转为结算预约单）
 		/// </summary>
 		void Settle();
 

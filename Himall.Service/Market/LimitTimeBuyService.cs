@@ -259,7 +259,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 获取指定营销类型服务的已购买商家列表
+        /// 获取指定营销类型服务的已购买诊所列表
         /// </summary>
         /// <param name="MarketBoughtQuery">营销查询对象</param>
         /// <returns></returns>
@@ -281,7 +281,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取参加限时购的所有活动商品列表
+        /// 获取参加限时购的所有活动诊疗项目列表
         /// </summary>
         /// <param name="query">限时购活动查询对象</param>
         /// <returns></returns>
@@ -379,7 +379,7 @@ namespace Himall.Service
 
         #endregion
 
-        #region 商家
+        #region 诊所
         private void CheckLimit(LimitTimeMarketInfo model)
         {
             if (Context.LimitTimeMarketInfo.Any(m => m.Id != model.Id && m.ShopId == model.ShopId && m.ProductId == model.ProductId && m.EndTime > DateTime.Now &&
@@ -537,7 +537,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 根据商品Id获取一个限时购的详细信息
+        /// 根据诊疗项目Id获取一个限时购的详细信息
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
@@ -545,7 +545,7 @@ namespace Himall.Service
         {
             if (pid <= 0)
             {
-                throw new HimallException("商品Id不能识别");
+                throw new HimallException("诊疗项目Id不能识别");
             }
             FlashSaleInfo result = null;
             var now = DateTime.Now;
@@ -869,7 +869,7 @@ namespace Himall.Service
         {
             if (pid <= 0)
             {
-                throw new HimallException("商品Id不能识别");
+                throw new HimallException("诊疗项目Id不能识别");
             }
 
             var model = Context.FlashSaleInfo.FirstOrDefault(m => m.ProductId == pid && m.Status == FlashSaleInfo.FlashSaleStatus.Ongoing && m.BeginDate <= DateTime.Now
@@ -953,8 +953,8 @@ namespace Himall.Service
             //        var sku = context.SKUInfo.FirstOrDefault( p => p.Id == detail.SkuId );
             //        if( sku == null )
             //        {
-            //            //如果sku为空，证明限时购的sku记录与商品的不一致
-            //            //证明商品在限时购已存在的情况下修改了sku相关信息
+            //            //如果sku为空，证明限时购的sku记录与诊疗项目的不一致
+            //            //证明诊疗项目在限时购已存在的情况下修改了sku相关信息
             //            //暂时还没做处理
             //            break;
             //        }
@@ -981,7 +981,7 @@ namespace Himall.Service
             if (Context.FlashSaleInfo.Exist(p => p.Id != 0 && p.Id != model.Id && p.ShopId == model.ShopId && p.ProductId == model.ProductId && p.EndDate > DateTime.Now && p.Status == FlashSaleInfo.FlashSaleStatus.Ongoing ||
               p.Id != 0 && p.Id != model.Id && p.ShopId == model.ShopId && p.ProductId == model.ProductId && p.EndDate > DateTime.Now && p.Status == FlashSaleInfo.FlashSaleStatus.WaitForAuditing))
             {
-                throw new HimallException("此商品已存在限时购活动");
+                throw new HimallException("此诊疗项目已存在限时购活动");
             }
             var co = Context.ActiveMarketServiceInfo.FirstOrDefault(a => a.TypeId == MarketType.LimitTimeBuy && a.ShopId == model.ShopId);
             if (co == null)
@@ -1151,7 +1151,7 @@ namespace Himall.Service
                 Context.SaveChanges();
             }
 
-            //商品销量
+            //诊疗项目销量
             //ServiceProvider.Instance<Himall.IServices.IOrderService>.Create.UpdateProductVistiOrderCount( orderid );
         }
 

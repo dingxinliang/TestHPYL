@@ -61,7 +61,7 @@
         <ul class="order-total">
             <li><a href="@Url.Action("index", "UserOrder" , new { orderstatus=(int)Himall.Model.OrderInfo.OrderOperateStatus.WaitPay })"><p>待付款<span>@Model.userCenterModel.WaitPayOrders</span></p></a></li>
             <li><a href="@Url.Action("index", "UserOrder" , new { orderstatus=(int)Himall.Model.OrderInfo.OrderOperateStatus.WaitDelivery })"><p>待发货<span>@Model.userCenterModel.WaitDeliveryOrders</span></p></a></li>
-            <li><a href="@Url.Action("index", "UserOrder" , new { orderstatus=(int)Himall.Model.OrderInfo.OrderOperateStatus.WaitReceiving })"><p>待收货<span>@Model.userCenterModel.WaitReceivingOrders</span></p></a></li>
+            <li><a href="@Url.Action("index", "UserOrder" , new { orderstatus=(int)Himall.Model.OrderInfo.OrderOperateStatus.WaitReceiving })"><p>待结算<span>@Model.userCenterModel.WaitReceivingOrders</span></p></a></li>
             <li><a href="/UserOrder?orderDate=all&orderStatus=7"><p>待评价<span>@Model.userCenterModel.WaitEvaluationOrders</span></p></a></li>
             <li><a href="@Url.Action("List", "orderrefund")"><p>售后中<span>@Model.userCenterModel.RefundCount</span></p></a></li>
         </ul>
@@ -70,7 +70,7 @@
     <div class="list-mod cl clearfix">
         <div class="list-left clearfix">
             <div class="home-box ms-recommend">
-                <h3><a href="#">商品推荐</a></h3>
+                <h3><a href="#">诊疗项目推荐</a></h3>
                 <ul class="clearfix">
                     @if (Model.Top3RecommendProducts != null)
                     {
@@ -90,7 +90,7 @@
             </div>
             @{var showFollwProducts = Model.userCenterModel.FollwProducts.Count > 0 ? "" : "empty-show";}
             <div class="home-box ms-myfav @showFollwProducts">
-                <h3><a href="/productConcern/">收藏的商品</a><a href="/productConcern/index" class="more">更多>></a></h3>
+                <h3><a href="/productConcern/">收藏的诊疗项目</a><a href="/productConcern/index" class="more">更多>></a></h3>
                 <ul class="clearfix">
                     @if (Model.userCenterModel.FollwProducts.Count>0) {
                     foreach (var p in Model.userCenterModel.FollwProducts)
@@ -106,7 +106,7 @@
                     }
                     else
                     {
-                        <li class="empty-l">您还未收藏任何商品哦！</li>
+                        <li class="empty-l">您还未收藏任何诊疗项目哦！</li>
                     }
                 </ul>
             </div>

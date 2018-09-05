@@ -53,14 +53,14 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 获取指定营销类型服务的已购买商家列表
+        /// 获取指定营销类型服务的已购买诊所列表
         /// </summary>
         /// <param name="MarketBoughtQuery">营销查询对象</param>
         /// <returns></returns>
         ObsoletePageModel<ActiveMarketServiceInfo> GetBoughtShopList(MarketBoughtQuery query);
 
         /// <summary>
-        /// 获取参加限时购的所有活动商品列表
+        /// 获取参加限时购的所有活动诊疗项目列表
         /// </summary>
         /// <param name="query">限时购活动查询对象</param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace Himall.IServices
         #endregion
 
 
-        #region 商家
+        #region 诊所
 
 
         /// <summary>
@@ -109,14 +109,14 @@ namespace Himall.IServices
 
 
         /// <summary>
-        ///  根据商品Id获取一个限时购的详细信息
+        ///  根据诊疗项目Id获取一个限时购的详细信息
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
         FlashSaleInfo GetLimitTimeMarketItemByProductId(long pid);
 
         /// <summary>
-        /// 判断商品是否正在做限时购
+        /// 判断诊疗项目是否正在做限时购
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -124,7 +124,7 @@ namespace Himall.IServices
 
         #endregion
 
-        #region 获取指定限时购活动商品Id的销售量(单个用户)
+        #region 获取指定限时购活动诊疗项目Id的销售量(单个用户)
 
         int GetMarketSaleCountForUserId(long pId, long userId);
 
@@ -146,7 +146,7 @@ namespace Himall.IServices
         ObsoletePageModel<FlashSaleInfo> GetAll(long shopid, int? status, string productName, DateTime? StartDate, DateTime? EndDate, int pageIndex, int pageSize);
 
         /// <summary>
-        /// 前端获取参加限时购的所有活动商品列表
+        /// 前端获取参加限时购的所有活动诊疗项目列表
         /// </summary>
         /// <returns></returns>
         ObsoletePageModel<FlashSaleInfo> GetAll(FlashSaleQuery query);
@@ -209,9 +209,9 @@ namespace Himall.IServices
         FlashSaleModel IsFlashSaleDoesNotStarted(long productid);
 
         /// <summary>
-        /// 根据商品id获取限时购价格
+        /// 根据诊疗项目id获取限时购价格
         /// </summary>
-        /// <param name="ids">商品id集合</param> 
+        /// <param name="ids">诊疗项目id集合</param> 
         /// <returns>key = productid , value = price</returns>
         List<FlashSalePrice> GetPriceByProducrIds(List<long> ids);
 

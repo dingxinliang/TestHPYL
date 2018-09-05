@@ -13,12 +13,12 @@ namespace Himall.DTO
 		public long ProductId { get; set; }
 
 		/// <summary>
-		/// 推荐商品id，以逗号分隔
+		/// 推荐诊疗项目id，以逗号分隔
 		/// </summary>
 		public string Relation { get; set; }
 
 		/// <summary>
-		/// 推荐商品id列表
+		/// 推荐诊疗项目id列表
 		/// </summary>
 		public long[] RelationProductIds
 		{

@@ -9,7 +9,7 @@
             您好，欢迎来到 <em class="s-name">@ViewBag.SiteName！</em>
             @if (Request.Path == "/")
             {
-                <a href="/userCenter/home">去买家中心</a>
+                <a href="/userCenter/home">去患者中心</a>
             }
             else
             {
@@ -45,8 +45,8 @@
 
                 <div class="dropdown-menu">
                     <ol>
-                        <li><a href="/UserOrder">已买到的商品</a></li>
-                        <li><a href="/productConcern">我关注的商品</a></li>
+                        <li><a href="/UserOrder">已买到的诊疗项目</a></li>
+                        <li><a href="/productConcern">我关注的诊疗项目</a></li>
                         <li><a href="/shopConcern">我关注的店铺</a></li>
                     </ol>
                 </div>
@@ -86,10 +86,10 @@
 
                 <div class="dropdown-menu">
                     <ol>
-                        <li><a href="/SellerAdmin">商家入驻</a></li>
-                        <li><a href="/SellerAdmin/order/management">已卖出商品</a></li>
-                        <li><a href="/SellerAdmin/product/create">发布商品</a></li>
-                        <li><a href="/SellerAdmin/product/management">管理商品</a></li>
+                        <li><a href="/SellerAdmin">诊所入驻</a></li>
+                        <li><a href="/SellerAdmin/order/management">已卖出诊疗项目</a></li>
+                        <li><a href="/SellerAdmin/product/create">发布诊疗项目</a></li>
+                        <li><a href="/SellerAdmin/product/management">管理诊疗项目</a></li>
 
                     </ol>
                 </div>

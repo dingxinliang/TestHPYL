@@ -95,7 +95,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return Json(new Result() { success = true, msg = "批量删除成功！" });
         }
 
-        [ShopOperationLog(Message = "修改商家管理员")]
+        [ShopOperationLog(Message = "修改诊所管理员")]
         public JsonResult Change(long id, string password, long roleId,string realName,string reMark)
         {
             var shopid = CurrentSellerManager.ShopId;

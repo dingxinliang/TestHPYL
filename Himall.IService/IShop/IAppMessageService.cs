@@ -10,7 +10,7 @@ namespace Himall.IServices
     public interface IAppMessageService : IService
     {
         /// <summary>
-        /// 商家未读消息数（30天内）
+        /// 诊所未读消息数（30天内）
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>

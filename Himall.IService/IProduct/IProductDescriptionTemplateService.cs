@@ -4,7 +4,7 @@ using System.Linq;
 namespace Himall.IServices
 {
     /// <summary>
-    /// 商品描述模板
+    /// 诊疗项目描述模板
     /// </summary>
     public interface IProductDescriptionTemplateService : IService
     {

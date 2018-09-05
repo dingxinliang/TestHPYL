@@ -331,12 +331,11 @@ function initAuditGrid() {
                 },
                 { field: "CategoryName", title: "文章分类", width: 90, align: "center" },
                 { field: "State", title: "启用状态", width: 90, align: "center" },
-                { field: "HAA_State", title: "启用状态", width: 90, align: "center" },
                 {
                     field: "s", title: "操作", width: 120, align: "center",
                     formatter: function (value, row, index) {
                         html = '<span class="btn-a text-left inline-block"><input class="thiscId" type="hidden" value="' + row.HFT_ID + '"/><input class="thisId" type="hidden" value="' + row.HAA_ID + '"/><input class="thisName" type="hidden" value="' + row.HAA_Title + '"/>';
-                        html += '<a class="good-edit" >编辑</a>';
+                        html += '<a class="good-edit" href="save?id=' + row.HAA_ID+'" >编辑</a>';
                         if (row.HAA_State == 1) {
                             html += '<a class="good-down">停用</a><a class="good-del">删除</a><a class="follow-txt" href="followcontent?id=' + row.HAA_ID + '">关联计划</a>';
                         }
@@ -387,14 +386,14 @@ function initGrid(params) {
                 },
                 { field: "CategoryName", title: "文章分类", width: 90, align: "center" },
                 { field: "State", title: "启用状态", width: 90, align: "center" },
-                { field: "HAA_State", title: "启用状态", width: 90, align: "center" },
+                
                 {
                     field: "s", title: "操作", width: 120, align: "center",
                     formatter: function (value, row, index) {
                         html = '<span class="btn-a text-left inline-block"><input class="thiscId" type="hidden" value="' + row.HFT_ID + '"/><input class="thisId" type="hidden" value="' + row.HAA_ID + '"/><input class="thisName" type="hidden" value="' + row.HAA_Title + '"/>';
-                        html += '<a class="good-edit" >编辑</a>';
+                        html += '<a class="good-edit" href="save?id=' + row.HAA_ID + '" >编辑</a>';
                         if (row.HAA_State == 1) {
-                            html += '<a class="good-down">停用</a><a class="good-del">删除</a><a class="follow-txt" href="followcontent?id=' + row.HAA_ID + '">关联计划</a>';
+                            html += '<a class="good-down">停用</a><a class="good-del">删除</a><a class="follow-txt" href="doctorcontent?id=' + row.HAA_ID + '">关联计划</a>';
                         }
                         else { html += '<a class="good-up">使用</a><a class="good-del">删除</a>'; }
 

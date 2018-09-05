@@ -358,7 +358,7 @@ namespace Himall.Service
         }
 
 		/// <summary>
-		/// 根据商家id获取微店信息
+		/// 根据诊所id获取微店信息
 		/// </summary>
 		/// <param name="shopIds"></param>
 		/// <returns></returns>

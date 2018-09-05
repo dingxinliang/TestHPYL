@@ -23,14 +23,14 @@ function query() {
         toolbar: /*"#goods-datagrid-toolbar",*/'',
         columns:
         [[
-            { field: "OrderIdString", title: '订单编号' },
-            { field: "ProductName", title: '商品名称' },
+            { field: "OrderIdString", title: '预约单编号' },
+            { field: "ProductName", title: '诊疗项目名称' },
             { field: "RealTotalPrice", title: '结算金额',
                 formatter: function (value, row, index) {
                     var html = row.RealTotalPrice - row.RealTotalPriceRefund;
                     return html;
                 } },
-            { field: "OrderStatusDesc", title: '订单状态' },
+            { field: "OrderStatusDesc", title: '预约单状态' },
             { field: "OrderTimeString", title: '下单时间' },
             { field: "ExpriedStatus", title: '是否已过维权期' },
             { field: "Brokerage", title: '结算佣金',

@@ -35,12 +35,12 @@ $(function(){
     </ul>
 
     <div class="ms-myorder modle-box">
-        <h3><span>商品</span><span>会员</span><span>交易</span></h3>
+        <h3><span>诊疗项目</span><span>会员</span><span>交易</span></h3>
         <div class="mycollect cl">
             <dl class="clearfix">
                 <dt>待办事项</dt>
                 <dd class="first-child">
-                    <p><a href="/admin/product/management?status=1">商品待审核(@Model.WaitForAuditingProducts)</a><a href="/admin/brand/verify">品牌待审核(@Model.WaitForAuditingBrands)</a></p>
+                    <p><a href="/admin/product/management?status=1">诊疗项目待审核(@Model.WaitForAuditingProducts)</a><a href="/admin/brand/verify">品牌待审核(@Model.WaitForAuditingBrands)</a></p>
                 </dd>
                 <dd class="two-child">
                     <p><a href="/admin/shop/management?type=Auditing&s=2">入驻待审核(@Model.WaitAuditShops)</a>@*<a>待仲裁(@Model.Complaints)</a>*@</p>
@@ -81,12 +81,12 @@ $(function(){
 				<div class="item-bt">
                     <i></i>
                 </div>
-                <div class="item-hd">商品（件）<p>@Model.ProductNum</p></div>
+                <div class="item-hd">诊疗项目（件）<p>@Model.ProductNum</p></div>
                 <div class="item-bd">
                     <p><em>@Model.OnSaleProducts</em>出售中</p>
                     <p><em>@Model.WaitForAuditingProducts</em>待审核</p>
-                    <p><em>@Model.ProductConsultations</em>商品咨询</p>
-                    <p><em>@Model.ProductComments</em>商品评价</p>
+                    <p><em>@Model.ProductConsultations</em>诊疗项目咨询</p>
+                    <p><em>@Model.ProductComments</em>诊疗项目评价</p>
                     <p>&nbsp;</p>
                 </div>
                 

@@ -164,7 +164,7 @@ namespace Himall.Web.Areas.Web.Controllers
 					});
 				}
 
-				//推荐商品
+				//推荐诊疗项目
 				foreach (var s in productModules)
 				{
 					model.ProductModules.Add(new HomeFloorModel.ProductModule

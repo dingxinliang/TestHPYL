@@ -20,7 +20,7 @@ namespace Himall.Model
             Removed = 1,
         }
         /// <summary>
-        /// 对应关联商品
+        /// 对应关联诊疗项目
         /// <para>非EF自动关联，需手动join</para>
         /// </summary>
         [NotMapped]

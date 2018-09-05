@@ -64,7 +64,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                 Size = "",
                 IsHidden=item.IsHidden.Value
             }).ToList();
-            //TODO LRL 2015/08/06 从评价信息添加商品的规格信息
+            //TODO LRL 2015/08/06 从评价信息添加诊疗项目的规格信息
             foreach (var item in comments)
             {
                 item.ImagePath = Core.HimallIO.GetProductSizeImage(item.ImagePath, 1, 100);
@@ -93,7 +93,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             //zjt modify
             //删除评论后卖家不能再次评论，为减少数据库字段增加，只将评论置空
             ////_iCommentService.SetCommentEmpty(id);
-            ////Edit:DZY[150709]  改为删除商品评价
+            ////Edit:DZY[150709]  改为删除诊疗项目评价
             _iCommentService.HiddenComment(id);
             return Json(new Result() { success = true, msg = "清除成功！" });
         }

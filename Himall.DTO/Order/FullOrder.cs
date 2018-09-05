@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
 	/// <summary>
-	/// 包括额外相关信息的订单
+	/// 包括额外相关信息的预约单
 	/// </summary>
 	public class FullOrder:Order
 	{
 		public List<OrderItem> OrderItems { get; set; }
 
 		/// <summary>
-		/// 订单包含的所有商品总件数
+		/// 预约单包含的所有诊疗项目总件数
 		/// </summary>
 		public long ProductCount
 		{

@@ -31,9 +31,9 @@ namespace Himall.Core.Plugins.Payment
         /// </summary>
         /// <param name="returnUrl">服务器异步通知页面路径，需http://格式的完整路径，不能加?id=123这类自定义参数</param>
         /// <param name="notifyUrl">页面跳转同步通知页面路径，需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/</param>
-        /// <param name="orderId">订单编号</param>
-        /// <param name="totalFee">订单总金额</param>
-        /// <param name="productInfo">订单商品信息</param>
+        /// <param name="orderId">预约单编号</param>
+        /// <param name="totalFee">预约单总金额</param>
+        /// <param name="productInfo">预约单诊疗项目信息</param>
         /// <param name="openId">OpenId（部分支付需要）</param>
         /// <returns></returns>
         string GetRequestUrl(string returnUrl, string notifyUrl, string orderId, decimal totalFee, string productInfo, string openId = null);

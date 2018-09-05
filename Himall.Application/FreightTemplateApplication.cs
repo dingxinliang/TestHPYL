@@ -107,7 +107,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 是否有商品使用过改运费模板
+        /// 是否有诊疗项目使用过改运费模板
         /// </summary>
         /// <param name="templateId"></param>
         /// <returns></returns>

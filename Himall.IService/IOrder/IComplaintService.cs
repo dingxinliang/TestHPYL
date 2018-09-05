@@ -23,7 +23,7 @@ namespace Himall.IServices
         void DealComplaint(long id);
 
         /// <summary>
-        /// 商家处理投诉
+        /// 诊所处理投诉
         /// </summary>
         /// <param name="id"></param>
         /// <param name="reply"></param>

@@ -74,14 +74,14 @@ namespace Himall.Core.Plugins.Message
         string SendMessageOnFindPassWord(string destination, MessageUserInfo info);
 
         /// <summary>
-        /// 订单创建
+        /// 预约单创建
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="?"></param>
         string SendMessageOnOrderCreate(string destination, MessageOrderInfo info);
 
         /// <summary>
-        /// 订单支付
+        /// 预约单支付
         /// </summary>
         /// 
         /// 
@@ -90,14 +90,14 @@ namespace Himall.Core.Plugins.Message
         string SendMessageOnOrderPay(string destination, MessageOrderInfo info);
 
         /// <summary>
-        /// 订单发货
+        /// 预约单发货
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
         string SendMessageOnOrderShipping(string destination, MessageOrderInfo info);
 
         /// <summary>
-        /// 订单退款
+        /// 预约单退款
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>

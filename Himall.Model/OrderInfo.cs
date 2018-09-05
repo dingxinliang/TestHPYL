@@ -65,6 +65,11 @@ namespace Himall.Model
         public InvoiceType InvoiceType { get; set; }
         public decimal IntegralDiscount { get; set; }
         public string InvoiceContext { get; set; }
+        public int RemindType { get; set; }
+        public string doctorName { get; set; }
+        public string ReceiveDate { get; set; }
+        public string ReceiveStartTime { get; set; }
+        public string ReceiveEndTime { get; set; }
         public Nullable<Himall.Model.OrderInfo.OrderTypes> OrderType { get; set; }
         public Himall.Model.OrderInfo.PaymentTypes PaymentType { get; set; }
         public Nullable<long> ShareUserId { get; set; }

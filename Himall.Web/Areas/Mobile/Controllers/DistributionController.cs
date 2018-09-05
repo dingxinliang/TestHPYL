@@ -402,14 +402,14 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return File(imgbits, "image/png");
         }
         /// <summary>
-        /// 删除代理商品
+        /// 删除代理诊疗项目
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
         public JsonResult DeleteAgentProduct(long id)
         {
-            Result result = new Result { success = false, msg = "错误的商品编号" };
+            Result result = new Result { success = false, msg = "错误的诊疗项目编号" };
             if (id > 0)
             {
                 List<long> ids = new List<long>();
@@ -420,7 +420,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return Json(result);
         }
         /// <summary>
-        /// 订单列表
+        /// 预约单列表
         /// </summary>
         /// <param name="state">状态</param>
         /// <param name="stime">开始时间</param>

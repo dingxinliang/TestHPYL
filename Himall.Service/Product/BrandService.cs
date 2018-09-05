@@ -105,7 +105,7 @@ namespace Himall.Service
 						BrandInfo b = GetBrand(brand.Id);
 						b.Logo = MoveImages(b.Id, b.Logo, 1);
 
-						//向商家品牌表加入一条数据 
+						//向诊所品牌表加入一条数据 
 						ShopBrandsInfo info = new ShopBrandsInfo();
 						info.BrandId = b.Id;
 						info.ShopId = m.ShopId;
@@ -115,7 +115,7 @@ namespace Himall.Service
 					}
 					else
 					{
-						//向商家品牌表加入一条数据 
+						//向诊所品牌表加入一条数据 
 						ShopBrandsInfo info = new ShopBrandsInfo();
 						info.BrandId = model.Id;
 						info.ShopId = m.ShopId;
@@ -126,7 +126,7 @@ namespace Himall.Service
 				}
 				else
 				{
-					//向商家品牌表加入一条数据 
+					//向诊所品牌表加入一条数据 
 					ShopBrandsInfo info = new ShopBrandsInfo();
 					info.BrandId = (long)m.BrandId;
 					info.ShopId = m.ShopId;

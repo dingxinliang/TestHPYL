@@ -53,7 +53,7 @@ function LoadData() {
                 field: "ShopBranchName", title: '门店名称', width: 150, align: 'center'
             },
             {
-                field: "ShopName", title: "商家", width: 150, align: "center"
+                field: "ShopName", title: "诊所", width: 150, align: "center"
             },
             {
                 field: "ShopBranchInTagNames", title: "标签", width: 150, align: "center"

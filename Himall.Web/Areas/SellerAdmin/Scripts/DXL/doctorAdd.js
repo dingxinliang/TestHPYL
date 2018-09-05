@@ -1,6 +1,8 @@
 ﻿$(function () {
+    if (!$.isNullOrEmpty(GetQueryString("id"))) {
+        GetInfo(GetQueryString("id"));
+    }  
     InitBrandLetter();
-
     //初始化富文本框
     UE.getEditor('desContainer');
 });
@@ -17,13 +19,34 @@ function InitBrandLetter(brandLetter) {
     });
 }
 
-
+function GetInfo(id) {
+    var loading = showLoading();
+    $.ajax({
+        type: "POST",
+        url: "GetDoctor",
+        data: {ids:id},
+        dataType: "json",
+        success: function (data) {
+            loading.close();
+            if (data.success == true) {
+                $("#dName").val(data.data[0].HAA_Title);
+                $("#GoodsCategory").val(data.data[0].HFT_ID);
+               
+                $("#hdpic").val(data.data[0].HAA_PicUrl);
+                var ue = UE.getEditor('desContainer');
+                ue.addListener('ready', function (editor) {
+                    ue.setContent(data.data[0].HAA_Content);
+                });
+            } else {
+                $.dialog.errorTips("无效的参数")
+            }
+        }
+    });
+}
 
 
 function AddApply() {
     var ajaxGet = function (url, d, fn) {
-        console.log(url);
-        console.log(d);
         var loading = showLoading();
         $.ajax({
             type: "POST",
@@ -33,7 +56,7 @@ function AddApply() {
             success: function (data) {
                 loading.close();
                 if (data.success == true) {
-                    $.dialog.succeedTips('内容添加成功!', function () { window.location.reload(); });
+                    $.dialog.succeedTips('内容保存成功!', function () { window.location.reload(); });
                 } else {
                     $.dialog.errorTips(data.msg)
                 }
@@ -59,8 +82,7 @@ function AddApply() {
         $.dialog.errorTips("请选择科目！");
         return false;
     }
-
-    if ($.isNullOrEmpty(brandLetter)) {
+    if ($.isNullOrEmpty(Pic) && $("#hdpic").val()=="") {
         $.dialog.errorTips("请上传文章封面！");
         return false;
     }
@@ -68,8 +90,14 @@ function AddApply() {
         $.dialog.errorTips("请填写内容,尽量以图片形式展现");
         return false;
     }
-   
-    ajaxGet('Creatdoctor', { cid: cid, title: titles, pic: Pic, remark: des, ids:'' });
+    if ($.isNullOrEmpty(Pic) && $("#hdpic").val() != "") {
+        Pic = $("#hdpic").val();
+    }
+    var id ="";
+    if (!$.isNullOrEmpty(GetQueryString("id"))) {
+        id = GetQueryString("id");
+    }  
+    ajaxGet('Creatdoctor', { cid: cid, title: titles, pic: Pic, remark: des, ids: id });
    
 
 }

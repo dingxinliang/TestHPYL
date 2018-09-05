@@ -19,9 +19,9 @@ namespace Himall.CommonModel.Enum
 		WaitAudit = 1,
 
 		/// <summary>
-		/// 待买家寄货
+		/// 待患者寄货
 		/// </summary>
-		[Description("待买家寄货")]
+		[Description("待患者寄货")]
 		WaitDelivery = 2,
 
 		/// <summary>

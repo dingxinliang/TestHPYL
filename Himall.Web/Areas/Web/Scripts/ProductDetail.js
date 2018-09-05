@@ -5,7 +5,7 @@
     var gidName = $('#gidName').val();
     var relativePath = $('#relativePath').val();
 
-    // 获取商品需要实时刷新的数据
+    // 获取诊疗项目需要实时刷新的数据
     loadProductNeedRefreshInfo();
 
     loadGroup();
@@ -48,7 +48,7 @@
 
             //重新计算运费
             if (parseInt(cityid) > 0 && isFree == "0") {
-                var totalnum = 0;//商品总数量
+                var totalnum = 0;//诊疗项目总数量
                 $('.wrap-input .text').each(function (i, e) {
                     if (parseInt($(e).val()) > 0) {
                         totalnum += parseInt($(e).val());
@@ -115,7 +115,7 @@
                 //   alert('SKUId：'+sku+'，购买数量：'+num);
             }
         } else {
-            $.dialog.errorTips('请选择商品规格');
+            $.dialog.errorTips('请选择诊疗项目规格');
         }
     });
 
@@ -129,7 +129,7 @@
         }
     });
 
-    //关注商品
+    //关注诊疗项目
     $("#choose-btn-coll").click(function () {
         checkLogin(function (func) {
             addFavoriteFun(func, gid, gidName, relativePath);
@@ -159,7 +159,7 @@ function getProductActives(shopid, productid) {
         if (parseFloat(data.freeFreight) > 0) {
             $("#summary-promotion").append("<div class='dt l l01'>促销</div>" +
                     "<div class='promotion-l' style='float:left;width:440px;'>" +
-                            "<div style='margin-bottom:5px;'><em class='hl_red_bg'>满免</em><em class='hl_red'>单笔订单满<span>" + data.freeFreight + "</span>元免运费</em></div>" +
+                            "<div style='margin-bottom:5px;'><em class='hl_red_bg'>满免</em><em class='hl_red'>单笔预约单满<span>" + data.freeFreight + "</span>元免运费</em></div>" +
                     "</div>");
         }
         if (data.ProductBonus != undefined && data.ProductBonus != null && typeof data.ProductBonus.GrantPrice != "undefined") {
@@ -202,14 +202,14 @@ function getHotProduct(productid, categoryid) {
             var html = '';
             for (var i = 0; i < data.length; i++) {
                 var product = data[i];
-                if (product.id != gid) {//不显示当前商品
+                if (product.id != gid) {//不显示当前诊疗项目
                     html += template.formatProperty(product);
                 }
             }
 
             relationProducts.children(':not(template)').remove();
             relationProducts.html(html);
-            if (html.length > 0) {//有推荐商品，则显示
+            if (html.length > 0) {//有推荐诊疗项目，则显示
                 relationProducts.parent().show();
             }
         }
@@ -276,7 +276,7 @@ function InitCartUrl() {
                 });
             }
         } else {
-            $.dialog.errorTips("请选择商品规格！");
+            $.dialog.errorTips("请选择诊疗项目规格！");
         }
     });
 }
@@ -291,7 +291,7 @@ function canBuy(productId) {
         url: '../canbuy?productId={0}&count={1}'.format(productId, count),
         async: false,
         success: function (data) {
-            if (data && data.message != "商品无货") {
+            if (data && data.message != "诊疗项目无货") {
                 result = data.result;
                 if ($.notNullOrEmpty(data.message))
                     $.dialog.errorTips(data.message);
@@ -408,8 +408,8 @@ function showEasyBuyBt(isshow, isComple) {
 
 function loadShopInfo(gid) {
     /* 计算规则：
-高 （店铺得分-同行业平均分）/（同行业商家最高得分-同行业平均分）
-低 （同行业平均分-店铺得分）/（同行业平均分-同行业商家最高低分）
+高 （店铺得分-同行业平均分）/（同行业诊所最高得分-同行业平均分）
+低 （同行业平均分-店铺得分）/（同行业平均分-同行业诊所最高低分）
 */
 
     var upImage = "up";
@@ -566,7 +566,7 @@ function loadShopInfo(gid) {
                 '<div class="mc">' +
                 '<dl >' +
                 '<dt>描述相符：</dt>' +
-                '<dd title="（商家得分-行业平均得分）/（行业商家最高得分-行业平均得分）">' +
+                '<dd title="（诊所得分-行业平均得分）/（行业诊所最高得分-行业平均得分）">' +
                 '<span class="' + productAndDescriptionColor + '">' + productAndDescription + '</span>' +
                 '<i class="' + productAndDescriptionImage + '"></i>' +
                 '<em class="' + productAndDescriptionColor + '">' + productAndDescriptionContrast + '</em>' +
@@ -574,7 +574,7 @@ function loadShopInfo(gid) {
                 '</dl>' +
                 '<dl>' +
                 '<dt>发货速度：</dt>' +
-                '<dd title="（行业平均得分-商家得分）/（行业平均得分-行业商家最低得分）">' +
+                '<dd title="（行业平均得分-诊所得分）/（行业平均得分-行业诊所最低得分）">' +
                 '<span class="' + sellerDeliverySpeedColor + '">' + sellerDeliverySpeed + '</span>' +
                 '<i class="' + sellerDeliverySpeedImage + '"></i>' +
                 '<em class="' + sellerDeliverySpeedColor + '">' + sellerDeliverySpeedContrast + '</em>' +
@@ -582,7 +582,7 @@ function loadShopInfo(gid) {
                 '</dl>' +
                 '<dl>' +
                 '<dt>服务态度：</dt>' +
-                '<dd title="（行业平均得分-商家得分）/（行业平均得分-行业商家最低得分）">' +
+                '<dd title="（行业平均得分-诊所得分）/（行业平均得分-行业诊所最低得分）">' +
                  '<span class="' + sellerServiceAttitudeColor + '">' + sellerServiceAttitude + '</span>' +
                 '<i class="' + sellerServiceAttitudeImage + '"></i>' +
                  '<em class="' + sellerServiceAttitudeColor + '">' + sellerServiceAttitudeContrast + '</em>' +
@@ -677,7 +677,7 @@ function ShowloadHotSaleProduct(gid) {
 var isShowProductCommentDiv = false;
 function ShowloadProductComments() {
     $(window).scroll(function () {
-        //到达可视区域时加载商品评论
+        //到达可视区域时加载诊疗项目评论
         var produnctComment = document.getElementById("comment").offsetTop;
         if (produnctComment <= $(window).scrollTop() && produnctComment < ($(window).scrollTop() + $(window).height())) {
             if (!isShowProductCommentDiv) {
@@ -829,7 +829,7 @@ function loadProductNeedRefreshInfo() {
                 //if (data.isPreheat) {
                 //    preheatHtml = "<a href=\"/LimitTimeBuy/Detail/" + data.flashSaleId + "\">" +
                 //        "<div id=\"limited-tag\">" +
-                //            "<span>限时购</span><span>此商品参加限时购活动，还有<i>" + data.flashSaleTime + "开始</span>" +
+                //            "<span>限时购</span><span>此诊疗项目参加限时购活动，还有<i>" + data.flashSaleTime + "开始</span>" +
                 //        "</div></a>";
                 //    $("#preheat").append(preheatHtml);
                 //}
@@ -897,7 +897,7 @@ function loadShipAndLimit(_templateId) {
                 if (data.isPreheat) {
                     preheatHtml = "<a href=\"/LimitTimeBuy/Detail/" + data.flashSaleId + "\">" +
                         "<div id=\"limited-tag\">" +
-                            "<span>限时购</span><span>此商品参加限时购活动，还有<i>" + data.flashSaleTime + "开始</span>" +
+                            "<span>限时购</span><span>此诊疗项目参加限时购活动，还有<i>" + data.flashSaleTime + "开始</span>" +
                         "</div></a>";
                     $("#preheat").append(preheatHtml);
                 }
@@ -1038,7 +1038,7 @@ function loadSkus(data) {
 
 function loadGetEnableBuyInfo(gid) {
     if ($('#IsExpiredShop').val()) {
-        $('#summary-price').html('<div class="dd"><strong style="font-size:25px;color:red;">提示：该商品所在店铺已过期！</strong></div>');
+        $('#summary-price').html('<div class="dd"><strong style="font-size:25px;color:red;">提示：该诊疗项目所在店铺已过期！</strong></div>');
         $('#choose-btn-buy').hide();
         $("#choose-btn-append").addClass("disabled");
     } else {
@@ -1057,7 +1057,7 @@ function loadGetEnableBuyInfo(gid) {
                         $("#stockProduct").html("0");
                     }
                     else if (data.IsOnSale === false) {
-                        $('#summary-price').html('<div class="dd"><strong style="font-size:25px;color:red;">提示：该商品已经下架！</strong></div>');
+                        $('#summary-price').html('<div class="dd"><strong style="font-size:25px;color:red;">提示：该诊疗项目已经下架！</strong></div>');
                         $("#stockProductImage").html('<div class="dd"><strong style="color:red;">提示：无货</strong></div>');
                         $("#choose-btns").hide();
                     }
@@ -1322,7 +1322,7 @@ function bindToSettlement(SkuId) {
         }
     }
     else {
-        $.dialog.errorTips("请选择商品规格！");
+        $.dialog.errorTips("请选择诊疗项目规格！");
     }
 }
 
@@ -1387,7 +1387,7 @@ function CollocationBuy(i) {
     var chk = $(".productcollocation").eq(i).find(".collochk:checked");
     var pids = "";
     if (chk.length < 2) {
-        $.dialog.errorTips("请至少选择一个商品组合购买！");
+        $.dialog.errorTips("请至少选择一个诊疗项目组合购买！");
         return;
     }
     else {
@@ -1460,7 +1460,7 @@ function CollocationBuy(i) {
 
         },
         ok: function () {
-            //创建订单页面
+            //创建预约单页面
             var flag = 1,
 				groupSkuids = '',
 				collpids = '',
@@ -1486,11 +1486,11 @@ function CollocationBuy(i) {
                 groupcounts += _tmp + ','
             });
             if (flag == 2) {
-                $.dialog.errorTips("有未选择规格的商品");
+                $.dialog.errorTips("有未选择规格的诊疗项目");
                 return false;
             }
             if (flag == 3) {
-                $.dialog.errorTips("购买数大于商品库存");
+                $.dialog.errorTips("购买数大于诊疗项目库存");
                 return false;
             }
 

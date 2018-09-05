@@ -109,7 +109,7 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 删除购物车商品
+        /// 删除购物车诊疗项目
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -123,7 +123,7 @@ namespace Himall.API
             d.Success = "true";
             return d;
         }
-        //更新购物车商品数量(这里没有及时更新,而是本地更新等会员点击购买的时候再更新到数据库并且提交订单)
+        //更新购物车诊疗项目数量(这里没有及时更新,而是本地更新等会员点击购买的时候再更新到数据库并且提交预约单)
         [HttpPost]
         public object PostUpdateCartItem(CartUpdateCartItemModel value)
         {
@@ -141,7 +141,7 @@ namespace Himall.API
             d.Url = Core.HimallIO.GetRomoteImagePath("/m-IOS/Order/SubmiteByCart");
             return d;
         }
-        //添加商品到购物车
+        //添加诊疗项目到购物车
         public object PostAddProductToCart(CartAddProductToCartModel value)
         {
             CheckUserLogin();

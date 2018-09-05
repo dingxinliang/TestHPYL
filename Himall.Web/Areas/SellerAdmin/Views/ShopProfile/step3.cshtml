@@ -30,12 +30,12 @@
     <form class="form-horizontal form-pt0" role="form">
         <h3 class="table-hd">店铺经营信息</h3>
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label"><b>*</b>商家帐号：</label>
+            <label for="" class="col-sm-2 control-label"><b>*</b>诊所帐号：</label>
             <div class="col-sm-3">
                 <input type="text" value="@ViewBag.Username" disabled="disabled" class="form-control input-sm" />
             </div>
             <div class="col-sm-6">
-                <span class="help-default cor-red">此帐号为日后登录并管理商家中心时使用，注册后不可修改，请牢记。</span>
+                <span class="help-default cor-red">此帐号为日后登录并管理诊所中心时使用，注册后不可修改，请牢记。</span>
             </div>
         </div>
         <div class="form-group">
@@ -191,7 +191,7 @@
             var seldom = $("#shopGrade");
             var item = seldom.find('option:selected');
             if (seldom.val()) {
-                $('#shopGradeDescription').html('商品数：' + item.attr('productsLimit') +
+                $('#shopGradeDescription').html('诊疗项目数：' + item.attr('productsLimit') +
                     ' 可用空间：' + item.attr('imagelimit') + " M" +
                     ' 收费标准：' + item.attr('charge') +
                      (item.attr('remark') ? ' 附加功能：' + item.attr('remark') : ''));

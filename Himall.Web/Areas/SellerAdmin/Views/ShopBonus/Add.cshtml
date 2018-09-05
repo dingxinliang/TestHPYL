@@ -22,7 +22,7 @@
         <li class="active"><a>新增</a></li>
         <li><a href="@Url.Action("BuyService")">服务购买</a></li>
     </ul>
-    <h5 class="tips-top"><span class="help-default"><i></i> 说明：随机红包为商家提供类似滴滴打车红包、饿了么红包等可在微信中传播营销工具，可极大提高店铺的二次曝光率</span></h5>
+    <h5 class="tips-top"><span class="help-default"><i></i> 说明：随机红包为诊所提供类似滴滴打车红包、饿了么红包等可在微信中传播营销工具，可极大提高店铺的二次曝光率</span></h5>
     @using( Html.BeginForm( "Add" , "ShopBonus" , new { Area = "SellerAdmin" } , FormMethod.Post , new { id = "BonusForm" , @class = "form-horizontal" } ) )
     {
         <div class="form-group">
@@ -68,7 +68,7 @@
                 @Html.TextBoxFor( p => p.GrantPrice , new { @class = "w50" , @onkeypress = "return (/[\\d.]/.test(String.fromCharCode(event.which?event.which:window.event.keyCode)))" } ) 元
             </div>
             <div class="col-sm-6">
-                <p class="help-default">订单实付金额达到设定的值可获得，0元代表任何付完款的订单均可获得红包</p>
+                <p class="help-default">预约单实付金额达到设定的值可获得，0元代表任何付完款的预约单均可获得红包</p>
             </div>
         </div>
 
@@ -184,7 +184,7 @@
 
 
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label">每个订单每人限领：</label>
+            <label for="" class="col-sm-2 control-label">每个预约单每人限领：</label>
             <div class="col-sm-3">
                 <label for="rdi1">1次</label>
             </div>

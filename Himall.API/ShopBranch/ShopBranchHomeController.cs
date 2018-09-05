@@ -26,7 +26,7 @@ namespace Himall.API
             CheckUserLogin();
 
             DateTime nowDt = DateTime.Now;
-            //三个月内订单
+            //三个月内预约单
             OrderQuery query = new OrderQuery() { ShopBranchId = CurrentShopBranch.Id, StartDate = nowDt.Date.AddDays(-nowDt.Day).AddMonths(-2), EndDate = nowDt };
             var orders = OrderApplication.GetOrdersNoPage(query);
             var threeMonthAmounht = orders.Sum(e => e.ActualPayAmount);
@@ -36,7 +36,7 @@ namespace Himall.API
             //从三个月的数据中统计当天的
             var todayAmount = orders.Where(e => e.OrderDate.Date == nowDt.Date).Sum(e => e.ActualPayAmount);
 
-            //待自提订单数
+            //待自提预约单数
             query = new OrderQuery()
             {
                 ShopBranchId = CurrentShopBranch.Id,
@@ -45,7 +45,7 @@ namespace Himall.API
             var pickUpOrders = OrderApplication.GetOrdersNoPage(query);
             var pickUpOrderCount = pickUpOrders.Count;
 
-            //近三天发布商品数
+            //近三天发布诊疗项目数
             var products = ShopBranchApplication.GetShopBranchProductCount(CurrentShopBranch.Id, nowDt.Date.AddDays(-2), nowDt.Date);
             var productCount = products.Select(e => e.ProductId).Distinct().Count();
             var vshop = ServiceProvider.Instance<IVShopService>.Create.GetVShopByShopId(CurrentShopBranch.ShopId);
@@ -76,7 +76,7 @@ namespace Himall.API
             CheckUserLogin();
 
             DateTime nowDt = DateTime.Now;
-            //三个月内订单
+            //三个月内预约单
             OrderQuery query = new OrderQuery() { ShopId = this.CurrentUser.ShopId, StartDate = nowDt.Date.AddDays(-nowDt.Day).AddMonths(-2), EndDate = nowDt };
             var orders = OrderApplication.GetOrdersNoPage(query);
             var threeMonthAmounht = orders.Sum(e => e.ActualPayAmount);
@@ -87,7 +87,7 @@ namespace Himall.API
             var todayAmount = orders.Where(e => e.OrderDate.Date == nowDt.Date).Sum(e => e.ActualPayAmount);
 
 
-            //近三天发布商品数
+            //近三天发布诊疗项目数
             ProductQuery productQuery = new ProductQuery();
             productQuery.AuditStatus = new[] { ProductInfo.ProductAuditStatus.Audited };
             productQuery.StartDate = nowDt.Date.AddDays(-2);

@@ -11,7 +11,7 @@
     <header class="head-btn-bar">
         <a class="glyphicon glyphicon-home" id="homeLink" href="/@ViewBag.AreaName"></a>
         <div class="search">
-            <input id="searchBox" type="text" name="" value="@ViewBag.Keywords" placeholder="搜索本店商品..." />
+            <input id="searchBox" type="text" name="" value="@ViewBag.Keywords" placeholder="搜索本店诊疗项目..." />
             <i class="glyphicon glyphicon-search" id="searchBtn"></i>
         </div>
     </header>
@@ -69,7 +69,7 @@
         }
     }
     <section class="vshop-section">
-        <h5>热销商品</h5>
+        <h5>热销诊疗项目</h5>
         @{var products = (IEnumerable<Himall.Web.Areas.Mobile.Models.ProductItem>)ViewBag.Products; }
         <div class="vshop-item vshop-list">
             <ul class="v-goods clearfix" id="products">

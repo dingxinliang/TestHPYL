@@ -9,19 +9,19 @@ namespace Himall.API.Model
     public class GiftsOrderAggregateDataModel
     {
         /// <summary>
-        /// 所有订单数
+        /// 所有预约单数
         /// </summary>
         public int AllCount { get; set; }
         /// <summary>
-        /// 待发货订单数
+        /// 待发货预约单数
         /// </summary>
         public int WaitDeliveryCount { get; set; }
         /// <summary>
-        /// 待收货订单数
+        /// 待结算预约单数
         /// </summary>
         public int WaitReceivingCount { get; set; }
         /// <summary>
-        /// 己完成订单数
+        /// 己完成预约单数
         /// </summary>
         public int FinishCount { get; set; }
     }

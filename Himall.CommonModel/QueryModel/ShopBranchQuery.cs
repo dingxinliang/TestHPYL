@@ -30,7 +30,7 @@ namespace Himall.CommonModel
 
 		public int? AddressId { get; set; }
         /// <summary>
-        /// 商家店铺ID
+        /// 诊所店铺ID
         /// </summary>
 		public long ShopId { get; set; }
         /// <summary>
@@ -44,11 +44,11 @@ namespace Himall.CommonModel
 
         public ShopBranchSkuStatus? ShopBranchProductStatus { get; set; }
 		/// <summary>
-		/// 是否代理这些商品
+		/// 是否代理这些诊疗项目
 		/// </summary>
 		public long[] ProductIds { get; set; }
         /// <summary>
-        /// 买家当前位置经纬度/买家收货地址经纬度。用半角逗号分隔:28.1657,112.434
+        /// 患者当前位置经纬度/患者收货地址经纬度。用半角逗号分隔:28.1657,112.434
         /// </summary>
         public string FromLatLng { get; set; }
         /// <summary>
@@ -56,15 +56,15 @@ namespace Himall.CommonModel
         /// </summary>
         public int ProvinceId { get; set; }
         /// <summary>
-        /// 买家当前位置所在城市ID/买家收货地址市ID
+        /// 患者当前位置所在城市ID/患者收货地址市ID
         /// </summary>
         public int CityId { get; set; }
         /// <summary>
-        /// 买家收货地址区ID
+        /// 患者收货地址区ID
         /// </summary>
         public int DistrictId { get; set; }
         /// <summary>
-        /// 买家收货地址街道ID
+        /// 患者收货地址街道ID
         /// </summary>
         public int StreetId { get; set; }
         public long Id { get; set; }

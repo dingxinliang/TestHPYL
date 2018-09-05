@@ -18,19 +18,19 @@ namespace Himall.Web.Areas.Web.Models
         /// </summary>
         public bool IsOrderAllRefund { get; set; }
         /// <summary>
-        /// 订单编号
+        /// 预约单编号
         /// </summary>
         public long OrderId { get; set; }
         /// <summary>
-        /// 订单
+        /// 预约单
         /// </summary>
         public OrderInfo OrderInfo { get; set; }
         /// <summary>
-        /// 订单项
+        /// 预约单项
         /// </summary>
         public List<OrderItemInfo> OrderItems { get; set; }
         /// <summary>
-        /// 订单项编号
+        /// 预约单项编号
         /// </summary>
         public long? OrderItemId { get; set; }
         /// <summary>

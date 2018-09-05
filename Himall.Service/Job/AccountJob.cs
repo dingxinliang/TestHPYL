@@ -91,7 +91,7 @@ namespace Himall.Service.Job
         //        // var account = new AccountService().GetAccounts(new IServices.QueryModel.AccountQuery { PageNo = 1, PageSize = int.MaxValue }).Models.OrderByDescending(c => c.Id).FirstOrDefault();
         //        if (account == null)
         //        {
-        //            //第一笔订单或者采购协议的日期
+        //            //第一笔预约单或者采购协议的日期
         //            checkDate = GetCheckDate(entity, checkDate).Date;
         //        }
         //        else
@@ -163,7 +163,7 @@ namespace Himall.Service.Job
             //    Log.Debug("AccountJob:endDate" + endDate + "DateTime:" + DateTime.Now.Date + "result:" + (endDate < DateTime.Now.Date));
             //    while (endDate < DateTime.Now)
             //    {
-            //        //结算日期内的待结算订单 不计算开始时间，防止漏单
+            //        //结算日期内的待结算预约单 不计算开始时间，防止漏单
             //        var pendingSetllementData = entity.PendingSettlementOrdersInfo.Where(c => c.OrderFinshTime < endDate).OrderByDescending(c => c.OrderFinshTime).ToList();
             //        Log.Debug("Count:" + pendingSetllementData.Count());
             //        var accountInfo = new AccountInfo();
@@ -327,7 +327,7 @@ namespace Himall.Service.Job
                     OrderItem = x
                 }
                 ).Distinct().ToList();
-            //符合标准的所有的订单
+            //符合标准的所有的预约单
             var ordersDetails = (
                 from p in entity.OrderInfo
                 join o in entity.OrderItemInfo on p.Id equals o.OrderId
@@ -376,7 +376,7 @@ namespace Himall.Service.Job
                         decimal refundAmount = hasRefundOrdersDetails.Where(c => c.OrderRefund.ShopId == shopId).Select(c => c.OrderRefund).Distinct().Sum(c => c.Amount);
                         //decimal advancePaymentAmount = finishedPurchaseAgreement.Where(c => c.ShopId == shopId).Sum(c => c.AdvancePayment.Value);
                         //decimal accMetaAmount = acc.Where(e => e.ShopId == shopId).FirstOrDefault().Price;//服务费用
-                        //本期应结=商品实付总额+运费—佣金—退款金额+退还佣金-服务费用-分销佣金+退还分销佣金
+                        //本期应结=诊疗项目实付总额+运费—佣金—退款金额+退还佣金-服务费用-分销佣金+退还分销佣金
                         decimal periodSettlement = productActualPaidAmount + freightAmount - commissionAmount - refundAmount + refundCommissionAmount - Brokerage + ReturnBrokerage;
                         var accountInfo = new Model.AccountInfo();
                         accountInfo.ShopId = shopId;
@@ -397,9 +397,9 @@ namespace Himall.Service.Job
                         accountInfo.Remark = string.Empty;
                         entity.AccountInfo.Add(accountInfo);
 
-                        //插入Himall_AccountDetails 订单的结算详情表
+                        //插入Himall_AccountDetails 预约单的结算详情表
 
-                        //含有退款的订单
+                        //含有退款的预约单
                         foreach (var order in hasRefundOrdersDetails.Where(c => c.Order.ShopId == shopId).Select(c => c.Order).Distinct().ToList())
                         {
                             var accountDetail = new Model.AccountDetailInfo();

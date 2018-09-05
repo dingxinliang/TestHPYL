@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.Model
 {
     /// <summary>
-    /// 商品统计
+    /// 诊疗项目统计
     /// </summary>
     public class ProductStatisticModel
     {

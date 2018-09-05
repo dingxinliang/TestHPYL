@@ -2,7 +2,7 @@
 @model Himall.Web.Areas.Web.Models.ProductDetailModelForWeb
 @{
     Layout = "../Shared/_Base.cshtml";
-    ViewBag.Title = "商品详情";
+    ViewBag.Title = "诊疗项目详情";
     ViewBag.ShowAside = 1;
     var detailModel = (Himall.Web.Areas.Mobile.Models.ProductDetailModel)ViewBag.DetailModel;
 }
@@ -52,7 +52,7 @@
         </div>
 
         <div class="item">
-            <a href="../ProductComment?pId=@(Model.Product.Id)&commentType=0" class="item-navigate-right att-popup-trigger">商品评价(@(detailModel.CommentCount))</a>
+            <a href="../ProductComment?pId=@(Model.Product.Id)&commentType=0" class="item-navigate-right att-popup-trigger">诊疗项目评价(@(detailModel.CommentCount))</a>
         </div>
         <div id="productColloCation">
         </div>

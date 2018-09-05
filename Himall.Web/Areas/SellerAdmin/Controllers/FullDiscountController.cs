@@ -312,7 +312,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
 
         /// <summary>
-        /// 获取可以加入活动的商品列表
+        /// 获取可以加入活动的诊疗项目列表
         /// </summary>
         /// <param name="productName"></param>
         /// <param name="activeStatus"></param>
@@ -495,14 +495,14 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
         }
         /// <summary>
-        /// 检测不可以参加活动的商品
+        /// 检测不可以参加活动的诊疗项目
         /// </summary>
         /// <param name="productIds"></param>
         private List<long> CheckCanNotJoinProduct(IEnumerable<long> products, long activeId)
         {
             if (products == null || products.Count() < 1)
             {
-                throw new HimallException("请选择参与活动的商品");
+                throw new HimallException("请选择参与活动的诊疗项目");
             }
             List<long> result = products.ToList();
             var canjoin = FullDiscountApplication.FilterActiveProductId(products, activeId,CurrentShop.Id);

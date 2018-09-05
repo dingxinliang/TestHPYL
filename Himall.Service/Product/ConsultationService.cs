@@ -25,7 +25,7 @@ namespace Himall.Service
             }
             else
             {
-                throw new Himall.Core.HimallException("咨询的商品不存在，或者已删除");
+                throw new Himall.Core.HimallException("咨询的诊疗项目不存在，或者已删除");
             }
             Context.ProductConsultationInfo.Add(model);
             Context.SaveChanges();
@@ -76,7 +76,7 @@ namespace Himall.Service
             var model = Context.ProductConsultationInfo.FindBy(item => item.Id == id && item.ShopId == shopId).FirstOrDefault();
             if (shopId == 0 || model == null)
             {
-                throw new Himall.Core.HimallException("不存在该商品评论");
+                throw new Himall.Core.HimallException("不存在该诊疗项目评论");
             }
             model.ReplyContent = replyContent;
             model.ReplyDate = DateTime.Now;

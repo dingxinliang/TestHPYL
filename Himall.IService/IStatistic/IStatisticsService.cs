@@ -128,7 +128,7 @@ namespace Himall.IServices
         LineChartDataModel<int> GetSaleRankingChart(DateTime day, SaleDimension dimension = SaleDimension.SaleCount, int rankSize = 15);
 
         /// <summary>
-        /// 近一个月的商品销量排行 （控制台）
+        /// 近一个月的诊疗项目销量排行 （控制台）
         /// </summary>
         /// <returns></returns>
         LineChartDataModel<int> GetRecentMonthSaleRankChart();
@@ -137,7 +137,7 @@ namespace Himall.IServices
 
         #endregion
 
-        #region 商家
+        #region 诊所
         /// <summary>
         /// 获取一个月的店铺流量走势
         /// </summary>
@@ -148,7 +148,7 @@ namespace Himall.IServices
         LineChartDataModel<int> GetShopFlowChart(long shopId, int year, int month);
 
         /// <summary>
-        /// 获取店铺中商品浏览量排行
+        /// 获取店铺中诊疗项目浏览量排行
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="day"></param>
@@ -157,7 +157,7 @@ namespace Himall.IServices
         LineChartDataModel<int> GetProductVisitRankingChart(long shopId, DateTime day, int rankSize = 15);
 
         /// <summary>
-        /// 获取店铺中商品浏览量排行
+        /// 获取店铺中诊疗项目浏览量排行
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="year"></param>
@@ -167,7 +167,7 @@ namespace Himall.IServices
         LineChartDataModel<int> GetProductVisitRankingChart(long shopId, int year, int month, int rankSize = 15);
 
         /// <summary>
-        /// 获取店铺中商品浏览量排行
+        /// 获取店铺中诊疗项目浏览量排行
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="year"></param>
@@ -179,7 +179,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 获取店铺中商品销售量排行
+        /// 获取店铺中诊疗项目销售量排行
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="day"></param>
@@ -189,7 +189,7 @@ namespace Himall.IServices
         LineChartDataModel<int> GetProductSaleRankingChart(long shopId, DateTime day, SaleDimension dimension = SaleDimension.SaleCount, int rankSize = 15);
 
         /// <summary>
-        /// 获取店铺中商品销售量排行
+        /// 获取店铺中诊疗项目销售量排行
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="year"></param>
@@ -200,7 +200,7 @@ namespace Himall.IServices
         LineChartDataModel<int> GetProductSaleRankingChart(long shopId, int year, int month, SaleDimension dimension = SaleDimension.SaleCount, int rankSize = 15);
 
         /// <summary>
-        /// 获取店铺中商品销售量排行
+        /// 获取店铺中诊疗项目销售量排行
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="year"></param>
@@ -249,19 +249,19 @@ namespace Himall.IServices
         /// <param name="shopId"></param>
         void AddShopVisitUser(DateTime dt, long shopId, long num);
         /// <summary>
-        /// 添加商品浏览量(人数 UV)
+        /// 添加诊疗项目浏览量(人数 UV)
         /// </summary>
         /// <param name="dt"></param>
         /// <param name="pid"></param>
         void AddProductVisitUser(DateTime dt, long pid, long shopId, long num);
         /// <summary>
-        /// 添加商品浏览量(PV)
+        /// 添加诊疗项目浏览量(PV)
         /// </summary>
         /// <param name="dt"></param>
         /// <param name="pid"></param>
         void AddProductVisit(DateTime dt, long pid, long shopId, long num);
         /// <summary>
-        /// 取时间段内商品浏览记录
+        /// 取时间段内诊疗项目浏览记录
         /// </summary>
         /// <param name="startDt"></param>
         /// <param name="endDt"></param>
@@ -269,7 +269,7 @@ namespace Himall.IServices
         /// <returns></returns>
         QueryPageModel<ProductStatisticModel> GetProductVisits(ProductStatisticQuery query);
         /// <summary>
-        /// 取时间端内商品销售记录（不分页）
+        /// 取时间端内诊疗项目销售记录（不分页）
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>

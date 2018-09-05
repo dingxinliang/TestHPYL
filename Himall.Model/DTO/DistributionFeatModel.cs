@@ -23,11 +23,11 @@ namespace Himall.Model
         /// </summary>
         public long Id { get; set; }
         /// <summary>
-        /// 订单编号
+        /// 预约单编号
         /// </summary>
         public long? OrderId { get; set; }
         /// <summary>
-        /// 订单项编号
+        /// 预约单项编号
         /// </summary>
         public long? OrderItemId { get; set; }
         /// <summary>
@@ -40,7 +40,7 @@ namespace Himall.Model
         public long BuyUserId { get; set; }
         public long ProductId { get; set; }
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         /// </summary>
         public string ProductName { get; set; }
         /// <summary>
@@ -52,15 +52,15 @@ namespace Himall.Model
         /// </summary>
         public string SkuInfo { get; set; }
         /// <summary>
-        /// 商品图片
+        /// 诊疗项目图片
         /// </summary>
         public string ProductImage { get; set; }
         /// <summary>
-        /// 订单可得佣金
+        /// 预约单可得佣金
         /// </summary>
         public decimal Brokerage { get; set; }
         /// <summary>
-        /// 订单项金额
+        /// 预约单项金额
         /// </summary>
         public decimal OrderItemPrice { get; set; }
         /// <summary>
@@ -112,11 +112,11 @@ namespace Himall.Model
         /// </summary>
         public long SalesUserId { get; set; }
         /// <summary>
-        /// 订单状态
+        /// 预约单状态
         /// </summary>
         public OrderInfo.OrderOperateStatus OrderState { get; set; }
         /// <summary>
-        /// 订单状态(显示)
+        /// 预约单状态(显示)
         /// </summary>
         public string ShowOrderState
         {
@@ -126,7 +126,7 @@ namespace Himall.Model
             }
         }
         /// <summary>
-        /// 订单时间
+        /// 预约单时间
         /// </summary>
         public DateTime OrderTime { get; set; }
         /// <summary>

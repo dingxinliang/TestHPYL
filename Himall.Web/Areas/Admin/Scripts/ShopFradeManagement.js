@@ -41,7 +41,7 @@ function Query() {
 
             { field: "Id", title: "Id", hidden: true },
             { field: "Name", title: "套餐名称", width: 140 },
-            { field: "ProductLimit", title: "可发布商品", width: 180 },
+            { field: "ProductLimit", title: "可发布诊疗项目", width: 180 },
             { field: "ImageLimit", title: "可使用空间(M)", width: 180 },
             { field: "ChargeStandard", title: "年费", width: 180 },
             {

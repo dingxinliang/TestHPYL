@@ -47,7 +47,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         {
             if (shopBranchId == 0L)
             {
-                throw new HimallException("获取门店ID失败，不可提交非门店商品");
+                throw new HimallException("获取门店ID失败，不可提交非门店诊疗项目");
             }
             ((dynamic)base.ViewBag).shopBranchId = shopBranchId;
             return base.View(OrderApplication.GetUserAddresses(base.UserId, shopBranchId));
@@ -69,7 +69,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             BaseController.Result data = new BaseController.Result
             {
                 success = false,
-                msg = "取消失败，该订单已删除或者不属于当前用户！"
+                msg = "取消失败，该预约单已删除或者不属于当前用户！"
             };
             return base.Json(data);
         }
@@ -91,12 +91,12 @@ namespace Himall.Web.Areas.Mobile.Controllers
 
                 case 1:
                     data.success = false;
-                    data.msg = "该订单已经确认过!";
+                    data.msg = "该预约单已经确认过!";
                     break;
 
                 case 2:
                     data.success = false;
-                    data.msg = "订单状态发生改变，请重新刷页面操作!";
+                    data.msg = "预约单状态发生改变，请重新刷页面操作!";
                     break;
             }
             return base.Json(data);
@@ -145,7 +145,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         {
             if (shopBranchId == 0L)
             {
-                throw new HimallException("获取门店ID失败，不可提交非门店商品");
+                throw new HimallException("获取门店ID失败，不可提交非门店诊疗项目");
             }
             ((dynamic)base.ViewBag).shopBranchId = shopBranchId;
             ShippingAddressInfo userAddress = OrderApplication.GetUserAddress(addressId);
@@ -378,7 +378,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         {
             if (string.IsNullOrWhiteSpace(orderids))
             {
-                throw new HimallException("订单号不能为空！");
+                throw new HimallException("预约单号不能为空！");
             }
             long orderId = 0L;
             IEnumerable<long> enumerable = orderids.Split(new char[] { ',' }).Select<string, long>(delegate(string e)
@@ -404,20 +404,20 @@ namespace Himall.Web.Areas.Mobile.Controllers
         {
             if (string.IsNullOrWhiteSpace(orderids))
             {
-                throw new HimallException("订单号不能为空！");
+                throw new HimallException("预约单号不能为空！");
             }
             long orderId = 0L;
             IEnumerable<long> enumerable = orderids.Split(new char[] { ',' }).Select<string, long>(delegate(string e)
             {
                 if (!long.TryParse(e, out orderId))
                 {
-                    throw new HimallException("订单分享增加积分时，订单号异常！");
+                    throw new HimallException("预约单分享增加积分时，预约单号异常！");
                 }
                 return orderId;
             });
             if (MemberIntegralApplication.OrderIsShared(enumerable))
             {
-                throw new HimallException("订单已经分享过！");
+                throw new HimallException("预约单已经分享过！");
             }
             MemberIntegralRecord model = new MemberIntegralRecord
             {
@@ -425,7 +425,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 UserName = base.CurrentUser.UserName,
                 RecordDate = new DateTime?(DateTime.Now),
                 TypeId = MemberIntegral.IntegralType.Share,
-                ReMark = string.Format("订单号:{0}", orderids)
+                ReMark = string.Format("预约单号:{0}", orderids)
             };
             List<MemberIntegralRecordAction> list = new List<MemberIntegralRecordAction>();
             foreach (long num in enumerable)
@@ -484,7 +484,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
 
         public ActionResult Submit(string skuIds, string counts, int islimit = 0)
         {
-            throw new HimallException("门店订单不支持立即购买");
+            throw new HimallException("门店预约单不支持立即购买");
         }
 
         public ActionResult SubmiteByCart(string cartItemIds)
@@ -497,7 +497,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             ((dynamic)base.ViewBag).ConfirmModel = mobileSubmiteByCart;
             if (mobileSubmiteByCart.shopBranchInfo == null)
             {
-                throw new HimallException("获取门店信息失败，不可提交非门店商品");
+                throw new HimallException("获取门店信息失败，不可提交非门店诊疗项目");
             }
             string str = Guid.NewGuid().ToString("N");
             ((dynamic)base.ViewBag).OrderTag = str;

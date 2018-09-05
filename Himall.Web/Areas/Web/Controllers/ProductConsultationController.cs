@@ -46,7 +46,7 @@ namespace Himall.Web.Areas.Web.Controllers
         {
             if( productId == 0 )
             {
-                return Json( new Result() { success = false , msg = "咨询失败，该商品不存在或已经删除！" } );
+                return Json( new Result() { success = false , msg = "咨询失败，该诊疗项目不存在或已经删除！" } );
             }
             if( CurrentUser == null )
             {

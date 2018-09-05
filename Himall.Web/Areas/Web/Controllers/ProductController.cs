@@ -36,9 +36,9 @@ namespace Himall.Web.Areas.Web.Controllers
             _iTypeService = iTypeService;
         }
 
-        #region Ajax加载商品信息
+        #region Ajax加载诊疗项目信息
 
-        #region 商品咨询
+        #region 诊疗项目咨询
         public JsonResult GetConsultationByProduct(long pId, int pageNo, int pageSize = 3)
         {
             var consultations = ServiceHelper.Create<IConsultationService>().GetConsultations(pId);
@@ -72,9 +72,9 @@ namespace Himall.Web.Areas.Web.Controllers
 
         #endregion
 
-        #region 商品评价
+        #region 诊疗项目评价
         /// <summary>
-        /// 获取商品评论
+        /// 获取诊疗项目评论
         /// </summary>
         /// <param name="pId"></param>
         /// <param name="pageNo"></param>
@@ -382,7 +382,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
         #endregion
 
-        #region 商品属性
+        #region 诊疗项目属性
         [HttpGet]
         public JsonResult GetProductAttr(long pid)
         {
@@ -434,7 +434,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
         #endregion
 
-        #region 商品描述
+        #region 诊疗项目描述
         [HttpGet]
         public JsonResult GetProductDesc(long pid)
         {
@@ -591,7 +591,7 @@ namespace Himall.Web.Areas.Web.Controllers
         #endregion
 
         /// <summary>
-        /// 商品详情
+        /// 诊疗项目详情
         /// </summary>
         /// <param name="id"></param>
         /// <param name="partnerid">代理用户编号</param>
@@ -603,18 +603,18 @@ namespace Himall.Web.Areas.Web.Controllers
         {
             var productservice = _iProductService;
             long gid = 0;
-            #region 商品Id不合法
+            #region 诊疗项目Id不合法
             if (long.TryParse(id, out gid))
             {
             }
             if (gid == 0)
             {
-                throw new HimallException("很抱歉，您查看的商品不存在，可能被转移。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             }
 
             if (!productservice.CheckProductIsExist(gid))
             {
-                throw new HimallException("很抱歉，您查看的商品不存在，可能被转移。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             }
 
             #endregion         
@@ -622,7 +622,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
             if (product == null)
             {
-                throw new HimallException("很抱歉，您查看的商品不存在，可能被转移。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             }
 
             #region 销售员
@@ -648,14 +648,14 @@ namespace Himall.Web.Areas.Web.Controllers
             ProductManagerApplication.GetPCHtml(gid);
             string urlHtml = "/Storage/Products/Statics/" + id + ".html";
 
-            //统计商品浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、店铺浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
             return File(urlHtml, "text/html");
         }
 
 
         /// <summary>
-        /// 商品详情(用于生成html页面时调用)
+        /// 诊疗项目详情(用于生成html页面时调用)
         /// </summary>
         /// <param name="productId"></param>      
         /// <returns></returns>
@@ -683,17 +683,17 @@ namespace Himall.Web.Areas.Web.Controllers
             #endregion
             ProductInfo product = null;
             ShopInfoModel shop = new ShopInfoModel();
-            #region 商品Id不合法           
+            #region 诊疗项目Id不合法           
             product = productservice.GetProduct(id);
 
             if (product == null)
             {
-                throw new HimallException("很抱歉，您查看的商品不存在，可能被转移。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             }
 
             if (product.IsDeleted)
             {
-                throw new HimallException("很抱歉，您查看的商品不存在，可能被转移。");
+                throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
                 ////跳转到404页面
                 //return RedirectToAction("Error404", "Error", new
                 //{
@@ -716,7 +716,7 @@ namespace Himall.Web.Areas.Web.Controllers
             }
             #endregion            
 
-            #region 初始化商品和店铺
+            #region 初始化诊疗项目和店铺
 
             var comment = _iCommentService.GetCommentsByProductId(id);
 
@@ -740,7 +740,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
             #endregion
 
-            #region 商品规格
+            #region 诊疗项目规格
 
             ProductTypeInfo typeInfo = typeservice.GetType(product.TypeId);
             string colorAlias = (typeInfo == null || string.IsNullOrEmpty(typeInfo.ColorAlias)) ? SpecificationType.Color.ToDescription() : typeInfo.ColorAlias;
@@ -930,7 +930,7 @@ namespace Himall.Web.Areas.Web.Controllers
             }
             #endregion
 
-            #region 买过该商品的还买了
+            #region 买过该诊疗项目的还买了
             if (CurrentUser != null)
             {
                 var queryModel = new OrderQuery()
@@ -946,7 +946,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 {
                     if (model.BoughtProducts.Where(c => c.Id == orderItem.ProductId).Count() > 0)
                         continue;
-                    //TODO:[lly]买过该商品的还买了 过滤已删除的商品
+                    //TODO:[lly]买过该诊疗项目的还买了 过滤已删除的诊疗项目
                     /* zjt  
 					 * productservice 命名应为productService
 					 */
@@ -977,7 +977,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 }
 
             }
-            #endregion 买过该商品的还买了
+            #endregion 买过该诊疗项目的还买了
 
 
             var brandModel = ServiceHelper.Create<IBrandService>().GetBrand(model.Product.BrandId);
@@ -999,7 +999,7 @@ namespace Himall.Web.Areas.Web.Controllers
             ViewBag.CurShopId = product.ShopId;
             TempData["isShopPage"] = true;
             TempData["CurShopId"] = product.ShopId;
-            //统计商品浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、店铺浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
             return View(model);
         }
@@ -1301,7 +1301,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
             #endregion
 
-            #region  商品评分等级
+            #region  诊疗项目评分等级
             var productMark = _iCommentService.GetProductMark(id);
             #endregion
 
@@ -1333,7 +1333,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 isLogin = true;
                 //integral = ServiceHelper.Create<IMemberIntegralService>().GetMemberIntegral(CurrentUser.Id).AvailableIntegrals;
 
-                //关注商品
+                //关注诊疗项目
                 var favorites = isLogin ? _iProductService.GetUserAllConcern(CurrentUser.Id) : new List<FavoriteInfo>();
                 favorites = favorites.Take(10).ToList();
                 foreach (var item in favorites)
@@ -1345,7 +1345,7 @@ namespace Himall.Web.Areas.Web.Controllers
                     Concern.Add(p);
                 }
 
-                //浏览的商品
+                //浏览的诊疗项目
                 var viewHistoryModel = isLogin ? BrowseHistrory.GetBrowsingProducts(10, CurrentUser == null ? 0 : CurrentUser.Id) : new List<ProductBrowsedHistoryModel>();
 
                 foreach (var item in viewHistoryModel)
@@ -1527,7 +1527,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 {
                     successful = true,
                     favorited = true,
-                    mess = "您已经关注过该商品了."
+                    mess = "您已经关注过该诊疗项目了."
                 }, JsonRequestBehavior.AllowGet);
             }
             else
@@ -1536,7 +1536,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 {
                     successful = true,
                     favorited = false,
-                    mess = "成功关注该商品."
+                    mess = "成功关注该诊疗项目."
                 }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -1801,7 +1801,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 return Json(new { Result = true }, true);
 
             int reason;
-            var msg = new Dictionary<int, string>() { { 0, "" }, { 1, "商品已下架" }, { 2, "商品已删除" }, { 3, "超出商品最大限购数" }, { 9, "商品无货" } };
+            var msg = new Dictionary<int, string>() { { 0, "" }, { 1, "诊疗项目已下架" }, { 2, "诊疗项目已删除" }, { 3, "超出诊疗项目最大限购数" }, { 9, "诊疗项目无货" } };
             var result = ProductManagerApplication.CanBuy(CurrentUser.Id, productId, count, out reason);
 
             return Json(new

@@ -203,7 +203,7 @@
         return shops;
     },
     show: function (selectedShopIds, onSelectFinishedCallBack, multiSelect) {
-        /// <param name="serviceType" type="String">平台：admin,商家：selleradmin,默认为平台</param>
+        /// <param name="serviceType" type="String">平台：admin,诊所：selleradmin,默认为平台</param>
         /// <param name="multiSelect" type="Bool">是否多选，默认为True</param>
 
         if (multiSelect != null)

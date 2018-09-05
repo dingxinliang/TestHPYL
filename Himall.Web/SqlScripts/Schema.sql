@@ -24,12 +24,12 @@ CREATE TABLE `Himall_AccountDetails` (
   `ShopId` bigint(20) NOT NULL COMMENT '店铺ID',
   `ShopName` varchar(100) DEFAULT NULL,
   `Date` datetime NOT NULL COMMENT '完成日期',
-  `OrderDate` datetime NOT NULL COMMENT '订单下单日期',
+  `OrderDate` datetime NOT NULL COMMENT '预约单下单日期',
   `OrderFinshDate` datetime NOT NULL,
-  `OrderType` int(11) NOT NULL COMMENT '枚举 完成订单1，退订单0',
-  `OrderId` bigint(20) NOT NULL COMMENT '订单ID',
-  `OrderAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '订单金额',
-  `ProductActualPaidAmount` decimal(18,2) NOT NULL COMMENT '商品实付总额',
+  `OrderType` int(11) NOT NULL COMMENT '枚举 完成预约单1，退预约单0',
+  `OrderId` bigint(20) NOT NULL COMMENT '预约单ID',
+  `OrderAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '预约单金额',
+  `ProductActualPaidAmount` decimal(18,2) NOT NULL COMMENT '诊疗项目实付总额',
   `FreightAmount` decimal(18,2) NOT NULL COMMENT '运费金额',
   `CommissionAmount` decimal(18,2) NOT NULL COMMENT '佣金',
   `RefundTotalAmount` decimal(18,2) NOT NULL COMMENT '退款金额',
@@ -88,7 +88,7 @@ CREATE TABLE `Himall_Accounts` (
   `StartDate` datetime NOT NULL COMMENT '开始时间',
   `EndDate` datetime NOT NULL COMMENT '结束时间',
   `Status` int(11) NOT NULL COMMENT '枚举 0未结账，1已结账',
-  `ProductActualPaidAmount` decimal(18,2) NOT NULL COMMENT '商品实付总额',
+  `ProductActualPaidAmount` decimal(18,2) NOT NULL COMMENT '诊疗项目实付总额',
   `FreightAmount` decimal(18,2) NOT NULL COMMENT '运费',
   `CommissionAmount` decimal(18,2) NOT NULL COMMENT '佣金',
   `RefundCommissionAmount` decimal(18,2) NOT NULL COMMENT '退还佣金',
@@ -111,7 +111,7 @@ CREATE TABLE `Himall_Active` (
   `ActiveName` varchar(200) NOT NULL COMMENT '活动名称',
   `StartTime` datetime NOT NULL COMMENT '开始时间',
   `EndTime` datetime NOT NULL COMMENT '结束时间',
-  `IsAllProduct` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否全部商品',
+  `IsAllProduct` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否全部诊疗项目',
   `IsAllStore` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否全部门店',
   `ActiveType` int(11) NOT NULL COMMENT '活动类型',
   `ActiveStatus` int(11) NOT NULL DEFAULT '0' COMMENT '活动状态',
@@ -139,11 +139,11 @@ DROP TABLE IF EXISTS `Himall_ActiveProducts`;
 CREATE TABLE `Himall_ActiveProducts` (
   `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `ActiveId` bigint(20) NOT NULL COMMENT '活动编号',
-  `ProductId` bigint(20) NOT NULL COMMENT '产品编号 -1表示所有商品',
+  `ProductId` bigint(20) NOT NULL COMMENT '产品编号 -1表示所有诊疗项目',
   PRIMARY KEY (`Id`),
   KEY `IDX_Himall_Accts_ActiveId` (`ActiveId`),
   KEY `IDX_Himall_Accts_ProdcutId` (`ProductId`)
-) ENGINE=InnoDB AUTO_INCREMENT=663 DEFAULT CHARSET=utf8 COMMENT='营销活动商品';
+) ENGINE=InnoDB AUTO_INCREMENT=663 DEFAULT CHARSET=utf8 COMMENT='营销活动诊疗项目';
 
 -- ----------------------------
 -- Table structure for Himall_AgentProducts
@@ -151,7 +151,7 @@ CREATE TABLE `Himall_ActiveProducts` (
 DROP TABLE IF EXISTS `Himall_AgentProducts`;
 CREATE TABLE `Himall_AgentProducts` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `ProductId` bigint(20) NOT NULL COMMENT '推销商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '推销诊疗项目ID',
   `ShopId` bigint(20) NOT NULL COMMENT '店铺Id',
   `UserId` bigint(20) NOT NULL COMMENT '用户名',
   `AddTime` datetime NOT NULL COMMENT '代理时间',
@@ -168,7 +168,7 @@ CREATE TABLE `Himall_AgentProducts` (
 DROP TABLE IF EXISTS `Himall_Agreement`;
 CREATE TABLE `Himall_Agreement` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `AgreementType` int(4) NOT NULL COMMENT '协议类型 枚举 AgreementType：0买家注册协议，1卖家入驻协议',
+  `AgreementType` int(4) NOT NULL COMMENT '协议类型 枚举 AgreementType：0患者注册协议，1卖家入驻协议',
   `AgreementContent` text NOT NULL COMMENT '协议内容',
   `LastUpdateTime` datetime DEFAULT NULL COMMENT '最后修改日期',
   PRIMARY KEY (`Id`)
@@ -213,10 +213,10 @@ CREATE TABLE `Himall_ApplyWithDraw` (
 DROP TABLE IF EXISTS `Himall_AppMessages`;
 CREATE TABLE `Himall_AppMessages` (
   `Id` int(20) NOT NULL AUTO_INCREMENT,
-  `ShopId` bigint(20) DEFAULT NULL COMMENT '商家ID',
+  `ShopId` bigint(20) DEFAULT NULL COMMENT '诊所ID',
   `ShopBranchId` bigint(20) DEFAULT NULL COMMENT '门店ID',
-  `TypeId` int(20) NOT NULL COMMENT '消息类型，对应枚举(1=订单，2=售后)',
-  `SourceId` bigint(20) NOT NULL COMMENT '数据来源编号，对应订单ID或者售后ID',
+  `TypeId` int(20) NOT NULL COMMENT '消息类型，对应枚举(1=预约单，2=售后)',
+  `SourceId` bigint(20) NOT NULL COMMENT '数据来源编号，对应预约单ID或者售后ID',
   `Content` varchar(200) NOT NULL COMMENT '消息内容',
   `IsRead` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否已读',
   `sendtime` datetime NOT NULL,
@@ -398,17 +398,17 @@ CREATE TABLE `Himall_Brands` (
 DROP TABLE IF EXISTS `Himall_BrokerageIncome`;
 CREATE TABLE `Himall_BrokerageIncome` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `OrderId` bigint(20) DEFAULT NULL COMMENT '订单编号',
-  `OrderItemId` bigint(20) DEFAULT NULL COMMENT '订单条目编号',
+  `OrderId` bigint(20) DEFAULT NULL COMMENT '预约单编号',
+  `OrderItemId` bigint(20) DEFAULT NULL COMMENT '预约单条目编号',
   `SkuID` varchar(100) NOT NULL COMMENT 'SKUID',
   `ProductID` bigint(20) NOT NULL COMMENT '产品ID',
-  `ProductName` varchar(100) DEFAULT NULL COMMENT '商品名称',
+  `ProductName` varchar(100) DEFAULT NULL COMMENT '诊疗项目名称',
   `SkuInfo` varchar(100) DEFAULT NULL COMMENT 'SKU信息',
   `Brokerage` decimal(18,2) NOT NULL COMMENT '获得佣金',
   `TotalPrice` decimal(18,2) DEFAULT NULL COMMENT '分销比例',
   `ShopId` bigint(20) DEFAULT NULL COMMENT '店铺ID',
   `CreateTime` datetime DEFAULT NULL COMMENT '时间',
-  `OrderTime` datetime NOT NULL COMMENT '订单创建时间',
+  `OrderTime` datetime NOT NULL COMMENT '预约单创建时间',
   `BuyerUserId` bigint(20) NOT NULL COMMENT '消费者ID',
   `Status` int(11) NOT NULL COMMENT '结算状态 -1不可结算 未结算，已结算',
   `SettlementTime` datetime DEFAULT NULL COMMENT '结算时间',
@@ -645,9 +645,9 @@ CREATE TABLE `Himall_Collocation` (
 DROP TABLE IF EXISTS `Himall_CollocationPoruducts`;
 CREATE TABLE `Himall_CollocationPoruducts` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID自增',
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   `ColloId` bigint(20) NOT NULL COMMENT '组合购ID',
-  `IsMain` tinyint(1) NOT NULL COMMENT '是否主商品',
+  `IsMain` tinyint(1) NOT NULL COMMENT '是否主诊疗项目',
   `DisplaySequence` int(11) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`Id`),
   KEY `FK_Collocation_CollPoruducts` (`ColloId`) USING BTREE,
@@ -662,9 +662,9 @@ CREATE TABLE `Himall_CollocationPoruducts` (
 DROP TABLE IF EXISTS `Himall_CollocationSkus`;
 CREATE TABLE `Himall_CollocationSkus` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID自增',
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
-  `SkuID` varchar(100) NOT NULL COMMENT '商品SkuId',
-  `ColloProductId` bigint(20) NOT NULL COMMENT '组合商品表ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
+  `SkuID` varchar(100) NOT NULL COMMENT '诊疗项目SkuId',
+  `ColloProductId` bigint(20) NOT NULL COMMENT '组合诊疗项目表ID',
   `Price` decimal(18,2) NOT NULL COMMENT '组合购价格',
   `SkuPirce` decimal(18,2) DEFAULT NULL COMMENT '原始价格',
   PRIMARY KEY (`Id`),
@@ -684,7 +684,7 @@ CREATE TABLE `Himall_Coupon` (
   `ShopName` varchar(100) DEFAULT NULL COMMENT '店铺名称',
   `Price` decimal(18,0) NOT NULL COMMENT '价格',
   `PerMax` int(11) NOT NULL COMMENT '最大可领取张数',
-  `OrderAmount` decimal(18,0) NOT NULL COMMENT '订单金额（满足多少钱才能使用）',
+  `OrderAmount` decimal(18,0) NOT NULL COMMENT '预约单金额（满足多少钱才能使用）',
   `Num` int(11) NOT NULL COMMENT '发行张数',
   `StartTime` datetime NOT NULL COMMENT '开始时间',
   `EndTime` datetime NOT NULL,
@@ -714,7 +714,7 @@ CREATE TABLE `Himall_CouponRecord` (
   `UserName` varchar(100) NOT NULL COMMENT '用户名称',
   `UserId` bigint(20) NOT NULL,
   `UsedTime` datetime DEFAULT NULL,
-  `OrderId` bigint(20) DEFAULT NULL COMMENT '使用的订单ID',
+  `OrderId` bigint(20) DEFAULT NULL COMMENT '使用的预约单ID',
   `ShopId` bigint(20) NOT NULL,
   `ShopName` varchar(100) NOT NULL,
   `CounponStatus` int(11) NOT NULL COMMENT '优惠券状态',
@@ -791,7 +791,7 @@ CREATE TABLE `Himall_DistributionProducts` (
   PRIMARY KEY (`ID`),
   KEY `FK_DistributionProducts_z` (`ProductbrokerageId`),
   CONSTRAINT `FK_DistributionProducts_z` FOREIGN KEY (`ProductbrokerageId`) REFERENCES `Himall_ProductBrokerage` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COMMENT='分销首页显示商品';
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COMMENT='分销首页显示诊疗项目';
 
 -- ----------------------------
 -- Table structure for Himall_DistributionShareSetting
@@ -823,7 +823,7 @@ CREATE TABLE `Himall_DistributionUserLink` (
   `PartnerId` bigint(20) NOT NULL COMMENT '销售员',
   `ShopId` bigint(20) NOT NULL COMMENT '店铺',
   `LinkTime` datetime DEFAULT NULL,
-  `BuyUserId` bigint(20) NOT NULL DEFAULT '0' COMMENT '买家',
+  `BuyUserId` bigint(20) NOT NULL DEFAULT '0' COMMENT '患者',
   PRIMARY KEY (`Id`),
   KEY `himall_DistributionUserLink_FK_User` (`PartnerId`),
   CONSTRAINT `himall_DistributionUserLink_FK_User` FOREIGN KEY (`PartnerId`) REFERENCES `Himall_Members` (`Id`) ON DELETE CASCADE
@@ -836,7 +836,7 @@ DROP TABLE IF EXISTS `Himall_DistributorSetting`;
 CREATE TABLE `Himall_DistributorSetting` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `Enable` tinyint(1) NOT NULL COMMENT '模块开关',
-  `SellerRule` varchar(2000) DEFAULT NULL COMMENT '商家规则',
+  `SellerRule` varchar(2000) DEFAULT NULL COMMENT '诊所规则',
   `PromoterRule` varchar(2000) DEFAULT NULL COMMENT '推广员规则',
   `DisBanner` varchar(2000) DEFAULT NULL COMMENT '分销市场banner',
   PRIMARY KEY (`Id`)
@@ -881,8 +881,8 @@ DROP TABLE IF EXISTS `Himall_FightGroupActive`;
 CREATE TABLE `Himall_FightGroupActive` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `ShopId` bigint(20) NOT NULL COMMENT '店铺编号',
-  `ProductId` bigint(20) NOT NULL COMMENT '商品编号',
-  `ProductName` varchar(100) DEFAULT NULL COMMENT '商品名称',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目编号',
+  `ProductName` varchar(100) DEFAULT NULL COMMENT '诊疗项目名称',
   `IconUrl` varchar(100) DEFAULT NULL COMMENT '图片',
   `StartTime` datetime DEFAULT NULL COMMENT '开始时间',
   `EndTime` datetime DEFAULT NULL COMMENT '结束时间',
@@ -907,8 +907,8 @@ DROP TABLE IF EXISTS `Himall_FightGroupActiveItem`;
 CREATE TABLE `Himall_FightGroupActiveItem` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `ActiveId` bigint(20) DEFAULT NULL COMMENT '所属活动',
-  `ProductId` bigint(20) DEFAULT NULL COMMENT '商品编号',
-  `SkuId` varchar(100) DEFAULT NULL COMMENT '商品SKU',
+  `ProductId` bigint(20) DEFAULT NULL COMMENT '诊疗项目编号',
+  `SkuId` varchar(100) DEFAULT NULL COMMENT '诊疗项目SKU',
   `ActivePrice` decimal(18,2) NOT NULL COMMENT '活动售价',
   `ActiveStock` bigint(20) DEFAULT NULL COMMENT '活动库存',
   `BuyCount` int(11) DEFAULT NULL COMMENT '己售',
@@ -922,19 +922,19 @@ DROP TABLE IF EXISTS `Himall_FightGroupOrder`;
 CREATE TABLE `Himall_FightGroupOrder` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `ActiveId` bigint(20) DEFAULT NULL COMMENT '对应活动',
-  `ProductId` bigint(20) DEFAULT NULL COMMENT '对应商品',
-  `SkuId` varchar(100) DEFAULT NULL COMMENT '商品SKU',
+  `ProductId` bigint(20) DEFAULT NULL COMMENT '对应诊疗项目',
+  `SkuId` varchar(100) DEFAULT NULL COMMENT '诊疗项目SKU',
   `GroupId` bigint(20) DEFAULT NULL COMMENT '所属拼团',
-  `OrderId` bigint(20) DEFAULT NULL COMMENT '订单时间',
-  `OrderUserId` bigint(20) DEFAULT NULL COMMENT '订单用户编号',
-  `IsFirstOrder` bit(1) DEFAULT NULL COMMENT '是否团首订单',
+  `OrderId` bigint(20) DEFAULT NULL COMMENT '预约单时间',
+  `OrderUserId` bigint(20) DEFAULT NULL COMMENT '预约单用户编号',
+  `IsFirstOrder` bit(1) DEFAULT NULL COMMENT '是否团首预约单',
   `JoinTime` datetime DEFAULT NULL COMMENT '参团时间',
   `JoinStatus` int(11) DEFAULT NULL COMMENT '参团状态 参团中  成功  失败',
   `OverTime` datetime DEFAULT NULL COMMENT '结束时间 成功或失败的时间',
   `Quantity` bigint(20) NOT NULL DEFAULT '0' COMMENT '购买数量',
   `SalePrice` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '销售价',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=277 DEFAULT CHARSET=utf8 COMMENT='拼团订单';
+) ENGINE=InnoDB AUTO_INCREMENT=277 DEFAULT CHARSET=utf8 COMMENT='拼团预约单';
 
 -- ----------------------------
 -- Table structure for Himall_FightGroups
@@ -951,7 +951,7 @@ CREATE TABLE `Himall_FightGroups` (
   `GroupStatus` int(11) DEFAULT NULL COMMENT '数据状态 初始中  成团中  成功   失败',
   `AddGroupTime` datetime DEFAULT NULL COMMENT '开团时间',
   `OverTime` datetime DEFAULT NULL COMMENT '结束时间 成功或失败的时间',
-  `ProductId` bigint(20) NOT NULL DEFAULT '0' COMMENT '商品编号',
+  `ProductId` bigint(20) NOT NULL DEFAULT '0' COMMENT '诊疗项目编号',
   `ShopId` bigint(20) NOT NULL DEFAULT '0' COMMENT '店铺编号',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=284 DEFAULT CHARSET=utf8 COMMENT='拼团组团详情';
@@ -1058,7 +1058,7 @@ CREATE TABLE `Himall_FloorProducts` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `FloorId` bigint(20) NOT NULL COMMENT '楼层ID',
   `Tab` int(11) NOT NULL COMMENT '楼层标签',
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   PRIMARY KEY (`Id`),
   KEY `FK_HomeFloor_FloorProduct` (`FloorId`) USING BTREE,
   KEY `FK_Product_FloorProduct` (`ProductId`) USING BTREE,
@@ -1073,7 +1073,7 @@ DROP TABLE IF EXISTS `Himall_FloorTablDetails`;
 CREATE TABLE `Himall_FloorTablDetails` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `TabId` bigint(20) NOT NULL COMMENT 'TabID',
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   PRIMARY KEY (`Id`),
   KEY `TabIdFK` (`TabId`) USING BTREE,
   KEY `ProductIdFK` (`ProductId`) USING BTREE,
@@ -1152,7 +1152,7 @@ CREATE TABLE `Himall_FreightTemplate` (
   `Name` varchar(100) DEFAULT NULL COMMENT '运费模板名称',
   `SourceAddress` int(11) DEFAULT NULL COMMENT '宝贝发货地',
   `SendTime` varchar(100) DEFAULT NULL COMMENT '发送时间',
-  `IsFree` int(11) NOT NULL COMMENT '是否商家负责运费',
+  `IsFree` int(11) NOT NULL COMMENT '是否诊所负责运费',
   `ValuationMethod` int(11) NOT NULL COMMENT '定价方法(按体积、重量计算）',
   `ShippingMethod` int(11) DEFAULT NULL COMMENT '运送类型（物流、快递）',
   `ShopID` bigint(20) NOT NULL COMMENT '店铺ID',
@@ -1178,7 +1178,7 @@ CREATE TABLE `Himall_FullDiscountRules` (
 DROP TABLE IF EXISTS `Himall_GiftOrderItem`;
 CREATE TABLE `Himall_GiftOrderItem` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `OrderId` bigint(20) DEFAULT NULL COMMENT '订单编号',
+  `OrderId` bigint(20) DEFAULT NULL COMMENT '预约单编号',
   `GiftId` bigint(20) NOT NULL COMMENT '礼品编号',
   `Quantity` int(11) NOT NULL COMMENT '数量',
   `SaleIntegral` int(11) DEFAULT NULL COMMENT '积分单价',
@@ -1219,7 +1219,7 @@ CREATE TABLE `Himall_Gifts` (
 DROP TABLE IF EXISTS `Himall_GiftsOrder`;
 CREATE TABLE `Himall_GiftsOrder` (
   `Id` bigint(20) NOT NULL COMMENT '编号',
-  `OrderStatus` int(11) NOT NULL COMMENT '订单状态',
+  `OrderStatus` int(11) NOT NULL COMMENT '预约单状态',
   `UserId` bigint(20) NOT NULL COMMENT '用户编号',
   `UserRemark` varchar(200) DEFAULT NULL COMMENT '会员留言',
   `ShipTo` varchar(100) DEFAULT NULL COMMENT '收货人',
@@ -1398,7 +1398,7 @@ CREATE TABLE `Himall_LimitTimeMarket` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `Title` varchar(100) NOT NULL COMMENT '标题',
   `ProductId` bigint(20) NOT NULL,
-  `ProductName` varchar(100) NOT NULL COMMENT '商品名称',
+  `ProductName` varchar(100) NOT NULL COMMENT '诊疗项目名称',
   `CategoryName` varchar(100) NOT NULL COMMENT '分类名称',
   `AuditStatus` smallint(6) NOT NULL COMMENT '审核状态',
   `AuditTime` datetime NOT NULL COMMENT '审核时间',
@@ -1412,7 +1412,7 @@ CREATE TABLE `Himall_LimitTimeMarket` (
   `SaleCount` int(11) NOT NULL COMMENT '销售数量',
   `CancelReson` text NOT NULL COMMENT '取消原因',
   `MaxSaleCount` int(11) NOT NULL COMMENT '限量购买',
-  `ProductAd` varchar(100) NOT NULL COMMENT '商品广告',
+  `ProductAd` varchar(100) NOT NULL COMMENT '诊疗项目广告',
   `MinPrice` decimal(18,2) NOT NULL COMMENT '最小价格',
   `ImagePath` varchar(100) NOT NULL COMMENT '图片Path',
   PRIMARY KEY (`Id`)
@@ -1693,7 +1693,7 @@ CREATE TABLE `Himall_Members` (
   `Expenditure` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '总消费金额（不排除退款）',
   `Points` int(11) NOT NULL,
   `Photo` varchar(100) DEFAULT NULL COMMENT '头像',
-  `ParentSellerId` bigint(20) NOT NULL DEFAULT '0' COMMENT '商家父账号ID',
+  `ParentSellerId` bigint(20) NOT NULL DEFAULT '0' COMMENT '诊所父账号ID',
   `Remark` varchar(1000) DEFAULT NULL,
   `PayPwd` varchar(100) DEFAULT NULL COMMENT '支付密码',
   `PayPwdSalt` varchar(100) DEFAULT NULL COMMENT '支付密码加密字符',
@@ -1776,7 +1776,7 @@ CREATE TABLE `Himall_MobileHomeProducts` (
   `ShopId` bigint(20) NOT NULL,
   `PlatFormType` int(11) NOT NULL COMMENT '终端类型(微信、WAP）',
   `Sequence` smallint(6) NOT NULL COMMENT '顺序',
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   PRIMARY KEY (`Id`),
   KEY `FK_Himall_MobileHomeProducts_Himall_Products` (`ProductId`) USING BTREE,
   CONSTRAINT `himall_mobilehomeproducts_ibfk_1` FOREIGN KEY (`ProductId`) REFERENCES `Himall_Products` (`Id`)
@@ -1804,7 +1804,7 @@ DROP TABLE IF EXISTS `Himall_ModuleProducts`;
 CREATE TABLE `Himall_ModuleProducts` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `ModuleId` bigint(20) NOT NULL COMMENT '模块ID',
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   `DisplaySequence` bigint(20) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `FK_Product_ModuleProduct` (`ProductId`) USING BTREE,
@@ -1831,7 +1831,7 @@ CREATE TABLE `Himall_OpenIds` (
 DROP TABLE IF EXISTS `Himall_OrderComments`;
 CREATE TABLE `Himall_OrderComments` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `OrderId` bigint(20) NOT NULL COMMENT '订单ID',
+  `OrderId` bigint(20) NOT NULL COMMENT '预约单ID',
   `ShopId` bigint(20) NOT NULL COMMENT '店铺ID',
   `ShopName` varchar(100) NOT NULL COMMENT '店铺名称',
   `UserId` bigint(20) NOT NULL COMMENT '用户ID',
@@ -1851,7 +1851,7 @@ CREATE TABLE `Himall_OrderComments` (
 DROP TABLE IF EXISTS `Himall_OrderComplaints`;
 CREATE TABLE `Himall_OrderComplaints` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `OrderId` bigint(20) NOT NULL COMMENT '订单ID',
+  `OrderId` bigint(20) NOT NULL COMMENT '预约单ID',
   `Status` int(11) NOT NULL COMMENT '审核状态',
   `ShopId` bigint(20) NOT NULL COMMENT '店铺ID',
   `ShopName` varchar(100) NOT NULL COMMENT '店铺名称',
@@ -1861,7 +1861,7 @@ CREATE TABLE `Himall_OrderComplaints` (
   `UserPhone` varchar(100) DEFAULT NULL COMMENT '用户联系方式',
   `ComplaintDate` datetime NOT NULL COMMENT '投诉日期',
   `ComplaintReason` varchar(1000) NOT NULL COMMENT '投诉原因',
-  `SellerReply` varchar(1000) DEFAULT NULL COMMENT '商家反馈信息',
+  `SellerReply` varchar(1000) DEFAULT NULL COMMENT '诊所反馈信息',
   PRIMARY KEY (`Id`),
   KEY `FK_Order_OrderComplaint` (`OrderId`) USING BTREE,
   CONSTRAINT `himall_ordercomplaints_ibfk_1` FOREIGN KEY (`OrderId`) REFERENCES `Himall_Orders` (`Id`) ON DELETE CASCADE
@@ -1885,9 +1885,9 @@ CREATE TABLE `Himall_OrderExpressData` (
 DROP TABLE IF EXISTS `Himall_OrderItems`;
 CREATE TABLE `Himall_OrderItems` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `OrderId` bigint(20) NOT NULL COMMENT '订单ID',
+  `OrderId` bigint(20) NOT NULL COMMENT '预约单ID',
   `ShopId` bigint(20) NOT NULL COMMENT '店铺ID',
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   `SkuId` varchar(100) DEFAULT NULL COMMENT 'SKUId',
   `SKU` varchar(100) DEFAULT NULL COMMENT 'SKU表SKU字段',
   `Quantity` bigint(20) NOT NULL COMMENT '购买数量',
@@ -1897,18 +1897,18 @@ CREATE TABLE `Himall_OrderItems` (
   `DiscountAmount` decimal(18,2) NOT NULL COMMENT '优惠金额',
   `RealTotalPrice` decimal(18,2) NOT NULL COMMENT '实际应付金额',
   `RefundPrice` decimal(18,2) NOT NULL COMMENT '退款价格',
-  `ProductName` varchar(100) NOT NULL COMMENT '商品名称',
+  `ProductName` varchar(100) NOT NULL COMMENT '诊疗项目名称',
   `Color` varchar(100) DEFAULT NULL COMMENT 'SKU颜色',
   `Size` varchar(100) DEFAULT NULL COMMENT 'SKU尺寸',
   `Version` varchar(100) DEFAULT NULL COMMENT 'SKU版本',
   `ThumbnailsUrl` varchar(100) DEFAULT NULL COMMENT '缩略图',
   `CommisRate` decimal(18,2) NOT NULL COMMENT '分佣比例',
   `EnabledRefundAmount` decimal(18,2) DEFAULT NULL COMMENT '可退金额',
-  `IsLimitBuy` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为限时购商品',
+  `IsLimitBuy` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为限时购诊疗项目',
   `DistributionRate` decimal(6,2) DEFAULT NULL COMMENT '分销比例',
   `EnabledRefundIntegral` decimal(18,2) DEFAULT NULL COMMENT '可退积分抵扣金额',
   `CouponDiscount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '优惠券抵扣金额',
-  `FullDiscount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '满额减平摊到订单项的金额',
+  `FullDiscount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '满额减平摊到预约单项的金额',
   PRIMARY KEY (`Id`),
   KEY `FK_Order_OrderItem` (`OrderId`) USING BTREE,
   CONSTRAINT `himall_orderitems_ibfk_1` FOREIGN KEY (`OrderId`) REFERENCES `Himall_Orders` (`Id`) ON DELETE CASCADE
@@ -1920,7 +1920,7 @@ CREATE TABLE `Himall_OrderItems` (
 DROP TABLE IF EXISTS `Himall_OrderOperationLogs`;
 CREATE TABLE `Himall_OrderOperationLogs` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `OrderId` bigint(20) NOT NULL COMMENT '订单ID',
+  `OrderId` bigint(20) NOT NULL COMMENT '预约单ID',
   `Operator` varchar(100) NOT NULL COMMENT '操作者',
   `OperateDate` datetime NOT NULL COMMENT '操作日期',
   `OperateContent` varchar(1000) DEFAULT NULL COMMENT '操作内容',
@@ -1954,9 +1954,9 @@ CREATE TABLE `Himall_OrderRefundLogs` (
   `OperateContent` varchar(1000) DEFAULT NULL COMMENT '操作内容',
   `ApplyNumber` int(11) DEFAULT NULL COMMENT '申请次数',
   `Step` smallint(6) NOT NULL COMMENT '退款步聚(枚举:CommonModel.Enum.OrderRefundStep)',
-  `Remark` varchar(255) DEFAULT NULL COMMENT '备注(买家留言/商家留言/商家拒绝原因/平台退款备注)',
+  `Remark` varchar(255) DEFAULT NULL COMMENT '备注(患者留言/诊所留言/诊所拒绝原因/平台退款备注)',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT='订单售后日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT='预约单售后日志表';
 
 -- ----------------------------
 -- Table structure for Himall_OrderRefunds
@@ -1964,8 +1964,8 @@ CREATE TABLE `Himall_OrderRefundLogs` (
 DROP TABLE IF EXISTS `Himall_OrderRefunds`;
 CREATE TABLE `Himall_OrderRefunds` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `OrderId` bigint(20) NOT NULL COMMENT '订单ID',
-  `OrderItemId` bigint(20) NOT NULL COMMENT '订单详情ID',
+  `OrderId` bigint(20) NOT NULL COMMENT '预约单ID',
+  `OrderItemId` bigint(20) NOT NULL COMMENT '预约单详情ID',
   `ShopId` bigint(20) NOT NULL COMMENT '店铺ID',
   `ShopName` varchar(100) NOT NULL COMMENT '店铺名称',
   `UserId` bigint(20) NOT NULL COMMENT '用户ID',
@@ -1977,9 +1977,9 @@ CREATE TABLE `Himall_OrderRefunds` (
   `Amount` decimal(18,2) NOT NULL COMMENT '金额',
   `Reason` varchar(1000) NOT NULL COMMENT '退款原因',
   `ReasonDetail` varchar(1000) DEFAULT NULL COMMENT '退款详情',
-  `SellerAuditStatus` int(11) NOT NULL COMMENT '商家审核状态',
-  `SellerAuditDate` datetime NOT NULL COMMENT '商家审核时间',
-  `SellerRemark` varchar(1000) DEFAULT NULL COMMENT '商家注释',
+  `SellerAuditStatus` int(11) NOT NULL COMMENT '诊所审核状态',
+  `SellerAuditDate` datetime NOT NULL COMMENT '诊所审核时间',
+  `SellerRemark` varchar(1000) DEFAULT NULL COMMENT '诊所注释',
   `ManagerConfirmStatus` int(11) NOT NULL COMMENT '平台审核状态',
   `ManagerConfirmDate` datetime NOT NULL COMMENT '平台审核时间',
   `ManagerRemark` varchar(1000) DEFAULT NULL COMMENT '平台注释',
@@ -1991,7 +1991,7 @@ CREATE TABLE `Himall_OrderRefunds` (
   `RefundMode` int(11) NOT NULL COMMENT '退款方式',
   `RefundPayStatus` int(11) DEFAULT NULL COMMENT '退款支付状态',
   `RefundPayType` int(11) DEFAULT NULL COMMENT '退款支付类型',
-  `BuyerDeliverDate` datetime DEFAULT NULL COMMENT '买家发货时间',
+  `BuyerDeliverDate` datetime DEFAULT NULL COMMENT '患者发货时间',
   `SellerConfirmArrivalDate` datetime DEFAULT NULL COMMENT '卖家确认到货时间',
   `RefundBatchNo` varchar(30) DEFAULT NULL COMMENT '退款批次号',
   `RefundPostTime` datetime DEFAULT NULL COMMENT '退款异步提交时间',
@@ -2013,14 +2013,14 @@ CREATE TABLE `Himall_OrderRefunds` (
 DROP TABLE IF EXISTS `Himall_Orders`;
 CREATE TABLE `Himall_Orders` (
   `Id` bigint(20) NOT NULL,
-  `OrderStatus` int(11) NOT NULL COMMENT '订单状态 [Description("待付款")]WaitPay = 1,[Description("待发货")]WaitDelivery,[Description("待收货")]WaitReceiving,[Description("已关闭")]Close,[Description("已完成")]Finish',
-  `OrderDate` datetime NOT NULL COMMENT '订单创建日期',
+  `OrderStatus` int(11) NOT NULL COMMENT '预约单状态 [Description("待付款")]WaitPay = 1,[Description("待发货")]WaitDelivery,[Description("待结算")]WaitReceiving,[Description("已关闭")]Close,[Description("已完成")]Finish',
+  `OrderDate` datetime NOT NULL COMMENT '预约单创建日期',
   `CloseReason` varchar(1000) DEFAULT NULL COMMENT '关闭原因',
   `ShopId` bigint(20) NOT NULL COMMENT '店铺ID',
   `ShopName` varchar(100) NOT NULL COMMENT '店铺名称',
-  `SellerPhone` varchar(100) DEFAULT NULL COMMENT '商家电话',
-  `SellerAddress` varchar(100) DEFAULT NULL COMMENT '商家发货地址',
-  `SellerRemark` varchar(1000) DEFAULT NULL COMMENT '商家说明',
+  `SellerPhone` varchar(100) DEFAULT NULL COMMENT '诊所电话',
+  `SellerAddress` varchar(100) DEFAULT NULL COMMENT '诊所发货地址',
+  `SellerRemark` varchar(1000) DEFAULT NULL COMMENT '诊所说明',
   `SellerRemarkFlag` int(11) DEFAULT NULL,
   `UserId` bigint(20) NOT NULL COMMENT '会员ID',
   `UserName` varchar(100) NOT NULL COMMENT '会员名称',
@@ -2035,7 +2035,7 @@ CREATE TABLE `Himall_Orders` (
   `ReceiveLatitude` float NOT NULL DEFAULT '0' COMMENT '收货地址坐标',
   `ExpressCompanyName` varchar(100) DEFAULT NULL COMMENT '快递公司',
   `Freight` decimal(8,2) NOT NULL COMMENT '运费',
-  `ShipOrderNumber` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '物流订单号',
+  `ShipOrderNumber` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '物流预约单号',
   `ShippingDate` datetime DEFAULT NULL COMMENT '发货日期',
   `IsPrinted` tinyint(1) NOT NULL COMMENT '是否打印快递单',
   `PaymentTypeName` varchar(100) DEFAULT NULL COMMENT '付款类型名称',
@@ -2048,25 +2048,25 @@ CREATE TABLE `Himall_Orders` (
   `InvoiceTitle` varchar(100) DEFAULT NULL COMMENT '发票抬头',
   `InvoiceCode` varchar(100) DEFAULT NULL COMMENT '税号',
   `Tax` decimal(8,2) NOT NULL COMMENT '税钱，但是未使用',
-  `FinishDate` datetime DEFAULT NULL COMMENT '完成订单日期',
-  `ProductTotalAmount` decimal(18,2) NOT NULL COMMENT '商品总金额',
+  `FinishDate` datetime DEFAULT NULL COMMENT '完成预约单日期',
+  `ProductTotalAmount` decimal(18,2) NOT NULL COMMENT '诊疗项目总金额',
   `RefundTotalAmount` decimal(18,2) NOT NULL COMMENT '退款金额',
   `CommisTotalAmount` decimal(18,2) NOT NULL COMMENT '佣金总金额',
   `RefundCommisAmount` decimal(18,2) NOT NULL COMMENT '退还佣金总金额',
   `ActiveType` int(11) NOT NULL DEFAULT '0' COMMENT '未使用',
-  `Platform` int(11) NOT NULL DEFAULT '0' COMMENT '来自哪个终端的订单',
-  `DiscountAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '针对该订单的优惠金额（用于优惠券）',
+  `Platform` int(11) NOT NULL DEFAULT '0' COMMENT '来自哪个终端的预约单',
+  `DiscountAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '针对该预约单的优惠金额（用于优惠券）',
   `IntegralDiscount` decimal(18,2) NOT NULL COMMENT '积分优惠金额',
   `InvoiceContext` varchar(50) DEFAULT NULL COMMENT '发票明细',
   `OrderType` int(11) DEFAULT NULL,
   `ShareUserId` bigint(20) DEFAULT NULL COMMENT '分销员Id',
-  `OrderRemarks` varchar(200) DEFAULT NULL COMMENT '订单备注(买家留言)',
+  `OrderRemarks` varchar(200) DEFAULT NULL COMMENT '预约单备注(患者留言)',
   `LastModifyTime` datetime DEFAULT NULL COMMENT '最后操作时间',
   `DeliveryType` int(11) NOT NULL COMMENT '发货类型(快递配送,到店自提)',
   `ShopBranchId` bigint(20) DEFAULT NULL COMMENT '门店ID',
   `PickupCode` varchar(20) DEFAULT NULL COMMENT '提货码',
-  `TotalAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '订单实付金额',
-  `ActualPayAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '订单实收金额',
+  `TotalAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '预约单实付金额',
+  `ActualPayAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '预约单实收金额',
   `FullDiscount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '满额减金额',
   `CapitalAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '预付款支付金额',
   PRIMARY KEY (`Id`)
@@ -2090,9 +2090,9 @@ CREATE TABLE `Himall_PendingSettlementOrders` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `ShopId` bigint(20) NOT NULL COMMENT '店铺ID',
   `ShopName` varchar(100) DEFAULT NULL COMMENT '店铺名称',
-  `OrderId` bigint(20) NOT NULL COMMENT '订单号',
-  `OrderAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '订单金额',
-  `ProductsAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '商品实付金额',
+  `OrderId` bigint(20) NOT NULL COMMENT '预约单号',
+  `OrderAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '预约单金额',
+  `ProductsAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '诊疗项目实付金额',
   `FreightAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '运费',
   `PlatCommission` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '平台佣金',
   `DistributorCommission` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '分销佣金',
@@ -2100,10 +2100,10 @@ CREATE TABLE `Himall_PendingSettlementOrders` (
   `PlatCommissionReturn` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '平台佣金退还',
   `DistributorCommissionReturn` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '分销佣金退还',
   `SettlementAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '结算金额',
-  `OrderFinshTime` datetime NOT NULL COMMENT '订单完成时间',
+  `OrderFinshTime` datetime NOT NULL COMMENT '预约单完成时间',
   `PaymentTypeName` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=422 DEFAULT CHARSET=utf8 COMMENT='待结算订单表';
+) ENGINE=InnoDB AUTO_INCREMENT=422 DEFAULT CHARSET=utf8 COMMENT='待结算预约单表';
 
 -- ----------------------------
 -- Table structure for Himall_PhotoSpace
@@ -2174,11 +2174,11 @@ CREATE TABLE `Himall_PlatVisits` (
   `Date` datetime NOT NULL COMMENT '统计日期',
   `VisitCounts` bigint(20) NOT NULL COMMENT '平台浏览数',
   `OrderUserCount` bigint(20) NOT NULL COMMENT '下单人数',
-  `OrderCount` bigint(20) NOT NULL COMMENT '订单数',
+  `OrderCount` bigint(20) NOT NULL COMMENT '预约单数',
   `OrderProductCount` bigint(20) NOT NULL COMMENT '下单件数',
   `OrderAmount` decimal(18,2) NOT NULL COMMENT '下单金额',
   `OrderPayUserCount` bigint(20) NOT NULL COMMENT '下单付款人数',
-  `OrderPayCount` bigint(20) NOT NULL COMMENT '付款订单数',
+  `OrderPayCount` bigint(20) NOT NULL COMMENT '付款预约单数',
   `SaleCounts` bigint(20) NOT NULL COMMENT '付款下单件数',
   `SaleAmounts` decimal(18,2) NOT NULL COMMENT '付款金额',
   `StatisticFlag` bit(1) NOT NULL COMMENT '是否已经统计(0：未统计,1已统计)',
@@ -2191,7 +2191,7 @@ CREATE TABLE `Himall_PlatVisits` (
 DROP TABLE IF EXISTS `Himall_ProductAttributes`;
 CREATE TABLE `Himall_ProductAttributes` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   `AttributeId` bigint(20) NOT NULL COMMENT '属性ID',
   `ValueId` bigint(20) NOT NULL COMMENT '属性值ID',
   PRIMARY KEY (`Id`),
@@ -2208,18 +2208,18 @@ CREATE TABLE `Himall_ProductAttributes` (
 DROP TABLE IF EXISTS `Himall_ProductBrokerage`;
 CREATE TABLE `Himall_ProductBrokerage` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `ProductId` bigint(20) DEFAULT NULL COMMENT '商品Id',
+  `ProductId` bigint(20) DEFAULT NULL COMMENT '诊疗项目Id',
   `rate` decimal(6,2) NOT NULL COMMENT '百分比',
   `ShopId` bigint(20) DEFAULT NULL COMMENT '店铺Id',
   `CreateTime` datetime DEFAULT NULL COMMENT '添加时间',
-  `SaleNum` int(11) DEFAULT NULL COMMENT '成交数 *是卖出的数量，还是成交订单数，退货时是否需要维护',
+  `SaleNum` int(11) DEFAULT NULL COMMENT '成交数 *是卖出的数量，还是成交预约单数，退货时是否需要维护',
   `AgentNum` int(11) DEFAULT NULL COMMENT '代理数 *清退的时候是否需要维护此字段',
   `ForwardNum` int(11) DEFAULT NULL COMMENT '转发数',
   `Status` int(11) NOT NULL COMMENT '状态 上架、下架、移除',
   `Sort` int(11) DEFAULT NULL COMMENT '排序',
   `saleAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '销售额',
-  `BrokerageAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '商品已结佣金',
-  `BrokerageTotal` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '商品佣金(包含已结未结)',
+  `BrokerageAmount` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '诊疗项目已结佣金',
+  `BrokerageTotal` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '诊疗项目佣金(包含已结未结)',
   PRIMARY KEY (`Id`),
   KEY `FK_Himall_ProductBrokerage_ProductId` (`ProductId`),
   KEY `FK_Himall_ProductBrokerage_ShopId` (`ShopId`),
@@ -2233,8 +2233,8 @@ CREATE TABLE `Himall_ProductBrokerage` (
 DROP TABLE IF EXISTS `Himall_ProductComments`;
 CREATE TABLE `Himall_ProductComments` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `SubOrderId` bigint(20) DEFAULT NULL COMMENT '订单详细ID',
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `SubOrderId` bigint(20) DEFAULT NULL COMMENT '预约单详细ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   `ShopId` bigint(20) NOT NULL COMMENT '店铺ID',
   `ShopName` varchar(100) DEFAULT NULL COMMENT '店铺名称',
   `UserId` bigint(20) NOT NULL COMMENT '用户ID',
@@ -2302,7 +2302,7 @@ CREATE TABLE `Himall_ProductConsultations` (
 DROP TABLE IF EXISTS `Himall_ProductDescriptions`;
 CREATE TABLE `Himall_ProductDescriptions` (
   `Id` bigint(20) NOT NULL,
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   `AuditReason` varchar(1000) DEFAULT NULL COMMENT '审核原因',
   `Description` text COMMENT '详情',
   `DescriptionPrefixId` bigint(20) NOT NULL COMMENT '关联版式',
@@ -2336,10 +2336,10 @@ CREATE TABLE `Himall_ProductDescriptionTemplates` (
 DROP TABLE IF EXISTS `Himall_ProductRelationProducts`;
 CREATE TABLE `Himall_ProductRelationProducts` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `ProductId` bigint(20) NOT NULL COMMENT '商品id',
-  `Relation` varchar(255) NOT NULL COMMENT '推荐的商品id列表，以‘，’分隔',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目id',
+  `Relation` varchar(255) NOT NULL COMMENT '推荐的诊疗项目id列表，以‘，’分隔',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='推荐商品';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='推荐诊疗项目';
 
 -- ----------------------------
 -- Table structure for Himall_Products
@@ -2352,8 +2352,8 @@ CREATE TABLE `Himall_Products` (
   `CategoryPath` varchar(100) NOT NULL COMMENT '分类路径',
   `TypeId` bigint(20) NOT NULL COMMENT '类型ID',
   `BrandId` bigint(20) NOT NULL COMMENT '品牌ID',
-  `ProductName` varchar(100) NOT NULL COMMENT '商品名称',
-  `ProductCode` varchar(100) DEFAULT NULL COMMENT '商品编号',
+  `ProductName` varchar(100) NOT NULL COMMENT '诊疗项目名称',
+  `ProductCode` varchar(100) DEFAULT NULL COMMENT '诊疗项目编号',
   `ShortDescription` varchar(4000) DEFAULT NULL COMMENT '广告词',
   `SaleStatus` int(11) NOT NULL COMMENT '销售状态',
   `AuditStatus` int(11) NOT NULL COMMENT '审核状态',
@@ -2411,9 +2411,9 @@ CREATE TABLE `Himall_ProductVistis` (
   `VistiCounts` bigint(20) NOT NULL COMMENT '浏览次数',
   `VisitUserCounts` bigint(20) NOT NULL COMMENT '浏览人数',
   `PayUserCounts` bigint(20) NOT NULL COMMENT '付款人数',
-  `SaleCounts` bigint(20) NOT NULL COMMENT '商品销售数量',
-  `SaleAmounts` decimal(18,2) NOT NULL COMMENT '商品销售额',
-  `OrderCounts` bigint(20) unsigned DEFAULT '0' COMMENT '订单总数',
+  `SaleCounts` bigint(20) NOT NULL COMMENT '诊疗项目销售数量',
+  `SaleAmounts` decimal(18,2) NOT NULL COMMENT '诊疗项目销售额',
+  `OrderCounts` bigint(20) unsigned DEFAULT '0' COMMENT '预约单总数',
   `StatisticFlag` bit(1) NOT NULL COMMENT '是否已经统计(0：未统计,1已统计)',
   PRIMARY KEY (`Id`),
   KEY `FK_Product_ProductVisti` (`ProductId`) USING BTREE,
@@ -2427,7 +2427,7 @@ DROP TABLE IF EXISTS `HiMall_ProductWords`;
 CREATE TABLE `HiMall_ProductWords` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `WordId` bigint(20) DEFAULT NULL COMMENT '分词Id',
-  `ProductId` bigint(20) DEFAULT NULL COMMENT '商品Id',
+  `ProductId` bigint(20) DEFAULT NULL COMMENT '诊疗项目Id',
   PRIMARY KEY (`Id`),
   KEY `IX_WordId` (`WordId`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1123 DEFAULT CHARSET=utf8;
@@ -2457,7 +2457,7 @@ CREATE TABLE `Himall_ReceivingAddressConfig` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `AddressId_City` text,
   `AddressId` text NOT NULL COMMENT '逗号分隔',
-  `ShopId` bigint(20) NOT NULL COMMENT '预留字段，防止将来其他商家一并支持货到付款',
+  `ShopId` bigint(20) NOT NULL COMMENT '预留字段，防止将来其他诊所一并支持货到付款',
   PRIMARY KEY (`Id`),
   KEY `FK_RACShopId` (`ShopId`) USING BTREE,
   CONSTRAINT `FK_RACShopId` FOREIGN KEY (`ShopId`) REFERENCES `himall_shops` (`Id`)
@@ -2529,8 +2529,8 @@ CREATE TABLE `Himall_Roles` (
 DROP TABLE IF EXISTS `Himall_SearchProducts`;
 CREATE TABLE `Himall_SearchProducts` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ProductId` bigint(20) NOT NULL COMMENT '商品Id',
-  `ProductName` varchar(100) NOT NULL DEFAULT '' COMMENT '商品名称',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目Id',
+  `ProductName` varchar(100) NOT NULL DEFAULT '' COMMENT '诊疗项目名称',
   `ShopId` bigint(20) NOT NULL DEFAULT '0' COMMENT '店铺Id',
   `ShopName` varchar(100) DEFAULT '' COMMENT '店铺名称',
   `BrandId` bigint(20) DEFAULT '0' COMMENT '品牌Id',
@@ -2547,7 +2547,7 @@ CREATE TABLE `Himall_SearchProducts` (
   `SaleCount` int(11) NOT NULL DEFAULT '0' COMMENT '成交量',
   `SalePrice` decimal(18,2) NOT NULL DEFAULT '0.00' COMMENT '售价',
   `OnSaleTime` datetime DEFAULT NULL COMMENT '上架时间',
-  `ImagePath` varchar(100) NOT NULL DEFAULT '' COMMENT '商品图片地址',
+  `ImagePath` varchar(100) NOT NULL DEFAULT '' COMMENT '诊疗项目图片地址',
   `CanSearch` bit(1) NOT NULL DEFAULT b'0' COMMENT '可以搜索',
   PRIMARY KEY (`Id`),
   UNIQUE KEY `IX_ProductId` (`ProductId`) USING BTREE,
@@ -2586,7 +2586,7 @@ CREATE TABLE `Himall_SellerSpecificationValues` (
   `ValueId` bigint(20) NOT NULL COMMENT '规格值ID',
   `Specification` int(11) NOT NULL COMMENT '规格（颜色、尺寸、版本）',
   `TypeId` bigint(20) NOT NULL COMMENT '类型ID',
-  `Value` varchar(100) NOT NULL COMMENT '商家的规格值',
+  `Value` varchar(100) NOT NULL COMMENT '诊所的规格值',
   PRIMARY KEY (`Id`),
   KEY `FK_SpecificationValue_SellerSpecificationValue` (`ValueId`) USING BTREE,
   CONSTRAINT `himall_sellerspecificationvalues_ibfk_1` FOREIGN KEY (`ValueId`) REFERENCES `Himall_SpecificationValues` (`Id`) ON DELETE CASCADE
@@ -2651,8 +2651,8 @@ CREATE TABLE `Himall_SensitiveWords` (
 DROP TABLE IF EXISTS `Himall_Settled`;
 CREATE TABLE `Himall_Settled` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `BusinessType` int(11) NOT NULL COMMENT '商家类型 0、仅企业可入驻；1、仅个人可入驻；2、企业和个人均可',
-  `SettlementAccountType` int(11) NOT NULL COMMENT '商家结算类型 0、仅银行账户；1、仅微信账户；2、银行账户及微信账户均可',
+  `BusinessType` int(11) NOT NULL COMMENT '诊所类型 0、仅企业可入驻；1、仅个人可入驻；2、企业和个人均可',
+  `SettlementAccountType` int(11) NOT NULL COMMENT '诊所结算类型 0、仅银行账户；1、仅微信账户；2、银行账户及微信账户均可',
   `TrialDays` int(11) NOT NULL COMMENT '试用天数',
   `IsCity` int(11) NOT NULL COMMENT '地址必填 0、非必填；1、必填',
   `IsPeopleNumber` int(11) NOT NULL COMMENT '人数必填 0、非必填；1、必填',
@@ -2796,7 +2796,7 @@ CREATE TABLE `Himall_ShopBonusReceive` (
   `ReceiveTime` datetime DEFAULT NULL COMMENT '领取时间',
   `UsedTime` datetime DEFAULT NULL COMMENT '使用时间',
   `UserId` bigint(20) DEFAULT NULL COMMENT 'UserID',
-  `UsedOrderId` bigint(20) DEFAULT NULL COMMENT '使用的订单号',
+  `UsedOrderId` bigint(20) DEFAULT NULL COMMENT '使用的预约单号',
   `WXName` varchar(30) DEFAULT NULL,
   `WXHead` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`),
@@ -2812,7 +2812,7 @@ CREATE TABLE `Himall_ShopBonusReceive` (
 DROP TABLE IF EXISTS `Himall_ShopBranch`;
 CREATE TABLE `Himall_ShopBranch` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `ShopId` bigint(20) NOT NULL COMMENT '商家店铺ID',
+  `ShopId` bigint(20) NOT NULL COMMENT '诊所店铺ID',
   `ShopBranchName` varchar(30) NOT NULL COMMENT '门店名称',
   `AddressId` int(11) NOT NULL COMMENT '门店地址ID',
   `AddressPath` varchar(50) DEFAULT NULL COMMENT '所在区域全路径编号(省，市，区)',
@@ -2874,15 +2874,15 @@ CREATE TABLE `Himall_ShopBranchManagers` (
 DROP TABLE IF EXISTS `Himall_ShopBranchSkus`;
 CREATE TABLE `Himall_ShopBranchSkus` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `ProductId` bigint(20) NOT NULL COMMENT '商品id(冗余字段)',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目id(冗余字段)',
   `SkuId` varchar(100) NOT NULL COMMENT 'SKU表Id',
-  `ShopId` bigint(20) NOT NULL COMMENT '商家id(冗余字段)',
+  `ShopId` bigint(20) NOT NULL COMMENT '诊所id(冗余字段)',
   `ShopBranchId` bigint(20) NOT NULL COMMENT '门店id',
   `Stock` int(11) NOT NULL COMMENT '库存',
   `Status` int(11) NOT NULL COMMENT '门店SKU状态',
   `CreateDate` datetime NOT NULL COMMENT 'SKU添加时间',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=906 DEFAULT CHARSET=utf8 COMMENT='商家分店SKU信息';
+) ENGINE=InnoDB AUTO_INCREMENT=906 DEFAULT CHARSET=utf8 COMMENT='诊所分店SKU信息';
 
 -- ----------------------------
 -- Table structure for Himall_ShopBranchTags
@@ -2900,7 +2900,7 @@ CREATE TABLE `Himall_ShopBranchTags` (
 DROP TABLE IF EXISTS `Himall_ShopBrandApplys`;
 CREATE TABLE `Himall_ShopBrandApplys` (
   `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `ShopId` bigint(20) NOT NULL COMMENT '商家Id',
+  `ShopId` bigint(20) NOT NULL COMMENT '诊所Id',
   `BrandId` bigint(20) DEFAULT NULL COMMENT '品牌Id',
   `BrandName` varchar(100) DEFAULT NULL COMMENT '品牌名称',
   `Logo` varchar(1000) DEFAULT NULL COMMENT '品牌Logo',
@@ -2924,7 +2924,7 @@ CREATE TABLE `Himall_ShopBrandApplys` (
 DROP TABLE IF EXISTS `Himall_ShopBrands`;
 CREATE TABLE `Himall_ShopBrands` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `ShopId` bigint(20) NOT NULL COMMENT '商家Id',
+  `ShopId` bigint(20) NOT NULL COMMENT '诊所Id',
   `BrandId` bigint(20) NOT NULL COMMENT '品牌Id',
   PRIMARY KEY (`Id`),
   KEY `ShopId` (`ShopId`) USING BTREE,
@@ -2980,7 +2980,7 @@ DROP TABLE IF EXISTS `Himall_ShopGrades`;
 CREATE TABLE `Himall_ShopGrades` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) NOT NULL COMMENT '店铺等级名称',
-  `ProductLimit` int(11) NOT NULL COMMENT '最大上传商品数量',
+  `ProductLimit` int(11) NOT NULL COMMENT '最大上传诊疗项目数量',
   `ImageLimit` int(11) NOT NULL COMMENT '最大图片可使用空间数量',
   `TemplateLimit` int(11) NOT NULL,
   `ChargeStandard` decimal(8,2) NOT NULL,
@@ -2995,7 +2995,7 @@ DROP TABLE IF EXISTS `Himall_ShopHomeModuleProducts`;
 CREATE TABLE `Himall_ShopHomeModuleProducts` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `HomeModuleId` bigint(20) NOT NULL,
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   `DisplaySequence` int(11) NOT NULL COMMENT '排序',
   PRIMARY KEY (`Id`),
   KEY `FK_Product_ShopHomeModuleProduct` (`ProductId`) USING BTREE,
@@ -3057,7 +3057,7 @@ CREATE TABLE `Himall_ShoppingCarts` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `UserId` bigint(20) NOT NULL COMMENT '用户ID',
   `ShopBranchId` bigint(20) DEFAULT NULL COMMENT '门店ID',
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   `SkuId` varchar(100) DEFAULT NULL COMMENT 'SKUID',
   `Quantity` bigint(20) NOT NULL COMMENT '购买数量',
   `AddTime` datetime NOT NULL COMMENT '添加时间',
@@ -3129,15 +3129,15 @@ CREATE TABLE `Himall_Shops` (
   `TaxRegistrationCertificatePhoto` varchar(100) DEFAULT NULL COMMENT '纳税人识别号',
   `PayPhoto` varchar(100) DEFAULT NULL COMMENT '支付凭证',
   `PayRemark` varchar(1000) DEFAULT NULL COMMENT '支付注释',
-  `SenderName` varchar(100) DEFAULT NULL COMMENT '商家发货人名称',
-  `SenderAddress` varchar(100) DEFAULT NULL COMMENT '商家发货人地址',
-  `SenderPhone` varchar(100) DEFAULT NULL COMMENT '商家发货人电话',
+  `SenderName` varchar(100) DEFAULT NULL COMMENT '诊所发货人名称',
+  `SenderAddress` varchar(100) DEFAULT NULL COMMENT '诊所发货人地址',
+  `SenderPhone` varchar(100) DEFAULT NULL COMMENT '诊所发货人电话',
   `Freight` decimal(18,2) NOT NULL COMMENT '运费',
   `FreeFreight` decimal(18,2) NOT NULL COMMENT '多少钱开始免运费',
   `Stage` int(11) DEFAULT '0' COMMENT '注册步骤',
-  `SenderRegionId` int(11) DEFAULT NULL COMMENT '商家发货人省市区',
+  `SenderRegionId` int(11) DEFAULT NULL COMMENT '诊所发货人省市区',
   `BusinessLicenseCert` varchar(120) DEFAULT NULL COMMENT '营业执照证书',
-  `ProductCert` varchar(120) DEFAULT NULL COMMENT '商品证书',
+  `ProductCert` varchar(120) DEFAULT NULL COMMENT '诊疗项目证书',
   `OtherCert` varchar(120) DEFAULT NULL COMMENT '其他证书',
   `legalPerson` varchar(50) DEFAULT NULL COMMENT '法人代表',
   `CompanyFoundingDate` datetime DEFAULT NULL COMMENT '公司成立日期',
@@ -3151,7 +3151,7 @@ CREATE TABLE `Himall_Shops` (
   `WeiXinTrueName` varchar(200) DEFAULT '' COMMENT '微信真实姓名',
   `WeiXinOpenId` varchar(200) DEFAULT '' COMMENT '微信标识符',
   `WeiXinImg` varchar(200) DEFAULT NULL,
-  `AutoAllotOrder` tinyint(1) DEFAULT NULL COMMENT '商家是否开启自动分配订单',
+  `AutoAllotOrder` tinyint(1) DEFAULT NULL COMMENT '诊所是否开启自动分配预约单',
   `ProvideInvoice` tinyint(1) DEFAULT NULL COMMENT '是否提供发票',
   PRIMARY KEY (`Id`),
   KEY `IX_ShopIsSelf` (`IsSelf`) USING BTREE
@@ -3167,11 +3167,11 @@ CREATE TABLE `Himall_ShopVistis` (
   `Date` datetime NOT NULL COMMENT '日期',
   `VistiCounts` bigint(20) NOT NULL COMMENT '浏览人数',
   `OrderUserCount` bigint(20) NOT NULL COMMENT '下单人数',
-  `OrderCount` bigint(20) NOT NULL COMMENT '订单数',
+  `OrderCount` bigint(20) NOT NULL COMMENT '预约单数',
   `OrderProductCount` bigint(20) NOT NULL COMMENT '下单件数',
   `OrderAmount` decimal(18,2) NOT NULL COMMENT '下单金额',
   `OrderPayUserCount` bigint(20) NOT NULL COMMENT '下单付款人数',
-  `OrderPayCount` bigint(20) NOT NULL COMMENT '付款订单数',
+  `OrderPayCount` bigint(20) NOT NULL COMMENT '付款预约单数',
   `SaleCounts` bigint(20) NOT NULL COMMENT '付款下单件数',
   `SaleAmounts` decimal(18,2) NOT NULL COMMENT '付款金额',
   `StatisticFlag` bit(1) NOT NULL COMMENT '是否已经统计(0：未统计,1已统计)',
@@ -3206,9 +3206,9 @@ CREATE TABLE `Himall_ShopWithDraw` (
   `Account` varchar(100) NOT NULL COMMENT '提现帐号',
   `AccountName` varchar(100) NOT NULL COMMENT '提现人',
   `SellerId` bigint(20) DEFAULT NULL,
-  `SellerName` varchar(100) NOT NULL COMMENT '申请商家用户名',
+  `SellerName` varchar(100) NOT NULL COMMENT '申请诊所用户名',
   `DealTime` datetime DEFAULT NULL COMMENT '处理时间',
-  `ShopRemark` varchar(1000) DEFAULT NULL COMMENT '商家备注',
+  `ShopRemark` varchar(1000) DEFAULT NULL COMMENT '诊所备注',
   `PlatRemark` varchar(1000) DEFAULT NULL COMMENT '平台备注',
   `ShopName` varchar(200) DEFAULT '' COMMENT '商店名称',
   `SerialNo` varchar(200) DEFAULT '' COMMENT '支付商流水号',
@@ -3244,9 +3244,9 @@ CREATE TABLE `Himall_SiteSignInConfig` (
 -- ----------------------------
 DROP TABLE IF EXISTS `Himall_SKUs`;
 CREATE TABLE `Himall_SKUs` (
-  `Id` varchar(100) NOT NULL COMMENT '商品ID_颜色规格ID_颜色规格ID_尺寸规格',
+  `Id` varchar(100) NOT NULL COMMENT '诊疗项目ID_颜色规格ID_颜色规格ID_尺寸规格',
   `AutoId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增主键Id',
-  `ProductId` bigint(20) NOT NULL COMMENT '商品ID',
+  `ProductId` bigint(20) NOT NULL COMMENT '诊疗项目ID',
   `Color` varchar(100) DEFAULT NULL COMMENT '颜色规格',
   `Size` varchar(100) DEFAULT NULL COMMENT '尺寸规格',
   `Version` varchar(100) DEFAULT NULL COMMENT '版本规格',
@@ -3299,7 +3299,7 @@ DROP TABLE IF EXISTS `Himall_StatisticOrderComments`;
 CREATE TABLE `Himall_StatisticOrderComments` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `ShopId` bigint(20) NOT NULL,
-  `CommentKey` int(11) NOT NULL COMMENT '评价的枚举（宝贝与描述相符 商家得分）',
+  `CommentKey` int(11) NOT NULL COMMENT '评价的枚举（宝贝与描述相符 诊所得分）',
   `CommentValue` decimal(10,4) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `himall_statisticordercomments_ibfk_1` (`ShopId`) USING BTREE,
@@ -3328,7 +3328,7 @@ CREATE TABLE `Himall_Theme` (
   `SecondaryColor` varchar(50) DEFAULT NULL COMMENT '商城辅色',
   `WritingColor` varchar(50) DEFAULT NULL COMMENT '字体颜色',
   `FrameColor` varchar(50) DEFAULT NULL COMMENT '边框颜色',
-  `ClassifiedsColor` varchar(50) DEFAULT NULL COMMENT '商品分类栏',
+  `ClassifiedsColor` varchar(50) DEFAULT NULL COMMENT '诊疗项目分类栏',
   PRIMARY KEY (`ThemeId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='主题设置表';
 

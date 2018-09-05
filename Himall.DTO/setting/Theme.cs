@@ -47,7 +47,7 @@ namespace Himall.DTO
         public string FrameColor { get; set; }
 
         /// <summary>
-        /// 商品分类栏
+        /// 诊疗项目分类栏
         /// </summary>
         public string ClassifiedsColor { get; set; }
     }

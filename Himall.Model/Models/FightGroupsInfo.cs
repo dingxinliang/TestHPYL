@@ -25,17 +25,17 @@ namespace Himall.Model
         /// </summary>
         public decimal SalePrice { get; set; }
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         ///</summary>
         [NotMapped]
         public string ProductName { get; set; }
         /// <summary>
-        /// 商品图片目录
+        /// 诊疗项目图片目录
         /// </summary>
         [NotMapped]
         public string ProductImgPath { get; set; }
         /// <summary>
-        /// 商品默认图片
+        /// 诊疗项目默认图片
         [NotMapped]
         /// </summary>
         public string ProductDefaultImage { get; set; }
@@ -77,7 +77,7 @@ namespace Himall.Model
             }
         }
         /// <summary>
-        /// 拼团订单集
+        /// 拼团预约单集
         /// </summary>
         public List<FightGroupOrderInfo> GroupOrders { get; set; }
         /// <summary>

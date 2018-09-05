@@ -10,7 +10,7 @@ namespace Himall.DTO
     #region ShopProfileStep1
 
     /// <summary>
-    /// 商家入驻第一步，验证字段必填
+    /// 诊所入驻第一步，验证字段必填
     /// </summary>
     public class ShopProfileStep1 : ShopProfileStepT1
     {
@@ -141,7 +141,7 @@ namespace Himall.DTO
         public string BusinessLicenseCert1 { get { return BusinessLicenseCert1T; } set { BusinessLicenseCert1T = value; } }
 
         /// <summary>
-        /// 商品证书
+        /// 诊疗项目证书
         /// </summary>
         public string ProductCert1 { get { return ProductCert1T; } set { ProductCert1T = value; } }
 

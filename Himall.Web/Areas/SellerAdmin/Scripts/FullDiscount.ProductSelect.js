@@ -1,4 +1,4 @@
-﻿//营销活动商品选择控件
+﻿//营销活动诊疗项目选择控件
 $.FDProductSelector = {
 	params: { },
 	url: '/SellerAdmin/FullDiscount/GetCanJoinProducts',
@@ -8,11 +8,11 @@ $.FDProductSelector = {
 	html: '<div id="_FDProductSelector" class="goods-choose clearfix">\
             <div class="choose-search">\
                 <div class="form-group">\
-                    <label class="label-inline" for="">商品货号</label>\
+                    <label class="label-inline" for="">诊疗项目货号</label>\
                     <input class="form-control input-ssm" type="text" name="scode" style="width:120px;">\
                 </div>\
                 <div class="form-group">\
-                    <label class="label-inline" for="">商品名称</label>\
+                    <label class="label-inline" for="">诊疗项目名称</label>\
                     <input class="form-control input-ssm" type="text" name="sname" style="width:120px;">\
                 </div>\
                 <button type="button" class="btn btn-primary btn-ssm">搜索</button>\
@@ -22,7 +22,7 @@ $.FDProductSelector = {
                 <a class="btn btn-default btn-ssm btn-addAll" onclick="$.FDProductSelector.selectALL()">全部参加</a>\
                 <a class="btn btn-default btn-ssm btn-addAll" onclick="$.FDProductSelector.removeALL()">取消选择</a>\
 		    </div>\
-            <div class="conflict hide" style="font-size:12px;margin-bottom:10px;">已选商品有（<em></em>个）商品已参与其他活动，<a onclick="$.FDProductSelector.showConflict()" >点击查看详情</a></div>\
+            <div class="conflict hide" style="font-size:12px;margin-bottom:10px;">已选诊疗项目有（<em></em>个）诊疗项目已参与其他活动，<a onclick="$.FDProductSelector.showConflict()" >点击查看详情</a></div>\
         </div>',
 
 	reload: function (selectedIds, activeId) {
@@ -39,7 +39,7 @@ $.FDProductSelector = {
             	}
             },
             {
-            	field: "Name", title: '商品', width: 366, align: "left",
+            	field: "Name", title: '诊疗项目', width: 366, align: "left",
             	formatter: function (value, row, index) {
             		var html = '<img src="' + row.Image + '"/><span class="overflow-ellipsis" style="width:400px">' + row.Name + '</span>';
             		return html;
@@ -65,7 +65,7 @@ $.FDProductSelector = {
 			if (item == null) return;
 			var tr = [];
 			tr.push('style="background-color:#e8baba"');
-			tr.push('title="此商品已参与门店[' + item.shopName + ']的活动[' + item.activityName + ']"');
+			tr.push('title="此诊疗项目已参与门店[' + item.shopName + ']的活动[' + item.activityName + ']"');
 			return tr.join(" ");
 		}
 		var url = this.url;
@@ -199,7 +199,7 @@ $.FDProductSelector = {
 	showConflict: function () {
 		var conflict = $.FDProductSelector.conflict;
 		var confilctText = ["<div style='position:relative; height:400px; overflow:auto'><table class='table'>"];
-		confilctText.push("<tr><th width='300px'>商品</th><th width='150px'>门店</th><th width='100px'>活动类型</th><th width='100px'>活动名称</th></tr>");
+		confilctText.push("<tr><th width='300px'>诊疗项目</th><th width='150px'>门店</th><th width='100px'>活动类型</th><th width='100px'>活动名称</th></tr>");
 		for (var i = 0; i < conflict.length; i++) {
 			var item = conflict[i];
 			confilctText.push()
@@ -237,7 +237,7 @@ $.FDProductSelector = {
 		if (conflict == null) this.conflict = [];
 		else this.conflict = conflict;
 		$.dialog({
-			title: '商品选择',
+			title: '诊疗项目选择',
 			lock: true,
 			content: this.html,
 			padding: '0',

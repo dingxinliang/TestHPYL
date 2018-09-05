@@ -14,7 +14,7 @@ namespace WinStatisticsService.Model
         public long UserId { get; set; }
 
         /// <summary>
-        /// 当天订单数
+        /// 当天预约单数
         /// </summary>
         public int OrderNumber { get; set; }
     }

@@ -19,7 +19,7 @@ namespace Himall.DTO
         public string Remark { get; set; }
         public string RealName { get; set; }
         /// <summary>
-        /// 管理员类型（商家、门店）
+        /// 管理员类型（诊所、门店）
         /// </summary>
         public ManagerType UserType { get; set; }
     }

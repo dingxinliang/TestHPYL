@@ -70,7 +70,7 @@ $(function () {
             vshopid = -1;
         }
         if (vshopid < 1) {
-            $.dialog.errorTips("商家暂未开通微店！");
+            $.dialog.errorTips("诊所暂未开通微店！");
             return false;
         }
     });
@@ -102,7 +102,7 @@ function InitBuyEvent() {
     escClose('.modul-popup', 'is-visible');
     escClose('#J_pbuy_cover', 'hmui-cover-show');
 
-    // 商品无属性隐藏已选择
+    // 诊疗项目无属性隐藏已选择
     if ($('#choose').length == 0) {
         $('#choose-result').css('display', 'none');
     }
@@ -185,7 +185,7 @@ function easybuy() {
             }, shopid);
         }
     } else {
-        $.dialog.errorTips('请选择商品规格');
+        $.dialog.errorTips('请选择诊疗项目规格');
 
     }
 }

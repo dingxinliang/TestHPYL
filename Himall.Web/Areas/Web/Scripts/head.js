@@ -112,7 +112,7 @@ $(function () {
         if (str != "")
             location.href = '/order/submit?' + 'cartItemIds=' + str;
         else
-            $.dialog.errorTips("没有可结算的商品！");
+            $.dialog.errorTips("没有可结算的诊疗项目！");
     });
 
     InitialBanner();
@@ -346,7 +346,7 @@ function bindSelectAll() {
         else
             $(this).removeAttr('checked');
 
-        //判断店铺下的所有商品是否全选中
+        //判断店铺下的所有诊疗项目是否全选中
         var allProductChecked = true;
         $(this).parent().siblings('.cart-list-goods').each(function () {
             if (!$(this).find('input').prop('checked'))

@@ -18,7 +18,7 @@ namespace Himall.Model
         public  List<FullDiscountRulesInfo> Rules { set; get; }
 
         /// <summary>
-        /// 满减商品(需自行填充)
+        /// 满减诊疗项目(需自行填充)
         /// </summary>
 
         [NotMapped]

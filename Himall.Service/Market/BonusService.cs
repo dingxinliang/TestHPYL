@@ -312,7 +312,7 @@ namespace Himall.Service
                });
 
                 string content = "";
-                //content = string.Format("感谢关注，您已获得预存款{0}元，通过此公众号进入商城可用预存款购买商品或提现", receive.Price);
+                //content = string.Format("感谢关注，您已获得预存款{0}元，通过此公众号进入商城可用预存款购买诊疗项目或提现", receive.Price);
                 return content;
             }
             return null;
@@ -532,7 +532,7 @@ namespace Himall.Service
             }
         }
 
-        //商家红包存储
+        //诊所红包存储
         private void DepositShopBonus(MemberOpenIdInfo openInfo, Entities efContext)
         {
             var receives = efContext.ShopBonusReceiveInfo.Where(p => p.OpenId == openInfo.OpenId && p.UserId == null).ToList();
@@ -553,7 +553,7 @@ namespace Himall.Service
             }
             catch (Exception e)
             {
-                Log.Info("商家红包存储出错：", e);
+                Log.Info("诊所红包存储出错：", e);
             }
         }
         #endregion

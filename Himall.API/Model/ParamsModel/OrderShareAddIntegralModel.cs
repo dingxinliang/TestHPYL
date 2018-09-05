@@ -9,7 +9,7 @@ namespace Himall.API.Model.ParamsModel
     public class OrderShareAddIntegralModel
     {
         /// <summary>
-        /// 分享的订单号
+        /// 分享的预约单号
         /// </summary>
         public string orderids { get; set; }
     }

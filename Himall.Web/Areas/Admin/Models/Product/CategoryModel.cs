@@ -24,7 +24,7 @@ namespace Himall.Web.Areas.Admin.Models.Product
         public long ParentCategoryId { get; set; }
 
         [RegularExpression(@"^\d{1,3}(\.\d{1,2})?$", ErrorMessage = "分佣比例只能是大于等于0的的数字，可保留两位小数")]
-        [Range(0.00, 100, ErrorMessage = "佣金比不可以超出商品价值")]
+        [Range(0.00, 100, ErrorMessage = "佣金比不可以超出诊疗项目价值")]
         [Required(ErrorMessage = "分类佣金比例必填")]
         public decimal CommisRate { get; set; }
 

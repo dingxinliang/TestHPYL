@@ -42,7 +42,7 @@ $("#btn_save").on("click", function () {
             return false;
         }
         if ($("#ClassifiedsColor").val() == "" || $("#ClassifiedsColor").val().length > 40) {
-            $.dialog.tips("请填写正确的商品分类栏颜色！");
+            $.dialog.tips("请填写正确的诊疗项目分类栏颜色！");
             $("#ClassifiedsColor").focus();
             return false;
         }

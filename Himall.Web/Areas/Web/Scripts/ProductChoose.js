@@ -78,7 +78,7 @@ function initGrid() {
 }
 
 function del(id) {
-    $.dialog.confirm('确定要删除该商品吗?', function () {
+    $.dialog.confirm('确定要删除该诊疗项目吗?', function () {
         var loading = showLoading();
         $.post('/UserPurchase/DeleteItem', { id: id }, function (result) {
             loading.close();

@@ -35,7 +35,7 @@ namespace Himall.Web.Areas.Web.Models
         public List<ImageAdInfo> CenterAds { get; set; }
 
         /// <summary>
-        /// 商家推荐广告
+        /// 诊所推荐广告
         /// </summary>
         public List<ImageAdInfo> ShopAds { get; set; }
 

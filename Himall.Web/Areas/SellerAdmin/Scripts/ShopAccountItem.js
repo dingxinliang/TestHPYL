@@ -34,7 +34,7 @@
 
 $(function () {
     //组合显示字段
-    //订单表格
+    //预约单表格
     $("#list").hiMallDatagrid({
         url: 'GetShopAccountItemlist',
         nowrap: false,

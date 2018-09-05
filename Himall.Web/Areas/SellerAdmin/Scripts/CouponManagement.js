@@ -1,6 +1,6 @@
 ﻿// JavaScript source code
 function query() {
-    //订单表格
+    //预约单表格
     $("#list").hiMallDatagrid({
         url: './GetItemList',
         nowrap: false,

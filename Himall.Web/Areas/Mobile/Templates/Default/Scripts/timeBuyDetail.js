@@ -96,7 +96,7 @@ function justBuy(callBack) {
             }
         });
     } else {
-        $.dialog.errorTips("请选择商品规格！");
+        $.dialog.errorTips("请选择诊疗项目规格！");
     }
 }
 

@@ -20,7 +20,7 @@
 <script id="shoptmp" type="text/template">  
     <%_.each(datas, function(item) {%>
     <li class="shop-frame">
-        <a class="hs-top" href="@Url.Action("ShopDetail")/<%=item.ShopId%>"><span class="shop-n"><%=item.ShopName%></span><span class="shop-tg">推广商品数：<i><%=item.ProductCount%></i></span></a>
+        <a class="hs-top" href="@Url.Action("ShopDetail")/<%=item.ShopId%>"><span class="shop-n"><%=item.ShopName%></span><span class="shop-tg">推广诊疗项目数：<i><%=item.ProductCount%></i></span></a>
         <ul class="clearfix">
             <%_.each(item.ProductList, function(sumitem) {%>
                 <li class="shop-pro"><a href="@(Url.Action("ProductDetail"))/<%=sumitem.ProductId%>"><img src="<%=sumitem.Image%>"></a><br><p>佣金<em><%=sumitem.Commission%>元</em></p></li>

@@ -53,7 +53,7 @@ function LoadActives()
         if (parseFloat(data.freeFreight) > 0) {
             $("#summary-promotion").append("<div class='dt l l01'>促销</div>" +
                     "<div class='promotion-l' style='float:left;width:440px;'>" +
-                            "<div style='margin-bottom:5px;'><em class='hl_red_bg'>满免</em><em class='hl_red'>单笔订单满<span>" + data.freeFreight + "</span>元免运费</em></div>" +
+                            "<div style='margin-bottom:5px;'><em class='hl_red_bg'>满免</em><em class='hl_red'>单笔预约单满<span>" + data.freeFreight + "</span>元免运费</em></div>" +
                     "</div>");
         }
         if (data.ProductBonus != undefined && data.ProductBonus != null && typeof data.ProductBonus.GrantPrice != "undefined") {
@@ -191,7 +191,7 @@ $(function () {
             location.href = "/Order/EasyBuyToOrder?skuId=" + sku + "&count=" + num;
             //   alert('SKUId：'+sku+'，购买数量：'+num);
         } else {
-            $.dialog.errorTips('请选择商品规格');
+            $.dialog.errorTips('请选择诊疗项目规格');
 
         }
     });
@@ -308,7 +308,7 @@ $(function () {
             });
         }
         else {
-            $.dialog.errorTips("请选择商品规格！");
+            $.dialog.errorTips("请选择诊疗项目规格！");
         }
     }
 

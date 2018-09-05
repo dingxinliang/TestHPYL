@@ -4,9 +4,9 @@
 @model Himall.Model.OrderInfo
 
 @{
-    ViewBag.Title = "订单详情";
+    ViewBag.Title = "预约单详情";
     bool isExpire = false;//是否过了维权期
-    bool isCanRefundOrder = true;//整笔订单是否可退
+    bool isCanRefundOrder = true;//整笔预约单是否可退
     if (Model.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.Finish)
     {
         if ((bool)ViewBag.IsRefundTimeOut)
@@ -28,7 +28,7 @@
 <div class="container order-detail">
     <div class="status">
         <span>
-            订单状态：<i>@Model.OrderStatus.ToDescription()</i>
+            预约单状态：<i>@Model.OrderStatus.ToDescription()</i>
             @if (Model.OrderType == Himall.Model.OrderInfo.OrderTypes.FightGroup)
             {
             <i class="fgordstatus  fgordstatus@(fgojoinstate.GetHashCode())">@(fgojoinstate.ToDescription())</i>
@@ -88,7 +88,7 @@
     </div>
     <!--留言字段添加6-12-->
     <div class="leave-message-detail">
-        <label>买家留言：</label>
+        <label>患者留言：</label>
         <span>@Model.OrderRemarks</span>
     </div>
     <ul class="order-list">
@@ -196,14 +196,14 @@
                 }
                 <span>
                     @if (Model.PaymentType == Himall.Model.OrderInfo.PaymentTypes.CashOnDelivery)
-                    {<text>订单金额</text> }
+                    {<text>预约单金额</text> }
                     else
                     { <text>实付(含运费) </text>}
                     <em style="color:#da2a27;font-size:14px;">¥@((Model.OrderTotalAmount - Model.CapitalAmount).ToString("F2"))</em>
                 </span>
             </p>
             <p class="payment">支付方式<span>@Model.PaymentType.ToDescription()</span></p>
-            <p class="order-num">订单编号：<span>@Model.Id </span><br />下单时间：<span>@Model.OrderDate.ToString("yyyy-MM-dd HH:mm:ss")</span></p>
+            <p class="order-num">预约单编号：<span>@Model.Id </span><br />下单时间：<span>@Model.OrderDate.ToString("yyyy-MM-dd HH:mm:ss")</span></p>
         </li>
     </ul>
     
@@ -213,18 +213,18 @@
             {
             if (Model.OrderType != Himall.Model.OrderInfo.OrderTypes.FightGroup)
             {
-            <a class="btn " href="javascript:cancelOrder('@Model.Id')">取消订单</a>
+            <a class="btn " href="javascript:cancelOrder('@Model.Id')">取消预约单</a>
             }
             }
             else if (Model.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.WaitPay)//待支付
             {
             if (Model.OrderType != Himall.Model.OrderInfo.OrderTypes.FightGroup)
             {
-            <a class="btn " href="javascript:cancelOrder('@Model.Id')">取消订单</a>
+            <a class="btn " href="javascript:cancelOrder('@Model.Id')">取消预约单</a>
             }
             <a class="btn btn-red" href="javascript:payOrder('@Model.Id')">去付款</a>
             }
-            else if (Model.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.WaitReceiving)//待收货
+            else if (Model.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.WaitReceiving)//待结算
             {
             <a class="btn btn-red" href="javascript:confirm('@Model.Id')">确认收货</a>
             }
@@ -239,7 +239,7 @@
             || Model.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.WaitReceiving
             || Model.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.WaitSelfPickUp
             || Model.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.Finish)
-            {//待发货、待收货、待自提、已完成
+            {//待发货、待结算、待自提、已完成
             //晒单
             <a class="btn" href="/@(CurrentAreaName)/Order/OrderShare?orderids=@Model.Id">我要晒单</a>
             }
@@ -283,7 +283,7 @@
         window.location.href = 'http://apis.map.qq.com/tools/routeplan/eword=' + shopbranchAddress + '&epointx=' + longitude + '&epointy=' + latitude + '?referer=myapp&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77';
     }
     function cancelOrder(orderId) {
-        $.dialog.confirm("确定取消该订单吗？", function () {
+        $.dialog.confirm("确定取消该预约单吗？", function () {
             var loading = showLoading();
             $.ajax({
                 type: 'post',

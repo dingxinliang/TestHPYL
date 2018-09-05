@@ -97,7 +97,7 @@ namespace Himall.IServices
         /// </summary>
         InfoCenter = 3,
         /// <summary>
-        /// 商家中心的平台公告
+        /// 诊所中心的平台公告
         /// </summary>
         PlatformNews = 4
 

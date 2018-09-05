@@ -37,7 +37,7 @@ namespace Himall.SmallProgAPI
                 string url = string.Empty;
                 try
                 {
-                    url = item.Biz.GetRequestUrl("", notifyUrl + item.PluginInfo.PluginId.Replace(".", "-"), orderId, payAmount, "商家:" + shopId + "快捷收款", CurrentUserOpenId);
+                    url = item.Biz.GetRequestUrl("", notifyUrl + item.PluginInfo.PluginId.Replace(".", "-"), orderId, payAmount, "诊所:" + shopId + "快捷收款", CurrentUserOpenId);
                 }
                 catch (Exception ex)
                 {

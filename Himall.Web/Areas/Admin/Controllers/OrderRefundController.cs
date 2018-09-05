@@ -27,7 +27,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="showtype">0 所有 1 订单退款 2 仅退款(包含订单退款) 3 退货 4 仅退款</param>
+        /// <param name="showtype">0 所有 1 预约单退款 2 仅退款(包含预约单退款) 3 退货 4 仅退款</param>
         /// <returns></returns>
         public ActionResult Management(int showtype = 0)
         {
@@ -47,7 +47,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         /// <param name="userName"></param>
         /// <param name="page"></param>
         /// <param name="rows"></param>
-        /// <param name="showtype">0 所有 1 订单退款 2 仅退款(包含订单退款) 3 退货 4 仅退款</param>
+        /// <param name="showtype">0 所有 1 预约单退款 2 仅退款(包含预约单退款) 3 退货 4 仅退款</param>
         /// <returns></returns>
         [ValidateInput(false)]
         [HttpPost]

@@ -105,7 +105,7 @@ namespace Himall.Service
     }
 
     /// <summary>
-    /// 获取评论订单产生的会员积分
+    /// 获取评论预约单产生的会员积分
     /// </summary>
     public class CommentGenerateIntegral : ServiceBase, IConversionMemberIntegralBase
     {
@@ -114,7 +114,7 @@ namespace Himall.Service
             var type = Context.MemberIntegralRule.FirstOrDefault(m => m.TypeId == (int)MemberIntegral.IntegralType.Comment);
             if (null == type)
             {
-                Core.Log.Info(string.Format("找不到评论订单产生会员积分的规则"));
+                Core.Log.Info(string.Format("找不到评论预约单产生会员积分的规则"));
                 return 0;
             }
             return type.Integral;

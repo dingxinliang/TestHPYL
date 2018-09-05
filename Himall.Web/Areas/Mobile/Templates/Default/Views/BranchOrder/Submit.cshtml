@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "订单提交";
+    ViewBag.Title = "预约单提交";
     var model = (Himall.DTO.MobileOrderDetailConfirmModel)ViewBag.ConfirmModel;
     var products = model.products;
     //var products = (IEnumerable<Himall.DTO.MobileShopCartItemModel>)ViewBag.ConfirmModel.products;
@@ -125,7 +125,7 @@
         {
             <div class="detail-anchor">满额优惠<span class="pull-right rtext">-¥@shop.FullDiscount</span></div>
         }
-        <div class="detail-anchor">商品金额<span class="pull-right rtext">¥@ViewBag.ConfirmModel.totalAmount.ToString("F2")</span></div>
+        <div class="detail-anchor">诊疗项目金额<span class="pull-right rtext">¥@ViewBag.ConfirmModel.totalAmount.ToString("F2")</span></div>
         @if (shop.OneCoupons != null)
         {
             <div class="detail-anchor">优惠券<span class="pull-right rtext">-¥@shop.OneCoupons.BasePrice</span></div>
@@ -244,7 +244,7 @@
     var isResetUseCapital=false;
     var choseShopBranch = {};
     $(function () {
-        //<!--商品滑动-->
+        //<!--诊疗项目滑动-->
         $(".pro-list .pro-img").each(function () {
             $(this).width($('li', this).length * 72);
         });
@@ -343,7 +343,7 @@
         var shippingAddressRegionId = $shippingAddressRegionId.val();
 
         var cacheValue = window.getFromLocalStorate(tagCacheKey);
-        //如果标记值为空，表示是从商品等其它页面过来的
+        //如果标记值为空，表示是从诊疗项目等其它页面过来的
         if (cacheValue) {
             cacheValue = window.getFromLocalStorate(saCacheKey);
             if ($.notNullOrEmpty(cacheValue)) {
@@ -658,7 +658,7 @@
             cache: false,
             success: function (result) {
                 if (result == true)
-                    window.history.go(-1);//提交的订单不能退回
+                    window.history.go(-1);//提交的预约单不能退回
             }
         });
         initLeaveMsgAndBill();

@@ -71,12 +71,12 @@ namespace Himall.API
             if( market == null || market.Status != FlashSaleInfo.FlashSaleStatus.Ongoing )
             {
 
-                //可能参数是商品ID
+                //可能参数是诊疗项目ID
                 market = market == null ? ServiceProvider.Instance<ILimitTimeBuyService>.Create.GetFlaseSaleByProductId( id ) : market;
                 if( market == null || market.Status != FlashSaleInfo.FlashSaleStatus.Ongoing )
                 {
                     //跳转到404页面
-                    return Json( new { Success = "false" , ErrorMsg = "你所请求的限时购或者商品不存在！" } );
+                    return Json( new { Success = "false" , ErrorMsg = "你所请求的限时购或者诊疗项目不存在！" } );
                 }
             }
 
@@ -91,7 +91,7 @@ namespace Himall.API
             product = ServiceProvider.Instance<IProductService>.Create.GetProduct( market.ProductId );
 
             bool hasSku = false;
-            #region 商品SKU
+            #region 诊疗项目SKU
             ProductTypeInfo typeInfo = ServiceProvider.Instance<ITypeService>.Create.GetType(product.TypeId);
             string colorAlias = (typeInfo == null || string.IsNullOrEmpty(typeInfo.ColorAlias)) ? SpecificationType.Color.ToDescription() : typeInfo.ColorAlias;
             string sizeAlias = (typeInfo == null || string.IsNullOrEmpty(typeInfo.SizeAlias)) ? SpecificationType.Size.ToDescription() : typeInfo.SizeAlias;
@@ -252,7 +252,7 @@ namespace Himall.API
             }
             #endregion
 
-            #region 商品
+            #region 诊疗项目
             var consultations = ServiceProvider.Instance<IConsultationService>.Create.GetConsultations( product.Id );
             double total = product.Himall_ProductComments.Count();
             double niceTotal = product.Himall_ProductComments.Count( item => item.ReviewMark >= 4 );
@@ -288,7 +288,7 @@ namespace Himall.API
             #endregion
 
             LogProduct( market.ProductId );
-            //统计商品浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、店铺浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
 
             TimeSpan end = new TimeSpan( DateTime.Parse( market.EndDate ).Ticks );

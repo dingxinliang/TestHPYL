@@ -7,25 +7,25 @@ namespace Himall.IServices
     public interface ICartService : IService
     {
         /// <summary>
-        /// 添加商品至购物车
+        /// 添加诊疗项目至购物车
         /// </summary>
-        /// <param name="skuId">商品SKU Id</param>
-        /// <param name="count">商品数量</param>
+        /// <param name="skuId">诊疗项目SKU Id</param>
+        /// <param name="count">诊疗项目数量</param>
         /// <param name="memberId">会员id</param>
         void AddToCart(string skuId, int count, long memberId);
 
         /// <summary>
-        /// 添加商品至购物车
+        /// 添加诊疗项目至购物车
         /// </summary>
-        /// <param name="cartItems">购物车商品项</param>
+        /// <param name="cartItems">购物车诊疗项目项</param>
         /// <param name="memberId">会员Id</param>
         void AddToCart(IEnumerable<ShoppingCartItem> cartItems, long memberId);
 
         /// <summary>
         /// 更新购物车
         /// </summary>
-        /// <param name="skuId">商品SKU Id</param>
-        /// <param name="count">商品数量</param>
+        /// <param name="skuId">诊疗项目SKU Id</param>
+        /// <param name="count">诊疗项目数量</param>
         /// <param name="memberId">会员id</param>
         void UpdateCart(string skuId, int count, long memberId);
 
@@ -36,17 +36,17 @@ namespace Himall.IServices
         void ClearCart(long memeberId);
 
         /// <summary>
-        /// 删除指定会员购物车中的指定商品
+        /// 删除指定会员购物车中的指定诊疗项目
         /// </summary>
-        /// <param name="skuId">待删除的商品的skuid</param>
+        /// <param name="skuId">待删除的诊疗项目的skuid</param>
         /// <param name="memberId">会员id</param>
         void DeleteCartItem(string skuId, long memberId);
 
 
         /// <summary>
-        /// 删除指定会员购物车中的指定商品
+        /// 删除指定会员购物车中的指定诊疗项目
         /// </summary>
-        /// <param name="skuIds">待删除的商品的skuid</param>
+        /// <param name="skuIds">待删除的诊疗项目的skuid</param>
         /// <param name="memberId">会员id</param>
         void DeleteCartItem(IEnumerable<string> skuIds, long memberId);
 

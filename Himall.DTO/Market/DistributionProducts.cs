@@ -8,7 +8,7 @@ using Himall.Core;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 分销商品
+    /// 分销诊疗项目
     /// </summary>
     public class DistributionProducts
     {
@@ -28,22 +28,22 @@ namespace Himall.DTO
         public int Sequence { get; set; }
 
         /// <summary>
-        /// 商品ID
+        /// 诊疗项目ID
         /// </summary>
         public long ProductId { get; set; }
 
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         /// </summary>
         public string ProductName { get; set; }
 
         /// <summary>
-        /// 商品图片
+        /// 诊疗项目图片
         /// </summary>
         public string Image { get; set; }
 
         /// <summary>
-        /// 商品价格
+        /// 诊疗项目价格
         /// </summary>
         public decimal Price { get; set; }
 

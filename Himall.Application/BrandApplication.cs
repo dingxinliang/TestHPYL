@@ -51,7 +51,7 @@ namespace Himall.Application
 			_brandService.UpdateBrand(model.Map<Model.BrandInfo>());
 		}
 
-		/// 商家编辑品牌
+		/// 诊所编辑品牌
 		/// </summary>
 		/// <param name="model"></param>
 		public static void UpdateSellerBrand(DTO.ShopBrandApply model)
@@ -127,7 +127,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 获取指定分类下的所有商品
+		/// 获取指定分类下的所有诊疗项目
 		/// </summary>
 		/// <param name="categoryIds">分类id</param>
 		/// <returns></returns>
@@ -137,7 +137,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 获取指定分类下的所有商品
+		/// 获取指定分类下的所有诊疗项目
 		/// </summary>
 		/// <param name="shopId">店铺id</param>
 		/// <param name="categoryIds">分类id</param>
@@ -148,9 +148,9 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 分页获取商家品牌列表
+		/// 分页获取诊所品牌列表
 		/// </summary>
-		/// <param name="shopId">商家Id</param>
+		/// <param name="shopId">诊所Id</param>
 		/// <param name="pageNo">当前第几页</param>
 		/// <param name="pageSize">每页显示多少条数据</param>
 		/// <returns></returns>
@@ -165,9 +165,9 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 获取查询的商家品牌名称列表用于下拉显示
+		/// 获取查询的诊所品牌名称列表用于下拉显示
 		/// </summary>
-		/// <param name="shopId">商家Id</param>
+		/// <param name="shopId">诊所Id</param>
 		/// <returns></returns>
 		public static List<DTO.Brand> GetShopBrands(long shopId)
 		{
@@ -175,9 +175,9 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 分页获取商家品牌申请列表
+		/// 分页获取诊所品牌申请列表
 		/// </summary>
-		/// <param name="shopId">商家Id</param>
+		/// <param name="shopId">诊所Id</param>
 		/// <param name="auditStatus">审核状态</param>
 		/// <param name="pageNo">当前第几页</param>
 		/// <param name="pageSize">每页显示多少条数据</param>
@@ -195,9 +195,9 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 获取查询的商家申请品牌名称列表用于下拉显示
+		/// 获取查询的诊所申请品牌名称列表用于下拉显示
 		/// </summary>
-		/// <param name="shopId">商家Id</param>
+		/// <param name="shopId">诊所Id</param>
 		/// <returns></returns>
 		public static List<DTO.ShopBrandApply> GetShopBrandApplys(long shopId)
 		{
@@ -215,7 +215,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 删除商家品牌申请
+		/// 删除诊所品牌申请
 		/// </summary>
 		/// <param name="id"></param>
 		public static void DeleteApply(int id)

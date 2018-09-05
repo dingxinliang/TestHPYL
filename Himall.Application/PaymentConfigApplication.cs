@@ -42,7 +42,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 保存商家的配置
+        /// 保存诊所的配置
         /// addressIds = "id,id,id,id....."
         /// </summary>
         public static  void Save(string addressIds, string addressids_city, long shopid)

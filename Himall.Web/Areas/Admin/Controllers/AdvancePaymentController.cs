@@ -88,7 +88,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                 {
                     isdataok = false;
                     result.success = false;
-                    result.msg = "错误的订单退货期限，不可为负";
+                    result.msg = "错误的预约单退货期限，不可为负";
                 }
             }
 
@@ -98,7 +98,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                 {
                     isdataok = false;
                     result.success = false;
-                    result.msg = "错误的商家自动确认售后时限，不可为负";
+                    result.msg = "错误的诊所自动确认售后时限，不可为负";
                 }
             }
             if (isdataok)
@@ -116,7 +116,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                 {
                     isdataok = false;
                     result.success = false;
-                    result.msg = "错误的商家确认到货时限，不可为负";
+                    result.msg = "错误的诊所确认到货时限，不可为负";
                 }
             }
 

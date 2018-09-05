@@ -28,9 +28,9 @@ namespace Himall.IServices
 		/// <param name="info"></param>
 		void AddOrderRefund(OrderRefundInfo info);
 		/// <summary>
-		/// 通过订单编号获取整笔退款
+		/// 通过预约单编号获取整笔退款
 		/// </summary>
-		/// <param name="id">订单编号</param>
+		/// <param name="id">预约单编号</param>
 		/// <returns></returns>
 		OrderRefundInfo GetOrderRefundByOrderId(long id);
         /// <summary>
@@ -77,7 +77,7 @@ namespace Himall.IServices
 		void NotifyRefund(string batchNo);
 
 		/// <summary>
-		/// 买家确定退回商品
+		/// 患者确定退回诊疗项目
 		/// </summary>
 		/// <param name="id"></param>
 		/// <param name="sellerName">用户名</param>
@@ -86,7 +86,7 @@ namespace Himall.IServices
 		void UserConfirmRefundGood(long id, string sellerName, string expressCompanyName, string shipOrderNumber);
 
 		/// <summary>
-		/// 商家处理退款退货申请
+		/// 诊所处理退款退货申请
 		/// </summary>
 		/// <param name="id"></param>
 		/// <param name="auditStatus"></param>
@@ -95,7 +95,7 @@ namespace Himall.IServices
 		void SellerDealRefund(long id, OrderRefundInfo.OrderRefundAuditStatus auditStatus, string sellerRemark, string sellerName);
 
 		/// <summary>
-		/// 商家确认收到退货
+		/// 诊所确认收到退货
 		/// </summary>
 		/// <param name="id"></param>
 		/// <param name="sellerName"></param>
@@ -145,7 +145,7 @@ namespace Himall.IServices
 		/// </summary>
 		void AutoCloseByDeliveryExpired();
 		/// <summary>
-		/// 自动商家确认到货(job)
+		/// 自动诊所确认到货(job)
 		/// </summary>
 		void AutoShopConfirmArrival();
 		#endregion

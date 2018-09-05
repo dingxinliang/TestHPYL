@@ -65,14 +65,14 @@ namespace Himall.SmallProgAPI.Model
             get;set;
         }
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         /// </summary>
         public string ProductName
         {
             get;set;
         }
         /// <summary>
-        /// 商品图片
+        /// 诊疗项目图片
         /// </summary>
         public string IconUrl
         {

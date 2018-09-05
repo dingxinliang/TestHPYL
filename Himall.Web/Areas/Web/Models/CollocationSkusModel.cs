@@ -15,11 +15,11 @@ namespace Himall.Web.Areas.Web.Models
             Size = new CollectionSKU();
             Version = new CollectionSKU();
         }
-        /// 商品图片地址
+        /// 诊疗项目图片地址
         /// </summary>
         public string ImagePath { get; set; }
         /// <summary>
-        /// 商品名
+        /// 诊疗项目名
         /// </summary>
         public string ProductName { get; set; }
 
@@ -32,11 +32,11 @@ namespace Himall.Web.Areas.Web.Models
 
         public decimal MinPrice { set; get; }
         /// <summary>
-        /// 商品ID
+        /// 诊疗项目ID
         /// </summary>
         public long ProductId { get; set; }
 
-        //组合购商品ID
+        //组合购诊疗项目ID
         public long ColloProductId { set; get; }
         public CollectionSKU Color { get; set; }
         public CollectionSKU Size { get; set; }

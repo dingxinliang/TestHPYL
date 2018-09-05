@@ -89,7 +89,7 @@ namespace Himall.IServices.QueryModel
         public new EnumProductSort Sort { get; set; }
 
         /// <summary>
-        /// 商品IDs
+        /// 诊疗项目IDs
         /// </summary>
         public string ProductIds { get; set; }
     }

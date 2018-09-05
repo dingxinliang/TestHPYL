@@ -45,10 +45,10 @@ namespace Himall.API
             var vshopService = ServiceProvider.Instance<IVShopService>.Create;
             var vshop = vshopService.GetVShop(id);
 
-            //轮播图配置只有商家微店首页配置页面可配置，现在移动端都读的这个数据
+            //轮播图配置只有诊所微店首页配置页面可配置，现在移动端都读的这个数据
             var slideImgs = ServiceProvider.Instance<ISlideAdsService>.Create.GetSlidAds(vshop.ShopId, SlideAdInfo.SlideAdType.VShopHome).ToList();
 
-            //首页商品现在只有商家配置微信首页，APP读的也是这个数据所以平台类型选的的微信端
+            //首页诊疗项目现在只有诊所配置微信首页，APP读的也是这个数据所以平台类型选的的微信端
             var homeProducts = ServiceProvider.Instance<IMobileHomeProductsService>.Create.GetMobileHomePageProducts(vshop.ShopId, Himall.Core.PlatformType.WeiXin).OrderBy(item => item.Sequence).ThenByDescending(o => o.Id).Take(8);
             var products = homeProducts.ToArray().Select(item => new ProductItem()
             {

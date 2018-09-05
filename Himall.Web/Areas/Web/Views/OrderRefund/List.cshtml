@@ -31,9 +31,9 @@
             </colgroup>
             <thead>
                 <tr class="tr">
-                    <th style="padding-left:27px;text-align:left;">商品名称</th>
+                    <th style="padding-left:27px;text-align:left;">诊疗项目名称</th>
                     <th>售后编号</th>
-                    <th>订单编号</th>
+                    <th>预约单编号</th>
                    
                     <th>
                         <select class="sele" id="submitDate" onchange="Query()">
@@ -74,7 +74,7 @@
                         <td class="goods-name" style="padding-left:15px;">
                             @if (m.RefundMode == OrderRefundInfo.OrderRefundMode.OrderRefund)
                             {
-                                @("订单所有商品")
+                                @("预约单所有诊疗项目")
                             }
                             else
                             {
@@ -93,7 +93,7 @@
                         <td>
                             <span class="col-blue">
                                 @m.OrderId @if (m.UserId != ViewBag.UserId)
-                                { <span>[子订单]</span>}
+                                { <span>[子预约单]</span>}
                             </span>
                         </td>
                        

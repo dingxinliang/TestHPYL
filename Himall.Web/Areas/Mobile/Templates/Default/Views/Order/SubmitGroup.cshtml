@@ -1,6 +1,6 @@
 ﻿@model Himall.Web.Areas.Mobile.Models.OrderSubmitGroupModel
 @{
-    ViewBag.Title = "订单提交";
+    ViewBag.Title = "预约单提交";
     long GroupActionId = Model.GroupActionId;
     long? GroupId = Model.GroupId;
 }
@@ -322,7 +322,7 @@
             $("#payment_m .payment-c a").html("在线支付");
             $("#1 .total-m .pay").html("在线支付");
             $('.payment-way').css('right', '-100%');
-            document.title = "订单提交";
+            document.title = "预约单提交";
         });
 
         //发票弹框动画

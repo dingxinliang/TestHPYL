@@ -14,7 +14,7 @@
             <ul>
                 <li class="active">排序</li>
                 <li class="datasort on" data-sort="1">销量</li>
-                <li class="datasort" data-sort="2">商品数</li>
+                <li class="datasort" data-sort="2">诊疗项目数</li>
             </ul>
         </div>
         <div class="hotshop-wrap">
@@ -30,7 +30,7 @@
 <script id="shoptmp" type="text/template">
     <%_.each(datas, function(item) {%>
     <li class="shop-frame">
-        <a href="@Url.Action("ShopDetail")/<%=item.ShopId%>"><span style="font-weight: 600;width:60%;overflow:hidden;height:18px;"><%=item.ShopName%></span><span style="float:right">推广商品数：<i><%=item.ProductCount%></i></span></a>
+        <a href="@Url.Action("ShopDetail")/<%=item.ShopId%>"><span style="font-weight: 600;width:60%;overflow:hidden;height:18px;"><%=item.ShopName%></span><span style="float:right">推广诊疗项目数：<i><%=item.ProductCount%></i></span></a>
         <ul>
             <%_.each(item.ProductList, function(sumitem) {%>
             <li class="shop-pro"><img src="<%=sumitem.Image%>"><br><p>佣金<em><%=sumitem.Commission%>元</em></p></li>

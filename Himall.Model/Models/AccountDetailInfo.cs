@@ -6,12 +6,12 @@ namespace Himall.Model
     public partial class AccountDetailInfo
     {
         /// <summary>
-        /// 订单状态
+        /// 预约单状态
         /// </summary>
         public enum EnumOrderType
         {
             /// <summary>
-            /// 退订单
+            /// 退预约单
             /// </summary>
             [Description("退单列表")]
             ReturnOrder = 0,
@@ -19,7 +19,7 @@ namespace Himall.Model
             /// <summary>
             /// 已完成
             /// </summary>
-            [Description("订单列表")]
+            [Description("预约单列表")]
             FinishedOrder
         }
 

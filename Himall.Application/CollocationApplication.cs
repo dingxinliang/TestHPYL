@@ -14,7 +14,7 @@ namespace Himall.Application
     {
         private static ICollocationService _iCollocationService = ObjectContainer.Current.Resolve<ICollocationService>();
         /// <summary>
-        /// 商家添加一个组合购
+        /// 诊所添加一个组合购
         /// </summary>
         /// <param name="info"></param>
         public static void AddCollocation(CollocationInfo info)
@@ -24,7 +24,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 商家修改一个组合购
+        /// 诊所修改一个组合购
         /// </summary>
         /// <param name="info"></param>
         public static void EditCollocation(CollocationInfo info)
@@ -41,7 +41,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取商家添加的组合购列表
+        /// 获取诊所添加的组合购列表
         /// </summary>
         /// <returns></returns>
         public static ObsoletePageModel<CollocationInfo> GetCollocationList(CollocationQuery query)
@@ -51,7 +51,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 根据商品ID获取组合购信息
+        /// 根据诊疗项目ID获取组合购信息
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 根据组合商品获取组合SKU信息
+        /// 根据组合诊疗项目获取组合SKU信息
         /// </summary>
         /// <param name="colloPid"></param>
         /// <param name="skuid"></param>
@@ -80,7 +80,7 @@ namespace Himall.Application
             return _iCollocationService.GetColloSku(colloPid, skuid);
         }
 
-        //获取一个商品的组合购SKU信息
+        //获取一个诊疗项目的组合购SKU信息
         public static List<CollocationSkuInfo> GetProductColloSKU(long productid, long colloPid)
         {
             return _iCollocationService.GetProductColloSKU(productid, colloPid);

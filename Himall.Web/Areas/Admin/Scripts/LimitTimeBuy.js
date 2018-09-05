@@ -1,6 +1,6 @@
 ﻿$( function ()
 {
-    //订单表格
+    //预约单表格
     $( "#list" ).hiMallDatagrid( {
         url: './list',
         nowrap: false,
@@ -21,7 +21,7 @@
             { field: "Title", title: "活动名称", width: 80, align: "center" },
             { field: "ProductId", title: 'ProductId', hidden: true, width: 150 },
             {
-                field: "ProductName", title: "商品名称", width: 220, align: "left",
+                field: "ProductName", title: "诊疗项目名称", width: 220, align: "left",
                 formatter: function ( value, row, index )
                 {
                     var html = '<span class="overflow-ellipsis" style="width:200px"><a title="' + value + '" href="/product/detail/' + row.ProductId + '" target="_blank">' + value + '</a></span>';

@@ -21,7 +21,7 @@ namespace Himall.SmallProgAPI.Model
         ///</summary>
         public long ActiveId { get; set; }
         /// <summary>
-        /// 订单编号
+        /// 预约单编号
         /// </summary>
         public long OrderId { get; set; }
         /// <summary>
@@ -30,18 +30,18 @@ namespace Himall.SmallProgAPI.Model
         /// </summary>
         public decimal GroupPrice { get; set; }
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         ///</summary>
         public string ProductName { get; set; }
 
         public long ProductId { get; set; }
 
         /// <summary>
-        /// 商品图片目录
+        /// 诊疗项目图片目录
         /// </summary>
         public string ProductImgPath { get; set; }
         /// <summary>
-        /// 商品默认图片
+        /// 诊疗项目默认图片
         /// </summary>
         public string ProductDefaultImage { get; set; }
         /// <summary>

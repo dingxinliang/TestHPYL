@@ -125,7 +125,7 @@ function reDrawArrow(obj) {
 }
 
 function initSlideImagesTable() {
-    //商品表格
+    //诊疗项目表格
     $("#slideImagesTable").hiMallDatagrid({
         url: '/admin/NearShopBranch/GetSlideImages/' + slideType,
         nowrap: false,
@@ -304,7 +304,7 @@ function chooseTopicJumpUrl() {
         finaly = topicId[topicId.length - 1];
     }
 
-    //商品表格
+    //诊疗项目表格
     $("#topicGrid").hiMallDatagrid({
         url: queryUrl,
         nowrap: false,

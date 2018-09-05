@@ -149,7 +149,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 订单支付完成时，生成红包详情
+        /// 预约单支付完成时，生成红包详情
         /// </summary>
         public static long GenerateBonusDetail(ShopBonusInfo model, long orderid, string receiveurl)
         {

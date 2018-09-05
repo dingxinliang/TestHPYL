@@ -89,15 +89,15 @@ namespace Himall.Web.Areas.Web.Controllers
             model.OrderItemId = null;
             var order = _iOrderService.GetOrder(orderid, CurrentUser.Id);
             if (order == null)
-                throw new Himall.Core.HimallException("该订单已删除或不属于该用户");
+                throw new Himall.Core.HimallException("该预约单已删除或不属于该用户");
             if ((int)order.OrderStatus < 2)
-                throw new Himall.Core.HimallException("错误的售后申请,订单状态有误");
+                throw new Himall.Core.HimallException("错误的售后申请,预约单状态有误");
             if (itemId == null && order.OrderStatus != OrderInfo.OrderOperateStatus.WaitDelivery && order.OrderStatus != OrderInfo.OrderOperateStatus.WaitSelfPickUp)
-                throw new Himall.Core.HimallException("错误的订单退款申请,订单状态有误");
+                throw new Himall.Core.HimallException("错误的预约单退款申请,预约单状态有误");
             //售后时间限制
             if (_iOrderService.IsRefundTimeOut(orderid))
             {
-                throw new Himall.Core.HimallException("订单已超过售后期");
+                throw new Himall.Core.HimallException("预约单已超过售后期");
             }
 
 
@@ -239,7 +239,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 //        _tmpsel.Selected = true;
                 //    }
                 //}
-                _tmpsel.Selected = true;  //若订单支付方式为支付宝、微信支付则退款方式默认选中“退款原路返回”
+                _tmpsel.Selected = true;  //若预约单支付方式为支付宝、微信支付则退款方式默认选中“退款原路返回”
                 list.Add(_tmpsel);
             }
             model.RefundWay = list;
@@ -361,7 +361,7 @@ namespace Himall.Web.Areas.Web.Controllers
         /// <param name="status"></param>
         /// <param name="pageNo"></param>
         /// <param name="pageSize"></param>
-        /// <param name="showtype">0 所有 1 订单退款 2 仅退款(包含订单退款) 3 退货 4 仅退款</param>
+        /// <param name="showtype">0 所有 1 预约单退款 2 仅退款(包含预约单退款) 3 退货 4 仅退款</param>
         /// <returns></returns>
         public ActionResult List(string applyDate, int? status, int pageNo = 1, int pageSize = 10, int showtype = 0)
         {
@@ -440,7 +440,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 foreach (var item in refundLogs)
                 {
                     var temp = item.OperateContent.Split('】');
-                    item.OperateContent = temp[0].Replace("商家", "门店") + '】' + temp[1];
+                    item.OperateContent = temp[0].Replace("诊所", "门店") + '】' + temp[1];
                 }
             }
 

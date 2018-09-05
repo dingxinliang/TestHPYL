@@ -156,7 +156,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             model.CheckValidation();
             if (!FightGroupApplication.ProductCanJoinActive(model.ProductId.Value))
             {
-                throw new HimallException("该商品已参与拼团或其他营销活动，请重新选择");
+                throw new HimallException("该诊疗项目已参与拼团或其他营销活动，请重新选择");
             }
             
             var skudata = FightGroupApplication.GetNewActiveItems(model.ProductId.Value).skulist;
@@ -207,14 +207,14 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return Json(result);
         }
         /// <summary>
-        /// 商品是否可以参加拼团活动
+        /// 诊疗项目是否可以参加拼团活动
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
         [HttpPost]
         public JsonResult CanAdd(long productId)
         {
-            Result result = new Result { success=false, msg= "该商品正在参加拼团活动，无法同时参加拼团活动" };
+            Result result = new Result { success=false, msg= "该诊疗项目正在参加拼团活动，无法同时参加拼团活动" };
             if(FightGroupApplication.ProductCanJoinActive(productId))
             {
                 if (_iLimitTimeBuyService.IsAdd(productId))
@@ -224,7 +224,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 }
                 else
                 {
-                    result = new Result { success = false, msg = "该商品正在参加限时购活动，无法同时参加拼团活动" };
+                    result = new Result { success = false, msg = "该诊疗项目正在参加限时购活动，无法同时参加拼团活动" };
                 }
             }
             return Json(result);

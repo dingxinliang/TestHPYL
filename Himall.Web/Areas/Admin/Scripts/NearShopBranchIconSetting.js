@@ -126,7 +126,7 @@ function changeNSBIconSequence(oriRowNumber, newRowNumber, callback) {
 //}
 
 function initNSBIconTable() {
-    //商品表格
+    //诊疗项目表格
     $("#NSBIconTable").hiMallDatagrid({
         url: '/admin/NearShopBranch/GetNearShopBranchIcons',
         nowrap: false,
@@ -370,7 +370,7 @@ function chooseJumpUrl() {
         finaly = topicId[topicId.length - 1];
     }
 
-    //商品表格
+    //诊疗项目表格
     $("#jumpUrlGrid").hiMallDatagrid({
         url: queryUrl,
         nowrap: false,

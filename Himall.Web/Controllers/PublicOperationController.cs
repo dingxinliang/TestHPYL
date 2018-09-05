@@ -188,7 +188,7 @@ namespace Himall.Web.Controllers
                         {
                             Core.Cache.Insert(CacheKeyCollection.UserImportOpCount, int.Parse(opcount.ToString()) - 1);
                         }
-                        Core.Log.Error("商品导入上传文件异常：" + e.Message);
+                        Core.Log.Error("诊疗项目导入上传文件异常：" + e.Message);
                         strfile = "Error";
                     }
                     strResult = strfile;

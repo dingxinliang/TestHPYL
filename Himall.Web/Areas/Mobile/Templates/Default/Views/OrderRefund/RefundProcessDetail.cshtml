@@ -37,7 +37,7 @@
                             )
         {
             <li class="clearfix">
-                <p><time>@Model.SellerConfirmArrivalDate</time><span>【商家确认收货】</span><em>商家</em></p>
+                <p><time>@Model.SellerConfirmArrivalDate</time><span>【诊所确认收货】</span><em>诊所</em></p>
                 <p></p>
             </li>
         }
@@ -46,7 +46,7 @@
                             )
         {
             <li class="clearfix">
-                <p><time>@Model.BuyerDeliverDate</time><span>【买家回寄商品】@(Model.ExpressCompanyName) ： @(Model.ShipOrderNumber)</span><em>买家</em></p>
+                <p><time>@Model.BuyerDeliverDate</time><span>【患者回寄诊疗项目】@(Model.ExpressCompanyName) ： @(Model.ShipOrderNumber)</span><em>患者</em></p>
                 <p>
                 </p>
             </li>
@@ -62,16 +62,16 @@
                         }
                         else
                         {
-                            @("商家同意退款") @(isDiscard ? "并弃货" : "")
+                            @("诊所同意退款") @(isDiscard ? "并弃货" : "")
                         }
                     】@(Model.SellerRemark)
-                    </span><em>商家</em>
+                    </span><em>诊所</em>
                 </p>
                 <p></p>
             </li>
         }
         <li class="clearfix">
-            <p><time>@Model.ApplyDate</time><span>您的服务单已申请成功，待商家审核中</span><em>系统</em></p>
+            <p><time>@Model.ApplyDate</time><span>您的服务单已申请成功，待诊所审核中</span><em>系统</em></p>
             <p>
             </p>
         </li>

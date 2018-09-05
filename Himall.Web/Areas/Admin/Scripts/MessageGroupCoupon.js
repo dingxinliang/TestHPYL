@@ -162,7 +162,7 @@ function bind() {
         columns:
              [[
             { field: "CouponName", title: "优惠券名称", align: "center" },
-            { field: "ShopName", title: "商家", align: "center" },
+            { field: "ShopName", title: "诊所", align: "center" },
             { field: "Price", title: "面额", align: "center" },
             { field: "inventory", title: "剩余数量", align: "center" },
             { field: "OrderAmount", title: "使用条件", align: "center" },

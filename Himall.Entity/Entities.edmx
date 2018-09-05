@@ -10031,7 +10031,7 @@
         <EnumType Name="ShopBranchSkuStatus" a:ExternalTypeName="Himall.CommonModel.ShopBranchSkuStatus" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EntityType Name="ProductRelationProductInfo">
           <Documentation>
-            <LongDescription>推荐商品</LongDescription>
+            <LongDescription>推荐诊疗项目</LongDescription>
           </Documentation>
           <Key>
             <PropertyRef Name="Id" />

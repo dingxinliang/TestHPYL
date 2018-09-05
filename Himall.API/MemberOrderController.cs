@@ -33,8 +33,8 @@ namespace Himall.API
             };
             var allOrderCounts = allOrders.Count();
             var waitingForComments = orderService.GetOrders<OrderInfo>(queryModelAll).Total;
-            var waitingForRecieve = allOrders.Count(item => item.OrderStatus == OrderInfo.OrderOperateStatus.WaitReceiving);//获取待收货订单数
-            var waitingForPay = allOrders.Count(item => item.OrderStatus == OrderInfo.OrderOperateStatus.WaitPay);//获取待支付订单数
+            var waitingForRecieve = allOrders.Count(item => item.OrderStatus == OrderInfo.OrderOperateStatus.WaitReceiving);//获取待结算预约单数
+            var waitingForPay = allOrders.Count(item => item.OrderStatus == OrderInfo.OrderOperateStatus.WaitPay);//获取待支付预约单数
 
             if (orderStatus.HasValue && orderStatus == 0)
             {
@@ -56,7 +56,7 @@ namespace Himall.API
                 queryModel.MoreStatus.Add(OrderInfo.OrderOperateStatus.WaitSelfPickUp);
             }
             if (orderStatus.GetValueOrDefault() == (int)OrderInfo.OrderOperateStatus.Finish)
-                queryModel.Commented = false;//只查询未评价的订单
+                queryModel.Commented = false;//只查询未评价的预约单
             ObsoletePageModel<OrderInfo> orders = orderService.GetOrders<OrderInfo>(queryModel);
             var productService = ServiceProvider.Instance<IProductService>.Create;
             var vshopService = ServiceProvider.Instance<IVShopService>.Create;
@@ -176,7 +176,7 @@ namespace Himall.API
             if (meiqia != null)
                 customerServices.Insert(0, meiqia);
 
-            //获取订单商品项数据
+            //获取预约单诊疗项目项数据
             var orderDetail = new
             {
                 ShopName = shopService.GetShop(order.ShopId).ShopName,
@@ -217,7 +217,7 @@ namespace Himall.API
                     };
                 })
             };
-            //取拼团订单状态
+            //取拼团预约单状态
             var fightGroupOrderInfo = ServiceProvider.Instance<IFightGroupService>.Create.GetFightGroupOrderStatusByOrderId(order.Id);
             var orderModel = new
             {
@@ -302,7 +302,7 @@ namespace Himall.API
             return Json(new { Success = "true" });
         }
 
-        //取消订单
+        //取消预约单
         public object PostCloseOrder(MemberOrderCloseOrderModel value)
         {
             CheckUserLogin();
@@ -313,18 +313,18 @@ namespace Himall.API
                 //拼团处理
                 if (order.OrderType == OrderInfo.OrderTypes.FightGroup)
                 {
-                    return Json(new { Success = "false", ErrorMsg = "拼团订单，会员不能取消！" });
+                    return Json(new { Success = "false", ErrorMsg = "拼团预约单，会员不能取消！" });
                 }
                 ServiceProvider.Instance<IOrderService>.Create.MemberCloseOrder(orderId, CurrentUser.UserName);
             }
             else
             {
-                return Json(new { Success = "false", ErrorMsg = "取消失败，该订单已删除或者不属于当前用户！" });
+                return Json(new { Success = "false", ErrorMsg = "取消失败，该预约单已删除或者不属于当前用户！" });
             }
             return Json(new { Success = "true" });
         }
         /// <summary>
-        /// 订单提货码
+        /// 预约单提货码
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -333,7 +333,7 @@ namespace Himall.API
             CheckUserLogin();
             var orderInfo = OrderApplication.GetOrder(id);
             if (orderInfo == null)
-                return Json(new { Success = "false", ErrorMsg = "订单不存在！" });
+                return Json(new { Success = "false", ErrorMsg = "预约单不存在！" });
             if (orderInfo.UserId != CurrentUser.Id)
                 return Json(new { Success = "false", ErrorMsg = "只能查看自己的提货码！" });
             var productService = ServiceProvider.Instance<IProductService>.Create;
@@ -427,7 +427,7 @@ namespace Himall.API
             return Json(new { Success = "true", List = bonus });
         }
         /// <summary>
-        /// 获取订单状态
+        /// 获取预约单状态
         /// <para>供支付时使用</para>
         /// </summary>
         /// <param name="orderIds"></param>

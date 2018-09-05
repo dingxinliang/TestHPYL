@@ -1,6 +1,6 @@
 ﻿@model Himall.DTO.OrderSubmitModel
 @{
-    ViewBag.Title = "核对并提交订单";
+    ViewBag.Title = "核对并提交预约单";
     Layout = "~/Areas/Web/Views/Shared/_OrderTopBar.cshtml";
 }
 
@@ -37,7 +37,7 @@
 <div class="w990 m2">
     <div id="checkout">
         <div class="mt">
-            <span>填写并核对订单信息</span>
+            <span>填写并核对预约单信息</span>
         </div>
         <div id="wizard" class="checkout-steps">
             <div id="step-1" class="step step-complete">
@@ -138,9 +138,9 @@
                                     @{
                                         var isCashOnDelivery = (bool)ViewBag.IsCashOnDelivery && zyShop != null && zyShop.CartItemModels.Count > 0;
                                     }
-                                    <label style="@(isCashOnDelivery?"":"display:none")"><input class="CashOnDelivery" type="radio" name="pay-offline" value="2" />货到付款<i>（选择该方式后不支持货到付款的商品仍需在线支付）</i></label>
+                                    <label style="@(isCashOnDelivery?"":"display:none")"><input class="CashOnDelivery" type="radio" name="pay-offline" value="2" />货到付款<i>（选择该方式后不支持货到付款的诊疗项目仍需在线支付）</i></label>
                                 </p>
-                                <p style="color:#999;">快递运输  由商家选择合作快递为您配送</p>
+                                <p style="color:#999;">快递运输  由诊所选择合作快递为您配送</p>
 
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                     @if (zyShop != null && zyShop.CartItemModels.Count > 0)
                     {
                         <div class="offline-pay">
-                            <h4>以下商品<em>支持货到付款</em></h4>
+                            <h4>以下诊疗项目<em>支持货到付款</em></h4>
                             <ul>
                                 @foreach (var product in zyShop.CartItemModels)
                                 {
@@ -167,7 +167,7 @@
                     @if ((bool)ViewBag.IsCashOnDelivery && otherShops != null && otherShops.Count > 0)
                     {
                         <div class="online-pay">
-                            <h4>以下商品仅支持<em>在线支付</em></h4>
+                            <h4>以下诊疗项目仅支持<em>在线支付</em></h4>
                             <ul>
                                 @foreach (var shop in otherShops)
                                 {
@@ -206,7 +206,7 @@
                 </div>
             </div>
             <div id="step-4" class="step step-complete mt20">
-                <div class="step-title"><strong>商品清单</strong></div>
+                <div class="step-title"><strong>诊疗项目清单</strong></div>
                 <div class="step-content">
                     <div id="part-order" class="sbox-wrap">
                         <div class="sbox">
@@ -215,7 +215,7 @@
                                 <table class="review-thead">
                                     <tbody>
                                         <tr>
-                                            <th width="44%"><span>商品</span></th>
+                                            <th width="44%"><span>诊疗项目</span></th>
                                             <th width="20%"><span>服务</span></th>
                                             <th width="18%"><span>单价</span></th>
                                             <th width="18%"><span>数量</span></th>
@@ -227,9 +227,9 @@
                                     @foreach (var p in products)
                                     {
                                         <div class="step-title"><a target="_blank" href="/shop/home/@p.shopId" class="return-edit">@p.ShopName</a></div>
-                                        <!--商品清单展示-->
+                                        <!--诊疗项目清单展示-->
                                         <div id="span-skulist">
-                                            <!--**********商品清单内容列表开始************-->
+                                            <!--**********诊疗项目清单内容列表开始************-->
                                             <div class="review-body">
                                                 <div class="review-tbody border-b-none">
                                                     <table class="order-table" shopid="@p.shopId">
@@ -248,7 +248,7 @@
                                                                                     <a class="single-ellipsis w250" href="@Url.Action( "Detail" , "Product" , new { id = product.id } )" target="_blank">@product.name </a>
                                                                                 </div>
                                                                                 <div class="p-more">@skuStr</div>
-                                                                                <div class="p-more">商品货号：@product.productCode</div>
+                                                                                <div class="p-more">诊疗项目货号：@product.productCode</div>
                                                                             </div>
                                                                         </div>
                                                                     </td>
@@ -274,7 +274,7 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            <!--**********商品清单内容列表结束************-->
+                                            <!--**********诊疗项目清单内容列表结束************-->
                                         </div>
                                         <div class="order-summary ordsumbox" data-shopid="@(p.shopId)" id="orderdata_@(p.shopId)">
                                             <div class="order-summary-left">
@@ -304,7 +304,7 @@
                                                 </div>
                                                 <!--留言字段添加6-12-->
                                                 <div class="leave-message clearfix mt10">
-                                                    <label class="w70 text-right">买家留言：</label>
+                                                    <label class="w70 text-right">患者留言：</label>
                                                     @*<textarea id="orderRemarks" placeholder="选填"></textarea>*@
                                                     <textarea class="orderRemarks" rows="4" id="remark_@p.shopId" placeholder="选填" maxlength="200"></textarea>
                                                 </div>
@@ -365,7 +365,7 @@
     <div class="order-summary order-summary-total">
         <div class="statistic fr">
             <div class="list">
-                <span><em id="span-skuNum">@products.Sum(item => item.CartItemModels.Sum(a => a.count))</em> 件商品，总商品金额：</span>
+                <span><em id="span-skuNum">@products.Sum(item => item.CartItemModels.Sum(a => a.count))</em> 件诊疗项目，总诊疗项目金额：</span>
                 <em class="price" id="warePriceId" v="@Model.totalAmount">￥@Model.totalAmount.ToString("F2")</em>
             </div>
             <div class="list"><span>运费：</span><em class="price" id="totalFreight"> ￥@Model.Freight.ToString("F2")</em></div>
@@ -400,7 +400,7 @@
                 <div class="inner">
                     <a class="return-edit2" href="/cart/cart">返回购物车</a>
                     <div class="pull-right">
-                        <button type="button" id="submit" class="checkout-submit">提交订单</button>
+                        <button type="button" id="submit" class="checkout-submit">提交预约单</button>
                         <span class="total">应付总额：<strong id="payPriceId" data-real="@Model.orderAmount.ToString( "F2" )" data="@Model.orderAmount.ToString( "F2" )">@Model.orderAmount.ToString("F2")</strong>元</span>
                         @if (Model.MoneyPerIntegral > 0)
                         {

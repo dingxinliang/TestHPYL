@@ -22,7 +22,7 @@ namespace Himall.Application
 
         #region 前台统计
         /// <summary>
-        /// 商品访问锁
+        /// 诊疗项目访问锁
         /// </summary>
         static Dictionary<long, object> _productVisitLockerDict = new Dictionary<long, object>();
         /// <summary>
@@ -37,17 +37,17 @@ namespace Himall.Application
         static Dictionary<long, object> _shopVisitLockerDict = new Dictionary<long, object>();
 
         /// <summary>
-        /// 1、商品流量统计
-        /// 2、商品浏览人数统计
-        /// 3、店铺浏览人数统计（浏览商品时需统计店铺，所以组合在一起）
+        /// 1、诊疗项目流量统计
+        /// 2、诊疗项目浏览人数统计
+        /// 3、店铺浏览人数统计（浏览诊疗项目时需统计店铺，所以组合在一起）
         /// </summary>
         /// <param name="pid"></param>
         /// <param name="shopid"></param>
         public static void StatisticVisitCount(long pid, long shopid)
         {
             StatisticApplication.StatisticShopVisitUserCount(shopid);//店铺浏览人数
-            StatisticApplication.StatisticProductVisitCount(pid,shopid);//商品浏览量
-            StatisticApplication.StatisticProductVisitUserCount(pid,shopid);//商品浏览人数
+            StatisticApplication.StatisticProductVisitCount(pid,shopid);//诊疗项目浏览量
+            StatisticApplication.StatisticProductVisitUserCount(pid,shopid);//诊疗项目浏览人数
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Himall.Application
             WebHelper.SetCookie(cookieKey, shopVisit);
         }
         /// <summary>
-        /// 统计商品访问人数（cookie机制）
+        /// 统计诊疗项目访问人数（cookie机制）
         /// </summary>
         /// <param name="pid"></param>
         public static void StatisticProductVisitUserCount(long pid,long shopId)
@@ -163,7 +163,7 @@ namespace Himall.Application
             var nowTicks = DateTime.Now.Date.Ticks;
             if (!string.IsNullOrWhiteSpace(cookieValue))
             {
-                cookieValue = Decrypt(cookieValue);//解密 格式："时间|商品ID,商品ID,"
+                cookieValue = Decrypt(cookieValue);//解密 格式："时间|诊疗项目ID,诊疗项目ID,"
                 string[] strArray = cookieValue.Split('|');
                 if (strArray.Length < 2)//格式异常
                     return;
@@ -178,7 +178,7 @@ namespace Himall.Application
                     return;
                 }
                 if (ticks == nowTicks)
-                {//时间戳为当天，看是否浏览过些商品
+                {//时间戳为当天，看是否浏览过些诊疗项目
                     if (strArray[1].Contains(pid.ToString() + ","))
                     {//当天已浏览过，不统计
                         return;
@@ -227,7 +227,7 @@ namespace Himall.Application
             WebHelper.SetCookie(cookieKey, cookieValue);
         }
         /// <summary>
-        /// 统计商品访问量
+        /// 统计诊疗项目访问量
         /// </summary>
         /// <param name="pid"></param>
         public static void StatisticProductVisitCount(long pid,long shopId)
@@ -306,16 +306,16 @@ namespace Himall.Application
         }
         #endregion 辅助方法
 
-        #region 商品、交易统计图表、列表方法
+        #region 诊疗项目、交易统计图表、列表方法
         /// <summary>
-        /// 取商品统计
+        /// 取诊疗项目统计
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
         public static QueryPageModel<ProductStatisticModel> GetProductSales(ProductStatisticQuery query)
         {
             var productVisits = _StatisticsService.GetProductVisits(query);
-            //补充商品名称
+            //补充诊疗项目名称
             var pids = productVisits.Models.Select(e => e.ProductId);
             var products = ProductManagerApplication.GetAllStatusProductByIds(pids);
             foreach(var item in productVisits.Models)
@@ -327,7 +327,7 @@ namespace Himall.Application
             return productVisits;
         }
         /// <summary>
-        /// 取商品销售分类统计
+        /// 取诊疗项目销售分类统计
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
@@ -347,7 +347,7 @@ namespace Himall.Application
             //销售记录
             var productSales = _StatisticsService.GetProductAllVisits(query);
             var pids = productSales.Select(e => e.ProductId).Distinct();
-            //商品信息，分类
+            //诊疗项目信息，分类
             var products = ProductManagerApplication.GetAllStatusProductByIds(pids);
             var categorys = CategoryApplication.GetMainCategory();
             //补充分类
@@ -661,7 +661,7 @@ namespace Himall.Application
         #endregion 后台图表、列表方法
 
         /// <summary>
-        /// 订单区域分析图
+        /// 预约单区域分析图
         /// </summary>
         /// <param name="dimension"></param>
         /// <param name="year"></param>

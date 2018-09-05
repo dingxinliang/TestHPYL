@@ -25,11 +25,11 @@ namespace Himall.SmallProgAPI.Model
     public class ProductInfoModel
     {
         /// <summary>
-        /// 商品ID
+        /// 诊疗项目ID
         /// </summary>
         public long ProductId { get; set; }
         /// <summary>
-        /// 商品状态
+        /// 诊疗项目状态
         /// </summary>
         public ProductInfo.ProductSaleStatus ProductSaleStatus { get; set; }
 
@@ -38,28 +38,28 @@ namespace Himall.SmallProgAPI.Model
         /// </summary>
         public ProductInfo.ProductAuditStatus AuditStatus { get; set; }
         /// <summary>
-        /// 商品图片地址
+        /// 诊疗项目图片地址
         /// </summary>
         public List<string> ImagePath { get; set; }
         /// <summary>
-        /// 商品名
+        /// 诊疗项目名
         /// </summary>
         public string ProductName { get; set; }
         /// <summary>
-        /// 商品市场价
+        /// 诊疗项目市场价
         /// </summary>
         public decimal MarketPrice { get; set; }
         /// <summary>
-        /// 商品的简单描述
+        /// 诊疗项目的简单描述
         /// </summary>
         public string ShortDescription { get; set; }
 
         /// <summary>
-        /// 商品描述
+        /// 诊疗项目描述
         /// </summary>
         public string ProductDescription { get; set; }
         /// <summary>
-        /// 商品最低价
+        /// 诊疗项目最低价
         /// </summary>
         public decimal MinSalePrice { get; set; }
         /// <summary>
@@ -71,7 +71,7 @@ namespace Himall.SmallProgAPI.Model
         /// </summary>
         public int Consultations { get; set; }
         /// <summary>
-        /// 商品评论数
+        /// 诊疗项目评论数
         /// </summary>
         public int CommentCount { get; set; }
         /// <summary>
@@ -133,7 +133,7 @@ namespace Himall.SmallProgAPI.Model
         public decimal FreeFreight { get; set; }
 
         /// <summary>
-        /// 店铺在售商品数
+        /// 店铺在售诊疗项目数
         /// </summary>
         public long ProductNum { get; set; }
 
@@ -152,7 +152,7 @@ namespace Himall.SmallProgAPI.Model
         /// </summary>
         public decimal ProductAndDescription { get; set; }
         /// <summary>
-        /// 商家服务得分
+        /// 诊所服务得分
         /// </summary>
         public decimal SellerServiceAttitude { get; set; }
         /// <summary>

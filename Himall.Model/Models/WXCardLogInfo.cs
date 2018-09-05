@@ -22,9 +22,9 @@ namespace Himall.Model
             [Description("优惠券")]
             Coupon = 1,
             /// <summary>
-            /// 商家红包
+            /// 诊所红包
             /// </summary>
-            [Description("商家红包")]
+            [Description("诊所红包")]
             Bonus = 2
         }
         /// <summary>

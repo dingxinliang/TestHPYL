@@ -13,7 +13,7 @@
         <input type="hidden" id="ID" value="@Model.ID" />
         <h3 class="table-hd mt0">基础设置</h3>
         <div class="form-group">
-            <label class="col-sm-2 clear-b control-label" for="">商家类型：</label>
+            <label class="col-sm-2 clear-b control-label" for="">诊所类型：</label>
             <div class="col-sm-10 clear-b">
                 <input type="radio" class="check-services" name="BusinessType" value="@((int)Himall.CommonModel.BusinessType.Enterprise)" @(Model.BusinessType.Equals(Himall.CommonModel.BusinessType.Enterprise) ? "checked" : " ") />仅企业可入驻 &nbsp;
                 <input type="radio" class="check-services" name="BusinessType" value="@((int)Himall.CommonModel.BusinessType.Personal)" @(Model.BusinessType.Equals(Himall.CommonModel.BusinessType.Personal) ? "checked" : " ") />仅个人可入驻 &nbsp;
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 clear-b control-label" for="">商家结算账户：</label>
+            <label class="col-sm-2 clear-b control-label" for="">诊所结算账户：</label>
             <div class="col-sm-10 clear-b">
                 <input type="radio" class="check-services" name="SettlementAccountType" value="@((int)Himall.CommonModel.SettleAccountsType.SettleBank)" @(Model.SettlementAccountType.Equals(Himall.CommonModel.SettleAccountsType.SettleBank) ? "checked" : " ") />仅银行账户 &nbsp;
                 <input type="radio" class="check-services" name="SettlementAccountType" value="@((int)Himall.CommonModel.SettleAccountsType.SettleWeiXin)" @(Model.SettlementAccountType.Equals(Himall.CommonModel.SettleAccountsType.SettleWeiXin) ? "checked" : " ") />仅微信账户 &nbsp;
@@ -31,10 +31,10 @@
         <div class="form-group">
             <label class="col-sm-2 clear-d control-label" for="">试用时间：</label>
             <div class="col-sm-10 clear-d form-inline">
-                <span>商家入驻后可试用</span>
+                <span>诊所入驻后可试用</span>
                 <input type="text" class="form-control input-sm" style="width:50px;" id="TrialDays" value="@Model.TrialDays">
                 <span>天</span>&nbsp;
-                <span class="help-default">逾期未及时续费，将自动下架商家商品并冻结后台登录账号</span>
+                <span class="help-default">逾期未及时续费，将自动下架诊所诊疗项目并冻结后台登录账号</span>
             </div>
         </div>
         <h3 class="table-hd">填写字段设置（企业）</h3>

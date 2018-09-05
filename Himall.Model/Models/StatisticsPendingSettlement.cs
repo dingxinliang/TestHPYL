@@ -12,7 +12,7 @@ namespace Himall.Model
 	public class StatisticsPendingSettlement
 	{
 		/// <summary>
-		/// 商家id
+		/// 诊所id
 		/// </summary>
 		public long ShopId { get; set; }
 

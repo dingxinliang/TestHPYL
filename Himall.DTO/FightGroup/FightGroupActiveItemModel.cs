@@ -20,11 +20,11 @@ namespace Himall.DTO
         /// </summary>
         public long ActiveId { get; set; }
         /// <summary>
-        /// 商品编号
+        /// 诊疗项目编号
         ///</summary>
         public long ProductId { get; set; }
         /// <summary>
-        /// 商品SKU
+        /// 诊疗项目SKU
         ///</summary>
         [Required(ErrorMessage = "错误的规格")]
         public string SkuId { get; set; }
@@ -49,11 +49,11 @@ namespace Himall.DTO
         /// </summary>
         public string SkuName { get; set; }
         /// <summary>
-        /// 商品售价
+        /// 诊疗项目售价
         /// </summary>
         public decimal ProductPrice { get; set; }
         /// <summary>
-        /// 商品成本价
+        /// 诊疗项目成本价
         /// </summary>
         public decimal ProductCostPrice { get; set; }
         /// <summary>

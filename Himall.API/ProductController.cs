@@ -82,7 +82,7 @@ namespace Himall.API
 
             var limitBuy = ServiceProvider.Instance<ILimitTimeBuyService>.Create.GetLimitTimeMarketItemByProductId(id);
 
-            #region 商品SKU
+            #region 诊疗项目SKU
 
             ProductTypeInfo typeInfo = ServiceProvider.Instance<ITypeService>.Create.GetType(product.TypeId);
             string colorAlias = (typeInfo == null || string.IsNullOrEmpty(typeInfo.ColorAlias)) ? SpecificationType.Color.ToDescription() : typeInfo.ColorAlias;
@@ -254,7 +254,7 @@ namespace Himall.API
                 customerServices.Insert(0, meiqia);
             #endregion
 
-            #region 商品
+            #region 诊疗项目
             var consultations = ServiceProvider.Instance<IConsultationService>.Create.GetConsultations(id);
             double total = product.Himall_ProductComments.Count();
             double niceTotal = product.Himall_ProductComments.Count(item => item.ReviewMark >= 4);
@@ -349,7 +349,7 @@ namespace Himall.API
             #endregion
 
             LogProduct(id);
-            //统计商品浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、店铺浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
             var IsPromoter = false;
             if (CurrentUser != null && CurrentUser.Id > 0)
@@ -397,9 +397,9 @@ namespace Himall.API
             });
         }
         /// <summary>
-        /// 获取商品评论
+        /// 获取诊疗项目评论
         /// </summary>
-        /// <param name="id">商品ID</param>
+        /// <param name="id">诊疗项目ID</param>
         /// <param name="top">top1</param>
         /// <returns>json</returns>
         public object GetProductCommentShow(long id, int top = 1)
@@ -413,7 +413,7 @@ namespace Himall.API
 
             if (product == null || product.IsDeleted)
             {
-                return Json(new { Success = "false", ErrorMsg = "不存在该商品！" });
+                return Json(new { Success = "false", ErrorMsg = "不存在该诊疗项目！" });
             }
             var com = product.Himall_ProductComments.Where(item => !item.IsHidden.HasValue || item.IsHidden.Value == false);
             var comCount = com.Count();
@@ -492,7 +492,7 @@ namespace Himall.API
 
             //ServiceProvider.Instance<IProductService>.Create.LogProductVisti(pid);
         }
-        //新增或取消商品收藏
+        //新增或取消诊疗项目收藏
         public object PostAddFavoriteProduct(ProductAddFavoriteProductModel value)
         {
             CheckUserLogin();
@@ -630,13 +630,13 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 获取该商品所在商家下距离用户最近的门店
+        /// 获取该诊疗项目所在诊所下距离用户最近的门店
         /// </summary>
-        /// <param name="shopId">商家ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <returns></returns>
         public object GetStroreInfo(long shopId, long productId, string fromLatLng = "")
         {
-            if (shopId <= 0) return Json(new { Success = false, Message = "请传入合法商家ID" });
+            if (shopId <= 0) return Json(new { Success = false, Message = "请传入合法诊所ID" });
             if (!(fromLatLng.Split(',').Length == 2)) return Json(new { Success = false, Message = "您当前定位信息异常" });
 
             var query = new CommonModel.ShopBranchQuery()
@@ -645,10 +645,10 @@ namespace Himall.API
                 FromLatLng = fromLatLng,
                 Status = CommonModel.ShopBranchStatus.Normal
             };
-            //商家下门店总数
+            //诊所下门店总数
             int total = ShopBranchApplication.GetShopBranchsAll(query).Models.Where(p => (p.Latitude > 0 && p.Longitude > 0)).ToList().Count;
 
-            //商家下有该产品的且距离用户最近的门店
+            //诊所下有该产品的且距离用户最近的门店
             query.ProductIds = new long[] { productId };
             var shopBranch = ShopBranchApplication.GetShopBranchsAll(query).Models.Where(p => (p.Latitude > 0 && p.Longitude > 0)).OrderBy(p => p.Distance).Take(1).FirstOrDefault<Himall.DTO.ShopBranch>();
             var result = new
@@ -700,7 +700,7 @@ namespace Himall.API
         //}
 
         /// <summary>
-        /// 将商品关联版式组合商品描述
+        /// 将诊疗项目关联版式组合诊疗项目描述
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
@@ -708,10 +708,10 @@ namespace Himall.API
         {
             if (productDescription == null)
             {
-                throw new Himall.Core.HimallException("错误的商品信息");
+                throw new Himall.Core.HimallException("错误的诊疗项目信息");
             }
             string descriptionPrefix = "", descriptiondSuffix = "";//顶部底部版式
-            string description = productDescription.ShowMobileDescription.Replace("src=\"/Storage/", "src=\"" + Core.HimallIO.GetRomoteImagePath("/Storage/"));//商品描述
+            string description = productDescription.ShowMobileDescription.Replace("src=\"/Storage/", "src=\"" + Core.HimallIO.GetRomoteImagePath("/Storage/"));//诊疗项目描述
 
             var iprodestempser = ServiceHelper.Create<IProductDescriptionTemplateService>();
             if (productDescription.DescriptionPrefixId != 0)
@@ -731,11 +731,11 @@ namespace Himall.API
         /// <summary>
         /// 是否可允许自提门店
         /// </summary>
-        /// <param name="shopId">商家ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <returns></returns>
         public object GetIsSelfDelivery(long shopId, long productId, string fromLatLng = "")
         {
-            if (shopId <= 0) return Json(new { Message = "请传入合法商家ID", IsSelfDelivery = 0 });
+            if (shopId <= 0) return Json(new { Message = "请传入合法诊所ID", IsSelfDelivery = 0 });
             if (!(fromLatLng.Split(',').Length == 2)) return Json(new { Message = "请传入合法经纬度", IsSelfDelivery = 0 });
 
             var query = new CommonModel.ShopBranchQuery()
@@ -752,15 +752,15 @@ namespace Himall.API
             query.CityId = cityInfo.Id;
             query.ProductIds = new long[] { productId };
 
-            var shopBranch = ShopBranchApplication.GetShopBranchsAll(query).Models;//获取该商品所在商家下，且与用户同城内门店，且门店有该商品
-            var skuInfos = ProductManagerApplication.GetSKU(productId);//获取该商品的sku
+            var shopBranch = ShopBranchApplication.GetShopBranchsAll(query).Models;//获取该诊疗项目所在诊所下，且与用户同城内门店，且门店有该诊疗项目
+            var skuInfos = ProductManagerApplication.GetSKU(productId);//获取该诊疗项目的sku
             //门店SKU内会有默认的SKU
             if (!skuInfos.Exists(p => p.Id == string.Format("{0}_0_0_0", productId))) skuInfos.Add(new DTO.SKU() {
                 Id = string.Format("{0}_0_0_0", productId)
             });
-            var shopBranchSkus = ShopBranchApplication.GetSkus(query.ShopId, shopBranch.Select(p => p.Id));//门店商品SKU
+            var shopBranchSkus = ShopBranchApplication.GetSkus(query.ShopId, shopBranch.Select(p => p.Id));//门店诊疗项目SKU
            
-            //门店商品SKU，只要有一个sku有库存即可
+            //门店诊疗项目SKU，只要有一个sku有库存即可
             shopBranch.ForEach(p =>
                 p.Enabled = skuInfos.Where(skuInfo => shopBranchSkus.Where(sbSku => sbSku.ShopBranchId == p.Id && sbSku.Stock > 0 && sbSku.SkuId == skuInfo.Id).Count() > 0).Count() > 0
             );

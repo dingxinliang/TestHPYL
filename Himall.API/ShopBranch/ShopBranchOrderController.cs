@@ -16,12 +16,12 @@ using Himall.API.Model.ParamsModel;
 namespace Himall.API
 {
     /// <summary>
-    /// 门店订单类
+    /// 门店预约单类
     /// </summary>
     public class ShopBranchOrderController : BaseShopBranchApiController
     {
         /// <summary>
-        /// 根据提货码取订单
+        /// 根据提货码取预约单
         /// </summary>
         /// <param name="pickcode"></param>
         /// <returns></returns>
@@ -33,7 +33,7 @@ namespace Himall.API
             if (order == null)
                 return Json(new { success = false, msg = "该提货码无效" });
             if (order.ShopBranchId.Value != CurrentShopBranch.Id)
-                return Json(new { success = false, msg = "非本门店提货码，请买家核对提货信息" });
+                return Json(new { success = false, msg = "非本门店提货码，请患者核对提货信息" });
             if (order.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.Finish && order.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake)
                 return Json(new { success = false, msg = "该提货码于" + order.FinishDate.ToString() + "已核销" });
 
@@ -48,7 +48,7 @@ namespace Himall.API
             }
             //退款状态
             var refundobjs = OrderApplication.GetOrderRefunds(orderItem.Select(e => e.Id));
-            //小于4表示商家未确认；与平台未审核，都算退款、退货中
+            //小于4表示诊所未确认；与平台未审核，都算退款、退货中
             var refundProcessing = refundobjs.Where(e => (int)e.SellerAuditStatus < 4 || e.ManagerConfirmStatus == OrderRefundInfo.OrderRefundConfirmStatus.UnConfirm);
             if (refundProcessing.Count() > 0)
                 order.RefundStats = 1;
@@ -56,7 +56,7 @@ namespace Himall.API
             return Json(new { success = true, order = order, orderItem = orderItem });
         }
         /// <summary>
-        /// 门店核销订单
+        /// 门店核销预约单
         /// </summary>
         /// <param name="pickcode"></param>
         /// <returns></returns>
@@ -68,11 +68,11 @@ namespace Himall.API
             if (order == null)
                 return Json(new { success = false, msg = "该提货码无效" });
             if (order.ShopBranchId.Value != CurrentShopBranch.Id)
-                return Json(new { success = false, msg = "非本门店提货码，请买家核对提货信息" });
+                return Json(new { success = false, msg = "非本门店提货码，请患者核对提货信息" });
             if (order.OrderStatus == Himall.Model.OrderInfo.OrderOperateStatus.Finish && order.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake)
                 return Json(new { success = false, msg = "该提货码于" + order.FinishDate.ToString() + "已核销" });
             if (order.OrderStatus != Himall.Model.OrderInfo.OrderOperateStatus.WaitSelfPickUp)
-                return Json(new { success = false, msg = "只有待自提的订单才能进行核销" });
+                return Json(new { success = false, msg = "只有待自提的预约单才能进行核销" });
 
             Application.OrderApplication.ShopBranchConfirmOrder(order.Id, CurrentShopBranch.Id, this.CurrentUser.UserName);
 
@@ -80,7 +80,7 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 搜索门店订单
+        /// 搜索门店预约单
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -103,7 +103,7 @@ namespace Himall.API
                 OrderInfo.OrderOperateStatus.Finish,
                 OrderInfo.OrderOperateStatus.Close
             };
-            if (query.Status == null || !status.Contains(query.Status.Value))//门店只能查询这几种状态的订单
+            if (query.Status == null || !status.Contains(query.Status.Value))//门店只能查询这几种状态的预约单
                 query.Status = OrderInfo.OrderOperateStatus.WaitSelfPickUp;
 
             var data = OrderApplication.GetFullOrders(query);
@@ -125,7 +125,7 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 获取订单信息
+        /// 获取预约单信息
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
@@ -160,7 +160,7 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 订单是否正在申请售后
+        /// 预约单是否正在申请售后
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
@@ -179,7 +179,7 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 查看订单物流
+        /// 查看预约单物流
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
@@ -225,7 +225,7 @@ namespace Himall.API
             OrderInfo order = ordser.GetOrder(id);
             if (order == null || order.ShopBranchId != sbid)
             {
-                throw new HimallApiException("错误的订单编号");
+                throw new HimallApiException("错误的预约单编号");
             }
             var bonusService = ServiceProvider.Instance<IShopBonusService>.Create;
             var orderRefundService = ServiceProvider.Instance<IRefundService>.Create;
@@ -233,7 +233,7 @@ namespace Himall.API
             var productService = ServiceProvider.Instance<IProductService>.Create;
             var vshop = ServiceProvider.Instance<IVShopService>.Create.GetVShopByShopId(order.ShopId);
             bool isCanApply = false;
-            //获取订单商品项数据
+            //获取预约单诊疗项目项数据
             var orderDetail = new
             {
                 ShopName = shopService.GetShop(order.ShopId).ShopName,

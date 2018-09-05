@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.API.Model.ParamsModel
 {
     /// <summary>
-    /// 删除购物车商品-参数模型
+    /// 删除购物车诊疗项目-参数模型
     /// </summary>
     public class CartDeleteCartProductModel
     {

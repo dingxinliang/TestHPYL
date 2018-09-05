@@ -3,8 +3,8 @@
 <div class="container">
     <ul class="nav nav-tabs-custom clearfix">
 
-        <li><a href="./management">所有订单</a></li>
-        <li class="active"><a>批量打印快递单(@Model.OrdersCount)</a></li><!--数字为已选择订单数量-->
+        <li><a href="./management">所有预约单</a></li>
+        <li class="active"><a>批量打印快递单(@Model.OrdersCount)</a></li><!--数字为已选择预约单数量-->
     </ul>
     <h3 class="table-hd">寄件人信息</h3>
     <form class="form-horizontal mt20">
@@ -84,4 +84,4 @@
 <script src="~/Scripts/LodopFuncs.js"></script>
 <script src="~/Scripts/print.js"></script>
 <script src="~/Scripts/jquery.himallLinkage.nocreate.js"></script>
-<script src="~/Areas/SellerAdmin/Scripts/orderPrint.js"></script>
+<script src="~/Areas/SellerAdmin/Scripts/orderPrint.js?@DateTime.UtcNow"></script>

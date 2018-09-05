@@ -46,7 +46,7 @@ namespace Himall.Core.Plugins.Payment
         public RefundState RefundResult { get; set; }
 
         /// <summary>
-        /// 订单号
+        /// 预约单号
         /// </summary>
         public long OrderId { get; set; }
 
@@ -67,7 +67,7 @@ namespace Himall.Core.Plugins.Payment
 
         /// <summary>
         /// 主业务处理完成后响应内容
-        /// 即当主程序相关订单状态完成后，需要响应请求的内容
+        /// 即当主程序相关预约单状态完成后，需要响应请求的内容
         /// </summary>
         public string ResponseContentWhenFinished { get; set; }
         /// <summary>

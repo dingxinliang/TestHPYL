@@ -46,7 +46,7 @@ namespace Himall.API.Model
 	}
 
 	/// <summary>
-	/// 订单退款回复实体
+	/// 预约单退款回复实体
 	/// </summary>
 	public class OrderRefundReplyModel
 	{

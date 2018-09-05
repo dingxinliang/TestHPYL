@@ -26,7 +26,7 @@ $(function () {
                 });
                 break;
             case 3:
-                $.dialog.confirm('您已被平台从销售员中清退，您分享的商品不再计算个人业绩，您确定要分享吗？', function () {
+                $.dialog.confirm('您已被平台从销售员中清退，您分享的诊疗项目不再计算个人业绩，您确定要分享吗？', function () {
                     $(".share-guide").show();
                 });
                 break;

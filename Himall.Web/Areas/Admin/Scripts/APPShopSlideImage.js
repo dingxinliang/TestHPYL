@@ -80,7 +80,7 @@ function reDrawArrow(obj) {
 }
 
 function initSlideImagesTable() {
-    //商品表格
+    //诊疗项目表格
     $("#slideImagesTable").hiMallDatagrid({
         url: '/admin/APPShop/GetSlideImages',
         nowrap: false,
@@ -204,7 +204,7 @@ function ChoceTopic(id) {
         finaly = topicId[topicId.length-1];
     }
 
-    //商品表格
+    //诊疗项目表格
     $("#topicGrid").hiMallDatagrid({
         url: '/admin/MobileTopic/list',
         nowrap: false,

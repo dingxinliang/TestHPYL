@@ -32,7 +32,7 @@ $('.id_cont_txt').each(function (i, e) {
             //
         } else {
             $(e).addClass('area01');
-            $(e).val('商品是否给力？快分享你的购买心得吧~');
+            $(e).val('诊疗项目是否给力？快分享你的购买心得吧~');
         }
     });
 });

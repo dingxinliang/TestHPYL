@@ -27,24 +27,24 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>活动标题：</label>
                 <div class="col-sm-3">@Html.EditorFor(item => item.Title, new { htmlAttributes = new { @class = "form-control input-sm" } }) </div>
-                <div class="col-sm-5"><span class="help-default">活动标题是商家对限时折扣活动的别名.</span></div>
+                <div class="col-sm-5"><span class="help-default">活动标题是诊所对限时折扣活动的别名.</span></div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>活动商品：</label>
+                <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>活动诊疗项目：</label>
                 <div class="col-sm-3">@Html.EditorFor(item => item.ProductName, new { htmlAttributes = new { @class = "form-control input-sm", @readonly = "readonly" } })</div>
-                <div class="col-sm-3"><a class="btn btn-primary btn-sm" id="SelectProduct"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; 选择商品</a></div>
+                <div class="col-sm-3"><a class="btn btn-primary btn-sm" id="SelectProduct"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; 选择诊疗项目</a></div>
                 <input type="hidden" id="ProductId" name="ProductId" value="" />
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>原价格：</label>
                 <div class="col-sm-3">@Html.EditorFor(item => item.ProductPrice, new { htmlAttributes = new { @class = "form-control input-sm", @readonly = "readonly" } })</div>
-                <div class="col-sm-5"><span class="help-default">选择商品之后，会自动填充.</span></div>
+                <div class="col-sm-5"><span class="help-default">选择诊疗项目之后，会自动填充.</span></div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>限时购价格：</label>
                 <div class="col-sm-3">@Html.EditorFor(item => item.Price, new { htmlAttributes = new { @class = "form-control input-sm" } })</div>
-                <div class="col-sm-5"><span class="help-default">限时购价格必须低于原价格；在活动期内，不能修改商品价格.</span></div>
+                <div class="col-sm-5"><span class="help-default">限时购价格必须低于原价格；在活动期内，不能修改诊疗项目价格.</span></div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for=""><b style="color:red;">*</b>活动分类：</label>

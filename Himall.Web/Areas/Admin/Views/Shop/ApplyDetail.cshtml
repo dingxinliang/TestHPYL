@@ -9,7 +9,7 @@
     @*<div>状态：@Model.AuditedStatus.ToDescription()</div>*@
     @*<div>申请时间：@Model.ApplyDate</div>*@
     <div class="top-msg clear-v3">
-        <span>商家：@Model.ShopName</span><br />
+        <span>诊所：@Model.ShopName</span><br />
         @if (Model.AuditedDate.HasValue)
         {
             <span>审核时间：@Model.AuditedDate</span>
@@ -46,7 +46,7 @@
                 if (result.success) {
                     var showmsg="审核成功！"
                     if(type==2)
-                        showmsg="已拒绝商家申请";
+                        showmsg="已拒绝诊所申请";
                     $.dialog.succeedTips(showmsg, function () { window.location.href = '../applylist'; });
                 }
                 else

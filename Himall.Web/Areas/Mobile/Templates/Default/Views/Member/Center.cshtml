@@ -18,7 +18,7 @@
         <a href="AccountSecure"><div class="img"><img onerror="$(this).remove();this.onerror=null;" src="@(Himall.Core.HimallIO.GetImagePath(Model.Member.Photo))" alt="" /><div class="border"></div></div></a>
         <p><span>@(string.IsNullOrWhiteSpace(Model.Member.RealName) ? Model.Member.Nick : Model.Member.RealName)</span><span>@(Model.GradeName != null ? Model.GradeName : string.Empty)</span></p>
         <div class="user-fav row">
-            <span class="col-xs-5"><a href="CollectionProduct"><i>@Model.Member.FavoriteInfo.Count</i><br />收藏的商品</a></span>
+            <span class="col-xs-5"><a href="CollectionProduct"><i>@Model.Member.FavoriteInfo.Count</i><br />收藏的诊疗项目</a></span>
             <span class="col-xs-2 line"><br>|</span>
             <span class="col-xs-5"><a href="CollectionShop"><i>@Model.CollectionShop</i><br />收藏的店铺</a></span>
         </div>
@@ -27,7 +27,7 @@
 
     <div class="my_menu">
         <div class="total-order">
-            <a href="../Member/Orders?orderStatus=0&returnUrl=@HttpUtility.UrlEncode(Request.RawUrl)"><h5>全部订单</h5> <i class="glyphicon glyphicon-menu-right"></i><em>查看全部订单</em></a>
+            <a href="../Member/Orders?orderStatus=0&returnUrl=@HttpUtility.UrlEncode(Request.RawUrl)"><h5>全部预约单</h5> <i class="glyphicon glyphicon-menu-right"></i><em>查看全部预约单</em></a>
             @if (Model.SignInIsEnable && Model.CanSignIn)
             {
                 <a id="signbtn" class="SignIn-btn @(Model.CanSignIn ? "" : "disabled")"></a>
@@ -36,7 +36,7 @@
         <ul class="clearfix">
             <li><a href="../Member/Orders?orderStatus=1"><span class="icon01"></span><p>待付款</p>@(MvcHtmlString.Create(Model.WaitingForPay == 0 ? "" : "<i>" + Model.WaitingForPay + "</i>"))</a></li>
             <li><a href="../Member/Orders?orderStatus=2"><span class="icon02"></span><p>待发货</p>@(MvcHtmlString.Create(Model.WaitingForDelivery == 0 ? "" : "<i>" + Model.WaitingForDelivery + "</i>"))</a></li>
-            <li><a href="../Member/Orders?orderStatus=3"><span class="icon03"></span><p>待收货</p>@(MvcHtmlString.Create(Model.WaitingForRecieve == 0 ? "" : "<i>" + Model.WaitingForRecieve + "</i>"))</a></li>
+            <li><a href="../Member/Orders?orderStatus=3"><span class="icon03"></span><p>待结算</p>@(MvcHtmlString.Create(Model.WaitingForRecieve == 0 ? "" : "<i>" + Model.WaitingForRecieve + "</i>"))</a></li>
             <li><a href="../Member/Orders?orderStatus=5"><span class="icon04"></span><p>待评论</p>@(MvcHtmlString.Create(Model.WaitingForComments == 0 ? "" : "<i>" + Model.WaitingForComments + "</i>"))</a></li>
             <li><a href="../OrderRefund/RefundList"><span class="icon05"></span><p>退款/售后</p>@(MvcHtmlString.Create(Model.RefundOrders == 0 ? "" : "<i>" + Model.RefundOrders + "</i>"))</a></li>
         </ul>

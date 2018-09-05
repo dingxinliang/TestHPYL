@@ -42,7 +42,7 @@ namespace Himall.Service
         /// <summary>
         /// 判断门店名称是否重复
         /// </summary>
-        /// <param name="shopId">商家店铺ID</param>
+        /// <param name="shopId">诊所店铺ID</param>
         /// <param name="shopBranchName">门店名字</param>
         /// <returns></returns>
         public bool Exists(long shopId, long shopBranchId, string shopBranchName)
@@ -285,7 +285,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取分店经营的商品SKU
+        /// 获取分店经营的诊疗项目SKU
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="shopBranchIds"></param>
@@ -443,7 +443,7 @@ namespace Himall.Service
         public QueryPageModel<ProductInfo> SearchProduct(ShopBranchProductQuery productQueryModel)
         {
             var products = Context.ProductInfo.Where(item => true);
-            //过滤已删除的商品
+            //过滤已删除的诊疗项目
             products = products.Where(item => item.IsDeleted == false);
 
             if (productQueryModel.Ids != null && productQueryModel.Ids.Count() > 0)//条件 编号
@@ -495,7 +495,7 @@ namespace Himall.Service
             if (!string.IsNullOrWhiteSpace(productQueryModel.KeyWords))// 条件 关键字
                 products = products.Where(item => item.ProductName.Contains(productQueryModel.KeyWords));
 
-            if (!string.IsNullOrWhiteSpace(productQueryModel.ShopName))//查询商家关键字
+            if (!string.IsNullOrWhiteSpace(productQueryModel.ShopName))//查询诊所关键字
             {
                 var shopIds = Context.ShopInfo.FindBy(item => item.ShopName.Contains(productQueryModel.ShopName)).Select(item => item.Id);
                 products = products.Where(item => shopIds.Contains(item.ShopId));
@@ -506,12 +506,12 @@ namespace Himall.Service
                 products = products.Where(p => !limits.Contains(p.Id));
             }
             if (productQueryModel.shopBranchId.HasValue && productQueryModel.shopBranchId.Value != 0)
-            {//过滤门店已选商品
+            {//过滤门店已选诊疗项目
                 var pid = Context.ShopBranchSkusInfo.Where(e => e.ShopBranchId == productQueryModel.shopBranchId.Value).Select(item => item.ProductId).Distinct();
                 products = products.Where(e => pid.Any(id => id == e.Id));
             }
             if (productQueryModel.ShopBranchProductStatus.HasValue)
-            {//门店商品状态
+            {//门店诊疗项目状态
                 var pid = Context.ShopBranchSkusInfo.Where(e => e.ShopBranchId == productQueryModel.shopBranchId.Value && e.Status == productQueryModel.ShopBranchProductStatus.Value).Select(item => item.ProductId).Distinct();
                 products = products.Where(e => pid.Any(id => id == e.Id));
             }
@@ -702,7 +702,7 @@ namespace Himall.Service
         private IQueryable<ShopBranchInfo> ToNearShopWhere(CommonModel.ShopBranchQuery query)
         {
             var shopBranchs = Context.ShopBranchInfo.Where(p => p.Longitude > 0 && p.Latitude > 0);//周边门店只取定位了经纬度的数据
-            if (query.ShopId > 0)//取商家下的门店数据
+            if (query.ShopId > 0)//取诊所下的门店数据
             {
                 shopBranchs = shopBranchs.Where(p => p.ShopId == query.ShopId);
             }
@@ -727,7 +727,7 @@ namespace Himall.Service
         //    var shopBranchs = Context.ShopBranchInfo.Where(p => p.Status == CommonModel.ShopBranchStatus.Normal);
         //    if (shopId > 0)
         //    {
-        //        shopBranchs = shopBranchs.Where(p => p.ShopId == shopId);//过滤出商家下门店
+        //        shopBranchs = shopBranchs.Where(p => p.ShopId == shopId);//过滤出诊所下门店
         //    }
         //    if (areaId > 0)
         //    {
@@ -818,11 +818,11 @@ namespace Himall.Service
         //    return Context.DeliveryScopeInfo.Any(e => e.ShopBranchId == query.ShopBranchId && e.RegionId == query.RegionId);
         //}
         /// <summary>
-        /// 订单自动分配到门店
+        /// 预约单自动分配到门店
         /// </summary>
         /// <param name="query"></param>
-        /// <param name="skuIds">订单内商品SkuId</param>
-        /// <param name="counts">订单内商品购买数量</param>
+        /// <param name="skuIds">预约单内诊疗项目SkuId</param>
+        /// <param name="counts">预约单内诊疗项目购买数量</param>
         /// <returns></returns>
         //public ShopBranchInfo GetAutoMatchShopBranch(ShopBranchQuery query, string[] skuIds, int[] counts)
         //{
@@ -830,14 +830,14 @@ namespace Himall.Service
         //    var skuInfos = Context.SKUInfo.Where(p => skuIds.Contains(p.Id)).ToList();
         //    query.ProductIds = skuInfos.Select(p => p.ProductId).ToArray();
         //    query.Status = CommonModel.ShopBranchStatus.Normal;
-        //    var data = GetShopBranchsAll(query);//获取商家下的有该产品SKU的状态正常门店
+        //    var data = GetShopBranchsAll(query);//获取诊所下的有该产品SKU的状态正常门店
 
-        //    var shopBranchSkus = GetSkus(query.ShopId, data.Models.Select(p => p.Id));//获取当前商家下门店的SKU
+        //    var shopBranchSkus = GetSkus(query.ShopId, data.Models.Select(p => p.Id));//获取当前诊所下门店的SKU
         //    data.Models.ForEach(p =>
         //        p.Enabled = skuInfos.All(skuInfo => shopBranchSkus.Any(sbSku => sbSku.ShopBranchId == p.Id && sbSku.Stock >= counts[skuInfos.IndexOf(skuInfo)] && sbSku.SkuId == skuInfo.Id))
         //    );
 
-        //    var result = data.Models.Where(p => p.Enabled).ToList();//只取商家下都有该商品SKU库存的门店数据
+        //    var result = data.Models.Where(p => p.Enabled).ToList();//只取诊所下都有该诊疗项目SKU库存的门店数据
 
         //    bool fromLatLng = false;//用户收货地址是否定位了经纬度
         //    if (!string.IsNullOrWhiteSpace(query.FromLatLng))
@@ -853,7 +853,7 @@ namespace Himall.Service
         //        if (resultObj == null)//如果服务半径无法满足，则根据配送范围去匹配
         //        {
         //            var deliveryScope = GetShopDeliveryScopeAll(new ShopDeliveryScopeQuery() { });
-        //            if (query.StreetId > 0) //优先筛选出与买家收货地址同街道的所有门店
+        //            if (query.StreetId > 0) //优先筛选出与患者收货地址同街道的所有门店
         //            {
         //                List<long> shopBrachIds = deliveryScope.Models.Where(p => p.FullRegionPath.Contains(CommonConst.ADDRESS_PATH_SPLIT + query.StreetId + CommonConst.ADDRESS_PATH_SPLIT)).Select(p => p.ShopBranchId).Distinct().ToList();
         //                if (shopBrachIds.Count > 0)
@@ -899,7 +899,7 @@ namespace Himall.Service
             StringBuilder where = new StringBuilder();
             where.Append(" where Longitude>0 and Latitude>0 ");//周边门店只取定位了经纬度的数据
 
-            if (query.ShopId > 0)//取商家下的门店数据
+            if (query.ShopId > 0)//取诊所下的门店数据
             {
                 where.Append(" and ShopId=@ShopId ");
                 parms.Add("@ShopId", query.ShopId);
@@ -950,7 +950,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 获取代理商品的门店编号集
+        /// 获取代理诊疗项目的门店编号集
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>

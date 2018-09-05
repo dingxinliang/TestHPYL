@@ -2,7 +2,7 @@
 @model Himall.Web.Areas.Web.Models.ProductDetailModelForWeb
 @{
     Layout = "../Shared/_Base.cshtml";
-    ViewBag.Title = "商品详情";
+    ViewBag.Title = "诊疗项目详情";
     ViewBag.ShowAside = 1;
     var detailModel = (Himall.Web.Areas.Mobile.Models.ProductDetailModel)ViewBag.DetailModel;
 }
@@ -66,7 +66,7 @@
         @*门店信息-前端调整界面样式*@
         <div class="item detail-comment">
             <div class="detail-comment-hd">
-                商品评价
+                诊疗项目评价
                 <span class="detail-comment-num">@(detailModel.CommentCount)</span>
             </div>
             <div id="productCommentShow">

@@ -33,7 +33,7 @@ namespace Himall.IServices
        ObsoletePageModel<ProductConsultationInfo> GetConsultations(ConsultationQuery query);
 
         /// <summary>
-        /// 获取某一个商品的所有咨询
+        /// 获取某一个诊疗项目的所有咨询
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>

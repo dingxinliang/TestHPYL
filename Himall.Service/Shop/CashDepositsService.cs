@@ -205,7 +205,7 @@ namespace Himall.Service
             }
             var needCashDeposit = cateCashDeposit.Max(item => item.NeedPayCashDeposit);
 
-            //平台自营，商家缴纳足够保证金或者平台未取消其资质资格
+            //平台自营，诊所缴纳足够保证金或者平台未取消其资质资格
             if (shop.IsSelf || (cashDeposit != null && cashDeposit.CurrentBalance >= needCashDeposit) || (cashDeposit != null && cashDeposit.CurrentBalance < needCashDeposit && cashDeposit.EnableLabels == true))
             {
                 List<long> categoryIds = new List<long>();

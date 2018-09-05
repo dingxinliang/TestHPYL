@@ -70,7 +70,7 @@ namespace Himall.Service
 
             var templates = Context.ProductDescriptionTemplateInfo.Where(item => ids.Contains(item.Id));
             if (templates.Count(item => item.ShopId != shopId) > 0)
-                throw new HimallException("不能删除非本店铺的商品描述模板");
+                throw new HimallException("不能删除非本店铺的诊疗项目描述模板");
 
             IEnumerable<string> templateDirs = templates.Select(item => item.Id.ToString()).ToArray();
 

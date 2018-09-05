@@ -31,7 +31,7 @@ $(function () {
 
     $("#searchBox").val($('#searchKeywords').text());
 
-    //关注商品
+    //关注诊疗项目
     $(".btn-coll").click(function () {
         var gid = $(this).attr('gid');
         checkLogin(function (func) {
@@ -235,7 +235,7 @@ $(".scale-img img").on("click", function () {
 
 //加入购物车
 $("label[id^='addCart_']").click(function (e) {
-    var gid = $(this).attr("id").split('_')[1];//商品ID
+    var gid = $(this).attr("id").split('_')[1];//诊疗项目ID
     var sku = gid + "_0_0_0";
 
     $.post("/cart/verificationToCart", { id: gid }, function (data) {

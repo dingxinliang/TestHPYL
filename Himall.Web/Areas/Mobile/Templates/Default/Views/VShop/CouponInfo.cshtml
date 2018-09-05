@@ -11,7 +11,7 @@
         </div>
         <div class="coupon-info">
             <p class="time"><i></i>有效日期：@Model.CouponData.StartTime.ToString("yyyy-MM-dd") 至 @Model.CouponData.EndTime.ToString("yyyy-MM-dd")</p>
-            <p>使用限制：订单满<span>@Model.CouponData.OrderAmount.ToString("f2")元</span>可使用<span>（不含运费）</span></p>
+            <p>使用限制：预约单满<span>@Model.CouponData.OrderAmount.ToString("f2")元</span>可使用<span>（不含运费）</span></p>
         </div>
         <div class="coupon-btn" id="divAccept"><a class="btn btn-block btn-lg" data-show="@(Model.CouponData.ReceiveType == Himall.Model.CouponInfo.CouponReceiveType.IntegralExchange ? Model.CouponData.NeedIntegral.ToString() + "分兑换" : "立即领取")">@(Model.CouponData.ReceiveType == Himall.Model.CouponInfo.CouponReceiveType.IntegralExchange ? Model.CouponData.NeedIntegral.ToString() + "积分兑换" : "立即领取")</a></div>
     </div>

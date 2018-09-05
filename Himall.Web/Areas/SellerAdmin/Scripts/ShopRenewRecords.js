@@ -4,7 +4,7 @@ $(function () {
 });
 
 function InitData() {
-    //订单表格
+    //预约单表格
     $("#list").hiMallDatagrid({
         url: './Recordlist',
         nowrap: true,

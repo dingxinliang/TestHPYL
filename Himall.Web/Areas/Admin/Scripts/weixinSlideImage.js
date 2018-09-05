@@ -24,7 +24,7 @@ function ChoceTopic()
         }
     });
 
-    //商品表格
+    //诊疗项目表格
     $("#topicGrid").hiMallDatagrid({
         url: '/admin/MobileTopic/list',
         nowrap: false,

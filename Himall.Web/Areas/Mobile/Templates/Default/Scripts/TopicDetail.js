@@ -30,7 +30,7 @@ function loadProducts(page) {
             autoSizeImage();
         }
         else
-            $('#autoLoad').html('没有更多商品了');
+            $('#autoLoad').html('没有更多诊疗项目了');
     });
 }
 

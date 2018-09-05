@@ -28,13 +28,13 @@
         </div>
 
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label">商品模块：</label>
+            <label for="" class="col-sm-2 control-label">诊疗项目模块：</label>
             <div class="col-sm-9">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>模块名称</th>
-                            <th>已选择商品数</th>
+                            <th>已选择诊疗项目数</th>
                             <th class="td-operate">操作</th>
                         </tr>
                     </thead>
@@ -48,7 +48,7 @@
                                 <tr index="@i">
                                     <td><input class="text-module" maxlength="8" type="text" value="@item.Name" placeholder="@("默认模块"+(i+1))" /></td>
                                     <td type="selectedNumber">@item.ModuleProductInfo.Count</td>
-                                    <td class="td-operate"><span class="btn-a"><a class="choose-goods" index="@(i)">选择商品</a><a class="a-del" index="@(i)">删除</a></span></td>
+                                    <td class="td-operate"><span class="btn-a"><a class="choose-goods" index="@(i)">选择诊疗项目</a><a class="a-del" index="@(i)">删除</a></span></td>
                                 </tr>
                                 i++;
                             }
@@ -58,7 +58,7 @@
                             <tr index="0">
                                 <td><input class="text-module" type="text" maxlength="8" value="默认模块1" placeholder="默认模块1" /></td>
                                 <td type="selectedNumber">未选择</td>
-                                <td class="td-operate"><span class="btn-a"><a class="choose-goods">选择商品</a><a class="a-del" index="0">删除</a></span></td>
+                                <td class="td-operate"><span class="btn-a"><a class="choose-goods">选择诊疗项目</a><a class="a-del" index="0">删除</a></span></td>
                             </tr>
                         }
                     </tbody>

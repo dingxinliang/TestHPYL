@@ -190,7 +190,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             FightGroupOrderModel order = FightGroupApplication.GetOrder(orderid);
             if (order == null)
             {
-                throw new HimallException("错误的拼团订单信息");
+                throw new HimallException("错误的拼团预约单信息");
             }
             FightGroupsModel group = FightGroupApplication.GetGroup(order.ActiveId, order.GroupId);
             if (group == null)

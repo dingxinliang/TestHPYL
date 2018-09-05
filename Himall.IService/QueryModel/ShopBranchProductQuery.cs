@@ -20,7 +20,7 @@ namespace Himall.IServices.QueryModel
 
         public ProductInfo.ProductSaleStatus? SaleStatus { get; set; }
         /// <summary>
-        /// 门店商品状态
+        /// 门店诊疗项目状态
         /// </summary>
         public Himall.CommonModel.ShopBranchSkuStatus? ShopBranchProductStatus { get; set; } 
         public string KeyWords { get; set; }

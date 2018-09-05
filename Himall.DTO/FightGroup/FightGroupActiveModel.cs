@@ -20,7 +20,7 @@ namespace Himall.DTO
             ProductImages = new List<string>();
         }
         /// <summary>
-        /// 是否已初始商品图片信息
+        /// 是否已初始诊疗项目图片信息
         /// </summary>
         private bool isInitImagesed { get; set; }
 
@@ -65,13 +65,13 @@ namespace Himall.DTO
         ///</summary>
         public long ShopId { get; set; }
         /// <summary>
-        /// 商品编号
+        /// 诊疗项目编号
         ///</summary>
-        [Required(ErrorMessage = "请选择商品")]
-        [Display(Name = "商品编号")]
+        [Required(ErrorMessage = "请选择诊疗项目")]
+        [Display(Name = "诊疗项目编号")]
         public long? ProductId { get; set; }
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         ///</summary>
         public string ProductName { get; set; }
         /// <summary>
@@ -156,7 +156,7 @@ namespace Himall.DTO
         public Nullable<long> ManagerId { get; set; }
 
         /// <summary>
-        /// 商品是否还有库存
+        /// 诊疗项目是否还有库存
         /// </summary>
         public bool HasStock { get; set; }
         /// <summary>
@@ -207,7 +207,7 @@ namespace Himall.DTO
         public string GroupNotice { get; set; }
 
         /// <summary>
-        /// 买家须知
+        /// 患者须知
         /// </summary>
         public string MemberNotice { get; set; }
         /// <summary>
@@ -227,17 +227,17 @@ namespace Himall.DTO
         /// </summary>
         public decimal ReturnMoney { get; set; }
 
-        #region 商品信息补充
+        #region 诊疗项目信息补充
         /// <summary>
-        /// 商品图片目录
+        /// 诊疗项目图片目录
         /// </summary>
         public string ProductImgPath { get; set; }
         /// <summary>
-        /// 商品默认图片
+        /// 诊疗项目默认图片
         /// </summary>
         public string ProductDefaultImage { get; set; }
         /// <summary>
-        /// 商品其他图片
+        /// 诊疗项目其他图片
         /// </summary>
         public List<string> ProductImages { get; set; }
         /// <summary>
@@ -245,23 +245,23 @@ namespace Himall.DTO
         /// </summary>
         public long FreightTemplateId { get; set; }
         /// <summary>
-        /// 商品评价数
+        /// 诊疗项目评价数
         /// </summary>
         public int ProductCommentNumber { get; set; }
         /// <summary>
-        /// 商品广告语
+        /// 诊疗项目广告语
         /// </summary>
         public string ProductShortDescription { get; set; }
         /// <summary>
-        /// 商品编码
+        /// 诊疗项目编码
         /// </summary>
         public string ProductCode { get; set; }
         /// <summary>
-        /// 商品单位
+        /// 诊疗项目单位
         /// </summary>
         public string MeasureUnit { get; set; }
         /// <summary>
-        /// 商品是否可购买
+        /// 诊疗项目是否可购买
         /// </summary>
         public bool CanBuy { get; set; }
         /// <summary>
@@ -285,7 +285,7 @@ namespace Himall.DTO
         public List<ComboDetail> ComboList { get; set; }
 
         /// <summary>
-        /// 是否是虚拟商品（1是 0不是）
+        /// 是否是虚拟诊疗项目（1是 0不是）
         /// </summary>
         public int IsVirtualProduct { get; set; }
 
@@ -335,7 +335,7 @@ namespace Himall.DTO
         {
             if (this.ProductId < 1)
             {
-                throw new HimallException("请选择活动商品");
+                throw new HimallException("请选择活动诊疗项目");
             }
             if (string.IsNullOrWhiteSpace(this.IconUrl))
             {

@@ -168,13 +168,13 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 是否有商品使用过该运费模板
+        /// 是否有诊疗项目使用过该运费模板
         /// </summary>
         /// <param name="TemplateId"></param>
         /// <returns></returns>
         public bool IsProductUseFreightTemp(long TemplateId)
         {
-            //TODO:[LLY]过滤已删除的商品
+            //TODO:[LLY]过滤已删除的诊疗项目
             return Context.ProductInfo.Any(item => item.FreightTemplateId == TemplateId && item.IsDeleted == false);
         }
     }

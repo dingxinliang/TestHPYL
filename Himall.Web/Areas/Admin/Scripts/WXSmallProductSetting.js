@@ -22,7 +22,7 @@ function bindAddProductsBtn() {
 }
 
 function initGrid() {
-    //商品表格
+    //诊疗项目表格
     $("#productList").hiMallDatagrid({
         url: 'GetWXSmallProducts',
         nowrap: false,
@@ -43,7 +43,7 @@ function initGrid() {
             { checkbox: true, width: 39 },
             { field: "id", hidden: true },
             {
-                field: "name", title: '商品名称', align: "left", width: 400,
+                field: "name", title: '诊疗项目名称', align: "left", width: 400,
                 formatter: function (value, row, index) {
                     var html = '<a title="' + value + '" href="/product/detail/' + row.id + '" target="_blank" href="/product/detail/' + row.id + '"><img class="ml15 fl" width="40" height="40" src="' + row.imgUrl + '" /><span class="single-ellipsis lh40">' + value + '</a></span>';
                     return html;
@@ -53,7 +53,7 @@ function initGrid() {
                 field: "price", title: '价格', align: "center", formatter: function (value, row, index) { return '￥' + value; }
             },
             {
-                field: "state", title: "商品状态", align: "center"
+                field: "state", title: "诊疗项目状态", align: "center"
             },
             {
                 field: "Id", title: "操作", width: 90, align: "center",
@@ -69,7 +69,7 @@ function initGrid() {
 }
 
 function del(id) {
-    $.dialog.confirm('确定要删除该商品吗?', function () {
+    $.dialog.confirm('确定要删除该诊疗项目吗?', function () {
         var loading = showLoading();
         $.post('DeleteWXSmallProductById', { id: id }, function (result) {
             loading.close();
@@ -93,7 +93,7 @@ function DeleteList() {
         $.dialog.errorTips("你没有选择任何选项！");
     }
     else {
-        $.dialog.confirm('确定删除选择的商品吗？', function () {
+        $.dialog.confirm('确定删除选择的诊疗项目吗？', function () {
             var loading = showLoading();
             $.post("./DeleteList", { ids: selectids.join(',') },
                 function (data)

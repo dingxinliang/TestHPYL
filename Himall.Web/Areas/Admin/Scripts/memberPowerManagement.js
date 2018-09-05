@@ -235,7 +235,7 @@ function query() {
             },
             { field: "orderNumber", sort: true, title: '消费次数', width: 60 },
             { field: "lastConsumptionTime", sort: true, title: '最近消费时间', width: 80 },
-            { field: "categoryNames", title: '购买商品类型', width: 80 }
+            { field: "categoryNames", title: '购买诊疗项目类型', width: 80 }
         ]],
         onLoadSuccess: function () {
             allIds=($("#list").hiMallDatagrid('data').ids).split(',');
@@ -606,7 +606,7 @@ function bind() {
         columns:
              [[
             { field: "couponName", title: "优惠券名称", align: "center" },
-            { field: "shopName", title: "商家", align: "center" },
+            { field: "shopName", title: "诊所", align: "center" },
             { field: "price", title: "面额", align: "center" },
             {
                 field: "inventory", title: "剩余数量", align: "center",

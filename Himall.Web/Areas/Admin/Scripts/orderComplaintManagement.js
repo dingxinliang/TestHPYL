@@ -13,7 +13,7 @@ $(function () {
 				$(this).addClass('active').siblings().removeClass('active');
 			}
         });
-		//订单表格
+		//预约单表格
 		$("#list").hiMallDatagrid({
 			url: './list',
 			nowrap: false,
@@ -30,7 +30,7 @@ $(function () {
 			queryParams: { complaintStatus:val },
 			columns:
 			[[
-				{ field: "OrderId", title: '订单号', width: 120 },
+				{ field: "OrderId", title: '预约单号', width: 120 },
 				{ field: "ShopName", title: "店铺", width: 120, align: "center" },
 				{ field: "UserName", title: "投诉会员", width: 80, align: "center" },
                 {
@@ -108,7 +108,7 @@ function OpenDealComplaint(id, orderId, complaintReason, sellerReply, shopPhone,
         id: 'goodCheck',
         content: ['<div class="dialog-form">',
 				'<div class="form-group">',
-					'<label class="label-inline fl">订单号</label>',
+					'<label class="label-inline fl">预约单号</label>',
 					'<p class="only-text">' + orderId + '</p>',
 				'</div>',
 				'<div class="form-group">',
@@ -116,7 +116,7 @@ function OpenDealComplaint(id, orderId, complaintReason, sellerReply, shopPhone,
 					'<p class="only-text">' + complaintReason + '&nbsp;</p>',
 				'</div>',
 				'<div class="form-group">',
-					'<label class="label-inline fl">商家回复</label>',
+					'<label class="label-inline fl">诊所回复</label>',
 					'<p class="only-text">' + sellerReply + '&nbsp;</p>',
 				'</div>',
 				'<div class="form-group">',
@@ -124,7 +124,7 @@ function OpenDealComplaint(id, orderId, complaintReason, sellerReply, shopPhone,
 					'<p class="only-text">' + userPhone + '</p>',
 				'</div>',
 				'<div class="form-group">',
-					'<label class="label-inline fl">商家联系方式</label>',
+					'<label class="label-inline fl">诊所联系方式</label>',
 					'<p class="only-text">' + shopPhone + '</p>',
 				'</div>',
 			'</div>'].join(''),
@@ -148,7 +148,7 @@ function OpenComplaintReason(orderId, complaintReason, sellerReply) {
         id: 'goodCheck',
         content: ['<div class="dialog-form">',
 				'<div class="form-group">',
-					'<label class="label-inline fl">订单号</label>',
+					'<label class="label-inline fl">预约单号</label>',
 					'<p class="only-text">'+orderId+'</p>',
 				'</div>',
 				'<div class="form-group">',
@@ -156,7 +156,7 @@ function OpenComplaintReason(orderId, complaintReason, sellerReply) {
 					'<p class="only-text">' + complaintReason + '</p>',
 				'</div>',
 				'<div class="form-group">',
-					'<label class="label-inline fl">商家回复</label>',
+					'<label class="label-inline fl">诊所回复</label>',
 					'<p class="only-text">' + sellerReply + '</p>',
 				'</div>',
 			'</div>'].join(''),

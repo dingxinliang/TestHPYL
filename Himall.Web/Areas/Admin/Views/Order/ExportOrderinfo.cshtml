@@ -20,26 +20,26 @@
 <table cellspacing="0" cellpadding="5" rules="all" border="1">
 	<thead>
 		<tr>
-			<th>订单类型</th>
-			<th>订单编号</th>
+			<th>预约单类型</th>
+			<th>预约单编号</th>
 			<th>店铺</th>
-			<th>买家</th>
+			<th>患者</th>
 			<th>下单时间</th>
 			<th>支付方式</th>
-			<th>商品总额</th>
+			<th>诊疗项目总额</th>
 			<th>运费</th>
 			<th>税金</th>
 			<th>优惠券抵扣</th>
-			<th>商家改价</th>
+			<th>诊所改价</th>
 			<th>积分代支付</th>
-			<th>订单实付总额</th>
+			<th>预约单实付总额</th>
 			<th>佣金</th>
-			<th>订单状态</th>
-			<th>买家留言</th>
+			<th>预约单状态</th>
+			<th>患者留言</th>
 			<th>收货人</th>
 			<th>手机号码</th>
 			<th>收货地址</th>
-			<th>商品名称</th>
+			<th>诊疗项目名称</th>
             <th>单价</th>
             <th>数量</th>
 		</tr>
@@ -60,24 +60,24 @@
 				<td rowspan='@rowcount'>@item.UserName</td>
 				<td rowspan='@rowcount'>@item.OrderDate.ToString("yyyy-MM-dd")</td>
                 <td rowspan='@rowcount'>@(string.IsNullOrWhiteSpace(item.PaymentTypeName) ? "" : mapPayType[item.PaymentTypeName.ToUpper()]) </td>
-				<td rowspan='@rowcount'>@item.ProductTotalAmount.ToString("F2")</td>@*商品总额*@
+				<td rowspan='@rowcount'>@item.ProductTotalAmount.ToString("F2")</td>@*诊疗项目总额*@
 				<td rowspan='@rowcount'>@item.Freight.ToString("F2")</td>           @*运费*@
 				<td rowspan='@rowcount'>@item.Tax.ToString("F2")</td>               @*税金*@
 				<td rowspan='@rowcount'>@item.DiscountAmount.ToString("F2")</td>    @*优惠券抵扣*@
 				@{var itemDis = item.OrderItems.Sum(r => r.DiscountAmount);}
 				<td rowspan='@rowcount'>@(itemDis > 0 ? "-" : "+") @itemDis.ToString("F2") </td>    @*改价*@
 				<td rowspan='@rowcount'>@item.IntegralDiscount.ToString("F2")</td>  @*积分抵扣*@
-				<td rowspan='@rowcount'>@item.OrderTotalAmount.ToString("F2")</td>  @*订单实付总额*@
+				<td rowspan='@rowcount'>@item.OrderTotalAmount.ToString("F2")</td>  @*预约单实付总额*@
 				<td rowspan='@rowcount'>@item.OrderItems.Sum(r => r.CommisRate * (r.RealTotalPrice - r.RefundPrice)).ToString("F2")</td> @*佣金*@
-				<td rowspan='@rowcount'>@item.OrderStatus.ToDescription()</td>      @*订单状态*@
-				<td rowspan='@rowcount'>@item.UserRemark</td>                       @*买家留言*@
+				<td rowspan='@rowcount'>@item.OrderStatus.ToDescription()</td>      @*预约单状态*@
+				<td rowspan='@rowcount'>@item.UserRemark</td>                       @*患者留言*@
 				<td rowspan='@rowcount'>@item.ShipTo</td>                           @*收货人*@
 				<td rowspan='@rowcount'>@item.CellPhone</td>                        @*手机号码*@
 				<td rowspan='@rowcount'>@item.RegionFullName @item.Address</td>                   @*收货地址*@
 				@{
 			var orderItem = item.OrderItems[0];
 				}
-				<td>@orderItem.ProductName  @orderItem.Color @orderItem.Size @orderItem.Version</td> @*商品名称*@
+				<td>@orderItem.ProductName  @orderItem.Color @orderItem.Size @orderItem.Version</td> @*诊疗项目名称*@
                 <td>@orderItem.SalePrice.ToString("F2")</td>   @*单价*@
 				<td>@orderItem.Quantity</td>   @*数量*@
 			</tr>
@@ -89,7 +89,7 @@
 					if (index >= 2)
 					{
 						<tr>
-							<td>@orderitem.ProductName  @orderitem.Color @orderitem.Size @orderitem.Version</td>   @*商品名称*@
+							<td>@orderitem.ProductName  @orderitem.Color @orderitem.Size @orderitem.Version</td>   @*诊疗项目名称*@
                             <td>@orderitem.SalePrice.ToString("F2")</td>                       @*单价*@
                             <td>@orderitem.Quantity</td>                       @*数量*@
 						</tr>

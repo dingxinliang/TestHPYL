@@ -534,7 +534,7 @@ a.setpwd_but:visited { color: #fff; }
 .mbangding_con_infor { float: left; margin-left: 5px; width: 54%; overflow: hidden; }
 .mbangding_con_infor p { color: #333; margin-top: 25px; }
 .mbangding_con_infor a { color: #1b89d4; }
-/*代付款订单*/
+/*代付款预约单*/
 .morder_nav { position: fixed; top: 50px; left: 0; width: 100%; max-width: 640px; margin: auto; height: 48px; line-height: 48px; background: #fff; /*background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#CCC));*/
 z-index: 99; border-top: 1px solid #c9c9c9; border-bottom: 1px solid #c9c9c9; }
 .sectionPanel { padding-top: 89px; }
@@ -572,7 +572,7 @@ text-align: center; }
 .morder_pay>p:first-child { padding-bottom: 10px; }
 .morder_pay span { color: #FF8F09; font-size: 14px; }
 .morder_pay a { display: inline-block; width: 70px; color: #fff; background: #FF8F09; height: 32px; line-height: 32px; padding: 0; border-radius: 3px; font-size: 14px; text-align: center; }
-/*待评价商品页*/
+/*待评价诊疗项目页*/
 .mevaluate_goods { width: 100%; padding: 8px 0; margin-top: 10px; overflow: hidden; }
 .mevaluate_goods_le { width: 80px; height: 80px; overflow: hidden; border-radius: 3px; position: relative; margin-left: 10px; }
 .mevaluate_goods_le span { display: inline-block; position: absolute; top: 0px; left: 0px; background: #e4393c; color: #fff; padding: 0 2px; }
@@ -1062,7 +1062,7 @@ left: 0;/*padding-bottom: 40px;*/
 .letter_msg.ct { /*color:#f00;*/
 }
 .letter_msg .letterdl { position: absolute; right: 5px; top: 5px; }
-/**买家留言**/
+/**患者留言**/
 .pj_fixinline { padding: 10px; line-height: 20px; background-color: #fff; }
 .pj_fixinline .pj_fix { width: 60px; float: left; margin-right: 10px; }
 .pj_fixinline .textarea_box h3 { font-size: 14px; color: #000; height: 40px; line-height: 30px; overflow: hidden; }
@@ -1244,7 +1244,7 @@ a.wantfx:hover { background-color: #FF9F2C; color: #fff; }
 .fxnotes { width: 85%; height: auto; padding: 10px; margin: 10px auto; border: 1px dashed #BFBFBF; background-color: #fff; border-radius: 4px; font-size: 14px; line-height: 20px; }
 .info-item p { line-height: 20px; color: #363636; font-size: 13px; }
 /*
- * PC端添加商品弹出层搜索
+ * PC端添加诊疗项目弹出层搜索
  */
 .goodsearch { display: inline-block; /* margin-left: 100px; padding: 0 10px;*/ }
 .goodsearch input { float: left; display: inline-block; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; border: 1px solid #ddd; width: 350px; height: 30px; line-height: 30px; vertical-align: 0px; padding: 0 5px; margin: 0 10px; }
@@ -1289,7 +1289,7 @@ a.wantfx:hover { background-color: #FF9F2C; color: #fff; }
 .fulltext-area .edui-editor-toolbarboxouter { box-shadow: none; }
 .fulltext-area .edui-editor-iframeholder { width: 100%!important; height: 300px!important; }
 .fulltext-area .edui-editor-bottomContainer td { line-height: 24px; }
-/* 微商城可视化: 商品推荐设置 */
+/* 微商城可视化: 诊疗项目推荐设置 */
 .diy-ctrl-item .fi-name { line-height: 30px; font-weight: normal; }
 .product-recomm .form-controls,
 .product-recomm-title .form-controls { margin-left: 70px; }
@@ -1310,7 +1310,7 @@ a.wantfx:hover { background-color: #FF9F2C; color: #fff; }
 .lh28 { line-height: 28px; }
 .fnormal { font-weight: normal; }
 
-/* 微商城可视化: 选择商品/优惠券/专题页面/现金红包/限时购列表 */
+/* 微商城可视化: 选择诊疗项目/优惠券/专题页面/现金红包/限时购列表 */
 .jbox-title { line-height: 30px; }
 .jbox-title-txt { height: 50px; padding: 10px 15px; }
 .jbox-title .newselect { float: left; padding: 5px 10px; margin-right: 10px; }

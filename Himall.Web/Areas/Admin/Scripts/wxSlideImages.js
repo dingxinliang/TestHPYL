@@ -80,7 +80,7 @@ function reDrawArrow(obj) {
 }
 
 function initSlideImagesTable() {
-    //商品表格
+    //诊疗项目表格
     $("#slideImagesTable").hiMallDatagrid({
         url: '/admin/WeiXin/GetSlideImages',
         nowrap: false,
@@ -197,7 +197,7 @@ function ChoceTopic() {
          finaly = url.substring( 23, url.indexOf( '?' ) );
     }
     
-    //商品表格
+    //诊疗项目表格
     $("#topicGrid").hiMallDatagrid({
         url: '/admin/MobileTopic/list',
         nowrap: false,

@@ -77,7 +77,7 @@
                             <p>服务态度：<span>@item.SellerServiceAttitude</span></p>
                         </div>
                         <div class="shop-data">
-                            <p><span>总销量：@item.Sales</span><span>商品数：@item.Himall_Products.Where( p => p.SaleStatus == ProductInfo.ProductSaleStatus.OnSale  && p.AuditStatus== ProductInfo.ProductAuditStatus.Audited && p.IsDeleted==false ).Count()</span></p>
+                            <p><span>总销量：@item.Sales</span><span>诊疗项目数：@item.Himall_Products.Where( p => p.SaleStatus == ProductInfo.ProductSaleStatus.OnSale  && p.AuditStatus== ProductInfo.ProductAuditStatus.Audited && p.IsDeleted==false ).Count()</span></p>
                             <div class="shop-sale-action">
                                 @if( item.FreeFreight > 0 )
                                 {

@@ -57,7 +57,7 @@ namespace Himall.SmallProgAPI.Helper
         }
 
         /// <summary>
-        /// 获取购物车中的商品
+        /// 获取购物车中的诊疗项目
         /// </summary>
         /// <returns></returns>
         public IEnumerable<long> GetCartProductIds(long memberId)
@@ -79,7 +79,7 @@ namespace Himall.SmallProgAPI.Helper
                     foreach (string cartItem in cartItems)
                     {
                         var cartItemParts = cartItem.Split(':');
-                        productIds[i++] = long.Parse(cartItemParts[0]);//获取商品Id
+                        productIds[i++] = long.Parse(cartItemParts[0]);//获取诊疗项目Id
                     }
                 }
             }
@@ -88,7 +88,7 @@ namespace Himall.SmallProgAPI.Helper
 
 
         /// <summary>
-        /// 获取购物车中的商品
+        /// 获取购物车中的诊疗项目
         /// </summary>
         /// <returns></returns>
         public IEnumerable<string> GetCartProductSKUIds(long memberId)
@@ -110,7 +110,7 @@ namespace Himall.SmallProgAPI.Helper
                     foreach (string cartItem in cartItems)
                     {
                         var cartItemParts = cartItem.Split(':');
-                        productIds[i++] = cartItemParts[0];//获取商品SKUId
+                        productIds[i++] = cartItemParts[0];//获取诊疗项目SKUId
                     }
                 }
             }
@@ -118,7 +118,7 @@ namespace Himall.SmallProgAPI.Helper
         }
 
         /// <summary>
-        /// 获取购物车中的商品
+        /// 获取购物车中的诊疗项目
         /// </summary>
         /// <returns></returns>
         public ShoppingCartInfo GetCart(long memberId)

@@ -68,7 +68,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             LogInfo info = new LogInfo
             {
                 Date = DateTime.Now,
-                Description = "商家商品批量上架，Ids=" + ids,
+                Description = "诊所诊疗项目批量上架，Ids=" + ids,
                 IPAddress = base.Request.UserHostAddress,
                 PageUrl = "/Product/BatchOnSale",
                 UserName = base.CurrentSellerManager.UserName,
@@ -87,7 +87,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             LogInfo info = new LogInfo
             {
                 Date = DateTime.Now,
-                Description = "商家商品批量下架，Ids=" + ids,
+                Description = "诊所诊疗项目批量下架，Ids=" + ids,
                 IPAddress = base.Request.UserHostAddress,
                 PageUrl = "/Product/BatchSaleOff",
                 UserName = base.CurrentSellerManager.UserName,
@@ -157,13 +157,13 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         {
             if (ServiceHelper.Create<IShopService>().GetShopSpaceUsage(base.CurrentSellerManager.ShopId) == -1L)
             {
-                message = "存储图片空间不足,不能发布商品!";
+                message = "存储图片空间不足,不能发布诊疗项目!";
                 return false;
             }
             ShopGradeInfo shopGrade = ServiceHelper.Create<IShopService>().GetShopGrade(base.CurrentShop.GradeId);
             if ((shopGrade != null) && (this._iProductService.GetShopAllProducts(base.CurrentSellerManager.ShopId) >= shopGrade.ProductLimit))
             {
-                message = "此店铺等级最多只能发布" + shopGrade.ProductLimit + "件商品";
+                message = "此店铺等级最多只能发布" + shopGrade.ProductLimit + "件诊疗项目";
                 return false;
             }
             message = "";
@@ -186,7 +186,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             catch (Exception exception)
             {
-                Log.Error("编辑商品异常", exception);
+                Log.Error("编辑诊疗项目异常", exception);
                 return this.Json(false, "操作失败！");
             }
         }
@@ -261,14 +261,14 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             catch (Exception exception)
             {
-                Log.Error("创建商品失败", exception);
+                Log.Error("创建诊疗项目失败", exception);
             }
             try
             {
                 LogInfo info = new LogInfo
                 {
                     Date = DateTime.Now,
-                    Description = string.Format("商家发布商品，Id={0}, 名称={1} [{2}]", product.Id, product.ProductName, flag ? "成功" : "失败"),
+                    Description = string.Format("诊所发布诊疗项目，Id={0}, 名称={1} [{2}]", product.Id, product.ProductName, flag ? "成功" : "失败"),
                     IPAddress = base.Request.UserHostAddress,
                     PageUrl = "/Product/Create",
                     UserName = base.CurrentSellerManager.UserName,
@@ -283,7 +283,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             {
                 return this.Json(true, null);
             }
-            return this.Json(false, "发布商品出错");
+            return this.Json(false, "发布诊疗项目出错");
         }
 
         private SKUSpecModel DeepClone(SKUSpecModel obj)
@@ -316,7 +316,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 LogInfo info = new LogInfo
                 {
                     Date = DateTime.Now,
-                    Description = "商家删除商品，Ids=" + ids,
+                    Description = "诊所删除诊疗项目，Ids=" + ids,
                     IPAddress = base.Request.UserHostAddress,
                     PageUrl = "/Product/Delete",
                     UserName = base.CurrentSellerManager.UserName,
@@ -451,14 +451,14 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             catch (Exception exception)
             {
-                Log.Error("编辑商品异常", exception);
+                Log.Error("编辑诊疗项目异常", exception);
             }
             try
             {
                 LogInfo info = new LogInfo
                 {
                     Date = DateTime.Now,
-                    Description = string.Format("商家修改商品，Id={0}, 名称={1} [{2}]", model.Id, model.ProductName, flag ? "成功" : "失败"),
+                    Description = string.Format("诊所修改诊疗项目，Id={0}, 名称={1} [{2}]", model.Id, model.ProductName, flag ? "成功" : "失败"),
                     IPAddress = base.Request.UserHostAddress,
                     PageUrl = "/Product/Edit",
                     UserName = base.CurrentSellerManager.UserName,
@@ -554,7 +554,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }).ToList<ProductInfoForExportModel>();
             base.ViewData.Model = enumerable;
             string s = this.RenderPartialViewToString(this, "ExportProductinfo");
-            return this.File(Encoding.UTF8.GetBytes(s), "application/ms-excel", string.Format("店铺商品信息_{0}.xls", DateTime.Now.ToString("yyyy-MM-dd")));
+            return this.File(Encoding.UTF8.GetBytes(s), "application/ms-excel", string.Format("店铺诊疗项目信息_{0}.xls", DateTime.Now.ToString("yyyy-MM-dd")));
         }
 
         [UnAuthorize]
@@ -1243,7 +1243,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 model = service.GetProduct(productId);
                 if ((model == null) || (model.ShopId != base.CurrentSellerManager.ShopId))
                 {
-                    throw new HimallException(productId + ",该商品已删除或者不属于该店铺");
+                    throw new HimallException(productId + ",该诊疗项目已删除或者不属于该店铺");
                 }
                 if (model.SKUInfo.Count<SKUInfo>() > 0)
                 {

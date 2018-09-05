@@ -14,7 +14,7 @@ namespace Himall.DTO
         long _id;
 
         /// <summary>
-        /// 主键ID，订单号
+        /// 主键ID，预约单号
         /// </summary>
         public new long Id { get { return _id; } set { _id = value; } }
         /// <summary>

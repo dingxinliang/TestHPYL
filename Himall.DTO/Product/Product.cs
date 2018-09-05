@@ -81,7 +81,7 @@ namespace Himall.DTO.Product
 		public long OrderCounts { get; set; }
 
 		/// <summary>
-		/// 商品地址
+		/// 诊疗项目地址
 		/// </summary>
 		public string Address { get; set; }
 

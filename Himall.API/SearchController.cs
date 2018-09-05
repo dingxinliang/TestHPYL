@@ -26,7 +26,7 @@ namespace Himall.API
             int pageNo = 1, /*页码*/
             int pageSize = 10,/*每页显示数据量*/
             long vshopId = 0,
-            long sid = 0/*商家ID*/
+            long sid = 0/*诊所ID*/
             )
         {
             if (string.IsNullOrEmpty(keywords) && vshopId == 0 && cid <= 0 && b_id <= 0 && a_id == "")

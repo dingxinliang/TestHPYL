@@ -26,7 +26,7 @@ namespace Himall.API
 			CheckUserLogin();
 
             DateTime nowDt = DateTime.Now;
-            //三个月内订单
+            //三个月内预约单
             OrderQuery query = new OrderQuery() { ShopId=this.CurrentUser.ShopId, StartDate = nowDt.Date.AddDays(-nowDt.Day).AddMonths(-2), EndDate = nowDt };
             var orders = OrderApplication.GetOrdersNoPage(query);
             var threeMonthAmounht = orders.Sum(e => e.ActualPayAmount);
@@ -37,7 +37,7 @@ namespace Himall.API
             var todayAmount = orders.Where(e => e.OrderDate.Date == nowDt.Date).Sum(e => e.ActualPayAmount);
 
 
-            //近三天发布商品数
+            //近三天发布诊疗项目数
             ProductQuery productQuery = new ProductQuery();
 
             productQuery.AuditStatus = new []{ProductInfo.ProductAuditStatus.Audited};

@@ -52,7 +52,7 @@ namespace Himall.IServices.QueryModel
         public OrderInfo.PaymentTypes PaymentType { get; set; }
 
         /// <summary>
-        /// 是否是购买记录（只查询已付款且没关闭的订单）
+        /// 是否是购买记录（只查询已付款且没关闭的预约单）
         /// </summary>
         public bool IsBuyRecord { set; get; }
         /// <summary>

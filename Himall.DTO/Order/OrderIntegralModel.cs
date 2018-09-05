@@ -6,7 +6,7 @@ using System.Web;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 订单积分
+    /// 预约单积分
     /// </summary>
     public class OrderIntegralModel
     {
@@ -22,7 +22,7 @@ namespace Himall.DTO
         public decimal IntegralPerMoney { get; set; }
 
         /// <summary>
-        /// 订单需要使用积分
+        /// 预约单需要使用积分
         /// </summary>
         public decimal UserIntegrals { get; set; } 
     }

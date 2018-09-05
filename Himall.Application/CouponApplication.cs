@@ -558,7 +558,7 @@ namespace Himall.Application
             return lmCoupon;
         }
         /// <summary>
-        /// 商家添加一个优惠券
+        /// 诊所添加一个优惠券
         /// </summary>
         /// <param name="info"></param>
         public static void AddCoupon(CouponInfo info)
@@ -572,7 +572,7 @@ namespace Himall.Application
             _iCouponService.CancelCoupon(couponId, shopId);
         }
         /// <summary>
-        /// 商家修改一个优惠券
+        /// 诊所修改一个优惠券
         /// </summary>
         /// <param name="info"></param>
         public static void EditCoupon(CouponInfo info)
@@ -606,7 +606,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取商家添加的优惠券列表
+        /// 获取诊所添加的优惠券列表
         /// </summary>
         /// <returns></returns>
         public static ObsoletePageModel<CouponInfo> GetCouponList(CouponQuery query)
@@ -615,7 +615,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取商家添加的优惠券列表(全部)
+        /// 获取诊所添加的优惠券列表(全部)
         /// </summary>
         /// <param name="shopid"></param>
         /// <returns></returns>

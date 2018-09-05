@@ -2,7 +2,7 @@
 
 function checkdata() {
     if ($.trim($("#txtProductName").val()) == "") {
-        $.dialog.errorTips("商品不能为空 ");
+        $.dialog.errorTips("诊疗项目不能为空 ");
         return false;
     }
     if ($.trim($("#txtEndDate").val()) == "") {
@@ -77,7 +77,7 @@ $(function () {
                     skuShow(selectedProducts[0].id);
                 }
                 else {
-                    $.dialog.errorTips("此商品已参与限时购或其他活动");
+                    $.dialog.errorTips("此诊疗项目已参与限时购或其他活动");
                 }
             })
 

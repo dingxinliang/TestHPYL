@@ -14,7 +14,7 @@ using Himall.Application;
 namespace Himall.Web.App_Code.Common
 {
     /// <summary>
-    /// 限时购订单处理类
+    /// 限时购预约单处理类
     /// </summary>
     public class LimitOrderHelper
     {
@@ -35,7 +35,7 @@ namespace Himall.Web.App_Code.Common
         /// </summary>
         private const string LIMIT_COUNT_TAG = "limitcount:";
         /// <summary>
-        /// 限时购缓存订单订阅处理标识
+        /// 限时购缓存预约单订阅处理标识
         /// </summary>
         private const string LIMIT_LIST_TAG = "limitsub:";
         /// <summary>
@@ -43,13 +43,13 @@ namespace Himall.Web.App_Code.Common
         /// </summary>
         private const string LIMIT_TOTAL_TAG = "limittotal:";
         /// <summary>
-        /// 订单队列
+        /// 预约单队列
         /// </summary>
         private const string LIMIT_QUENE_TAG = "limitquene:all";
 
         private static IOrderService iorder = ServiceHelper.Create<IOrderService>();
         /// <summary>
-        /// 限时购库存缓存过期时间=限时购商品过期时间+CACHE_OVER_DAY
+        /// 限时购库存缓存过期时间=限时购诊疗项目过期时间+CACHE_OVER_DAY
         /// </summary>
         private const int CACHE_OVER_DAY = 1;//单位天
 
@@ -84,7 +84,7 @@ namespace Himall.Web.App_Code.Common
             if (!((null == conf || bool.Parse(conf))))
                 return;
             _locker = new Dictionary<string, object>();
-            using (Entities db = new Entities())//初始化缓存并处理未完成的订单
+            using (Entities db = new Entities())//初始化缓存并处理未完成的预约单
             {
                 var sql = from f in db.FlashSaleInfo
                           join d in db.FlashSaleDetailInfo
@@ -103,7 +103,7 @@ namespace Himall.Web.App_Code.Common
                     Cache.RegisterSubscribe<OrderIdentity>(LIMIT_LIST_TAG + t.SkuId, DisposeOrder);
                 }
                 List<OrderIdentity> all = null;
-                if (!Cache.Exists(LIMIT_QUENE_TAG))//不存在订单缓存则创建空订单缓存
+                if (!Cache.Exists(LIMIT_QUENE_TAG))//不存在预约单缓存则创建空预约单缓存
                 {
                     all = new List<OrderIdentity>();
                     Cache.Insert<List<OrderIdentity>>(LIMIT_QUENE_TAG, all);
@@ -113,12 +113,12 @@ namespace Himall.Web.App_Code.Common
                     all = Cache.Get<List<OrderIdentity>>(LIMIT_QUENE_TAG);
                     if (all != null)
                     {
-                        for (int i = 0; i < all.Count(); i++)//处理上次未入库订单
+                        for (int i = 0; i < all.Count(); i++)//处理上次未入库预约单
                         {
                             if (all[i].State == OrderState.Untreated)
                             {
                                 try
-                                { ///将缓存订单入库从缓存中删除，并更新限时购库存
+                                { ///将缓存预约单入库从缓存中删除，并更新限时购库存
                                     var orders = iorder.CreateOrder(all[i].Order);
                                     var orderIds = orders.Select(item => item.Id).ToArray();
                                     if (orderIds.Count() >= 1)
@@ -130,14 +130,14 @@ namespace Himall.Web.App_Code.Common
                                     all.Remove(all[i]);
                                     i--;
                                 }
-                                catch//异常订单直接丢弃
+                                catch//异常预约单直接丢弃
                                 {
                                     all.Remove(all[i]);
                                     i--;
                                     continue;
                                 }
                             }
-                            else if (all[i].State == OrderState.Processed || all[i].State == OrderState.Fail || all[i].State== OrderState.Exception)//失败或已处理订单
+                            else if (all[i].State == OrderState.Processed || all[i].State == OrderState.Fail || all[i].State== OrderState.Exception)//失败或已处理预约单
                             {
                                 all.Remove(all[i]);
                                 i--;
@@ -158,8 +158,8 @@ namespace Himall.Web.App_Code.Common
         /// <summary>
         /// 下单
         /// </summary>
-        /// <param name="id">返回缓存订单标识</param>
-        /// <param name="order">订单数据实体</param>
+        /// <param name="id">返回缓存预约单标识</param>
+        /// <param name="order">预约单数据实体</param>
         /// <returns>下单结果</returns>
         public static Himall.Web.App_Code.Common.SubmitOrderResult SubmitOrder(OrderCreateModel order, out string id, string payPwd = "")
         {
@@ -184,11 +184,11 @@ namespace Himall.Web.App_Code.Common
                     return SubmitOrderResult.SoldOut;
                 sellcount = sellcount + buy;
                 Cache.Insert(LIMIT_COUNT_TAG + skuid, sellcount);//更新库存
-                OrderIdentity myorder = new OrderIdentity();//给订单加标识
+                OrderIdentity myorder = new OrderIdentity();//给预约单加标识
                 myorder.Id = Guid.NewGuid().ToString();
                 myorder.Order = order;
                 myorder.State = OrderState.Untreated;
-                myorder.Message = "订单正在处理";
+                myorder.Message = "预约单正在处理";
                 id = myorder.Id;
                 AddOrder(myorder);
                 Cache.Send(LIMIT_LIST_TAG + skuid, myorder);//发消息后台处理
@@ -198,12 +198,12 @@ namespace Himall.Web.App_Code.Common
 
 
         /// <summary>
-        /// 获得订单状态
+        /// 获得预约单状态
         /// </summary>
-        /// <param name="id">缓存订单标识</param>
-        /// <param name="message">返回缓存订单相关消息</param>
-        /// <param name="orderids">处理成功时返回实际订单标识</param>
-        /// <returns>缓存订单状</returns>
+        /// <param name="id">缓存预约单标识</param>
+        /// <param name="message">返回缓存预约单相关消息</param>
+        /// <param name="orderids">处理成功时返回实际预约单标识</param>
+        /// <returns>缓存预约单状</returns>
         public static OrderState GetOrderState(string id, out string message, out long[] orderids)
         {
             message = "";
@@ -231,7 +231,7 @@ namespace Himall.Web.App_Code.Common
             }
             else
             {
-                message = "订单失踪,服务器异常";
+                message = "预约单失踪,服务器异常";
                 return OrderState.Exception;
             }
 
@@ -322,10 +322,10 @@ namespace Himall.Web.App_Code.Common
             Cache.Insert(LIMIT_TOTAL_TAG + skuid, stock, EndDate.Add(TimeSpan.FromDays(CACHE_OVER_DAY)));
             //if (!Cache.Exists(LIMIT_COUNT_TAG + skuid))//已售
             Cache.Insert(LIMIT_COUNT_TAG + skuid, 0, EndDate.Add(TimeSpan.FromDays(CACHE_OVER_DAY)));
-            //if (!Cache.Exists(LIMIT_LIST_TAG + skuid))//订单处理
+            //if (!Cache.Exists(LIMIT_LIST_TAG + skuid))//预约单处理
             Cache.RegisterSubscribe<OrderIdentity>(LIMIT_LIST_TAG + skuid, DisposeOrder);
         }
-        #region 订单队列操作
+        #region 预约单队列操作
         static void RemoveOrder(string id )
         {
             lock(_quenelocker)
@@ -382,7 +382,7 @@ namespace Himall.Web.App_Code.Common
         #endregion
 
         /// <summary>
-        /// 线程处理程序 消耗订单
+        /// 线程处理程序 消耗预约单
         /// </summary>
         static void ThreadMain()
         {
@@ -400,12 +400,12 @@ namespace Himall.Web.App_Code.Common
             for (int k = 0; k < all.Count; k++)
             {
                 OrderIdentity order = all[k];
-                #region 处理未处理订单
+                #region 处理未处理预约单
                 if (all[k].State == OrderState.Untreated)
                 {
                     try
                     {
-                        //数据库创建订单
+                        //数据库创建预约单
                         lock (_databaselocker)//锁数据库操作
                         {
 
@@ -417,7 +417,7 @@ namespace Himall.Web.App_Code.Common
                             UpdateOrder(order);
                         }
                     }
-                    catch (Exception e)//数据库创建订单失败
+                    catch (Exception e)//数据库创建预约单失败
                     {
                         lock (_locker[order.Order.SkuIds.ElementAt(0)])//锁库存
                         {
@@ -445,7 +445,7 @@ namespace Himall.Web.App_Code.Common
             {
                 try
                 {
-                    //数据库创建订单
+                    //数据库创建预约单
                     lock (_databaselocker)//锁数据库操作
                     {
                         var orders = iorder.CreateOrder(order.Order);
@@ -456,7 +456,7 @@ namespace Himall.Web.App_Code.Common
                         UpdateOrder(oi);
                     }
                 }
-                catch (Exception e)//数据库创建订单失败
+                catch (Exception e)//数据库创建预约单失败
                 {
                     lock (_locker[order.Order.SkuIds.ElementAt(0)])//锁库存
                     {
@@ -472,28 +472,28 @@ namespace Himall.Web.App_Code.Common
         }
 
         /// <summary>
-        /// 订单标识
+        /// 预约单标识
         /// </summary>
         class OrderIdentity
         {
             /// <summary>
-            /// 订单标识
+            /// 预约单标识
             /// </summary>
             public string Id { get; set; }
             /// <summary>
-            /// 订单数据
+            /// 预约单数据
             /// </summary>
             public OrderCreateModel Order { get; set; }
             /// <summary>
-            /// 订单状态
+            /// 预约单状态
             /// </summary>
             public OrderState State { get; set; }
             /// <summary>
-            /// 订单编号
+            /// 预约单编号
             /// </summary>
             public long[] OrderIds { get; set; }
             /// <summary>
-            /// 订单消息
+            /// 预约单消息
             /// </summary>
             public String Message { get; set; }
         }
@@ -548,7 +548,7 @@ namespace Himall.Web.App_Code.Common
     }
 
     /// <summary>
-    /// 订单处理状态
+    /// 预约单处理状态
     /// </summary>
     public enum OrderState
     {

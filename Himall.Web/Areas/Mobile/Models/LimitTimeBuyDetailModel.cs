@@ -16,7 +16,7 @@ namespace Himall.Web.Areas.Mobile.Models
         public int ProductNum { get; set; }
 
         /// <summary>
-        /// 商品是否已收藏
+        /// 诊疗项目是否已收藏
         /// </summary>
         public bool IsFavorite { get; set; }
         /// <summary>

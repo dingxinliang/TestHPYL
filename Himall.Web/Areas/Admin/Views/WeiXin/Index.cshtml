@@ -36,7 +36,7 @@
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("精选设置", "TopicSettings", "Weixin", new { area = "admin" }, new { target = "iframe", id = "1001" })</li>
                             <li>@Html.ActionLink("轮播图设置", "SlideImageSettings", "Weixin", new { area = "admin" }, new { target = "iframe", id = "1002" })</li>
-                            <li>@Html.ActionLink("热销商品设置", "ProductSettings", "Weixin", new { area = "admin" }, new { target = "iframe", id = "1003" })</li>
+                            <li>@Html.ActionLink("热销诊疗项目设置", "ProductSettings", "Weixin", new { area = "admin" }, new { target = "iframe", id = "1003" })</li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -86,7 +86,7 @@
                         <ul class="dropdown-menu">
                             <li id="_2001">
                                 <a href="@Url.Action("Management", "Product", new { area = "admin" })" target="iframe">
-                                    商品待审核
+                                    诊疗项目待审核
                                     <span id="ProductWaitForAuditing" class="cor-red"></span>
                                 </a>
                             </li>

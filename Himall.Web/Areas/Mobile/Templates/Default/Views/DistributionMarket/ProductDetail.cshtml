@@ -2,7 +2,7 @@
 @model Himall.Web.Areas.Mobile.Models.DistributionProductDetailShowModel
 @{
     Layout = "../Shared/_Base.cshtml";
-    ViewBag.Title = "商品详情";
+    ViewBag.Title = "诊疗项目详情";
 }
 <style>.container-z{ padding-bottom: 61px; }</style>
 <div class="container container-z">
@@ -34,12 +34,12 @@
                         <div class="shop-logo"><img src="@HimallIO.GetImagePath(Model.VShopLog)"></div>
                         <h4>@Model.Shop.Name</h4>
                         <div class="shop-hd-info">
-                            <span>推广商品<strong>@Model.ShopDistributionProductNum</strong></span>
+                            <span>推广诊疗项目<strong>@Model.ShopDistributionProductNum</strong></span>
                             <span>关注人数<strong>@(Model.FavoriteShopCount)</strong></span>
                         </div>
                     </div>
                     <ul class="shop-bd shop-bd-mb0 clearfix">
-                        <li>商品：<strong>@(((decimal)ViewBag.DetailModel.ProductAndDescription).ToString("F2"))</strong></li>
+                        <li>诊疗项目：<strong>@(((decimal)ViewBag.DetailModel.ProductAndDescription).ToString("F2"))</strong></li>
                         <li>发货：<strong>@(((decimal)ViewBag.DetailModel.SellerDeliverySpeed).ToString("F2"))</strong></li>
                         <li>服务：<strong>@(((decimal)ViewBag.DetailModel.SellerServiceAttitude).ToString("F2"))</strong></li>
                     </ul>
@@ -47,7 +47,7 @@
             </a>
         }
         <div class="item details-link">
-            <a href="#top" onclick="gotoProductImg()"><span>继续拖动，查看商品描述</span></a>
+            <a href="#top" onclick="gotoProductImg()"><span>继续拖动，查看诊疗项目描述</span></a>
         </div>
         <div class="goods-img"></div>
     </div>

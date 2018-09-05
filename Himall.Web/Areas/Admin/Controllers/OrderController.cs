@@ -44,7 +44,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             OrderInfo order = _iOrderService.GetOrder(id);
             if (order == null)
             {
-                throw new HimallException("错误的订单信息");
+                throw new HimallException("错误的预约单信息");
             }
             if (order.OrderType == OrderInfo.OrderTypes.FightGroup)
             {
@@ -141,12 +141,12 @@ namespace Himall.Web.Areas.Admin.Controllers
         {
             var orders = OrderApplication.GetFullOrdersNoPage(query);
 
-            return ExcelView("ExportOrderinfo", "平台订单信息", orders);
+            return ExcelView("ExportOrderinfo", "平台预约单信息", orders);
         }
 
 
         /// <summary>
-        /// 获取订单来源图标地址
+        /// 获取预约单来源图标地址
         /// </summary>
         /// <param name="platform"></param>
         /// <returns></returns>
@@ -176,7 +176,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 取消订单
+        /// 取消预约单
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="payRemark">收款备注</param>

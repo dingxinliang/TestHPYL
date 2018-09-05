@@ -37,7 +37,7 @@ namespace Himall.Model
         Coupon = 0 , 
 
         /// <summary>
-        /// 商家红包
+        /// 诊所红包
         /// </summary>
         ShopBonus = 1
     }

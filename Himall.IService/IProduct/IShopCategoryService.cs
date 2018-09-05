@@ -39,9 +39,9 @@ namespace Himall.IServices
         /// <returns></returns>
         ShopCategoryInfo GetCategory(long id);
         /// <summary>
-        /// 通过商品编号取得店铺所属分类
+        /// 通过诊疗项目编号取得店铺所属分类
         /// </summary>
-        /// <param name="id">商品编号</param>
+        /// <param name="id">诊疗项目编号</param>
         /// <returns></returns>
         ShopCategoryInfo GetCategoryByProductId(long id);
 
@@ -75,7 +75,7 @@ namespace Himall.IServices
         void DeleteCategory(long id, long shopId);
 
         /// <summary>
-        /// 根据父级Id获取商品分类
+        /// 根据父级Id获取诊疗项目分类
         /// </summary>
         /// <param name="id"></param>
         /// <param name="shopId"></param>

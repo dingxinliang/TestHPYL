@@ -11,7 +11,7 @@ namespace Himall.Model
 
 
         /// <summary>
-        /// 订单详情ID
+        /// 预约单详情ID
         /// </summary>
         public new long Id { set; get; }
 
@@ -22,17 +22,17 @@ namespace Himall.Model
         public long CommentId { set; get; }
 
         /// <summary>
-        /// 商品ID
+        /// 诊疗项目ID
         /// </summary>
         public long ProductId { set; get; }
 
         /// <summary>
-        /// 商品名称
+        /// 诊疗项目名称
         /// </summary>
         public string ProductName { set; get; }
 
         /// <summary>
-        /// 商品缩略图
+        /// 诊疗项目缩略图
         /// </summary>
         public string ThumbnailsUrl { set; get; }
 
@@ -90,7 +90,7 @@ namespace Himall.Model
         /// </summary>
         public int EvaluationRank { set; get; }
         /// <summary>
-        /// 订单编号
+        /// 预约单编号
         /// </summary>
         public long OrderId { get; set; }
 
@@ -102,7 +102,7 @@ namespace Himall.Model
         public List<ProductCommentsImagesInfo> CommentImages { set; get; }
 
         //日龙添加
-        //7.16号， 显示出商品的规格
+        //7.16号， 显示出诊疗项目的规格
         /// <summary>
         /// 颜色
         /// </summary>

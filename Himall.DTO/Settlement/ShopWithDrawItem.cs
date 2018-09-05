@@ -26,12 +26,12 @@ namespace Himall.DTO
         public string ApplyTime { set; get; }
 
         /// <summary>
-        /// 提现商家用户ID
+        /// 提现诊所用户ID
         /// </summary>
         public long SellerId { set; get; }
 
         /// <summary>
-        /// 提现商家用户名
+        /// 提现诊所用户名
         /// </summary>
         public string SellerName { set; get; }
 
@@ -81,7 +81,7 @@ namespace Himall.DTO
         public long AccountNo { set; get; }
 
         /// <summary>
-        /// 提现商家备注
+        /// 提现诊所备注
         /// </summary>
         public string ShopRemark { set; get; }
 

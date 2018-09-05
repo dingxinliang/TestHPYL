@@ -20,7 +20,7 @@ namespace Himall.IServices.QueryModel
             /// </summary>
             SalesNumber=1,
             /// <summary>
-            /// 按商品数
+            /// 按诊疗项目数
             /// </summary>
             ProductNum = 2,
             /// <summary>

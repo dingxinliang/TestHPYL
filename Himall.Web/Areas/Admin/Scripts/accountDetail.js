@@ -107,8 +107,8 @@ function searchOrder() {
         columns:
         [[
             { field: "OrderTypeDescription", title: "类型", width: 120, align: "center" },
-            { field: "OrderId", title: "订单编号", width: 120, align: "center" },
-            { field: "ProductActualPaidAmount", title: "商品实付金额", width: 80, align: "center" },
+            { field: "OrderId", title: "预约单编号", width: 120, align: "center" },
+            { field: "ProductActualPaidAmount", title: "诊疗项目实付金额", width: 80, align: "center" },
             { field: "FreightAmount", title: "运费", width: 80, align: "center" },
             { field: "CommissionAmount", title: "佣金", width: 80, align: "center" },
             { field: "OrderDate", title: "下单日期", width: 180, align: "center" },
@@ -136,8 +136,8 @@ function searchBrokerage()
         columns:
         [[
             { field: "TypeName", title: "类型", width: 120, align: "center" },
-            { field: "OrderId", title: "订单编号", width: 120, align: "center" },
-            { field: "ProductName", title: "商品名称", width: 80, align: "center" },
+            { field: "OrderId", title: "预约单编号", width: 120, align: "center" },
+            { field: "ProductName", title: "诊疗项目名称", width: 80, align: "center" },
             { field: "RealTotal", title: "实付金额", width: 80, align: "center" },
             { field: "Brokerage", title: "分销佣金", width: 80, align: "center" },
             { field: "UserName", title: "销售员", width: 80, align: "center" },
@@ -168,8 +168,8 @@ function searchReturnOrder() {
         columns:
         [[
             { field: "OrderTypeDescription", title: "类型", width: 120, align: "center" },
-            { field: "OrderId", title: "订单编号", width: 120, align: "center" },
-            { field: "ProductActualPaidAmount", title: "商品实付金额", width: 80, align: "center" },
+            { field: "OrderId", title: "预约单编号", width: 120, align: "center" },
+            { field: "ProductActualPaidAmount", title: "诊疗项目实付金额", width: 80, align: "center" },
             { field: "FreightAmount", title: "运费", width: 80, align: "center" },
             { field: "RefundTotalAmount", title: "退款金额", width: 80, align: "center" },
             { field: "RefundCommisAmount", title: "退还佣金", width: 80, align: "center" },

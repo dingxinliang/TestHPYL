@@ -48,9 +48,9 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 设置小程序商品
+        /// 设置小程序诊疗项目
         /// </summary>
-        /// <param name="productIds">商品ID，用','号隔开</param>
+        /// <param name="productIds">诊疗项目ID，用','号隔开</param>
         /// <returns></returns>
         [HttpPost]
         public JsonResult AddWXSmallProducts(string productIds)
@@ -60,7 +60,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 查询已绑定的商品信息
+        /// 查询已绑定的诊疗项目信息
         /// </summary>
         /// <param name="page">分页页码</param>
         /// <param name="rows">每页行数</param>
@@ -87,7 +87,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 删除对应商品
+        /// 删除对应诊疗项目
         /// </summary>
         /// <param name="Id">设置ID</param>
         /// <returns></returns>

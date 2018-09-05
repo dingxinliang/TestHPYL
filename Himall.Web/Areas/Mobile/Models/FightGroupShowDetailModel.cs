@@ -18,7 +18,7 @@ namespace Himall.Web.Areas.Mobile.Models
         /// </summary>
         public DateTime EndBuildGroupTime { get; set; }
         /// <summary>
-        /// 当前用户的最低商品价
+        /// 当前用户的最低诊疗项目价
         /// </summary>
         public decimal ProductMiniPriceByUser { get; set; }
     }

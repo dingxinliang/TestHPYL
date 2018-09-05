@@ -42,7 +42,7 @@ namespace Himall.Web.Areas.Web.Controllers
             ViewBag.isLogin = result.isLogin ? "true" : "false";
             //用户积分
             result.MyMemberIntegral = result.isLogin ? _iMemberIntegralService.GetMemberIntegral(CurrentUser.Id).AvailableIntegrals : 0;
-            //关注商品
+            //关注诊疗项目
             var concern = result.isLogin ? _iProductService.GetUserAllConcern(CurrentUser.Id) : new List<FavoriteInfo>();
             result.MyConcernsProducts = concern.Take(10).ToList();
             //优惠卷
@@ -57,7 +57,7 @@ namespace Himall.Web.Areas.Web.Controllers
             result.MyShopBonus = shopBonus;
             result.MyCouponCount += result.MyShopBonus.Count();
 
-            //浏览的商品
+            //浏览的诊疗项目
             var browsingPro = result.isLogin ? BrowseHistrory.GetBrowsingProducts(10, CurrentUser == null ? 0 : CurrentUser.Id) : new List<ProductBrowsedHistoryModel>();
             result.MyBrowsingProducts = browsingPro;
             return View(result);

@@ -28,7 +28,7 @@ namespace Himall.API.Model
         public Nullable<int> TotalIntegral { get; set; }
         public string CloseReason { get; set; }
         /// <summary>
-        /// 显示订单状态
+        /// 显示预约单状态
         /// </summary>
         public string ShowOrderStatus { get; set; }
         /// <summary>

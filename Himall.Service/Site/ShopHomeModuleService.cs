@@ -14,7 +14,7 @@ namespace Himall.Service
         public void AddShopProductModule( ShopHomeModuleInfo shopProductModuleInfo )
         {
             if( string.IsNullOrWhiteSpace( shopProductModuleInfo.Name ) )
-                throw new InvalidPropertyException( "商品模块名称不能为空" );
+                throw new InvalidPropertyException( "诊疗项目模块名称不能为空" );
 
             Context.ShopHomeModuleInfo.Add( shopProductModuleInfo );
             Context.SaveChanges();
@@ -24,7 +24,7 @@ namespace Himall.Service
         {
             var shopProductModule = Context.ShopHomeModuleInfo.FirstOrDefault( item => item.Id == id && item.ShopId == shopId );
             if( shopProductModule == null )
-                throw new HimallException( "在本店铺中未找到指定商品模块" );
+                throw new HimallException( "在本店铺中未找到指定诊疗项目模块" );
 
             shopProductModule.Name = name;
             Context.SaveChanges();
@@ -34,14 +34,14 @@ namespace Himall.Service
         {
             var shopProductModule = Context.ShopHomeModuleInfo.FirstOrDefault( item => item.Id == id && item.ShopId == shopId );
             if( shopProductModule == null )
-                throw new HimallException( "在本店铺中未找到指定商品模块" );
+                throw new HimallException( "在本店铺中未找到指定诊疗项目模块" );
 
             var products = shopProductModule.ShopHomeModuleProductInfo.ToArray();
 
             //找出待删除的id
             var needToDeleteIds = products.Where( item => !productIds.Contains( item.ProductId ) ).Select( item => item.Id );
 
-            //找出待添加的商品id
+            //找出待添加的诊疗项目id
             var produtIds = products.Select( item => item.ProductId );
             var needToAddProductIds = productIds.Where( item => !produtIds.Contains( item ) );
 

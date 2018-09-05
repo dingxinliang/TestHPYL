@@ -151,7 +151,7 @@
     };
 }(jQuery));
 /*
-$.fn.login({用户勾选的商品数据},function(url){
+$.fn.login({用户勾选的诊疗项目数据},function(url){
 	//跳转方法函数
 	var data=this;
 	if(data.state){

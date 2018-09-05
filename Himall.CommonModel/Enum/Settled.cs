@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Himall.CommonModel
 {
     /// <summary>
-    /// 商家类型
+    /// 诊所类型
     /// </summary>
     public enum BusinessType : int
     {

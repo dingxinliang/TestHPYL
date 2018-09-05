@@ -86,7 +86,7 @@ function chooseTopic() {
         dataWidth: 10
     });
 
-    //商品表格
+    //诊疗项目表格
     $("#list").hiMallDatagrid({
         url: '/admin/MobileTopic/list',
         nowrap: false,

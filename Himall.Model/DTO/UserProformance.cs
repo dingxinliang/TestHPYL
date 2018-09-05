@@ -21,12 +21,12 @@ namespace Himall.Model
       public long UserId { set; get; }
 
       /// <summary>
-      /// 商品名称
+      /// 诊疗项目名称
       /// </summary>
       public string ProductName { set; get; }
 
       /// <summary>
-      /// 商品实付金额
+      /// 诊疗项目实付金额
       /// </summary>
       public decimal RealTotalPrice { set; get; }
 
@@ -45,7 +45,7 @@ namespace Himall.Model
         /// </summary>
       public DateTime OrderTime { set; get; }
 
-        //订单完成时间
+        //预约单完成时间
       public DateTime? FinshedTime { set; get; }
 
 

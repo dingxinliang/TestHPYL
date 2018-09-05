@@ -9,22 +9,22 @@ using System.Web.Script.Serialization;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 待结算订单
+    /// 待结算预约单
     /// </summary>
     public class PendingSettlementOrders
     {
         /// <summary>
-        /// 订单ID
+        /// 预约单ID
         /// </summary>
         public long OrderId { set; get; }
 
         /// <summary>
-        /// 订单号字符串
+        /// 预约单号字符串
         /// </summary>
         public string strOrderId { get { return OrderId.ToString(); } }
 
         /// <summary>
-        /// 订单状态(目前只针对已完成订单)
+        /// 预约单状态(目前只针对已完成预约单)
         /// </summary>
         public string Status
         {
@@ -44,7 +44,7 @@ namespace Himall.DTO
         public string PaymentTypeName { set; get; }
 
         /// <summary>
-        /// 订单金额
+        /// 预约单金额
         /// </summary>
         public decimal OrderAmount { get; set; }
 
@@ -81,12 +81,12 @@ namespace Himall.DTO
         public decimal RefundAmount { set; get; }
 
         /// <summary>
-        /// 商家结算金额
+        /// 诊所结算金额
         /// </summary>
         public decimal SettlementAmount { set; get; }
 
         /// <summary>
-        /// 订单完成时间
+        /// 预约单完成时间
         /// </summary>
         /// 
         [ScriptIgnore]

@@ -15,7 +15,7 @@ namespace Himall.Model
         [NotMapped]
         public List<AdminPrivilege> AdminPrivileges { set; get; }
 
-        //商家管理员权限列表
+        //诊所管理员权限列表
         [NotMapped]
         public List<SellerPrivilege> SellerPrivileges { set; get; }
 

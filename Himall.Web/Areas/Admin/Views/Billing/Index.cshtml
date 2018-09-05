@@ -17,11 +17,11 @@
             </li>
             <li class="wait-clearing">
                 <h5>待结算</h5>
-                <p><i></i><span>@Model.PlatAccout.PendingSettlement</span><a href="@Url.Action("PendingSettlementList")">待结算订单</a></p>
+                <p><i></i><span>@Model.PlatAccout.PendingSettlement</span><a href="@Url.Action("PendingSettlementList")">待结算预约单</a></p>
             </li>
             <li class="po-clear">
                 <h5>已结算</h5>
-                <p><i></i><span>@Model.PlatAccout.Settled</span><a href="@Url.Action("SettlementList")">已结算订单</a></p>
+                <p><i></i><span>@Model.PlatAccout.Settled</span><a href="@Url.Action("SettlementList")">已结算预约单</a></p>
             </li>
         </ul>
         <div class="overview-detail clearfix">
@@ -48,7 +48,7 @@
                 <ul>
                     <li><p><i class="i01"></i><span>@Model.YesterDaySaleAmount</span><br /><em>昨日交易额</em></p><b>|</b></li>
                     <li><p><i class="i02"></i><span>@Model.YesterDayOrders</span><br /><em>昨日下单数</em></p><b>|</b></li>
-                    <li><p><i class="i03"></i><span>@Model.YesterDayPayOrders</span><br /><em>昨日付款订单数</em></p></li>
+                    <li><p><i class="i03"></i><span>@Model.YesterDayPayOrders</span><br /><em>昨日付款预约单数</em></p></li>
                 </ul>
             </div>
         </div>

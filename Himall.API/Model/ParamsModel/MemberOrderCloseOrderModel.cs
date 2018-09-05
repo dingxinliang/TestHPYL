@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.API.Model.ParamsModel
 {
     /// <summary>
-    /// 取消订单
+    /// 取消预约单
     /// </summary>
     public class MemberOrderCloseOrderModel
     {

@@ -16,7 +16,7 @@
     </div>
     <script type="text/javascript">
         $(function () {
-            //订单表格
+            //预约单表格
             $("#list").hiMallDatagrid({
                 url: '../GetReceivers/@ViewBag.Id',
                 nowrap: false,
@@ -45,7 +45,7 @@
                     { field: "Recever", title: "领取人", width: 90, align: "center" },
                     { field: "UsedTime", title: "使用时间", width: 90, align: "center" },
                      {
-                         field: "OrderId", title: "订单ID", width: 90, align: "center",
+                         field: "OrderId", title: "预约单ID", width: 90, align: "center",
                          formatter: function (value, row, index) {
                              var html = "";
                              if(row.OrderId!=null)

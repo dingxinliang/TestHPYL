@@ -14,7 +14,7 @@ $(function () {
     returnFavoriteHref = "/" + areaName + "/Product/Detail/" + pid;
     //returnFavoriteHref = encodeURIComponent(returnFavoriteHref);
 
-    // 获取商品价格
+    // 获取诊疗项目价格
     GetNeedRefreshProductInfo();
     ShowPromotion();
     LoadActives();
@@ -40,12 +40,12 @@ $(function () {
             vshopid = -1;
         }
         if (vshopid < 1) {
-            $.dialog.errorTips("商家暂未开通微店！");
+            $.dialog.errorTips("诊所暂未开通微店！");
             return false;
         }
     });
 
-    //获取推荐商品
+    //获取推荐诊疗项目
     $.get('/product/GetHotProduct?productId={0}&categoryId={1}'.format(pid, categoryId), function (data) {
         if (data && data.length > 0) {
             var relationProducts = $('#relationProducts');
@@ -55,14 +55,14 @@ $(function () {
                 var html = '';
                 for (var i = 0; i < data.length; i++) {
                     var product = data[i];
-                    if (product.id != pid) {//不显示当前商品
+                    if (product.id != pid) {//不显示当前诊疗项目
                         html += template.formatProperty(product);
                     }
                 }
 
                 relationProducts.children(':not(template)').remove();
                 relationProducts.append(html);
-                if (html.length > 0) {//有推荐商品，则显示
+                if (html.length > 0) {//有推荐诊疗项目，则显示
                     relationProducts.parent().show();
                 }
             }
@@ -486,7 +486,7 @@ function easybuy() {
             }, shopid);
         }
     } else {
-        $.dialog.errorTips('请选择商品规格');
+        $.dialog.errorTips('请选择诊疗项目规格');
     }
 }
 
@@ -524,7 +524,7 @@ function addcart() {
         }
 
     } else {
-        $.dialog.errorTips('请选择商品规格');
+        $.dialog.errorTips('请选择诊疗项目规格');
 
     }
 }
@@ -610,7 +610,7 @@ function escClose(obj, claName) {
 escClose('.modul-popup', 'is-visible');
 escClose('#J_pbuy_cover', 'hmui-cover-show');
 
-// 商品无属性隐藏已选择
+// 诊疗项目无属性隐藏已选择
 if ($('#choose').length == 0) {
     $('#choose-result').css('display', 'none');
 }
@@ -690,8 +690,8 @@ $(window).scroll(function () {
 });
 
 function loadProductImg() {
-    //在商品详情子页面里已有处理，重复加载了
-    //$(".goods-img").append('<h4><a name="top">商品图文详情</a></h4>' + $("#gid_desc").val());
+    //在诊疗项目详情子页面里已有处理，重复加载了
+    //$(".goods-img").append('<h4><a name="top">诊疗项目图文详情</a></h4>' + $("#gid_desc").val());
 }
 
 function notOpenVShop() {

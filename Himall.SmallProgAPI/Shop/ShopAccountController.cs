@@ -47,13 +47,13 @@ namespace Himall.SmallProgAPI
 
                 if (manager.ShopId == 0)
                 {
-                    return Json(new { success = false, msg = "不存在此商家" });
+                    return Json(new { success = false, msg = "不存在此诊所" });
                 }
 
                 var shopinfo = ServiceProvider.Instance<IShopService>.Create.GetShop(manager.ShopId);
                 if (shopinfo == null)
                 {
-                    return Json(new { success = false, msg = "不存在此商家" });
+                    return Json(new { success = false, msg = "不存在此诊所" });
                 }
 
                 ClearErrorTimes(username);//清除输入错误记录次数
@@ -155,10 +155,10 @@ namespace Himall.SmallProgAPI
                     shop.EndDate = DateTime.Now.AddYears(1);
                     shop.GradeId = 1;//写入店铺默认套餐
 
-                    //更新商家信息
+                    //更新诊所信息
                     ServiceProvider.Instance<IShopService>.Create.UpdateShop(shop);
 
-                    //添加商家结算账户
+                    //添加诊所结算账户
                     ShopAccountInfo shopAccountInfo = new ShopAccountInfo()
                     {
                         ShopId = shop.Id,
@@ -203,12 +203,12 @@ namespace Himall.SmallProgAPI
                     //memberInfo.Password = encryptedWithSaltPassword;
                     //iMenberService.UpdateMemberInfo(memberInfo);
 
-                    ////修改商家账号信息
+                    ////修改诊所账号信息
                     ManagerInfo manager = iManagerService.GetSellerManager(memberInfo.Id);
                     //manager.Password = model.password;
                     //iManagerService.ChangeSellerManager(manager);
 
-                    //修改商家信息
+                    //修改诊所信息
                     var shop = iShopService.GetShop(manager.ShopId);
                     shop.ShopName = model.shopName;
                     shop.Industry = model.industry;
@@ -267,7 +267,7 @@ namespace Himall.SmallProgAPI
                     memberInfo.Password = encryptedWithSaltPassword;
                     iMenberService.UpdateMemberInfo(memberInfo);
 
-                    //修改商家账号信息
+                    //修改诊所账号信息
                     ManagerInfo manager = iManagerService.GetSellerManager(memberInfo.Id);
                     manager.Password = model.password;
                     iManagerService.ChangeSellerManager(manager);

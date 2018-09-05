@@ -402,7 +402,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                     BaseController.Result result = new BaseController.Result
                     {
                         success = false,
-                        msg = "无法定位到商家！"
+                        msg = "无法定位到诊所！"
                     };
                     return base.Json(result, JsonRequestBehavior.AllowGet);
                 }
@@ -508,7 +508,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             };
             if (query.ShopId <= 0L)
             {
-                return base.Json(new { Success = false, Message = "无法定位到商家！" }, JsonRequestBehavior.AllowGet);
+                return base.Json(new { Success = false, Message = "无法定位到诊所！" }, JsonRequestBehavior.AllowGet);
             }
             if (TypeHelper.ObjectToInt(shopCategoryId, 0) > 0)
             {
@@ -852,7 +852,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                     BaseController.Result result = new BaseController.Result
                     {
                         success = false,
-                        msg = "无法定位到商家！"
+                        msg = "无法定位到诊所！"
                     };
                     return base.Json(result, JsonRequestBehavior.AllowGet);
                 }
@@ -1012,7 +1012,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                     BaseController.Result result = new BaseController.Result
                     {
                         success = false,
-                        msg = "无法定位到商家！"
+                        msg = "无法定位到诊所！"
                     };
                     return base.Json(result, JsonRequestBehavior.AllowGet);
                 }
@@ -1118,7 +1118,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                     BaseController.Result result = new BaseController.Result
                     {
                         success = false,
-                        msg = "无法定位到商家！"
+                        msg = "无法定位到诊所！"
                     };
                     return base.Json(result, JsonRequestBehavior.AllowGet);
                 }

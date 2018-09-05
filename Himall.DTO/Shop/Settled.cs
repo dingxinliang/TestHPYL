@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 商家入驻设置
+    /// 诊所入驻设置
     /// </summary>
     public class Settled
     {
@@ -19,13 +19,13 @@ namespace Himall.DTO
 
         private Himall.CommonModel.BusinessType _BusinessType = Himall.CommonModel.BusinessType.Enterprise;
         /// <summary>
-        /// 商家类型
+        /// 诊所类型
         /// </summary>
         public Himall.CommonModel.BusinessType BusinessType { get { return _BusinessType; } set { _BusinessType = value; } }
 
         private Himall.CommonModel.SettleAccountsType _SettlementAccountType = Himall.CommonModel.SettleAccountsType.SettleBank;
         /// <summary>
-        /// 商家结算类型
+        /// 诊所结算类型
         /// </summary>
         public Himall.CommonModel.SettleAccountsType SettlementAccountType { get { return _SettlementAccountType; } set { _SettlementAccountType = value; } }
 

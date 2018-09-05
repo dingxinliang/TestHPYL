@@ -87,8 +87,8 @@ namespace Himall.Service
 
         #region 满减活动查询
         /// <summary>
-        /// 商品是否可以参加满减活动
-        /// <para>不判断商品的销售状态</para>
+        /// 诊疗项目是否可以参加满减活动
+        /// <para>不判断诊疗项目的销售状态</para>
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="activeId">添加活动使用0</param>
@@ -105,8 +105,8 @@ namespace Himall.Service
             return actProducts.Any();
         }
         /// <summary>
-        /// 过滤活动商品编号
-        /// <para>返回可以参加活动的商品</para>
+        /// 过滤活动诊疗项目编号
+        /// <para>返回可以参加活动的诊疗项目</para>
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="activeId">添加活动使用0</param>
@@ -126,12 +126,12 @@ namespace Himall.Service
             List<long> result = new List<long>();
             if (!actProductIds.Any(d => d == -1))
             {
-                //过滤活动中的商品
+                //过滤活动中的诊疗项目
                 //actProductIds = Context.ProductInfo.Where(d => d.AuditStatus == ProductInfo.ProductAuditStatus.Audited
                 //&& d.SaleStatus == ProductInfo.ProductSaleStatus.OnSale
                 // && d.IsDeleted == false
                 //&& actProductIds.Contains(d.Id)).Select(d => d.Id).ToList();
-                //过滤非销售中的商品
+                //过滤非销售中的诊疗项目
                 var okproductIds = Context.ProductInfo.Where(d => d.AuditStatus == ProductInfo.ProductAuditStatus.Audited
                   && d.SaleStatus == ProductInfo.ProductSaleStatus.OnSale
                   && d.IsDeleted == false
@@ -142,7 +142,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 根据商品ID取正在参与且进行中的活动信息
+        /// 根据诊疗项目ID取正在参与且进行中的活动信息
         /// </summary>
         /// <param name="proId"></param>
         /// <returns></returns>
@@ -168,7 +168,7 @@ namespace Himall.Service
             return goingActives;
         }
         /// <summary>
-        /// 根据正在进行的活动ID和商品ID获取满额减活动分组商品
+        /// 根据正在进行的活动ID和诊疗项目ID获取满额减活动分组诊疗项目
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="activeIds"></param>
@@ -181,7 +181,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取某个店铺的一批商品正在进行的满额减活动
+        /// 获取某个店铺的一批诊疗项目正在进行的满额减活动
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="shopId"></param>
@@ -229,7 +229,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 获取满减商品
+        /// 获取满减诊疗项目
         /// </summary>
         /// <param name="activeId"></param>
         /// <returns></returns>
@@ -330,7 +330,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 获取活动商品数量聚合
+        /// 获取活动诊疗项目数量聚合
         /// </summary>
         /// <param name="activeId"></param>
         /// <returns></returns>
@@ -352,7 +352,7 @@ namespace Himall.Service
 
         #region 其他功能
         /// <summary>
-        /// 获取可以参与满减活动的商品集
+        /// 获取可以参与满减活动的诊疗项目集
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="productName"></param>
@@ -436,7 +436,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 获取不在销售中的商品
+        /// 获取不在销售中的诊疗项目
         /// </summary>
         /// <param name="productIds"></param>
         /// <returns></returns>

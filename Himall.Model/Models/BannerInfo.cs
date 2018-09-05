@@ -16,15 +16,15 @@ namespace Himall.Model
             Link=0,
 
             /// <summary>
-            /// 全部商品
+            /// 全部诊疗项目
             /// </summary>
-            [Description("全部商品")]
+            [Description("全部诊疗项目")]
             AllProducts=1,
 
             /// <summary>
-            /// 商品分类
+            /// 诊疗项目分类
             /// </summary>
-            [Description("商品分类")]
+            [Description("诊疗项目分类")]
             Category=2,
 
             /// <summary>

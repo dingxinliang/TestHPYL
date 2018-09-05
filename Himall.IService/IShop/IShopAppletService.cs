@@ -12,7 +12,7 @@ namespace Himall.IServices
     public interface IShopAppletService : IService
     {
         /// <summary>
-        /// 获取附近商家列表
+        /// 获取附近诊所列表
         /// </summary>
         /// <param name="Lng"></param>
         /// <param name="Lat"></param>

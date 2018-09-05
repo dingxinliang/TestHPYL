@@ -245,7 +245,7 @@ function GetPayment(oids,backUrl) {
     }
 
     if (oids.length < 1) {
-        $.dialog.tips('错误的订单编号');
+        $.dialog.tips('错误的预约单编号');
         return false;
     }
     var loading = showLoading();

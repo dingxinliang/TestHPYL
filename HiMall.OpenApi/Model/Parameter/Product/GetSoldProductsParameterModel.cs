@@ -9,7 +9,7 @@ using Hishop.Open.Api;
 namespace Himall.OpenApi.Model.Parameter
 {
     /// <summary>
-    /// 获取商品详情传入参数
+    /// 获取诊疗项目详情传入参数
     /// </summary>
     public class GetSoldProductsParameterModel : BasePageParameterModel
     {
@@ -22,7 +22,7 @@ namespace Himall.OpenApi.Model.Parameter
         /// </summary>
         public DateTime? end_modified { get; set; }
         /// <summary>
-        /// 商品状态
+        /// 诊疗项目状态
         /// <para>默认查询所有状态的数据，除了默认值外每次只能查询一种状态</para>
         /// </summary>
         public string approve_status { get; set; }
@@ -32,7 +32,7 @@ namespace Himall.OpenApi.Model.Parameter
         public string q { get; set; }
         /// <summary>
         /// 排序方式，格式为column:asc/desc
-        /// <para>column可选值:display_sequence（默认顺序） create_time(创建时间),sold_quantity（商品销量）;默认商品排序编号升序(diplay_sequence值越小在前)。</para>
+        /// <para>column可选值:display_sequence（默认顺序） create_time(创建时间),sold_quantity（诊疗项目销量）;默认诊疗项目排序编号升序(diplay_sequence值越小在前)。</para>
         /// </summary>
         public string order_by { get; set; }
 

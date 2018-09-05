@@ -771,7 +771,7 @@ function bindSubmit() {
             $('input:radio[name="sex"]').is(":checked")
 
             var invoiceType = $("input[name='isInvoce']:checked").val();
-            if ($("input[name='isInvoce']").parents(".step").is(":hidden")) {//商家不提供发票，则默认不需要发票
+            if ($("input[name='isInvoce']").parents(".step").is(":hidden")) {//诊所不提供发票，则默认不需要发票
                 invoiceType = "0";
             }
             //if ($("input[name='invoiceType']").is(":checked"))
@@ -849,10 +849,10 @@ function bindSubmit() {
 
 					        location.replace('/UserCenter?url=/UserOrder&tar=UserOrder');
 					    }
-					    else if (result.success) {//订单提交成功
+					    else if (result.success) {//预约单提交成功
 					        if (!result.redirect) {
 					            loading.close();
-					            $.dialog.succeedTips("订单支付成功！", function () {
+					            $.dialog.succeedTips("预约单支付成功！", function () {
 					                location.replace('/UserOrder');
 					            });
 					            return;
@@ -865,7 +865,7 @@ function bindSubmit() {
 					        else {
 					            ///请求次数
 					            var requestcount = 0;
-					            ///检查订单状态并做处理
+					            ///检查预约单状态并做处理
 					            function checkOrderState() {
 					                $.getJSON('/OrderState/Check', { Id: result.Id }, function (r) {
 					                    if (r.state == "Processed") {
@@ -876,14 +876,14 @@ function bindSubmit() {
 					                        if (requestcount <= 10)
 					                            setTimeout(checkOrderState, 0);
 					                        else {
-					                            $.dialog.tips("服务器繁忙,请稍后去订单中心查询订单");
+					                            $.dialog.tips("服务器繁忙,请稍后去预约单中心查询预约单");
 					                            loading.close();
 					                            isSubmitLoading = false;
 					                        }
 
 					                    }
 					                    else {
-					                        $.dialog.tips('订单提交失败,错误原因:' + r.message);
+					                        $.dialog.tips('预约单提交失败,错误原因:' + r.message);
 					                        loading.close();
 					                        isSubmitLoading = false;
 					                    }
@@ -989,12 +989,12 @@ function ShowPaidPrice() {
     var d_integral = $("#integral");
     var d_capital = $("#capital");
     //价格初始
-    var orderTotalPrice = parseFloatOrZero($("#warePriceId").attr("v"));  //订单总价
+    var orderTotalPrice = parseFloatOrZero($("#warePriceId").attr("v"));  //预约单总价
     var orderPaidPrice = 0;
-    var orderTotalDisPrice = 0;       //订单优惠总价
-    var orderTotalFreight = 0;        //订单运费总价
-    var orderTotalIntegral = 0;       //订单积分抵扣
-    //var orderTotalCapital = 0;        //订单使用预付款
+    var orderTotalDisPrice = 0;       //预约单优惠总价
+    var orderTotalFreight = 0;        //预约单运费总价
+    var orderTotalIntegral = 0;       //预约单积分抵扣
+    //var orderTotalCapital = 0;        //预约单使用预付款
     //运费总价
     $(".shopf").each(function (l, k) {
         var _t = $(k);
@@ -1090,7 +1090,7 @@ function ShowPaidPrice() {
     }
 }
 
-//计算订单结果
+//计算预约单结果
 //By DZY[150707]
 function ComputeOrder(shopid) {
     var d_box = $("#orderdata_" + shopid);

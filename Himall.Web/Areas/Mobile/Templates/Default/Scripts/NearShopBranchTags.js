@@ -149,11 +149,11 @@ function loadStoresData() {
                         $('#CurrentAddress').click(function () {
                             location.href = addUrl;
                         });
-                        //商品、销量
+                        //诊疗项目、销量
                         LoadProductAndSaleCount(branchIds);
                         //绑定门店跳转事件
                         bindbranchNameClick();
-                        //设置商品标签高度，活动点击事件
+                        //设置诊疗项目标签高度，活动点击事件
                         resetDom();
                         if (total == data.Models.length)
                             lodeEnd = true;
@@ -177,7 +177,7 @@ function loadStoresData() {
         }
     });
 }
-//获取地址参数，当从详细页过来的时候，需要商家IDshopid
+//获取地址参数，当从详细页过来的时候，需要诊所IDshopid
 function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
     var r = window.location.search.substr(1).match(reg);
@@ -247,7 +247,7 @@ function getActiveHtml(actives) {
     arr.push('</ul>');
     return arr.join("");
 }
-//加载门店商品及销量
+//加载门店诊疗项目及销量
 function LoadProductAndSaleCount(branchIds) {
     var queryData = {
         ids: branchIds.join(','), tagsId: tagsId, url: tagsSearchProductUrl

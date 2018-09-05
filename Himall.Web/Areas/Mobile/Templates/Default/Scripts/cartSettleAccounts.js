@@ -34,7 +34,7 @@ function loadCartInfo() {
             $(".footer-cart").hide();
             $('.list-group.cart').hide();
             if (cart.shopBranchCart.length == 0) {
-                $('.cart-inner').html('<div class="empty-show"><h4>购物车空空如也</h4><p>去挑几件中意的商品吧</p></div>').addClass('cart-empty');
+                $('.cart-inner').html('<div class="empty-show"><h4>购物车空空如也</h4><p>去挑几件中意的诊疗项目吧</p></div>').addClass('cart-empty');
             }
         } else {
             $.each(data, function (i, e) {
@@ -107,7 +107,7 @@ function loadCartInfo() {
                     sumnum += item.count;
                 }
             }
-            $.each(e, function (j, item) {//商品
+            $.each(e, function (j, item) {//诊疗项目
                 if (j < 4) {
                     sHtml += "<li><div class=\"pic\"><a href='/" + areaName + "/branchproduct/detail/" + item.id + "?shopBranchId=" + item.shopBranchId + "&opencart=true'><img style='height:56px;' src=\"" + item.imgUrl + "\"/></a>" + (item.status == "0" ? "" : item.status == "1" ? "<span class='invalid'>已下架</span>" : "<span class='invalid'>已售罄</span>") + "</div><div class=\"price\">￥" + item.price + "</div></li>";
                 } else if (j == 4) {
@@ -279,10 +279,10 @@ function updateCartItem(skuId, count) {
 function bindBatchRemove() {
     $('#deleteProducts').click(function () {
         if ($('.cart-goods .check-custom.active').length == 0) {
-            $.dialog.errorTips('请选择删除的商品！');
+            $.dialog.errorTips('请选择删除的诊疗项目！');
             return;
         }
-        $.dialog.confirm('确定要删除这些商品吗？', function () {
+        $.dialog.confirm('确定要删除这些诊疗项目吗？', function () {
             var skuIds = [];
             $('.cart-goods .check-custom').each(function () {
                 if ($(this).hasClass('active')) {
@@ -385,6 +385,6 @@ function bindToSettlement() {
         }
     }
     else {
-        $.dialog.errorTips('请选择结算的商品！');
+        $.dialog.errorTips('请选择结算的诊疗项目！');
     }
 }

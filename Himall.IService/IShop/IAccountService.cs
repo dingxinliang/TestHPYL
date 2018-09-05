@@ -23,7 +23,7 @@ namespace Himall.IServices
         AccountInfo GetAccount(long id);
 
         /// <summary>
-        /// 获取结算订单明细列表
+        /// 获取结算预约单明细列表
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>

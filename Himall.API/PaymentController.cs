@@ -24,13 +24,13 @@ namespace Himall.API
             string webRoot =HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + (HttpContext.Current.Request.Url.Port == 80 ? "" : (":" + HttpContext.Current.Request.Url.Port.ToString()));
             string urlPre = webRoot + "/m-" +Core.PlatformType.Android + "/Payment/";
 
-            //获取待支付的所有订单
+            //获取待支付的所有预约单
             var orderService = ServiceProvider.Instance<IOrderService>.Create;
             IEnumerable<OrderInfo> orders = orderService.GetOrders(orderIds.Split(',').Select(t => long.Parse(t))).ToList();
             orders = orders.Where(r => r.OrderStatus == OrderInfo.OrderOperateStatus.WaitPay);
             var totalAmount = orders.Sum(t => t.OrderTotalAmount);
 
-            //获取所有订单中的商品名称
+            //获取所有预约单中的诊疗项目名称
             string productInfos = GetProductNameDescriptionFromOrders(orders);
             
 
@@ -41,7 +41,7 @@ namespace Himall.API
                 PayId = 0,
                 OrderId = long.Parse(item)
             });
-            //保存支付订单
+            //保存支付预约单
             var payid = orderService.SaveOrderPayInfo(orderPayModel, Core.PlatformType.Android);
             var ids = payid.ToString();
 
@@ -72,7 +72,7 @@ namespace Himall.API
             List<string> productNames = new List<string>();
             foreach (var order in orders)
                 productNames.AddRange(order.OrderItemInfo.Select(t => t.ProductName));
-            var productInfos = productNames.Count() > 1 ? (productNames.ElementAt(0) + " 等" + productNames.Count() + "种商品") : productNames.ElementAt(0);
+            var productInfos = productNames.Count() > 1 ? (productNames.ElementAt(0) + " 等" + productNames.Count() + "种诊疗项目") : productNames.ElementAt(0);
             return productInfos;
         }
 
