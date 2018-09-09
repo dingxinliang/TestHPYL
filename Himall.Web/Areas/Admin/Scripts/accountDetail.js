@@ -139,8 +139,8 @@ function searchBrokerage()
             { field: "OrderId", title: "预约单编号", width: 120, align: "center" },
             { field: "ProductName", title: "诊疗项目名称", width: 80, align: "center" },
             { field: "RealTotal", title: "实付金额", width: 80, align: "center" },
-            { field: "Brokerage", title: "分销佣金", width: 80, align: "center" },
-            { field: "UserName", title: "销售员", width: 80, align: "center" },
+            { field: "Brokerage", title: "分佣佣金", width: 80, align: "center" },
+            { field: "UserName", title: "使用员", width: 80, align: "center" },
             { field: "SettlementTimeString", title: "结算时间", width: 180, align: "center" },
         ]]
     });
@@ -173,7 +173,7 @@ function searchReturnOrder() {
             { field: "FreightAmount", title: "运费", width: 80, align: "center" },
             { field: "RefundTotalAmount", title: "退款金额", width: 80, align: "center" },
             { field: "RefundCommisAmount", title: "退还佣金", width: 80, align: "center" },
-             { field: "ReturnBrokerageAmount", title: "退还分销佣金", width: 80, align: "center" },
+             { field: "ReturnBrokerageAmount", title: "退还分佣佣金", width: 80, align: "center" },
             { field: "OrderRefundsDates", title: "退单日期", width: 180, align: "center" }
         ]]
     });

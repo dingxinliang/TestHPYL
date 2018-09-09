@@ -9,7 +9,7 @@ namespace Himall.Model
     public class GiftModel:GiftInfo
     {
         /// <summary>
-        /// 销售状态显示字符
+        /// 使用状态显示字符
         /// </summary>
         public string ShowSalesStatus
         {

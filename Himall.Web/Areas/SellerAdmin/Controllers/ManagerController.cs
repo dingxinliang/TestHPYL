@@ -29,7 +29,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             ViewBag.UserId = CurrentSellerManager.Id;
             return View();
         }
-        [ShopOperationLog(Message = "添加卖家子帐号")]
+        [ShopOperationLog(Message = "添加诊所子帐号")]
         public JsonResult Add(ManagerInfoModel model)
         {
             var userName = CurrentSellerManager.UserName.Split(':')[0];;
@@ -60,7 +60,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         [HttpPost]
-        [ShopOperationLog(Message = "删除卖家子帐号")]
+        [ShopOperationLog(Message = "删除诊所子帐号")]
         public JsonResult Delete(long id)
         {
             var shopid = CurrentSellerManager.ShopId;

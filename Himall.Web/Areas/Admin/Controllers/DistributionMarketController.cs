@@ -95,11 +95,11 @@ namespace Himall.Web.Areas.Admin.Controllers
             }
             if (!string.IsNullOrEmpty(model.ShopShareTitle)&&model.ShopShareTitle.Length > 200)
             {
-                return Json(new Result() { success = false, msg = "店铺标题分享超过长度" });
+                return Json(new Result() { success = false, msg = "诊所标题分享超过长度" });
             }
             if (!string.IsNullOrEmpty(model.DisShareTitle) && model.DisShareTitle.Length > 200)
             {
-                return Json(new Result() { success = false, msg = "分销市场分享超过长度" });
+                return Json(new Result() { success = false, msg = "分佣市场分享超过长度" });
             }
             if (!string.IsNullOrEmpty(model.RecruitShareTitle) && model.RecruitShareTitle.Length > 200)
             {
@@ -107,7 +107,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             }
             if (!string.IsNullOrEmpty(model.ShopShareDesc) && model.ShopShareDesc.Length > 200)
             {
-                return Json(new Result() { success = false, msg = "店铺分享描述过长" });
+                return Json(new Result() { success = false, msg = "诊所分享描述过长" });
             }
             if (!string.IsNullOrEmpty(model.ProShareDesc) && model.ProShareDesc.Length > 200)
             {
@@ -115,7 +115,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             }
             if (!string.IsNullOrEmpty(model.DisShareDesc) && model.DisShareDesc.Length > 200)
             {
-                return Json(new Result() { success = false, msg = "分销市场分享描述过长" });
+                return Json(new Result() { success = false, msg = "分佣市场分享描述过长" });
             }
             if (!string.IsNullOrEmpty(model.RecruitShareDesc) && model.RecruitShareDesc.Length > 200)
             {

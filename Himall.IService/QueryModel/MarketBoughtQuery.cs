@@ -15,7 +15,7 @@ namespace Himall.IServices.QueryModel
         public MarketType? MarketType { get; set; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { get; set; }
 

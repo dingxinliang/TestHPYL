@@ -20,11 +20,11 @@ namespace Himall.Web.Areas.Mobile.Models
         /// </summary>
         public bool IsFavorite { get; set; }
         /// <summary>
-        /// 店铺是否已收藏
+        /// 诊所是否已收藏
         /// </summary>
         public bool IsFavoriteShop { get; set; }
         /// <summary>
-        /// 店铺收藏数
+        /// 诊所收藏数
         /// </summary>
         public int FavoriteShopCount { get; set; }
 
@@ -52,13 +52,13 @@ namespace Himall.Web.Areas.Mobile.Models
         public decimal ProductAndDescriptionMin { get; set; }
         public decimal ProductAndDescriptionMax { get; set; }
 
-        //卖家服务态度
+        //诊所服务态度
         public decimal SellerServiceAttitude { get; set; }
         public decimal SellerServiceAttitudePeer { get; set; }
         public decimal SellerServiceAttitudeMax { get; set; }
         public decimal SellerServiceAttitudeMin { get; set; }
 
-        //卖家发货速度
+        //诊所发货速度
         public decimal SellerDeliverySpeed { get; set; }
         public decimal SellerDeliverySpeedPeer { get; set; }
         public decimal SellerDeliverySpeedMax { get; set; }

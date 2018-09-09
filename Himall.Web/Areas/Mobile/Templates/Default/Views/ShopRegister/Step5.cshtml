@@ -1,6 +1,6 @@
 ﻿@model Himall.DTO.ShopProfileStep3
 @{
-    ViewBag.Title = "店铺信息";
+    ViewBag.Title = "诊所信息";
     var ids = (string)ViewBag.BusinessCategoryIds;
     var isEdit = !Model.ShopName.Equals("") ? 1 : 0;
 }
@@ -9,16 +9,16 @@
 <link rel="stylesheet" type="text/css" href="~/Areas/Mobile/Templates/Default/Content/mui.poppicker.css" />
 @*<header class="mui-bar mui-bar-nav Gheader ">
     <a class="mui-icon mui-pull-left back j_back">返回</a>
-   <h1 class="mui-title">店铺信息</h1>
+   <h1 class="mui-title">诊所信息</h1>
 </header>*@
 <div id='company' class="G company_container himall_ui">
     <form class="mui-input-group G">
         <div class="mui-input-row">
-            <label>店铺名称</label>
+            <label>诊所名称</label>
             <input type="text" id="shopName" class="mui-input" value="@Model.ShopName" @(!Model.ShopName.Equals("") ? "readonly" : "")/>
         </div>
         <div class="mui-input-row Ggo">
-            <label>店铺等级</label>
+            <label>诊所等级</label>
             <a href="javascript:" id="showGrade">@ViewBag.GradeName</a>
         </div>
         @Html.Hidden("GradeId", Model.ShopGrade)
@@ -41,11 +41,11 @@
             var shopName = $('#shopName').val().replace(/(^\s*)|(\s*$)/g, '');
             var shopGrade = Number(gradeId);
             if (shopName == "") {
-                $.dialog.errorTips('请输入店铺名称');
+                $.dialog.errorTips('请输入诊所名称');
                 return;
             }
             if (!shopGrade) {
-                $.dialog.errorTips('请选择店铺等级');
+                $.dialog.errorTips('请选择诊所等级');
                 return;
             }
             var categories = '@ids'.split(',');

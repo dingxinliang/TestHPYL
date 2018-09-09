@@ -38,12 +38,12 @@ namespace Himall.DTO
         public string OrderAmount { get; set; }
 
         /// <summary>
-        /// 优惠券所在店铺ID
+        /// 优惠券所在诊所ID
         /// </summary>
         public long ShopId { get; set; }
 
         /// <summary>
-        /// 优惠券所在店铺名称
+        /// 优惠券所在诊所名称
         /// </summary>
         public string ShopName { get; set; }
         /// <summary>

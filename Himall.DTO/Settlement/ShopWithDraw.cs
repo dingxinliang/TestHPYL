@@ -23,7 +23,7 @@ namespace Himall.DTO
         public WithdrawType WithdrawType { set; get; }
 
         /// <summary>
-        /// 店铺Id
+        /// 诊所Id
         /// </summary>
         public long ShopId { set; get; }
 

@@ -182,7 +182,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
         #endregion
 
-        #region 店铺分类
+        #region 诊所分类
         [HttpGet]
         public JsonResult GetShopCate(long gid)
         {
@@ -264,7 +264,7 @@ namespace Himall.Web.Areas.Web.Controllers
         }
         #endregion
 
-        #region  店铺信息
+        #region  诊所信息
         public JsonResult GetShopInfo(long sid, long productId = 0)
         {
             string cacheKey = CacheKeyCollection.CACHE_SHOPINFO(sid, productId);
@@ -316,7 +316,7 @@ namespace Himall.Web.Areas.Web.Controllers
         }
         #endregion
 
-        #region 热门销售
+        #region 热门使用
         [HttpGet]
         public JsonResult GetHotSaleProduct(long sid)
         {
@@ -625,7 +625,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             }
 
-            #region 销售员
+            #region 使用员
             if (partnerid > 0)
             {
                 long curuserid = 0;
@@ -648,7 +648,7 @@ namespace Himall.Web.Areas.Web.Controllers
             ProductManagerApplication.GetPCHtml(gid);
             string urlHtml = "/Storage/Products/Statics/" + id + ".html";
 
-            //统计诊疗项目浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、诊所浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
             return File(urlHtml, "text/html");
         }
@@ -704,7 +704,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
             Stopwatch watch = new Stopwatch();
 
-            #region 销售员
+            #region 使用员
             if (partnerid > 0)
             {
                 long curuserid = 0;
@@ -716,14 +716,14 @@ namespace Himall.Web.Areas.Web.Controllers
             }
             #endregion            
 
-            #region 初始化诊疗项目和店铺
+            #region 初始化诊疗项目和诊所
 
             var comment = _iCommentService.GetCommentsByProductId(id);
 
 
             #endregion
 
-            #region 店铺信息
+            #region 诊所信息
             var _shop = ServiceHelper.Create<IShopService>().GetShop(product.ShopId);
             var mark = ShopServiceMark.GetShopComprehensiveMark(_shop.Id);
             model.Shop.Name = _shop.ShopName;
@@ -860,7 +860,7 @@ namespace Himall.Web.Areas.Web.Controllers
             model.CouponCount = ServiceHelper.Create<ICouponService>().GetTopCoupon(product.ShopId).Count();
             model.IsExpiredShop = ServiceHelper.Create<IShopService>().IsExpiredShop(product.ShopId);
 
-            #region 获取店铺的评价统计
+            #region 获取诊所的评价统计
             var shopStatisticOrderComments = ServiceHelper.Create<IShopService>().GetShopStatisticOrderComments(product.ShopId);
 
             var productAndDescription = shopStatisticOrderComments.Where(c => c.CommentKey == StatisticOrderCommentsInfo.EnumCommentKey.ProductAndDescription).FirstOrDefault();
@@ -898,7 +898,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 model.ProductAndDescriptionMin = defaultValue;
                 model.ProductAndDescriptionMax = defaultValue;
             }
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null)
             {
                 model.SellerServiceAttitude = sellerServiceAttitude.CommentValue;
@@ -913,7 +913,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 model.SellerServiceAttitudeMax = defaultValue;
                 model.SellerServiceAttitudeMin = defaultValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null)
             {
                 model.SellerDeliverySpeed = sellerDeliverySpeed.CommentValue;
@@ -994,12 +994,12 @@ namespace Himall.Web.Areas.Web.Controllers
             ViewBag.IsEnableCashOnDelivery = ServiceHelper.Create<IPaymentConfigService>().IsEnable() && model.Shop.Id == 1;
             model.CashDepositsObligation = ServiceHelper.Create<ICashDepositsService>().GetCashDepositsObligation(product.Id);
 
-            //补充当前店铺红包功能
+            //补充当前诊所红包功能
             ViewBag.isShopPage = true;
             ViewBag.CurShopId = product.ShopId;
             TempData["isShopPage"] = true;
             TempData["CurShopId"] = product.ShopId;
-            //统计诊疗项目浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、诊所浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
             return View(model);
         }
@@ -1246,7 +1246,7 @@ namespace Himall.Web.Areas.Web.Controllers
             }
             if (template.IsFree == FreightTemplateType.Free)
             {
-                freightStr = "卖家承担运费";
+                freightStr = "诊所承担运费";
             }
             else
             {

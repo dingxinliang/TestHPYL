@@ -73,10 +73,10 @@ function initGrid() {
                 field: "Price", title: '价格', align: "center", formatter: function (value, row, index) { return '￥' + value; }
             },
             {
-                field: "Commission", title: '分销佣金', align: "center", width: 90
+                field: "Commission", title: '分佣佣金', align: "center", width: 90
             },
             {
-                field: "ProDisStatus", title: '分销状态', align: "center", width: 90
+                field: "ProDisStatus", title: '分佣状态', align: "center", width: 90
             },
             {
                 field: "Brand", title: '品牌', align: "center", width: 80

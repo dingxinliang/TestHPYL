@@ -19,23 +19,23 @@ namespace Himall.IServices
 		void AddPlateCustomerService(CustomerServiceInfo customerService);
 
         /// <summary>
-        /// 获取指定店铺的所有PC客服
-        /// <param name="shopId">店铺id</param>
+        /// 获取指定诊所的所有PC客服
+        /// <param name="shopId">诊所id</param>
         /// </summary>
         IQueryable<CustomerServiceInfo> GetCustomerService(long shopId);
 
         /// <summary>
-        /// 获取指定店铺指定id的客服信息
+        /// 获取指定诊所指定id的客服信息
         /// </summary>
-        /// <param name="shopId">店铺id</param>
+        /// <param name="shopId">诊所id</param>
         /// <param name="id">客服id</param>
         /// <returns></returns>
         CustomerServiceInfo GetCustomerService(long shopId, long id);
 
         /// <summary>
-        /// 获取指定店铺的移动端客服信息
+        /// 获取指定诊所的移动端客服信息
         /// </summary>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <returns></returns>
         CustomerServiceInfo GetCustomerServiceForMobile(long shopId);
 
@@ -52,7 +52,7 @@ namespace Himall.IServices
         /// 删除客服信息
         /// </summary>
         /// <param name="ids">待删除的客服id</param>
-        /// <param name="shopId">店铺id</param>
+        /// <param name="shopId">诊所id</param>
         void DeleteCustomerService(long shopId,params long[] ids);
 
         /// <summary>

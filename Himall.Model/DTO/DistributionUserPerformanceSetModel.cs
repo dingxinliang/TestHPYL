@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.Model
 {
     /// <summary>
-    /// 分销用户业绩数据集
+    /// 分佣用户业绩数据集
     /// </summary>
     public class DistributionUserPerformanceSetModel
     {

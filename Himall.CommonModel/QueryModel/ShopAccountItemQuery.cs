@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 namespace Himall.CommonModel
 {
     /// <summary>
-    /// 店铺收支明细查询实体
+    /// 诊所收支明细查询实体
     /// </summary>
     public class ShopAccountItemQuery:BaseQuery
     {
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long? ShopId { set; get; }
 		/// <summary>
-		/// 店铺名称
+		/// 诊所名称
 		/// </summary>
 		public string ShopName { get; set; }
         /// <summary>
-        /// 店铺收支类型
+        /// 诊所收支类型
         /// </summary>
         public ShopAccountType? ShopAccountType { set; get; }
 
@@ -49,11 +49,11 @@ namespace Himall.CommonModel
     public class PlatAccountItemQuery : BaseQuery
     {
         /// <summary>
-        /// 店铺
+        /// 诊所
         /// </summary>
         public long? ShopId { get; set; }
         /// <summary>
-        /// 店铺名
+        /// 诊所名
         /// </summary>
         public string ShopName { get; set; }
         /// <summary>

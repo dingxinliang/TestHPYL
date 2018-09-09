@@ -16,7 +16,7 @@ namespace Himall.CommonModel
         /// </summary>
         public long ProductId { get; set; }
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long ShopId { get; set; }
         /// <summary>
@@ -32,7 +32,7 @@ namespace Himall.CommonModel
         /// </summary>
         public string ProductName { get; set; }
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { get; set; }
         /// <summary>
@@ -40,7 +40,7 @@ namespace Himall.CommonModel
         /// </summary>
         public long ThirdCateId { get; set; }
         /// <summary>
-        /// 出售数量
+        /// 在用数量
         /// </summary>
         public int SaleCount { get; set; }
         /// <summary>

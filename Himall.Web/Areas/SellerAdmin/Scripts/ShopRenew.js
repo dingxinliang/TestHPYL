@@ -90,7 +90,7 @@ function RenewPay() {
                 $("#payMent").find("ul").append(html);
 
                 $.dialog({
-                    title: '店铺续费',
+                    title: '诊所续费',
                     lock: true,
                     width: 300,
                     id: 'goodCheck',

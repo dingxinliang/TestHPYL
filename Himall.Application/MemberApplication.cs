@@ -20,7 +20,9 @@ namespace Himall.Application
 		private static IMemberService _iMemberService = ObjectContainer.Current.Resolve<IMemberService>();
 		private static IOrderService _orderService = ObjectContainer.Current.Resolve<IOrderService>();
 		private static IRefundService _refundService = ObjectContainer.Current.Resolve<IRefundService>();
-		#endregion
+
+     
+        #endregion
 
         #region 插件相关
         /// <summary>
@@ -404,13 +406,13 @@ namespace Himall.Application
             _iMemberService.UpdateMemberInfo(mm);
         }
 
-        #region 分销用户关系
+        #region 分佣用户关系
         /// <summary>
-        /// 更改用户的推销员，并建立店铺分佣关系
+        /// 更改用户的推销员，并建立诊所分佣关系
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="shareUserId">销售员用户编号</param>
-        /// <param name="shopId">店铺编号,为0表示仅维护用户与推销员的关系</param>
+        /// <param name="shareUserId">使用员用户编号</param>
+        /// <param name="shopId">诊所编号,为0表示仅维护用户与推销员的关系</param>
         public static long UpdateShareUserId(long id, long shareUserId, long shopId = 0)
         {
             return _iMemberService.UpdateShareUserId(id, shareUserId, shopId);
@@ -512,7 +514,17 @@ namespace Himall.Application
             return _iMemberService.GetMembers(query);
         }
 
+        /// <summary>
+        /// 获取医生列表
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public static QueryPageModel<UserModel> GetdoctorList(UserQuery query)
+        {
 
+            return _iMemberService.GetdoctorList(query);
+
+        }
 
         /// <summary>
         /// 根据查询条件分页获取会员信息

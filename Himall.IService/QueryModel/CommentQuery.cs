@@ -15,7 +15,7 @@ namespace Himall.IServices.QueryModel
 
         public bool? IsReply { set; get; }
 
-        //店铺ID
+        //诊所ID
         public long ShopID { set; get; }
         //关键字
         public string KeyWords { set; get; }

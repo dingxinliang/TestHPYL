@@ -78,7 +78,7 @@ namespace Himall.Service
 
             CashDepositInfo cashDeposit = Context.CashDepositInfo.FindById(cashDepositDetail.CashDepositId);
             if (cashDepositDetail.Balance < 0 && cashDeposit.CurrentBalance + cashDepositDetail.Balance < 0)
-                new HimallException("扣除金额不能多余店铺可用余额");
+                new HimallException("扣除金额不能多余诊所可用余额");
             cashDeposit.CurrentBalance = cashDeposit.CurrentBalance + cashDepositDetail.Balance;
             if (cashDepositDetail.Balance > 0)
             {

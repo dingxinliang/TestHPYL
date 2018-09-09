@@ -147,7 +147,7 @@ namespace Himall.IServices
         /// 是否存在预约单
         /// </summary>
         /// <param name="orderId"></param>
-        /// <param name="shopId">店铺Id,0表示不限店铺</param>
+        /// <param name="shopId">诊所Id,0表示不限诊所</param>
         /// <returns></returns>
         bool IsExistOrder(long orderId, long shopId = 0);
         /// <summary>
@@ -408,7 +408,7 @@ namespace Himall.IServices
         /// <summary>
         /// 获取昨天预约单交易金额
         /// </summary>
-        /// <param name="shopId">店铺ID平台不需要填写</param>
+        /// <param name="shopId">诊所ID平台不需要填写</param>
         /// <returns></returns>
         decimal GetYesterDaySaleAmount(long? shopId = null);
 

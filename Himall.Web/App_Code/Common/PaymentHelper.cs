@@ -37,7 +37,7 @@ namespace Himall.Web.App_Code.Common
         }
 
         /// <summary>
-        /// 更改限时购销售量
+        /// 更改限时购使用量
         /// </summary>
         public static void  IncreaseSaleCount( List<long> orderid )
         {

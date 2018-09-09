@@ -43,7 +43,7 @@ namespace Himall.Service.Job
 
 
         /// <summary>
-        /// 计算分销总佣金
+        /// 计算分佣总佣金
         /// </summary>
         /// <param name="orderItems"></param>
         /// <returns></returns>
@@ -62,7 +62,7 @@ namespace Himall.Service.Job
 
 
         /// <summary>
-        /// 计算退货分销佣金
+        /// 计算退货分佣佣金
         /// </summary>
         /// <param name="orderItems"></param>
         /// <returns></returns>
@@ -265,7 +265,7 @@ namespace Himall.Service.Job
             //            shopAccountItemInfo.Balance = shopAccount.Balance + shopAccountItemInfo.Amount; ;//账户余额+结算金额
             //            shopAccountItemInfo.TradeType = ShopAccountType.SettlementIncome;
             //            shopAccountItemInfo.IsIncome = true;
-            //            shopAccountItemInfo.ReMark = "店铺结算明细" + accountInfo.Id; ;
+            //            shopAccountItemInfo.ReMark = "诊所结算明细" + accountInfo.Id; ;
             //            shopAccountItemInfo.DetailId = accountInfo.Id.ToString();
             //            shopAccountItemInfo.SettlementCycle = settings.WeekSettlement;
             //            entity.ShopAccountItemInfo.Add(shopAccountItemInfo);
@@ -341,7 +341,7 @@ namespace Himall.Service.Job
                 }
                 ).ToList();
 
-            //分组店铺统计
+            //分组诊所统计
             List<long> shopIds = new List<long>();
 
             shopIds.AddRange(hasRefundOrdersDetails.Select(c => c.Order.ShopId));
@@ -367,7 +367,7 @@ namespace Himall.Service.Job
                         decimal commissionAmount = CalculationTotalCommission(ordersDetails.Where(c => c.Order.ShopId == shopId).Select(c => c.OrderItem).Distinct().ToList());
 
 
-                        //分销佣金
+                        //分佣佣金
                         decimal Brokerage = CalculationTotalBrokerage(ordersDetails.Where(c => c.Order.ShopId == shopId).Select(c => c.OrderItem).Distinct().ToList());
 
                         decimal ReturnBrokerage = CalculationTotalRefundBrokerage(hasRefundOrdersDetails.Where(c => c.OrderRefund.ShopId == shopId).Select(c => c.OrderRefund).Distinct().ToList());
@@ -376,7 +376,7 @@ namespace Himall.Service.Job
                         decimal refundAmount = hasRefundOrdersDetails.Where(c => c.OrderRefund.ShopId == shopId).Select(c => c.OrderRefund).Distinct().Sum(c => c.Amount);
                         //decimal advancePaymentAmount = finishedPurchaseAgreement.Where(c => c.ShopId == shopId).Sum(c => c.AdvancePayment.Value);
                         //decimal accMetaAmount = acc.Where(e => e.ShopId == shopId).FirstOrDefault().Price;//服务费用
-                        //本期应结=诊疗项目实付总额+运费—佣金—退款金额+退还佣金-服务费用-分销佣金+退还分销佣金
+                        //本期应结=诊疗项目实付总额+运费—佣金—退款金额+退还佣金-服务费用-分佣佣金+退还分佣佣金
                         decimal periodSettlement = productActualPaidAmount + freightAmount - commissionAmount - refundAmount + refundCommissionAmount - Brokerage + ReturnBrokerage;
                         var accountInfo = new Model.AccountInfo();
                         accountInfo.ShopId = shopId;
@@ -413,7 +413,7 @@ namespace Himall.Service.Job
                             accountDetail.CommissionAmount = CalculationTotalCommission(hasRefundOrdersDetails.Where(c => c.OrderRefund.OrderId == order.Id).Select(c => c.OrderItem).Distinct().ToList());
                             accountDetail.RefundCommisAmount = CalculationTotalRefundCommission(hasRefundOrdersDetails.Where(c => c.OrderRefund.OrderId == order.Id).Select(c => c.OrderItem).Distinct().ToList());
 
-                            //YZY分销退款佣金
+                            //YZY分佣退款佣金
                             accountDetail.BrokerageAmount = CalculationTotalBrokerage(hasRefundOrdersDetails.Where(c => c.OrderRefund.OrderId == order.Id).Select(c => c.OrderItem).Distinct().ToList());
                             accountDetail.ReturnBrokerageAmount = CalculationTotalRefundBrokerage(hasRefundOrdersDetails.Where(c => c.OrderRefund.OrderId == order.Id).Select(c => c.OrderRefund).Distinct().ToList());
 

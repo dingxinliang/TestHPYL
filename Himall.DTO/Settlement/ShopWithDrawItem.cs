@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 店铺提现明细
+    /// 诊所提现明细
     /// </summary>
     public class ShopWithDrawItem
     {
@@ -56,12 +56,12 @@ namespace Himall.DTO
         public string AccountName { set; get; }
 
         /// <summary>
-        /// 提现店铺Id
+        /// 提现诊所Id
         /// </summary>
         public long ShopId { set; get; }
 
         /// <summary>
-        /// 提现店铺名称
+        /// 提现诊所名称
         /// </summary>
         public string ShopName { set; get; }
 

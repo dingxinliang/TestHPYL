@@ -42,7 +42,7 @@ namespace Himall.Service
         /// <summary>
         /// 判断门店名称是否重复
         /// </summary>
-        /// <param name="shopId">诊所店铺ID</param>
+        /// <param name="shopId">诊所诊所ID</param>
         /// <param name="shopBranchName">门店名字</param>
         /// <returns></returns>
         public bool Exists(long shopId, long shopBranchId, string shopBranchName)
@@ -452,7 +452,7 @@ namespace Himall.Service
             if (!string.IsNullOrWhiteSpace(productQueryModel.ProductCode))
                 products = products.Where(item => item.ProductCode == productQueryModel.ProductCode);
 
-            if (productQueryModel.ShopId.HasValue)//过滤店铺
+            if (productQueryModel.ShopId.HasValue)//过滤诊所
             {
                 products = products.Where(item => item.ShopId == productQueryModel.ShopId);
                 if (productQueryModel.IsOverSafeStock.HasValue)
@@ -553,7 +553,7 @@ namespace Himall.Service
                     break;
             }
 
-            //店铺分类
+            //诊所分类
             IEnumerable<long> productIds = new long[] { };
             if (productQueryModel.ShopCategoryId.HasValue)
             {

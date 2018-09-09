@@ -77,7 +77,7 @@ namespace Himall.Service
         {
             var order = Context.OrderInfo.FirstOrDefault(item => item.Id == orderId && item.ShopId == shopId);
             if (order == null)
-                throw new HimallException(string.Format("未在本店铺中找到id为{0}的预约单", orderId));
+                throw new HimallException(string.Format("未在本诊所中找到id为{0}的预约单", orderId));
 
             var shop = Context.ShopInfo.FirstOrDefault(item => item.Id == shopId);
 

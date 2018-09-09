@@ -388,7 +388,7 @@ select.input-sm{line-height:15px!important;}
 .vis-view-area .bottompic-area {height: 85px; margin-top: 30px; }
 .vis-view-area .bottom-area { height: 50px; margin-top: 18px; }
 
-/*店铺页面设置*/
+/*诊所页面设置*/
 .vis-view-area .seller-banner-area{width:100%;height:105px;}
 .vis-view-area .seller-banner-area a{width:100%;height:100%;}
 
@@ -1074,7 +1074,7 @@ div.clear-v38 span{color:#e3393c}
 #topicGrid.clear-v43 >tbody>tr>td:first-child{padding-left:80px!important;}
 #topicGrid.clear-v43 >tbody>tr>td:last-child{padding-right:80px!important;}
 
-/*店铺模板主页样式*/
+/*诊所模板主页样式*/
 form.clear-v45{padding-left:15px}
 form.clear-v45 .templateTitle{padding-left: 10px; height: 20px;line-height: 20px; margin-bottom: 15px; border-left: 2px solid #FF3300;font-size: 16px;}
 form.clear-v45 .templateTitle select{height: 20px;float:left;}
@@ -1132,7 +1132,7 @@ form.clear-v45 .set-switch{position:relative; padding: 15px; margin-bottom: 20px
 #AddSlide.clear-v56{width:126px;}
 .count-chat.clear-57 #main{height:500px;border:1px solid #ccc;padding:10px;}
 
-/*卖家中心样式整理*/
+/*诊所中心样式整理*/
 div.Sclear-A{width:100px;float:left;vertical-align:middle;line-height: 70px;margin-left: 10px;}
 div.Sclear-A1{color:#676767; height:13px;font-size:15px;}
 .Sclear-A #productsNumberDiv{color:#010101; font-weight:bold; font-size:15px; margin-top:5px;}
@@ -1293,7 +1293,7 @@ ul.Sclear-M4{position: relative;top: -42px;padding-left: 20px;}
 .container.Sclear-N5 h3 .tipinfo{padding-left:20px;}
 .help-default.Sclear-N6{margin-left:50px}
 .container.Sclear-N7 .form-group .col-sm-4 {padding-top:7px;}
-/*店铺模板主页样式*/
+/*诊所模板主页样式*/
 .container.Sclear-O .templateTitle {padding-left: 10px;height: 20px;line-height: 20px;margin-bottom: 15px;border-left: 2px solid #FF3300;font-size: 16px;}
 .container.Sclear-O .templateTitle select {height: 20px;float: left;}
 .container.Sclear-O .templateTitle span {float: left;margin-right: 10px;}
@@ -1560,7 +1560,7 @@ span.Sclear-P70{color:#9f9b98;}
 .coupon-act .opdiv .table>#colist>tr>td:first-child{text-align:left}
 .coupon-act .opdiv .table a{width:100%;}
 
-/*诊所店铺详情管理*/
+/*诊所诊所详情管理*/
 .Sclear-M .shide { display: none; }
 .Sclear-M .bjt { float: right; line-height:34px;margin-right: 25px; font-weight: bold; }
 .Sclear-M .bjts { float: right; margin-right: 25px; font-weight: bold; }

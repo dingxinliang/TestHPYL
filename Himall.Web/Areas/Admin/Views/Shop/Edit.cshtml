@@ -124,8 +124,8 @@
 <div class="container">
     <ul class="breadcrumb clearfix">
 
-        <li><a href="./Management">店铺管理</a></li>
-        <li><a>编辑店铺</a></li>
+        <li><a href="./Management">诊所管理</a></li>
+        <li><a>编辑诊所</a></li>
 
     </ul>
     @using (Html.BeginForm("Edit", "Shop", new { Area = "Admin" }, FormMethod.Post, new { @id = "shopEditForm" }))
@@ -239,7 +239,7 @@
 
 
 
-        <h3 class="table-hd">店铺经营信息</h3>
+        <h3 class="table-hd">诊所经营信息</h3>
         <table class="table table-bordered table-striped">
             <colgroup>
                 <col class="col-xs-1">
@@ -247,15 +247,15 @@
             </colgroup>
             <tbody>
                 <tr>
-                    <td>卖家帐号</td>
+                    <td>诊所帐号</td>
                     <td>@Model.Account</td>
                 </tr>
                 <tr>
-                    <td>店铺名称</td>
+                    <td>诊所名称</td>
                     <td>@Html.TextBoxFor(s => s.Name, new { @class = "form-control input-sm w240" })</td>
                 </tr>
                 <tr>
-                    <td>店铺等级</td>
+                    <td>诊所等级</td>
                     <td>
                         @{
                             var list = ((List<SelectListItem>)ViewBag.ShopGrade);
@@ -264,11 +264,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>店铺有效期</td>
+                    <td>诊所有效期</td>
                     <td>@Html.TextBoxFor(s => s.EndDate, new { @class = "form-control input-sm w240 form_datetime" })</td>
                 </tr>
                 <tr style="display:none">
-                    @*<td>店铺状态</td>
+                    @*<td>诊所状态</td>
                         <td>*@
                     <td>
                         @{

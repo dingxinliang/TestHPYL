@@ -27,7 +27,7 @@ namespace Himall.Web.Areas.Web.Models
         /// </summary>
         public OrderItemInfo[] Top3UnEvaluatProducts { get; set; }
         /// <summary>
-        /// 最近一次交易的卖家的推荐诊疗项目
+        /// 最近一次交易的诊所的推荐诊疗项目
         /// </summary>
         public ProductInfo[] Top3RecommendProducts { get; set; }
         public List<ProductBrowsedHistoryModel> BrowsingProducts { get; set; }

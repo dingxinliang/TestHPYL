@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 店铺收支详情
+    /// 诊所收支详情
     /// </summary>
     public class PlatAccountItem
     {

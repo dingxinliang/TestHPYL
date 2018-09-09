@@ -61,12 +61,12 @@ namespace Himall.Web.Areas.Mobile.Controllers
             if (promoter == null)
             {
                 return RedirectToAction("index", "home");
-               // throw new HimallException("错误的销售员");
+               // throw new HimallException("错误的使用员");
             }
             if (promoter.Status != PromoterInfo.PromoterStatus.Audited)
             {
                 return RedirectToAction("index", "home");
-              //  throw new HimallException("销售员未通过审核");
+              //  throw new HimallException("使用员未通过审核");
 
             }
             DistributionShopShowModel model = new DistributionShopShowModel();
@@ -160,7 +160,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        /// 店铺查看
+        /// 诊所查看
         /// </summary>
         /// <param name="id"></param>
         /// <param name="partnerid">代理用户编号</param>
@@ -170,10 +170,10 @@ namespace Himall.Web.Areas.Mobile.Controllers
             var shop = _iShopService.GetShop(id);
             if (shop == null)
             {
-                throw new HimallException("错误的店铺编号");
+                throw new HimallException("错误的诊所编号");
             }
 
-            #region 销售员
+            #region 使用员
             if (partnerid > 0)
             {
                 long curuserid = 0;

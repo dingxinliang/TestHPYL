@@ -39,7 +39,7 @@ namespace Himall.Web.Areas.Web.Controllers
                     concern.FavoriteShopInfo.ShopId = m.ShopId;
                     concern.FavoriteShopInfo.ShopName = m.Himall_Shops.ShopName;
                     concern.FavoriteShopInfo.ConcernCount = m.Himall_Shops.Himall_FavoriteShops.Count();
-                    #region 热门销售
+                    #region 热门使用
                     var sale = _iProductService.GetHotSaleProduct(m.ShopId, 10);
                     if (sale != null)
                     {

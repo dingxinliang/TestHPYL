@@ -362,7 +362,7 @@ namespace Himall.API
         /// <param name="orderIds"></param>
         void AddVshopBuyNumber(IEnumerable<long> orderIds)
         {
-            var shopIds = ServiceProvider.Instance<IOrderService>.Create.GetOrders(orderIds).Select(item => item.ShopId);//从预约单信息获取店铺id
+            var shopIds = ServiceProvider.Instance<IOrderService>.Create.GetOrders(orderIds).Select(item => item.ShopId);//从预约单信息获取诊所id
             var vshopService = ServiceProvider.Instance<IVShopService>.Create;
             var vshopIds = shopIds.Select(item =>
             {
@@ -372,7 +372,7 @@ namespace Himall.API
                 else
                     return 0;
             }
-                ).Where(item => item > 0);//从店铺id反查vshopId
+                ).Where(item => item > 0);//从诊所id反查vshopId
 
             foreach (var vshopId in vshopIds)
                 vshopService.AddBuyNumber(vshopId);

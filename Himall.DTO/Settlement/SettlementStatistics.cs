@@ -17,7 +17,7 @@ namespace Himall.DTO
         public decimal SettlementAmount { set; get; }
 
         /// <summary>
-        /// 分销佣金总额
+        /// 分佣佣金总额
         /// </summary>
         public decimal DistributorCommission { set; get; }
 

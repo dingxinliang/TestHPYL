@@ -8,32 +8,32 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 店铺信息表
+    /// 诊所信息表
     /// </summary>
     public class Shop:Himall.Model.ShopInfo
     {
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long Id { get; set; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { get; set; }
 
         /// <summary>
-        /// 店铺等级
+        /// 诊所等级
         /// </summary>
         public long GradeId { get; set; }
 
         /// <summary>
-        /// 店铺进度
+        /// 诊所进度
         /// </summary>
         public Himall.Model.ShopInfo.ShopStage Stage { get; set; }
 
         /// <summary>
-        /// 店铺状态
+        /// 诊所状态
         /// </summary>
         public Himall.Model.ShopInfo.ShopAuditStatus ShopStatus { get; set; }
 
@@ -302,7 +302,7 @@ namespace Himall.DTO
         public string OpeningTime { get; set; }
 
         /// <summary>
-        /// 店铺描述
+        /// 诊所描述
         /// </summary>
         public string ShopDescription { get; set; }
 

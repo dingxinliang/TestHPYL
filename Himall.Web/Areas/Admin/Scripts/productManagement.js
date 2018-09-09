@@ -58,15 +58,15 @@ $(function () {
                 {
                     field: "name", title: '诊疗项目', width: 280, align: "left",
                     formatter: function (value, row, index) {
-                        var html = '<img width="40" height="40" src="' + row.imgUrl + '" style="" /><span class="overflow-ellipsis" style="width:200px"><a title="' + value + '" href="/product/detail/' + row.id + '" target="_blank" href="' + row.url + '">' + value + '</a>';
+                        var html = ' <span class="overflow-ellipsis" style="width:200px"><a title="' + value + '" href="/product/detail/' + row.id + '" target="_blank" href="' + row.url + '">' + value + '</a>';
                         html = html + '<p>￥' + row.price.toFixed(2) + '</p></span>';
                         return html;
                     }
                 },
 			    { field: "brandName", title: "品牌", width: 55, align: "center" },
                 { field: "state", title: "状态", width: 80, align:"center"},
-			    { field: "categoryName", title: "商城分类", width: 85, align: "center"},
-                { field: "shopName", title: "店铺名称", align: "center", width: 100 },
+			    { field: "categoryName", title: "平台分类", width: 85, align: "center"},
+                { field: "shopName", title: "诊所名称", align: "center", width: 100 },
                 { 
                 field: "productCode", title: '货号', width: 50,
                 formatter: function (value, row, index) {
@@ -214,7 +214,7 @@ $(function () {
 function batchInfractionSaleOff() {
     var productIds = getSelectedIds();
     if (productIds.length == 0) {
-        $.dialog.errorTips("请至少选择一件销售中的诊疗项目");
+        $.dialog.errorTips("请至少选择一件使用中的诊疗项目");
         return;
     }
     infractionSaleOffDialog(productIds);
@@ -235,7 +235,7 @@ function getSelectedIds() {
     var selecteds = $("#list").hiMallDatagrid('getSelections');
     var ids = [];
     $.each(selecteds, function () {
-        if (this.state == "销售中") {
+        if (this.state == "使用中") {
             ids.push(this.id);
         }
     });

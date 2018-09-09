@@ -536,10 +536,10 @@ namespace Himall.Service
                 Task.Factory.StartNew(() => ServiceProvider.Instance<IMessageService>.Create.SendMessageOnOrderRefund(order.UserId, orderMessage, refund.Id));
 
 
-                //销量退还(店铺、诊疗项目)
+                //销量退还(诊所、诊疗项目)
                 if (order.PayDate.HasValue)
                 {
-                    // 修改店铺访问量
+                    // 修改诊所访问量
                     UpdateShopVisti(refund, order.PayDate.Value);
 
                     // 修改诊疗项目销量
@@ -556,7 +556,7 @@ namespace Himall.Service
                     }
                 }
 
-                //分销
+                //分佣
                 if (refund.OrderItemInfo.DistributionRate > 0)
                 {
                     IDistributionService _idisser = ServiceProvider.Instance<IDistributionService>.Create;
@@ -654,7 +654,7 @@ namespace Himall.Service
                 decimal refundAmountTotal = 0; //总退款金额
                 var refund = list.FirstOrDefault(a => a.Id == refundId);//单个项目退款
                 var AccountNo = DateTime.Now.ToString("yyyyMMddHHmmssffffff") + refund.Id;
-                if (Settlement != null)//如果已经结算了直接扣取店铺余额
+                if (Settlement != null)//如果已经结算了直接扣取诊所余额
                 {
                     var service = ServiceProvider.Instance<IBillingService>.Create;
                     service.UpdateAccount(orderInfo.ShopId, -refund.Amount, CommonModel.ShopAccountType.Refund, AccountNo, orderId + "发生退款", refund.OrderId);
@@ -679,7 +679,7 @@ namespace Himall.Service
                     model.PlatCommissionReturn = platCommissionReturn;
                     model.DistributorCommissionReturn = distributorCommissionReturn;
                     model.RefundAmount = refundAmountTotal;
-                    //结算金额-本次退的金额+本次返回的平台佣金和分销佣金
+                    //结算金额-本次退的金额+本次返回的平台佣金和分佣佣金
                     model.SettlementAmount = model.SettlementAmount - refund.Amount + refund.ReturnBrokerage + refund.ReturnPlatCommission;
                     Context.SaveChanges();
                 }
@@ -718,7 +718,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 修改店铺访问量
+        /// 修改诊所访问量
         /// </summary>
         /// <param name="refund"></param>
         /// <param name="payDate"></param>
@@ -1235,7 +1235,7 @@ namespace Himall.Service
             //退款日志
             AddRefundLog(info.Id, info.ApplyNumber, OrderRefundStep.WaitAudit, info.RefundStatus, user.UserName, reason);
 
-            //分销预约单处理
+            //分佣预约单处理
             if (distributionRate > 0)
             {
                 IDistributionService _idisser = ServiceProvider.Instance<IDistributionService>.Create;
@@ -1409,7 +1409,7 @@ namespace Himall.Service
             //退款日志
             AddRefundLog(refund.Id, refund.ApplyNumber, OrderRefundStep.WaitAudit, refund.RefundStatus, user.UserName, reason);
 
-            //分销预约单处理
+            //分佣预约单处理
             if (distributionRate > 0)
             {
                 IDistributionService _idisser = ServiceProvider.Instance<IDistributionService>.Create;
@@ -1620,7 +1620,7 @@ namespace Himall.Service
                 {
                     try
                     {
-                        SellerDealRefund(item, OrderRefundInfo.OrderRefundAuditStatus.WaitDelivery, "卖家超时未处理，系统自动同意售后", "系统Job");
+                        SellerDealRefund(item, OrderRefundInfo.OrderRefundAuditStatus.WaitDelivery, "诊所超时未处理，系统自动同意售后", "系统Job");
                     }
                     catch (Exception ex)
                     {

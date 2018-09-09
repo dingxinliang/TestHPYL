@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 店铺经营项目
+    /// 诊所经营项目
     /// </summary>
     public class BusinessCategory
     {
@@ -17,7 +17,7 @@ namespace Himall.DTO
         /// </summary>
         public long Id { get { return _id; } set { _id = value; } }
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long ShopId { get; set; }
         /// <summary>

@@ -11,7 +11,7 @@ namespace Himall.Web.Areas.Mobile.Models
     public class VShopShowPromotionModel
     {
         /// <summary>
-        /// 店铺编号
+        /// 诊所编号
         /// </summary>
         public long ShopId { get; set; }
         /// <summary>

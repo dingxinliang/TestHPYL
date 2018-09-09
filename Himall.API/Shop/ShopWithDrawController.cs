@@ -33,7 +33,7 @@ namespace Himall.API
         {
             CheckShopManageLogin(); ;
 
-            //获取店铺账户信息
+            //获取诊所账户信息
             DTO.ShopAccount shopAccount = BillingApplication.GetShopAccount(CurrentShop.Id);
 
 
@@ -46,7 +46,7 @@ namespace Himall.API
                 balance = shopAccount.Balance;
             }
 
-            //判断店铺是否绑定银行卡
+            //判断诊所是否绑定银行卡
             bool IsBindBank = true;
             if (string.IsNullOrWhiteSpace(CurrentShop.BankAccountNumber))
             {
@@ -59,12 +59,12 @@ namespace Himall.API
             {
                 success = true, //状态
                 msg = "",
-                Balance = balance, //店铺账户余额
+                Balance = balance, //诊所账户余额
                 RealMoney = (MAX_WithDraw_Money - balance) <= 0 ? MAX_WithDraw_Money : balance, //实际可提现金额  //实际可提现金额
                 BankAccountName = CurrentShop.BankAccountName,//银行开户名
                 BankAccountNumber = CurrentShop.BankAccountNumber,//银行账号
                 BankName = CurrentShop.BankName, //开户银行名称
-                IsBindBank = IsBindBank,   //店铺是否绑定银行卡号 true=已绑定
+                IsBindBank = IsBindBank,   //诊所是否绑定银行卡号 true=已绑定
                 Phone = mMemberAccountSafety.Phone, // 手机号码
                 BankBranch = CurrentShop.BankName //开户银行支行完整名称
             });
@@ -216,7 +216,7 @@ namespace Himall.API
                 BankRegionId = model.BankRegionId
             };
             ShopApplication.UpdateBankAccount(info);
-            //更新店铺信息后，清除缓存，以便获取到最新数据
+            //更新诊所信息后，清除缓存，以便获取到最新数据
             RemoveShopCache();
             return Json(new { success = true, msg = "成功" });
         }

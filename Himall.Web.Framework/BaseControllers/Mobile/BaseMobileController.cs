@@ -107,7 +107,7 @@ namespace Himall.Web.Framework
             if (MAppType == string.Empty)
             {
                 if (filterContext.HttpContext.Request["shop"] != null)
-                {//微信菜单中是否存在店铺ID
+                {//微信菜单中是否存在诊所ID
                     MAppType = filterContext.HttpContext.Request["shop"].ToString();
                     long shopid = 0;
                     if (long.TryParse(MAppType,out shopid))

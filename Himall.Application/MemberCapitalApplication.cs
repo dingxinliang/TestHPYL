@@ -182,7 +182,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 添加店铺充值流水
+        /// 添加诊所充值流水
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -192,7 +192,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 修改店铺充值流水
+        /// 修改诊所充值流水
         /// </summary>
         /// <param name="model"></param>
         public static void UpdateChargeDetailShop(ChargeDetailShopInfo model)
@@ -201,7 +201,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取店铺充值流水信息
+        /// 获取诊所充值流水信息
         /// </summary>
         /// <param name="Id">流水ID</param>
         /// <returns></returns>

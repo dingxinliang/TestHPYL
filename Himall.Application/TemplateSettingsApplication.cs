@@ -26,9 +26,9 @@ namespace Himall.Application
             return _iTemplateSettingsService.GetGoodTagFromCache(page, tName);
         }
         /// <summary>
-        /// 取店铺首页缓存数据
+        /// 取诊所首页缓存数据
         /// </summary>
-        /// <param name="shopid">店铺ID（非微店）</param>
+        /// <param name="shopid">诊所ID（非微店）</param>
         /// <param name="page"></param>
         /// <returns></returns>
         public static string GetShopGoodTagFromCache(long shopid, long page,string tName="")

@@ -209,9 +209,9 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 根据店铺Id获取微店
+        /// 根据诊所Id获取微店
         /// </summary>
-        /// <param name="shopId">店铺Id</param>
+        /// <param name="shopId">诊所Id</param>
         /// <returns></returns>
         public static VShopInfo GetVShopByShopId(long shopId)
         {
@@ -285,7 +285,7 @@ namespace Himall.Application
           return    _iVShopService.GetVShopCouponSetting(shopid);
         }
         /// <summary>
-        /// 更新店铺优惠卷 设置 信息
+        /// 更新诊所优惠卷 设置 信息
         /// </summary>
         /// <param name="infolist"></param>
         public static void SaveVShopCouponSetting(IEnumerable<CouponSettingInfo> infolist)

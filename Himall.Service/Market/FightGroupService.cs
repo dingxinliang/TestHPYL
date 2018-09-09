@@ -371,8 +371,8 @@ namespace Himall.Service
         /// <param name="StartTime"></param>
         /// <param name="EndTime"></param>
         /// <param name="ProductName">诊疗项目名</param>
-        /// <param name="ShopName">店铺名</param>
-        /// <param name="ShopId">店铺编号</param>
+        /// <param name="ShopName">诊所名</param>
+        /// <param name="ShopId">诊所编号</param>
         /// <param name="PageNo"></param>
         /// <param name="PageSize"></param>
         /// <returns></returns>
@@ -480,7 +480,7 @@ namespace Himall.Service
                 var shopids = datalist.Select(d => d.ShopId).ToList();
                 var shopnames = Context.ShopInfo.Where(d => shopids.Contains(d.Id)).Select(d => new { Id = d.Id, ShopName = d.ShopName }).ToList();
 
-                //最低销售价补充
+                //最低使用价补充
                 var proids = datalist.Select(d => d.ProductId).ToList();
                 var prominprices = Context.SKUInfo.Where(d => proids.Contains(d.ProductId)).GroupBy(d => d.ProductId).Select(d => new { proid = d.Key, price = d.Min(g => g.SalePrice) });
                 var pro = Context.ProductInfo.Where(d => proids.Contains(d.Id)).Select(d => new { Id = d.Id, ShortDescription = d.ShortDescription, Price = d.MinSalePrice }).ToList();

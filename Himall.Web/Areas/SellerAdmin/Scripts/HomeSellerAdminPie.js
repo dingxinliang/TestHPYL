@@ -202,7 +202,7 @@ function load(echarts) {
         ]
     };
 
-    //店铺效果分析
+    //诊所效果分析
     var shopProductPie = echarts.init(document.getElementById('shopProductPie'));
     var shopImagePie = echarts.init(document.getElementById('shopImagePie'));
     shopProductPie.showLoading({

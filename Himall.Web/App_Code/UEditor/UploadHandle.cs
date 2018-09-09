@@ -143,7 +143,7 @@ namespace Himall.Web.App_Code.UEditor
     public class UploadConfig
     {
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long ShopId { get; set; }
         /// <summary>

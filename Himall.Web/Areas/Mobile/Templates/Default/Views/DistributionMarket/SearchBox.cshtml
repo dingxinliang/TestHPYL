@@ -4,15 +4,15 @@
     string skey=ViewBag.SearchBoxKey;
     int stype=(int)ViewBag.SearchBoxType;
     List<string> hkeys = (List<string>)ViewBag.HistorySearchKey;
-    string seltext = "诊疗项目", noseltext = "店铺";
+    string seltext = "诊疗项目", noseltext = "诊所";
     if (stype==0)
     {
         seltext = "诊疗项目";
-        noseltext = "店铺";
+        noseltext = "诊所";
     }
     else
     {
-        seltext = "店铺";
+        seltext = "诊所";
         noseltext = "诊疗项目";        
     }
 }
@@ -20,7 +20,7 @@
 
     <div class="Mar-top">
         <div class="top-wraper">
-            <div class="M-left"><i></i><br><a href="@(Url.Action("ShopManagement", "Distribution"))">店铺</a></div>
+            <div class="M-left"><i></i><br><a href="@(Url.Action("ShopManagement", "Distribution"))">诊所</a></div>
             <div class="M-middle">
                 <label><i></i><input class="Mar-search" id="skey" type="search" value="@(skey)" placeholder="请输入关键字"></lable>
                 <div class="select">

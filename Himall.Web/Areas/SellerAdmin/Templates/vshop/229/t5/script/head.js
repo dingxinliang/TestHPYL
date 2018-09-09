@@ -2,7 +2,7 @@
     Defaults = {
         11: {
             page: {
-                title: "店铺首页"
+                title: "诊所首页"
             },
             PModules: [{
                 id: 11,
@@ -15,7 +15,7 @@
                         link: "/Shop/index",
                         linkType: 6,
                         showtitle: "首页",
-                        title: "店铺主页",
+                        title: "诊所主页",
                         pic: "/PublicMob/images/index10-2.png"
                     },
                     {
@@ -29,7 +29,7 @@
                         link: "/Shop/index",
                         linkType: 6,
                         showtitle: "新品",
-                        title: "店铺主页",
+                        title: "诊所主页",
                         pic: "/PublicMob/images/index10-4.png"
                     },
                     {

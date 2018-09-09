@@ -57,7 +57,7 @@
 			<div class="search-form cl">
 				<ul>
 					<li>诊疗项目</li>
-					<li>店铺</li>
+					<li>诊所</li>
 				</ul>
 				<label>诊疗项目</label>
 				<input type="text" id="searchBox" class="text" name="" value="" placeholder="@ViewBag.Keyword" />
@@ -108,7 +108,7 @@
 		$('#searchBtn').click(function () {
 			var keyWords = $( '#searchBox' ).val();
 			var selected = $( ".search .search-form label" ).html();
-			if ( selected == "店铺" )
+			if ( selected == "诊所" )
 			{
 				location.href = "/shopsearch?keywords=" + encodeURIComponent( keyWords ? keyWords : $( '#searchBox' ).attr( 'placeholder' ) )
 			}
@@ -289,7 +289,7 @@
 				<i class="asset"><s></s></i>
 				<span>资产中心</span>
 				<div class="side-point">
-					该店铺可领优惠券<br />
+					该诊所可领优惠券<br />
 					<a>立即领取</a>
 				</div>
 			</li>
@@ -656,7 +656,7 @@
 			else
 				$(this).removeAttr('checked');
 
-			//判断店铺下的所有诊疗项目是否全选中
+			//判断诊所下的所有诊疗项目是否全选中
 			var allProductChecked = true;
 			$(this).parent().siblings('.cart-list-goods').each(function () {
 				if (!$(this).find('input').prop('checked'))
@@ -667,7 +667,7 @@
 			else
 				$(this).parent().siblings().find('input[name="checkShop"]').removeAttr('checked');;
 
-			//判断所有店铺是否都选中了
+			//判断所有诊所是否都选中了
 			var allShopChecked = true;
 			$('#side-cart-list input[type="checkbox"]').each(function (i, e) {
 				if (!$(this).prop('checked')) {

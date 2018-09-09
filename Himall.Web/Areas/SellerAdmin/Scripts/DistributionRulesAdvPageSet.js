@@ -31,7 +31,7 @@ function successpost(data) {
     btsubmit.text("保 存");
     loading.close();
     if (data.success == true) {
-        $.dialog.tips("设置分销聚合页推广信息成功！"
+        $.dialog.tips("设置分佣聚合页推广信息成功！"
             , function () {
                 window.location.reload();//数据提交成功页面跳转
             }

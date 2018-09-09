@@ -178,7 +178,7 @@ namespace Himall.Web.Areas.Admin.Controllers
 
         #endregion
 
-        #region 店铺
+        #region 诊所
         [UnAuthorize]
         public ActionResult NewShop()
         {
@@ -245,7 +245,7 @@ namespace Himall.Web.Areas.Admin.Controllers
 
         #endregion
 
-        #region 销售排行
+        #region 使用排行
 
         [HttpGet]
         [UnAuthorize]
@@ -427,7 +427,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             string Title = startDate.ToString("yyyy-MM-dd") + "至" + endDate.ToString("yyyy-MM-dd") + "诊疗项目统计数据";
             ViewData.Add("Title", Title);
             string viewHtml = RenderPartialViewToString(this, "ExportProductStatistic");
-            return File(System.Text.UTF8Encoding.Default.GetBytes(viewHtml), "application/ms-excel", "诊疗项目销售情况.xls");
+            return File(System.Text.UTF8Encoding.Default.GetBytes(viewHtml), "application/ms-excel", "诊疗项目使用情况.xls");
 
         }
         #endregion 导出

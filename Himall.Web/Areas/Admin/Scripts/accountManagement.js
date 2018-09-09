@@ -85,7 +85,7 @@ function Query(status) {
         queryParams: { status: status, shopName: $("#txtShopName").val() },
         columns:
         [[
-            { field: "ShopName", title: "店铺名称", width: 120, align: "center" },
+            { field: "ShopName", title: "诊所名称", width: 120, align: "center" },
             { field: "TimeSlot", title: "时间段", width: 120, align: "center" },
             { field: "ProductActualPaidAmount", title: "诊疗项目实付总额", width: 110, align: "center" },
             { field: "FreightAmount", title: "运费", width: 60, align: "center" },
@@ -93,8 +93,8 @@ function Query(status) {
             { field: "RefundAmount", title: "退款金额", width: 80, align: "center" },
             { field: "RefundCommissionAmount", title: "退还佣金", width: 80, align: "center" },
             { field: "AdvancePaymentAmount", title: "营销费用总额", width: 120, align: "center" },
-             { field: "BrokerageAmount", title: "分销佣金", width: 80, align: "center" },
-              { field: "ReturnBrokerageAmount", title: "退还分销佣金", width: 120, align: "center" },
+             { field: "BrokerageAmount", title: "分佣佣金", width: 80, align: "center" },
+              { field: "ReturnBrokerageAmount", title: "退还分佣佣金", width: 120, align: "center" },
             { field: "PeriodSettlement", title: "本期应结", width: 80, align: "center" },
             { field: "AccountDate", title: "出账日期", width: 100, align: "center" },
             {

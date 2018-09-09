@@ -9,7 +9,7 @@ namespace Himall.Web.Areas.Mobile.Models
     public class ProductGetDistributionInfoModel
     {
         /// <summary>
-        /// 是否分销诊疗项目
+        /// 是否分佣诊疗项目
         /// </summary>
         public bool IsDistribution { get; set; }
         /// <summary>
@@ -21,15 +21,15 @@ namespace Himall.Web.Areas.Mobile.Models
         /// </summary>
         public long ProductId { get; set; }
         /// <summary>
-        /// 分销员会员编号
+        /// 分佣员会员编号
         /// </summary>
         public long UserId { get; set; }
         /// <summary>
-        /// 是否分销员
+        /// 是否分佣员
         /// </summary>
         public bool IsPromoter { get; set; }
         /// <summary>
-        /// 分销员状态
+        /// 分佣员状态
         /// </summary>
         public PromoterInfo.PromoterStatus PromoterStatus { get; set; }
         /// <summary>

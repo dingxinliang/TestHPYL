@@ -92,7 +92,7 @@
     <Compile Include="CashDepositsApplication.cs" />
     <Compile Include="CommentApplication.cs" />
     <Compile Include="CouponSendByRegisterApplication.cs" />
-    <Compile Include="FollowManagerApplication.cs" />
+    <Compile Include="DXL\FollowManagerApplication.cs" />
     <Compile Include="FullDiscountApplication.cs" />
     <Compile Include="FreightTemplateApplication.cs" />
     <Compile Include="LimitTimeApplication.cs" />
@@ -182,9 +182,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DXL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

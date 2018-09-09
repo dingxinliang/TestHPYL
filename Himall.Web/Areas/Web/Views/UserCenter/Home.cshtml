@@ -112,7 +112,7 @@
             </div>
             @{var showFollowShops = Model.userCenterModel.FollowShopsCount > 0 ? "" : "empty-show";}
             <div class="home-box ms-myfavShop @showFollowShops">
-                <h3><a href="/shopConcern">收藏的店铺</a><a href="/shopConcern/Index" class="more">更多>></a></h3>
+                <h3><a href="/shopConcern">收藏的诊所</a><a href="/shopConcern/Index" class="more">更多>></a></h3>
                 <ul class="clearfix">                   
                     @if (Model.userCenterModel.FollowShops.Count > 0)
                     {
@@ -138,7 +138,7 @@
                     }
                     else
                     {
-                        <li class="empty-l">您还未收藏任何店铺哦！</li>
+                        <li class="empty-l">您还未收藏任何诊所哦！</li>
                     }
                 </ul>
 

@@ -39,7 +39,7 @@ namespace Himall.OpenApi
 
         #region 私有
         /// <summary>
-        /// 初始获取店铺信息
+        /// 初始获取诊所信息
         /// </summary>
         /// <param name="app_key"></param>
         private void InitShopInfo(string app_key)

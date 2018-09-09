@@ -14,7 +14,7 @@ namespace Himall.IServices
         /// </summary>
         /// <param name="name">条件：模板名称</param>
         /// <param name="position">条件：模板位置</param>
-        /// <param name="shopId">店铺id</param>
+        /// <param name="shopId">诊所id</param>
         /// <param name="pageNumber">页码</param>
         /// <param name="pageSize">一页行数</param>
         /// <returns></returns>
@@ -24,7 +24,7 @@ namespace Himall.IServices
         /// <summary>
         /// 获取满足条件的所有模板
         /// </summary>
-        /// <param name="shopId">店铺id</param>
+        /// <param name="shopId">诊所id</param>
         /// <returns></returns>
         IQueryable<ProductDescriptionTemplateInfo> GetTemplates(long shopId);
 
@@ -32,7 +32,7 @@ namespace Himall.IServices
         /// 获取指定id的模板
         /// </summary>
         /// <param name="id">模板id</param>
-        /// <param name="shopId">店铺id</param>
+        /// <param name="shopId">诊所id</param>
         /// <returns></returns>
         ProductDescriptionTemplateInfo GetTemplate(long id,long shopId);
 
@@ -52,7 +52,7 @@ namespace Himall.IServices
         /// 删除模板
         /// </summary>
         /// <param name="ids">待删除的模板id</param>
-        /// <param name="shopId">店铺id</param>
+        /// <param name="shopId">诊所id</param>
         void DeleteTemplate(long shopId,params long [] ids);
     }
 }

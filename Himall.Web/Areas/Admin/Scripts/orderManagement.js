@@ -104,14 +104,27 @@ $(function () {
                     {
                         var showUnit = row.OrderItems[i].Unit || "";
                     	html.push('<div class="img-list" style="margin-left:15px;">'+
-			            	'<img src="'+row.OrderItems[i].ThumbnailsUrl+'">'+
+			            	//'<img src="'+row.OrderItems[i].ThumbnailsUrl+'">'+
 			            	'<span class="overflow-ellipsis"><a title="' + row.OrderItems[i].ProductName + '" href="/product/detail/' + row.OrderItems[i].ProductId + '" target="_blank" >' + row.OrderItems[i].ProductName + '</a>'+
 			            	'<p>￥' + row.OrderItems[i].SalePrice.toFixed(2) + ' &nbsp; ' + row.OrderItems[i].Quantity + showUnit  + '</p></span>' +
 			            	'</div>');
                     }
                     return html.join('');
                 }
-            },
+                },
+                {
+                    field: "SellerAddress", title: "就诊地址", width: 170, align: "center", formatter: function (value, row, index) {
+                        return row.ShopName + '<br/>' + row.SellerAddress;
+                    }
+                },
+                {
+                    field: "ReceiveDate", title: "预约时间", width: 120, align: "center",
+                    formatter: function (value, row, index) {
+                        if (value != null) {
+                            return row.YYDate + ' ' + row.ReceiveStartTime + "~" + row.ReceiveEndTime;
+                        }
+                    }
+                },
             {
                 field: "TotalPrice", title: "预约单总额", width: 80, align: "center",
                 formatter: function (value, row, index) {
@@ -119,12 +132,12 @@ $(function () {
                     return html;
                 }
             },
-        {
-            field: "UserName", title: "患者", width: 70, align: "center", formatter: function (value, row, index) {
-                return row.UserName + '<br/>' + row.CellPhone;
-            }
-        },
-		{ field: "ShopName", title: "店铺名称", width: 140, align: "center" },
+                {
+                    field: "UserName", title: "患者", width: 70, align: "center", formatter: function (value, row, index) {
+                        return row.ShipTo + '<br/>' + row.CellPhone;
+                    }
+                },
+		//{ field: "ShopName", title: "诊所名称", width: 140, align: "center" },
         { field: "OrderStatus", title: "预约单状态", width: 80, align: "center" },
         {
             field: "operation", operation: true, title: "操作", width: 140,
@@ -132,10 +145,10 @@ $(function () {
                 var id = row.OrderId.toString();
                 var html = ["<span class=\"btn-a\">"];
                 html.push("<a href='./Detail/" + id + "' target=\"_blank\">查看</a>");
-                if (row.OrderStatus == "待付款") {
-                    html.push("<a class=\"good-check\" onclick=\"OpenConfirmPay('" + id + "')\">确认收款</a>");
-                    html.push("<a class=\"good-check\" onclick=\"OpenCloseOrder('" + id + "')\">取消</a>");
-                }
+                //if (row.OrderStatus == "待付款") {
+                //    html.push("<a class=\"good-check\" onclick=\"OpenConfirmPay('" + id + "')\">确认收款</a>");
+                //    html.push("<a class=\"good-check\" onclick=\"OpenCloseOrder('" + id + "')\">取消</a>");
+                //}
                 html.push("</span>");
                 return html.join("");
             }

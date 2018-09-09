@@ -4,7 +4,7 @@
 	ViewBag.Title = "分类管理";
 }
 <script src="~/Scripts/CommonJS.js"></script>
-<script src="~/Areas/Admin/Scripts/categoryJS.js"></script>
+<script src="~/Areas/Admin/Scripts/categoryJS.js?@DateTime.UtcNow"></script>
 
 <div class="container clear-m">
 	<ul class="nav nav-tabs-custom clearfix">
@@ -23,7 +23,7 @@
 
 				<th style="text-align:center" width="400">分类名称</th>
 
-				<th style="text-align:center" width="200">佣金比率</th>
+				@*<th style="text-align:center" width="200">佣金比率</th>*@
 				<th class="td-operate clear-m1">操作</th>
 			</tr>
 		</thead>
@@ -71,14 +71,14 @@
 						<input class="text-name input-no-sp" type="text" value="@category.Name" />
 						<input class="text-order" type="text" value="@category.DisplaySequence" />
 					</td>
-					@if (category.Depth == 3)
+					@*@if (category.Depth == 3)
 					{
 						<td class="tac"><input class="text-commis tac text-order" type="text" value="@category.CommisRate"><span>%</span></td>
 					}
 					else
 					{
 						<td style="text-align:center"></td>
-					}
+					}*@
 					<td class="td-operate">
 						<span class="btn-a">
 							@if (category.Depth < 3)

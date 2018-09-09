@@ -153,7 +153,7 @@ namespace Himall.SmallProgAPI
                     shop.Stage = Himall.Model.ShopInfo.ShopStage.Finish;
                     shop.ShopStatus = Himall.Model.ShopInfo.ShopAuditStatus.WaitConfirm;//默认状态为待确认
                     shop.EndDate = DateTime.Now.AddYears(1);
-                    shop.GradeId = 1;//写入店铺默认套餐
+                    shop.GradeId = 1;//写入诊所默认套餐
 
                     //更新诊所信息
                     ServiceProvider.Instance<IShopService>.Create.UpdateShop(shop);

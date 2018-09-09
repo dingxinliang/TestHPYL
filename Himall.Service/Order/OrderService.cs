@@ -272,7 +272,7 @@ namespace Himall.Service
         /// 是否存在预约单
         /// </summary>
         /// <param name="orderId"></param>
-        /// <param name="shopId">店铺Id,0表示不限店铺</param>
+        /// <param name="shopId">诊所Id,0表示不限诊所</param>
         /// <returns></returns>
         public bool IsExistOrder(long orderId, long shopId = 0)
         {
@@ -764,10 +764,10 @@ namespace Himall.Service
             //处理推荐用户佣金
             if (order.ShareUserId.HasValue)
             {
-                //增加分销员清退处理
+                //增加分佣员清退处理
                 var promoter = Context.PromoterInfo.FirstOrDefault(e => e.UserId == order.ShareUserId.Value);
                 if (promoter != null && promoter.Status == PromoterInfo.PromoterStatus.Audited)
-                {//只有审核状态的分销员才计算佣金
+                {//只有审核状态的分佣员才计算佣金
                     //处理佣金
                     foreach (var item in order.OrderItemInfo)
                     {
@@ -792,7 +792,7 @@ namespace Himall.Service
                             Context.BrokerageIncomeInfo.Add(income);
                             var m = Context.ProductBrokerageInfo.Where(a => a.ProductId == item.ProductId).FirstOrDefault();
                             m.saleAmount += item.RealTotalPrice;
-                            m.SaleNum += Convert.ToInt32(item.Quantity); //增加诊疗项目销售量和诊疗项目销售额
+                            m.SaleNum += Convert.ToInt32(item.Quantity); //增加诊疗项目使用量和诊疗项目使用额
                             m.BrokerageTotal += income.Brokerage;
                         }
                     }
@@ -853,10 +853,10 @@ namespace Himall.Service
             //处理推荐用户佣金
             if (order.ShareUserId.HasValue)
             {
-                //增加分销员清退处理
+                //增加分佣员清退处理
                 var promoter = Context.PromoterInfo.FirstOrDefault(e => e.UserId == order.ShareUserId.Value);
                 if (promoter != null && promoter.Status == PromoterInfo.PromoterStatus.Audited)
-                {//只有审核状态的分销员才计算佣金
+                {//只有审核状态的分佣员才计算佣金
                     //处理佣金
                     foreach (var item in order.OrderItemInfo)
                     {
@@ -881,7 +881,7 @@ namespace Himall.Service
                             Context.BrokerageIncomeInfo.Add(income);
                             var m = Context.ProductBrokerageInfo.Where(a => a.ProductId == item.ProductId).FirstOrDefault();
                             m.saleAmount += item.RealTotalPrice;
-                            m.SaleNum += Convert.ToInt32(item.Quantity); //增加诊疗项目销售量和诊疗项目销售额
+                            m.SaleNum += Convert.ToInt32(item.Quantity); //增加诊疗项目使用量和诊疗项目使用额
                             m.BrokerageTotal += income.Brokerage;
                         }
                     }
@@ -1321,9 +1321,9 @@ namespace Himall.Service
 
             var orderItems = Context.OrderItemInfo.Where(p => p.OrderId == orderId).ToList();
 
-            UpdateShopVisti(order);                // 修改店铺销量
+            UpdateShopVisti(order);                // 修改诊所销量
             UpdateProductVisti(orderItems.Where(p => p.OrderId == order.Id));            // 修改诊疗项目销量
-            UpdateLimitTimeBuyLog(orderItems.Where(p => p.OrderId == order.Id));    // 修改限时购销售数量
+            UpdateLimitTimeBuyLog(orderItems.Where(p => p.OrderId == order.Id));    // 修改限时购使用数量
 
             var firstOrderItem = orderItems.First();
             PaySuccessed(order, firstOrderItem.ProductName, "线下收款", "已付款", DateTime.Now);
@@ -1388,9 +1388,9 @@ namespace Himall.Service
                         order.ActualPayAmount = order.TotalAmount;
 
                         //  SetActualItemPrice(order);         //平摊预约单的优惠券金额
-                        UpdateShopVisti(order);               // 修改店铺销量
+                        UpdateShopVisti(order);               // 修改诊所销量
                         UpdateProductVisti(orderItems.Where(p => p.OrderId == order.Id));           // 修改诊疗项目销量
-                        UpdateLimitTimeBuyLog(orderItems.Where(p => p.OrderId == order.Id));   // 修改限时购销售数量
+                        UpdateLimitTimeBuyLog(orderItems.Where(p => p.OrderId == order.Id));   // 修改限时购使用数量
                         order.GatewayOrderId = payNo;
                         order.LastModifyTime = DateTime.Now;
                         Context.SaveChanges();
@@ -1491,9 +1491,9 @@ namespace Himall.Service
                         capital.Balance -= order.OrderTotalAmount;
                         Context.CapitalDetailInfo.Add(detail);
                         //    SetActualItemPrice(order);         //平摊预约单的优惠券金额
-                        UpdateShopVisti(order);               // 修改店铺销量
+                        UpdateShopVisti(order);               // 修改诊所销量
                         UpdateProductVisti(orderItems.Where(p => p.OrderId == order.Id));           // 修改诊疗项目销量
-                        UpdateLimitTimeBuyLog(orderItems.Where(p => p.OrderId == order.Id));   // 修改限时购销售数量
+                        UpdateLimitTimeBuyLog(orderItems.Where(p => p.OrderId == order.Id));   // 修改限时购使用数量
 
                         Context.SaveChanges();
                         scope.Complete();
@@ -1865,7 +1865,7 @@ namespace Himall.Service
             return integralPerMoney == 0 ? 0 : Math.Round(integral / (decimal)integralPerMoney, 2, MidpointRounding.AwayFromZero);
         }
 
-        // 获取单个诊疗项目的销售价格
+        // 获取单个诊疗项目的使用价格
         public decimal GetSalePrice(string skuId, decimal salePrice, long? collid, int SkuCount, bool IslimitBuy = false)
         {
             var price = salePrice;
@@ -2063,9 +2063,9 @@ namespace Himall.Service
             }
         }
 
-        // 更新店铺访问量
+        // 更新诊所访问量
         private void UpdateShopVisti(OrderInfo order)
-        {//TODO:店铺访问量统计，暂时取消实时统计
+        {//TODO:诊所访问量统计，暂时取消实时统计
             /* 
             var date = DateTime.Now.Date;
             ShopVistiInfo shopVisti = Context.ShopVistiInfo.FindBy(item =>
@@ -2341,7 +2341,7 @@ namespace Himall.Service
         /// <summary>
         /// 获取昨天预约单交易金额
         /// </summary>
-        /// <param name="shopId">店铺ID平台不需要填写</param>
+        /// <param name="shopId">诊所ID平台不需要填写</param>
         /// <returns></returns>
         public decimal GetYesterDaySaleAmount(long? shopId = null)
         {
@@ -2369,7 +2369,7 @@ namespace Himall.Service
         /// <summary>
         /// 昨天下单预约单数
         /// </summary>
-        /// <param name="shopId">店铺ID平台不需要填写</param>
+        /// <param name="shopId">诊所ID平台不需要填写</param>
         /// <returns></returns>
         public int GetYesterDayOrdersNum(long? shopId = null)
         {
@@ -2396,7 +2396,7 @@ namespace Himall.Service
         /// <summary>
         /// 昨天付款预约单数
         /// </summary>
-        /// <param name="shopId">店铺ID平台不需要填写</param>
+        /// <param name="shopId">诊所ID平台不需要填写</param>
         /// <returns></returns>
         public int GetYesterDayPayOrdersNum(long? shopId = null)
         {
@@ -2427,7 +2427,7 @@ namespace Himall.Service
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="reMark"></param>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         public void UpdateSellerRemark(long orderId, long shopId, string reMark, int flag)
         {
             var order = Context.OrderInfo.Where(a => a.Id == orderId && a.ShopId == shopId).FirstOrDefault();
@@ -2872,7 +2872,7 @@ namespace Himall.Service
         /// </summary>
         public List<OrderInfo> GetOrderInfos(IEnumerable<OrderSkuInfo> orderSkuInfos, OrderCreateModel model, OrderCreateAdditional additional)
         {
-            //把购买的诊疗项目信息按店铺分组
+            //把购买的诊疗项目信息按诊所分组
             var cartGroupInfo = orderSkuInfos.GroupBy(item => item.Product.ShopId).ToList();
 
             List<OrderInfo> infos = new List<OrderInfo>();
@@ -2942,7 +2942,7 @@ namespace Himall.Service
             var shop = ServiceProvider.Instance<IShopService>.Create.GetShop(groupItem.Key);
             if (shop.ShopStatus == ShopInfo.ShopAuditStatus.Freeze || shop.ShopStatus == ShopInfo.ShopAuditStatus.HasExpired)
             {
-                throw new HimallException(shop.ShopName + "已冻结或者过期，请移除此店铺的诊疗项目！");
+                throw new HimallException(shop.ShopName + "已冻结或者过期，请移除此诊所的诊疗项目！");
             }
 
             IEnumerable<long> productIds = groupItem.ToList().Select(item => item.Product.Id);
@@ -3014,7 +3014,7 @@ namespace Himall.Service
                 order.OrderType = Himall.Model.OrderInfo.OrderTypes.LimitBuy;
             }
 
-            if (additional.IsEnableDistribution) //如果开启了分销并且有推销员的Id(重新取一遍用户)
+            if (additional.IsEnableDistribution) //如果开启了分佣并且有推销员的Id(重新取一遍用户)
             {
                 var shareUser = Context.DistributionUserLinkInfo.Where(a => a.BuyUserId == user.Id && a.ShopId == order.ShopId).FirstOrDefault();
                 if (shareUser != null && shareUser.PartnerId > 0)
@@ -3054,7 +3054,7 @@ namespace Himall.Service
                 {
                     bool IsDistributionProduct = Context.DistributionUserLinkInfo.Any(a => a.PartnerId == order.ShareUserId && a.ShopId == order.ShopId);
 
-                    if (IsDistributionProduct)//如果用户分享过此店铺的诊疗项目则计算佣金
+                    if (IsDistributionProduct)//如果用户分享过此诊所的诊疗项目则计算佣金
                     {
                         var productRate = Context.ProductBrokerageInfo.Where(a => a.ProductId == item.Product.Id && a.Status == ProductBrokerageInfo.ProductBrokerageStatus.Normal).FirstOrDefault();
                         if (productRate != null && productRate.rate != 0) //诊疗项目的佣金比例存在预约单表防止改价的时候直接存金额不正确
@@ -3681,44 +3681,44 @@ namespace Himall.Service
             Context.SaveChanges();
 
             //处理推荐用户佣金
-            //if (order.ShareUserId.HasValue)
-            //{
-            //    //增加分销员清退处理
-            //    //var promoter = Context.PromoterInfo.FirstOrDefault(e => e.UserId == order.ShareUserId.Value);
-            //    //if (promoter != null && promoter.Status == PromoterInfo.PromoterStatus.Audited)
-            //    //{
-            //        //只有审核状态的分销员才计算佣金
-            //        //处理佣金
-            //        foreach (var item in order.OrderItemInfo)
-            //        {
-            //            if (item.DistributionRate.HasValue && item.DistributionRate.Value > 0)
-            //            {
-            //                var income = new BrokerageIncomeInfo();
-            //                income.SkuID = item.SkuId;
-            //                income.SkuInfo = item.SKU;
-            //                income.ProductID = item.ProductId;
-            //                income.OrderItemId = item.Id;
-            //                income.OrderId = item.OrderId;
-            //                income.ProductName = item.ProductName;
-            //                income.CreateTime = DateTime.Now;
-            //                income.OrderTime = order.OrderDate;
-            //                income.ShopId = item.ShopId;
-            //                income.TotalPrice = item.RealTotalPrice;
-            //                income.SettlementTime = null;
-            //                income.UserId = order.ShareUserId.Value;
-            //                income.Status = BrokerageIncomeInfo.BrokerageStatus.NotSettled;
-            //                income.Brokerage = Math.Round((item.DistributionRate.Value * (item.RealTotalPrice - item.CouponDiscount - item.FullDiscount)) / 100, 2, MidpointRounding.AwayFromZero);
-            //                income.BuyerUserId = order.UserId;
-            //                Context.BrokerageIncomeInfo.Add(income);
-            //                var m = Context.ProductBrokerageInfo.Where(a => a.ProductId == item.ProductId).FirstOrDefault();
-            //                m.saleAmount += item.RealTotalPrice;
-            //                m.SaleNum += Convert.ToInt32(item.Quantity); //增加诊疗项目销售量和诊疗项目销售额
-            //                m.BrokerageTotal += income.Brokerage;
-            //            }
-            //        }
-            //        Context.SaveChanges();
-            //    //}
-            //}
+            if (order.ShareUserId.HasValue)
+            {
+                //增加分佣员清退处理
+                var promoter = Context.UserMemberInfo.FirstOrDefault(e => e.Id == order.ShareUserId.Value);
+                if (promoter != null && promoter.Disabled ==false)
+                {
+                    //只有审核状态的分佣员才计算佣金
+                    //处理佣金
+                foreach (var item in order.OrderItemInfo)
+                {
+                    if (item.DistributionRate.HasValue && item.DistributionRate.Value > 0)
+                    {
+                        var income = new BrokerageIncomeInfo();
+                        income.SkuID = item.SkuId;
+                        income.SkuInfo = item.SKU;
+                        income.ProductID = item.ProductId;
+                        income.OrderItemId = item.Id;
+                        income.OrderId = item.OrderId;
+                        income.ProductName = item.ProductName;
+                        income.CreateTime = DateTime.Now;
+                        income.OrderTime = order.OrderDate;
+                        income.ShopId = item.ShopId;
+                        income.TotalPrice = item.RealTotalPrice;
+                        income.SettlementTime = null;
+                        income.UserId = order.ShareUserId.Value;
+                        income.Status = BrokerageIncomeInfo.BrokerageStatus.NotSettled;
+                        income.Brokerage = Math.Round((item.DistributionRate.Value * (item.RealTotalPrice - item.CouponDiscount - item.FullDiscount)) / 100, 2, MidpointRounding.AwayFromZero);
+                        income.BuyerUserId = order.UserId;
+                        Context.BrokerageIncomeInfo.Add(income);
+                        var m = Context.ProductBrokerageInfo.Where(a => a.ProductId == item.ProductId).FirstOrDefault();
+                        m.saleAmount += item.RealTotalPrice;
+                        m.SaleNum += Convert.ToInt32(item.Quantity); //增加诊疗项目使用量和诊疗项目使用额
+                        m.BrokerageTotal += income.Brokerage;
+                    }
+                }
+                Context.SaveChanges();
+                }
+            }
             //var member = Context.UserMemberInfo.FirstOrDefault(a => a.UserName == order.UserName);
             //AddIntegral(member, order.Id, order.ActualPayAmount);//增加积分
 

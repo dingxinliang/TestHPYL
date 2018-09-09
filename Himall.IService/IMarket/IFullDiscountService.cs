@@ -50,11 +50,11 @@ namespace Himall.IServices
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="activeId">添加活动使用0</param>
-        /// <param name="shopId">店铺编号</param>
+        /// <param name="shopId">诊所编号</param>
         /// <returns></returns>
         List<long> FilterActiveProductId(IEnumerable<long> productIds, long activeId, long shopId);
         /// <summary>
-        /// 根据诊疗项目ID和店铺ID取正在参与且进行中的活动信息
+        /// 根据诊疗项目ID和诊所ID取正在参与且进行中的活动信息
         /// </summary>
         /// <param name="proId"></param>
         /// <returns></returns>
@@ -93,7 +93,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 获取某个店铺正在进行的满额减活动列表
+        /// 获取某个诊所正在进行的满额减活动列表
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="productIds"></param>
@@ -101,7 +101,7 @@ namespace Himall.IServices
         List<ActiveInfo> GetOngoingActiveByShopId(long shopId);
 
         /// <summary>
-        /// 获取某个店铺的一批诊疗项目正在进行的满额减活动
+        /// 获取某个诊所的一批诊疗项目正在进行的满额减活动
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="shopId"></param>
@@ -132,7 +132,7 @@ namespace Himall.IServices
         /// <returns></returns>
         bool CanOperationActive(ActiveInfo active, IEnumerable<ActiveProductInfo> products);
         /// <summary>
-        /// 获取不在销售中的诊疗项目
+        /// 获取不在使用中的诊疗项目
         /// </summary>
         /// <param name="productIds"></param>
         /// <returns></returns>

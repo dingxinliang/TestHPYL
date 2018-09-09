@@ -266,7 +266,9 @@
     <Compile Include="Areas\Mobile\Controllers\BranchOrderController.cs" />
     <Compile Include="Areas\Mobile\Controllers\BranchProductController.cs" />
     <Compile Include="Areas\Mobile\Controllers\CouponRecord.cs" />
+    <Compile Include="Areas\SellerAdmin\Controllers\DXL\DoctorServiceController.cs" />
     <Compile Include="Areas\SellerAdmin\Controllers\DXL\FollowController.cs" />
+    <Compile Include="Areas\SellerAdmin\Controllers\DXL\PatientServiceController.cs" />
     <Compile Include="Areas\SellerAdmin\Controllers\DXL\TemPlateController.cs" />
     <Compile Include="Wdgj_Api\WdgjApiHandler.ashx.cs">
       <DependentUpon>WdgjApiHandler.ashx</DependentUpon>
@@ -758,6 +760,7 @@
     <Compile Include="ObjectEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Areas\SellerAdmin\Scripts\DXL\doctorContent.js" />
+    <Content Include="Areas\SellerAdmin\Scripts\DXL\DoctorService.js" />
     <Content Include="Areas\SellerAdmin\Scripts\DXL\FolwManagement.js" />
     <Content Include="Areas\SellerAdmin\Scripts\DXL\UserPlan.js" />
     <Content Include="WebForm1.aspx" />
@@ -3743,6 +3746,7 @@
     <Content Include="Areas\SellerAdmin\Views\TemPlate\doctorcontent.cshtml" />
     <Content Include="Areas\SellerAdmin\Views\Follow\management.cshtml" />
     <Content Include="Areas\SellerAdmin\Views\Follow\FollowPlanDetail.cshtml" />
+    <Content Include="Areas\SellerAdmin\Views\DoctorService\management.cshtml" />
     <None Include="Properties\PublishProfiles\Deploy.pubxml" />
     <Content Include="Areas\Admin\Views\PageSettings\AddHomeFloorDetail7.cshtml" />
     <Content Include="Areas\Admin\Views\PageSettings\AddHomeFloorDetail8.cshtml" />
@@ -4129,6 +4133,7 @@
     <Folder Include="Areas\Mobile\Views\ShopBranch\" />
     <Folder Include="Areas\Mobile\Views\ShopProfile\" />
     <Folder Include="Areas\SellerAdmin\Content\Images\" />
+    <Folder Include="Areas\SellerAdmin\Views\PatientService\" />
     <Folder Include="Areas\Web\Views\Category\" />
     <Folder Include="Areas\Web\Views\OrderPartial\" />
     <Folder Include="Plugins\Express\Himall.Plugin.OAuth.WeiXin\" />

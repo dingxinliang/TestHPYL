@@ -35,7 +35,7 @@ $(function () {
                         return '<a href="/Admin/order/Detail/' + value + '" target="_blank">' + value + '</a>';
                     }
                 },
-                    { field: "ShopName", title: "店铺", width: 120, align: "center" },
+                    { field: "ShopName", title: "诊所", width: 120, align: "center" },
                     {
                         field: "ProductName", title: "诊疗项目", width: 280, align: "center",
                         formatter: function (value, row, index) {

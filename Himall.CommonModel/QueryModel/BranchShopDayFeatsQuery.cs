@@ -22,7 +22,7 @@ namespace Himall.CommonModel
 
     
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long ShopId { set; get; } 
 

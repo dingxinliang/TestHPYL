@@ -24,7 +24,7 @@ namespace Himall.Service
         {
             var shopProductModule = Context.ShopHomeModuleInfo.FirstOrDefault( item => item.Id == id && item.ShopId == shopId );
             if( shopProductModule == null )
-                throw new HimallException( "在本店铺中未找到指定诊疗项目模块" );
+                throw new HimallException( "在本诊所中未找到指定诊疗项目模块" );
 
             shopProductModule.Name = name;
             Context.SaveChanges();
@@ -34,7 +34,7 @@ namespace Himall.Service
         {
             var shopProductModule = Context.ShopHomeModuleInfo.FirstOrDefault( item => item.Id == id && item.ShopId == shopId );
             if( shopProductModule == null )
-                throw new HimallException( "在本店铺中未找到指定诊疗项目模块" );
+                throw new HimallException( "在本诊所中未找到指定诊疗项目模块" );
 
             var products = shopProductModule.ShopHomeModuleProductInfo.ToArray();
 

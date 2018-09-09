@@ -11,8 +11,8 @@
 
         @if (Model != null)
         {
-            <li><a href="editvshop?shopId=@Model.ShopId" id="btnUpd">店铺信息管理</a></li>
-            @*<li><a href="/Selleradmin/VTemplate/VHomepage">店铺首页配置</a></li>*@
+            <li><a href="editvshop?shopId=@Model.ShopId" id="btnUpd">诊所信息管理</a></li>
+            @*<li><a href="/Selleradmin/VTemplate/VHomepage">诊所首页配置</a></li>*@
         }
     </ul>
 
@@ -28,7 +28,7 @@
     {
         <div class="form-horizontal">
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="">店铺名称:</label>
+                <label class="col-sm-2 control-label" for="">诊所名称:</label>
                 <div class="col-sm-3 form-control-static">@Model.Name</div>
             </div>
             <div class="form-group">
@@ -48,7 +48,7 @@
                     <div class="col-sm-3 form-control-static">@Model.buyNum</div>
                 </div>*@
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="">店铺二维码:</label>
+                <label class="col-sm-2 control-label" for="">诊所二维码:</label>
                 <div class="col-sm-3"><img style="width: 150px;margin: -11px;" src="@ViewBag.QRCode" /></div>
             </div>
             <div class="form-group">
@@ -59,7 +59,7 @@
 
                 <label class="col-sm-2 control-label">分享到： </label>
 
-                    @*//  <wb:share-button type="button" count="n" addition="simple" title="这家店铺很不错哦" pic="http://@Request.Url.Host@ViewBag.QRCode" url="http://@Request.Url.Host/shop/home/@Model.ShopId"></wb:share-button>*@
+                    @*//  <wb:share-button type="button" count="n" addition="simple" title="这家诊所很不错哦" pic="http://@Request.Url.Host@ViewBag.QRCode" url="http://@Request.Url.Host/shop/home/@Model.ShopId"></wb:share-button>*@
                
                 <div class="col-sm-3 form-control-static">
                     <a href="javascript:void(0);" onclick="Share('sina')" title="分享到新浪微博"><img src="/Images/weibo.png" /></a>
@@ -69,7 +69,7 @@
             </div>
 
             @*<div class="form-group">
-                    <div class="col-sm-2 col-sm-offset-1"><a class="btn btn-primary btn-sm" href="editvshop?shopId=@Model.ShopId">编辑店铺信息</a></div>
+                    <div class="col-sm-2 col-sm-offset-1"><a class="btn btn-primary btn-sm" href="editvshop?shopId=@Model.ShopId">编辑诊所信息</a></div>
 
                 </div>*@
         </div>

@@ -79,7 +79,7 @@ namespace Himall.Service.Job
             //时间段内所有预约单（下单数据统计）
             var orders = entity.OrderInfo.Where(e => e.OrderDate >= statisticStartDate && e.OrderDate < statisticEndDate).ToList();
             var orderGroups = orders.GroupBy(e => e.ShopId);
-            //已存在的店铺统计
+            //已存在的诊所统计
             var shopids = orderGroups.Select(e => e.Key).Distinct();
             var shopVisitInfos = entity.ShopVistiInfo.Where(e => shopids.Contains(e.ShopId) && e.Date == statisticStartDate).ToList();
             List<ShopVistiInfo> shopVisitRange = new List<ShopVistiInfo>();
@@ -112,7 +112,7 @@ namespace Himall.Service.Job
             //时间段内已支付预约单(付款数据统计)
             var payOrders = entity.OrderInfo.Where(e => e.PayDate.HasValue && e.PayDate.Value >= statisticStartDate && e.PayDate.Value < statisticEndDate).ToList();
             var payOrderGroups = payOrders.GroupBy(e => e.ShopId);
-            //已存在的店铺统计
+            //已存在的诊所统计
             shopids = payOrderGroups.Select(e => e.Key).Distinct();
             shopVisitInfos = entity.ShopVistiInfo.Where(e => shopids.Contains(e.ShopId) && e.Date == statisticStartDate).ToList();
             shopVisitRange = new List<ShopVistiInfo>();

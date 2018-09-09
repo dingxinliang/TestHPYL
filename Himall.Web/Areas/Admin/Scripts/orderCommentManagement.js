@@ -18,7 +18,7 @@
         columns:
         [[
             { field: "OrderId", title: '预约单号', width: 150 },
-            { field: "ShopName", title: "店铺", width: 150, align: "center" },
+            { field: "ShopName", title: "诊所", width: 150, align: "center" },
             { field: "UserName", title: "评价会员", width: 80, align: "center" },
             { field: "PackMark", title: "诊疗项目包装", width: 100, align: "center" },
             { field: "DeliveryMark", title: "送货速度", width: 100, align: "center" },

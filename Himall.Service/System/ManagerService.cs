@@ -86,7 +86,7 @@ namespace Himall.Service
 
         /// <summary>
         /// 根据ShopId获取对应系统管理信息
-        /// <para>仅获取首页店铺系统管理员</para>
+        /// <para>仅获取首页诊所系统管理员</para>
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -335,13 +335,13 @@ namespace Himall.Service
                     {
                         var shop = ServiceProvider.Instance<IShopService>.Create.GetShop(manager.ShopId);
                         if (shop == null)
-                            throw new HimallException("未找到帐户对应的店铺");
+                            throw new HimallException("未找到帐户对应的诊所");
 
-                        if (!shop.IsSelf)//只处理非官方店铺
+                        if (!shop.IsSelf)//只处理非官方诊所
                         {
-                            if (shop.ShopStatus == ShopInfo.ShopAuditStatus.Freeze)//冻结店铺
+                            if (shop.ShopStatus == ShopInfo.ShopAuditStatus.Freeze)//冻结诊所
                             {
-                                //throw new HimallException("帐户所在店铺已被冻结");
+                                //throw new HimallException("帐户所在诊所已被冻结");
                             }
                         }
                     }

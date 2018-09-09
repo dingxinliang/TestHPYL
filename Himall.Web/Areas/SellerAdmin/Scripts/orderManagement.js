@@ -214,7 +214,7 @@ $(function () {
                                 if (row.OrderStatus == "待付款" || row.OrderStatus == "待就诊") {
                                     //var text = row.ShopBranchId > 0 ? "更改诊所" : "分配诊所";
                                     //html.push("<a class=\"good-check\" onclick=\"ProcessStore('" + id + "','" + row.RegionId + "','" + row.RegionFullName + "','" + row.Address + "','" + row.ShopId + "','" + row.RefundStatusText + "','" + row.LatAndLng + "')\">" + text + "</a>");
-                                    html.push("<a class=\"good-check\" onclick=\"OpenCloseOrder('" + id + "')\">取消</a>");
+                                    //html.push("<a class=\"good-check\" onclick=\"OpenCloseOrder('" + id + "')\">取消</a>");
                                     html.push("<a class=\"good-down\" onclick=\"DownOrder('" + id + "')\">完成</a>");
                                 }
                             }

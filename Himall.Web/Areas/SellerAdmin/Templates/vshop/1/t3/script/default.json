@@ -15,7 +15,7 @@
                         </li>
                         <li>
                             <span class="active"></span>
-					<a href="/activities.aspx">店铺活动</a>
+					<a href="/activities.aspx">诊所活动</a>
                         </li>
                         <li>
                             <span class="orderpic"></span>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="formitems">
-            <label class="fi-name">店铺头像：</label>
+            <label class="fi-name">诊所头像：</label>
             <div class="form-controls">
                 <div class="homepage-header-photo">
                     <img src="<#= content.photo #>">

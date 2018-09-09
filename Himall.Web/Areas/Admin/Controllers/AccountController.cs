@@ -130,15 +130,15 @@ namespace Himall.Web.Areas.Admin.Controllers
             //给sheet1添加第一行的头部标题
 
             NPOI.SS.UserModel.Row row1 = sheet1.CreateRow(0);
-            row1.CreateCell(0).SetCellValue("店铺名称");
+            row1.CreateCell(0).SetCellValue("诊所名称");
             row1.CreateCell(1).SetCellValue("时间段");
             row1.CreateCell(2).SetCellValue("诊疗项目实付总额");
             row1.CreateCell(3).SetCellValue("运费");
             row1.CreateCell(4).SetCellValue("佣金");
             row1.CreateCell(5).SetCellValue("退款金额");
             row1.CreateCell(6).SetCellValue("退还佣金");
-            row1.CreateCell(7).SetCellValue("分销佣金");
-            row1.CreateCell(8).SetCellValue("退还分销佣金");
+            row1.CreateCell(7).SetCellValue("分佣佣金");
+            row1.CreateCell(8).SetCellValue("退还分佣佣金");
             row1.CreateCell(9).SetCellValue("营销费用总额");
             row1.CreateCell(10).SetCellValue("本期应结");
             row1.CreateCell(11).SetCellValue("出账日期");

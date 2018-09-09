@@ -10,7 +10,7 @@ namespace Himall.Model
     public partial class GiftInfo
     {
         /// <summary>
-        /// 礼品销售状态
+        /// 礼品使用状态
         /// </summary>
         public enum GiftSalesStatus
         {
@@ -89,7 +89,7 @@ namespace Himall.Model
         }
 
         /// <summary>
-        /// 获取当前销售状态
+        /// 获取当前使用状态
         /// </summary>
         [NotMapped]
         public GiftInfo.GiftSalesStatus GetSalesStatus

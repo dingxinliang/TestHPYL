@@ -205,7 +205,7 @@ function bindSelectAll() {
             $(this).parents('.item').removeClass('item_selected')
         }
 
-        //判断店铺下的所有诊疗项目是否全选中
+        //判断诊所下的所有诊疗项目是否全选中
         var allProductChecked = true;
         $('input[name="checkItem"]').each(function (i, e) {
             if ($(e).val() == v) {
@@ -225,7 +225,7 @@ function bindSelectAll() {
             });
         }
 
-        //判断所有店铺是否都选中了
+        //判断所有诊所是否都选中了
         var allShopChecked = true;
         $('#product-list input[type="checkbox"]').each(function (i, e) {
             if (!$(this).attr('checked')) {

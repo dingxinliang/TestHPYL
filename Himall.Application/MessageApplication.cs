@@ -91,7 +91,7 @@ namespace Himall.Application
             _iMessageService.SendMessageOnOrderPay(userId, info);
         }
         /// <summary>
-        /// 店铺有新预约单
+        /// 诊所有新预约单
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
@@ -128,7 +128,7 @@ namespace Himall.Application
             _iMessageService.SendMessageOnOrderShipping(userId, info);
         }
         /// <summary>
-        /// 店铺审核
+        /// 诊所审核
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
@@ -148,7 +148,7 @@ namespace Himall.Application
         }
 
         ///// <summary>
-        ///// 店铺成功2.4去除
+        ///// 诊所成功2.4去除
         ///// </summary>
         ///// <param name="destination"></param>
         ///// <param name="info"></param>

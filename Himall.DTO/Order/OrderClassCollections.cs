@@ -135,11 +135,11 @@ namespace Himall.DTO
         public decimal FullDiscount { set; get; }
 
         /// <summary>
-        /// 店铺合计（含运费，不含优惠券）
+        /// 诊所合计（含运费，不含优惠券）
         /// </summary>
         public decimal ShopTotal { get { return CartItemModels.Sum(item => item.price * item.count)-FullDiscount + Freight; } }
         /// <summary>
-        /// 店铺合计（不含运费，不含优惠券）
+        /// 诊所合计（不含运费，不含优惠券）
         /// </summary>
         public decimal ShopTotalWithoutFreight { get { return CartItemModels.Sum(item => item.price * item.count)-FullDiscount; } }
 
@@ -181,11 +181,11 @@ namespace Himall.DTO
         public decimal FullDiscount { set; get; }
 
         /// <summary>
-        /// 店铺合计（含运费，不含优惠券）
+        /// 诊所合计（含运费，不含优惠券）
         /// </summary>
         public decimal ShopTotal { get { return CartItemModels.Sum(item => item.price * item.count) - FullDiscount + Freight; } }
         /// <summary>
-        /// 店铺合计（不含运费，不含优惠券）
+        /// 诊所合计（不含运费，不含优惠券）
         /// </summary>
         public decimal ShopTotalWithoutFreight { get { return CartItemModels.Sum(item => item.price * item.count) - FullDiscount; } }
 

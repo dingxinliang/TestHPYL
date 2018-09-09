@@ -116,7 +116,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 return Json(new object[] { });
         }
         /// <summary>
-        /// 取店铺品牌
+        /// 取诊所品牌
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
@@ -393,7 +393,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                             var iProcudt = _iProductService;
                             ObsoletePageModel<ProductInfo> products = iProcudt.GetProducts(productQuery);
                             if (products.Total > 0)
-                            {//当前店铺、分类已经存在相同编码的诊疗项目
+                            {//当前诊所、分类已经存在相同编码的诊疗项目
                                 result++;
                                 Core.Log.Debug(strProductName + " : 诊疗项目不能重复导入");
                                 Core.Cache.Insert(CacheKeyCollection.UserImportProductCount(_userid), result);

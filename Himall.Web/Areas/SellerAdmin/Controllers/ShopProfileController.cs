@@ -153,7 +153,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
             ShopApplication.UpdateShop(shopInfo);
 
-            //更新店铺信息
+            //更新诊所信息
             string idlist = new RegionService().GetRegionPath((long)shopProfileStep1.CityRegionId);
             string sql = "updateXXXX where shopid="+ CurrentSellerManager.ShopId + "";
 
@@ -321,7 +321,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
 
         /// <summary>
-        /// 第三部店铺信息提交
+        /// 第三部诊所信息提交
         /// </summary>
         /// <param name="shopProfileStep3"></param>
         /// <returns></returns>
@@ -334,7 +334,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
             if (result.Equals(-1))
             {
-                var msg = string.Format("{0} 店铺名称已经存在", model.ShopName);
+                var msg = string.Format("{0} 诊所名称已经存在", model.ShopName);
                 return Json(new { success = false, msg = msg });
             }
 
@@ -605,7 +605,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         [HttpGet]
         public ActionResult Step5()
         {
-            ViewBag.Text = "付款凭证已经提交，请等待管理员核对后为您开通店铺";
+            ViewBag.Text = "付款凭证已经提交，请等待管理员核对后为您开通诊所";
             var shop = ShopApplication.GetShop(CurrentSellerManager.ShopId);
             if (shop.ShopStatus == ShopInfo.ShopAuditStatus.WaitConfirm)
                 return View("step4");

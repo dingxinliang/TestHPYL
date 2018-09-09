@@ -60,7 +60,7 @@ namespace Himall.Service
         {
             var products = Context.ProductInfo.Where(item => true);
 
-            if (productQueryModel.ShopId.HasValue)//过滤店铺
+            if (productQueryModel.ShopId.HasValue)//过滤诊所
                 products = products.Where(item => item.ShopId == productQueryModel.ShopId);
 
             //过滤已删除的诊疗项目
@@ -354,7 +354,7 @@ namespace Himall.Service
             product.BrandId = model.BrandId;
             product.CategoryId = model.CategoryId;
             product.CategoryPath = model.CategoryPath;
-            //product.SaleStatus = model.SaleStatus;    修改诊疗项目时不修正销售状态
+            //product.SaleStatus = model.SaleStatus;    修改诊疗项目时不修正使用状态
 
             product.MarketPrice = model.MarketPrice;
             product.MinSalePrice = model.MinSalePrice;
@@ -702,7 +702,7 @@ namespace Himall.Service
         {
             var product = Context.ProductInfo.FindById(id);
             if (product.ShopId != shopid)
-                throw new HimallException("只能下架指定店铺的诊疗项目");
+                throw new HimallException("只能下架指定诊所的诊疗项目");
 
             //标记为下架状态
             product.SaleStatus = ProductInfo.ProductSaleStatus.InStock;
@@ -714,7 +714,7 @@ namespace Himall.Service
         {
             var products = Context.ProductInfo.Where(item => ids.Contains(item.Id) && item.IsDeleted == false).ToArray();
             if (products.Count(item => item.ShopId != shopid) > 0)
-                throw new HimallException("只能下架指定店铺的诊疗项目");
+                throw new HimallException("只能下架指定诊所的诊疗项目");
 
             //标记为下架状态
             foreach (var product in products)
@@ -735,7 +735,7 @@ namespace Himall.Service
         {
             var products = Context.ProductInfo.Where(item => ids.Contains(item.Id) && item.IsDeleted == false);
             if (products.Any(item => item.ShopId != shopId))
-                throw new HimallException("只能上架指定店铺的诊疗项目");
+                throw new HimallException("只能上架指定诊所的诊疗项目");
             //标记为上架架状态
             foreach (var item in products)
             {
@@ -762,7 +762,7 @@ namespace Himall.Service
             {
                 var products = Context.ProductInfo.Where(item => ids.Contains(item.Id) && item.IsDeleted == false).ToList();
                 //if (products.Count(item => item.ShopId != shopId) > 0)
-                //    throw new HimallException("只能下架指定店铺的诊疗项目");
+                //    throw new HimallException("只能下架指定诊所的诊疗项目");
                 //context.ProductInfo.RemoveRange(products);
                 //context.SaveChanges();
                 foreach (var product in products)
@@ -983,7 +983,7 @@ namespace Himall.Service
             if (search.CategoryId > 0)
             {
                 var categoryId = search.CategoryId;
-                //下面有一个按店铺分类查询的条件
+                //下面有一个按诊所分类查询的条件
                 //if (search.shopId > 0)
                 //{
                 //    result = result.Where(p => p.Himall_ProductShopCategories.
@@ -1085,7 +1085,7 @@ namespace Himall.Service
                 result = result.Where(e => !pid.Any(id => id == e.Id));
             }
 
-            //判断诊疗项目所在店铺是否已经过期
+            //判断诊疗项目所在诊所是否已经过期
 
             //ServiceProvider.Instance<IShopService>.Create.GetShops
             //var shopsevice = ServiceProvider.Instance<IShopService>.Create;
@@ -1164,12 +1164,12 @@ namespace Himall.Service
             }
             productsResult = productsResult.Skip((search.PageNumber - 1) * search.PageSize).Take(search.PageSize);
 
-            //TODO LRL 2015/09/08 加入店铺名称和地址信息
+            //TODO LRL 2015/09/08 加入诊所名称和地址信息
             foreach (var p in productsResult.ToArray())
             {
                 long freightTemplateId = p.FreightTemplateId;
                 p.ShopName = p.Himall_Shops.ShopName;
-                //TODO:直接取诊疗项目表里的销售数量
+                //TODO:直接取诊疗项目表里的使用数量
                 if (p.Himall_ProductVistis == null)
                 {
                     p.SaleCounts = 0;
@@ -1321,7 +1321,7 @@ namespace Himall.Service
             }
 
 
-            //判断诊疗项目所在店铺是否已经过期
+            //判断诊疗项目所在诊所是否已经过期
 
             //ServiceProvider.Instance<IShopService>.Create.GetShops
             //var shopsevice = ServiceProvider.Instance<IShopService>.Create;
@@ -1414,12 +1414,12 @@ namespace Himall.Service
 
             var prolist = productsResult.ToList();
 
-            //TODO LRL 2015/09/08 加入店铺名称和地址信息
+            //TODO LRL 2015/09/08 加入诊所名称和地址信息
             foreach (var p in prolist)
             {
                 long freightTemplateId = p.FreightTemplateId;
                 p.ShopName = p.Himall_Shops.ShopName;
-                //TODO:直接取诊疗项目表里的销售数量
+                //TODO:直接取诊疗项目表里的使用数量
                 //if (p.Himall_ProductVistis == null)
                 //{
                 //    p.SaleCounts = 0;
@@ -1537,7 +1537,7 @@ namespace Himall.Service
             return ProductAttrs;
         }
 
-        #region 获取店铺热销的前N件诊疗项目
+        #region 获取诊所热销的前N件诊疗项目
         public IQueryable<ProductInfo> GetHotSaleProduct(long shopId, int count = 5)
         {
             string CACHE_MANAGER_KEY = CacheKeyCollection.HotSaleProduct(shopId);
@@ -1732,7 +1732,7 @@ namespace Himall.Service
             return Context.ProductInfo.Where(a => a.SaleStatus == Himall.Model.ProductInfo.ProductSaleStatus.OnSale && a.AuditStatus == ProductInfo.ProductAuditStatus.Audited).OrderByDescending(p => p.SaleCounts).Take(count);
         }
 
-        #region 获取店铺最新上架的前N件诊疗项目
+        #region 获取诊所最新上架的前N件诊疗项目
         public IQueryable<ProductInfo> GetNewSaleProduct(long shopId, int count = 5)
         {
             string CACHE_MANAGER_KEY = CacheKeyCollection.NewSaleProduct(shopId);
@@ -1756,7 +1756,7 @@ namespace Himall.Service
         }
         #endregion
 
-        #region 获取店铺最受关注的前N件诊疗项目
+        #region 获取诊所最受关注的前N件诊疗项目
         public IQueryable<ProductInfo> GetHotConcernedProduct(long shopId, int count = 5)
         {
             string CACHE_MANAGER_KEY = CacheKeyCollection.HotConcernedProduct(shopId);
@@ -2045,7 +2045,7 @@ namespace Himall.Service
         }
         #endregion
 
-        #region 更新诊疗项目销售数量
+        #region 更新诊疗项目使用数量
 
         public void UpdateSalesCount(string skuId, int addSalesCount)
         {

@@ -23,12 +23,12 @@ namespace Himall.DTO
         public string strOrderId { set; get; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { set; get; }
 
         /// <summary>
-        /// 店铺Id
+        /// 诊所Id
         /// </summary>
         public long ShopId { set; get; }
 
@@ -53,7 +53,7 @@ namespace Himall.DTO
         public decimal PlatCommission { set; get; }
 
         /// <summary>
-        /// 分销佣金
+        /// 分佣佣金
         /// </summary>
         public decimal DistributorCommission { set; get; }
 
@@ -87,7 +87,7 @@ namespace Himall.DTO
         public decimal FreightAmount { get; set; }
 
         /// <summary>
-        /// 入帐金额(入账金额=平台佣金+分销佣金+结算金额)
+        /// 入帐金额(入账金额=平台佣金+分佣佣金+结算金额)
         /// </summary>
         public decimal RecognizedAmount { get { return PlatCommission + DistributorCommission + SettlementAmount; } }
 

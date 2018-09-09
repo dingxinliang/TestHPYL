@@ -86,7 +86,7 @@ namespace Himall.DTO.Product
 		public string Address { get; set; }
 
 		/// <summary>
-		/// 店铺名称
+		/// 诊所名称
 		/// </summary>
 		public string ShopName { get; set; }
 

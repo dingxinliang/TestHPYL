@@ -47,14 +47,14 @@ namespace Himall.IServices
         /// 获取一个诊所角色的详情
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <returns></returns>
         RoleInfo GetSellerRole(long id, long shopId);
 
         /// <summary>
         /// 获取诊所角色列表
         /// </summary>
-        /// <param name="shopID">诊所的店铺ID</param>
+        /// <param name="shopID">诊所的诊所ID</param>
         /// <returns></returns>
         IQueryable<RoleInfo> GetSellerRoles(long shopId);
         /// <summary>

@@ -10,7 +10,7 @@ namespace Himall.Model
     public class BrokerageModel
     {
         public long Id { set; get; }
-        public string TypeName { get { return "分销佣金"; } }
+        public string TypeName { get { return "分佣佣金"; } }
 
         public long OrderId { set; get; }
 

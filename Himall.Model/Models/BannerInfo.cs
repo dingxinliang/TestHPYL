@@ -28,9 +28,9 @@ namespace Himall.Model
             Category=2,
 
             /// <summary>
-            /// 店铺简介
+            /// 诊所简介
             /// </summary>
-            [Description("店铺简介")]
+            [Description("诊所简介")]
             VShopIntroduce=3
         }
 

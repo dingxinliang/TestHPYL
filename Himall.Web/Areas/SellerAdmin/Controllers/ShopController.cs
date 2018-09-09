@@ -294,7 +294,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
         public ActionResult Renew()
         {
-            //店铺当前信息
+            //诊所当前信息
             ShopRenewModel model = new ShopRenewModel();
             model.ShopId = CurrentSellerManager.ShopId;
             var oldShopInfo = _iShopService.GetSellerConsoleModel(CurrentSellerManager.ShopId);
@@ -383,7 +383,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 try
                 {
                     requestUrl = item.Biz.GetRequestUrl(string.Format(returnUrl, EncodePaymentId(item.PluginInfo.PluginId), balance),
-                                                        string.Format(payNotify, EncodePaymentId(item.PluginInfo.PluginId), balance + "-" + CurrentSellerManager.UserName + "-" + CurrentSellerManager.ShopId + "-" + type + "-" + value), ids, balance, "店铺续费");
+                                                        string.Format(payNotify, EncodePaymentId(item.PluginInfo.PluginId), balance + "-" + CurrentSellerManager.UserName + "-" + CurrentSellerManager.ShopId + "-" + type + "-" + value), ids, balance, "诊所续费");
                 }
                 catch (Exception ex)
                 {
@@ -463,7 +463,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     throw new Exception("支付未成功");
 
                     #region  "废弃,因为参数不足，无法在这里处理续费逻辑"
-                    ////添加店铺续费记录
+                    ////添加诊所续费记录
                     //model.ShopId = CurrentSellerManager.ShopId;
                     //model.OperateDate = DateTime.Now;
                     //model.Operator = CurrentSellerManager.UserName;
@@ -478,7 +478,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     //    model.OperateContent = "续费 " + value + " 年至 " + strNewEndTime;
                     //    _iShopService.AddShopRenewRecord(model);
 
-                    //    //店铺续费
+                    //    //诊所续费
                     //    _iShopService.ShopReNew(CurrentSellerManager.ShopId, value);
                     //}
                     ////升级操作
@@ -492,7 +492,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     //    model.OperateContent = "将套餐‘" + shopGrade.Name + "'升级为套餐‘" + newshopGrade.Name + "'";
                     //    _iShopService.AddShopRenewRecord(model);
 
-                    //    //店铺升级
+                    //    //诊所升级
                     //    _iShopService.ShopUpGrade(CurrentSellerManager.ShopId, (long)value);
                     //}
 

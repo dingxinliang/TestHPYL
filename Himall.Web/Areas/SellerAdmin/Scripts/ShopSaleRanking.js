@@ -8,13 +8,13 @@
             formatter: function (params, ticket, callback) {
                 var type = $("button.active").val();
                 var html = '';
-                var t1 = '<span style="text-align:left;">'+ params[0][1]+'销售额：<b style="color:yellow;font-size:14px;">' + params[0][2] + '元</b></span>';
+                var t1 = '<span style="text-align:left;">'+ params[0][1]+'使用额：<b style="color:yellow;font-size:14px;">' + params[0][2] + '元</b></span>';
                 html = ['<div style="text-align:left;">', t1, '</div>'];
                 return html.join('');
             }
         },
         legend: {
-            data: ['店铺销售额']
+            data: ['诊所使用额']
         },
         toolbox: {
             show: true,

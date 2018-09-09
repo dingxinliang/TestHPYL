@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 店铺财务汇总
+    /// 诊所财务汇总
     /// </summary>
     public class ShopAccount
     {
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long ShopId { set; get; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { set; get; }
         /// <summary>

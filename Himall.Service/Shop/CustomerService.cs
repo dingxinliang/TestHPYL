@@ -73,7 +73,7 @@ namespace Himall.Service
 			CheckPlatformCustomerServiceWhenAdd(customerService);
 
             if (customerService.ShopId == 0)
-                throw new InvalidPropertyException("店铺id必须大于0");
+                throw new InvalidPropertyException("诊所id必须大于0");
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Himall.Service
         CustomerServiceInfo CheckPropertyWhenUpdate(CustomerServiceInfo customerService)
         {
 			if (customerService.ShopId == 0)
-				throw new InvalidPropertyException("店铺id必须大于0");
+				throw new InvalidPropertyException("诊所id必须大于0");
 
 			return CheckPlatformCustomerServiceWhenUpdate(customerService);
         }
@@ -115,8 +115,8 @@ namespace Himall.Service
 			if (string.IsNullOrWhiteSpace(customerService.AccountCode))
 				throw new InvalidPropertyException("沟通工具账号不能为空");
 
-			var ori = Context.CustomerServiceInfo.FirstOrDefault(item => item.Id == customerService.Id && item.ShopId == customerService.ShopId);//查找指定店铺下指定id的客服
-			if (ori == null)//查询不到，说明店铺id与客服id不匹配或至少有一个不存在
+			var ori = Context.CustomerServiceInfo.FirstOrDefault(item => item.Id == customerService.Id && item.ShopId == customerService.ShopId);//查找指定诊所下指定id的客服
+			if (ori == null)//查询不到，说明诊所id与客服id不匹配或至少有一个不存在
 				throw new InvalidPropertyException("不存在id为" + customerService.Id + "的客服信息");
 			return ori;
 		}

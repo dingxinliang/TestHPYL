@@ -113,7 +113,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
 			var result = OrderApplication.SubmitOrder(model);
            
-			ClearDistributionUserLinkId();   //清理分销cookie
+			ClearDistributionUserLinkId();   //清理分佣cookie
 			return Json(new { success = result.Success, orderIds = result.OrderIds, redirect = result.OrderTotal > 0 });
 		}
 

@@ -39,7 +39,7 @@ namespace Himall.IServices
         /// <returns></returns>
         ShopCategoryInfo GetCategory(long id);
         /// <summary>
-        /// 通过诊疗项目编号取得店铺所属分类
+        /// 通过诊疗项目编号取得诊所所属分类
         /// </summary>
         /// <param name="id">诊疗项目编号</param>
         /// <returns></returns>

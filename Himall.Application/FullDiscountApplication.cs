@@ -57,7 +57,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 获取某个店铺的一批诊疗项目正在进行的满额减活动
+        /// 获取某个诊所的一批诊疗项目正在进行的满额减活动
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="shopId"></param>
@@ -88,7 +88,7 @@ namespace Himall.Application
             return result;
         }
         /// <summary>
-        /// 根据店铺查询活动
+        /// 根据诊所查询活动
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -151,7 +151,7 @@ namespace Himall.Application
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="activeId">添加活动使用0</param>
-        /// <param name="shopId">店铺编号</param>
+        /// <param name="shopId">诊所编号</param>
         /// <returns></returns>
         public static List<long> FilterActiveProductId(IEnumerable<long> productIds, long activeId, long shopId)
         {
@@ -238,7 +238,7 @@ namespace Himall.Application
             return result;
         }
         /// <summary>
-        /// 获取不在销售中的诊疗项目
+        /// 获取不在使用中的诊疗项目
         /// </summary>
         /// <param name="productIds"></param>
         /// <returns></returns>
@@ -352,7 +352,7 @@ namespace Himall.Application
         /// 购买满减服务
         /// </summary>
         /// <param name="month">数量(月)</param>
-        /// <param name="shopId">店铺编号</param>
+        /// <param name="shopId">诊所编号</param>
         public static void BuyMarketService(int month, long shopId)
         {
 

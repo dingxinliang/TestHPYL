@@ -25,7 +25,7 @@ namespace Himall.Web.Framework
         /// </summary>
         public const string HIMALL_ACTIVELOGOUT = "d783ea20966909ff";  //HIMALL_ACTIVELOGOUT做MD5后的16位字符
         /// <summary>
-        /// 分销合作者编号
+        /// 分佣合作者编号
         /// </summary>
         public const string HIMALL_DISTRIBUTIONUSERLINKIDS = "d2cccb104922d434";   //HIMALL_DISTRIBUTIONUSERLINKIDS做MD5后的16位字符
         /// <summary>

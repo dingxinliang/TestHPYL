@@ -150,6 +150,7 @@
     <Compile Include="IO2O\IShopBranchService.cs" />
     <Compile Include="QueryModel\ShopBranchProductQuery.cs" />
     <Compile Include="QueryModel\AppletShopQuery.cs" />
+    <Compile Include="QueryModel\UserQuery.cs" />
     <Compile Include="TemplateVisualization\IPhotoSpaceService.cs" />
     <Compile Include="ISystem\ISensitiveWordService.cs" />
     <Compile Include="ISystem\ISystemAgreementService.cs" />

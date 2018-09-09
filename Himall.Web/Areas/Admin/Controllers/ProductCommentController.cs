@@ -91,7 +91,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         public JsonResult Delete(long id)
         {
             //zjt modify
-            //删除评论后卖家不能再次评论，为减少数据库字段增加，只将评论置空
+            //删除评论后诊所不能再次评论，为减少数据库字段增加，只将评论置空
             ////_iCommentService.SetCommentEmpty(id);
             ////Edit:DZY[150709]  改为删除诊疗项目评价
             _iCommentService.HiddenComment(id);

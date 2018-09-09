@@ -511,7 +511,7 @@ function CancelOff(ids) {
 
 function initBatchBtnShow() {
     var type = $('.nav-tabs-custom li.active').attr('type');
-    if (type == 'onDown') {//当前为销售中tab
+    if (type == 'onDown') {//当前为使用中tab
         //$('#batchSaleOff')
         //    .show()
         //    .unbind('click')

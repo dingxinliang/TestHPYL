@@ -55,7 +55,7 @@ namespace Himall.IServices
         void AddCashDepositDetails(CashDepositDetailInfo cashDepositDetail);
 
         /// <summary>
-        /// 根据店铺ID获取保证金
+        /// 根据诊所ID获取保证金
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace Himall.IServices
 
         #region 类目保证金
         /// <summary>
-        /// 获取店铺应缴保证金
+        /// 获取诊所应缴保证金
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>

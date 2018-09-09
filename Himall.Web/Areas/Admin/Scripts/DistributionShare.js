@@ -12,7 +12,7 @@ function Post() {
         return;
     }
     if ($("#DisShareTitle").val().length > 150) {
-        $.dialog.tips('分销市场分享标题过长');
+        $.dialog.tips('分佣市场分享标题过长');
         return;
     }
     if ($("#RecruitShareTitle").val().length > 150) {
@@ -28,7 +28,7 @@ function Post() {
         return;
     }
     if ($("#DisShareDesc").val().length > 1000) {
-        $.dialog.tips('分销市场分享描述过长');
+        $.dialog.tips('分佣市场分享描述过长');
         return;
     }
     if ($("#RecruitShareDesc").val().length > 1000) {

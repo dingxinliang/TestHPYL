@@ -27,7 +27,7 @@ namespace Himall.API
         #endregion
 
         /// <summary>
-        /// 当前店铺信息
+        /// 当前诊所信息
         /// </summary>
         public DTO.Shop CurrentShop
         {
@@ -65,7 +65,7 @@ namespace Himall.API
 
         #region 私有
         /// <summary>
-        /// 获取店铺信息
+        /// 获取诊所信息
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -85,7 +85,7 @@ namespace Himall.API
         }
         #endregion
         /// <summary>
-        /// 清除店铺信息缓存
+        /// 清除诊所信息缓存
         /// </summary>
         protected void RemoveShopCache()
         {

@@ -35,7 +35,7 @@ namespace Himall.Model
             }
         }
         /// <summary>
-        /// 销售量份额
+        /// 使用量份额
         /// </summary>
         decimal countRate = 0.00M;
         public decimal CountRate { get { return countRate; } set { countRate = value; } }

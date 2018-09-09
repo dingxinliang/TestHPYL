@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Himall.Model.CategoryInfo>
 @{
-    ViewBag.Title = "分销热门诊疗项目";
+    ViewBag.Title = "分佣热门诊疗项目";
     string skey = ViewBag.SearchKey;
     int categoryId = ViewBag.categoryId;
 }
@@ -27,7 +27,7 @@
             </div>
             <div class="detail-right">
                 <p class="name-pro"><a href="@(Url.Action("ProductDetail"))/<%=item.ProductId%>"><%=item.ProductName%></a></p>
-                <p class="price-pro"><i>￥</i><em><%= item.SellPrice%></em><span>累积销售<%=item.SaleNum%>笔</span></p>
+                <p class="price-pro"><i>￥</i><em><%= item.SellPrice%></em><span>累积使用<%=item.SaleNum%>笔</span></p>
                 <p class="deal-n"><span>佣金<i><%=item.Commission%></i>元</span></p>
 
             </div>

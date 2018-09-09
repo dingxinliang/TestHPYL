@@ -68,7 +68,7 @@ function LoadData() {
                 }
             },
             { field: "ShowSettleState", title: '结算状态', width: 120, align: 'center' },
-            { field: "SalesName", title: '销售员', width: 120, align: 'center' },
+            { field: "SalesName", title: '医生账号', width: 120, align: 'center' },
             {
                 field: "CanBrokerage", title: '佣金', width: 120, align: 'center',
                 formatter: function (value, row, index) {

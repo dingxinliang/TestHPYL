@@ -12,20 +12,20 @@ namespace Himall.Model
     {
 
         /// <summary>
-        /// 销售状态
+        /// 使用状态
         /// </summary>
         public enum ProductSaleStatus
         {
             /// <summary>
             /// 原始状态
-            /// <para>此状态不可入库，需要取出原数据的销售状态重新补充数据</para>
+            /// <para>此状态不可入库，需要取出原数据的使用状态重新补充数据</para>
             /// </summary>
             [Description("原始状态")]
             RawState = 0,
             /// <summary>
-            /// 出售中
+            /// 在用中
             /// </summary>
-            [Description("出售中")]
+            [Description("在用中")]
             OnSale = 1,
 
             /// <summary>
@@ -52,9 +52,9 @@ namespace Himall.Model
             WaitForAuditing = 1,
 
             /// <summary>
-            /// 销售中
+            /// 使用中
             /// </summary>
-            [Description("销售中")]
+            [Description("使用中")]
             Audited,
 
             /// <summary>
@@ -174,7 +174,7 @@ namespace Himall.Model
         public string Address { get; set; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         [NotMapped]
         public string ShopName { get; set; }

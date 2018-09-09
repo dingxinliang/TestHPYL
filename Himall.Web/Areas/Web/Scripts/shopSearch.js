@@ -1,6 +1,6 @@
 $(function(){
 
-    $('.search .search-form label').html("店铺");
+    $('.search .search-form label').html("诊所");
     $('.search .search-form #searchBox').val($('#shopName').val());
 
     $('.shop-cate-option p').each(function() {
@@ -26,7 +26,7 @@ $(function(){
         $("#brandDiv p em").text('MORE −').parent().removeClass('min');
     }
         
-    // 店铺LOGO显示默认图片 //备用
+    // 诊所LOGO显示默认图片 //备用
     /*
     var oShopLogo = $('.J_shop_logo');
     if ( !oShopLogo.css('src') == true) {

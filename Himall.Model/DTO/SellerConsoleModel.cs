@@ -14,20 +14,20 @@ namespace Himall.Model
         public int TodayOrders { set; get; }
 
         /// <summary>
-        /// 今日销售总额
+        /// 今日使用总额
         /// </summary>
         public decimal? TodaySaleAmount{set;get;}
 
         /// <summary>
-        /// 历史销售总额
+        /// 历史使用总额
         /// </summary>
         public  decimal? SaleAmount{set;get;}
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { set; get; }
         /// <summary>
-        /// 店铺套餐
+        /// 诊所套餐
         /// </summary>
         public string ShopGrade { set; get; }
       /// <summary>
@@ -36,17 +36,17 @@ namespace Himall.Model
         public decimal? SettlementPeriod { set; get; }
      
         /// <summary>
-        /// 店铺到期时间
+        /// 诊所到期时间
         /// </summary>
         public DateTime ShopEndDate { set; get; }
 
         /// <summary>
-        /// 店铺运费
+        /// 诊所运费
         /// </summary>
         public decimal ShopFreight { set; get; }
 
         /// <summary>
-        /// 出售诊疗项目数
+        /// 在用诊疗项目数
         /// </summary>
         public int OnSaleProducts { set; get; }
 

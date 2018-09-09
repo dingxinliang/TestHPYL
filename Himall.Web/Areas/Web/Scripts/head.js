@@ -148,7 +148,7 @@ $(function () {
         var keyWords = $.trim($('#searchBox').val());
 
         var selected = $(".search .search-form label").html();
-        if (selected == "店铺") {
+        if (selected == "诊所") {
             //if (keyWords == '') {
             //    $.dialog.alert('请输入关键词！');
             //    return;
@@ -167,7 +167,7 @@ $(function () {
             var keyWords = $.trim($('#searchBox').val());
 
             var selected = $(".search .search-form label").html();
-            if (selected == "店铺") {
+            if (selected == "诊所") {
                 if (keyWords == '') {
                     return;
                 }
@@ -346,7 +346,7 @@ function bindSelectAll() {
         else
             $(this).removeAttr('checked');
 
-        //判断店铺下的所有诊疗项目是否全选中
+        //判断诊所下的所有诊疗项目是否全选中
         var allProductChecked = true;
         $(this).parent().siblings('.cart-list-goods').each(function () {
             if (!$(this).find('input').prop('checked'))
@@ -357,7 +357,7 @@ function bindSelectAll() {
         else
             $(this).parent().siblings().find('input[name="checkShop"]').removeAttr('checked');;
 
-        //判断所有店铺是否都选中了
+        //判断所有诊所是否都选中了
         var allShopChecked = true;
         $('#side-cart-list input[type="checkbox"]').each(function (i, e) {
             if (!$(this).prop('checked')) {

@@ -8,7 +8,7 @@ namespace Himall.DTO
 {
     /// <summary>
     /// 预约单结算详情
-    //结算金额=诊疗项目实付+运费-平台佣金-分销佣金-退款金额+平台佣金退还+分销佣金退还
+    //结算金额=诊疗项目实付+运费-平台佣金-分佣佣金-退款金额+平台佣金退还+分佣佣金退还
     /// </summary>
     public class OrderSettlementDetail
     {
@@ -33,7 +33,7 @@ namespace Himall.DTO
         public decimal PlatCommission { set; get; }
 
         /// <summary>
-        /// 分销佣金
+        /// 分佣佣金
         /// </summary>
         public decimal DistributorCommission { set; get; }
 
@@ -56,7 +56,7 @@ namespace Himall.DTO
         public decimal PlatCommissionReturn { set; get; }
          
         /// <summary>
-        /// 分销佣金退还
+        /// 分佣佣金退还
         /// </summary>
         public decimal DistributorCommissionReturn { set; get; }
         /// <summary>

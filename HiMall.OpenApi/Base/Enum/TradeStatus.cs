@@ -20,9 +20,9 @@ namespace Himall.OpenApi
         [Description("等待患者付款")]
         WAIT_BUYER_PAY,
         /// <summary>
-        /// 等待卖家发货
+        /// 等待诊所发货
         /// </summary>
-        [Description("等待卖家发货")]
+        [Description("等待诊所发货")]
         WAIT_SELLER_SEND_GOODS,
         /// <summary>
         /// 等待患者确认收货

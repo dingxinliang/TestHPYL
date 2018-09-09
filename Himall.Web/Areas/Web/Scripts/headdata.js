@@ -19,7 +19,7 @@
                     if (data.length > 0) {
                         var str = '',
                             cls = '';
-                        str += '<div class="side-asset-list" id="curShopUse"><p>当前店铺可用优惠券</p><ul>';
+                        str += '<div class="side-asset-list" id="curShopUse"><p>当前诊所可用优惠券</p><ul>';
                         for (var i = 0; i < data.length; i++) {
                             cls = '';
                             if (data[i].Price >= 100) {
@@ -55,7 +55,7 @@
                         });
                         var str = '',
                             cls = '';
-                        str += '<div class="side-asset-list"><p>当前店铺有可领优惠券哦</p><ul>';
+                        str += '<div class="side-asset-list"><p>当前诊所有可领优惠券哦</p><ul>';
                         for (var i = 0; i < data.length; i++) {
                             cls = '';
                             if (data[i].Price >= 100) {
@@ -79,7 +79,7 @@
                                 if (data.success) {
                                     $.dialog.succeedTips('领取成功!', '', 3);
                                     if ($('#curShopUse').length == 0) {
-                                        $('.side-asset-total').after('<div class="side-asset-list" id="curShopUse"><p>当前店铺可用优惠券</p><ul>');
+                                        $('.side-asset-total').after('<div class="side-asset-list" id="curShopUse"><p>当前诊所可用优惠券</p><ul>');
                                     }
                                     $('#curShopUse').append('<li class="' + _this[0].className.replace("getCurCoupon ", "") + '">' + _this.html() + '</li>');
                                     var mycouponcount = $("#mycouponcount");

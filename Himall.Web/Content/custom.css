@@ -121,7 +121,7 @@ ul, ol { padding: 0; margin: 0; }
 select{border: solid 1px #ccc;appearance:none;-moz-appearance:none;-webkit-appearance:none;background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;padding-right: 14px;}
 .navbar-left .dropdown-menu li:hover{background-color:#f2f2f2!important;}
 
-/*卖家中心公共样式*/
+/*诊所中心公共样式*/
 .selleradmin{height:52px;background-color:#1989e9;border-radius:0;box-shadow:0 1px 3px #1989e9; top: 30px;}
 .selleradmin .nav>li{height:52px;}
 .selleradmin .nav>li>a{line-height:51px;padding:0 20px;color:#efefef;}

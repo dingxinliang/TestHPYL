@@ -120,7 +120,7 @@
                                             </a>
                                         </div>
                                         <div class="p-name"><a href="@Url.Action("Detail",new{id=item.Id})" target="_blank" title=""><p class="pro-tit">@item.Himall_Products.ProductName</p> <p class="pro-ad">@item.Himall_Products.ShortDescription</p></a></div>
-                                        <div class="p-price"><span>￥@item.MinPrice<s>￥@item.Himall_Products.MarketPrice</s></span><a href="@Url.Action("Detail",new{id=item.Id})" target="_blank" class="Purchased">销售量<i> @item.SaleCount </i></a></div>
+                                        <div class="p-price"><span>￥@item.MinPrice<s>￥@item.Himall_Products.MarketPrice</s></span><a href="@Url.Action("Detail",new{id=item.Id})" target="_blank" class="Purchased">使用量<i> @item.SaleCount </i></a></div>
                                     </li>
                                 }
                             }

@@ -59,10 +59,10 @@ function LoadData() {
                     return html;
                 }
             },
-            { field: "AgentNum", title: '代理次数', width: 100, align: 'center' },
-            { field: "ForwardNum", title: '转发次数', width: 100, align: 'center' },
-            { field: "DistributionSaleNum", title: '推广成交数', width: 100, align: 'center' },
-            { field: "DistributionSaleAmount", title: '推广成交额', width: 100, align: 'center' },
+            //{ field: "AgentNum", title: '代理次数', width: 100, align: 'center' },
+            //{ field: "ForwardNum", title: '转发次数', width: 100, align: 'center' },
+            { field: "DistributionSaleNum", title: '预约数', width: 100, align: 'center' },
+            { field: "DistributionSaleAmount", title: '预约额', width: 100, align: 'center' },
             {
                 field: "SaleAmount", title: '总交易额', width: 100, align: 'center',
                 formatter: function (value, row, index) {

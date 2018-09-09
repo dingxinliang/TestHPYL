@@ -17,9 +17,9 @@ function deleteShopEvent(id) {
 }
 
 function FreezeShop(id, state) {
-    var tipsmsg = "冻结店铺将导致诊所无法登陆后台,诊疗项目会自动下架，请谨慎操作！";
+    var tipsmsg = "冻结诊所将导致诊所无法登陆后台,诊疗项目会自动下架，请谨慎操作！";
     if (!state) {
-        tipsmsg = "解冻店铺后该诊所即可登陆后台，请手动上架诊疗项目，您确定解冻吗？";
+        tipsmsg = "解冻诊所后该诊所即可登陆后台，请手动上架诊疗项目，您确定解冻吗？";
     }
     $.dialog.confirm(tipsmsg,
     function () {
@@ -78,7 +78,7 @@ function Query() {
             { field: "Id", title: "Id", hidden: true },
             { field: "IsSelf", title: "IsSelf", hidden: true },
             {
-                field: "Name", title: "店铺名称", width: 140, formatter: function (value, row, index) {
+                field: "Name", title: "诊所名称", width: 140, formatter: function (value, row, index) {
                     var id = row.Id.toString();
                     var html = "";
                     if (row.Status != '被拒绝' && row.Status != '待付款') {
@@ -90,7 +90,7 @@ function Query() {
                     return html;
                 }
             },
-            { field: "Account", title: "店铺账号", width: 140 },
+            { field: "Account", title: "诊所账号", width: 140 },
             { field: "ShopGrade", title: "等级", width: 140 },
             { field: "EndDate", title: "有效期", width: 140 },
             {

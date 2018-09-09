@@ -11,7 +11,7 @@ namespace Himall.IServices
     public interface IMarketService : IService
     {
         /// <summary>
-        /// 取店铺激活的营销活动
+        /// 取诊所激活的营销活动
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="type"></param>

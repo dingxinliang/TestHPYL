@@ -94,7 +94,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             return Json( new { success = true } );
         }
         /// <summary>
-        /// 设置热门店铺
+        /// 设置热门诊所
         /// </summary>
         /// <param name="vshopId"></param>
         /// <returns></returns>
@@ -195,7 +195,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             return Json( new { success = true } );
         }
         /// <summary>
-        /// 替换推荐店铺
+        /// 替换推荐诊所
         /// </summary>
         /// <param name="oldVShopId"></param>
         /// <param name="newVShopId"></param>

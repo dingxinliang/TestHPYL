@@ -10,15 +10,15 @@
     <script src="~/Scripts/jquery.himallLinkage.nocreate.js"></script>
     <script src="~/Scripts/jquery.placeholder.min.js"></script>
     <script src="~/Scripts/bootstrap.autocomplete.js"></script>
-    <script src="~/Areas/Admin/Scripts/productManagement.js"></script>
+    <script src="~/Areas/Admin/Scripts/productManagement.js?@DateTime.UtcNow"></script>
 }
 <div class="container clear-l">
     <ul class="nav nav-tabs-custom clearfix">
         <li type="statusTab"><a>所有诊疗项目</a></li>
-        <li value="2" type="statusTab"><a>销售中</a></li>
+        <li value="2" type="statusTab"><a>使用中</a></li>
         <li value="1" type="statusTab"><a>待审核</a></li>
         <li value="4" type="statusTab"><a>违规下架</a></li>
-        <li value="5" type="audit-on-off"><a>诊疗项目审核开关</a></li>
+        <li value="5" type="audit-on-off" style="display:none"><a>诊疗项目审核开关</a></li>
     </ul>
     <div id="divList">
         <div class="search-box">
@@ -28,7 +28,7 @@
                     <input class="form-control input-ssm" type="text" id="searchBox">
                 </div>
                 <div class="form-group">
-                    <label class="label-inline w75" for="">所属店铺</label>
+                    <label class="label-inline w75" for="">所属诊所</label>
                     <input class="form-control input-ssm" type="text" id="shopName">
                 </div>
                 <div class="form-group">

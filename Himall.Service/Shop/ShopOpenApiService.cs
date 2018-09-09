@@ -19,12 +19,12 @@ using System.Data.Entity.Infrastructure;
 namespace Himall.Service
 {
     /// <summary>
-    /// 店铺OpenApi服务
+    /// 诊所OpenApi服务
     /// </summary>
     public class ShopOpenApiService : ServiceBase, IShopOpenApiService
     {
         /// <summary>
-        /// 获取店铺的OpenApi配置
+        /// 获取诊所的OpenApi配置
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -32,12 +32,12 @@ namespace Himall.Service
         {
             if (shopId < 1)
             {
-                throw new HimallException("错误的店铺编号");
+                throw new HimallException("错误的诊所编号");
             }
             return Context.ShopOpenApiSettingInfo.SingleOrDefault(d => d.ShopId == shopId);
         }
         /// <summary>
-        /// 获取店铺的OpenApi配置
+        /// 获取诊所的OpenApi配置
         /// </summary>
         /// <param name="appkey"></param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ namespace Himall.Service
         }
         /// <summary>
         /// 生成一个OpenApi配置
-        /// <para>如果店铺已生成会异常</para>
+        /// <para>如果诊所已生成会异常</para>
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -59,11 +59,11 @@ namespace Himall.Service
         {
             if (shopId <= 0)
             {
-                throw new HimallException("[OpenApi]错误的店铺编号");
+                throw new HimallException("[OpenApi]错误的诊所编号");
             }
             if (Context.ShopOpenApiSettingInfo.Any(d => d.ShopId == shopId))
             {
-                throw new HimallException("[OpenApi]店铺已生成AppKey,不可以重复生成");
+                throw new HimallException("[OpenApi]诊所已生成AppKey,不可以重复生成");
             }
             ShopOpenApiSettingInfo result = new ShopOpenApiSettingInfo();
             result.ShopId = shopId;
@@ -131,14 +131,14 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 添加店铺OpenApi配置
+        /// 添加诊所OpenApi配置
         /// </summary>
         /// <param name="data"></param>
         public void Add(ShopOpenApiSettingInfo data)
         {
             if (Context.ShopOpenApiSettingInfo.Any(d => d.ShopId == data.ShopId))
             {
-                throw new HimallException("[OpenApi]店铺不可拥有多个AppKey");
+                throw new HimallException("[OpenApi]诊所不可拥有多个AppKey");
             }
             if (Context.ShopOpenApiSettingInfo.Any(d => d.AppKey == data.AppKey))
             {
@@ -156,7 +156,7 @@ namespace Himall.Service
             Context.SaveChanges();
         }
         /// <summary>
-        /// 修改店铺OpenApi配置
+        /// 修改诊所OpenApi配置
         /// </summary>
         /// <param name="data"></param>
         public void Update(ShopOpenApiSettingInfo data)

@@ -32,20 +32,20 @@ namespace Himall.Application
         static object _productVisitLocker = new object();
         static object _shopVisitLocker = new object();
         /// <summary>
-        /// 店铺统计锁
+        /// 诊所统计锁
         /// </summary>
         static Dictionary<long, object> _shopVisitLockerDict = new Dictionary<long, object>();
 
         /// <summary>
         /// 1、诊疗项目流量统计
         /// 2、诊疗项目浏览人数统计
-        /// 3、店铺浏览人数统计（浏览诊疗项目时需统计店铺，所以组合在一起）
+        /// 3、诊所浏览人数统计（浏览诊疗项目时需统计诊所，所以组合在一起）
         /// </summary>
         /// <param name="pid"></param>
         /// <param name="shopid"></param>
         public static void StatisticVisitCount(long pid, long shopid)
         {
-            StatisticApplication.StatisticShopVisitUserCount(shopid);//店铺浏览人数
+            StatisticApplication.StatisticShopVisitUserCount(shopid);//诊所浏览人数
             StatisticApplication.StatisticProductVisitCount(pid,shopid);//诊疗项目浏览量
             StatisticApplication.StatisticProductVisitUserCount(pid,shopid);//诊疗项目浏览人数
         }
@@ -97,7 +97,7 @@ namespace Himall.Application
             WebHelper.SetCookie(CommonConst.HIMALL_PLAT_VISIT_COUNT, platVisitTimestamp);
         }
         /// <summary>
-        /// 统计店铺访问人数(cookie机制)
+        /// 统计诊所访问人数(cookie机制)
         /// 按天统计，一天内计一次
         /// </summary>
         /// <param name="shopId"></param>
@@ -327,7 +327,7 @@ namespace Himall.Application
             return productVisits;
         }
         /// <summary>
-        /// 取诊疗项目销售分类统计
+        /// 取诊疗项目使用分类统计
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
@@ -341,10 +341,10 @@ namespace Himall.Application
                 EndDate = endDate
             };
             if (shopId > 0)
-            {//如果不等于0，增加店铺ID条件
+            {//如果不等于0，增加诊所ID条件
                 query.ShopId = shopId;
             }
-            //销售记录
+            //使用记录
             var productSales = _StatisticsService.GetProductAllVisits(query);
             var pids = productSales.Select(e => e.ProductId).Distinct();
             //诊疗项目信息，分类
@@ -555,7 +555,7 @@ namespace Himall.Application
             return new List<ChartSeries<T>>() { seriesData };
         }
         /// <summary>
-        /// 店铺交易统计
+        /// 诊所交易统计
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
@@ -633,7 +633,7 @@ namespace Himall.Application
             return tradeModel;
         }
         /// <summary>
-        /// 取店铺交易统计(按天)
+        /// 取诊所交易统计(按天)
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>

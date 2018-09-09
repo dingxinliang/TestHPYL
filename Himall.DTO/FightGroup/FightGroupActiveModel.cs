@@ -61,7 +61,7 @@ namespace Himall.DTO
         ///</summary>
         public long Id { get; set; }
         /// <summary>
-        /// 店铺编号
+        /// 诊所编号
         ///</summary>
         public long ShopId { get; set; }
         /// <summary>
@@ -265,7 +265,7 @@ namespace Himall.DTO
         /// </summary>
         public bool CanBuy { get; set; }
         /// <summary>
-        /// 销售数量
+        /// 使用数量
         /// </summary>
         public long SaleCounts { get; set; }
         /// <summary>

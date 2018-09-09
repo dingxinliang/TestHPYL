@@ -10,7 +10,7 @@ namespace Himall.API
     public class ShopBilityController : BaseShopApiController
     {
         /// <summary>
-        /// 获取店铺业绩能力数据
+        /// 获取诊所业绩能力数据
         /// </summary>
         /// <param name="startDate">开始日期</param>
         /// <param name="endDate">结束日期</param>
@@ -37,7 +37,7 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 获取店铺下门店的业绩排行
+        /// 获取诊所下门店的业绩排行
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>

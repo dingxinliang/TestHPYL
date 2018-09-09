@@ -8,7 +8,7 @@ namespace Himall.Model
     public class PlatConsoleModel
     {
         /// <summary>
-        /// 今日销售总额
+        /// 今日使用总额
         /// </summary>
         public decimal? TodaySaleAmount { set; get; }
 
@@ -18,34 +18,34 @@ namespace Himall.Model
         public long TodayMemberIncrease { set; get; }
 
         /// <summary>
-        /// 店铺总数
+        /// 诊所总数
         /// </summary>
         public long ShopNum { set; get; }
 
         /// <summary>
-        /// 今日店铺新增数
+        /// 今日诊所新增数
         /// </summary>
         public long TodayShopIncrease { set; get; }
 
         /// <summary>
-        /// 昨日新增店铺数
+        /// 昨日新增诊所数
         /// </summary>
         public long YesterdayShopIncrease { set; get; }
         /// <summary>
-        /// 待审核店铺数
+        /// 待审核诊所数
         /// </summary>
         public long WaitAuditShops { set; get; }
         /// <summary>
-        /// 待审核店铺数
+        /// 待审核诊所数
         /// </summary>
         public long WaitConfirmShops { set; get; }
         /// <summary>
-        /// 到期店铺数
+        /// 到期诊所数
         /// </summary>
         public long ExpiredShops { set; get; }
 
         /// <summary>
-        /// 店铺提现数
+        /// 诊所提现数
         /// </summary>
         public int ShopCashNumber { set; get; }
 
@@ -54,7 +54,7 @@ namespace Himall.Model
         /// </summary>
         public long ProductNum { set; get; }
         /// <summary>
-        /// 出售诊疗项目数
+        /// 在用诊疗项目数
         /// </summary>
         public int OnSaleProducts { set; get; }
 

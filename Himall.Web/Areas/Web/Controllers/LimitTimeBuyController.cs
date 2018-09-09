@@ -191,7 +191,7 @@ namespace Himall.Web.Areas.Web.Controllers
             #endregion
 
 
-            #region 初始化诊疗项目和店铺
+            #region 初始化诊疗项目和诊所
 
             market = _iLimitTimeBuyService.Get(mid);
 
@@ -258,7 +258,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
             #endregion
 
-            #region 店铺
+            #region 诊所
 
             var categories = _iShopCategoryService.GetShopCategory(product.ShopId);
             List<ShopCategoryInfo> allcate = categories.ToList();
@@ -286,7 +286,7 @@ namespace Himall.Web.Areas.Web.Controllers
 
             #endregion
 
-            #region 热门销售
+            #region 热门使用
 
             var sale = _iProductService.GetHotSaleProduct(shop.Id, 5);
             if (sale != null)
@@ -502,7 +502,7 @@ namespace Himall.Web.Areas.Web.Controllers
             }
 
             //_iProductService.LogProductVisti(gid);
-            //统计诊疗项目浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、诊所浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
             #endregion
 
@@ -518,7 +518,7 @@ namespace Himall.Web.Areas.Web.Controllers
             }
             #endregion
 
-            #region 获取店铺的评价统计
+            #region 获取诊所的评价统计
 
             var shopStatisticOrderComments = _iShopService.GetShopStatisticOrderComments(shop.Id);
 
@@ -557,7 +557,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 ViewBag.ProductAndDescriptionMin = defaultValue;
                 ViewBag.ProductAndDescriptionMax = defaultValue;
             }
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null)
             {
                 ViewBag.SellerServiceAttitude = sellerServiceAttitude.CommentValue;
@@ -572,7 +572,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 ViewBag.SellerServiceAttitudeMax = defaultValue;
                 ViewBag.SellerServiceAttitudeMin = defaultValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null)
             {
                 ViewBag.SellerDeliverySpeed = sellerDeliverySpeed.CommentValue;
@@ -623,7 +623,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 model.Second = ts.TotalSeconds < 0 ? 0 : ts.TotalSeconds;
             }
 
-            //补充当前店铺红包功能
+            //补充当前诊所红包功能
             ViewBag.isShopPage = true;
             ViewBag.CurShopId = product.ShopId;
             TempData["isShopPage"] = true;

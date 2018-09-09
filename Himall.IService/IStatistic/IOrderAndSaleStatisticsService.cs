@@ -6,7 +6,7 @@ using Himall.Model;
 namespace Himall.IServices
 {
     /// <summary>
-    /// 预约单和销售统计
+    /// 预约单和使用统计
     /// </summary>
     public interface IOrderAndSaleStatisticsService : IService
     {
@@ -46,7 +46,7 @@ namespace Himall.IServices
         #endregion
 
         /// <summary>
-        /// 获取门店销售统计数据
+        /// 获取门店使用统计数据
         /// </summary>
         /// <param name="shopId">门店编号</param>
         /// <param name="startTime">统计起始时间</param>
@@ -56,7 +56,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 获取门店销售统计数据
+        /// 获取门店使用统计数据
         /// </summary>
         /// <param name="shopId">门店编号</param>
         /// <param name="startTime">统计起始时间</param>

@@ -24,7 +24,7 @@ namespace Himall.SmallProgAPI
             CheckUserLogin();
             bool status = true;
             string message = "";
-            //long vshopId = vspId;// value.vshopId; 店铺Id
+            //long vshopId = vspId;// value.vshopId; 诊所Id
             //long couponId = couponId;// value.couponId; 优惠劵Id
             var couponService = ServiceProvider.Instance<ICouponService>.Create;
             var couponInfo = couponService.GetCouponInfo(couponId);

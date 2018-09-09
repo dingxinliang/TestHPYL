@@ -15,7 +15,7 @@ namespace Himall.Application
 
         #region 首页诊疗项目相关
         /// <summary>
-        /// 是否为分销员
+        /// 是否为分佣员
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -25,7 +25,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 根据用户ID获取分销员信息
+        /// 根据用户ID获取分佣员信息
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -35,7 +35,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取已绑定的分销首页诊疗项目
+        /// 获取已绑定的分佣首页诊疗项目
         /// </summary>
         /// <returns></returns>
         public static object GetAllHomeProductIds()
@@ -44,7 +44,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 设置分销首页诊疗项目
+        /// 设置分佣首页诊疗项目
         /// </summary>
         /// <param name="productIds"></param>
         public static void SetDistributionProducts(string productIds)
@@ -84,7 +84,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 查询已绑定的分销首页诊疗项目信息
+        /// 查询已绑定的分佣首页诊疗项目信息
         /// </summary>
         /// <param name="page">分页页码</param>
         /// <param name="rows">每页行数</param>
@@ -103,7 +103,7 @@ namespace Himall.Application
             return query;
         }
         /// <summary>
-        /// 获取分销诊疗项目
+        /// 获取分佣诊疗项目
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -147,7 +147,7 @@ namespace Himall.Application
             return 1M;
         }
         /// <summary>
-        /// 获取所有分销首页数据，不包含已停止诊疗项目
+        /// 获取所有分佣首页数据，不包含已停止诊疗项目
         /// </summary>
         /// <param name="userId">会员ID</param>
         /// <returns></returns>
@@ -159,7 +159,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 分销首页诊疗项目实体转换
+        /// 分佣首页诊疗项目实体转换
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
@@ -176,7 +176,7 @@ namespace Himall.Application
             {
                 //品牌
                 var brand = _iBrandService.GetBrand(a.Himall_ProductBrokerage.Himall_Products.BrandId);
-                //分销价格
+                //分佣价格
                 decimal Commission = 0;
                 decimal rate = a.Himall_ProductBrokerage.rate;
                 if (rate > 0)

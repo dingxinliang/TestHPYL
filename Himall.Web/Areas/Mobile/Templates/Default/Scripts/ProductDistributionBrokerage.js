@@ -1,4 +1,4 @@
-﻿//分销
+﻿//分佣
 var d_PromoterStatusId = "upromstatus";
 $(function () {
     var shareguide = $(".share-guide");
@@ -18,7 +18,7 @@ $(function () {
                 $(".share-guide").show();
                 break;
             case 0:
-                $.dialog.tips('分销员申请待平台审核，请耐心等待！');
+                $.dialog.tips('分佣员申请待平台审核，请耐心等待！');
                 break;
             case 2:
                 $.dialog.errorTips('你的申请被拒绝，请重新提交资料！', function () {
@@ -26,7 +26,7 @@ $(function () {
                 });
                 break;
             case 3:
-                $.dialog.confirm('您已被平台从销售员中清退，您分享的诊疗项目不再计算个人业绩，您确定要分享吗？', function () {
+                $.dialog.confirm('您已被平台从使用员中清退，您分享的诊疗项目不再计算个人业绩，您确定要分享吗？', function () {
                     $(".share-guide").show();
                 });
                 break;
@@ -112,7 +112,7 @@ function ApplyDistribution(productId) {
                 }
                 if (data.status == 2) {
                     setPromoterStatus(0);
-                    $.dialog.tips('分销员申请待平台审核，请耐心等待！');
+                    $.dialog.tips('分佣员申请待平台审核，请耐心等待！');
                     return;
                 }
                 $.dialog.tips(data.msg);

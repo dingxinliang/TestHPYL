@@ -74,11 +74,11 @@ namespace Himall.Model
 
         #region 传值参数(不入库)
         /// <summary>
-        /// 店铺编号
+        /// 诊所编号
         /// </summary>
         public long ShopId { get; set; }
         /// <summary>
-        /// 店铺名
+        /// 诊所名
         /// </summary>
         public string ShopName { get; set; }
         /// <summary>

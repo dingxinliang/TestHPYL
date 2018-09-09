@@ -39,7 +39,7 @@ namespace Himall.Web.Areas.Mobile.Models
         /// </summary>
         public bool CanSignIn { get; set; }
 
-        //是否开启分销
+        //是否开启分佣
         public bool CanDistribution { set; get; }
         /// <summary>
         /// 是否开启拼团

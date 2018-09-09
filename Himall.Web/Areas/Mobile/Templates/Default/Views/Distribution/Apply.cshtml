@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "申请成为销售员";
+    ViewBag.Title = "申请成为使用员";
     long productId = (long)ViewBag.ProductId;
 }
 @model Himall.Web.Areas.Mobile.PromoterModel
@@ -444,7 +444,7 @@
                             }
                         });
                     } else {
-                        $.dialog.succeedTips("申请成为销售员成功！", function () {
+                        $.dialog.succeedTips("申请成为使用员成功！", function () {
                             if (productId > 0)
                             {
                                 window.location.href = '@Url.Action("Detail", "Product",new {id=productId })';

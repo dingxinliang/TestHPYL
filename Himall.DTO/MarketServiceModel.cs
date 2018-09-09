@@ -17,7 +17,7 @@ namespace Himall.DTO
         /// </summary>
         public MarketType MarketType { get; set; }
         /// <summary>
-        /// 店铺编号
+        /// 诊所编号
         /// </summary>
         public long ShopId { get; set; }
         /// <summary>

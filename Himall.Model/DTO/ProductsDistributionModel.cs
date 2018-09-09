@@ -36,7 +36,7 @@ namespace Himall.Model
         public decimal SaleAmount { set; get; }
 
         /// <summary>
-        /// 分销佣金
+        /// 分佣佣金
         /// </summary>
         public decimal Brokerage { set; get; }
         /// <summary>

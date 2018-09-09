@@ -21,7 +21,7 @@ namespace Himall.Service
     public class ShopService : ServiceBase, IShopService
     {
 
-        #region 实现店铺服务
+        #region 实现诊所服务
         public ObsoletePageModel<ShopInfo> GetAuditingShops(ShopQuery shopQueryModel)
         {
             return null;
@@ -135,7 +135,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 检测并初始店铺模板
+        /// 检测并初始诊所模板
         /// </summary>
         /// <param name="shopId"></param>
         public void CheckInitTemplate(long shopId)
@@ -143,7 +143,7 @@ namespace Himall.Service
             CopyTemplate(shopId);
         }
 
-        //TODO:ZJT 获取店铺有效的预约单总销量
+        //TODO:ZJT 获取诊所有效的预约单总销量
         public int GetSales(long id)
         {
             return Context.OrderInfo.Where(p => p.ShopId == id && p.OrderStatus == OrderInfo.OrderOperateStatus.Finish).Count();
@@ -176,7 +176,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 通过app_key获取店铺信息
+        /// 通过app_key获取诊所信息
         /// </summary>
         /// <param name="appkey"></param>
         /// <returns></returns>
@@ -232,11 +232,11 @@ namespace Himall.Service
         public void UpdateShop(ShopInfo shop)
         {
             //说明：
-            //     店铺的更新只会影响如下字段
-            //     1. ShopName     (店铺名称)
-            //     2. ShopGradeId  (店铺等级)
+            //     诊所的更新只会影响如下字段
+            //     1. ShopName     (诊所名称)
+            //     2. ShopGradeId  (诊所等级)
             //     3. EndDate      (有效期)
-            //     4. ShopStatus   (店铺状态)
+            //     4. ShopStatus   (诊所状态)
 
             var actual = Context.ShopInfo.FindById(shop.Id);
             actual.ShopName = shop.ShopName ?? actual.ShopName;
@@ -341,7 +341,7 @@ namespace Himall.Service
             actual.ContactsPosition = shop.ContactsPosition ?? shop.ContactsPosition;
 
             Context.SaveChanges();
-            //过期店铺下架所有诊疗项目
+            //过期诊所下架所有诊疗项目
             if (actual.EndDate < DateTime.Now.AddDays(1).Date)
             {
                 SaleOffAllProduct(actual.Id);
@@ -602,7 +602,7 @@ namespace Himall.Service
             //官方自营永不过期
             if (shop.IsSelf) status = ShopInfo.ShopAuditStatus.Open;
 
-            //设置店铺的结束日期
+            //设置诊所的结束日期
             if (status == ShopInfo.ShopAuditStatus.Open)
             {
                 //TODO:DZY[150729] 官方自营店到期自动延期
@@ -816,7 +816,7 @@ namespace Himall.Service
         }
         #endregion
 
-        #region 实现店铺等级服务
+        #region 实现诊所等级服务
 
         public IQueryable<ShopGradeInfo> GetShopGrades()
         {
@@ -839,7 +839,7 @@ namespace Himall.Service
             msg = "";
             if (Context.ShopInfo.Any(s => s.GradeId == id))
             {
-                msg = "删除失败，因为该套餐和店铺有关联，所以不能删除.";
+                msg = "删除失败，因为该套餐和诊所有关联，所以不能删除.";
                 return;
             }
             Context.ShopGradeInfo.Remove(Context.ShopGradeInfo.FindById(id));
@@ -858,7 +858,7 @@ namespace Himall.Service
         }
         #endregion
 
-        #region 店铺信息
+        #region 诊所信息
         public long GetShopSpaceUsage(long shopId)
         {
             var path = string.Format("/Storage/Shop/{0}/Products/", shopId);
@@ -902,7 +902,7 @@ namespace Himall.Service
         }
 
 		/// <summary>
-		/// 获取店铺账户信息
+		/// 获取诊所账户信息
 		/// </summary>
 		/// <param name="ids"></param>
 		/// <returns></returns>
@@ -1002,7 +1002,7 @@ namespace Himall.Service
             }
             else
             {
-                throw new HimallException("您已经关注过该店铺");
+                throw new HimallException("您已经关注过该诊所");
             }
         }
 
@@ -1299,7 +1299,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 冻结/解冻店铺
+        /// 冻结/解冻诊所
         /// </summary>
         /// <param name="id"></param>
         /// <param name="state">true冻结 false解冻</param>
@@ -1308,7 +1308,7 @@ namespace Himall.Service
             var shop = Context.ShopInfo.FirstOrDefault(d => d.Id == id);
             if (shop == null)
             {
-                throw new HimallException("错误的店铺编号");
+                throw new HimallException("错误的诊所编号");
             }
             if (shop.IsSelf == false)
             {
@@ -1391,7 +1391,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取自营店铺信息
+        /// 获取自营诊所信息
         /// </summary>
         /// <returns></returns>
         public ShopInfo GetSelfShop()

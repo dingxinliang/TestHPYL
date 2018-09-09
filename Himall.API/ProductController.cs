@@ -64,7 +64,7 @@ namespace Himall.API
             model.ProductAddress = productAddress;
             model.FreightTemplate = template;
             #endregion
-            #region 店铺Logo
+            #region 诊所Logo
             long vShopId;
             shop = ServiceProvider.Instance<IShopService>.Create.GetShop(product.ShopId);
             var vshopinfo = ServiceProvider.Instance<IVShopService>.Create.GetVShopByShopId(shop.Id);
@@ -173,7 +173,7 @@ namespace Himall.API
             }
             #endregion
 
-            #region 店铺
+            #region 诊所
             shop = ServiceProvider.Instance<IShopService>.Create.GetShop(product.ShopId);
             var mark = ShopServiceMark.GetShopComprehensiveMark(shop.Id);
             model.Shop.PackMark = mark.PackMark;
@@ -217,7 +217,7 @@ namespace Himall.API
             {
                 model.Shop.ProductAndDescription = defaultValue;
             }
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null)
             {
                 model.Shop.SellerServiceAttitude = sellerServiceAttitude.CommentValue;
@@ -226,7 +226,7 @@ namespace Himall.API
             {
                 model.Shop.SellerServiceAttitude = defaultValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null)
             {
                 model.Shop.SellerDeliverySpeed = sellerDeliverySpeed.CommentValue;
@@ -269,7 +269,7 @@ namespace Himall.API
             else
             {
                 isFavorite = ServiceProvider.Instance<IProductService>.Create.IsFavorite(product.Id, CurrentUser.Id);
-                var favoriteShopIds = ServiceProvider.Instance<IShopService>.Create.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注店铺
+                var favoriteShopIds = ServiceProvider.Instance<IShopService>.Create.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注诊所
                 IsFavoriteShop = favoriteShopIds.Contains(product.ShopId);
                 discount = CurrentUser.MemberDiscount;
             }
@@ -349,7 +349,7 @@ namespace Himall.API
             #endregion
 
             LogProduct(id);
-            //统计诊疗项目浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、诊所浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
             var IsPromoter = false;
             if (CurrentUser != null && CurrentUser.Id > 0)

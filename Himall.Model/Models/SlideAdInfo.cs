@@ -26,9 +26,9 @@ namespace Himall.Model
             PlatformLimitTime = 2,
 
             /// <summary>
-            /// 店铺首页轮播图
+            /// 诊所首页轮播图
             /// </summary>
-            [Description("店铺首页轮播图")]
+            [Description("诊所首页轮播图")]
             ShopHome = 3,
 
             /// <summary>
@@ -59,9 +59,9 @@ namespace Himall.Model
             IOSShopHome = 8,
 
             /// <summary>
-            /// 分销首页轮播图
+            /// 分佣首页轮播图
             /// </summary>
-            [Description("分销首页轮播图")]
+            [Description("分佣首页轮播图")]
             DistributionHome = 9,
 
 

@@ -201,7 +201,7 @@
                             link: "/" + clientName + "/default.aspx",
                             linkType: 6,
                             showtitle: "首页",
-                            title: "店铺主页",
+                            title: "诊所主页",
                             pic: "/Content/Public/images/icon/style1/color0/icon_home.png",
                             bgColor: "#07a0e7",
                             cloPicker: '0',

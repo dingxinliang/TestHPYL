@@ -75,7 +75,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        /// 检测销售员信息
+        /// 检测使用员信息
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
@@ -123,7 +123,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return Json(new Result() { success = true });
         }
 
-        #region 分销市场诊疗项目
+        #region 分佣市场诊疗项目
         public ActionResult Index()
         {
 
@@ -207,7 +207,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return View(model);
         }
         /// <summary>
-        /// 获取分销诊疗项目列表
+        /// 获取分佣诊疗项目列表
         /// </summary>
         /// <param name="skey"></param>
         /// <param name="page"></param>
@@ -341,7 +341,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
 
 
 
-            #region 初始化诊疗项目和店铺
+            #region 初始化诊疗项目和诊所
             probroker = _iDistributionService.GetDistributionProductInfo(gid);
             product = _iProductService.GetProduct(gid);
 
@@ -504,7 +504,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             ViewBag.Price = string.IsNullOrWhiteSpace(price) ? product.MinSalePrice.ToString("f2") : price;
             #endregion
 
-            #region 获取店铺的评价统计
+            #region 获取诊所的评价统计
             var shopStatisticOrderComments = ServiceHelper.Create<IShopService>().GetShopStatisticOrderComments(product.ShopId);
 
             var productAndDescription = shopStatisticOrderComments.Where(c => c.CommentKey == StatisticOrderCommentsInfo.EnumCommentKey.ProductAndDescription).FirstOrDefault();
@@ -542,7 +542,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 detailModel.ProductAndDescriptionMin = defaultValue;
                 detailModel.ProductAndDescriptionMax = defaultValue;
             }
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null)
             {
                 detailModel.SellerServiceAttitude = sellerServiceAttitude.CommentValue;
@@ -557,7 +557,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 detailModel.SellerServiceAttitudeMax = defaultValue;
                 detailModel.SellerServiceAttitudeMin = defaultValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null)
             {
                 detailModel.SellerDeliverySpeed = sellerDeliverySpeed.CommentValue;
@@ -621,7 +621,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             ViewBag.DetailModel = detailModel;
 
 
-            //分销信息
+            //分佣信息
 
             return View(model);
         }
@@ -632,7 +632,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         /// 搜索框
         /// </summary>
         /// <param name="skey">关键词</param>
-        /// <param name="stype">类型(0诊疗项目 1店铺)</param>
+        /// <param name="stype">类型(0诊疗项目 1诊所)</param>
         /// <returns></returns>
         public ActionResult SearchBox(string skey, int stype = 0)
         {
@@ -696,7 +696,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
         #endregion
 
-        #region 店铺有关
+        #region 诊所有关
         public ActionResult SearchShops(string skey)
         {
             CheckPromoter();
@@ -704,8 +704,8 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return View();
         }
         /// <summary>
-        /// 店铺详情
-        /// <para>销售员查看</para>
+        /// 诊所详情
+        /// <para>使用员查看</para>
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -714,7 +714,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             var shop = _iShopService.GetShop(id);
             if (shop == null)
             {
-                throw new HimallException("错误的店铺编号");
+                throw new HimallException("错误的诊所编号");
             }
             CheckPromoter();
             var shareInfo = _iDistributionService.getShopDistributorSettingInfo(id);
@@ -753,7 +753,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        /// 获取分销店铺列表
+        /// 获取分佣诊所列表
         /// </summary>
         /// <param name="skey"></param>
         /// <param name="page"></param>
@@ -782,7 +782,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         #endregion
 
         /// <summary>
-        /// 获取平台分销模块设置
+        /// 获取平台分佣模块设置
         /// </summary>
         /// <returns></returns>
         public ActionResult Setting()

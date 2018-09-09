@@ -12,7 +12,7 @@ using Himall.OpenApi.Model;
 namespace Himall.OpenApi
 {
     /// <summary>
-    /// 店铺辅助工具
+    /// 诊所辅助工具
     /// </summary>
     public class ShopHelper
     {
@@ -25,15 +25,15 @@ namespace Himall.OpenApi
         private string _AppSecreate { get; set; }
 
         /// <summary>
-        /// 店铺编号
+        /// 诊所编号
         /// </summary>
         public long ShopId { get; set; }
         /// <summary>
-        /// 店铺管理员
+        /// 诊所管理员
         /// </summary>
         public string SellerName { get; set; }
         /// <summary>
-        /// 店铺app_key
+        /// 诊所app_key
         /// </summary>
         public string AppKey
         {
@@ -43,7 +43,7 @@ namespace Himall.OpenApi
             }
         }
         /// <summary>
-        /// 店铺app_secreate
+        /// 诊所app_secreate
         /// </summary>
         public string AppSecreate
         {
@@ -89,7 +89,7 @@ namespace Himall.OpenApi
             var manage = _iManagerService.GetSellerManagerByShopId(ShopId);
             if(manage==null)
             {
-                throw new HimallException("店铺管理信息有误，请管理员修正");
+                throw new HimallException("诊所管理信息有误，请管理员修正");
             }
             SellerName = manage.UserName;
         }

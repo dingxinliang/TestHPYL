@@ -117,7 +117,7 @@ namespace Himall.API
         /// <param name="branchProductStatus"></param>
         /// <returns></returns>
         public object GetShopProducts(
-            string status,/* 销售中0, 仓库中1， 待审核2，违规下架3 */
+            string status,/* 使用中0, 仓库中1， 待审核2，违规下架3 */
             string keywords = "", /* 搜索关键字 */
             long cid = 0,  /* 分类ID */
             int pageNo = 1, /*页码*/

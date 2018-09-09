@@ -30,7 +30,7 @@ namespace Himall.CommonModel
 
 		public int? AddressId { get; set; }
         /// <summary>
-        /// 诊所店铺ID
+        /// 诊所诊所ID
         /// </summary>
 		public long ShopId { get; set; }
         /// <summary>

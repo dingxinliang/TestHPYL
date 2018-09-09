@@ -282,14 +282,14 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 店铺有新预约单
+        /// 诊所有新预约单
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
         public void SendMessageOnShopHasNewOrder(long shopId, MessageOrderInfo info)
         {
             #region 发送模板消息
-            //卖家收信息
+            //诊所收信息
             var shopinfo = Context.ManagerInfo.FirstOrDefault(d => d.ShopId == shopId);
             if (shopinfo != null)
             {
@@ -299,10 +299,10 @@ namespace Himall.Service
                     var msgdata = new WX_MsgTemplateSendDataModel();
 
 #if DEBUG
-                    Core.Log.Info("[模板消息]卖家新预约单用户编号：" + sellerinfo.Id.ToString());
+                    Core.Log.Info("[模板消息]诊所新预约单用户编号：" + sellerinfo.Id.ToString());
 #endif
                     msgdata = new WX_MsgTemplateSendDataModel();
-                    msgdata.first.value = "您的店铺有新的预约单生成。";
+                    msgdata.first.value = "您的诊所有新的预约单生成。";
                     msgdata.first.color = "#000000";
                     msgdata.keyword1.value = info.ShopName;
                     msgdata.keyword1.color = "#000000";
@@ -318,7 +318,7 @@ namespace Himall.Service
                     msgdata.remark.color = "#000000";
 
 #if DEBUG
-                    Core.Log.Info("[模板消息]卖家新预约单开始前：" + sellerinfo.Id.ToString() + "_" + info.OrderId.ToString());
+                    Core.Log.Info("[模板消息]诊所新预约单开始前：" + sellerinfo.Id.ToString() + "_" + info.OrderId.ToString());
 #endif
                     var _iwxtser = Himall.ServiceProvider.Instance<IWXMsgTemplateService>.Create;
                     _iwxtser.SendMessageByTemplate(MessageTypeEnum.ShopHaveNewOrder, sellerinfo.Id, msgdata);

@@ -62,35 +62,35 @@ namespace Himall.Web.Areas.Mobile.Models
         /// </summary>
         public decimal ProductAndDescriptionMax { get; set; }
         /// <summary>
-        /// 卖家服务态度
+        /// 诊所服务态度
         /// </summary>
         public decimal SellerServiceAttitude { get; set; }
         /// <summary>
-        /// 卖家服务态度
+        /// 诊所服务态度
         /// </summary>
         public decimal SellerServiceAttitudePeer { get; set; }
         /// <summary>
-        /// 卖家服务态度
+        /// 诊所服务态度
         /// </summary>
         public decimal SellerServiceAttitudeMax { get; set; }
         /// <summary>
-        /// 卖家服务态度
+        /// 诊所服务态度
         /// </summary>
         public decimal SellerServiceAttitudeMin { get; set; }
         /// <summary>
-        /// 卖家发货速度
+        /// 诊所发货速度
         /// </summary>
         public decimal SellerDeliverySpeed { get; set; }
         /// <summary>
-        /// 卖家发货速度
+        /// 诊所发货速度
         /// </summary>
         public decimal SellerDeliverySpeedPeer { get; set; }
         /// <summary>
-        /// 卖家发货速度
+        /// 诊所发货速度
         /// </summary>
         public decimal SellerDeliverySpeedMax { get; set; }
         /// <summary>
-        /// 卖家发货速度
+        /// 诊所发货速度
         /// </summary>
         public decimal sellerDeliverySpeedMin { get; set; }
         /// <summary>
@@ -113,7 +113,7 @@ namespace Himall.Web.Areas.Mobile.Models
         /// </summary>
         public long ShopDistributionProductNum { get; set; }
         /// <summary>
-        /// 店铺关注数
+        /// 诊所关注数
         /// </summary>
         public long FavoriteShopCount { get; set; }
         /// <summary>
@@ -129,7 +129,7 @@ namespace Himall.Web.Areas.Mobile.Models
         /// </summary>
         public int DistributionAgentNum { get; set; }
         /// <summary>
-        /// 分销佣金
+        /// 分佣佣金
         /// </summary>
         public decimal DistributionCommission { get; set; }
     }

@@ -22,7 +22,7 @@ namespace Himall.CommonModel
     {
         public long BranchShopId { set; get; }
         /// <summary>
-        /// 销售额
+        /// 使用额
         /// </summary>
         public decimal SaleAmount { get; set; }
 

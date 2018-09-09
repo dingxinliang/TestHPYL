@@ -153,7 +153,7 @@ function submit(model, loading) {
         if (result.success) {
             if (result.orderIds != null && result != undefined) {
                 orderIds = result.orderIds;//当前预约单号
-                //在货到付款，且只有一个店铺时
+                //在货到付款，且只有一个诊所时
                 if (model.isCashOnDelivery && model.orderShops.length == 1) {
                     loading.close();
                     if (result.realTotalIsZero) {

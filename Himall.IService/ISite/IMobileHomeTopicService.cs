@@ -11,7 +11,7 @@ namespace Himall.IServices
         /// 获取移动端首页专题设置
         /// </summary>
         /// <param name="platformType">平台类型</param>
-        /// <param name="shopId">店铺Id</param>
+        /// <param name="shopId">诊所Id</param>
         /// <returns></returns>
         IQueryable<MobileHomeTopicsInfo> GetMobileHomeTopicInfos(PlatformType platformType, long shopId = 0);
 
@@ -19,7 +19,7 @@ namespace Himall.IServices
         /// 获取指定移动端首页专题设置Id
         /// </summary>
         /// <param name="id">专题设置Id</param>
-        /// <param name="shopId">店铺Id</param>
+        /// <param name="shopId">诊所Id</param>
         /// <returns></returns>
         MobileHomeTopicsInfo GetMobileHomeTopic(long id, long shopId = 0);
 
@@ -28,7 +28,7 @@ namespace Himall.IServices
         /// </summary>
         /// <param name="topicId">待设置的专题编号</param>
         /// <param name="platformType">平台类型</param>
-        /// <param name="shopId">店铺Id</param>
+        /// <param name="shopId">诊所Id</param>
         /// <param name="frontCoverImage">封面图片</param>
         void AddMobileHomeTopic(long topicId, long shopId, PlatformType platformType, string frontCoverImage = null);
 
@@ -37,7 +37,7 @@ namespace Himall.IServices
         /// </summary>
         /// <param name="id">移动端首页专题设置Id</param>
         /// <param name="sequence">顺序号</param>
-        /// <param name="shopId">店铺Id</param>
+        /// <param name="shopId">诊所Id</param>
         void SetSequence(long id, int sequence, long shopId = 0);
 
         /// <summary>

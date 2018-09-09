@@ -34,7 +34,7 @@
                     }
                     @if (!string.IsNullOrWhiteSpace(comitem.ReplyContent) && comitem.ReplyContent != "暂无回复")
                     {
-                        <div class="detail-comment-replay">卖家回复:@(comitem.ReplyContent)</div>
+                        <div class="detail-comment-replay">诊所回复:@(comitem.ReplyContent)</div>
                     }
                     @if (comitem.AppendDate.HasValue && comitem.FinshDate.HasValue)
                     {
@@ -54,7 +54,7 @@
                         }
                         if (!string.IsNullOrWhiteSpace(comitem.ReplyAppendContent) && comitem.ReplyAppendContent != "暂无回复")
                         {
-                            <div class="detail-comment-replay">卖家回复:@(comitem.ReplyAppendContent)</div>
+                            <div class="detail-comment-replay">诊所回复:@(comitem.ReplyAppendContent)</div>
                         }
                     }
                 </li>

@@ -29,7 +29,7 @@
                 }
             },
            { field: "StatusStr", title: "状态", width: 80, align: "center" },
-            { field: "ShopName", title: "店铺", width: 200, align: "center" },
+            { field: "ShopName", title: "诊所", width: 200, align: "center" },
             //{ field: "Price", title: "限时购价", width: 80, align: "left" },
             //{ field: "RecentMonthPrice", title: "近30天均价", width: 80, align: "left" },
             { field: "BeginDate", title: "开始时间", width: 110, align: "center" },

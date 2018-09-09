@@ -29,7 +29,7 @@
                 <div class="search-form cl">
                     <ul>
                         <li>诊疗项目</li>
-                        <li>店铺</li>
+                        <li>诊所</li>
                     </ul>
                     <label>诊疗项目</label>
                     <input type="text" id="searchBox" class="text" name="" value="" placeholder="@ViewBag.Keyword" />
@@ -60,7 +60,7 @@
             <ul class="myFans">
                 <li class="li-lg"><em class="@( (controlname == "ProductConcern".ToLower() || controlname == "ShopConcern".ToLower()) ? "big" : "")"></em>我的关注</li>
                 <li class="aside-clk @(controlname == "ProductConcern".ToLower() ? "aside-active" : "")"><a href="/ProductConcern/index">诊疗项目关注</a></li>
-                <li class="li-b aside-clk @(controlname == "ShopConcern".ToLower() ? "aside-active" : "")"><a href="/ShopConcern/Index">店铺关注</a></li>
+                <li class="li-b aside-clk @(controlname == "ShopConcern".ToLower() ? "aside-active" : "")"><a href="/ShopConcern/Index">诊所关注</a></li>
             </ul>
             <ul class="expand">
                 <li class="li-lg"><em class="@(controlname == "UserInvite".ToLower() ? "big" : "")"></em>推广</li>

@@ -30,7 +30,7 @@ namespace Himall.IServices
         /// <returns></returns>
         string GetGoodTagFromCache(long page, string tName="");
         /// <summary>
-        /// 从缓存取店铺首页诊疗项目Tag
+        /// 从缓存取诊所首页诊疗项目Tag
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="page"></param>

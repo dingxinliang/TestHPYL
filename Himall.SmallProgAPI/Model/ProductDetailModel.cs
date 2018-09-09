@@ -133,12 +133,12 @@ namespace Himall.SmallProgAPI.Model
         public decimal FreeFreight { get; set; }
 
         /// <summary>
-        /// 店铺在售诊疗项目数
+        /// 诊所在售诊疗项目数
         /// </summary>
         public long ProductNum { get; set; }
 
         /// <summary>
-        /// 店铺优惠券数
+        /// 诊所优惠券数
         /// </summary>
         public long CouponCount { get; set; }
 

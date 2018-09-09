@@ -21,7 +21,7 @@ using Himall.CommonModel;
 namespace Himall.Service
 {
     /// <summary>
-    /// 会员小程序店铺模块服务
+    /// 会员小程序诊所模块服务
     /// </summary>
     public class ShopAppletService : ServiceBase, IShopAppletService
     {
@@ -66,7 +66,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取某个用户最后关注的店铺，没有关注的店铺则返回0
+        /// 获取某个用户最后关注的诊所，没有关注的诊所则返回0
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

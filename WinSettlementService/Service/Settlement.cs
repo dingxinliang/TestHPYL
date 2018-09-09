@@ -149,7 +149,7 @@ namespace WinSettlementService
                         shopAccountItemInfo.Balance = shopAccount.Balance + shopAccountItemInfo.Amount; ;//账户余额+结算金额
                         shopAccountItemInfo.TradeType = ShopAccountType.SettlementIncome;
                         shopAccountItemInfo.IsIncome = true;
-                        shopAccountItemInfo.ReMark = "店铺结算明细" + accountInfo.Id; ;
+                        shopAccountItemInfo.ReMark = "诊所结算明细" + accountInfo.Id; ;
                         shopAccountItemInfo.DetailId = accountInfo.Id.ToString();
                         shopAccountItemInfo.SettlementCycle = settings.WeekSettlement;
                         entity.ShopAccountItemInfo.Add(shopAccountItemInfo);
@@ -233,7 +233,7 @@ namespace WinSettlementService
 
 
         /// <summary>
-        /// 计算分销总佣金
+        /// 计算分佣总佣金
         /// </summary>
         /// <param name="orderItems"></param>
         /// <returns></returns>
@@ -252,7 +252,7 @@ namespace WinSettlementService
 
 
         /// <summary>
-        /// 计算退货分销佣金
+        /// 计算退货分佣佣金
         /// </summary>
         /// <param name="orderItems"></param>
         /// <returns></returns>

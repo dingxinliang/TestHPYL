@@ -35,10 +35,10 @@ namespace Himall.Web.Areas.Admin.Controllers
             _iRegionService = iRegionService;
             _iCategoryService = iCategoryService;
             _iSearchProductService = iSearchProductService;
-            //获取当前店铺发布诊疗项目的数量
+            //获取当前诊所发布诊疗项目的数量
         }
         /// <summary>
-        /// 店铺管理
+        /// 诊所管理
         /// </summary>
         /// <param name="type"></param>
         /// <param name="s"></param>
@@ -138,7 +138,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         /// <summary>
         /// 冻结
         /// </summary>
-        /// <param name="id">店铺标识</param>
+        /// <param name="id">诊所标识</param>
         /// <param name="state">是否冻结</param>
         [HttpPost]
         public JsonResult FreezeShop(long id, bool state)
@@ -152,7 +152,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                new LogInfo
                {
                    Date = DateTime.Now,
-                   Description = (state ? "冻结" : "解冻") + "店铺信息，Id=" + id,
+                   Description = (state ? "冻结" : "解冻") + "诊所信息，Id=" + id,
                    IPAddress = Request.UserHostAddress,
                    PageUrl = "/Shop/FreezeShop/",
                    UserName = CurrentManager.UserName,
@@ -240,15 +240,15 @@ namespace Himall.Web.Areas.Admin.Controllers
             var service = _iShopService;
             var nowShop = service.GetShop(shop.Id);
 
-            //验证修改的店铺等级是否通过
+            //验证修改的诊所等级是否通过
             if (!CheckShopGrade(shop.Id, Convert.ToInt64(shop.ShopGrade)))
             {
-                throw new HimallException("该店铺已使用空间数或已添加诊疗项目数大于该套餐");
+                throw new HimallException("该诊所已使用空间数或已添加诊疗项目数大于该套餐");
             }
 
             if (service.ExistShop(shop.Name, shop.Id))
             {
-                throw new HimallException("该店铺已存在");
+                throw new HimallException("该诊所已存在");
             }
             //日龙修改
             //去除检查公司名称重复
@@ -302,7 +302,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                    new LogInfo
                    {
                        Date = DateTime.Now,
-                       Description = "修改店铺信息，Id=" + shop.Id,
+                       Description = "修改诊所信息，Id=" + shop.Id,
                        IPAddress = Request.UserHostAddress,
                        PageUrl = "/Shop/Edit/" + shop.Id,
                        UserName = CurrentManager.UserName,
@@ -343,15 +343,15 @@ namespace Himall.Web.Areas.Admin.Controllers
             var service = _iShopService;
             var nowShop = service.GetShop(shop.Id);
 
-            //验证修改的店铺等级是否通过
+            //验证修改的诊所等级是否通过
             if (!CheckShopGrade(shop.Id, Convert.ToInt64(shop.ShopGrade)))
             {
-                throw new HimallException("该店铺已使用空间数或已添加诊疗项目数大于该套餐");
+                throw new HimallException("该诊所已使用空间数或已添加诊疗项目数大于该套餐");
             }
 
             if (service.ExistShop(shop.Name, shop.Id))
             {
-                throw new HimallException("该店铺已存在");
+                throw new HimallException("该诊所已存在");
             }
             //日龙修改
             //去除检查公司名称重复
@@ -385,7 +385,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                    new LogInfo
                    {
                        Date = DateTime.Now,
-                       Description = "修改店铺信息，Id=" + shop.Id,
+                       Description = "修改诊所信息，Id=" + shop.Id,
                        IPAddress = Request.UserHostAddress,
                        PageUrl = "/Shop/EditPersonal/" + shop.Id,
                        UserName = CurrentManager.UserName,
@@ -494,7 +494,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             return View(shopPersoal);
         }
         /// <summary>
-        /// 删除店铺
+        /// 删除诊所
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -507,7 +507,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                    new LogInfo
                    {
                        Date = DateTime.Now,
-                       Description = "删除店铺，Id=" + Id,
+                       Description = "删除诊所，Id=" + Id,
                        IPAddress = Request.UserHostAddress,
                        PageUrl = "/Shop/Edit/" + Id,
                        UserName = CurrentManager.UserName,
@@ -581,7 +581,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                    new LogInfo
                    {
                        Date = DateTime.Now,
-                       Description = string.Format("开店审核页面，店铺Id={0},状态为：{1}, 说明是：{2}", shopId,
+                       Description = string.Format("开店审核页面，诊所Id={0},状态为：{1}, 说明是：{2}", shopId,
                        ((ShopInfo.ShopAuditStatus)status).ToString(), comment),
                        IPAddress = Request.UserHostAddress,
                        PageUrl = "/Shop/Auditing/" + shopId,
@@ -647,7 +647,7 @@ namespace Himall.Web.Areas.Admin.Controllers
            new LogInfo
            {
                Date = DateTime.Now,
-               Description = "修改店铺经营类目，店铺Id=" + shopId,
+               Description = "修改诊所经营类目，诊所Id=" + shopId,
                IPAddress = Request.UserHostAddress,
                PageUrl = "/Shop/SaveBusinessCategory?shopId=" + shopId + "&bcategory=" + bcategory,
                UserName = CurrentManager.UserName,
@@ -664,19 +664,19 @@ namespace Himall.Web.Areas.Admin.Controllers
             return Json(new { success = true });
         }
         /// <summary>
-        /// 验证修改的店铺等级是否符合要求
+        /// 验证修改的诊所等级是否符合要求
         /// </summary>
-        /// <param name="shopId">店铺编号</param>
-        /// <param name="newId">需修改的店铺等级编号</param>
+        /// <param name="shopId">诊所编号</param>
+        /// <param name="newId">需修改的诊所等级编号</param>
         /// <returns></returns>
         [HttpPost]
         public bool CheckShopGrade(long shopId, long newId)
         {
             var shopservice = _iShopService;
             var productservice = _iProductService;
-            //获取当前店铺发布诊疗项目的数量
+            //获取当前诊所发布诊疗项目的数量
             var productCount = productservice.GetShopAllProducts(shopId);
-            //获取当前店铺使用的空间
+            //获取当前诊所使用的空间
             var SpaceUsage = shopservice.GetShopSpaceUsage(shopId);
             //正使用的空间
             var UseSpaceing = SpaceUsage > 0 ? SpaceUsage : 0;
@@ -688,7 +688,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                 {
                     var newproductLimit = newshopGrade.ProductLimit;
                     var newimageLimit = newshopGrade.ImageLimit;
-                    //如果修改的店铺等级诊疗项目发布数、使用空间 任何一个小于正在使用的诊疗项目发布数、使用空间 则不通过
+                    //如果修改的诊所等级诊疗项目发布数、使用空间 任何一个小于正在使用的诊疗项目发布数、使用空间 则不通过
                     if (newproductLimit < productCount || newimageLimit < UseSpaceing)
                         return false;
                     else

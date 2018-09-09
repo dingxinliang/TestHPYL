@@ -70,7 +70,7 @@ namespace Himall.Service
 
             var templates = Context.ProductDescriptionTemplateInfo.Where(item => ids.Contains(item.Id));
             if (templates.Count(item => item.ShopId != shopId) > 0)
-                throw new HimallException("不能删除非本店铺的诊疗项目描述模板");
+                throw new HimallException("不能删除非本诊所的诊疗项目描述模板");
 
             IEnumerable<string> templateDirs = templates.Select(item => item.Id.ToString()).ToArray();
 
@@ -99,7 +99,7 @@ namespace Himall.Service
             if (string.IsNullOrWhiteSpace(template.Name))
                 throw new InvalidPropertyException("模板名称不可空");
             if(template.ShopId==0)
-                throw new InvalidPropertyException("店铺id不可空");
+                throw new InvalidPropertyException("诊所id不可空");
         }
 
         /// <summary>

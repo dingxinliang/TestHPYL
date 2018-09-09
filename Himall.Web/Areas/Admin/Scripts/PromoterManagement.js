@@ -27,7 +27,7 @@ function query() {
             { field: "Id", hidden: true },
             { field: "UserName", title: '帐号' },
             { field: "RealName", title: '姓名' },
-            { field: "ShopName", title: '店铺名称' },
+            { field: "ShopName", title: '诊所名称' },
             { field: "PassTime", title: '招募时间' },
             { field: "ApplyTime", title: '申请日期', width: 100, },
             {
@@ -121,14 +121,14 @@ function Audited(id) {
 		}
 		if($.trim(data.ShopName)!=''){
 			promoterStr+='<div class="form-group">'+
-				'<label class="label-inline fl">店铺名称</label>'+
+				'<label class="label-inline fl">诊所名称</label>'+
 				'<p class="help-top">' + data.ShopName + '</p>'+
 			'</div>';
 		}
 	   
 	promoterStr+='</div>';
     $.dialog({
-        title: '销售员审核',
+        title: '使用员审核',
         width: 500,
         lock: true,
         id: 'goodCheck',

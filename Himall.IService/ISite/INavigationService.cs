@@ -44,7 +44,7 @@ namespace Himall.IServices
         void DeletePlatformNavigation(long id);
 
         /// <summary>
-        /// 删除一个店铺导航
+        /// 删除一个诊所导航
         /// </summary>
         /// <param name="id"></param>
         void DeleteSellerformNavigation(long shopId, long id);
@@ -59,7 +59,7 @@ namespace Himall.IServices
         /// <summary>
         /// 交换两个导航的排序
         /// </summary>
-        /// <param name="shopId">店铺id</param>
+        /// <param name="shopId">诊所id</param>
         /// <param name="id"></param>
         /// <param name="id2"></param>
         void SwapSellerDisplaySequence(long shopId,long id, long id2);
@@ -73,7 +73,7 @@ namespace Himall.IServices
       /// <summary>
       /// 获取诊所导航列表
       /// </summary>
-      /// <param name="shopid">店铺ID</param>
+      /// <param name="shopid">诊所ID</param>
       /// <returns></returns>
         IQueryable<BannerInfo> GetSellerNavigations(long shopId, PlatformType plat=PlatformType.PC);
 

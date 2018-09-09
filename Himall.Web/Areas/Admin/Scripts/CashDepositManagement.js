@@ -31,7 +31,7 @@ function Query() {
         [[
 
             { field: "Id", title: "Id", hidden: true },
-            { field: "ShopName", title: "店铺名称", width: 140 },
+            { field: "ShopName", title: "诊所名称", width: 140 },
             { field: "Type", title: "缴纳状态", width: 140 },
             { field: "TotalBalance", title: "缴纳保证金", width: 130 },
             { field: "CurrentBalance", title: "当前余额", width: 130 },

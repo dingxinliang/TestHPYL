@@ -11,7 +11,7 @@ namespace Himall.IServices
     public interface IManagerService : IService
     {
         /// <summary>
-        /// 更新店铺状态
+        /// 更新诊所状态
         /// </summary>
          void UpdateShopStatus();
 
@@ -74,7 +74,7 @@ namespace Himall.IServices
         ManagerInfo AddSellerManager(string username, string password, string salt);
 
         /// <summary>
-        /// 添加诊所子帐号（不创建店铺）
+        /// 添加诊所子帐号（不创建诊所）
         /// </summary>
         /// <param name="model"></param>
         ///<param name="currentSellerName">当前诊所帐号用户名</param>
@@ -110,7 +110,7 @@ namespace Himall.IServices
         /// 删除诊所管理员
         /// </summary>
         /// <param name="id">管理员ID</param>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         void DeleteSellerManager(long id,long shopId);
 
         /// <summary>

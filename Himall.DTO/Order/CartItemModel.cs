@@ -33,7 +33,7 @@ namespace Himall.DTO
         /// </summary>
         public string imgUrl { get; set; }
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string shopName { get; set; }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Himall.DTO
         /// </summary>
         public int count { get; set; }
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long shopId { set; get; }
         public long vshopId { set; get; }

@@ -123,7 +123,7 @@ namespace Himall.IServices
         /// <returns></returns>
         List<CouponRecordInfo> GetCouponRecordTotal(long[] couponIds);
         /// <summary>
-        /// 获取店铺订购的优惠券信息
+        /// 获取诊所订购的优惠券信息
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -149,7 +149,7 @@ namespace Himall.IServices
         /// <returns></returns>
         IEnumerable<CouponInfo> GetTopCoupon(long shopId, int top = 5, PlatformType type = 0);
         /// <summary>
-        /// 获取一个用户在某个店铺的可用优惠券
+        /// 获取一个用户在某个诊所的可用优惠券
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="userId"></param>

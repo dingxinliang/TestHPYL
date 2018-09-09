@@ -17,9 +17,9 @@ namespace Himall.Model
         public enum CouponReceiveType
         {
             /// <summary>
-            /// 店铺首页
+            /// 诊所首页
             /// </summary>
-            [Description("店铺首页")]
+            [Description("诊所首页")]
             ShopIndex = 0,
             /// <summary>
             /// 积分兑换

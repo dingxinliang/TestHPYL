@@ -7,7 +7,7 @@ using Himall.CommonModel;
 namespace Himall.IServices
 {
     /// <summary>
-    /// 用户小程序店铺模块
+    /// 用户小程序诊所模块
     /// </summary>
     public interface IShopAppletService : IService
     {

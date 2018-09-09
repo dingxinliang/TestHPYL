@@ -6,11 +6,11 @@ function Post() {
     //console.log($.trim(editor.getContentLength()))
     //console.log($.trim(editor.getContent().length))
     if (editor.getContentLength() > 2000) {
-        $.dialog.tips('卖家规则输入字符过长！');
+        $.dialog.tips('诊所规则输入字符过长！');
         return;
     }
     if (editor2.getContentLength() > 2000) {
-        $.dialog.tips('销售员规则输入字符过长！');
+        $.dialog.tips('使用员规则输入字符过长！');
         return;
     }
     var loading = showLoading();

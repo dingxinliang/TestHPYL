@@ -206,7 +206,7 @@ namespace Himall.OpenApi
         }
 
         /// <summary>
-        /// 修改诊疗项目销售状态 (上架， 下架， 入库)
+        /// 修改诊疗项目使用状态 (上架， 下架， 入库)
         /// </summary>
         /// <param name="num_iid"></param>
         /// <param name="approve_status"></param>
@@ -254,7 +254,7 @@ namespace Himall.OpenApi
 
         #region 私有
         /// <summary>
-        /// 初始获取店铺信息
+        /// 初始获取诊所信息
         /// </summary>
         /// <param name="app_key"></param>
         private void InitShopInfo(string app_key)

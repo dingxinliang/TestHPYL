@@ -34,51 +34,51 @@ namespace Himall.Model
             [Description("宝贝与描述相符 同行业诊所最低得分")]
             ProductAndDescriptionMin,
             /// <summary>
-            /// 卖家发货速度 诊所得分
+            /// 诊所发货速度 诊所得分
             /// </summary>
-            [Description("卖家发货速度 诊所得分")]
+            [Description("诊所发货速度 诊所得分")]
             SellerDeliverySpeed,
 
             /// <summary>
-            /// 卖家发货速度 同行业平均分
+            /// 诊所发货速度 同行业平均分
             /// </summary>
-            [Description("卖家发货速度 同行业平均分")]
+            [Description("诊所发货速度 同行业平均分")]
             SellerDeliverySpeedPeer,
 
             /// <summary>
-            /// 卖家发货速度 同行业诊所最高得分
+            /// 诊所发货速度 同行业诊所最高得分
             /// </summary>
-            [Description("卖家发货速度 同行业诊所最高得分")]
+            [Description("诊所发货速度 同行业诊所最高得分")]
             SellerDeliverySpeedMax,
 
             /// <summary>
-            /// 卖家发货速度 同行业诊所最低得分
+            /// 诊所发货速度 同行业诊所最低得分
             /// </summary>
-            [Description("卖家发货速度 同行业诊所最低得分")]
+            [Description("诊所发货速度 同行业诊所最低得分")]
             SellerDeliverySpeedMin,
 
             /// <summary>
-            /// 卖家服务态度 诊所得分
+            /// 诊所服务态度 诊所得分
             /// </summary>
-            [Description("卖家服务态度 诊所得分")]
+            [Description("诊所服务态度 诊所得分")]
             SellerServiceAttitude ,
 
             /// <summary>
-            /// 卖家服务态度 同行业平均分
+            /// 诊所服务态度 同行业平均分
             /// </summary>
-            [Description("卖家服务态度 同行业平均分")]
+            [Description("诊所服务态度 同行业平均分")]
             SellerServiceAttitudePeer ,
 
             /// <summary>
-            /// 卖家服务态度 同行业诊所最高得分
+            /// 诊所服务态度 同行业诊所最高得分
             /// </summary>
-            [Description("卖家服务态度 同行业诊所最高得分")]
+            [Description("诊所服务态度 同行业诊所最高得分")]
             SellerServiceAttitudeMax ,
 
             /// <summary>
-            /// 卖家服务态度 同行业诊所最低得分
+            /// 诊所服务态度 同行业诊所最低得分
             /// </summary>
-            [Description("卖家服务态度 同行业诊所最低得分")]
+            [Description("诊所服务态度 同行业诊所最低得分")]
             SellerServiceAttitudeMin,
 
 

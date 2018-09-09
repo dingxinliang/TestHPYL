@@ -35,7 +35,7 @@ function loadProducts(page) {
             });
         }
         else {
-            $('#autoLoad').html('没有更多店铺了').removeClass('hide');
+            $('#autoLoad').html('没有更多诊所了').removeClass('hide');
         }
     });
 }

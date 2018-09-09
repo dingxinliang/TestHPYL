@@ -41,7 +41,7 @@ $.FDProductSelector = {
             {
             	field: "Name", title: '诊疗项目', width: 366, align: "left",
             	formatter: function (value, row, index) {
-            		var html = '<img src="' + row.Image + '"/><span class="overflow-ellipsis" style="width:400px">' + row.Name + '</span>';
+            		var html = '<span class="overflow-ellipsis" style="width:400px">' + row.Name + '</span>';
             		return html;
             	}
             },

@@ -29,7 +29,7 @@ namespace Himall.CommonModel
         public const int HIMALL_PLAT_VISIT_COUNT_MAX = 2;
 
         /// <summary>
-        /// 店铺访问记录cookie key
+        /// 诊所访问记录cookie key
         /// </summary>
         /// <param name="shop"></param>
         /// <returns></returns>

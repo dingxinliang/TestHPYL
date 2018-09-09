@@ -147,7 +147,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             model.SellerConsoleModel = _iShopService.GetSellerConsoleModel(CurrentSellerManager.ShopId);
             /*公告*/
             model.Articles = _iArticleService.GetTopNArticle<ArticleInfo>(6, 4);
-            /*店铺信息*/
+            /*诊所信息*/
             var shop = _iShopService.GetShop(CurrentSellerManager.ShopId);
             if (shop != null)
             {
@@ -168,9 +168,9 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 var defaultValue = "5";
                 //宝贝与描述
                 model.ProductAndDescription = productAndDescription != null ? string.Format("{0:F}", productAndDescription.CommentValue) : defaultValue;
-                //卖家服务态度
+                //诊所服务态度
                 model.SellerServiceAttitude = sellerServiceAttitude != null ? string.Format("{0:F}", sellerServiceAttitude.CommentValue) : defaultValue;
-                //卖家发货速度
+                //诊所发货速度
                 model.SellerDeliverySpeed = sellerDeliverySpeed != null ? string.Format("{0:F}", sellerDeliverySpeed.CommentValue) : defaultValue;
                 //所有诊疗项目数
                 model.ProductsNumberIng = model.SellerConsoleModel.ProductLimit.ToString();
@@ -209,7 +209,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 model.ProductsEvaluation = model.SellerConsoleModel.ProductComments.ToString();
                 //授权品牌
                 model.ProductsBrands =_iBrandService.GetShopBrandApplys(CurrentSellerManager.ShopId).Where(c => c.AuditStatus == 1).Count().ToString();
-                //出售中
+                //在用中
                 model.ProductsOnSale = model.SellerConsoleModel.OnSaleProducts.ToString();
                 //草稿箱
                 model.ProductsInDraft = _iProductService.GetProducts(new ProductQuery

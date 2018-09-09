@@ -320,7 +320,7 @@ img { display: inline }
 .notice-search .ns-icon { float: left; display: block; width: 32px; height: 32px; background: url(../Images/notice.png) no-repeat 0 2px; }
 .notice-search .ns-content { margin-left: 32px; line-height: 32px; padding-left: 10px; font-size: 14px; font-weight: 700; color: #f60; }
 .notice-search .ns-content span em { color: #333; }
-/*店铺搜索************/
+/*诊所搜索************/
 .searh-shop-cate { border: 1px solid #d5d5d5; margin-top: 20px; }
 .shop-cate-option span { font-size: 16px; color: #666; line-height:45px; margin-left: 18px; }
 .shop-cate-option p { padding: 5px 110px 5px 0; position: relative; font-size: 14px; width: 970px; float: right; line-height: 36px; overflow: hidden; }
@@ -1333,7 +1333,7 @@ a.css3-btn, a.css3-btn:hover, a.css3-btn:visited { color: #fff; }
 .bg-gray { background-color: #F1F2F7; }
 
 .main .btns{float:right;}
-/*店铺页面------------*/
+/*诊所页面------------*/
 .shops { margin-bottom: 20px; }
 .shop-banner { position: relative; border-top:1px solid #e7e7e7; }
 .shop-banner a{ display:block; width:100%; height:128px; background-repeat:no-repeat; background-position:center top; background-size:auto 100%;}

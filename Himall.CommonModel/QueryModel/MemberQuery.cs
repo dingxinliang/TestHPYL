@@ -12,6 +12,8 @@ namespace Himall.CommonModel
         {
             RegionIds = new List<int>();
         }
+
+        public long ShopId { get; set; }
         /// <summary>
         /// 关键字
         /// </summary>
@@ -109,5 +111,7 @@ namespace Himall.CommonModel
         /// </summary>
         public MemberStatisticsType? MemberStatisticsType { get; set; }
 
+
+       
     }
 }

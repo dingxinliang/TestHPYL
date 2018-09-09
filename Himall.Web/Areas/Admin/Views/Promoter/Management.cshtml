@@ -6,19 +6,19 @@
 @model Himall.Model.PromoterStatistics
 <div class="container">
     <ul class="nav nav-tabs-custom clearfix">
-        <li class="active"><a>销售员列表</a></li>
+        <li class="active"><a>使用员列表</a></li>
         <li><a href="@Url.Action("Planning")">招募计划设置</a></li>
         <li><a href="@Url.Action("Setting")">招募审核开关</a></li>
     </ul>
     <div class="search-box" id="search-box">
         <form class="form-inline custom-inline">
                 <div class="total-promoter mb15">
-                    <span>销售员总数:<em>@Model.PromoterCount</em></span>
+                    <span>使用员总数:<em>@Model.PromoterCount</em></span>
                     <span>近3天新增数:<em>@Model.ThreeDaysIncrease</em></span>
                     <span>近7天新增数:<em>@Model.SevenDaysIncrease</em></span>
                 </div>
                 <div class="form-group">
-                    <label class="label-inline w95" for="">销售员帐号</label>
+                    <label class="label-inline w95" for="">使用员帐号</label>
                     <input class="form-control input-ssm" type="text" id="autoTextBox" autocomplete="off">
                 </div>
                 <div class="form-group">

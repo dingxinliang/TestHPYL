@@ -4,13 +4,13 @@
         @if (ViewBag.VShopid!=null) { 
             <a href="/@ViewBag.AreaName/VShop/detail/@ViewBag.VShopid">
                 <i class="home"></i>
-                <p>店铺首页</p>
+                <p>诊所首页</p>
             </a>
         }
         else {
             <a href="/@ViewBag.AreaName">
                 <i class="home"></i>
-                <p>店铺首页</p>
+                <p>诊所首页</p>
             </a>
         }
     </div>
@@ -44,13 +44,13 @@ var shopid = @ViewBag.Shopid;
 $(function() {
     $('#addFavorite').click(function() {
         var loading = showLoading();
-        if ($("#txtFav").text() == "收藏店铺") {
+        if ($("#txtFav").text() == "收藏诊所") {
             url = "AddFavorite";
             value = "已收藏";
         }
         else {
             url = "DeleteFavorite";
-            value = "收藏店铺";
+            value = "收藏诊所";
         }
        
         checkLogin(location.href, function() {

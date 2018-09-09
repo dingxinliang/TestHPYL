@@ -80,8 +80,8 @@ namespace Himall.IServices
         /// <param name="StartTime"></param>
         /// <param name="EndTime"></param>
         /// <param name="ProductName">诊疗项目名</param>
-        /// <param name="ShopName">店铺名</param>
-        /// <param name="ShopId">店铺编号</param>
+        /// <param name="ShopName">诊所名</param>
+        /// <param name="ShopId">诊所编号</param>
         /// <param name="PageNo"></param>
         /// <param name="PageSize"></param>
         /// <returns></returns>

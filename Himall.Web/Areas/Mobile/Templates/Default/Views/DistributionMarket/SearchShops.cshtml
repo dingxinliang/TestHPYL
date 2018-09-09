@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "分销市场首页";
+    ViewBag.Title = "分佣市场首页";
     string skey = ViewBag.SearchKey;
 }
 <script type="text/javascript">
@@ -8,7 +8,7 @@
 
 <div class="container yun-Market" style="background-color: #fff;padding:0!important">
     @Html.Action("SearchBox", new { skey = skey, stype = 1 })
-    <!--店铺搜索页面-->
+    <!--诊所搜索页面-->
     <div class="shop-result">
         <div class="Mar-nav">
             <ul>
@@ -20,7 +20,7 @@
         <div class="hotshop-wrap">
             <ul class="shop-datafx" id="databox"></ul>
         </div>
-    </div>  <!--店铺搜索页面结束-->
+    </div>  <!--诊所搜索页面结束-->
     <div id="autoLoad" class="loading"></div>
 </div>
 

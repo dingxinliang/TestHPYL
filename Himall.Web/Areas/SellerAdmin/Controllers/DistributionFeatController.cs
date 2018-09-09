@@ -14,7 +14,7 @@ using System.Web.Mvc;
 namespace Himall.Web.Areas.SellerAdmin.Controllers
 {
     /// <summary>
-    /// 分销业绩
+    /// 分佣业绩
     /// </summary>
     public class DistributionFeatController : BaseSellerController
     {
@@ -37,7 +37,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
         #region 预约单业绩
         /// <summary>
-        /// 分销业绩(预约单)
+        /// 分佣业绩(预约单)
         /// </summary>
         /// <returns></returns>
         public ActionResult Order()
@@ -121,7 +121,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 
         #region 诊疗项目业绩
         /// <summary>
-        /// 诊疗项目分销明细
+        /// 诊疗项目分佣明细
         /// </summary>
         /// <returns></returns>
         public ActionResult Product()

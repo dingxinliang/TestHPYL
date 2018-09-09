@@ -389,7 +389,7 @@ namespace Himall.Web.Areas.Web.Controllers
             }
             if ((string.IsNullOrEmpty(this._shopAdminName) || string.IsNullOrEmpty(this._shopPwd)) || string.IsNullOrEmpty(this._shopPwd2))
             {
-                msg = "店铺管理员账号信息不完整";
+                msg = "诊所管理员账号信息不完整";
                 return false;
             }
             // 检查用户名长度
@@ -401,7 +401,7 @@ namespace Himall.Web.Areas.Web.Controllers
             // 检查用户名长度
             if ((this._shopAdminName.Length > this.usernameMaxLength) || (this._shopAdminName.Length < this.usernameMinLength))
             {
-                msg = string.Format("店铺管理员用户名的长度只能在{0}和{1}个字符之间", this.usernameMinLength, this.usernameMaxLength);
+                msg = string.Format("诊所管理员用户名的长度只能在{0}和{1}个字符之间", this.usernameMinLength, this.usernameMaxLength);
                 return false;
             }
             // 检查是否和匿名用户名重复
@@ -413,7 +413,7 @@ namespace Himall.Web.Areas.Web.Controllers
             // 检查是否和匿名用户名重复
             if (string.Compare(this._shopAdminName, "anonymous", true) == 0)
             {
-                msg = "不能使用anonymous作为店铺管理员用户名";
+                msg = "不能使用anonymous作为诊所管理员用户名";
                 return false;
             }
             // 检查用户名格式
@@ -425,7 +425,7 @@ namespace Himall.Web.Areas.Web.Controllers
             // 检查用户名格式
             if (!Regex.IsMatch(this._shopAdminName, this.usernameRegex))
             {
-                msg = "店铺管理员用户名的格式不符合要求，用户名一般由字母、数字、下划线和汉字组成，且必须以汉字或字母开头";
+                msg = "诊所管理员用户名的格式不符合要求，用户名一般由字母、数字、下划线和汉字组成，且必须以汉字或字母开头";
                 return false;
             }
             // 比较两次密码输入
@@ -434,10 +434,10 @@ namespace Himall.Web.Areas.Web.Controllers
                 msg = "管理员登录密码两次输入不一致";
                 return false;
             }
-            // 比较店铺两次密码输入
+            // 比较诊所两次密码输入
             if (this._shopPwd != this._shopPwd2)
             {
-                msg = "店铺管理员登录密码两次输入不一致";
+                msg = "诊所管理员登录密码两次输入不一致";
                 return false;
             }
             // 检查密码长度
@@ -449,7 +449,7 @@ namespace Himall.Web.Areas.Web.Controllers
             // 检查密码长度
             if ((this._shopPwd.Length < this.passwordMinLength) || (this._shopPwd.Length > this.passwordMaxLength))
             {
-                msg = string.Format("店铺管理员登录密码的长度只能在{0}和{1}个字符之间", this.passwordMinLength, this.passwordMaxLength);
+                msg = string.Format("诊所管理员登录密码的长度只能在{0}和{1}个字符之间", this.passwordMinLength, this.passwordMaxLength);
                 return false;
             }
             return true;

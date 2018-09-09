@@ -16,7 +16,7 @@
              },
              { field: "OrderAmount", title: "预约单金额", width: 80, align: "center" },
                  { field: "PlatCommission", title: "平台佣金", width: 80, align: "center" },
-                     { field: "DistributorCommission", title: "分销佣金", width: 80, align: "center" },
+                     { field: "DistributorCommission", title: "分佣佣金", width: 80, align: "center" },
                         { field: "RefundAmount", title: "退款金额", width: 80, align: "center" },
                            
              { field: "OrderFinshTime", title: "预约单完成时间", width: 160, align: "center" }

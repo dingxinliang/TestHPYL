@@ -17,7 +17,7 @@ namespace Himall.IServiceTest
         {
             ShopQuery queryModel = new ShopQuery
            { 
-               ShopName = "店铺"
+               ShopName = "诊所"
            };
             var service = Instance<IShopService>.Create;
             var shops = service.GetShops( queryModel );

@@ -11,7 +11,7 @@ namespace Himall.Model
     public partial class FightGroupActiveInfo
     {
         /// <summary>
-        /// 店铺名
+        /// 诊所名
         /// <para>手动补充</para>
         /// </summary>
         [NotMapped]

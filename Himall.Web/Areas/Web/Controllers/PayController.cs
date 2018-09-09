@@ -383,7 +383,7 @@ namespace Himall.Web.Areas.Web.Controllers
         }
         #endregion
 
-        #region 店铺续费支付回调处理
+        #region 诊所续费支付回调处理
 
         [ActionName("ReNewPayNotify")]
         [ValidateInput(false)]
@@ -407,7 +407,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 bool result = Cache.Get(CacheKeyCollection.PaymentState(string.Join(",", payInfo.OrderIds))) == null ? false : true;
                 if (!result)
                 {
-                    //添加店铺续费记录
+                    //添加诊所续费记录
                     model.ShopId = shopId;
                     model.OperateDate = DateTime.Now;
                     model.Operator = userName;
@@ -423,7 +423,7 @@ namespace Himall.Web.Areas.Web.Controllers
                         string strNewEndTime = beginTime.AddYears(value).ToString("yyyy-MM-dd");
                         model.OperateContent = "续费 " + value + " 年至 " + strNewEndTime;
                         _iShopService.AddShopRenewRecord(model);
-                        //店铺续费
+                        //诊所续费
                         _iShopService.ShopReNew(shopId, value);
                     }
                     //升级操作
@@ -436,7 +436,7 @@ namespace Himall.Web.Areas.Web.Controllers
                         var newshopGrade = _iShopService.GetShopGrades().Where(c => c.Id == (long)value).FirstOrDefault();
                         model.OperateContent = "将套餐‘" + shopGrade.Name + "'升级为套餐‘" + newshopGrade.Name + "'";
                         _iShopService.AddShopRenewRecord(model);
-                        //店铺升级
+                        //诊所升级
                         _iShopService.ShopUpGrade(shopId, (long)value);
                     }
                     response = payment.Biz.ConfirmPayResult();

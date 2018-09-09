@@ -426,9 +426,9 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 根据店铺Id获取该店铺购买的限时购营销服务信息
+        /// 根据诊所Id获取该诊所购买的限时购营销服务信息
         /// </summary>
-        /// <param name="shopId">店铺Id</param>
+        /// <param name="shopId">诊所Id</param>
         /// <returns></returns>
         public ActiveMarketServiceInfo GetMarketService(long shopId)
         {
@@ -441,10 +441,10 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 为指定的店铺开通限时购服务
+        /// 为指定的诊所开通限时购服务
         /// </summary>
         /// <param name="monthCount">时长（以月为单位）</param>
-        /// <param name="shopId">店铺Id</param>
+        /// <param name="shopId">诊所Id</param>
         public void EnableMarketService(int monthCount, long shopId)
         {
             if (shopId <= 0)

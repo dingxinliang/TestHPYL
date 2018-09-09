@@ -72,12 +72,12 @@ namespace Himall.Model
         public int UserCoupon { set; get; }
 
         /// <summary>
-        /// 关注店铺
+        /// 关注诊所
         /// </summary>
         public List<FollowShop> FollowShops { set; get; }
 
         /// <summary>
-        /// 关注店铺数
+        /// 关注诊所数
         /// </summary>
         public int FollowShopsCount { set; get; }
 

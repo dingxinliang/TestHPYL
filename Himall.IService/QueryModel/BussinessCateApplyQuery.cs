@@ -9,7 +9,7 @@ namespace Himall.IServices.QueryModel
     public class BussinessCateApplyQuery : QueryBase
     {
         /// <summary>
-        /// 申请的店铺
+        /// 申请的诊所
         /// </summary>
         public long? shopId { get; set; }
 
@@ -19,7 +19,7 @@ namespace Himall.IServices.QueryModel
         public Model.BusinessCategoriesApplyInfo.BusinessCateApplyStatus? Status { set; get; }
 
         /// <summary>
-        /// 申请的店铺
+        /// 申请的诊所
         /// </summary>
         public string ShopName{ get; set; }
     }

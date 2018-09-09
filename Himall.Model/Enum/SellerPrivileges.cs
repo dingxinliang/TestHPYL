@@ -56,10 +56,10 @@ namespace Himall.Model
         //FreightTemplate = 3006,
         //[Privilege("交易", "支付方式", 3007, "PaymentConfig/Index", "PaymentConfig")]
         //PaymentConfig = 3007,
-        /*分销*/
-        [Privilege("分佣", "分销规则管理", 10001, "DistributionRules/Manage", "DistributionRules")]
+        /*分佣*/
+        [Privilege("分佣", "分佣规则管理", 10001, "DistributionRules/Manage", "DistributionRules")]
         DistributionRules = 10001,
-        [Privilege("分佣", "分销业绩管理", 10002, "DistributionFeat/Order", "DistributionFeat")]
+        [Privilege("分佣", "分佣业绩管理", 10002, "DistributionFeat/Order", "DistributionFeat")]
         DistributionFeat = 10002,
         /*统计*/
         //[Privilege("统计", "流量统计", 5001, "statistics/shopflow", "statistics", "shopflow")]
@@ -71,13 +71,17 @@ namespace Himall.Model
         //[Privilege("统计", "交易统计", 5004, "Statistics/TradeStatistic", "statistics")]
         //TradeStatistic = 5004,
         /*诊所*/
-        [Privilege("诊所", "页面设置", 4001, "PageSettings/management", "PageSettings")]
-        [Privilege("诊所", "页面设置", 4001, "PageSettings/management", "ShopHomeModule")]
-        [Privilege("诊所", "页面设置", 4001, "PageSettings/management", "Category")]
-        [Privilege("诊所", "页面设置", 4001, "PageSettings/management", "Navigation")]
-        PageSetting = 4001,
+        //[Privilege("诊所", "页面设置", 4001, "PageSettings/management", "PageSettings")]
+        //[Privilege("诊所", "页面设置", 4001, "PageSettings/management", "ShopHomeModule")]
+        //[Privilege("诊所", "页面设置", 4001, "PageSettings/management", "Category")]
+        //[Privilege("诊所", "页面设置", 4001, "PageSettings/management", "Navigation")]
+        //PageSetting = 4001,
         [Privilege("诊所", "诊所管理", 4002, "shop/Renew", "shop", "Renew")]
         ShopInfo = 4002,
+        [Privilege("诊所", "医生管理", 4011, "DoctorService/management", "DoctorService")]
+        DoctorService = 4011,
+        //[Privilege("诊所", "患者管理", 4010, "PatientService/management", "PatientService")]
+        //PatientService = 4010,
         [Privilege("诊所", "客服管理", 4004, "CustomerService/management", "CustomerService")]
         CustomerService = 4004,
         [Privilege("诊所", "财务管理", 4005, "Billing/index", "Billing")]
@@ -102,8 +106,8 @@ namespace Himall.Model
         OperationLog = 6003,
         [Privilege("系统", "开放平台", 6004, "OpenApi/Index", "OpenApi")]
         OpenApiManage = 6004,
-        [Privilege("系统", "网店管家", 6005, "WdgjApi/Index", "WdgjApi", "")]
-        WdgjApiManage = 6005,
+        //[Privilege("系统", "网店管家", 6005, "WdgjApi/Index", "WdgjApi", "")]
+        //WdgjApiManage = 6005,
 
         ///*营销*/
         //[Privilege("营销", "限时购", 7001, "LimitTimeBuy/management", "LimitTimeBuy")]
@@ -138,10 +142,10 @@ namespace Himall.Model
         weixinMenu = 8003,
         //[Privilege("微信", "门店管理", 8004, "Poi/Index", "Poi")]
         //Poi = 8004,
-        [Privilege("微信", "iBeacon设备", 8005, "ShakeAround/Index", "ShakeAround")]
-        ShakeAroundDev = 8005,
-        [Privilege("微信", "摇一摇周边页面", 8006, "ShakeAround/PageIndex", "ShakeAround")]
-        ShakeAroundPage = 8006,
+        //[Privilege("微信", "iBeacon设备", 8005, "ShakeAround/Index", "ShakeAround")]
+        //ShakeAroundDev = 8005,
+        //[Privilege("微信", "摇一摇周边页面", 8006, "ShakeAround/PageIndex", "ShakeAround")]
+        //ShakeAroundPage = 8006,
 
         //微店
         //[Privilege("微店", "我的微店", 9001, "Vshop/management", "Vshop")]

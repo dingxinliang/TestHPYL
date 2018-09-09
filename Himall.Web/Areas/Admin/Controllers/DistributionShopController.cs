@@ -109,7 +109,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 获取所有分销轮播图片
+        /// 获取所有分佣轮播图片
         /// </summary>
         /// <returns></returns>
         public JsonResult GetSlideImages()
@@ -174,10 +174,10 @@ namespace Himall.Web.Areas.Admin.Controllers
         }
         #endregion
 
-        #region 推荐分销诊疗项目设置
+        #region 推荐分佣诊疗项目设置
 
         /// <summary>
-        /// 获取所有分销诊疗项目信息
+        /// 获取所有分佣诊疗项目信息
         /// </summary>
         /// <param name="categoryId">3级分类ID</param>
         /// <param name="brandName"></param>
@@ -251,7 +251,7 @@ namespace Himall.Web.Areas.Admin.Controllers
 
 
         /// <summary>
-        /// 查询已绑定的分销首页诊疗项目信息
+        /// 查询已绑定的分佣首页诊疗项目信息
         /// </summary>
         /// <param name="page">分页页码</param>
         /// <param name="rows">每页行数</param>

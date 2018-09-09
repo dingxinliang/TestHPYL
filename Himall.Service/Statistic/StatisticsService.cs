@@ -344,10 +344,10 @@ namespace Himall.Service
 
         #endregion
 
-        #region 店铺统计图表
+        #region 诊所统计图表
 
         /// <summary>
-        /// 初始化按照预约单量维度获取前N店铺排行
+        /// 初始化按照预约单量维度获取前N诊所排行
         /// </summary>
         /// <param name="start">开始时间</param>
         /// <param name="end">结束时间</param>
@@ -375,7 +375,7 @@ namespace Himall.Service
 
             if (null != data && 0 < data.Count())
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "店铺预约单量排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊所预约单量排行Top" + rankSize.ToString() };
                 foreach (var item in data.Take(rankSize))
                 {
                     series.Data[index] = item.Count;
@@ -385,7 +385,7 @@ namespace Himall.Service
             }
             else
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "店铺预约单量排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊所预约单量排行Top" + rankSize.ToString() };
                 for (int i = 0; i < rankSize; i++)
                 {
 
@@ -398,7 +398,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 初始化按照销售额维度获取前N店铺排行
+        /// 初始化按照使用额维度获取前N诊所排行
         /// </summary>
         /// <param name="start">开始时间</param>
         /// <param name="end">结束时间</param>
@@ -427,7 +427,7 @@ namespace Himall.Service
 
             if (null != data && 0 < data.Count())
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "店铺销售额排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊所使用额排行Top" + rankSize.ToString() };
                 foreach (var item in data.Take(rankSize))
                 {
                     series.Data[index] = (int)item.Money;
@@ -437,7 +437,7 @@ namespace Himall.Service
             }
             else
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "店铺销售额排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊所使用额排行Top" + rankSize.ToString() };
                 for (int i = 0; i < rankSize; i++)
                 {
 
@@ -484,7 +484,7 @@ namespace Himall.Service
             //                        G.Key,
             //                        Count = G.Count()
             //                    }).ToList();
-            //var chartItem = new ChartSeries<int> { Name = string.Format("{0}月新增店铺", thisMonth.Month), Data = new int[31] };
+            //var chartItem = new ChartSeries<int> { Name = string.Format("{0}月新增诊所", thisMonth.Month), Data = new int[31] };
             //for (int i = 0; i < 31; i++)
             //{
             //    var date = thisMonth.AddDays(i);
@@ -505,7 +505,7 @@ namespace Himall.Service
             //                        G.Key,
             //                        Count = G.Count()
             //                    }).ToList();
-            //chartItem = new ChartSeries<int> { Name = string.Format("{0}月新增店铺", prevMonth.Month), Data = new int[31] };
+            //chartItem = new ChartSeries<int> { Name = string.Format("{0}月新增诊所", prevMonth.Month), Data = new int[31] };
             //for (int i = 0; i < 31; i++)
             //{
             //    var date = prevMonth.AddDays(i);
@@ -523,7 +523,7 @@ namespace Himall.Service
                 .GroupBy(m => new { m.Year, m.Month, m.Day })
                 .Select(g => new { Count = g.Count(), g.Key.Year, g.Key.Month, g.Key.Day }).ToList();
 
-            var chartItem = new ChartSeries<int> { Name = string.Format("{0}月新增店铺", thisMonth.Month), Data = new int[31] };
+            var chartItem = new ChartSeries<int> { Name = string.Format("{0}月新增诊所", thisMonth.Month), Data = new int[31] };
             for (int i = 0; i < 31; i++)
             {
                 var date = thisMonth.AddDays(i);
@@ -538,7 +538,7 @@ namespace Himall.Service
                 .GroupBy(m => new { m.Year, m.Month, m.Day })
                 .Select(g => new { Count = g.Count(), g.Key.Year, g.Key.Month, g.Key.Day }).ToList();
 
-            chartItem = new ChartSeries<int> { Name = string.Format("{0}月新增店铺", prevMonth.Month), Data = new int[31] };
+            chartItem = new ChartSeries<int> { Name = string.Format("{0}月新增诊所", prevMonth.Month), Data = new int[31] };
             for (int i = 0; i < 31; i++)
             {
                 var date = prevMonth.AddDays(i);
@@ -653,7 +653,7 @@ namespace Himall.Service
         #region 销量排行
 
         /// <summary>
-        /// 初始化按照销售量维度获取前N诊疗项目排行
+        /// 初始化按照使用量维度获取前N诊疗项目排行
         /// </summary>
         /// <param name="start">开始时间</param>
         /// <param name="end">结束时间</param>
@@ -685,7 +685,7 @@ namespace Himall.Service
 
             if (null != data && 0 < data.Count())
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售量排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目使用量排行Top" + rankSize.ToString() };
                 foreach (var item in data.Take(rankSize))
                 {
                     series.Data[index] = (int)item.Count;
@@ -695,7 +695,7 @@ namespace Himall.Service
             }
             else
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售量排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目使用量排行Top" + rankSize.ToString() };
                 for (int i = 0; i < rankSize; i++)
                 {
 
@@ -708,7 +708,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 近一个月平台销售排行
+        /// 近一个月平台使用排行
         /// </summary>
         /// <returns></returns>
 
@@ -732,7 +732,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 初始化按照销售额维度获取前N诊疗项目排行
+        /// 初始化按照使用额维度获取前N诊疗项目排行
         /// </summary>
         /// <param name="start">开始时间</param>
         /// <param name="end">结束时间</param>
@@ -807,7 +807,7 @@ namespace Himall.Service
 
             if (null != data && 0 < data.Count())
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售额排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目使用额排行Top" + rankSize.ToString() };
                 foreach (var item in data.Take(rankSize))
                 {
                     series.Data[index] = (int)item.Money;
@@ -817,7 +817,7 @@ namespace Himall.Service
             }
             else
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售额排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目使用额排行Top" + rankSize.ToString() };
                 for (int i = 0; i < rankSize; i++)
                 {
 
@@ -947,7 +947,7 @@ namespace Himall.Service
             //                        G.Key,
             //                        Count = G.Sum(s => s.VistiCounts)
             //                    }).ToList();
-            //var chartItem = new ChartSeries<int> { Name = string.Format("{0}月店铺总流量", thisMonth.Month), Data = new int[31] };
+            //var chartItem = new ChartSeries<int> { Name = string.Format("{0}月诊所总流量", thisMonth.Month), Data = new int[31] };
             //for (int i = 0; i < 31; i++)
             //{
             //    var date = thisMonth.AddDays(i);
@@ -967,7 +967,7 @@ namespace Himall.Service
             //                        G.Key,
             //                        Count = G.Sum(s => s.VistiCounts)
             //                    }).ToList();
-            //chartItem = new ChartSeries<int> { Name = string.Format("{0}月店铺总流量", prevMonth.Month), Data = new int[31] };
+            //chartItem = new ChartSeries<int> { Name = string.Format("{0}月诊所总流量", prevMonth.Month), Data = new int[31] };
             //for (int i = 0; i < 31; i++)
             //{
             //    var date = prevMonth.AddDays(i);
@@ -986,7 +986,7 @@ namespace Himall.Service
                .GroupBy(m => new { m.Year, m.Month, m.Day })
                .Select(g => new { Count = g.Sum(s => s.VistiCounts), g.Key.Year, g.Key.Month, g.Key.Day }).ToList();
 
-            var chartItem = new ChartSeries<int> { Name = string.Format("{0}月店铺总流量", thisMonth.Month), Data = new int[31] };
+            var chartItem = new ChartSeries<int> { Name = string.Format("{0}月诊所总流量", thisMonth.Month), Data = new int[31] };
             for (int i = 0; i < 31; i++)
             {
                 var date = thisMonth.AddDays(i);
@@ -1002,7 +1002,7 @@ namespace Himall.Service
               .GroupBy(m => new { m.Year, m.Month, m.Day })
               .Select(g => new { Count = g.Sum(s => s.VistiCounts), g.Key.Year, g.Key.Month, g.Key.Day }).ToList();
 
-            chartItem = new ChartSeries<int> { Name = string.Format("{0}月店铺总流量", prevMonth.Month), Data = new int[31] };
+            chartItem = new ChartSeries<int> { Name = string.Format("{0}月诊所总流量", prevMonth.Month), Data = new int[31] };
             for (int i = 0; i < 31; i++)
             {
                 var date = prevMonth.AddDays(i);
@@ -1236,7 +1236,7 @@ namespace Himall.Service
 
             if (null != data && 0 < data.Count())
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "月销售量Top" + rankSize.ToString() + "      " + start.ToString("yyyy-MM-dd") + "至" + end.ToString("yyyy-MM-dd") };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "月使用量Top" + rankSize.ToString() + "      " + start.ToString("yyyy-MM-dd") + "至" + end.ToString("yyyy-MM-dd") };
                 var items = data.Take(rankSize).ToList();
                 foreach (var item in items)
                 {
@@ -1247,7 +1247,7 @@ namespace Himall.Service
             }
             else
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "月销售量Top" + rankSize.ToString() + "      " + start.ToString("yyyy-MM-dd") + "至" + end.ToString("yyyy-MM-dd") };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "月使用量Top" + rankSize.ToString() + "      " + start.ToString("yyyy-MM-dd") + "至" + end.ToString("yyyy-MM-dd") };
                 for (int i = 0; i < rankSize; i++)
                 {
 
@@ -1288,7 +1288,7 @@ namespace Himall.Service
 
             if (null != data && 0 < data.Count())
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售额排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目使用额排行Top" + rankSize.ToString() };
                 foreach (var item in data.Take(rankSize))
                 {
                     series.Data[index] = (int)item.Money;
@@ -1298,7 +1298,7 @@ namespace Himall.Service
             }
             else
             {
-                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目销售额排行Top" + rankSize.ToString() };
+                ChartSeries<int> series = new ChartSeries<int>() { Data = new int[rankSize], Name = "诊疗项目使用额排行Top" + rankSize.ToString() };
                 for (int i = 0; i < rankSize; i++)
                 {
 
@@ -1346,7 +1346,7 @@ namespace Himall.Service
             //                        G.Key,
             //                        Count = G.Sum(s => s.SaleCounts)
             //                    }).ToList();
-            //var chartItem = new ChartSeries<int> { Name = string.Format("{0}月店铺总销量", thisMonth.Month), Data = new int[31] };
+            //var chartItem = new ChartSeries<int> { Name = string.Format("{0}月诊所总销量", thisMonth.Month), Data = new int[31] };
             //for (int i = 0; i < 31; i++)
             //{
             //    var date = thisMonth.AddDays(i);
@@ -1366,7 +1366,7 @@ namespace Himall.Service
             //                         G.Key,
             //                         Count = G.Sum(s => s.SaleCounts)
             //                     }).ToList();
-            //chartItem = new ChartSeries<int> { Name = string.Format("{0}月店铺总销量", prevMonth.Month), Data = new int[31] };
+            //chartItem = new ChartSeries<int> { Name = string.Format("{0}月诊所总销量", prevMonth.Month), Data = new int[31] };
             //for (int i = 0; i < 31; i++)
             //{
             //    var date = prevMonth.AddDays(i);
@@ -1385,7 +1385,7 @@ namespace Himall.Service
                .Select(g => new { Count = g.Sum(s => s.SaleCounts), g.Key.Year, g.Key.Month, g.Key.Day }).ToList();
 
 
-            var chartItem = new ChartSeries<int> { Name = string.Format("{0}月店铺总销量", thisMonth.Month), Data = new int[31] };
+            var chartItem = new ChartSeries<int> { Name = string.Format("{0}月诊所总销量", thisMonth.Month), Data = new int[31] };
             for (int i = 0; i < 31; i++)
             {
                 var date = thisMonth.AddDays(i);
@@ -1400,7 +1400,7 @@ namespace Himall.Service
                .GroupBy(m => new { m.Year, m.Month, m.Day })
                .Select(g => new { Count = g.Sum(s => s.SaleCounts), g.Key.Year, g.Key.Month, g.Key.Day }).ToList();
 
-            chartItem = new ChartSeries<int> { Name = string.Format("{0}月店铺总销量", prevMonth.Month), Data = new int[31] };
+            chartItem = new ChartSeries<int> { Name = string.Format("{0}月诊所总销量", prevMonth.Month), Data = new int[31] };
             for (int i = 0; i < 31; i++)
             {
                 var date = prevMonth.AddDays(i);

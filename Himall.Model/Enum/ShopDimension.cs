@@ -16,9 +16,9 @@ namespace Himall.Model
         OrderCount = 1,
 
         /// <summary>
-        /// 销售额
+        /// 使用额
         /// </summary>
-        [Description("销售额")]
+        [Description("使用额")]
         Sales,
     }
 }

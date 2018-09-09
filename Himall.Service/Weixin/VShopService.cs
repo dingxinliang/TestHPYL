@@ -213,7 +213,7 @@ namespace Himall.Service
         public void CreateVshop(VShopInfo vshopInfo)
         {
             if (vshopInfo.ShopId <= 0)
-                throw new Himall.Core.InvalidPropertyException("请传入合法的店铺Id，店铺Id必须大于0");
+                throw new Himall.Core.InvalidPropertyException("请传入合法的诊所Id，诊所Id必须大于0");
             if (string.IsNullOrWhiteSpace(vshopInfo.Logo))
                 throw new Himall.Core.InvalidPropertyException("微店Logo不能为空");
             if (string.IsNullOrWhiteSpace(vshopInfo.WXLogo))
@@ -229,10 +229,10 @@ namespace Himall.Service
 
             bool exist = Context.VShopInfo.Any(item => item.ShopId == vshopInfo.ShopId);
             if (exist)
-                throw new Himall.Core.InvalidPropertyException(string.Format("店铺{0}已经创建过微店", vshopInfo.ShopId));
+                throw new Himall.Core.InvalidPropertyException(string.Format("诊所{0}已经创建过微店", vshopInfo.ShopId));
 
             var shopInfo = ServiceProvider.Instance<IShopService>.Create.GetShop(vshopInfo.ShopId);
-            vshopInfo.Name = shopInfo.ShopName;//使用店铺名称作为微店名称
+            vshopInfo.Name = shopInfo.ShopName;//使用诊所名称作为微店名称
             vshopInfo.CreateTime = DateTime.Now;
             vshopInfo.State = VShopInfo.VshopStates.Normal;
 
@@ -266,7 +266,7 @@ namespace Himall.Service
 
             var oriVShop = GetVshopById(vshopInfo.Id);
             if (oriVShop.ShopId != vshopInfo.ShopId)
-                throw new Himall.Core.InvalidPropertyException("修改微店信息时，不能变更所属店铺");
+                throw new Himall.Core.InvalidPropertyException("修改微店信息时，不能变更所属诊所");
 
             oriVShop.HomePageTitle = vshopInfo.HomePageTitle;
             oriVShop.Tags = vshopInfo.Tags;
@@ -467,7 +467,7 @@ namespace Himall.Service
 
         }
         /// <summary>
-        /// 店铺要显示的优惠卷
+        /// 诊所要显示的优惠卷
         /// </summary>
         /// <param name="shopid"></param>
         /// <returns></returns>
@@ -475,7 +475,7 @@ namespace Himall.Service
         {
             IQueryable<long> couponIdList = Context.CouponInfo.Where(item => item.ShopId == shopid).Select(item => item.Id);
             IQueryable<CouponSettingInfo> couponSetList = Context.CouponSettingInfo.Where(item =>
-                couponIdList.Contains(item.CouponID)//过滤店铺
+                couponIdList.Contains(item.CouponID)//过滤诊所
                 && item.Himall_Coupon.EndTime > DateTime.Now
                 && (item.Display.HasValue ? item.Display == 1 : true)//过滤不显示的
                 );

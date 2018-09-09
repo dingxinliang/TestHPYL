@@ -45,7 +45,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
              int orderType = 1, /* 排序方式（1：升序，2：降序） */
              int pageNo = 1, /*页码*/
              int pageSize = 10, /*每页显示数据量*/
-             long vshopId = 0//店铺ID
+             long vshopId = 0//诊所ID
          )
         {
             if (string.IsNullOrEmpty(keywords) && cid <= 0 && b_id <= 0 && a_id == "")
@@ -64,7 +64,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             int orderType = 1, /* 排序方式（1：升序，2：降序） */
             int pageNo = 1, /*页码*/
             int pageSize = 10, /*每页显示数据量*/
-            long vshopId = 0//店铺ID
+            long vshopId = 0//诊所ID
             )
         {
             #region 初始化查询Model
@@ -133,7 +133,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             int orderType = 1, /* 排序方式（1：升序，2：降序） */
             int pageNo = 1, /*页码*/
             int pageSize = 10, /*每页显示数据量*/
-            long vshopId = 0,//店铺ID
+            long vshopId = 0,//诊所ID
             bool t = false
             )
         {

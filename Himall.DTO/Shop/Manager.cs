@@ -8,7 +8,7 @@ using Himall.Model;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 店铺管理员
+    /// 诊所管理员
     /// </summary>
     public class Manager
     {

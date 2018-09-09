@@ -72,7 +72,7 @@ namespace WinBrokerageService
                             b.Status = BrokerageIncomeInfo.BrokerageStatus.Settled;
                             b.SettlementTime = DateTime.Now;
                             paid.BrokerageAmount += capita.Amount;
-                            capita.Remark = "分销佣金,预约单Id:" + model.OrderId + ",诊疗项目ID：" + model.ProductID;
+                            capita.Remark = "分佣佣金,预约单Id:" + model.OrderId + ",诊疗项目ID：" + model.ProductID;
                             capita.SourceData = model.OrderId.HasValue ? model.OrderId.Value.ToString() : "";
                             capitalServicer.AddCapital(capita);
                             //已结算累加

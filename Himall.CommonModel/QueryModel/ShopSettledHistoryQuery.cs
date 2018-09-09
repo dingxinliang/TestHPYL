@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace Himall.CommonModel
 {
     /// <summary>
-    /// 店铺结算历史查询
+    /// 诊所结算历史查询
     /// </summary>
     public class ShopSettledHistoryQuery : SettledHistoryQuery
     {
         /// <summary>
-        /// 店铺Id
+        /// 诊所Id
         /// </summary>
         public long ShopId { set; get; }  
     }

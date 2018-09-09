@@ -81,17 +81,17 @@ namespace Himall.IServices
         void UpdateLimitTimeItem(LimitTimeMarketInfo model);
 
         /// <summary>
-        /// 根据店铺Id获取该店铺购买的限时购营销服务信息
+        /// 根据诊所Id获取该诊所购买的限时购营销服务信息
         /// </summary>
-        /// <param name="shopId">店铺Id</param>
+        /// <param name="shopId">诊所Id</param>
         /// <returns></returns>
         ActiveMarketServiceInfo GetMarketService(long shopId);
 
         /// <summary>
-        /// 为指定的店铺开通限时购服务
+        /// 为指定的诊所开通限时购服务
         /// </summary>
         /// <param name="monthCount">时长（以月为单位）</param>
-        /// <param name="shopId">店铺Id</param>
+        /// <param name="shopId">诊所Id</param>
         void EnableMarketService(int monthCount, long shopId);
 
 
@@ -124,7 +124,7 @@ namespace Himall.IServices
 
         #endregion
 
-        #region 获取指定限时购活动诊疗项目Id的销售量(单个用户)
+        #region 获取指定限时购活动诊疗项目Id的使用量(单个用户)
 
         int GetMarketSaleCountForUserId(long pId, long userId);
 
@@ -141,7 +141,7 @@ namespace Himall.IServices
         ObsoletePageModel<FlashSaleInfo> GetAll(int status, string shopname, string title, int pageIndex, int pageSize);
 
         /// <summary>
-        /// 店铺分页取某店数据
+        /// 诊所分页取某店数据
         /// </summary>
         ObsoletePageModel<FlashSaleInfo> GetAll(long shopid, int? status, string productName, DateTime? StartDate, DateTime? EndDate, int pageIndex, int pageSize);
 

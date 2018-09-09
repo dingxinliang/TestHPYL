@@ -48,7 +48,7 @@ namespace Himall.Service
             }
             else
             {
-                throw new Himall.Core.HimallException("日志获取店铺ID错误");
+                throw new Himall.Core.HimallException("日志获取诊所ID错误");
             }
         }
 

@@ -7,10 +7,10 @@
              },
 
              { field: "Status", title: "预约单状态", width: 'auto', align: "center" },
-               { field: "ShopName", title: "店铺名称", width: 'auto', align: "center" },
+               { field: "ShopName", title: "诊所名称", width: 'auto', align: "center" },
              { field: "OrderAmount", title: "预约单金额", width: 'auto', align: "center" },
                  { field: "PlatCommission", title: "平台佣金", width: 'auto', align: "center" },
-                     { field: "DistributorCommission", title: "分销佣金", width: 'auto', align: "center" },
+                     { field: "DistributorCommission", title: "分佣佣金", width: 'auto', align: "center" },
                         { field: "RefundAmount", title: "退款金额", width: 'auto', align: "center" },
                            { field: "SettlementAmount", title: "结算金额", width: 'auto', align: "center" },
              { field: "OrderFinshTimeStr", title: "预约单完成时间", width: 'auto', align: "center" },

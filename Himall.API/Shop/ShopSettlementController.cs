@@ -10,7 +10,7 @@ namespace Himall.API
     public class ShopSettlementController : BaseShopApiController
     {
         /// <summary>
-        /// 获取店铺账户
+        /// 获取诊所账户
         /// </summary>
         /// <returns></returns>
         public ShopAccountModel GetShopAccount()
@@ -156,7 +156,7 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 店铺结算明细
+        /// 诊所结算明细
         /// </summary>
         /// <param name="page"></param>
         /// <param name="pagesize"></param>

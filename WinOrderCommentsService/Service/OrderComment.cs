@@ -43,7 +43,7 @@ namespace WinOrderCommentsService
 
                     foreach (var item in lstOrderComments)
                     {
-                        //获取同行业的店铺
+                        //获取同行业的诊所
                         List<OrderCommentsModel> peerShops = new List<OrderCommentsModel>();
 
                         foreach (var cId in item.CategoryIds)
@@ -98,14 +98,14 @@ namespace WinOrderCommentsService
                             CommentValue = (decimal)productAndDescriptionMin
                         });
 
-                        //卖家的服务态度 
+                        //诊所的服务态度 
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
                             CommentKey = StatisticOrderCommentsInfo.EnumCommentKey.SellerServiceAttitude,
                             CommentValue = (decimal)item.AvgServiceMark
                         });
-                        //卖家的服务态度  同行业比对
+                        //诊所的服务态度  同行业比对
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
@@ -113,14 +113,14 @@ namespace WinOrderCommentsService
                             CommentValue = (decimal)avgServiceMarkPeerShops
                         });
 
-                        //卖家服务态度 同行业诊所最高得分
+                        //诊所服务态度 同行业诊所最高得分
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
                             CommentKey = StatisticOrderCommentsInfo.EnumCommentKey.SellerServiceAttitudeMax,
                             CommentValue = (decimal)sellerServiceAttitudeMax
                         });
-                        //卖家服务态度 同行业诊所最低得分
+                        //诊所服务态度 同行业诊所最低得分
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
@@ -128,28 +128,28 @@ namespace WinOrderCommentsService
                             CommentValue = (decimal)sellerServiceAttitudeMin
                         });
 
-                        //卖家的发货速度 
+                        //诊所的发货速度 
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
                             CommentKey = StatisticOrderCommentsInfo.EnumCommentKey.SellerDeliverySpeed,
                             CommentValue = (decimal)item.AvgDeliveryMark
                         });
-                        //卖家的发货速度  同行业比对
+                        //诊所的发货速度  同行业比对
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
                             CommentKey = StatisticOrderCommentsInfo.EnumCommentKey.SellerDeliverySpeedPeer,
                             CommentValue = (decimal)avgDeliveryMarkPeerShops
                         });
-                        //卖家发货速度 同行业诊所最高得分
+                        //诊所发货速度 同行业诊所最高得分
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,
                             CommentKey = StatisticOrderCommentsInfo.EnumCommentKey.SellerDeliverySpeedMax,
                             CommentValue = (decimal)sellerDeliverySpeedMax
                         });
-                        //卖家发货速度 同行业诊所最低得分
+                        //诊所发货速度 同行业诊所最低得分
                         Save(entity, new StatisticOrderCommentsInfo
                         {
                             ShopId = item.ShopId,

@@ -53,14 +53,14 @@ namespace Himall.Core.Plugins.Message
         void SendMessages(string[] destination, string content, string title = "");
 
         /// <summary>
-        /// 店铺审核通过
+        /// 诊所审核通过
         /// </summary>
         /// <param name="sellerName"></param>
         /// <param name="shopName"></param>
         string SendMessageOnShopAudited(string destination, MessageShopInfo info);
 
         /// <summary>
-        /// 店铺开店成功
+        /// 诊所开店成功
         /// </summary>
         /// <param name="sellerName"></param>
         /// <param name="shopName"></param>

@@ -30,11 +30,11 @@ namespace Himall.DTO
         ///</summary>
         public long ActiveId { get; set; }
         /// <summary>
-        /// 店铺编号
+        /// 诊所编号
         ///</summary>
         public long ShopId { get; set; }
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { get; set; }
         public string ShopLogo { get; set; }

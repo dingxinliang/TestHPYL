@@ -12,12 +12,12 @@ $(document).ready(function () {
         $('.toggle-target').text(aim_txt).attr("id", aim_id);
         $('.tab-nav .litxt').text(toggle_txt);
         $('.tab-nav .sptxt').text(aim_txt);
-        if($('.tab-nav .litxt').text()=="店铺"){
+        if($('.tab-nav .litxt').text()=="诊所"){
             $('.tab-nav .litxt').removeClass("icon2").addClass("icon1")
         }else{
             $('.tab-nav .litxt').removeClass("icon1").addClass("icon2")
         }
-        if($('.tab-nav .sptxt').text()=="店铺"){
+        if($('.tab-nav .sptxt').text()=="诊所"){
             $('.tab-nav .sptxt').removeClass("icon2").addClass("icon1")
         }else{
             $('.tab-nav .sptxt').removeClass("icon1").addClass("icon2")
@@ -48,7 +48,7 @@ $(document).ready(function () {
         $(".style-toggle").hide();
     });
 
-    /*诊疗项目、店铺切换*/
+    /*诊疗项目、诊所切换*/
     $(".tab-text").unbind("click").click(function(){
         $(".tab-nav").toggle();
         return false;

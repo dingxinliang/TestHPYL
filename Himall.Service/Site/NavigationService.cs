@@ -81,7 +81,7 @@ namespace Himall.Service
         public void AddSellerNavigation(BannerInfo model)
         {
             if (model.ShopId == 0)
-                throw new HimallException("店铺id必须大于0");
+                throw new HimallException("诊所id必须大于0");
             if (model.Platform == Himall.Core.PlatformType.WeiXin && Context.BannerInfo.Where(item => item.ShopId == model.ShopId && item.Platform == PlatformType.WeiXin).Count() >= 5)
                 throw new Himall.Core.HimallException("导航最多只能添加5个");
             AddNavigation(model);
@@ -90,7 +90,7 @@ namespace Himall.Service
         public void UpdateSellerNavigation(BannerInfo model)
         {
             if (model.ShopId == 0)
-                throw new HimallException("店铺id必须大于0");
+                throw new HimallException("诊所id必须大于0");
             UpdateNavigation(model);
         }
 

@@ -13,12 +13,12 @@ option = {
             var type = $("button.active").val();
             var html = '';
             if (1 == type) {
-                var t1 = '<span style="text-align:left;">店铺：<b style="color:yellow;font-size:14px;">' + shopname + '</b></span>';
+                var t1 = '<span style="text-align:left;">诊所：<b style="color:yellow;font-size:14px;">' + shopname + '</b></span>';
                 var t2 = '<span style="text-align:left;">预约单量：<b style="color:yellow;font-size:14px;">' + params[0][2] + '</b>个</span>';
                 html = ['<div style="text-align:left;">', t1, '<br />', t2, '</div>'];
             } else {
-                var t1 = '<span style="text-align:left;">店铺：<b style="color:yellow;font-size:14px;">' + shopname + '</b></span>';
-                var t2 = '<span style="text-align:left;">销售额：<b style="color:yellow;font-size:14px;">' + params[0][2] + '</b>元</span>';
+                var t1 = '<span style="text-align:left;">诊所：<b style="color:yellow;font-size:14px;">' + shopname + '</b></span>';
+                var t2 = '<span style="text-align:left;">使用额：<b style="color:yellow;font-size:14px;">' + params[0][2] + '</b>元</span>';
                 html = ['<div style="text-align:left;">', t1, '<br />', t2, '</div>'];
             }
 

@@ -139,7 +139,7 @@ namespace Himall.Application
 		/// <summary>
 		/// 获取指定分类下的所有诊疗项目
 		/// </summary>
-		/// <param name="shopId">店铺id</param>
+		/// <param name="shopId">诊所id</param>
 		/// <param name="categoryIds">分类id</param>
 		/// <returns></returns>
 		public static List<DTO.Brand> GetBrandsByCategoryIds(long shopId, params long[] categoryIds)
@@ -181,7 +181,7 @@ namespace Himall.Application
 		/// <param name="auditStatus">审核状态</param>
 		/// <param name="pageNo">当前第几页</param>
 		/// <param name="pageSize">每页显示多少条数据</param>
-		/// <param name="keyWords">店铺名称</param>
+		/// <param name="keyWords">诊所名称</param>
 		/// <returns></returns>
 		public static QueryPageModel<DTO.ShopBrandApply> GetShopBrandApplys(long? shopId, int? auditStatus, int pageNo, int pageSize, string keyWords)
 		{
@@ -226,7 +226,7 @@ namespace Himall.Application
 		/// <summary>
 		/// 是否已申请(审核中和审核通过)
 		/// </summary>
-		/// <param name="shopId">店铺Id</param>
+		/// <param name="shopId">诊所Id</param>
 		/// <param name="brandName">要申请的品牌名称</param>
 		/// <returns></returns>
 		public static bool IsExistApply(long shopId, string brandName)

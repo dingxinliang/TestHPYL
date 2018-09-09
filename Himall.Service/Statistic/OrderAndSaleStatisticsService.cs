@@ -13,7 +13,7 @@ using MySql.Data.MySqlClient;
 namespace Himall.Service
 {
     /// <summary>
-    /// 预约单和销售统计
+    /// 预约单和使用统计
     /// </summary>
     public class OrderAndSaleStatisticsService : ServiceBase, IOrderAndSaleStatisticsService
     {
@@ -57,7 +57,7 @@ namespace Himall.Service
         #endregion
 
         /// <summary>
-        /// 获取店铺下门店销售额（按天排序）
+        /// 获取诊所下门店使用额（按天排序）
         /// </summary>
         /// <param name="start"></param>
         /// <param name="end"></param>
@@ -95,7 +95,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取门店在某天的销售排行 
+        /// 获取门店在某天的使用排行 
         /// </summary>
         /// <param name="date"></param>
         /// <param name="shopId"></param>

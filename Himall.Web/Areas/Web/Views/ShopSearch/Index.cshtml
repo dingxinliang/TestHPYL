@@ -2,7 +2,7 @@
 
 @model IEnumerable<ShopInfo>
 @{
-    ViewBag.Title = ViewBag.KeyWords + "  店铺搜索";
+    ViewBag.Title = ViewBag.KeyWords + "  诊所搜索";
 }
 
 
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <div class="search-shop-count">共找到 <span>@Model.Count()</span> 家店铺</div>
+        <div class="search-shop-count">共找到 <span>@Model.Count()</span> 家诊所</div>
         <div class="search-shop-hd">
             @if( ViewBag.QueryModel.OrderBy == 0 )
             {
@@ -125,7 +125,7 @@ else
         <div class="notice-search">
             <span class="ns-icon"></span>
             <div class="ns-content">
-                <span>抱歉，没有找到与“<em>@ViewBag.QueryModel.ShopName</em>”相关的店铺</span>
+                <span>抱歉，没有找到与“<em>@ViewBag.QueryModel.ShopName</em>”相关的诊所</span>
             </div>
         </div>
     </div>

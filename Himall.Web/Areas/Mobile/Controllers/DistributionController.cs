@@ -40,7 +40,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             this._distributionsetting = _iDistributionService.GetDistributionSetting();
             if (this._distributionsetting == null)
             {
-                throw new HimallException("平台未开启分销！");
+                throw new HimallException("平台未开启分佣！");
             }
         }
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -100,7 +100,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             }
             else
             {
-                model.RegionPath = string.Empty;//申请新销售员时，取消默认地址显示
+                model.RegionPath = string.Empty;//申请新使用员时，取消默认地址显示
             }
 
             //处理无必填自动完成
@@ -121,7 +121,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
 
             if (promoter != null && (promoter.Status == PromoterInfo.PromoterStatus.NotAvailable || promoter.Status == PromoterInfo.PromoterStatus.Audited))
             {
-                return Json(new Result() { success = false, msg = "你已经是销售员了！" });
+                return Json(new Result() { success = false, msg = "你已经是使用员了！" });
             }
             var setting = _iDistributionService.GetRecruitmentSetting();
             if (setting == null)
@@ -218,7 +218,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             }
             if (string.IsNullOrWhiteSpace(share.DisShareTitle))
             {
-                share.DisShareTitle = CurrentSiteSetting.SiteName + "分销市场";
+                share.DisShareTitle = CurrentSiteSetting.SiteName + "分佣市场";
             }
             if (string.IsNullOrWhiteSpace(share.DisShareDesc))
             {
@@ -286,7 +286,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        /// 分销业绩
+        /// 分佣业绩
         /// </summary>
         /// <returns></returns>
         public ActionResult Performance()
@@ -313,7 +313,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return View(result);
         }
         /// <summary>
-        /// 检测销售员信息
+        /// 检测使用员信息
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>

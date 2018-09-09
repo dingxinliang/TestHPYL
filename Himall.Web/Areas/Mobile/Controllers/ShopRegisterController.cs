@@ -166,7 +166,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        /// 店铺信息
+        /// 诊所信息
         /// </summary>
         /// <param name="ids">经营类目ID集</param>
         /// <returns></returns>
@@ -409,7 +409,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        /// 第三步店铺信息提交
+        /// 第三步诊所信息提交
         /// </summary>
         /// <param name="shopProfileStep3"></param>
         /// <returns></returns>
@@ -420,14 +420,14 @@ namespace Himall.Web.Areas.Mobile.Controllers
             int result = ShopApplication.UpdateShop(model, CurrentSellerManager.ShopId);
             if (result.Equals(-1))
             {
-                var msg = string.Format("{0} 店铺名称已经存在", model.ShopName);
+                var msg = string.Format("{0} 诊所名称已经存在", model.ShopName);
                 return Json(new { success = false, msg = msg });
             }
             return Json(new { success = true });
         }
 
         /// <summary>
-        /// 获取店铺等级
+        /// 获取诊所等级
         /// </summary>
         /// <returns></returns>
         [HttpPost]

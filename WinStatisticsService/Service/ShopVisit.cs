@@ -24,7 +24,7 @@ namespace WinStatisticsService.Service
 
         private void InitShopVisit()
         {
-            //获取所有店铺
+            //获取所有诊所
             using (var conn = MySqlHelper.OpenConnection())
             {
                 StringBuilder strSql = new StringBuilder("insert into himall_shopvistis(ShopId,Date,VistiCounts,OrderUserCount,OrderCount,OrderProductCount,OrderAmount,OrderPayUserCount,OrderPayCount,SaleCounts,SaleAmounts,StatisticFlag) ");

@@ -18,11 +18,11 @@ namespace Himall.Web.Areas.Mobile.Models
         /// </summary>
         public bool IsFavorite { get; set; }
         /// <summary>
-        /// 店铺是否已收藏
+        /// 诊所是否已收藏
         /// </summary>
         public bool IsFavoriteShop { get; set; }
         /// <summary>
-        /// 店铺收藏数
+        /// 诊所收藏数
         /// </summary>
         public int FavoriteShopCount { get; set; }
 

@@ -16,7 +16,7 @@ namespace Himall.Web.Areas.Web.Models
 
         }
         /// <summary>
-        /// 关注的店铺
+        /// 关注的诊所
         /// </summary>
         public ConcernShopInfo FavoriteShopInfo { set; get; }
         /// <summary>

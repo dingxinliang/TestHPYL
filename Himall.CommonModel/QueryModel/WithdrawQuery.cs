@@ -12,7 +12,7 @@ namespace Himall.CommonModel
     public class WithdrawQuery : BaseQuery
     {
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long? ShopId { set; get; }
 
@@ -22,7 +22,7 @@ namespace Himall.CommonModel
         public long? Id { set; get; }
 
         /// <summary>
-        /// 提现店铺名称
+        /// 提现诊所名称
         /// </summary>
         public string ShopName { set; get; }
 

@@ -49,7 +49,7 @@ namespace Himall.CommonModel
         /// </summary>
         public bool OrderType { get; set; }
         /// <summary>
-        /// 店铺标识
+        /// 诊所标识
         /// </summary>
         public long ShopId { get; set; }
         /// <summary>
@@ -73,7 +73,7 @@ namespace Himall.CommonModel
         /// </summary>
         public int PageSize { get; set; }
         /// <summary>
-        /// 店铺诊疗项目分类
+        /// 诊所诊疗项目分类
         /// </summary>
         public long ShopCategoryId { get; set; }
        

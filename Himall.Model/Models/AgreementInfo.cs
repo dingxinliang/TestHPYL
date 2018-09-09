@@ -17,9 +17,9 @@ namespace Himall.Model
             Buyers = 0,
 
             /// <summary>
-            /// 卖家
+            /// 诊所
             /// </summary>
-            [Description("卖家")]
+            [Description("诊所")]
             Seller = 1,
             [Description("APP关于我们")]
             APP = 2

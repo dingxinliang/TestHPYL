@@ -21,14 +21,14 @@
             <span class="border-n"></span>
         </li>
         <li style="background:none;">
-            店铺信息
+            诊所信息
             <span class="border"></span>
             <span class="border-n"></span>
         </li>
         <li class="active">审核状态</li>
     </ul>
     <form class="form-horizontal form-pt0" role="form">
-        <h3 class="table-hd">店铺经营信息</h3>
+        <h3 class="table-hd">诊所经营信息</h3>
         <div class="form-group">
             <label for="" class="col-sm-2 control-label"><b>*</b>诊所帐号：</label>
             <div class="col-sm-3">
@@ -39,21 +39,21 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label"><b>*</b>店铺名称：</label>
+            <label for="" class="col-sm-2 control-label"><b>*</b>诊所名称：</label>
             <div class="col-sm-3">
                 <input type="text" id="shopName" class="form-control input-sm" value="@Model.ShopName" />
             </div>
             <div class="col-sm-6">
-                <span class="help-default cor-red">店铺名称注册后不可修改，请认真填写。</span>
+                <span class="help-default cor-red">诊所名称注册后不可修改，请认真填写。</span>
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label"><b>*</b>店铺等级：</label>
+            <label for="" class="col-sm-2 control-label"><b>*</b>诊所等级：</label>
             <div class="col-sm-3">
 
                 @{ var shopGrades = (List<Himall.DTO.ShopGrade>)ViewBag.ShopGrades;}
                 <select class="form-control input-sm" id="shopGrade">
-                    <option value="">请选择店铺等级</option>
+                    <option value="">请选择诊所等级</option>
                     @foreach (var shopGrade in shopGrades)
                     {
                         if (shopGrade.Id == Model.ShopGrade)
@@ -208,9 +208,9 @@
             var shopGrade = $('#shopGrade').val();
 
             if (shopName == "")
-                $.dialog.errorTips('请输入店铺名称');
+                $.dialog.errorTips('请输入诊所名称');
             else if (!shopGrade)
-                $.dialog.errorTips('请选择店铺等级');
+                $.dialog.errorTips('请选择诊所等级');
             else {
                 var categories = [];
                 var trs = $('#businessCategories tr');

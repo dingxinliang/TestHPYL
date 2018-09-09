@@ -22,7 +22,7 @@ namespace Himall.IServices
         /// 回复产品评论
         /// </summary>
         /// <param name="id">诊疗项目评论的ID</param>
-        /// <param name="shopId">店铺的ID防止跨店回复</param>
+        /// <param name="shopId">诊所的ID防止跨店回复</param>
         /// <param name="replyConent">回复内容</param>
         void ReplyComment(long id, string replyConent, long shopId);
 

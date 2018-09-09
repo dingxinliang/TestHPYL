@@ -33,11 +33,11 @@ $(function () {
     }
 
     if (IsExpired == "True") {
-        $.dialog.errorTips('该店铺已过期！', '', 5000);
+        $.dialog.errorTips('该诊所已过期！', '', 5000);
     }
 
     if (IsFreeze == "True") {
-        $.dialog.errorTips('该店铺已冻结！', '', 5000);
+        $.dialog.errorTips('该诊所已冻结！', '', 5000);
     }
 
     //图片滚动切换

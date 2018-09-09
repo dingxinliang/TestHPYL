@@ -17,7 +17,7 @@
         <li>服务：<strong>@(((decimal)Model.SellerServiceAttitude).ToString("F2"))</strong></li>
     </ul>
     <div class="shop-ft clearfix">
-        <span><a class="btn btn-default" id="bt_govshop" href="/@ViewBag.AreaName/vshop/detail/@Model.VShopId" vshopid="@Model.VShopId">进入店铺</a></span>
+        <span><a class="btn btn-default" id="bt_govshop" href="/@ViewBag.AreaName/vshop/detail/@Model.VShopId" vshopid="@Model.VShopId">进入诊所</a></span>
         <span><a class="btn btn-default @(Model.IsFavoriteShop ? "fav-yes" : "")" id="addShopFavorite" shopid="@Model.ShopId">@(Model.IsFavoriteShop?"已":"")关注</a></span>
     </div>
 </div>

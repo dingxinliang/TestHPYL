@@ -36,7 +36,7 @@ function query() {
         columns:
         [[
             { field: "Id", hidden: true },
-            { field: "UserName", title: '销售员帐号' },
+            { field: "UserName", title: '使用员帐号' },
             {
                 field: "Paid", title: '已结佣金',
                 formatter: function (value, row, index) {

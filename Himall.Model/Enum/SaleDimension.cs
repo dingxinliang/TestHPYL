@@ -12,13 +12,13 @@ namespace Himall.Model
         /// <summary>
         /// 预约单量
         /// </summary>
-        [Description("销售量")]
+        [Description("使用量")]
         SaleCount = 1,
 
         /// <summary>
-        /// 销售额
+        /// 使用额
         /// </summary>
-        [Description("销售额")]
+        [Description("使用额")]
         Sales,
     }
 }

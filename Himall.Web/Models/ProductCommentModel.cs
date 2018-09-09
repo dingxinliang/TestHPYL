@@ -17,7 +17,7 @@ namespace Himall.Web.Models
         /// </summary>
         public long ProductId { get; set; }
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         /// 
         public long ShopId { get; set; }
@@ -36,7 +36,7 @@ namespace Himall.Web.Models
         public string ProductPic { set; get; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { get; set; }
         /// <summary>

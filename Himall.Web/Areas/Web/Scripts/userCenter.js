@@ -17,9 +17,9 @@ $(function () {
         var keyWords = $.trim($('#searchBox').val());
 
         var selected = $(".search .search-form label").html();
-        if (selected == "店铺") {
+        if (selected == "诊所") {
             //if (keyWords == '') {
-            //    $.dialog.errorTips('请输入店铺搜索关键字！');
+            //    $.dialog.errorTips('请输入诊所搜索关键字！');
             //    return;
             //}
             location.href = "/shopsearch?keywords=" + encodeURIComponent(keyWords ? keyWords : $('#searchBox').attr('placeholder'))

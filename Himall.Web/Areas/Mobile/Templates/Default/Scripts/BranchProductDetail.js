@@ -186,7 +186,7 @@ function GetNeedRefreshProductInfo() {
                     $("#addShopFavorite").removeClass("fav-yes");
                     $("#addShopFavorite").text("关注");
                 }
-                //进入店铺
+                //进入诊所
                 var bt_govshop = $("#bt_govshop");
                 bt_govshop.attr("vshopid", data.vShopId);
                 bt_govshop.attr("href", "/" + areaName + "/vshop/detail/" + data.vShopId);

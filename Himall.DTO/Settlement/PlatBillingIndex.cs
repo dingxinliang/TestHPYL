@@ -13,12 +13,12 @@ namespace Himall.DTO
     {
 
         /// <summary>
-        /// 店铺帐户
+        /// 诊所帐户
         /// </summary>
         public PlatAccount PlatAccout { set; get; }
 
         /// <summary>
-        /// 昨日销售额
+        /// 昨日使用额
         /// </summary>
         public decimal YesterDaySaleAmount { set; get; }
 

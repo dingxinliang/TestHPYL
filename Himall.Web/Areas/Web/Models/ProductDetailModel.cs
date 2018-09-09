@@ -61,35 +61,35 @@ namespace Himall.Web.Areas.Web.Models
         /// </summary>
         public decimal ProductAndDescriptionMax { get; set; }
         /// <summary>
-        /// 卖家服务态度
+        /// 诊所服务态度
         /// </summary>
         public decimal SellerServiceAttitude { get; set; }
         /// <summary>
-        /// 卖家服务态度
+        /// 诊所服务态度
         /// </summary>
         public decimal SellerServiceAttitudePeer { get; set; }
         /// <summary>
-        /// 卖家服务态度
+        /// 诊所服务态度
         /// </summary>
         public decimal SellerServiceAttitudeMax { get; set; }
         /// <summary>
-        /// 卖家服务态度
+        /// 诊所服务态度
         /// </summary>
         public decimal SellerServiceAttitudeMin { get; set; }
         /// <summary>
-        /// 卖家发货速度
+        /// 诊所发货速度
         /// </summary>
         public decimal SellerDeliverySpeed { get; set; }
         /// <summary>
-        /// 卖家发货速度
+        /// 诊所发货速度
         /// </summary>
         public decimal SellerDeliverySpeedPeer { get; set; }
         /// <summary>
-        /// 卖家发货速度
+        /// 诊所发货速度
         /// </summary>
         public decimal SellerDeliverySpeedMax { get; set; }
         /// <summary>
-        /// 卖家发货速度
+        /// 诊所发货速度
         /// </summary>
         public decimal sellerDeliverySpeedMin { get; set; }
         /// <summary>
@@ -261,12 +261,12 @@ namespace Himall.Web.Areas.Web.Models
         public decimal FreeFreight { get; set; }
 
         /// <summary>
-        /// 店铺在售诊疗项目数
+        /// 诊所在售诊疗项目数
         /// </summary>
         public long ProductNum { get; set; }
 
         /// <summary>
-        /// 店铺优惠券数
+        /// 诊所优惠券数
         /// </summary>
         public long CouponCount { get; set; }
 

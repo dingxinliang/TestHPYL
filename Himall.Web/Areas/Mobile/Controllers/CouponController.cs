@@ -159,7 +159,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                     CouponName = a.CouponName,
                     VShop = vshop,
                     ReceiveStatus= Receive(a.Id)
-                }).Where(p=> p.ReceiveStatus != 2 && p.ReceiveStatus != 4);//优惠券已经过期、优惠券已领完，则不显示在店铺优惠券列表中
+                }).Where(p=> p.ReceiveStatus != 2 && p.ReceiveStatus != 4);//优惠券已经过期、优惠券已领完，则不显示在诊所优惠券列表中
             }
             ViewBag.Shopid = shopid;
             ViewBag.VShopid = vshop != null ? vshop.Id : 0;
@@ -171,7 +171,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             }
             else
             {
-                favText = "收藏店铺";
+                favText = "收藏诊所";
             }
             ViewBag.FavText = favText;
 

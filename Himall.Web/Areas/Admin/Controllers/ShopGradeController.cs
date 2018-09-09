@@ -18,7 +18,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             _iShopService = iShopService;
         }
         /// <summary>
-        /// 店铺等级管理
+        /// 诊所等级管理
         /// </summary>
         /// <returns></returns>
         public ActionResult Management()
@@ -47,7 +47,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             return Json(dataGrid);
         }
         /// <summary>
-        /// 编辑店铺等级
+        /// 编辑诊所等级
         /// </summary>
         /// <param name="shopG"></param>
         /// <returns></returns>
@@ -82,7 +82,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             return View();
         }
         /// <summary>
-        /// 添加店铺等级
+        /// 添加诊所等级
         /// </summary>
         /// <param name="shopG"></param>
         /// <returns></returns>
@@ -99,7 +99,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             return View(shopG);
         }
         /// <summary>
-        /// 删除店铺登录
+        /// 删除诊所登录
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

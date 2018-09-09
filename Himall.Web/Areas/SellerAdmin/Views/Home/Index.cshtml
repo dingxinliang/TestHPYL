@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit|ie-stand">
     <meta name="viewport" content="width=device-width" />
-    <title>卖家中心</title>
+    <title>诊所中心</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/custom.css" rel="stylesheet" />
     <link href="~/Content/artdialog.css" rel="stylesheet" />
@@ -36,7 +36,7 @@
                             <ol>
                                 <li><a href="/UserCenter?url=/UserOrder&tar=UserOrder">已买到的诊疗项目</a></li>
                                 <li><a href="/UserCenter?url=/productConcern&tar=productConcern">我关注的诊疗项目</a></li>
-                                <li><a href="/UserCenter?url=/shopConcern&tar=shopConcern">我关注的店铺</a></li>
+                                <li><a href="/UserCenter?url=/shopConcern&tar=shopConcern">我关注的诊所</a></li>
 
                             </ol>
                         </div>
@@ -46,19 +46,19 @@
                         <a href="/sellerAdmin">我的@(ViewBag.SiteName)</a>
                     }
                 </li>
-                <li><s></s><a href="/cart/cart?returnUrl=@HttpUtility.UrlEncode(Request.RawUrl)" target="_blank">购物车<em>(<span id="shopping-amount"></span>)</em></a></li>
+               @* <li><s></s><a href="/cart/cart?returnUrl=@HttpUtility.UrlEncode(Request.RawUrl)" target="_blank">购物车<em>(<span id="shopping-amount"></span>)</em></a></li>*@
                 <li class="service dropdown">
                     <s></s>
                     <span class="outline"></span>
                     <span class="blank"></span>
-                    <a href="/SellerAdmin">卖家中心</a>
+                    <a href="/SellerAdmin">诊所中心</a>
                     <b></b>
                     <div class="dropdown-menu">
                         <ol>
-                            <li><a href="/SellerAdmin">诊所入驻</a></li>
-                            <li><a href="/SellerAdmin?url=/SellerAdmin/order/management&tar=order/management">已卖出诊疗项目</a></li>
-                            <li><a href="/SellerAdmin?url=/SellerAdmin/product/PublicStepOne&tar=PublicStepOne">发布诊疗项目</a></li>
-                            <li><a href="/SellerAdmin?url=/SellerAdmin/product/management&tar=product/management">管理诊疗项目</a></li>
+                            <li ><a href="/SellerAdmin">诊所入驻</a></li>
+                            <li><a href="/SellerAdmin?url=/SellerAdmin/order/management&tar=order/management">预约单</a></li>
+                            <li><a href="/SellerAdmin?url=/SellerAdmin/product/PublicStepOne&tar=PublicStepOne">发布项目</a></li>
+                            <li><a href="/SellerAdmin?url=/SellerAdmin/product/management&tar=product/management">管理项目</a></li>
 
                         </ol>
                     </div>
@@ -154,8 +154,8 @@
         <div class="form-horizontal shop-expired">
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8 form-control-static">
-                    您的店铺将在<span class="cor-red"> @ViewBag.EndDate </span>日过期，届时所有诊疗项目将自动下架，
-                    且无法登录店铺，请及时续费。
+                    您的诊所将在<span class="cor-red"> @ViewBag.EndDate </span>日过期，届时所有诊疗项目将自动下架，
+                    且无法登录诊所，请及时续费。
                 </div>
             </div>
             <div class="form-group">

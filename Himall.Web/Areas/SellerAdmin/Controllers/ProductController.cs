@@ -163,7 +163,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             ShopGradeInfo shopGrade = ServiceHelper.Create<IShopService>().GetShopGrade(base.CurrentShop.GradeId);
             if ((shopGrade != null) && (this._iProductService.GetShopAllProducts(base.CurrentSellerManager.ShopId) >= shopGrade.ProductLimit))
             {
-                message = "此店铺等级最多只能发布" + shopGrade.ProductLimit + "件诊疗项目";
+                message = "此诊所等级最多只能发布" + shopGrade.ProductLimit + "件诊疗项目";
                 return false;
             }
             message = "";
@@ -554,7 +554,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }).ToList<ProductInfoForExportModel>();
             base.ViewData.Model = enumerable;
             string s = this.RenderPartialViewToString(this, "ExportProductinfo");
-            return this.File(Encoding.UTF8.GetBytes(s), "application/ms-excel", string.Format("店铺诊疗项目信息_{0}.xls", DateTime.Now.ToString("yyyy-MM-dd")));
+            return this.File(Encoding.UTF8.GetBytes(s), "application/ms-excel", string.Format("诊所诊疗项目信息_{0}.xls", DateTime.Now.ToString("yyyy-MM-dd")));
         }
 
         [UnAuthorize]
@@ -1243,7 +1243,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 model = service.GetProduct(productId);
                 if ((model == null) || (model.ShopId != base.CurrentSellerManager.ShopId))
                 {
-                    throw new HimallException(productId + ",该诊疗项目已删除或者不属于该店铺");
+                    throw new HimallException(productId + ",该诊疗项目已删除或者不属于该诊所");
                 }
                 if (model.SKUInfo.Count<SKUInfo>() > 0)
                 {

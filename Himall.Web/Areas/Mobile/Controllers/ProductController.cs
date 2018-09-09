@@ -109,7 +109,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             else
             {
                 isFavorite = _iProductService.IsFavorite(productId, CurrentUser.Id);
-                var favoriteShopIds = _iShopService.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注店铺
+                var favoriteShopIds = _iShopService.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注诊所
                 isFavoriteShop = favoriteShopIds.Contains(shopId);
             }
 
@@ -160,7 +160,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             {
                 throw new HimallException("很抱歉，您查看的诊疗项目不存在，可能被转移。");
             }
-            #region 销售员
+            #region 使用员
             if (partnerid > 0)
             {
                 long curuserid = 0;
@@ -212,7 +212,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             #endregion
             ProductManagerApplication.GetWAPHtml(gid);
             string urlHtml = "/Storage/Products/Statics/" + id + "-wap.html";
-            //统计诊疗项目浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、诊所浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
             return File(urlHtml, "text/html");
         }
@@ -285,7 +285,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
 
             #endregion
 
-            #region 销售员
+            #region 使用员
             if (partnerid > 0)
             {
                 long curuserid = 0;
@@ -297,7 +297,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             }
             #endregion
 
-            #region 初始化诊疗项目和店铺
+            #region 初始化诊疗项目和诊所
             //TODO:DZY[150729] 显示移动端描述
             model.ProductDescription = product.ProductDescriptionInfo.ShowMobileDescription;
 
@@ -322,7 +322,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             else
             {
                 isFavorite = _iProductService.IsFavorite(product.Id, CurrentUser.Id);
-                var favoriteShopIds = _iShopService.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注店铺
+                var favoriteShopIds = _iShopService.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注诊所
                 detailModel.IsFavoriteShop = favoriteShopIds.Contains(product.ShopId);
             }
             detailModel.IsFavorite = isFavorite;
@@ -431,7 +431,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             ViewBag.Price = string.IsNullOrWhiteSpace(price) ? product.MinSalePrice.ToString("f2") : price;
             #endregion
 
-            #region 获取店铺的评价统计
+            #region 获取诊所的评价统计
             var shopStatisticOrderComments = _iShopService.GetShopStatisticOrderComments(product.ShopId);
 
             var productAndDescription = shopStatisticOrderComments.Where(c => c.CommentKey == StatisticOrderCommentsInfo.EnumCommentKey.ProductAndDescription).FirstOrDefault();
@@ -469,7 +469,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 detailModel.ProductAndDescriptionMin = defaultValue;
                 detailModel.ProductAndDescriptionMax = defaultValue;
             }
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null && !shop.IsSelf)
             {
                 detailModel.SellerServiceAttitude = sellerServiceAttitude.CommentValue;
@@ -484,7 +484,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 detailModel.SellerServiceAttitudeMax = defaultValue;
                 detailModel.SellerServiceAttitudeMin = defaultValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null && !shop.IsSelf)
             {
                 detailModel.SellerDeliverySpeed = sellerDeliverySpeed.CommentValue;
@@ -555,7 +555,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             model.VShopLog = _iVShopService.GetVShopLog(model.Shop.VShopId);
             if (string.IsNullOrWhiteSpace(model.VShopLog))
             {
-                //throw new Himall.Core.HimallException("店铺未开通微店功能");
+                //throw new Himall.Core.HimallException("诊所未开通微店功能");
                 model.VShopLog = CurrentSiteSetting.WXLogo;
             }
 
@@ -566,7 +566,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             ViewBag.CustomerServices = customerServices;
 
             ViewBag.DetailModel = detailModel;
-            //统计诊疗项目浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、诊所浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
             return View(model);
         }
@@ -828,7 +828,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        /// 获取店铺优惠券
+        /// 获取诊所优惠券
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -842,7 +842,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             ShopInfo shop = this._iShopService.GetShop(shopId, false);
             if (shop == null)
             {
-                throw new HimallException("错误的店铺信息");
+                throw new HimallException("错误的诊所信息");
             }
             return base.Json(new { shopName = shop.ShopName, success = true }, JsonRequestBehavior.AllowGet);
         }
@@ -1137,7 +1137,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 Message = msg[reason]
             }, true);
         }
-        #region 分销
+        #region 分佣
         /// <summary>
         /// 获取诊疗项目的佣金信息
         /// </summary>
@@ -1174,7 +1174,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
-        /// 申请成为分销员
+        /// 申请成为分佣员
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -1207,7 +1207,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             var promoter = _iDistributionService.GetPromoterByUserId(curUserId);
             if (promoter != null && promoter.Status == PromoterInfo.PromoterStatus.Audited)
             {
-                return Json(new Result() { success = true, msg = "你已经是销售员了！" });
+                return Json(new Result() { success = true, msg = "你已经是使用员了！" });
             }
             Model.PromoterModel model = new Model.PromoterModel();
             model.Mobile = mobile;

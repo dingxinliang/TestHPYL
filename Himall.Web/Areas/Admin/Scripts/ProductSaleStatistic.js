@@ -68,8 +68,8 @@ function LoadData(date1, date2)
                     return value + '%';
                 }
              },
-             { field: "SaleCounts", sort: true, title: "销售数量", width: 'auto', align: "center" },
-             { field: "SaleAmounts", sort: true, title: "销售金额", width: 'auto', align: "center" }
+             { field: "SaleCounts", sort: true, title: "使用数量", width: 'auto', align: "center" },
+             { field: "SaleAmounts", sort: true, title: "使用金额", width: 'auto', align: "center" }
         ]]
     });
 }

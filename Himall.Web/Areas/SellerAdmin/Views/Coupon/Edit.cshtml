@@ -163,7 +163,7 @@
                     <label class="col-sm-2 control-label" for="">领取方式：</label>
                     <div class="col-sm-9">
                         <p class="form-control-static">
-                            <label><input name="ReceiveType" type="radio" value="0" @(((int)Model.ReceiveType) == 0 ? "checked" : "") />店铺首页</label>
+                            <label><input name="ReceiveType" type="radio" value="0" @(((int)Model.ReceiveType) == 0 ? "checked" : "") />诊所首页</label>
                             @if (CanAddIntegralCoupon)
                             {
                                 <label><input name="ReceiveType" type="radio" value="1" @(((int)Model.ReceiveType) == 1 ? "checked" : "") />积分兑换</label>
@@ -184,7 +184,7 @@
                         }
                         <label class="col-sm-2 control-label" for="">推广：</label>
                         <div class="col-sm-9">
-                            <input id="ChkPC" name="chkShow" type="checkbox" value="PC" @pcchecked />推广至PC端店铺导航右侧
+                            <input id="ChkPC" name="chkShow" type="checkbox" value="PC" @pcchecked />推广至PC端诊所导航右侧
                             &nbsp;
                             <input id="ChkWap" name="chkShow" type="checkbox" value="WAP" @wapchecked @*@(Model.CanVshopIndex ? "" : "disabled")*@ />推广至移动端 @Html.Raw(Model.CanVshopIndex ? "" : "<span class=\"red\">[未开通微店]</span>")
                         </div>
@@ -271,7 +271,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="">温馨提示：</label>
                     <div class="col-sm-9">
-                        <p class="form-control-static Sclear-P4" >分别推广到PC端及移动端店铺首页的优惠券不能超过五张</p>
+                        <p class="form-control-static Sclear-P4" >分别推广到PC端及移动端诊所首页的优惠券不能超过五张</p>
                     </div>
                 </div>
             </form>

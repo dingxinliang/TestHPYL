@@ -34,9 +34,9 @@ namespace Himall.CommonModel
         [Description("自定义模板")]
         SelfDefine,
         /// <summary>
-        /// 卖家承担运费(免运费)
+        /// 诊所承担运费(免运费)
         /// </summary>
-        [Description("卖家承担运费")]
+        [Description("诊所承担运费")]
         Free
     }
     /// <summary>

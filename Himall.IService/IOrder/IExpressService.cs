@@ -47,9 +47,9 @@ namespace Himall.IServices
         void UpdatePrintElement(string name, IEnumerable<ExpressPrintElement> elements);
 
         /// <summary>
-        /// 获取店铺最近使用的快递信息
+        /// 获取诊所最近使用的快递信息
         /// </summary>
-        /// <param name="shopId">店铺id</param>
+        /// <param name="shopId">诊所id</param>
         /// <param name="takeNumber">取最近的个数</param>
         /// <returns></returns>
         IEnumerable<IExpress> GetRecentExpress(long shopId, int takeNumber);
@@ -58,7 +58,7 @@ namespace Himall.IServices
         /// <summary>
         /// 根据打印元素序号获取对应预约单中的实际内容
         /// </summary>
-        /// <param name="shopId">店铺id</param>
+        /// <param name="shopId">诊所id</param>
         /// <param name="orderId">预约单id</param>
         /// <param name="printElementIndexes">打印元素序号集</param>
         /// <returns></returns>

@@ -392,7 +392,7 @@ namespace Himall.SmallProgAPI
                 #endregion
             }
             #endregion
-            #region 店铺
+            #region 诊所
             shop = ServiceProvider.Instance<IShopService>.Create.GetShop(product.ShopId);
             var mark = ShopServiceMark.GetShopComprehensiveMark(shop.Id);
 
@@ -435,7 +435,7 @@ namespace Himall.SmallProgAPI
             {
                 model.Shop.ProductAndDescription = defaultValue;
             }
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null)
             {
                 model.Shop.SellerServiceAttitude = sellerServiceAttitude.CommentValue;
@@ -444,7 +444,7 @@ namespace Himall.SmallProgAPI
             {
                 model.Shop.SellerServiceAttitude = defaultValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null)
             {
                 model.Shop.SellerDeliverySpeed = sellerDeliverySpeed.CommentValue;
@@ -488,7 +488,7 @@ namespace Himall.SmallProgAPI
             else
             {
                 isFavorite = ServiceProvider.Instance<IProductService>.Create.IsFavorite(product.Id, CurrentUser.Id);
-                var favoriteShopIds = ServiceProvider.Instance<IShopService>.Create.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注店铺
+                var favoriteShopIds = ServiceProvider.Instance<IShopService>.Create.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注诊所
                 IsFavoriteShop = favoriteShopIds.Contains(product.ShopId);
                 discount = CurrentUser.MemberDiscount;
             }
@@ -533,7 +533,7 @@ namespace Himall.SmallProgAPI
 
             #endregion
             LogProduct(ProductID);
-            //统计诊疗项目浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、诊所浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
 
             //图片集合
@@ -1117,13 +1117,13 @@ namespace Himall.SmallProgAPI
                     UseWithPanicBuying = false,
                     UseWithFireGroup = false,
                     LimitText = a.CouponName,
-                    CanUseProduct = "店铺通用",
+                    CanUseProduct = "诊所通用",
                     StartTimeText = a.StartTime.ToString("yyyy.MM.dd"),
                     ClosingTimeText = a.EndTime.ToString("yyyy.MM.dd"),
                     EndTime=a.EndTime,
                     Receive = Receive(a.ShopId, a.Id)
                 });
-                var data = userCoupon.Where(p => p.Receive != 2 && p.Receive != 4).OrderByDescending(d => d.EndTime);//优惠券已经过期、优惠券已领完，则不显示在店铺优惠券列表中
+                var data = userCoupon.Where(p => p.Receive != 2 && p.Receive != 4).OrderByDescending(d => d.EndTime);//优惠券已经过期、优惠券已领完，则不显示在诊所优惠券列表中
                 return data;
             }
             else

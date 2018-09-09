@@ -51,7 +51,7 @@ namespace Himall.IServices
         /// <summary>
         /// 判断门店名称是否重复
         /// </summary>
-        /// <param name="shopId">诊所店铺ID</param>
+        /// <param name="shopId">诊所诊所ID</param>
         /// <param name="shopBranchName">门店名字</param>
 		/// <returns></returns>
 		bool Exists(long shopId, long shopBranchId, string shopBranchName);

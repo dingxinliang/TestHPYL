@@ -2,7 +2,7 @@
     Defaults = {
         24: {
             page: {
-                title: "店铺首页"
+                title: "诊所首页"
             },
             PModules: [{
                 id: 9,

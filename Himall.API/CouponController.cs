@@ -27,7 +27,7 @@ namespace Himall.API
                 VShopInfo vshop = ServiceProvider.Instance<IVShopService>.Create.GetVShopByShopId(shopId);
                 if (vshop == null)
                 {
-                    return Json(new { Success = "false", ErrorMsg = "该店铺未开通微店，请到PC端去领取" });
+                    return Json(new { Success = "false", ErrorMsg = "该诊所未开通微店，请到PC端去领取" });
                 }
                 var userCoupon = coupons.Where(d=>d.Himall_CouponSetting.Any(c=>c.PlatForm== Core.PlatformType.Wap)).ToArray().Select(a => new
                 {
@@ -47,12 +47,12 @@ namespace Himall.API
                     ShopName = a.ShopName,
                     Receive = Receive(a.ShopId, a.Id)
                 });
-                var data = userCoupon.Where(p => p.Receive != 2 && p.Receive != 4);//优惠券已经过期、优惠券已领完，则不显示在店铺优惠券列表中
+                var data = userCoupon.Where(p => p.Receive != 2 && p.Receive != 4);//优惠券已经过期、优惠券已领完，则不显示在诊所优惠券列表中
                 return Json(new { Success = "true", Coupon = data });
             }
             else
 
-                return Json(new { Success = "false", ErrorMsg = "该店铺没有可领优惠券" });
+                return Json(new { Success = "false", ErrorMsg = "该诊所没有可领优惠券" });
         }
 
 

@@ -1,6 +1,6 @@
 ﻿@model Himall.Web.Areas.Mobile.Models.DistributionShopShowModel
 @{
-    ViewBag.Title = "分销店铺编辑管理";
+    ViewBag.Title = "分佣诊所编辑管理";
 }
 
 <script src="~/Content/Public/js/dist/underscore.js"></script>
@@ -8,17 +8,17 @@
     <div class="share-guide"></div>
     <div class="top">
         <h3>@(Model.ShopName)</h3>
-        <p><i></i>认证销售员</p>
+        <p><i></i>认证使用员</p>
         <h4 class="compile">编辑</h4>
     </div>
     <div class="S-section">
         <ul id="databox"></ul>
     </div>
     <div id="autoLoad" class="loading"></div><!--暂时不处理了-->
-    <div class="QCover" ><div class="QC-W"><h5>店铺二维码</h5><img src="@(Model.ShopQCode)" /><span>长按可保存为图片</span></div></div>
+    <div class="QCover" ><div class="QC-W"><h5>诊所二维码</h5><img src="@(Model.ShopQCode)" /><span>长按可保存为图片</span></div></div>
 
     <div class="S-bottom">
-        <span id="code" class="code">二维码</span><span class="code" onclick="window.location.href='/m-Wap/DistributionMarket/Index';">分销首页</span><span class="extend" onclick="ShopShare()">推广店铺</span>
+        <span id="code" class="code">二维码</span><span class="code" onclick="window.location.href='/m-Wap/DistributionMarket/Index';">分佣首页</span><span class="extend" onclick="ShopShare()">推广诊所</span>
     </div>
 </div>
 <script id="gdtmp" type="text/template">

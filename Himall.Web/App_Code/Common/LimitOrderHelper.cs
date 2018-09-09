@@ -31,7 +31,7 @@ namespace Himall.Web.App_Code.Common
         /// </summary>
         public static object _quenelocker = new object();
         /// <summary>
-        /// 限时购销售计数器
+        /// 限时购使用计数器
         /// </summary>
         private const string LIMIT_COUNT_TAG = "limitcount:";
         /// <summary>

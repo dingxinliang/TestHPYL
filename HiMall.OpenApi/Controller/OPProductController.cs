@@ -108,7 +108,7 @@ namespace Himall.OpenApi
         }
 
         /// <summary>
-        /// 修改诊疗项目销售状态 (上架， 下架， 入库)
+        /// 修改诊疗项目使用状态 (上架， 下架， 入库)
         /// </summary>
         [HttpPost]
         public object UpdateProductApproveStatus(UpdateProductApproveStatusParameterModel para)

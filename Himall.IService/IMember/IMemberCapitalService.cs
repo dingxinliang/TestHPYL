@@ -113,20 +113,20 @@ namespace Himall.IServices
         long CreateCode(CapitalDetailInfo.CapitalDetailType type);
 
         /// <summary>
-        /// 添加店铺充值流水
+        /// 添加诊所充值流水
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         long AddChargeDetailShop(ChargeDetailShopInfo model);
 
         /// <summary>
-        /// 修改店铺充值流水
+        /// 修改诊所充值流水
         /// </summary>
         /// <param name="model"></param>
         void UpdateChargeDetailShop(ChargeDetailShopInfo model);
 
         /// <summary>
-        /// 获取店铺充值流水信息
+        /// 获取诊所充值流水信息
         /// </summary>
         /// <param name="Id">流水ID</param>
         /// <returns></returns>

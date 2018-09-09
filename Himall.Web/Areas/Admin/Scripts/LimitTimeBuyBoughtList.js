@@ -13,7 +13,7 @@ $(function () {
         [[
 
             { field: "Id", title: "Id", hidden: true },
-            { field: "ShopName", title: "店铺名称", width: 400, align: "left" },
+            { field: "ShopName", title: "诊所名称", width: 400, align: "left" },
             { field: "StartDate", title: "开始时间", width: 260 },
             { field: "EndDate", title: "结束时间", width: 260, align: "right", }
         ]]

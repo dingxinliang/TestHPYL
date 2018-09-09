@@ -104,7 +104,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             var Newmodel = GetNewmodel(order.Id);
             if (order == null || order.ShopId != CurrentSellerManager.ShopId)
             {
-                throw new HimallException("预约单已被删除，或者不属于该店铺！");
+                throw new HimallException("预约单已被删除，或者不属于该诊所！");
             }
 
 
@@ -332,7 +332,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             query.ShopId = CurrentSellerManager.ShopId;
             var orders = OrderApplication.GetFullOrdersNoPage(query);
 
-            return ExcelView("ExportOrderinfo", "店铺预约单信息", orders);
+            return ExcelView("ExportOrderinfo", "诊所预约单信息", orders);
         }
 
         /// <summary>

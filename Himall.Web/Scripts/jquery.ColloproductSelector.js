@@ -50,7 +50,7 @@
                 {
                     field: "name", title: '诊疗项目', width: 366, align: "left",
                     formatter: function (value, row, index) {
-                        var html = '<img src="' + row.imgUrl + '"/><span class="overflow-ellipsis">' + row.name + '</span>';
+                        var html = '<span class="overflow-ellipsis">' + row.name + '</span>';
                         return html;
                     }
                 },
@@ -122,7 +122,7 @@
                         if (selectedProductIds[i] == product.id) {
                             $.productSelector.selectedProducts[product.id] = product;
                             var li = '<li productId="' + product.id + '">\
-                            <a href="javascript:;" ><img src="' + product.imgUrl + '"/></a>\
+                            <a href="javascript:;" >'+ product.name+'</a>\
                             <i type="del">×</i>\
                              </li>';
                             $("#_productSelector ul").append(li);

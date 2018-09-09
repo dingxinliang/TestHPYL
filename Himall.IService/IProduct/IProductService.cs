@@ -76,7 +76,7 @@ namespace Himall.IServices
 		/// <summary>
 		/// 添加诊疗项目
 		/// </summary>
-		/// <param name="shopId">店铺id</param>
+		/// <param name="shopId">诊所id</param>
 		/// <param name="product">诊疗项目信息</param>
 		/// <param name="pics">需要转移的诊疗项目图片地址</param>
 		/// <param name="skus">skus，至少要有一项</param>
@@ -200,14 +200,14 @@ namespace Himall.IServices
 		string GetSkuString(string skuId);
 
 		/// <summary>
-		/// 获取某店铺下所有诊疗项目数量
+		/// 获取某诊所下所有诊疗项目数量
 		/// </summary>
-		/// <param name="shopId">店铺id</param>
+		/// <param name="shopId">诊所id</param>
 		/// <returns></returns>
 		int GetShopAllProducts(long shopId);
 
 		/// <summary>
-		/// 获取店铺销售中的所有诊疗项目
+		/// 获取诊所使用中的所有诊疗项目
 		/// </summary>
 		/// <param name="shopId"></param>
 		/// <returns></returns>
@@ -219,14 +219,14 @@ namespace Himall.IServices
 		/// 下架诊疗项目
 		/// </summary>
 		/// <param name="id">待下架的诊疗项目id</param>
-		/// <param name="shopId">店铺Id</param>
+		/// <param name="shopId">诊所Id</param>
 		void SaleOff(long id, long shopId);
 
 		/// <summary>
 		/// 下架诊疗项目
 		/// </summary>
 		/// <param name="ids">待下架的诊疗项目id</param>
-		/// <param name="shopId">店铺Id</param>
+		/// <param name="shopId">诊所Id</param>
 		void SaleOff(IEnumerable<long> ids, long shopId);
         /// <summary>
         /// 设置诊疗项目的安全库存
@@ -238,14 +238,14 @@ namespace Himall.IServices
 		/// 上架诊疗项目
 		/// </summary>
 		/// <param name="id">诊疗项目id</param>
-		/// <param name="shopId">店铺id</param>
+		/// <param name="shopId">诊所id</param>
 		void OnSale(long id, long shopId);
 
 		/// <summary>
 		/// 上架诊疗项目
 		/// </summary>
 		/// <param name="ids">诊疗项目id</param>
-		/// <param name="shopId">店铺id</param>
+		/// <param name="shopId">诊所id</param>
 		void OnSale(IEnumerable<long> ids, long shopId);
 
         /// <summary>
@@ -285,15 +285,15 @@ namespace Himall.IServices
 		ObsoletePageModel<ProductInfo, SearchProductModel> SearchProductAndOtherModel(ProductSearch search);
 		#endregion
 
-		#region 获取店铺热销的前N件诊疗项目
+		#region 获取诊所热销的前N件诊疗项目
 		IQueryable<ProductInfo> GetHotSaleProduct(long shopId, int count = 5);
 		#endregion
 
-		#region 获取店铺最新上架的前N件诊疗项目
+		#region 获取诊所最新上架的前N件诊疗项目
 		IQueryable<ProductInfo> GetNewSaleProduct(long shopId, int count = 5);
 		#endregion
 
-		#region 获取店铺最受关注的前N件诊疗项目
+		#region 获取诊所最受关注的前N件诊疗项目
 		IQueryable<ProductInfo> GetHotConcernedProduct(long shopId, int count = 5);
 		#endregion
 
@@ -364,18 +364,18 @@ namespace Himall.IServices
 		IQueryable<ProductInfo> GetPlatHotSaleProduct(int count = 3);
 		#endregion
 
-		#region 获取诊疗项目的销售情况
+		#region 获取诊疗项目的使用情况
 
 		ProductVistiInfo GetProductVistInfo(long pId, ICollection<ProductVistiInfo> pInfo = null);
 
 		#endregion
 
-		#region 更新诊疗项目销售数量
+		#region 更新诊疗项目使用数量
 		/// <summary>
-		/// 更新诊疗项目销售数量
+		/// 更新诊疗项目使用数量
 		/// </summary>
 		/// <param name="skuId">skuid</param>
-		/// <param name="addSalesCount">添加的销售数量</param>
+		/// <param name="addSalesCount">添加的使用数量</param>
 		void UpdateSalesCount(string skuId, int addSalesCount);
 		#endregion
 
@@ -394,7 +394,7 @@ namespace Himall.IServices
 
 		#endregion
 
-		#region 获取最近一次交易的卖家的推荐诊疗项目
+		#region 获取最近一次交易的诊所的推荐诊疗项目
 		IQueryable<ProductInfo> GetPlatHotSaleProductByNearShop(int count, long userId, bool isRecommend = false);
 		#endregion
 

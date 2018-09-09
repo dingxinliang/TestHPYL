@@ -64,7 +64,7 @@ namespace Himall.Web.Framework
 
 			base.OnAuthorization(filterContext);
 
-			//检查登录状态    //检查授权情况    //跳转到第几部//检查当前诊所注册情况 //检查店铺是否过期
+			//检查登录状态    //检查授权情况    //跳转到第几部//检查当前诊所注册情况 //检查诊所是否过期
 			if(CheckLoginStatus(filterContext) && CheckAuthorization(filterContext) && CheckRegisterInfo(filterContext) && CheckShopIsExpired(filterContext))
 				return;
 		}
@@ -171,8 +171,8 @@ namespace Himall.Web.Framework
 				{
 					ViewName = "IsExpired"
 				};
-				result.TempData.Add("Message", "你的店铺已过期;");
-				result.TempData.Add("Title", "你的店铺已过期！");
+				result.TempData.Add("Message", "你的诊所已过期;");
+				result.TempData.Add("Title", "你的诊所已过期！");
 				filterContext.Result = result;
 				flag = false;
 			}
@@ -182,8 +182,8 @@ namespace Himall.Web.Framework
 				{
 					ViewName = "IsFreeze"
 				};
-				result.TempData.Add("Message", "抱歉，你的店铺已冻结，请与平台管理员联系…");
-				result.TempData.Add("Title", "你的店铺已冻结！");
+				result.TempData.Add("Message", "抱歉，你的诊所已冻结，请与平台管理员联系…");
+				result.TempData.Add("Title", "你的诊所已冻结！");
 				filterContext.Result = result;
 				flag = false;
 			}

@@ -12,13 +12,13 @@ namespace Himall.IServices
 	public interface IBillingService : IService
 	{
 		/// <summary>
-		/// 店铺帐户（在入驻成功后建立一个帐户）
+		/// 诊所帐户（在入驻成功后建立一个帐户）
 		/// </summary>
 		/// <param name="shpAccount"></param>
 		void AddShopAccount(ShopAccountInfo model);
 
 		/// <summary>
-		/// 更新店铺资金信息（结算时，退款时，充值时）
+		/// 更新诊所资金信息（结算时，退款时，充值时）
 		/// </summary>
 		/// <param name="shopAccount"></param>
 		void UpdateShopAccount(ShopAccountInfo model);
@@ -35,7 +35,7 @@ namespace Himall.IServices
 		/// </summary>
 		/// <param name="start">开始时间</param>
 		/// <param name="end">结束时间</param>
-		/// <param name="shopId">店铺ID</param>
+		/// <param name="shopId">诊所ID</param>
 		/// <returns></returns>
 		LineChartDataModel<decimal> GetTradeChart(DateTime start, DateTime end, long? shopId);
 		LineChartDataModel<decimal> GetTradeChartMonth(DateTime start, DateTime end, long? shopId);
@@ -55,7 +55,7 @@ namespace Himall.IServices
 		decimal GetPlatCommission(long? shopId = null, long? accountId = null);
 
 		/// <summary>
-		/// 分销佣金合计
+		/// 分佣佣金合计
 		/// </summary>
 		/// <param name="shopId"></param>
 		/// <param name="accountId"></param>
@@ -85,7 +85,7 @@ namespace Himall.IServices
 
 
 		/// <summary>
-		/// 根据店铺ID获取店铺帐户信息
+		/// 根据诊所ID获取诊所帐户信息
 		/// </summary>
 		/// <param name="shopId"></param>
 		/// <returns></returns>
@@ -93,20 +93,20 @@ namespace Himall.IServices
 
 
 		/// <summary>
-		/// 店铺流水
+		/// 诊所流水
 		/// </summary>
 		/// <param name="item"></param>
 		void AddShopAccountItem(ShopAccountItemInfo model);
 
 		/// <summary>
-		/// 分页获取店铺流水
+		/// 分页获取诊所流水
 		/// </summary>
 		/// <param name="query"></param>
 		/// <returns></returns>
 		QueryPageModel<ShopAccountItemInfo> GetShopAccountItem(ShopAccountItemQuery query);
 
 		/// <summary>
-		/// 获取店铺流水
+		/// 获取诊所流水
 		/// </summary>
 		/// <param name="query"></param>
 		/// <returns></returns>
@@ -144,13 +144,13 @@ namespace Himall.IServices
 
 
 		/// <summary>
-		/// 店铺提现申请
+		/// 诊所提现申请
 		/// </summary>
 		/// <param name="item"></param>
 		void AddShopWithDrawInfo(ShopWithDrawInfo info);
 
 		/// <summary>
-		/// 获取店铺提现详情
+		/// 获取诊所提现详情
 		/// </summary>
 		/// <param name="Id"></param>
 		/// <returns></returns>
@@ -164,14 +164,14 @@ namespace Himall.IServices
 
 
 		/// <summary>
-		/// 分页获取店铺提现记录
+		/// 分页获取诊所提现记录
 		/// </summary>
 		/// <param name="query"></param>
 		/// <returns></returns>
 		QueryPageModel<ShopWithDrawInfo> GetShopWithDraw(WithdrawQuery query);
 
 		/// <summary>
-		/// 获取店铺提现记录
+		/// 获取诊所提现记录
 		/// </summary>
 		/// <param name="query"></param>
 		/// <returns></returns>
@@ -241,7 +241,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 获取店铺上次结算金额
+        /// 获取诊所上次结算金额
         /// </summary>
         decimal GetLastSettlementByShopId(long shopId);
 
@@ -255,7 +255,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 获取某个店铺某个结算周期的结算总金额
+        /// 获取某个诊所某个结算周期的结算总金额
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="accountId"></param>
@@ -266,7 +266,7 @@ namespace Himall.IServices
         /// <summary>
         /// 处理余额私有方法
         /// </summary>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <param name="money">金额</param>
         /// <param name="TradeType">类别</param>
         /// <param name="AccountNo">交易流水号</param>

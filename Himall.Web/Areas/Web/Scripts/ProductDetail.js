@@ -149,7 +149,7 @@
         });
     });
 
-    //自营店产品详情跟普通店铺不一样显示
+    //自营店产品详情跟普通诊所不一样显示
     changeShowView(gid);
 
 });
@@ -408,8 +408,8 @@ function showEasyBuyBt(isshow, isComple) {
 
 function loadShopInfo(gid) {
     /* 计算规则：
-高 （店铺得分-同行业平均分）/（同行业诊所最高得分-同行业平均分）
-低 （同行业平均分-店铺得分）/（同行业平均分-同行业诊所最高低分）
+高 （诊所得分-同行业平均分）/（同行业诊所最高得分-同行业平均分）
+低 （同行业平均分-诊所得分）/（同行业平均分-同行业诊所最高低分）
 */
 
     var upImage = "up";
@@ -560,7 +560,7 @@ function loadShopInfo(gid) {
 					shopinfo +
 					'</dl>';
                 if (data.cashDeposits > 0) {
-                    html += '<dl class="pop-money"><dt>资质：</dt><dd><span title="该卖家已缴纳保证金' + data.cashDeposits + '元">' + data.cashDeposits + '元</span></dd></dl>'
+                    html += '<dl class="pop-money"><dt>资质：</dt><dd><span title="该诊所已缴纳保证金' + data.cashDeposits + '元">' + data.cashDeposits + '元</span></dd></dl>'
                 }
                 html += '<div id="evaluate-detail">' +
                 '<div class="mc">' +
@@ -612,8 +612,8 @@ function loadShopInfo(gid) {
                 else
                     html += '<div id="enter-shop">';
 
-                html += '<a target="_blank" href="/Shop/Home/' + data.id + '">进入店铺</a>' +
-                '<a href="javascript:addFavorite(' + data.id + ')">收藏店铺</a>' +
+                html += '<a target="_blank" href="/Shop/Home/' + data.id + '">进入诊所</a>' +
+                '<a href="javascript:addFavorite(' + data.id + ')">收藏诊所</a>' +
                 '</div>';
             }
             $("#brand-bar-pop").show().append(html);
@@ -1038,7 +1038,7 @@ function loadSkus(data) {
 
 function loadGetEnableBuyInfo(gid) {
     if ($('#IsExpiredShop').val()) {
-        $('#summary-price').html('<div class="dd"><strong style="font-size:25px;color:red;">提示：该诊疗项目所在店铺已过期！</strong></div>');
+        $('#summary-price').html('<div class="dd"><strong style="font-size:25px;color:red;">提示：该诊疗项目所在诊所已过期！</strong></div>');
         $('#choose-btn-buy').hide();
         $("#choose-btn-append").addClass("disabled");
     } else {
@@ -1332,7 +1332,7 @@ function addFavorite(shopId) {
         $.post('/Product/AddFavorite', { shopId: shopId }, function (result) {
             loading.close();
             if (result.success)
-                $.dialog.succeedTips('收藏店铺成功', function () { callBack && callBack(); });
+                $.dialog.succeedTips('收藏诊所成功', function () { callBack && callBack(); });
             else
                 $.dialog.tips(result.msg, function () { callBack && callBack(); });
 

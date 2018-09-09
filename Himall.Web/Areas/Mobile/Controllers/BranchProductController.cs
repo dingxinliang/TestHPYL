@@ -1246,7 +1246,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 BaseController.Result result6 = new BaseController.Result
                 {
                     success = true,
-                    msg = "你已经是销售员了！"
+                    msg = "你已经是使用员了！"
                 };
                 return base.Json(result6);
             }

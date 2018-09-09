@@ -8,11 +8,11 @@
 <div class="container Sclear-N1">
     <ul class="nav nav-tabs-custom clearfix">
 
-        <li><a href="@Url.Action("Manage")">分销诊疗项目设置</a></li>
+        <li><a href="@Url.Action("Manage")">分佣诊疗项目设置</a></li>
         <li class="active"><a>默认佣金比例设置</a></li>
-        <li><a href="@Url.Action("AdvPageSet")">聚合页推广设置</a></li>
+        <li  style="display:none"><a href="@Url.Action("AdvPageSet")">聚合页推广设置</a></li>
     </ul>
-    <h5 class="tips-top"><span class="help-default"><i></i>  说明：诊疗项目添加到分销列表后若不单独设置，则使用默认分佣比例</span></h5>
+    <h5 class="tips-top"><span class="help-default"><i></i>  说明：诊疗项目添加到分佣列表后若不单独设置，则使用默认分佣比例</span></h5>
 
     <div class="form-horizontal">
         @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "post", OnBegin = "beginpost", OnSuccess = "successpost" }))

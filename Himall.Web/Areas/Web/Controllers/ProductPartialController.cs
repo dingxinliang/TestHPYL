@@ -117,7 +117,7 @@ namespace Himall.Web.Areas.Web.Controllers
         public ActionResult ShopHeader(long id)
         {
             InitHeaderData();
-            #region 获取店铺的评价统计
+            #region 获取诊所的评价统计
             var shopStatisticOrderComments = ServiceHelper.Create<IShopService>().GetShopStatisticOrderComments(id);
 
             var productAndDescription = shopStatisticOrderComments.Where(c => c.CommentKey == StatisticOrderCommentsInfo.EnumCommentKey.ProductAndDescription).FirstOrDefault();
@@ -155,7 +155,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 ViewBag.ProductAndDescriptionMin = defaultValue;
                 ViewBag.ProductAndDescriptionMax = defaultValue;
             }
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null)
             {
                 ViewBag.SellerServiceAttitude = sellerServiceAttitude.CommentValue;
@@ -170,7 +170,7 @@ namespace Himall.Web.Areas.Web.Controllers
                 ViewBag.SellerServiceAttitudeMax = defaultValue;
                 ViewBag.SellerServiceAttitudeMin = defaultValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null)
             {
                 ViewBag.SellerDeliverySpeed = sellerDeliverySpeed.CommentValue;

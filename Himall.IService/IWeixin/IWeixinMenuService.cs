@@ -50,7 +50,7 @@ namespace Himall.IServices
         /// <summary>
         /// 菜单同步至微信
         /// </summary>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         void ConsistentToWeixin(long shopId);
         /// <summary>
         /// 读取底部菜单

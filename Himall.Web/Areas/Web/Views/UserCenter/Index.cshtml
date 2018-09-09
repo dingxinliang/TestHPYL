@@ -86,7 +86,7 @@
             </div>
             @{var showFollowShops = Model.userCenterModel.FollowShopsCount > 0 ? "" : "empty-show";}
             <div class="home-box ms-myfavShop @showFollowShops">
-                <h3><a href="/shopConcern">收藏的店铺</a><a href="/shopConcern/Index" class="more">更多>></a></h3>
+                <h3><a href="/shopConcern">收藏的诊所</a><a href="/shopConcern/Index" class="more">更多>></a></h3>
                 <ul>
                     @foreach (var shop in Model.userCenterModel.FollowShops)
                     {

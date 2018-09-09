@@ -43,7 +43,7 @@ $(function () {
                 { field: "BeginDate", title: "开始时间", width: 150, align: "center" },
                 { field: "EndDate", title: "结束时间", width: 150, align: "center" },
         { field: "LimitCountOfThePeople", title: "限购数", width: 60, align: "center" },
-                { field: "SaleCount", title: "销售数", width: 60, align: "center" },
+                { field: "SaleCount", title: "使用数", width: 60, align: "center" },
                {
                    field: "StatusStr", title: "状态", width: 80, align: "center",
                    formatter: function (value, row, index) {

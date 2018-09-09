@@ -3,7 +3,7 @@
 <script src="~/Areas/Admin/Scripts/PromoterSetting.js"></script>
 <div class="container">
     <ul class="nav nav-tabs-custom clearfix">
-        <li><a href="@Url.Action("Management")">销售员列表</a></li>
+        <li><a href="@Url.Action("Management")">使用员列表</a></li>
         <li><a href="@Url.Action("Planning")">招募计划设置</a></li>
         <li class="active"><a>招募审核开关</a></li>
     </ul>
@@ -19,16 +19,16 @@
 
                     @Html.RadioButtonFor(model => model.Enable, true)开启
                     @Html.RadioButtonFor(model => model.Enable, false)关闭
-                    (开启后会员成为销售员需要通过平台的审核)
+                    (开启后会员成为使用员需要通过平台的审核)
                 </div>
             </div>
-            <h3 class="table-hd">销售员认证资料</h3>
+            <h3 class="table-hd">使用员认证资料</h3>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="">是否需要手机验证：</label>
                 <div class="col-sm-8 form-control-static">
                     @Html.RadioButtonFor(model => model.MustMobile, true)开启
                     @Html.RadioButtonFor(model => model.MustMobile, false)关闭
-                    (销售员在完善资料前是否需要验证手机，开启前请确保短信服务可用)
+                    (使用员在完善资料前是否需要验证手机，开启前请确保短信服务可用)
                 </div>
             </div>
             <div class="form-group">

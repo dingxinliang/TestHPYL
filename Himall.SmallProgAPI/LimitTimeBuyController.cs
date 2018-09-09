@@ -269,7 +269,7 @@ namespace Himall.SmallProgAPI
             }
             #endregion
 
-            #region 店铺
+            #region 诊所
             shop = ServiceProvider.Instance<IShopService>.Create.GetShop(product.ShopId);
             var mark = ShopServiceMark.GetShopComprehensiveMark(shop.Id);
             model.Shop.PackMark = mark.PackMark;
@@ -313,7 +313,7 @@ namespace Himall.SmallProgAPI
             {
                 model.Shop.ProductAndDescription = defaultValue;
             }
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null)
             {
                 model.Shop.SellerServiceAttitude = sellerServiceAttitude.CommentValue;
@@ -322,7 +322,7 @@ namespace Himall.SmallProgAPI
             {
                 model.Shop.SellerServiceAttitude = defaultValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null)
             {
                 model.Shop.SellerDeliverySpeed = sellerDeliverySpeed.CommentValue;
@@ -365,7 +365,7 @@ namespace Himall.SmallProgAPI
                             UseWithPanicBuying = false,
                             UseWithFireGroup = false,
                             LimitText = item.CouponName,
-                            CanUseProduct = "店铺通用",
+                            CanUseProduct = "诊所通用",
                             StartTimeText = item.StartTime.ToString("yyyy.MM.dd"),
                             ClosingTimeText = item.EndTime.ToString("yyyy.MM.dd")
                         };
@@ -413,7 +413,7 @@ namespace Himall.SmallProgAPI
             #endregion
 
             //LogProduct(market.ProductId);
-            //统计诊疗项目浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、诊所浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
 
             TimeSpan end = new TimeSpan(DateTime.Parse(market.EndDate).Ticks);

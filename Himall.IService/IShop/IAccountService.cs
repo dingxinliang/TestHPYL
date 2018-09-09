@@ -45,7 +45,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 取分销佣金
+        /// 取分佣佣金
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>

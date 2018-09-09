@@ -26,7 +26,7 @@ $(function () {
         /*页面操作相关  start*/
         savePage: "/Admin/TemplateVisualizationAjax/Hi_Ajax_SaveTemplate",//保存模板
         pageRecover: "/Admin/TemplateVisualizationAjax/Hi_Ajax_RenameFolder",//还原模板
-        getPage: "/Admin/TemplateVisualizationAjax/Hi_Ajax_GetTemplateByID",//获取模板（用户店铺） 
+        getPage: "/Admin/TemplateVisualizationAjax/Hi_Ajax_GetTemplateByID",//获取模板（用户诊所） 
         /*页面操作相关  end*/
         Coupons: "/Admin/TemplateVisualizationAjax/Hi_Ajax_Coupons",//优惠劵
         Topic: "/Admin/TemplateVisualizationAjax/Hi_Ajax_Topic",//专题

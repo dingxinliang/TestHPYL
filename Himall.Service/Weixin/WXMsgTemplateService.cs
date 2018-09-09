@@ -633,7 +633,7 @@ namespace Himall.Service
                         break;
                     #endregion
                     case Core.Plugins.Message.MessageTypeEnum.ShopHaveNewOrder:
-                        #region 店铺有新预约单(卖家)
+                        #region 诊所有新预约单(诊所)
                         var _shnomsgdata = new WX_MsgTemplateKey5DataModel();
                         _shnomsgdata.first.value = data.first.value;
                         _shnomsgdata.first.color = data.first.color;

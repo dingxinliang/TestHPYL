@@ -19,7 +19,7 @@ namespace Himall.Service
 
         #region 方法
         /// <summary>
-        /// 店铺帐户（在入驻成功后建立一个帐户）
+        /// 诊所帐户（在入驻成功后建立一个帐户）
         /// </summary>
         /// <param name="model"></param>
         public void AddShopAccount(ShopAccountInfo model)
@@ -32,7 +32,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 更新店铺资金信息（结算时，退款时，充值时）
+        /// 更新诊所资金信息（结算时，退款时，充值时）
         /// </summary>
         /// <param name="model"></param>
         public void UpdateShopAccount(ShopAccountInfo model)
@@ -43,7 +43,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 根据店铺ID获取店铺帐户信息
+        /// 根据诊所ID获取诊所帐户信息
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 店铺流水
+        /// 诊所流水
         /// </summary>
         /// <param name="item"></param>
         public void AddShopAccountItem(ShopAccountItemInfo model)
@@ -67,7 +67,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 分页获取店铺流水
+        /// 分页获取诊所流水
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -80,7 +80,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取店铺流水
+        /// 获取诊所流水
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -116,7 +116,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 店铺提现申请
+        /// 诊所提现申请
         /// </summary>
         /// <param name="item"></param>
         public void AddShopWithDrawInfo(ShopWithDrawInfo info)
@@ -126,7 +126,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取店铺提现详情
+        /// 获取诊所提现详情
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -168,12 +168,12 @@ namespace Himall.Service
                 if (m.Count > 0)
                 {
                     chartItem.Data[i] = m.Sum(a => a.Amount);
-                    arrEx[i] = date + "的销售额为:" + chartItem.Data[i];
+                    arrEx[i] = date + "的使用额为:" + chartItem.Data[i];
                 }
                 else
                 {
                     chartItem.Data[i] = 0;
-                    arrEx[i] = date + "的销售额为:" + chartItem.Data[i];
+                    arrEx[i] = date + "的使用额为:" + chartItem.Data[i];
                 }
             }
             chart.ExpandProp = arrEx;
@@ -236,7 +236,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 分页获取店铺提现记录
+        /// 分页获取诊所提现记录
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -250,7 +250,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取店铺提现记录
+        /// 获取诊所提现记录
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -422,7 +422,7 @@ namespace Himall.Service
         /// <summary>
         /// 处理余额私有方法
         /// </summary>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <param name="money">金额</param>
         /// <param name="TradeType">类别</param>
         /// <param name="AccountNo">交易流水号</param>
@@ -491,7 +491,7 @@ namespace Himall.Service
         /// <summary>
         /// 获取平台佣金总额
         /// </summary>
-        /// <param name="shopId">店铺ID选填</param>
+        /// <param name="shopId">诊所ID选填</param>
         /// <returns></returns>
         public decimal GetPlatCommission(long? shopId = null, long? accountId = null)
         {
@@ -506,9 +506,9 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取分销佣金总额
+        /// 获取分佣佣金总额
         /// </summary>
-        /// <param name="shopId">店铺ID选填</param>
+        /// <param name="shopId">诊所ID选填</param>
         /// <returns></returns>
 
         public decimal GetDistributorCommission(long? shopId = null, long? accountId = null)
@@ -763,7 +763,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取某个店铺某个结算周期的结算总金额
+        /// 获取某个诊所某个结算周期的结算总金额
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="accountId"></param>
@@ -815,7 +815,7 @@ namespace Himall.Service
 
 
         /// <summary>
-        /// 获取某个店铺某个结算周期的结算总金额
+        /// 获取某个诊所某个结算周期的结算总金额
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="accountId"></param>
@@ -834,7 +834,7 @@ namespace Himall.Service
             }
         }
         /// <summary>
-        /// 获取某个店铺某个结算周期的结算总金额
+        /// 获取某个诊所某个结算周期的结算总金额
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="accountId"></param>

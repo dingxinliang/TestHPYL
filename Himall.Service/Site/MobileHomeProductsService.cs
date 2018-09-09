@@ -14,7 +14,7 @@ namespace Himall.Service
         public void AddProductsToHomePage(long shopId, PlatformType platformType, IEnumerable<long> productIds)
         {
             var productService = ServiceProvider.Instance<IProductService>.Create;
-            var existHomepageProductIds = Context.MobileHomeProductsInfo.Where(item => item.ShopId == shopId && item.PlatFormType == platformType).Select(item => item.ProductId);//获取当前店铺已添加的首页诊疗项目Id
+            var existHomepageProductIds = Context.MobileHomeProductsInfo.Where(item => item.ShopId == shopId && item.PlatFormType == platformType).Select(item => item.ProductId);//获取当前诊所已添加的首页诊疗项目Id
             var notExistProductIds = productIds.Where(item => !existHomepageProductIds.Contains(item));//从待添加的诊疗项目中去除已添加的诊疗项目
 
             foreach (var productId in notExistProductIds)
@@ -22,8 +22,8 @@ namespace Himall.Service
                 var product = productService.GetProduct(productId);
                 if (!product.IsDeleted)
                 {
-                    if (shopId != 0 && product.ShopId != shopId)//店铺添加首页诊疗项目时，判断该诊疗项目是否为该店铺的诊疗项目
-                        throw new Himall.Core.HimallException("待添加至首页的诊疗项目不得包含非本店铺诊疗项目");
+                    if (shopId != 0 && product.ShopId != shopId)//诊所添加首页诊疗项目时，判断该诊疗项目是否为该诊所的诊疗项目
+                        throw new Himall.Core.HimallException("待添加至首页的诊疗项目不得包含非本诊所诊疗项目");
 
                     var mobileHomepageProduct = new MobileHomeProductsInfo()
                     {

@@ -637,7 +637,7 @@ function onSale(ids) {
 
 function initBatchBtnShow() {
     var type = $('.nav-tabs-custom li.active').attr('type');
-    if (type == 'onSale') {//当前为销售中tab
+    if (type == 'onSale') {//当前为使用中tab
         $('#batchSaleOff')
             .show()
             .unbind('click')

@@ -14,6 +14,8 @@ using System.Web.Mvc;
 using Himall.Web.App_Code.Common;
 using Himall.Application;
 using Himall.DTO;
+using Himall.IServices.IDXL;
+using static Himall.Model.OrderInfo;
 
 namespace Himall.Web.Areas.Admin.Controllers
 {
@@ -23,13 +25,15 @@ namespace Himall.Web.Areas.Admin.Controllers
         private IExpressService _iExpressService;
         private IPaymentConfigService _iPaymentConfigService;
         private IFightGroupService _iFightGroupService;
+        private INOrderService _NOrderService;
         public OrderController(IOrderService iOrderService, IExpressService iExpressService, IPaymentConfigService iPaymentConfigService
-            , IFightGroupService iFightGroupService)
+            , IFightGroupService iFightGroupService, INOrderService nNOrderService)
         {
             _iOrderService = iOrderService;
             _iExpressService = iExpressService;
             _iPaymentConfigService = iPaymentConfigService;
             _iFightGroupService = iFightGroupService;
+            _NOrderService = nNOrderService;
         }
 
         public ActionResult Management()
@@ -42,6 +46,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         public ActionResult Detail(long id)
         {
             OrderInfo order = _iOrderService.GetOrder(id);
+            var Newmodel = GetNewmodel(order.Id);
             if (order == null)
             {
                 throw new HimallException("错误的预约单信息");
@@ -57,6 +62,10 @@ namespace Himall.Web.Areas.Admin.Controllers
             //    var branch = ShopBranchApplication.GetShopBranchById(order.ShopBranchId.Value);
             //    ViewBag.ShopBranchContactUser = branch.UserName;
             //}
+            order.ReceiveDate = Newmodel[0].ReceiveDate.ToString("yyyy-MM-dd");
+            order.ReceiveStartTime = Newmodel[0].ReceiveStartTime;
+            order.ReceiveEndTime = Newmodel[0].ReceiveEndTime;
+            order.doctorName = Newmodel[0].doctorName;
             ViewBag.Coupon = 0;
             //var coupon = ServiceHelper.Create<ICouponService>().GetCouponRecordInfo( order.UserId , order.Id );
             //if( coupon != null )
@@ -95,7 +104,7 @@ namespace Himall.Web.Areas.Admin.Controllers
             IEnumerable<OrderModel> orderModels = models.Select(item =>
             {
                 var shop = shops.FirstOrDefault(sp => sp.Id == item.ShopId);
-
+                var Newmodel = GetNewmodel(item.Id);
                 return new OrderModel()
                 {
                     OrderId = item.Id,
@@ -107,6 +116,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                     ShopBranchName = item.DeliveryType == CommonModel.Enum.DeliveryType.SelfTake && item.ShopBranchId.HasValue && item.ShopBranchId.Value != 0 ? shopBranchs.FirstOrDefault(sb => sb.Id == item.ShopBranchId.Value).ShopBranchName : "",
                     UserId = item.UserId,
                     UserName = item.UserName,
+                    ShipTo = item.ShipTo,
                     TotalPrice = item.OrderTotalAmount,
                     PaymentTypeName = item.PaymentTypeName,
                     PlatForm = (int)item.Platform,
@@ -125,10 +135,26 @@ namespace Himall.Web.Areas.Admin.Controllers
                     SellerRemark = item.SellerRemark,
                     UserRemark = item.UserRemark,
                     OrderItems = item.OrderItems,
-                    SellerRemarkFlag = item.SellerRemarkFlag
+                    SellerRemarkFlag = item.SellerRemarkFlag,
+                    YYDate = Newmodel[0].ReceiveDate.ToString("yyyy-MM-dd"),
+                    ReceiveDate = Newmodel[0].ReceiveDate,
+                    ReceiveStartTime = Newmodel[0].ReceiveStartTime,
+                    ReceiveEndTime = Newmodel[0].ReceiveEndTime,
+                    doctorName = Newmodel[0].doctorName,
+                    SellerAddress = item.SellerAddress,
                 };
             });
-
+            //开始结束时间
+            if (query.StartDate.HasValue)
+            {
+                DateTime sdt = query.StartDate.Value;
+                orderModels = orderModels.Where(d => d.ReceiveDate >= sdt);
+            }
+            if (query.EndDate.HasValue)
+            {
+                DateTime edt = query.EndDate.Value.AddDays(1);
+                orderModels = orderModels.Where(d => d.ReceiveDate < edt);
+            }
             DataGridModel<OrderModel> dataGrid = new DataGridModel<OrderModel>()
             {
                 rows = orderModels,
@@ -136,7 +162,16 @@ namespace Himall.Web.Areas.Admin.Controllers
             };
             return Json(dataGrid);
         }
-
+        /// <summary>
+        /// 获取新模型
+        /// </summary>
+        /// <param name="OrderId"></param>
+        /// <returns></returns>
+        public List<NewOrdermodel> GetNewmodel(long OrderId)
+        {
+            var data = _NOrderService.GetNewmodel(OrderId);
+            return data;
+        }
         public ActionResult ExportToExcel(OrderQuery query)
         {
             var orders = OrderApplication.GetFullOrdersNoPage(query);

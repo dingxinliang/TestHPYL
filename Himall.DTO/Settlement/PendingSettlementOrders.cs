@@ -33,7 +33,7 @@ namespace Himall.DTO
         }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { set; get; }
 
@@ -54,7 +54,7 @@ namespace Himall.DTO
         public decimal PlatCommission { set; get; }
 
         /// <summary>
-        /// 分销佣金
+        /// 分佣佣金
         /// </summary>
         public decimal DistributorCommission { set; get; }
 
@@ -66,7 +66,7 @@ namespace Himall.DTO
 
 
         /// <summary>
-        /// 分销佣金退款
+        /// 分佣佣金退款
         /// </summary>
         public decimal DistributorCommissionReturn { set; get; }
 

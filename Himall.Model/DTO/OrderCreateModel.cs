@@ -98,7 +98,7 @@ namespace Himall.Model
         public decimal IntegralTotal { set; get; }
 
         /// <summary>
-        /// 分销是否开启了
+        /// 分佣是否开启了
         /// </summary>
         public bool IsEnableDistribution { set; get; }
     }

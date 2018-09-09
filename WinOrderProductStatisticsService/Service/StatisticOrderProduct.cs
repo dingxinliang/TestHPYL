@@ -118,7 +118,7 @@ namespace WinOrderProductStatisticsService
                 {
                     productVisit = new ProductVistiInfo();
                     productVisitRange.Add(productVisit);
-                    //销售量、销售金额在预约单逻辑里有实时处理，如果没有记录则进行统计
+                    //使用量、使用金额在预约单逻辑里有实时处理，如果没有记录则进行统计
                     productVisit.SaleCounts = g.Sum(e => e.OrderProductQuantity);
                     productVisit.SaleAmounts = g.Sum(e => e.TotalAmount);
                 }

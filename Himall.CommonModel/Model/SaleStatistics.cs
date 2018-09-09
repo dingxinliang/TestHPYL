@@ -8,12 +8,12 @@ namespace Himall.CommonModel
 {
 
     /// <summary>
-    /// 销售指标汇总
+    /// 使用指标汇总
     /// </summary>
     public class SaleStatistics
     {
         /// <summary>
-        /// 销售件数
+        /// 使用件数
         /// </summary>
         public int SaleCount { get; set; }
         /// <summary>
@@ -23,7 +23,7 @@ namespace Himall.CommonModel
 
         private decimal _SalesVolume = 0;
         /// <summary>
-        /// 销售额
+        /// 使用额
         /// </summary>
         public decimal SalesVolume { get { return Math.Round(_SalesVolume, 2); } set { _SalesVolume = value; } }
 

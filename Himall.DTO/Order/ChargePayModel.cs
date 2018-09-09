@@ -67,7 +67,7 @@ namespace Himall.DTO
         public string Msg { get; set; }
 
         /// <summary>
-        /// 是否有非销售中的诊疗项目
+        /// 是否有非使用中的诊疗项目
         /// </summary>
         public bool HaveNoSalePro { get; set;}
 

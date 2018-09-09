@@ -78,7 +78,7 @@ namespace Himall.Model.WeiXin
             DataList.Add(_tmp);
             #endregion
 
-            #region 店铺有新预约单
+            #region 诊所有新预约单
             _tmp = new WX_MsgTemplateLinkData();
             _tmp.MsgType = MessageTypeEnum.ShopHaveNewOrder;
             _tmp.MsgTemplateShortId = "OPENTM200750297";

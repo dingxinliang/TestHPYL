@@ -6,7 +6,7 @@
         <li class="active"><a>结算金额明细</a></li>
     </ul>
     <div class="tips-top-single mt20">
-        <span class="tips-top-single-icon">结算金额 = 诊疗项目实付 + 运费 - 平台佣金 - 分销佣金 - 退款金额 + 平台佣金退还 + 分销佣金退还</span>
+        <span class="tips-top-single-icon">结算金额 = 诊疗项目实付 + 运费 - 平台佣金 - 分佣佣金 - 退款金额 + 平台佣金退还 + 分佣佣金退还</span>
     </div>
     <table id="list" class="table table-bordered">
         <thead>
@@ -38,7 +38,7 @@
             </tr>
             <tr>
                 <td>@Model.OrderPayTime</td>
-                <td>分销佣金</td>
+                <td>分佣佣金</td>
                 <td>@Model.DistributorCommission</td>
                 <td></td>
             </tr>
@@ -61,7 +61,7 @@
             @if (!string.IsNullOrEmpty(Model.OrderRefundTime)) {
                 <tr>
                     <td>@Model.OrderRefundTime</td>
-                    <td>分销佣金退还</td>
+                    <td>分佣佣金退还</td>
                     <td></td>
                     <td>@Model.DistributorCommissionReturn</td>
                 </tr>

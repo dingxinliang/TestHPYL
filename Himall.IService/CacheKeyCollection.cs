@@ -59,7 +59,7 @@ namespace Himall.IServices
         public const string UserImportOpCount = "Cache-UserImportOpCount";
 
         /// <summary>
-        /// 店铺关注人数缓存
+        /// 诊所关注人数缓存
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace Himall.IServices
         }
 
         /// <summary>
-        /// 店铺热销的前N件诊疗项目
+        /// 诊所热销的前N件诊疗项目
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -88,7 +88,7 @@ namespace Himall.IServices
         }
 
         /// <summary>
-        /// 移动端店铺首页分页诊疗项目
+        /// 移动端诊所首页分页诊疗项目
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -104,7 +104,7 @@ namespace Himall.IServices
             return string.Format("Cache-MobileHomeTemplate-{0}-{1}", shopid, client);
         }
         /// <summary>
-        /// 店铺最新上架的前N件诊疗项目
+        /// 诊所最新上架的前N件诊疗项目
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -115,7 +115,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 店铺最受关注的前N件诊疗项目
+        /// 诊所最受关注的前N件诊疗项目
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -396,12 +396,12 @@ namespace Himall.IServices
         {
             return string.Format("CART_{0}", userId);
         }
-        //诊疗项目详情获取店铺信息
+        //诊疗项目详情获取诊所信息
         public static string CACHE_SHOPDTO(long id, bool businessCategoryOn)
         {
             return string.Format("CACHE_SHOPDTO_{0}_{1}", id, businessCategoryOn);
         }
-        //诊疗项目详情获取店铺信息
+        //诊疗项目详情获取诊所信息
         public static string CACHE_SHOP(long id, bool businessCategoryOn)
         {
             return string.Format("CACHE_SHOP_{0}_{1}", id, businessCategoryOn);

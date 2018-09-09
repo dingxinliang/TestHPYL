@@ -73,7 +73,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取店铺信息
+        /// 获取诊所信息
         /// </summary>
         /// <param name="id"></param>
         /// <param name="businessCategoryOn"></param>
@@ -115,7 +115,7 @@ namespace Himall.Application
 		}
 
 		/// <summary>
-		/// 获取店铺信息（以分页的形式展示）
+		/// 获取诊所信息（以分页的形式展示）
 		/// </summary>
 		/// <param name="shopQueryModel">ShopQuery对象</param>
 		/// <returns></returns>
@@ -321,11 +321,11 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 诊所入驻店铺信息更新
+        /// 诊所入驻诊所信息更新
         /// </summary>
         /// <param name="model"></param>
         /// <param name="ShopId"></param>
-        /// <returns>0、失败；1、成功；-1、店铺名称已经存在</returns>
+        /// <returns>0、失败；1、成功；-1、诊所名称已经存在</returns>
         public static int UpdateShop(Himall.DTO.ShopProfileStep3 model, long ShopId)
         {
             int result = 0;
@@ -352,7 +352,7 @@ namespace Himall.Application
 
         #endregion
 
-        #region 店铺信息
+        #region 诊所信息
 
         /// <summary>
         /// 商店信息更新
@@ -389,7 +389,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 判断店铺名名称是否存在
+        /// 判断诊所名名称是否存在
         /// </summary>
         /// <param name="shopName">公司名字</param>
         /// <param name="shopId"></param>
@@ -399,7 +399,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取店铺等级列表
+        /// 获取诊所等级列表
         /// </summary>
         /// <returns></returns>
         public static List<Himall.DTO.ShopGrade> GetShopGrades()
@@ -415,7 +415,7 @@ namespace Himall.Application
         }
 
 		/// <summary>
-		/// 获取店铺账户信息
+		/// 获取诊所账户信息
 		/// </summary>
 		/// <param name="ids"></param>
 		/// <returns></returns>
@@ -425,7 +425,7 @@ namespace Himall.Application
 		}
 
         /// <summary>
-        /// 获取店铺经营项目
+        /// 获取诊所经营项目
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -468,7 +468,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 修改店铺银行帐户
+        /// 修改诊所银行帐户
         /// </summary>
         /// <param name="bankAccount"></param>
         public static void UpdateBankAccount(Himall.DTO.BankAccount bankAccount)
@@ -485,7 +485,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 修改店铺微信帐户
+        /// 修改诊所微信帐户
         /// </summary>
         /// <param name="weChatAccount"></param>
         public static void UpdateWeChatAccount(Himall.DTO.WeChatAccount weChatAccount)
@@ -507,9 +507,9 @@ namespace Himall.Application
 
         #region 管理员认证
         /// <summary>
-        /// 获取店铺认证情况
+        /// 获取诊所认证情况
         /// </summary>
-        /// <param name="ShopId">店铺ID</param>
+        /// <param name="ShopId">诊所ID</param>
         /// <returns></returns>
         public static Himall.DTO.MemberAccountSafety GetShopAccountSafety(long ShopId)
         {
@@ -536,9 +536,9 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取店铺管理员ID
+        /// 获取诊所管理员ID
         /// </summary>
-        /// <param name="ShopId">店铺ID</param>
+        /// <param name="ShopId">诊所ID</param>
         /// <returns></returns>
         public static long GetShopManagers(long ShopId)
         {
@@ -629,7 +629,7 @@ namespace Himall.Application
 
         #endregion
         /// <summary>
-        /// 检查、初始化店铺模版
+        /// 检查、初始化诊所模版
         /// </summary>
         /// <param name="shopid"></param>
         public static void CheckInitTemplate(long shopid)
@@ -736,9 +736,9 @@ namespace Himall.Application
 
         #endregion
         /// <summary>
-        /// 获取指定店铺等级信息
+        /// 获取指定诊所等级信息
         /// </summary>
-        /// <param name="id">店铺等级Id</param>
+        /// <param name="id">诊所等级Id</param>
         /// <returns></returns>
         public static ShopGrade GetShopGrade(long id)
         {

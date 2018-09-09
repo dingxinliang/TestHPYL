@@ -28,7 +28,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 获得店铺销售汇总
+        /// 获得诊所使用汇总
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获得店铺下门店销售汇总
+        /// 获得诊所下门店使用汇总
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 店铺下的所有门店销售排行
+        /// 诊所下的所有门店使用排行
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -73,7 +73,7 @@ namespace Himall.Application
             return model;
         }
         /// <summary>
-        /// 店铺下某个门店每天的销售排行及销量
+        /// 诊所下某个门店每天的使用排行及销量
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>

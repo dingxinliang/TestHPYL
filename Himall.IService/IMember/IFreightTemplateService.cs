@@ -10,7 +10,7 @@ namespace Himall.IServices
     public interface IFreightTemplateService : IService
     {
         /// <summary>
-        /// 取卖家所有运费模版
+        /// 取诊所所有运费模版
         /// </summary>
         /// <param name="SellerId"></param>
         /// <returns></returns>

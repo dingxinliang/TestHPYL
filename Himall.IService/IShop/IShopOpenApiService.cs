@@ -7,36 +7,36 @@ using System.Collections.Generic;
 namespace Himall.IServices
 {
     /// <summary>
-    /// 店铺OpenApi服务接口
+    /// 诊所OpenApi服务接口
     /// </summary>
     public interface IShopOpenApiService : IService
     {
         /// <summary>
-        /// 获取店铺的OpenApi配置
+        /// 获取诊所的OpenApi配置
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
         ShopOpenApiSettingInfo Get(long shopId);
         /// <summary>
-        /// 获取店铺的OpenApi配置
+        /// 获取诊所的OpenApi配置
         /// </summary>
         /// <param name="appkey"></param>
         /// <returns></returns>
         ShopOpenApiSettingInfo Get(string appkey);
         /// <summary>
         /// 生成一个OpenApi配置
-        /// <para>如果店铺已生成会异常</para>
+        /// <para>如果诊所已生成会异常</para>
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
         ShopOpenApiSettingInfo MakeOpenApi(long shopId);
         /// <summary>
-        /// 添加店铺OpenApi配置
+        /// 添加诊所OpenApi配置
         /// </summary>
         /// <param name="data"></param>
         void Add(ShopOpenApiSettingInfo data);
         /// <summary>
-        /// 修改店铺OpenApi配置
+        /// 修改诊所OpenApi配置
         /// </summary>
         /// <param name="data"></param>
         void Update(ShopOpenApiSettingInfo data);

@@ -35,7 +35,7 @@ namespace Himall.API
         }
 
         /// <summary>
-        /// 获取店铺下某个门店的每天的业绩排行
+        /// 获取诊所下某个门店的每天的业绩排行
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>

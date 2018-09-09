@@ -99,7 +99,7 @@ namespace Himall.API
             if (!sv)
             {
                 vshopService.LogVisit(id);
-                //统计店铺访问人数
+                //统计诊所访问人数
                 StatisticApplication.StatisticShopVisitUserCount(vshop.ShopId);
             }
             return Json(new { Success = "True", VShop = model, SlideImgs = SlideAds, Products = products, Banner = banner, Coupon = couponInfo, CustomerServices= customerServices });
@@ -143,7 +143,7 @@ namespace Himall.API
             var mark = ShopServiceMark.GetShopComprehensiveMark(vshop.ShopId);
             var shopMark = mark.ComprehensiveMark.ToString();
 
-            #region 获取店铺的评价统计
+            #region 获取诊所的评价统计
             var shopStatisticOrderComments = ServiceProvider.Instance<IShopService>.Create.GetShopStatisticOrderComments(vshop.ShopId);
 
             var productAndDescription = shopStatisticOrderComments.Where(c => c.CommentKey == StatisticOrderCommentsInfo.EnumCommentKey.ProductAndDescription).FirstOrDefault();
@@ -165,12 +165,12 @@ namespace Himall.API
             {
                 _productAndDescription = productAndDescription.CommentValue;
             }
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null)
             {
                 _sellerServiceAttitude = sellerServiceAttitude.CommentValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null)
             {
                 _sellerDeliverySpeed = sellerDeliverySpeed.CommentValue;
@@ -192,7 +192,7 @@ namespace Himall.API
             };
             return Json(new { Success = "True", VShop = vshopModel });
         }
-        //新增或删除店铺收藏
+        //新增或删除诊所收藏
         public object PostAddFavoriteShop(VShopAddFavoriteShopModel value)
         {
             CheckUserLogin();
@@ -262,7 +262,7 @@ namespace Himall.API
             );
             var bizCategories = ServiceProvider.Instance<IShopCategoryService>.Create.GetShopCategory(shopId);
             var shopCategories = GetSubCategories(bizCategories, 0, 0);
-            //统计店铺访问人数
+            //统计诊所访问人数
             StatisticApplication.StatisticShopVisitUserCount(vshop.ShopId);
             return Json(new { Success = "true", Total = total,ShopCategory=shopCategories, Products = productsModel, VShopId = vshopId, Keywords =keywords});
         }

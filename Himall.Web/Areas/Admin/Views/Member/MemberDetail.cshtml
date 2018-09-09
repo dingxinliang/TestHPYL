@@ -86,7 +86,7 @@
                     <p><span>性别：</span><i>@Model.Sex.ToDescription()</i></p>
                     <p><span>邮箱：</span><i>@Model.Email</i></p>
                     <p><span>职业：</span><i>@(Model.Occupation)</i></p>
-                    <p><span>是否为销售员：</span><i>@(Model.IsPromoter ? "是" : "否")</i></p>
+                    <p><span>是否为使用员：</span><i>@(Model.IsPromoter ? "是" : "否")</i></p>
                     <p><span>生日：</span><i>@(Model.BirthDay.HasValue ? Model.BirthDay.Value.ToString("yyyy-MM-dd") : string.Empty)</i></p>
                     <p><span>注册时间：</span><i>@(Model.CreateDate.ToString("yyyy-MM-dd"))</i></p>
                     <p><span>手机：</span><i>@Model.CellPhone</i></p>

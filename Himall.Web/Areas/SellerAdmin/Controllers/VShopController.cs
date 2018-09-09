@@ -71,7 +71,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         {
             if (shopId != CurrentSellerManager.ShopId)
             {
-                throw new HimallException("获取店铺信息错误");
+                throw new HimallException("获取诊所信息错误");
             }
             var vshop = _iVShopService.GetVShopByShopId(shopId);
             if (vshop == null)
@@ -146,7 +146,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
         
         /// <summary>
-        /// 店铺优惠卷列表
+        /// 诊所优惠卷列表
         /// </summary>
         /// <param name="page"></param>
         /// <param name="rows"></param>

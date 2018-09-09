@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Himall.CommonModel
 {
     /// <summary>
-    /// 店铺收支类型
+    /// 诊所收支类型
     /// </summary>
     public enum ShopAccountType
     {
@@ -29,9 +29,9 @@ namespace Himall.CommonModel
         [Description("平台佣金退还")]
         PlatCommissionRefund = 3,   
         /// <summary>
-        /// 分销佣金退还
+        /// 分佣佣金退还
         /// </summary>
-        [Description("分销佣金退还")]
+        [Description("分佣佣金退还")]
         DistributorCommissionRefund = 4,
         /// <summary>
         /// 营销服务费

@@ -22,7 +22,7 @@ namespace Himall.SmallProgAPI.Model
         public bool isFreeFreight { get; set; }
         public decimal shopFreeFreight { get; set; }
         /// <summary>
-        /// 店铺预约单金额
+        /// 诊所预约单金额
         /// </summary>
         public decimal OrderAmount { get; set; }
         public IBaseCoupon Coupon { get; set; }

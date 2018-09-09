@@ -1,6 +1,6 @@
 ﻿// JavaScript source code
 function deleteShopGradeEvent(id) {
-    $.dialog.confirm('您确定要删除该店铺套餐吗？', function () {
+    $.dialog.confirm('您确定要删除该诊所套餐吗？', function () {
         var loading = showLoading();
         ajaxRequest({
             type: 'POST',

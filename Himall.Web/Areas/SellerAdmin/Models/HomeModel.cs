@@ -13,26 +13,26 @@ namespace Himall.Web.Areas.SellerAdmin.Models
         /// </summary>
         public SellerConsoleModel SellerConsoleModel { get; set; }
         /// <summary>
-        /// 店铺logo
+        /// 诊所logo
         /// </summary>
         public string ShopLogo { get; set; }
 
 
-        //店铺ID
+        //诊所ID
         public long ShopId { set; get; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { get; set; }
 
         /// <summary>
-        /// 店铺截至日期
+        /// 诊所截至日期
         /// </summary>
         public string ShopEndDate { get; set; }
 
         /// <summary>
-        /// 店铺等级
+        /// 诊所等级
         /// </summary>
         public string ShopGradeName { get; set; }
 
@@ -49,12 +49,12 @@ namespace Himall.Web.Areas.SellerAdmin.Models
         } }
 
         /// <summary>
-        /// 卖家服务态度
+        /// 诊所服务态度
         /// </summary>
         public string SellerServiceAttitude { get; set; }
 
         /// <summary>
-        /// 卖家服务态度百分比
+        /// 诊所服务态度百分比
         /// </summary>
         public string SellerServiceAttitudePercentage
         {
@@ -65,12 +65,12 @@ namespace Himall.Web.Areas.SellerAdmin.Models
         }
 
         /// <summary>
-        /// 卖家发货速度
+        /// 诊所发货速度
         /// </summary>
         public string SellerDeliverySpeed { get; set; }
 
         /// <summary>
-        /// 卖家发货速度百分比
+        /// 诊所发货速度百分比
         /// </summary>
         public string SellerDeliverySpeedPercentage
         {
@@ -142,7 +142,7 @@ namespace Himall.Web.Areas.SellerAdmin.Models
         public string OrderWithRefundAndRGoods { get; set; }
 
         /// <summary>
-        /// 诊疗项目 销售中
+        /// 诊疗项目 使用中
         /// </summary>
         public string ProductsOnSale { get; set; }
         /// <summary>

@@ -321,18 +321,18 @@ namespace Himall.API
             }
             #endregion
 
-            #region 店铺信息
+            #region 诊所信息
             VShopShowShopScoreModel modelShopScore = new VShopShowShopScoreModel();
             modelShopScore.ShopId = result.ShopId;
             var shop = ServiceProvider.Instance<IShopService>.Create.GetShop(result.ShopId);
             if (shop == null)
             {
-                throw new HimallException("错误的店铺信息");
+                throw new HimallException("错误的诊所信息");
             }
 
             modelShopScore.ShopName = shop.ShopName;
 
-            #region 获取店铺的评价统计
+            #region 获取诊所的评价统计
             var shopStatisticOrderComments = ServiceProvider.Instance<IShopService>.Create.GetShopStatisticOrderComments(result.ShopId);
 
             var productAndDescription = shopStatisticOrderComments.Where(c => c.CommentKey == StatisticOrderCommentsInfo.EnumCommentKey.ProductAndDescription).FirstOrDefault();
@@ -377,7 +377,7 @@ namespace Himall.API
                 modelShopScore.ProductAndDescriptionMax = defaultValue;
             }
 
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null && !shop.IsSelf)
             {
                 modelShopScore.SellerServiceAttitude = sellerServiceAttitude.CommentValue;
@@ -392,7 +392,7 @@ namespace Himall.API
                 modelShopScore.SellerServiceAttitudeMax = defaultValue;
                 modelShopScore.SellerServiceAttitudeMin = defaultValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null && !shop.IsSelf)
             {
                 modelShopScore.SellerDeliverySpeed = sellerDeliverySpeed.CommentValue;
@@ -466,13 +466,13 @@ namespace Himall.API
             var FreightTemplate = template;
             #endregion
 
-            #region 获取店铺优惠信息
+            #region 获取诊所优惠信息
             VShopShowPromotionModel modelVshop = new VShopShowPromotionModel();
             modelVshop.ShopId = result.ShopId;
             var shopInfo = ServiceProvider.Instance<IShopService>.Create.GetShop(result.ShopId);
             if (shopInfo == null)
             {
-                throw new HimallException("错误的店铺编号");
+                throw new HimallException("错误的诊所编号");
             }
 
             modelVshop.FreeFreight = shop.FreeFreight;
@@ -493,7 +493,7 @@ namespace Himall.API
             {
                 throw new Himall.Core.HimallException("错误的诊疗项目编号");
             }
-            //统计诊疗项目浏览量、店铺浏览人数
+            //统计诊疗项目浏览量、诊所浏览人数
             StatisticApplication.StatisticVisitCount(product.Id, product.ShopId);
 
             AutoMapper.Mapper.CreateMap<FightGroupActiveModel, FightGroupActiveResult>();

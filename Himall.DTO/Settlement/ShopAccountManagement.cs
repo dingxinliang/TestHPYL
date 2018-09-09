@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 店铺帐号管理
+    /// 诊所帐号管理
     /// </summary>
     public class ShopAccountManagement
     {
@@ -40,7 +40,7 @@ namespace Himall.DTO
     {
 
         /// <summary>
-        /// 店铺Id
+        /// 诊所Id
         /// </summary>
         public long ShopId { set; get; }
         /// <summary>
@@ -81,7 +81,7 @@ namespace Himall.DTO
     public class BankAccount
     {
         /// <summary>
-        /// 店铺Id
+        /// 诊所Id
         /// </summary>
         public long ShopId { set; get; }
 

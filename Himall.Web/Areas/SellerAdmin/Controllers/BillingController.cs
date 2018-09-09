@@ -127,7 +127,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         /// <summary>
-        /// 获取店铺帐户流水
+        /// 获取诊所帐户流水
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
@@ -270,7 +270,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
 		}
 
 		/// <summary>
-		/// 获取店铺帐户流水
+		/// 获取诊所帐户流水
 		/// </summary>
 		/// <param name="startDate"></param>
 		/// <param name="endDate"></param>

@@ -38,7 +38,7 @@ namespace Himall.Core.Plugins.Message
         [Description("找回密码")]
         FindPassWord,
 
-        [Description("店铺审核")]
+        [Description("诊所审核")]
         ShopAudited,
 
         /// <summary>
@@ -50,9 +50,9 @@ namespace Himall.Core.Plugins.Message
         //[Description("开店成功")] //2.4去除状态
         //ShopSuccess,
         /// <summary>
-        /// 店铺有新预约单
+        /// 诊所有新预约单
         /// </summary>
-        [Description("店铺有新预约单")]
+        [Description("诊所有新预约单")]
         ShopHaveNewOrder,
         /// <summary>
         /// 领取红包通知

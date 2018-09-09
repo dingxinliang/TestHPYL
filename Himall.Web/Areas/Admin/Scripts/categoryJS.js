@@ -300,7 +300,8 @@ $(function () {
             msg = "删除该分类将会同时删除该分类的所有下级分类，您确定要删除吗？";
         }
 
-        var id = $(this).parents('td.td-operate').prev('td').prev('td').find('.hidden_id').val();
+        var id = $(this).parents('td.td-operate').prev('td').find('.hidden_id').val();
+        
         $.dialog.confirm(msg, function () {
             var loading = showLoading();
             ajaxRequest({

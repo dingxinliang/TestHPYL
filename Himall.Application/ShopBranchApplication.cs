@@ -215,7 +215,7 @@ namespace Himall.Application
         public static QueryPageModel<ProductInfo> GetShopBranchProducts(ShopBranchProductQuery query)
         {
             var pageModel = _shopBranchService.SearchProduct(query);
-            //TODO:补充门店销售数量
+            //TODO:补充门店使用数量
             var orders = OrderApplication.GetOrdersNoPage(new OrderQuery { ShopBranchId = query.shopBranchId });
             var orderItems = OrderApplication.GetOrderItemsByOrderId(orders.Select(e => e.Id));
             var pids = pageModel.Models.Select(e => e.Id);

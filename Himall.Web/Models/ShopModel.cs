@@ -17,15 +17,15 @@ namespace Himall.Web.Models
     }
     public class ShopModel
     {
-        //店铺相关
+        //诊所相关
         public long Id { get; set; }
 
-        [Required(ErrorMessage = "店铺名称为必填项")]
-        [MaxLength(20, ErrorMessage = "店铺名称最多20个字符")]
+        [Required(ErrorMessage = "诊所名称为必填项")]
+        [MaxLength(20, ErrorMessage = "诊所名称最多20个字符")]
         public string Name { get; set; }
         public string Account { get; set; }
 
-        [Required(ErrorMessage = "店铺套餐为必填项")]
+        [Required(ErrorMessage = "诊所套餐为必填项")]
         public string ShopGrade { get; set; }
 
         [Required(ErrorMessage = "有效期为必填项")]
@@ -258,15 +258,15 @@ namespace Himall.Web.Models
     /// </summary>
     public class ShopPersonal
     {
-        //店铺相关
+        //诊所相关
         public long Id { get; set; }
 
-        [Required(ErrorMessage = "店铺名称为必填项")]
-        [MaxLength(20, ErrorMessage = "店铺名称最多20个字符")]
+        [Required(ErrorMessage = "诊所名称为必填项")]
+        [MaxLength(20, ErrorMessage = "诊所名称最多20个字符")]
         public string Name { get; set; }
         public string Account { get; set; }
 
-        [Required(ErrorMessage = "店铺套餐为必填项")]
+        [Required(ErrorMessage = "诊所套餐为必填项")]
         public string ShopGrade { get; set; }
 
         [Required(ErrorMessage = "有效期为必填项")]

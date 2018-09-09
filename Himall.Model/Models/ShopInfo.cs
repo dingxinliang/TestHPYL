@@ -8,7 +8,7 @@ namespace Himall.Model
     public partial class ShopInfo
     {
         /// <summary>
-        /// 显示店铺状态
+        /// 显示诊所状态
         /// </summary>
         [NotMapped]
         public ShopAuditStatus ShowShopAuditStatus
@@ -33,7 +33,7 @@ namespace Himall.Model
         }
 
         /// <summary>
-        /// 店铺状态
+        /// 诊所状态
         /// </summary>
         public enum ShopAuditStatus
         {
@@ -123,7 +123,7 @@ namespace Himall.Model
         }
 
         /// <summary>
-        /// 店铺进度
+        /// 诊所进度
         /// </summary>
         public enum ShopStage
         {
@@ -146,9 +146,9 @@ namespace Himall.Model
             FinancialInfo,
 
             /// <summary>
-            /// 店铺信息
+            /// 诊所信息
             /// </summary>
-            [Description("店铺信息")]
+            [Description("诊所信息")]
             ShopInfo,
 
             /// <summary>
@@ -176,7 +176,7 @@ namespace Himall.Model
         }
 
         /// <summary>
-        /// 店铺欢迎语
+        /// 诊所欢迎语
         /// </summary>
         public string WelcomeTitle { get; set; }
 
@@ -206,7 +206,7 @@ namespace Himall.Model
         public string OpeningTime { get; set; }
 
         /// <summary>
-        /// 店铺描述
+        /// 诊所描述
         /// </summary>
         public string ShopDescription { get; set; }
 

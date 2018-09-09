@@ -10,13 +10,13 @@ namespace Himall.Model
     public partial class FightGroupsInfo
     {
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         [NotMapped]
         public string ShopName { get; set; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         [NotMapped]
         public string ShopLogo { get; set; }

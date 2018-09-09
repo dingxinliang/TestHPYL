@@ -18,12 +18,12 @@ namespace Himall.Core.Plugins.Message
         public string UserName { set; get; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { set; get; }
 
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long ShopId { set; get; }
         /// <summary>

@@ -116,13 +116,13 @@ namespace Himall.IServices
 
        
 
-        #region 分销用户关系
+        #region 分佣用户关系
         /// <summary>
-        /// 更改用户的推销员，并建立店铺分佣关系
+        /// 更改用户的推销员，并建立诊所分佣关系
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="shareUserId">销售员用户编号</param>
-        /// <param name="shopId">店铺编号,为0表示仅维护用户与推销员的关系</param>
+        /// <param name="shareUserId">使用员用户编号</param>
+        /// <param name="shopId">诊所编号,为0表示仅维护用户与推销员的关系</param>
         long UpdateShareUserId(long id, long shareUserId, long shopId = 0);
         /// <summary>
         /// 更新用户关系
@@ -381,7 +381,7 @@ namespace Himall.IServices
         /// <param name="appIdType"></param>
         /// <returns></returns>
         MemberOpenIdInfo GetMemberOpenIdInfoByuserIdAndType(long userId, string serviceProvider);
-      
+        QueryPageModel<UserModel> GetdoctorList(UserQuery query);
     }
 }
 

@@ -65,7 +65,7 @@ namespace Himall.Web.Framework
             //  //会员2
             //  privileges.Add(AdminPrivilege.MemberManage, GetActionByControllerName("member"));
             //  privileges.Add(AdminPrivilege.OpenIDManage, GetActionByControllerName("oauth"));
-            //  //店铺3
+            //  //诊所3
             //  privileges.Add(AdminPrivilege.ShopManage, GetActionByControllerName("shop"));
             //  privileges.Add(AdminPrivilege.ShopPackage, GetActionByControllerName("shopgrade"));
             //  privileges.Add(AdminPrivilege.SettlementManage, GetActionByControllerName("account"));

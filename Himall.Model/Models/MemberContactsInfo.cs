@@ -14,9 +14,9 @@ namespace Himall.Model
             General,
 
             /// <summary>
-            /// 店铺用户
+            /// 诊所用户
             /// </summary>
-            [Description("店铺用户")]
+            [Description("诊所用户")]
             ShopManager,
         }
 

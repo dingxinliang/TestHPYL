@@ -109,7 +109,7 @@ namespace Himall.Application
             var orders = orderService.CreateOrder(model);
 
             var result = new OrderReturnModel();
-            //更新所属分销员
+            //更新所属分佣员
             Task.Factory.StartNew(() =>
             {
                 MemberApplication.UpdateDistributionUserLink(submitModel.DistributionUserLinkId, model.CurrentUser.Id);
@@ -245,7 +245,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 根据每个店铺的购物列表获取每个店铺的满额减优惠金额
+        /// 根据每个诊所的购物列表获取每个诊所的满额减优惠金额
         /// </summary>
         /// <param name="cartItems"></param>
         /// <returns></returns>
@@ -269,7 +269,7 @@ namespace Himall.Application
                 if (rule != null)//找不到就是不满足金额
                 {
                     fullDiscount = rule.Discount;
-                    shopFullDiscount += fullDiscount; //店铺总优惠金额
+                    shopFullDiscount += fullDiscount; //诊所总优惠金额
                 }
             }
             return shopFullDiscount;
@@ -810,7 +810,7 @@ namespace Himall.Application
                 #region 数据补偿
                 //EDIT DZY [150703]
                 //是否有已删诊疗项目
-                bool isHaveNoSaleProOrd = false;   //是否有非销售中的诊疗项目
+                bool isHaveNoSaleProOrd = false;   //是否有非使用中的诊疗项目
                 List<OrderInfo> delOrders = new List<OrderInfo>();
                 foreach (var order in orders)
                 {
@@ -826,7 +826,7 @@ namespace Himall.Application
                     {
                         orders.Remove(_item);  //执行清理
                     }
-                    throw new HimallException("有预约单诊疗项目处于非销售状态，请手动处理。");
+                    throw new HimallException("有预约单诊疗项目处于非使用状态，请手动处理。");
                 }
                 result.HaveNoSalePro = isHaveNoSaleProOrd;
                 #endregion
@@ -1269,7 +1269,7 @@ namespace Himall.Application
         /// <param name="orderIds">预约单ID</param>
         public static void AddVshopBuyNumber(IEnumerable<long> orderIds)
         {
-            var shopIds = _iOrderService.GetOrders(orderIds).Select(item => item.ShopId).ToList();//从预约单信息获取店铺id
+            var shopIds = _iOrderService.GetOrders(orderIds).Select(item => item.ShopId).ToList();//从预约单信息获取诊所id
             List<long> vshopIds = new List<long>();
             foreach (var item in shopIds)
             {
@@ -2021,7 +2021,7 @@ namespace Himall.Application
         /// <summary>
         /// 获取昨天预约单交易金额
         /// </summary>
-        /// <param name="shopId">店铺ID平台不需要填写</param>
+        /// <param name="shopId">诊所ID平台不需要填写</param>
         /// <returns></returns>
         public static decimal GetYesterDaySaleAmount(long? shopId = null)
         {
@@ -2088,7 +2088,7 @@ namespace Himall.Application
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="remark"></param>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <param name="flag">紧急标识</param>
         public static void UpdateSellerRemark(long orderId, long shopId, string remark, int flag)
         {
@@ -2818,7 +2818,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 更改限时购销售量
+        /// 更改限时购使用量
         /// </summary>
         private static void IncreaseSaleCount(List<long> orderid)
         {
@@ -2855,7 +2855,7 @@ namespace Himall.Application
             }
         }
         /// <summary>
-        /// 根据预约单ID获取预约单诊疗项目明细，包括诊疗项目店铺信息
+        /// 根据预约单ID获取预约单诊疗项目明细，包括诊疗项目诊所信息
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -2864,7 +2864,7 @@ namespace Himall.Application
             var list = _iOrderService.GetOrders(ids).Map<List<FullOrder>>();
             List<OrderDetailView> orderDetails = new List<OrderDetailView>();
             var orderItems = GetOrderItemsByOrderId(list.Select(p => p.Id));//预约单明细
-            var shops = ShopApplication.GetShops(orderItems.Select(e => e.ShopId));//店铺信息
+            var shops = ShopApplication.GetShops(orderItems.Select(e => e.ShopId));//诊所信息
             var vShops = VshopApplication.GetVShopsByShopIds(orderItems.Select(e => e.ShopId));//微店信息
             foreach (var orderItem in orderItems)
             {//完善图片地址

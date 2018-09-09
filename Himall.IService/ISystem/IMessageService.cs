@@ -65,7 +65,7 @@ namespace Himall.IServices
         /// <param name="info"></param>
         void SendMessageOnOrderPay(long userId, MessageOrderInfo info);
         /// <summary>
-        /// 店铺有新预约单
+        /// 诊所有新预约单
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
@@ -90,7 +90,7 @@ namespace Himall.IServices
         /// <param name="info"></param>
         void SendMessageOnOrderShipping(long userId, MessageOrderInfo info);
         /// <summary>
-        /// 店铺审核
+        /// 诊所审核
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="info"></param>
@@ -104,7 +104,7 @@ namespace Himall.IServices
         void SendMessageOnCouponSuccess(long userId, MessageCouponInfo info);
 
         ///// <summary>
-        ///// 店铺成功2.4去除
+        ///// 诊所成功2.4去除
         ///// </summary>
         ///// <param name="destination"></param>
         ///// <param name="info"></param>

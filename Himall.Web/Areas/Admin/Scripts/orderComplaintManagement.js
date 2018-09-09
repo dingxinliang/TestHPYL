@@ -31,7 +31,7 @@ $(function () {
 			columns:
 			[[
 				{ field: "OrderId", title: '预约单号', width: 120 },
-				{ field: "ShopName", title: "店铺", width: 120, align: "center" },
+				{ field: "ShopName", title: "诊所", width: 120, align: "center" },
 				{ field: "UserName", title: "投诉会员", width: 80, align: "center" },
                 {
                     field: "ComplaintReason", title: '投诉原因', width: 280, align: 'center',

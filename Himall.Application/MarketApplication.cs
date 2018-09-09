@@ -14,7 +14,7 @@ namespace Himall.Application
     {
         private static IMarketService _iMarketService = ObjectContainer.Current.Resolve<IMarketService>();
         /// <summary>
-        /// 取店铺激活的营销活动
+        /// 取诊所激活的营销活动
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="type"></param>

@@ -51,7 +51,7 @@ function loadVShops(page) {
 
         }
         else {
-            $('#autoLoad').html('没有更多店铺了');
+            $('#autoLoad').html('没有更多诊所了');
         }
     });
 }

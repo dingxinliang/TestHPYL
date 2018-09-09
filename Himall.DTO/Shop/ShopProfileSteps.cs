@@ -355,7 +355,7 @@ namespace Himall.DTO
 
     public class ShopProfileStep3
     {
-        [Required(ErrorMessage = "必须填写店铺名称")]
+        [Required(ErrorMessage = "必须填写诊所名称")]
         [StringLength(100, ErrorMessage = "最大长度不能超过100")]
         public string ShopName { get; set; }
 

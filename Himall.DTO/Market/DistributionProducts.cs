@@ -8,7 +8,7 @@ using Himall.Core;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 分销诊疗项目
+    /// 分佣诊疗项目
     /// </summary>
     public class DistributionProducts
     {
@@ -18,7 +18,7 @@ namespace Himall.DTO
         public long Id { get; set; }
 
         /// <summary>
-        /// 分销ID
+        /// 分佣ID
         /// </summary>
         public long ProductbrokerageId { get; set; }
 
@@ -59,17 +59,17 @@ namespace Himall.DTO
         public string CategoryName { get; set; }
 
         /// <summary>
-        /// 分销状态
+        /// 分佣状态
         /// </summary>
         public Himall.Model.ProductBrokerageInfo.ProductBrokerageStatus Status { get; set; }
 
         /// <summary>
-        /// 分销状态显示值
+        /// 分佣状态显示值
         /// </summary>
         public string ProDisStatus { get { return Status.ToDescription(); } }
 
         /// <summary>
-        /// 分销佣金
+        /// 分佣佣金
         /// </summary>
         public decimal Commission { get; set; }
 

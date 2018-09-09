@@ -21,7 +21,7 @@ namespace Himall.CommonModel
         public DateTime? EndDate { get; set; }
 
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long ShopId { get; set; }
     }

@@ -122,7 +122,7 @@ namespace Himall.DTO
         public string InviteUserName { get; set; }
 
         /// <summary>
-        /// 分销员ID
+        /// 分佣员ID
         /// </summary>
         public long ShareUserId { get; set; }
         /// <summary>

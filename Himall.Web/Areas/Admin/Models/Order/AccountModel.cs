@@ -17,7 +17,7 @@ namespace Himall.Web.Areas.Admin.Models
         public decimal RefundAmount { get; set; }
 
         /// <summary>
-        /// 分销佣金
+        /// 分佣佣金
         /// </summary>
         public decimal BrokerageAmount { set; get; }
 

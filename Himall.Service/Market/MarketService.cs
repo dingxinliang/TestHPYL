@@ -89,10 +89,10 @@ namespace Himall.Service
             MarketServiceRecordInfo model = new MarketServiceRecordInfo();
             model.StartTime = StartTime;
             model.Price = price * monthCount;
-            var shopAccount = Context.ShopAccountInfo.Where(a => a.ShopId == shopId).FirstOrDefault();//店铺帐户信息
-            if (shopAccount.Balance < model.Price) //店铺余额不足以支付服务费用
+            var shopAccount = Context.ShopAccountInfo.Where(a => a.ShopId == shopId).FirstOrDefault();//诊所帐户信息
+            if (shopAccount.Balance < model.Price) //诊所余额不足以支付服务费用
             {
-                throw new HimallException("您的店铺余额为：" + shopAccount.Balance + "元,不足以支付此次营销服务购买费用，请先充值。");
+                throw new HimallException("您的诊所余额为：" + shopAccount.Balance + "元,不足以支付此次营销服务购买费用，请先充值。");
             }
             if (market != null)
             {
@@ -127,7 +127,7 @@ namespace Himall.Service
             info.DetailId = model.Id.ToString();
             info.ShopName = shop.ShopName;
             info.AccountNo = shopId + info.DetailId + new Random().Next(10000);
-            info.ReMark = "店铺购买" + type.ToDescription() + "服务," + monthCount + "个月";
+            info.ReMark = "诊所购买" + type.ToDescription() + "服务," + monthCount + "个月";
             info.TradeType = CommonModel.ShopAccountType.MarketingServices;
             info.CreateTime = DateTime.Now;
             info.Amount = price * monthCount;
@@ -140,7 +140,7 @@ namespace Himall.Service
             pinfo.IsIncome = true;
             pinfo.DetailId = model.Id.ToString();
             pinfo.AccountNo = info.AccountNo;
-            pinfo.ReMark = "店铺购买" + type.ToDescription() + "服务," + monthCount + "个月";
+            pinfo.ReMark = "诊所购买" + type.ToDescription() + "服务," + monthCount + "个月";
             pinfo.TradeType = CommonModel.PlatAccountType.MarketingServices;
             pinfo.CreateTime = DateTime.Now;
             pinfo.Amount = price * monthCount;

@@ -49,8 +49,8 @@ $(function () {
         });
 
         $('#MemberLogo').himallUpload({
-            title: '卖家中心logo',
-            imageDescript: '最佳尺寸：180*40  显示在卖家中心导航处',
+            title: '诊所中心logo',
+            imageDescript: '最佳尺寸：180*40  显示在诊所中心导航处',
             displayImgSrc: $("#MemberLogo1").val(),
             imgFieldName: "MemberLogo",
             dataWidth: 8

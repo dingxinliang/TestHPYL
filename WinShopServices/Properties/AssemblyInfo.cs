@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("WinShopServices")]
-[assembly: AssemblyDescription("店铺服务")]
+[assembly: AssemblyDescription("诊所服务")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WinShopServices")]

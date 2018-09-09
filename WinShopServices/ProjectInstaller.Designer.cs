@@ -39,8 +39,8 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.Description = "Himall店铺处理服务" + WinServiceBase.SettingHelper.Get_ConfigValue("Description");// "Himall2.6店铺处理服务";
-            this.serviceInstaller1.ServiceName = "Himall店铺处理服务" + WinServiceBase.SettingHelper.Get_ConfigValue("ServiceName");// "Himall2.6店铺处理服务";
+            this.serviceInstaller1.Description = "Himall诊所处理服务" + WinServiceBase.SettingHelper.Get_ConfigValue("Description");// "Himall2.6诊所处理服务";
+            this.serviceInstaller1.ServiceName = "Himall诊所处理服务" + WinServiceBase.SettingHelper.Get_ConfigValue("ServiceName");// "Himall2.6诊所处理服务";
             // 
             // ProjectInstaller
             // 

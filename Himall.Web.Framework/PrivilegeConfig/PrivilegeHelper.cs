@@ -168,7 +168,7 @@ namespace Himall.Web.Framework
             bool isOpenStore = Application.SiteSettingApplication.GetSiteSettings() != null && Application.SiteSettingApplication.GetSiteSettings().IsOpenStore;
             if (!isOpenStore)//未授权则关闭门店管理菜单
             {
-                var shopManager = p.Privilege.Where(x => x.GroupName.Equals("店铺")).FirstOrDefault();
+                var shopManager = p.Privilege.Where(x => x.GroupName.Equals("诊所")).FirstOrDefault();
                 if (shopManager != null)
                 {
                     shopManager.Items.Remove(shopManager.Items.Where(x=>x.PrivilegeId==4008).FirstOrDefault());// 4008 = "门店管理"

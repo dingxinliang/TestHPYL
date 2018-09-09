@@ -10,16 +10,16 @@ namespace Himall.Web.Areas.Mobile.Models
         public string ShopName { get; set; }
         public long ShopId { get; set; }
         /// <summary>
-        /// 店铺logo
+        /// 诊所logo
         /// </summary>
         public string VShopLog { get; set; }
         public int ProductNum { get; set; }
         /// <summary>
-        /// 店铺是否已收藏
+        /// 诊所是否已收藏
         /// </summary>
         public bool IsFavoriteShop { get; set; }
         /// <summary>
-        /// 店铺收藏数
+        /// 诊所收藏数
         /// </summary>
         public int FavoriteShopCount { get; set; }
         

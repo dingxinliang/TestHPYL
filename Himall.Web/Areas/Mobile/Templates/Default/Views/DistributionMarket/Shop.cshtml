@@ -1,6 +1,6 @@
 ﻿@model Himall.Web.Areas.Mobile.Models.DistributionShopShowModel
 @{
-    ViewBag.Title = "分销聚合页";
+    ViewBag.Title = "分佣聚合页";
 }
 
 <div class="container sell-combine" style="padding:0!important">
@@ -28,7 +28,7 @@
         </div>
         <div class="right-proD">
             <h4><a href="@Url.Action("Detail", "Product")/<%=item.ProductId%>?partnerid=@(Model.PartnerId)"><%=item.ProductName%></a></h4>
-            <p>累积销售<%=item.SaleNum%>笔</p>
+            <p>累积使用<%=item.SaleNum%>笔</p>
             <span><em>￥</em><%= item.SellPrice%></span>
         </div>
     </li>

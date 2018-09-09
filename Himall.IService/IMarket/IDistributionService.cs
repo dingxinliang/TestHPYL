@@ -30,10 +30,10 @@ namespace Himall.IServices
         /// <returns></returns>
         RecruitPlanInfo GetRecruitmentPlan();
 
-        //平台分销板块设置
+        //平台分佣板块设置
         void UpdateDistributorSetting(DistributorSettingInfo model);
         /// <summary>
-        /// 获取平台分销板块设置
+        /// 获取平台分佣板块设置
         /// </summary>
         /// <returns></returns>
         DistributorSettingInfo GetDistributionSetting();
@@ -56,14 +56,14 @@ namespace Himall.IServices
         void DisablePromoter(long Id);
 
         /// <summary>
-        /// 获取分销员ID或者分销员信息
+        /// 获取分佣员ID或者分佣员信息
         /// </summary>
         /// <param name="?"></param>
         /// <returns></returns>
         PromoterInfo GetPromoter(long id);
 
         /// <summary>
-        /// 根据用户ID获取分销员信息
+        /// 根据用户ID获取分佣员信息
         /// </summary>
         /// <param name="?"></param>
         /// <returns></returns>
@@ -84,13 +84,13 @@ namespace Himall.IServices
         void AduitPromoter(long Id);
 
 
-        //获取销售员总数，三天，七天新增数
+        //获取使用员总数，三天，七天新增数
         PromoterStatistics GetPromoterStatistics();
 
-        //获取分销列表
+        //获取分佣列表
         ObsoletePageModel<ProductsDistributionModel> GetDistributionlist(DistributionQuery query);
 
-        //更新分销产品排序
+        //更新分佣产品排序
         void UpdateProductsDistributionOrder(long productId, int sort);
 
 
@@ -101,9 +101,9 @@ namespace Himall.IServices
         ObsoletePageModel<UserProformanceModel> GetPerformanceDetail(UserProformanceQuery query);
         #endregion
 
-        #region 卖家中心
+        #region 诊所中心
         /// <summary>
-        /// 获取诊所分销设置
+        /// 获取诊所分佣设置
         /// </summary>
         /// <returns></returns>
         ShopDistributorSettingInfo getShopDistributorSettingInfo(long shopid);
@@ -119,26 +119,26 @@ namespace Himall.IServices
         void UpdateDefaultBrokerage(decimal rate, long shopid);
 
 		/// <summary>
-		/// 是否为分销员
+		/// 是否为分佣员
 		/// </summary>
 		/// <param name="userId"></param>
 		/// <returns></returns>
 		bool IsPromoter(long userId);
 
         /// <summary>
-        /// 获取当前所有分销诊疗项目编号
+        /// 获取当前所有分佣诊疗项目编号
         /// </summary>
         /// <param name="shopid"></param>
         /// <returns></returns>
         List<long> GetAllDistributionProductIds(long shopid);
 
         /// <summary>
-        /// 添加分销诊疗项目
+        /// 添加分佣诊疗项目
         /// <para>功能未实现</para>
         /// </summary>
         void AddDistributionProducts(ProductBrokerageInfo model);
         /// <summary>
-        /// 批量添加分销诊疗项目
+        /// 批量添加分佣诊疗项目
         /// </summary>
         /// <param name="productids"></param>
         /// <param name="shopid"></param>
@@ -146,17 +146,17 @@ namespace Himall.IServices
         void BatAddDistributionProducts(IEnumerable<long> productids, long shopid, decimal rate);
 
         /// <summary>
-        /// 分销预约单明细
+        /// 分佣预约单明细
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
         ObsoletePageModel<object> GetDistributionOrders(dynamic query);
 
         /// <summary>
-        /// (批量)取消诊疗项目分销推广
+        /// (批量)取消诊疗项目分佣推广
         /// </summary>
         /// <param name="ProductIds"></param>
-        /// <param name="shopId">店铺编号,null表示所有店铺</param>
+        /// <param name="shopId">诊所编号,null表示所有诊所</param>
         void CancelDistributionProduct(IEnumerable<long> ProductIds, long? shopId = null);
 
 
@@ -169,7 +169,7 @@ namespace Himall.IServices
         void SetProductBrokerage(decimal percent, IEnumerable<long> ProductIds, long? shopId = null);
 
         /// <summary>
-        /// 诊疗项目分销明细
+        /// 诊疗项目分佣明细
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -180,7 +180,7 @@ namespace Himall.IServices
         void ApplyForDistributor(PromoterModel model);
 
         /// <summary>
-        /// 获取分销用户业绩
+        /// 获取分佣用户业绩
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -188,7 +188,7 @@ namespace Himall.IServices
 
 
         /// <summary>
-        /// 分销产品的转发次数
+        /// 分佣产品的转发次数
         /// </summary>
         /// <param name="productId"></param>
         void UpdateProductShareNum(long productId);
@@ -243,22 +243,22 @@ namespace Himall.IServices
         void AddUserDistribution(BrokerageIncomeInfo model);
 
         /// <summary>
-        /// 添加分销退款
+        /// 添加分佣退款
         /// </summary>
         /// <param name="model"></param>
         void AddDistributionRefund(long OrderItemId, decimal RefundPrice, decimal Brokerage, long RefundId);
         /// <summary>
-        /// 修改分销退款
+        /// 修改分佣退款
         /// </summary>
         /// <param name="model"></param>
         void UpdateDistributionRefund(long OrderItemId, decimal RefundPrice, decimal Brokerage, long RefundId);
         /// <summary>
-        /// 关闭分销退款
+        /// 关闭分佣退款
         /// </summary>
         /// <param name="OrderItemId"></param>
         void CloseDistributionRefund(long OrderItemId);
         /// <summary>
-        /// 完成分销退款
+        /// 完成分佣退款
         /// </summary>
         /// <param name="OrderItemId"></param>
         void OverDistributionRefund(long OrderItemId, decimal RefundAmount, long RefundQuantity);
@@ -285,36 +285,36 @@ namespace Himall.IServices
         void UserBrokerageSettlement(long userId);
         #endregion
 
-        #region  分销市场
+        #region  分佣市场
 
         /// <summary>
-        /// 获取所有的分销诊疗项目
+        /// 获取所有的分佣诊疗项目
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
         ObsoletePageModel<ProductBrokerageInfo> GetDistributionProducts(ProductBrokerageQuery query);
         /// <summary>
-        /// 获取分销诊疗项目信息
+        /// 获取分佣诊疗项目信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         ProductBrokerageInfo GetDistributionProductInfo(long productId);
 
         /// <summary>
-        /// 批量获取分销诊疗项目信息
+        /// 批量获取分佣诊疗项目信息
         /// </summary>
-        /// <param name="productIds">分销诊疗项目ids</param>
+        /// <param name="productIds">分佣诊疗项目ids</param>
         /// <returns></returns>
         List<ProductBrokerageInfo> GetDistributionProductInfo(IEnumerable<long> productIds);
 
         /// <summary>
-        /// 获取店铺列表的接口
+        /// 获取诊所列表的接口
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
         ObsoletePageModel<DistributionShopModel> GetShopDistributionList(DistributionShopQuery query);
         /// <summary>
-        /// 获取店铺分销诊疗项目数量
+        /// 获取诊所分佣诊疗项目数量
         /// <para>仅统计可以正常购买的</para>
         /// </summary>
         /// <param name="shopId"></param>
@@ -322,7 +322,7 @@ namespace Himall.IServices
         long GetShopDistributionProductCount(long shopId);
 
         /// <summary>
-        /// 获取所有分销首页诊疗项目
+        /// 获取所有分佣首页诊疗项目
         /// </summary>
         /// <returns></returns>
         List<DistributionProductsInfo> GetDistributionProducts();
@@ -334,13 +334,13 @@ namespace Himall.IServices
         void AddDistributionProducts(DistributionProductsInfo mDistributionProductsInfo);
 
         /// <summary>
-        /// 移除分销首页诊疗项目
+        /// 移除分佣首页诊疗项目
         /// </summary>
         /// <param name="Ids"></param>
         void RemoveDistributionProducts(IEnumerable<long> Ids);
 
         /// <summary>
-        /// 获取分销首页所有诊疗项目
+        /// 获取分佣首页所有诊疗项目
         /// </summary>
         /// <param name="page">分页页码</param>
         /// <param name="rows">每页行数</param>
@@ -349,9 +349,9 @@ namespace Himall.IServices
         Himall.CommonModel.QueryPageModel<Himall.Model.DistributionProductsInfo> GetDistributionProducts(int page, int rows, string keyWords, long? categoryId = null);
 
         /// <summary>
-        /// 获取分销首页数据
+        /// 获取分佣首页数据
         /// </summary>
-        /// <param name="status">分销诊疗项目状态</param>
+        /// <param name="status">分佣诊疗项目状态</param>
         /// <returns></returns>
         List<Himall.Model.DistributionProductsInfo> GetDistributionProducts(ProductBrokerageInfo.ProductBrokerageStatus? status = null);
 
@@ -362,16 +362,16 @@ namespace Himall.IServices
         void DelDistributionProducts(long Id);
 
         /// <summary>
-        /// 获取分销设置对象
+        /// 获取分佣设置对象
         /// </summary>
         /// <param name="Id">主键ID</param>
         /// <returns></returns>
         Himall.Model.DistributionProductsInfo GetDistributionProductsInfo(long Id);
 
         /// <summary>
-        /// 修改分销首页设置
+        /// 修改分佣首页设置
         /// </summary>
-        /// <param name="model">分销实体</param>
+        /// <param name="model">分佣实体</param>
         void UpdateDistributionProducts(Himall.Model.DistributionProductsInfo model);
 
         #endregion

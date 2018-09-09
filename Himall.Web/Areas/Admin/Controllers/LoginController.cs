@@ -56,7 +56,7 @@ namespace Himall.Web.Areas.Admin.Controllers
                 ClearErrorTimes(username);//清除输入错误记录次数
 
                 //日龙修改
-                //去除将过期店铺变为不可用店铺的功能
+                //去除将过期诊所变为不可用诊所的功能
                 //ServiceHelper.Create<IManagerService>().UpdateShopStatus();
 
 				base.SetAdminLoginCookie(manager.Id);

@@ -57,12 +57,12 @@ namespace Himall.API
                 }
                 
 
-                topVShop.Products = topShopProducts;//主推店铺的诊疗项目
+                topVShop.Products = topShopProducts;//主推诊所的诊疗项目
                 //topVShop.Url = "http://" + Url.Request.RequestUri.Host + "/m-IOS/vshop/detail/" + topShop.Id;
                 topVShop.Url = Core.HimallIO.GetRomoteImagePath("/m-IOS/vshop/detail/") + topShop.Id;
                 if (CurrentUser != null)
                 {
-                    var favoriteTShopIds = ServiceProvider.Instance<IShopService>.Create.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注店铺
+                    var favoriteTShopIds = ServiceProvider.Instance<IShopService>.Create.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注诊所
                     topVShop.IsFavorite = favoriteTShopIds.Contains(topShop.ShopId)?true:false;
                 }                
             }

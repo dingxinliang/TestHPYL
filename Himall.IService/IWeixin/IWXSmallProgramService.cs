@@ -27,7 +27,7 @@ namespace Himall.IServices
         /// <summary>
         /// 批量诊疗项目信息
         /// </summary>
-        /// <param name="productIds">分销诊疗项目ids</param>
+        /// <param name="productIds">分佣诊疗项目ids</param>
         /// <returns></returns>
         List<WXSmallChoiceProductsInfo> GetWXSmallProductInfo(IEnumerable<long> productIds);
 

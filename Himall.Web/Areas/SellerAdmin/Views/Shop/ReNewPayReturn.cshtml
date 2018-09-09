@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "店铺续费结果";
+    ViewBag.Title = "诊所续费结果";
 }
 
 
@@ -9,7 +9,7 @@
         var errorMsg = ViewBag.Error;
         var flag = !string.IsNullOrWhiteSpace(errorMsg) ? "fail" : "success";
         var redirectUrl = string.IsNullOrWhiteSpace(errorMsg) ? ("/selleradmin?url=/selleradmin/Shop/Renew") : "/";
-        var htmlPart = string.IsNullOrWhiteSpace(errorMsg) ? ("秒后自动跳至店铺续费页面<a  href='/selleradmin?url=/selleradmin/Shop/Renew&tar=Shop' class='link_1'>店铺续费页面</a>") : "";
+        var htmlPart = string.IsNullOrWhiteSpace(errorMsg) ? ("秒后自动跳至诊所续费页面<a  href='/selleradmin?url=/selleradmin/Shop/Renew&tar=Shop' class='link_1'>诊所续费页面</a>") : "";
     }
     <div class="tips-page pay-@flag-page">
         @if (string.IsNullOrWhiteSpace(errorMsg))
@@ -23,7 +23,7 @@
             <h2>
                 抱歉，支付失败！请重新支付！
             </h2>
-            <div class="error_child">您可以：<a href="/selleradmin?url=/selleradmin/Shop/Renew&tar=Shop">返回店铺续费支付页面</a></div>
+            <div class="error_child">您可以：<a href="/selleradmin?url=/selleradmin/Shop/Renew&tar=Shop">返回诊所续费支付页面</a></div>
         }
 
         <div id="ShowDiv"></div>

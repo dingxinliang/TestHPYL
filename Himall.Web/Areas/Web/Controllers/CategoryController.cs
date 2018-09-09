@@ -35,7 +35,7 @@ namespace Himall.Web.Areas.Web.Controllers
         }
 
         /// <summary>
-        /// 获取店铺授权的分类
+        /// 获取诊所授权的分类
         /// </summary>
         /// <returns></returns>
         public JsonResult GetAuthorizationCategory(long shopId,long? key = null, int? level = -1)

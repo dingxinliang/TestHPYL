@@ -38,7 +38,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return base.Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
-        [ShopOperationLog("创建店铺分类", "pid,name"), HttpPost]
+        [ShopOperationLog("创建诊所分类", "pid,name"), HttpPost]
         public JsonResult CreateCategory(string name, long pId)
         {
             if (string.IsNullOrWhiteSpace(name) || (name.Length > 12))
@@ -57,7 +57,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return base.Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost, ShopOperationLog("删除店铺分类", "id")]
+        [HttpPost, ShopOperationLog("删除诊所分类", "id")]
         public JsonResult DeleteCategoryById(long id)
         {
             this._iShopCategoryService.DeleteCategory(id, base.CurrentSellerManager.ShopId);
@@ -151,7 +151,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return base.View(model);
         }
 
-        [ShopOperationLog("修改店铺分类名称", "id,name")]
+        [ShopOperationLog("修改诊所分类名称", "id,name")]
         public JsonResult UpdateName(string name, long id)
         {
             this._iShopCategoryService.UpdateCategoryName(id, name);

@@ -29,8 +29,8 @@
         </div>
         <ul class="shop-score">
             <li><span>宝贝与描述相符</span><p class="s3"><i style="width:@Model.ProductAndDescriptionPercentage"></i></p><em>@Model.ProductAndDescription</em></li>
-            <li><span>卖家的服务态度</span><p class="s3"><i style="width:@Model.SellerServiceAttitudePercentage"></i></p><em>@Model.SellerServiceAttitude</em></li>
-            <li><span>卖家发货速度</span><p class="s9"><i style="width:@Model.SellerDeliverySpeedPercentage"></i></p><em>@Model.SellerDeliverySpeed</em></li>
+            <li><span>诊所的服务态度</span><p class="s3"><i style="width:@Model.SellerServiceAttitudePercentage"></i></p><em>@Model.SellerServiceAttitude</em></li>
+            <li><span>诊所发货速度</span><p class="s9"><i style="width:@Model.SellerDeliverySpeedPercentage"></i></p><em>@Model.SellerDeliverySpeed</em></li>
         </ul>
         <div id="shopProductPie" style="height:100px;width:100px;float:left;">
         </div>
@@ -79,7 +79,7 @@
             <li>
                 <div class="icon icon-1"></div>
                 <p>
-                    <a href="/SellerAdmin/product/management">出售中(@Model.ProductsOnSale)</a>
+                    <a href="/SellerAdmin/product/management">在用中(@Model.ProductsOnSale)</a>
                     <a href="/SellerAdmin/product/management?status=inDraft">草稿箱(@Model.ProductsInDraft)</a>
                     <a href="/SellerAdmin/product/management?isSafeStock=true" >库存报警<i>(@Model.OverSafeStockProducts)</i></a>
                 </p>
@@ -95,7 +95,7 @@
     </div>
 
     <div class="ms-chat chat-shop modle-box">
-        <h3><a>店铺效果分析</a></h3>
+        <h3><a>诊所效果分析</a></h3>
         <h6 class="Sclear-A9">昨日数据：@DateTime.Now.Date.AddDays(-1).ToString("yyyy-MM-dd")</h6>
         <div class="chat-shop-rang">
             <i></i>
@@ -116,7 +116,7 @@
         </div>
     </div>
     <div class="ms-chat modle-box">
-        <h3>诊疗项目销售 <em>Top15</em></h3>
+        <h3>诊疗项目使用 <em>Top15</em></h3>
         <div class="chat-box">
             <div id="main" class="Sclear-A10"></div>
         </div>

@@ -109,10 +109,10 @@ namespace Himall.Web.Areas.Mobile.Controllers
                     Name = item.ProductName,
                     SalePrice = item.MinSalePrice
                 });
-                ViewBag.TopShopProducts = topShopProducts;//主推店铺的诊疗项目
+                ViewBag.TopShopProducts = topShopProducts;//主推诊所的诊疗项目
                 if (CurrentUser != null)
                 {
-                    var favoriteShopIds = _iShopService.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注店铺
+                    var favoriteShopIds = _iShopService.GetFavoriteShopInfos(CurrentUser.Id).Select(item => item.ShopId).ToArray();//获取已关注诊所
                     isFavorite = favoriteShopIds.Contains(topShop.ShopId);
                 }
                 int productCount = _iShopService.GetShopProductCount(topShop.ShopId);
@@ -225,7 +225,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             //ViewBag.CustomerServices = customerServices;
 
             ViewBag.ShowAside = 1;
-            //统计店铺访问人数
+            //统计诊所访问人数
             StatisticApplication.StatisticShopVisitUserCount(vshop.ShopId);
             return View(string.Format("~/Areas/SellerAdmin/Templates/vshop/{0}/{1}/Skin-HomePage.cshtml", vshop.ShopId, crrentTemplateName));
         }
@@ -337,7 +337,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             //补充ViewBag
             ViewBag.ShopId = result.ShopId;
             ViewBag.FollowUrl = result.FollowUrl;
-            ViewBag.FavText = result.IsFavoriteShop ? "已收藏" : "收藏店铺";
+            ViewBag.FavText = result.IsFavoriteShop ? "已收藏" : "收藏诊所";
             ViewBag.VShopid = result.VShopid;
             return View(result);
         }
@@ -448,7 +448,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             //补充ViewBag
             ViewBag.ShopId = result.ShopId;
             ViewBag.FollowUrl = result.FollowUrl;
-            ViewBag.FavText = result.IsFavoriteShop ? "已收藏" : "收藏店铺";
+            ViewBag.FavText = result.IsFavoriteShop ? "已收藏" : "收藏诊所";
             ViewBag.VShopid = result.VShopid;
             return View(result);
         }
@@ -534,7 +534,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             var mark = ShopServiceMark.GetShopComprehensiveMark(vshop.ShopId);
             ViewBag.shopMark = mark.ComprehensiveMark.ToString();
 
-            #region 获取店铺的评价统计
+            #region 获取诊所的评价统计
             var shopStatisticOrderComments = _iShopService.GetShopStatisticOrderComments(vshop.ShopId);
 
             var productAndDescription = shopStatisticOrderComments.Where(c => c.CommentKey == StatisticOrderCommentsInfo.EnumCommentKey.ProductAndDescription).FirstOrDefault();
@@ -572,7 +572,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 ViewBag.ProductAndDescriptionMin = defaultValue;
                 ViewBag.ProductAndDescriptionMax = defaultValue;
             }
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null)
             {
                 ViewBag.SellerServiceAttitude = sellerServiceAttitude.CommentValue;
@@ -587,7 +587,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 ViewBag.SellerServiceAttitudeMax = defaultValue;
                 ViewBag.SellerServiceAttitudeMin = defaultValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null)
             {
                 ViewBag.SellerDeliverySpeed = sellerDeliverySpeed.CommentValue;
@@ -631,8 +631,8 @@ namespace Himall.Web.Areas.Mobile.Controllers
         int orderType = 1, /* 排序方式（1：升序，2：降序） */
         int pageNo = 1, /*页码*/
         int pageSize = 6, /*每页显示数据量*/
-        long vshopId = 0,//店铺ID
-        long shopCid = 0//店铺分类 
+        long vshopId = 0,//诊所ID
+        long shopCid = 0//诊所分类 
         )
         {
             int total;
@@ -698,7 +698,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             ViewBag.VShopId = vshopId;
             if (shopId > 0)
             {
-                //统计店铺访问人数
+                //统计诊所访问人数
                 StatisticApplication.StatisticShopVisitUserCount(shopId);
             }
             return View(productsModel);
@@ -910,7 +910,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         /// 显示营销信息
         /// <para>优惠券，满额免</para>
         /// </summary>
-        /// <param name="id">店铺编号</param>
+        /// <param name="id">诊所编号</param>
         /// <param name="showcoupon">是否显示优惠券</param>
         /// <param name="showfreefreight">是否显示满额免</param>
         /// <param name="showfullsend">是否显示满就送</param>
@@ -923,7 +923,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
             var shop = _iShopService.GetShop(id);
             if (shop == null)
             {
-                throw new HimallException("错误的店铺编号");
+                throw new HimallException("错误的诊所编号");
             }
             if (showcoupon)
             {
@@ -964,7 +964,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
         }
 
         /// <summary>
-        /// 店铺评分
+        /// 诊所评分
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -976,12 +976,12 @@ namespace Himall.Web.Areas.Mobile.Controllers
             var shop = _iShopService.GetShop(id);
             if (shop == null)
             {
-                throw new HimallException("错误的店铺信息");
+                throw new HimallException("错误的诊所信息");
             }
 
             model.ShopName = shop.ShopName;
 
-            #region 获取店铺的评价统计
+            #region 获取诊所的评价统计
             var shopStatisticOrderComments = ServiceHelper.Create<IShopService>().GetShopStatisticOrderComments(id);
 
             var productAndDescription = shopStatisticOrderComments.Where(c => c.CommentKey == StatisticOrderCommentsInfo.EnumCommentKey.ProductAndDescription).FirstOrDefault();
@@ -1019,7 +1019,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 model.ProductAndDescriptionMin = defaultValue;
                 model.ProductAndDescriptionMax = defaultValue;
             }
-            //卖家服务态度
+            //诊所服务态度
             if (sellerServiceAttitude != null && sellerServiceAttitudePeer != null)
             {
                 model.SellerServiceAttitude = sellerServiceAttitude.CommentValue;
@@ -1034,7 +1034,7 @@ namespace Himall.Web.Areas.Mobile.Controllers
                 model.SellerServiceAttitudeMax = defaultValue;
                 model.SellerServiceAttitudeMin = defaultValue;
             }
-            //卖家发货速度
+            //诊所发货速度
             if (sellerDeliverySpeedPeer != null && sellerDeliverySpeed != null)
             {
                 model.SellerDeliverySpeed = sellerDeliverySpeed.CommentValue;

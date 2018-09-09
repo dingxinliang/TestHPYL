@@ -49,9 +49,9 @@ namespace Himall.Web.Areas.Web.Controllers
                 var sellerDeliverySpeed = shopStatisticOrderComments.Where(c => c.CommentKey == StatisticOrderCommentsInfo.EnumCommentKey.SellerDeliverySpeed).FirstOrDefault();
                 //宝贝与描述
                 m.ProductAndDescription = productAndDescription != null ? string.Format("{00:F}", productAndDescription.CommentValue) : defaultValue;
-                //卖家服务态度
+                //诊所服务态度
                 m.SellerServiceAttitude = sellerServiceAttitude != null ? string.Format("{00:F}", sellerServiceAttitude.CommentValue) : defaultValue;
-                //卖家发货速度
+                //诊所发货速度
                 m.SellerDeliverySpeed = sellerDeliverySpeed != null ? string.Format("{00:F}", sellerDeliverySpeed.CommentValue) : defaultValue;
 
                 foreach (var b in m.Himall_ShopBrands)  //获取品牌

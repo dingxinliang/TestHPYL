@@ -88,7 +88,7 @@ namespace Himall.Service
         #region 满减活动查询
         /// <summary>
         /// 诊疗项目是否可以参加满减活动
-        /// <para>不判断诊疗项目的销售状态</para>
+        /// <para>不判断诊疗项目的使用状态</para>
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="activeId">添加活动使用0</param>
@@ -110,7 +110,7 @@ namespace Himall.Service
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="activeId">添加活动使用0</param>
-        /// <param name="shopId">店铺编号</param>
+        /// <param name="shopId">诊所编号</param>
         /// <returns></returns>
         public List<long> FilterActiveProductId(IEnumerable<long> productIds, long activeId,long shopId)
         {
@@ -131,7 +131,7 @@ namespace Himall.Service
                 //&& d.SaleStatus == ProductInfo.ProductSaleStatus.OnSale
                 // && d.IsDeleted == false
                 //&& actProductIds.Contains(d.Id)).Select(d => d.Id).ToList();
-                //过滤非销售中的诊疗项目
+                //过滤非使用中的诊疗项目
                 var okproductIds = Context.ProductInfo.Where(d => d.AuditStatus == ProductInfo.ProductAuditStatus.Audited
                   && d.SaleStatus == ProductInfo.ProductSaleStatus.OnSale
                   && d.IsDeleted == false
@@ -156,7 +156,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取某个店铺正在进行的满额减活动列表
+        /// 获取某个诊所正在进行的满额减活动列表
         /// </summary>
         /// <param name="shopId"></param>
         /// <param name="productIds"></param>
@@ -181,7 +181,7 @@ namespace Himall.Service
         }
 
         /// <summary>
-        /// 获取某个店铺的一批诊疗项目正在进行的满额减活动
+        /// 获取某个诊所的一批诊疗项目正在进行的满额减活动
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="shopId"></param>
@@ -436,7 +436,7 @@ namespace Himall.Service
             return result;
         }
         /// <summary>
-        /// 获取不在销售中的诊疗项目
+        /// 获取不在使用中的诊疗项目
         /// </summary>
         /// <param name="productIds"></param>
         /// <returns></returns>

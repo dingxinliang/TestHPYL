@@ -2,7 +2,7 @@
 namespace Himall.Model
 {
     /// <summary>
-    /// 平台分销员消息统计信息
+    /// 平台分佣员消息统计信息
     /// </summary>
     public class PromoterStatistics
     {

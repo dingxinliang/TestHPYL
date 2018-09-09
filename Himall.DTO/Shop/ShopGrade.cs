@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Himall.DTO
 {
     /// <summary>
-    /// 店铺等级列表
+    /// 诊所等级列表
     /// </summary>
     public class ShopGrade
     {

@@ -40,7 +40,7 @@ $(function () {
                         reload(1);
                     }
                     else {
-                        $.dialog.alert('添加分销推广诊疗项目失败!' + data.msg);
+                        $.dialog.alert('添加分佣诊疗项目失败!' + data.msg);
                     }
                 });
             }, 'selleradmin');
@@ -56,17 +56,17 @@ function CancelEventBind() {
     $('#list').on('click', '.btnCancel', function () {
         var name = $(this).siblings('.thisName').val();
         var ids = $(this).siblings('.thisId').val();
-        $.dialog.confirm('您确定要取消这件诊疗项目的分销推广吗？', function () {
+        $.dialog.confirm('您确定要取消这件诊疗项目的分佣吗？', function () {
             loading = showLoading();
             $.post('./CancelProduct', { id: ids }, function (result) {
                 loading.close();
                 if (result.success) {
-                    $.dialog.tips('取消推广成功');
+                    $.dialog.tips('取消成功');
                     var pageNo = $("#list").hiMallDatagrid('options').pageNumber;
                     reload(pageNo);
                 }
                 else {
-                    $.dialog.alert('取消推广失败!' + result.msg);
+                    $.dialog.alert('取消失败!' + result.msg);
                 }
             });
         });
@@ -177,7 +177,7 @@ function LoadData() {
             formatter: function (value, row, index) {
                 var html = "";
                 html = '<span class="btn-a"><input class="thisId" type="hidden" value="' + row.ProductId + '"/><input class="thisName" type="hidden" value="' + row.ProductName + '"/>';
-                html += '<a class="btnCancel">取消推广</a></span>';
+                html += '<a class="btnCancel">取消</a></span>';
                 return html;
             }
         }

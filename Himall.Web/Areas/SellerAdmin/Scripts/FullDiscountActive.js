@@ -330,7 +330,7 @@ function successpost(data) {
                 }
                 selectProducts.sort(function (a, b) { return b.IsException - a.IsException });
                 ShowSelectedStatus();
-                $.dialog.errorTips("存在冲突诊疗项目或诊疗项目不在销售中");
+                $.dialog.errorTips("存在冲突诊疗项目或诊疗项目不在使用中");
                 break;
             default:
                 //清理数据冲突状态

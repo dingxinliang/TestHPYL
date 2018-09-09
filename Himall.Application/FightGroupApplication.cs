@@ -118,7 +118,7 @@ namespace Himall.Application
         /// 购买拼团服务
         /// </summary>
         /// <param name="month">数量(月)</param>
-        /// <param name="shopId">店铺编号</param>
+        /// <param name="shopId">诊所编号</param>
         public static void BuyMarketService(int month, long shopId)
         {
 
@@ -378,8 +378,8 @@ namespace Himall.Application
         /// </summary>
         /// <param name="Statuses">状态集</param>
         /// <param name="ProductName">诊疗项目名</param>
-        /// <param name="ShopName">店铺名</param>
-        /// <param name="ShopId">店铺编号</param>
+        /// <param name="ShopName">诊所名</param>
+        /// <param name="ShopId">诊所编号</param>
         /// <param name="page"></param>
         /// <param name="pagesize"></param>
         /// <returns></returns>

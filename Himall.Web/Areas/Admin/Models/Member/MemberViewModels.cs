@@ -15,7 +15,7 @@ namespace Himall.Web.Areas.Admin.Models.Member
 			}
 
 			/// <summary>
-			/// 是否是销售员
+			/// 是否是使用员
 			/// </summary>
 			public bool IsPromoter { get; set; }
 		}

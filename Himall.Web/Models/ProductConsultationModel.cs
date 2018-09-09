@@ -30,12 +30,12 @@ namespace Himall.Web.Models
         public string ProductPic { set; get; }
 
         /// <summary>
-        /// 店铺id
+        /// 诊所id
         /// </summary>
         public long ShopId { get; set; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { get; set; }
         /// <summary>

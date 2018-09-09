@@ -111,7 +111,7 @@ namespace Himall.Core
         //   private const string CacheCommercialKey = "FileCache_CommercialLicenser";
 
         /// <summary>
-        /// 检查店铺是否已经获得了商业授权的服务
+        /// 检查诊所是否已经获得了商业授权的服务
         /// </summary>
         /// <returns></returns>
         public static bool Check(out string Msg,out bool isOpenStore,out bool isOpenShopApp, string host)

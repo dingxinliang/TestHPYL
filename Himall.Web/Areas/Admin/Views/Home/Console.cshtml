@@ -15,7 +15,7 @@ $(function(){
             <i></i>
             <div>
                 <strong id="totalNum">@Model.TodaySaleAmount.Value.ToString("f0")</strong>
-                <span>今日有效销售总额</span>
+                <span>今日有效使用总额</span>
             </div>
         </li>
         <li class="fore2">
@@ -29,7 +29,7 @@ $(function(){
             <i></i>
             <div>
                 <strong>@Model.TodayShopIncrease</strong>
-                <span>今日店铺新增数</span>
+                <span>今日诊所新增数</span>
             </div>
         </li>
     </ul>
@@ -66,12 +66,12 @@ $(function(){
 				<div class="item-bt">
                     <i></i>
                 </div>
-                <div class="item-hd">店铺（个）<p>@Model.ShopNum</p></div>
+                <div class="item-hd">诊所（个）<p>@Model.ShopNum</p></div>
                 <div class="item-bd">
                     <p><em>@Model.TodayShopIncrease</em>今日新增</p>
                     <p><em>@Model.YesterdayShopIncrease</em>昨日新增</p>
                     <p><em>@Model.WaitAuditShops</em>待审核</p>
-                    <p><em>@Model.ExpiredShops</em>店铺到期</p>
+                    <p><em>@Model.ExpiredShops</em>诊所到期</p>
                     <p><em><a href="@Url.Action("Management","ShopWithDraw")?displayUrl=/Admin/ShopWithDraw/Management" class="color-f">@Model.ShopCashNumber</a></em>待处理提现</p>
                 </div>
             </div>
@@ -83,7 +83,7 @@ $(function(){
                 </div>
                 <div class="item-hd">诊疗项目（件）<p>@Model.ProductNum</p></div>
                 <div class="item-bd">
-                    <p><em>@Model.OnSaleProducts</em>出售中</p>
+                    <p><em>@Model.OnSaleProducts</em>在用中</p>
                     <p><em>@Model.WaitForAuditingProducts</em>待审核</p>
                     <p><em>@Model.ProductConsultations</em>诊疗项目咨询</p>
                     <p><em>@Model.ProductComments</em>诊疗项目评价</p>

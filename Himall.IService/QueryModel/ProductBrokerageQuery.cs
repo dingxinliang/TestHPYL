@@ -67,11 +67,11 @@ namespace Himall.IServices.QueryModel
         public long? CategoryId { get; set; }
 
         /// <summary>
-        /// 店铺
+        /// 诊所
         /// </summary>
         public long? ShopId { get; set; }
         /// <summary>
-        /// 销售员
+        /// 使用员
         /// </summary>
         public long? AgentUserId { get; set; }
         /// <summary>
@@ -79,7 +79,7 @@ namespace Himall.IServices.QueryModel
         /// </summary>
         public ProductBrokerageInfo.ProductBrokerageStatus? ProductBrokerageState { get; set; }
         /// <summary>
-        /// 是否只显示正常销售的
+        /// 是否只显示正常使用的
         /// </summary>
         public bool? OnlyShowNormal { get; set; }
         /// <summary>

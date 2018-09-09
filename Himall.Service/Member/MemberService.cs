@@ -15,6 +15,10 @@ using EntityFramework.Extensions;
 using MySql.Data.MySqlClient;
 using Dapper;
 using System.Linq.Expressions;
+using System.Text;
+using Himall.IServices.QueryModel;
+using XL.Util.WebControl;
+using Maticsoft.DBUtility;
 
 namespace Himall.Service
 {
@@ -1483,13 +1487,13 @@ namespace Himall.Service
             return Context.MemberLabelInfo.Where(item => item.LabelId == labelid);
         }
 
-        #region 分销用户关系
+        #region 分佣用户关系
         /// <summary>
-        /// 更改用户的推销员，并建立店铺分佣关系
+        /// 更改用户的推销员，并建立诊所分佣关系
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="shareUserId">销售员用户编号</param>
-        /// <param name="shopId">店铺编号</param>
+        /// <param name="shareUserId">使用员用户编号</param>
+        /// <param name="shopId">诊所编号</param>
         /// <returns>0表示无须维护或数据错误</returns>
         public long UpdateShareUserId(long id, long shareUserId, long shopId)
         {
@@ -2111,6 +2115,45 @@ namespace Himall.Service
                     userMemberInfo = DbSetExtend.FindById<UserMemberInfo>(this.Context.UserMemberInfo, (object)memberOpenIdInfo.UserId);
             }
             return userMemberInfo;
+        }
+
+        public QueryPageModel<UserModel> GetdoctorList(UserQuery search)
+        {
+            StringBuilder sqlQuery = new StringBuilder();
+            sqlQuery.Append("SELECT a.* ,date_format(CreateDate,  '%Y-%m-%d %H:%i')CreateDateStr FROM Himall_Members a inner join hpyl_memberrelation b ON a.Id=b.OneLevelUserID  where TwoLevelUserID=" + search.shopId + "");
+
+            if (!string.IsNullOrEmpty(search.UserCell))
+            {
+                sqlQuery.Append(" and CellPhone=" + search.UserCell + "");
+            }
+            if (!string.IsNullOrEmpty(search.UserName))
+            {
+                sqlQuery.Append(" and UserName like '%" + search.UserName + "%'");
+            }
+            if (!string.IsNullOrEmpty(search.UserRealName))
+            {
+                sqlQuery.Append(" and RealName like '%" + search.UserRealName + "%'");
+            }
+            if (!string.IsNullOrEmpty(search.auditStatus.ToString()))
+            {
+                sqlQuery.Append(" and Disabled=" + search.auditStatus + "");
+            }
+
+            var total = new Repository<UserModel>().FindList(sqlQuery.ToString());
+            Pagination pagination = new Pagination();
+            pagination.page = search.PageNumber;
+            pagination.rows = search.PageSize;
+            pagination.sidx = "Id";
+            pagination.sord = "desc";
+
+
+            var result = new Repository<UserModel>().FindList(sqlQuery.ToString(), pagination).ToList();
+            QueryPageModel<UserModel> pageModel = new QueryPageModel<UserModel>()
+            {
+                Total = (total == null ? 0 : total.Count()),
+                Models = result
+            };
+            return pageModel;
         }
     }
 }

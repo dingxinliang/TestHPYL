@@ -13,7 +13,7 @@
     <div class="search-box" id="search-box">
         <form class="form-inline custom-inline">
             <div class="form-group">
-                <label class="label-inline w75" for="">店铺名称</label>
+                <label class="label-inline w75" for="">诊所名称</label>
                 <input class="form-control input-ssm" type="text" id="txtShopName">
             </div>
             <div class="form-group"><button type="button" class="btn btn-primary btn-sm" id="searchButton">搜 索</button></div>
@@ -38,7 +38,7 @@
             [[
 
                 { field: "Id", title: "Id", hidden: true },
-                { field: "ShopName", title: "店铺名称", width: 400, align: "left" },
+                { field: "ShopName", title: "诊所名称", width: 400, align: "left" },
                 {
                     field: "StartTime", title: "开始时间", width: 260, formatter: function (value, row, index) {
                     return date_string(value);

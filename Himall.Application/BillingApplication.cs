@@ -20,15 +20,15 @@ namespace Himall.Application
         private const string PLUGIN_PAYMENT_ALIPAY = "Himall.Plugin.Payment.Alipay";
 
         /// <summary>
-        /// 根据ShopID获取该店铺的财务总览信息
+        /// 根据ShopID获取该诊所的财务总览信息
         /// </summary>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <returns></returns>
         public static ShopAccount GetShopAccount(long shopId)
         {
             if (shopId == 0)
             {
-                throw new Core.HimallException("错误的店铺ID");
+                throw new Core.HimallException("错误的诊所ID");
             }
             var model = _iBillingService.GetShopAccount(shopId);
             var shopAccount = Mapper.Map<ShopAccountInfo, ShopAccount>(model);
@@ -70,7 +70,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取店铺财务总览
+        /// 获取诊所财务总览
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -160,7 +160,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 店铺待结算列表上方显示的汇总信息
+        /// 诊所待结算列表上方显示的汇总信息
         /// </summary>
         /// <returns></returns>
         public static ShopSettlementCycle GetShopSettlementCycle(long shopId)
@@ -178,7 +178,7 @@ namespace Himall.Application
         ///分页获取待结算预约单列表
         /// </summary>
         /// <param name="orderId">预约单ID</param>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <param name="StartTime">预约单完成时间</param>
         /// <param name="EndTime">预约单完成时间</param>
         ///<param name="pageNo">当前页</param>
@@ -236,17 +236,17 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 根据预约单ID获取结算详情（传入shopId防止跨店铺调用）
+        /// 根据预约单ID获取结算详情（传入shopId防止跨诊所调用）
         /// </summary>
         /// <param name="orderId">预约单ID</param>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <returns></returns>
         public static OrderSettlementDetail GetPendingOrderSettlementDetail(long orderId, long? shopId = null)
         {
             var model = _iBillingService.GetPendingSettlementOrderDetail(orderId);
             if (shopId.HasValue && shopId.Value != model.ShopId)
             {
-                throw new Core.HimallException("找不到该店铺的结算详情");
+                throw new Core.HimallException("找不到该诊所的结算详情");
             }
 
             var order = OrderApplication.GetOrder(orderId);
@@ -269,17 +269,17 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 根据预约单ID获取结算详情（传入shopId防止跨店铺调用）
+        /// 根据预约单ID获取结算详情（传入shopId防止跨诊所调用）
         /// </summary>
         /// <param name="orderId">预约单ID</param>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <returns></returns>
         public static OrderSettlementDetail GetOrderSettlementDetail(long orderId, long? shopId = null)
         {
             var model = _iBillingService.GetSettlementOrderDetail(orderId);
             if (shopId.HasValue && shopId.Value != model.ShopId)
             {
-                throw new Core.HimallException("找不到该店铺的结算详情");
+                throw new Core.HimallException("找不到该诊所的结算详情");
             }
 
             var order = OrderApplication.GetOrder(orderId);
@@ -362,7 +362,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 分页获取店铺的收支明细
+        /// 分页获取诊所的收支明细
         /// </summary>
         /// <param name="query">查询实体</param>
         /// <returns></returns>
@@ -378,7 +378,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 获取店铺的收支明细
+        /// 获取诊所的收支明细
         /// </summary>
         /// <param name="query">查询实体</param>
         /// <returns></returns>
@@ -486,7 +486,7 @@ namespace Himall.Application
             var model = MarketApplication.GetShopMarketServiceRecordInfo(Id);
             if (shopId.HasValue && shopId.Value != model.ActiveMarketServiceInfo.ShopId)
             {
-                throw new Core.HimallException("找不到店铺的购买明细");
+                throw new Core.HimallException("找不到诊所的购买明细");
             }
             var record = ConvertToMarketServicesRecord(model);
             return record;
@@ -510,9 +510,9 @@ namespace Himall.Application
 
         #region 充值
         /// <summary>
-        /// 店铺创建支付
+        /// 诊所创建支付
         /// </summary>
-        /// <param name="shopId">店铺ID</param>
+        /// <param name="shopId">诊所ID</param>
         /// <param name="balance">支付金额</param>
         /// <param name="webRoot">站点URL</param>
         /// <returns></returns>
@@ -577,7 +577,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 店铺充值
+        /// 诊所充值
         /// </summary>
         /// <param name="Id">充值流水预约单ID</param>
         /// <param name="TradNo">支付流水号</param>
@@ -659,7 +659,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 店铺提现审核
+        /// 诊所提现审核
         /// </summary>
         /// <param name="Id">审核ID</param>
         /// <param name="status">审核状态</param>
@@ -692,7 +692,7 @@ namespace Himall.Application
           new LogInfo
           {
               Date = DateTime.Now,
-              Description = string.Format("店铺提现拒绝，店铺Id={0},状态为：{1}, 说明是：{2}", model.ShopId,
+              Description = string.Format("诊所提现拒绝，诊所Id={0},状态为：{1}, 说明是：{2}", model.ShopId,
               status, Remark),
               IPAddress = IpAddress,
               PageUrl = "/Admin/ShopWithDraw/Management",
@@ -717,7 +717,7 @@ namespace Himall.Application
           new LogInfo
           {
               Date = DateTime.Now,
-              Description = string.Format("店铺银行卡提现审核成功，店铺Id={0},状态为：{1}, 说明是：{2}", model.ShopId,
+              Description = string.Format("诊所银行卡提现审核成功，诊所Id={0},状态为：{1}, 说明是：{2}", model.ShopId,
               status, Remark),
               IPAddress = IpAddress,
               PageUrl = "/Admin/ShopWithDraw/Management",
@@ -758,7 +758,7 @@ namespace Himall.Application
                   new LogInfo
                   {
                       Date = DateTime.Now,
-                      Description = string.Format("店铺微信提现审核成功，店铺Id={0},状态为：{1}, 说明是：{2}", model.ShopId,
+                      Description = string.Format("诊所微信提现审核成功，诊所Id={0},状态为：{1}, 说明是：{2}", model.ShopId,
                       status, Remark),
                       IPAddress = IpAddress,
                       PageUrl = "/Admin/ShopWithDraw/Management",
@@ -782,7 +782,7 @@ namespace Himall.Application
                   new LogInfo
                   {
                       Date = DateTime.Now,
-                      Description = string.Format("店铺微信提现审核失败，店铺Id={0},状态为：{1}, 说明是：{2}", model.ShopId,
+                      Description = string.Format("诊所微信提现审核失败，诊所Id={0},状态为：{1}, 说明是：{2}", model.ShopId,
                       status, Remark),
                       IPAddress = IpAddress,
                       PageUrl = "/Admin/ShopWithDraw/Management",
@@ -849,7 +849,7 @@ namespace Himall.Application
             }
         }
         /// <summary>
-        /// 店铺提现信息
+        /// 诊所提现信息
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -859,7 +859,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 分页查询店铺提现记录
+        /// 分页查询诊所提现记录
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -899,7 +899,7 @@ namespace Himall.Application
         }
 
         /// <summary>
-        /// 查询店铺提现记录
+        /// 查询诊所提现记录
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -937,7 +937,7 @@ namespace Himall.Application
         #endregion
 
         /// <summary>
-        /// 店铺结算统计信息
+        /// 诊所结算统计信息
         /// </summary>
         /// <param name="shopId"></param>
         /// <returns></returns>
@@ -1000,7 +1000,7 @@ namespace Himall.Application
 
 
         /// <summary>
-        /// 店铺近一年的结算历史
+        /// 诊所近一年的结算历史
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>

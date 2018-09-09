@@ -42,7 +42,7 @@ namespace Himall.DTO
     }
 
     /// <summary>
-    /// 店铺待结算列表显示的汇总信息
+    /// 诊所待结算列表显示的汇总信息
     /// </summary>
     public class ShopSettlementCycle : SettlementCycle
     {

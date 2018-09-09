@@ -20,7 +20,7 @@ function query() {
         [[
             { field: "Id", title: 'Id', hidden: true, width: 150 },
 
-              { field: "ShopName", title: "店铺名称", width: 250, align: "center" },
+              { field: "ShopName", title: "诊所名称", width: 250, align: "center" },
 
                { field: "ApplyDate", title: "申请日期", width: 250, align: "center" },
            {

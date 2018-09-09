@@ -9,7 +9,7 @@ namespace Himall.CommonModel
     public class MarketServiceQuery:BaseQuery
     {
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long? ShopId { set; get; }
         /// <summary>
@@ -28,7 +28,7 @@ namespace Himall.CommonModel
         public DateTime? BuyTimeEnd { set; get; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { set; get; }
 

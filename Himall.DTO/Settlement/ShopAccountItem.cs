@@ -9,7 +9,7 @@ using Himall.Core;
 namespace Himall.DTO
 {
 	/// <summary>
-	/// 店铺收支详情
+	/// 诊所收支详情
 	/// </summary>
 	public class ShopAccountItem
 	{
@@ -19,7 +19,7 @@ namespace Himall.DTO
 		public long Id { set; get; }
 
 		/// <summary>
-		/// 店铺ID
+		/// 诊所ID
 		/// </summary>
 		public long ShopId { set; get; }
 

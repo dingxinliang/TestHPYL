@@ -25,7 +25,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         private ShopDistributorSettingInfo distributorConfig;
         /// <summary>
         /// 参数是否已配置
-        /// <para>佣金比错误时不可以新增分销诊疗项目</para>
+        /// <para>佣金比错误时不可以新增分佣诊疗项目</para>
         /// </summary>
         private bool isConfigRight = false;
         public DistributionRulesController(IDistributionService iDistributionService)
@@ -62,7 +62,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
         }
 
         /// <summary>
-        /// 分销诊疗项目佣金管理
+        /// 分佣诊疗项目佣金管理
         /// </summary>
         /// <returns></returns>
         public ActionResult Manage()
@@ -85,7 +85,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return View();
         }
         /// <summary>
-        /// 获取分销诊疗项目列表
+        /// 获取分佣诊疗项目列表
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -132,7 +132,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return Json(result);
         }
         /// <summary>
-        /// 获取分销的诊疗项目编号
+        /// 获取分佣的诊疗项目编号
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -155,7 +155,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             return Json(proids);
         }
         /// <summary>
-        /// 增加分销诊疗项目
+        /// 增加分佣诊疗项目
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -201,13 +201,13 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                 else
                 {
                     _iDistributionService.BatAddDistributionProducts(productids, curshopid, distributorConfig.DistributorDefaultRate);
-                    result = new Result { success = true, msg = "添加分销诊疗项目成功" };
+                    result = new Result { success = true, msg = "添加分佣诊疗项目成功" };
                 }
             }
             return Json(result);
         }
         /// <summary>
-        /// 取消分销诊疗项目
+        /// 取消分佣诊疗项目
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -228,7 +228,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
             }
             return Json(result);
         }/// <summary>
-        /// 取消分销诊疗项目
+        /// 取消分佣诊疗项目
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -374,7 +374,7 @@ namespace Himall.Web.Areas.SellerAdmin.Controllers
                     config.ShopId = curshopid;
                     _iDistributionService.UpdateShopDistributor(config);
                     result.success = true;
-                    result.msg = "分销聚合页推广设置成功！";
+                    result.msg = "分佣聚合页推广设置成功！";
                 }
                 else
                 {

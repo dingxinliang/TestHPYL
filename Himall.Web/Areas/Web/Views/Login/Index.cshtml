@@ -13,11 +13,11 @@
 </head>
 <body>
     <div class="w">
-        <div id="logo"><a href="/"><img src="@Himall.Core.HimallIO.GetImagePath(ViewBag.Logo)" alt="Himall" height="60"></a><b></b></div>
+        <div id="logo"><a href="/" style="display:none"><img src="@Himall.Core.HimallIO.GetImagePath(ViewBag.Logo)" alt="Himall" height="60"></a><b></b></div>
     </div>
     <div class=" w1" id="entry">
         <div class="mc " id="bgDiv">
-            <div id="entry-bg">
+            <div id="entry-bg" style="display:none">
                 @if (!string.IsNullOrWhiteSpace(SiteSetting.PCLoginPic))
                 {
                     <img src="@Himall.Core.HimallIO.GetImagePath(SiteSetting.PCLoginPic)" />
@@ -109,7 +109,7 @@
 <script src="~/Scripts/jquery-1.7.1.min.js"></script>
 <script src="~/Scripts/jquery.cookie.js"></script>
 <script src="~/Scripts/CommonJS.js"></script>
-<script src="~/Areas/Web/Scripts/login.js"></script>
+<script src="~/Areas/Web/Scripts/login.js?@DateTime.UtcNow"></script>
 
 <script type="text/javascript">
     $(function () {

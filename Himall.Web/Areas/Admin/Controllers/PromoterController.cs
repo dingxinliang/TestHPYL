@@ -36,7 +36,7 @@ namespace Himall.Web.Areas.Admin.Controllers
         {
             var model = _iDistributionService.GetPromoter(id);
             if(model==null)
-            return Json(new Result() { success = false, msg = "找不到该销售员！" });
+            return Json(new Result() { success = false, msg = "找不到该使用员！" });
             else
             {
                 var t = new

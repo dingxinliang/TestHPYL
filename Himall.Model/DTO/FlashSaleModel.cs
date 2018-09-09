@@ -19,12 +19,12 @@ namespace Himall.Model
         public string Title { get; set; }
 
         /// <summary>
-        /// 店铺ID
+        /// 诊所ID
         /// </summary>
         public long ShopId { get; set; }
 
         /// <summary>
-        /// 店铺名称
+        /// 诊所名称
         /// </summary>
         public string ShopName { get; set; }
 
@@ -69,7 +69,7 @@ namespace Himall.Model
         public int LimitCountOfThePeople { get; set; }
 
         /// <summary>
-        /// 仅仅只计算在限时购里的销售数
+        /// 仅仅只计算在限时购里的使用数
         /// </summary>
         public int SaleCount { get; set; }
         

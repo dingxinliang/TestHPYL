@@ -22,7 +22,7 @@ namespace Himall.Model
 
         [Privilege("我的关注", "诊疗项目关注", 2001, "productConcern/index", "ProductConcern")]
         ProductConcern = 2001,
-        [Privilege("我的关注", "店铺关注", 2002, "shopConcern/Index", "ShopConcern")]
+        [Privilege("我的关注", "诊所关注", 2002, "shopConcern/Index", "ShopConcern")]
         ShopConcern = 2002,
 
         [Privilege("售后服务", "退换货管理", 3001, "OrderRefund/List?showtype=2", "OrderRefund")]

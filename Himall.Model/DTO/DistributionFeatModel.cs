@@ -14,7 +14,7 @@ using Himall.Model;
 namespace Himall.Model
 {
     /// <summary>
-    /// 分销业绩模型
+    /// 分佣业绩模型
     /// </summary>
     public class DistributionFeatModel
     {
@@ -31,7 +31,7 @@ namespace Himall.Model
         /// </summary>
         public long? OrderItemId { get; set; }
         /// <summary>
-        /// 所属店铺
+        /// 所属诊所
         /// </summary>
         public long? ShopId { get; set; }
         /// <summary>
@@ -104,11 +104,11 @@ namespace Himall.Model
         /// </summary>
         public DateTime? SettleTime { get; set; }
         /// <summary>
-        /// 销售员
+        /// 使用员
         /// </summary>
         public string SalesName { get; set; }
         /// <summary>
-        /// 销售员编号
+        /// 使用员编号
         /// </summary>
         public long SalesUserId { get; set; }
         /// <summary>

@@ -38,7 +38,7 @@ namespace Himall.Application
 		/// <summary>
 		/// 添加诊疗项目
 		/// </summary>
-		/// <param name="shopId">店铺id</param>
+		/// <param name="shopId">诊所id</param>
 		/// <param name="product">诊疗项目信息</param>
 		/// <param name="pics">需要转移的诊疗项目图片地址</param>
 		/// <param name="skus">skus，至少要有一项</param>
@@ -498,7 +498,7 @@ namespace Himall.Application
 			return _productService.GetProductCommentCount(productId);
 		}
         /// <summary>
-        /// 取店铺超出安全库存的诊疗项目数
+        /// 取诊所超出安全库存的诊疗项目数
         /// </summary>
         /// <param name="shopid"></param>
         /// <returns></returns>
